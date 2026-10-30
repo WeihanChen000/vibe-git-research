@@ -1,9 +1,10 @@
+import { isLocalResearchPlatform, researchPlatformName } from "@vibe-git/protocol";
 import type { SPProject, SPProjectEvidence, SPRun, SPTaskAttempt, SciencePALArtifact } from "@vibe-git/protocol";
 import { badRequest, invalidState, notFound } from "../domain/errors.js";
 import { envelope } from "./pipeline-contract.js";
 import { checkTaskResult, resultValidationError, validateResultSchemas } from "./result-contract.js";
 
-const executionScope = (r: SPRun) => r.agent.platform === "codex" ? (r.localExecution?.id ? `codex:${r.localExecution.id}` : null) : (r.sandboxId ? `sciencepal:${r.sandboxId}` : null);
+const executionScope = (r: SPRun) => isLocalResearchPlatform(r.agent.platform) ? (r.localExecution?.id ? `${r.agent.platform}:${r.localExecution.id}` : null) : (r.sandboxId ? `sciencepal:${r.sandboxId}` : null);
 
 /** Recompute evidence from local frozen bytes. This path must never call SciencePAL. */
 export function projectEvidence(p: SPProject, revision: number,
@@ -31,8 +32,8 @@ export function projectEvidence(p: SPProject, revision: number,
     if (run.output) verify(run.output.id, run.output.sha256, run.output.size);
     if (run.status !== "COLLECTED") continue;
     if (!run.output || !executionScope(run)) throw invalidState("已采集运行缺少执行身份或成果");
-    if (run.agent.platform === "codex") {
-      if (!run.ownerNodeId || !run.claimId || run.localExecution?.platform !== "codex" || run.threadId || run.runId || run.sandboxId || transitions.length) throw invalidState("本地执行身份与远端身份混淆");
+    if (isLocalResearchPlatform(run.agent.platform)) {
+      if (!run.ownerNodeId || !run.claimId || run.localExecution?.platform !== run.agent.platform || run.threadId || run.runId || run.sandboxId || transitions.length) throw invalidState("本地执行身份与远端身份混淆");
     } else if (!run.runId || !run.threadId) throw invalidState("已采集运行缺少远端身份");
     let raw: unknown;
     try { raw = JSON.parse(Buffer.from(read(run.output.id).bytes).toString("utf8")); }

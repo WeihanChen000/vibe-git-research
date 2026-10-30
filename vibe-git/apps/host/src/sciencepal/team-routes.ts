@@ -1,3 +1,4 @@
+import { isLocalResearchPlatform, researchPlatformName } from "@vibe-git/protocol";
 import type { FastifyInstance, FastifyRequest } from "fastify";
 import { projectNextActions, type CollaborationNode, type SPAgentBinding, type SPCreateProject, type SPProject, type SPTeam } from "@vibe-git/protocol";
 import { badRequest, forbidden, revisionConflict } from "../domain/errors.js";
@@ -42,7 +43,7 @@ export async function registerSciencePALTeamRoutes(app: FastifyInstance, service
       const n=auth(r),body=object(r.body),id=typeof body.projectId==="string"?body.projectId:"";
       if(body.channel==="connector"){
         const p=access(n,pipeline.get(id));
-        if(p.team!.members.find(m=>m.nodeId===n.id)?.agent.platform==="codex")throw forbidden("Codex 本机入口不能冒充 SciencePAL 连接器");
+        if(isLocalResearchPlatform(p.team!.members.find(m=>m.nodeId===n.id)?.agent.platform))throw forbidden("Codex 本机入口不能冒充 SciencePAL 连接器");
       }
       recordPresence(repo,n.id,id,body);return {ok:true};
     });
@@ -50,8 +51,8 @@ export async function registerSciencePALTeamRoutes(app: FastifyInstance, service
       const node = auth(r), agent = object(r.body?.agent);
       const id = string(agent.id, "Agent ID", 120), name = string(agent.name, "Agent 名称", 120);
       if (!/^[a-zA-Z0-9_-]+$/.test(id)) throw badRequest("无效 Agent ID");
-      if (agent.platform !== undefined && !["sciencepal", "codex"].includes(String(agent.platform))) throw badRequest("不支持的执行平台");
-      if (agent.platform === "codex" && id !== "codex-local") throw badRequest("Codex 使用 codex-local 绑定");
+      if (agent.platform !== undefined && !(agent.platform === "sciencepal" || isLocalResearchPlatform(agent.platform))) throw badRequest("不支持的执行平台");
+      if (isLocalResearchPlatform(agent.platform) && id !== `${agent.platform}-local`) throw badRequest("本地平台必须使用对应的 platform-local 绑定");
       const value = { agent: { id, name, ...(agent.platform ? { platform: agent.platform } : {}) }, updatedAt: new Date().toISOString() };
       repo.setMeta(`sciencepal_binding_${node.id}`, JSON.stringify(value));
       return { ...value, nodeId: node.id, verification: "member-connector" };

@@ -1,3 +1,4 @@
+import { isLocalResearchPlatform, researchPlatformName } from "@vibe-git/protocol";
 import type {ReplayContext} from "./research-replay";
 import { isLatestSPRun, projectNextActions, type SPAgentBinding, type SPProject, type SPRun, type SPTask, type SPMemberPresence } from "@vibe-git/protocol";
 
@@ -18,13 +19,13 @@ export interface TeamState {
   simulationDescription?: string;
 }
 export function connectionSummary(state:TeamState,p:SPProject,nodeId:string){
- const presence=state.presence?.[p.id]?.[nodeId],member=p.team?.members.find(m=>m.nodeId===nodeId),codex=member?.agent.platform==="codex";
+ const presence=state.presence?.[p.id]?.[nodeId],member=p.team?.members.find(m=>m.nodeId===nodeId),codex=isLocalResearchPlatform(member?.agent.platform);
  const entry=presence?.panel,connector=presence?.connector,online=entry?.state==="online"||connector?.state==="online";
  const runs=currentMemberRuns(p,nodeId),run=runs[0];let blocker="等待分工 / 上游";
  if(runs.some(r=>r.status==="UNKNOWN"))blocker="原运行待本人核对，勿重发";
  else if(runs.some(r=>r.status==="NEEDS_INPUT"))blocker="等待本人在原线程回答";
  else if(p.paused)blocker="项目已暂停，等待队长恢复";
- else if(run&&codex)blocker=run.status==="READY"?"等待本人 Codex 领取":"等待本人 Codex 提交";
+ else if(run&&codex)blocker=run.status==="READY"?`等待本人 ${researchPlatformName(member?.agent.platform)} 领取`:`等待本人 ${researchPlatformName(member?.agent.platform)} 提交`;
  else if(run&&state.replay)blocker=runLabels[run.status]??"历史运行";
  else if(run&&connector?.state!=="online")blocker=connector?.state==="offline"?"连接器心跳超时 / 已停止":"本人尚未启动连接器";
  else if(run)blocker=connector?.status==="error"?connector.reason:runLabels[run.status]??"正在处理任务";
@@ -37,7 +38,7 @@ export const phaseLabels: Record<string, string> = { DRAFT:"提案已冻结", AL
 export const taskLabels: Record<SPTask["status"], string> = { WAITING:"等待上游", RUNNING:"执行中", REVIEWING:"评审中", APPROVED:"已通过评审", CHANGES_REQUESTED:"需要返工", BLOCKED:"已阻断" };
 export const runLabels: Record<string, string> = { READY:"等待领取", STARTING:"等待启动回执", RUNNING:"执行中", NEEDS_INPUT:"等待本人回答", COMPLETED:"等待校验", COLLECTED:"成果已校验", INVALID:"成果校验失败", FAILED:"执行失败", UNKNOWN:"启动结果待核对" };
 export const jobLabels: Record<SPRun["kind"], string> = { ALIGN:"协议对齐", TASK:"研究执行", REVIEW:"独立评审", CHANGE_REVIEW:"变更评审" };
-export const platformName = (agent?: SPAgentBinding) => !agent ? "尚未绑定" : agent.platform === "codex" ? "Codex" : "SciencePAL";
+export const platformName = (agent?: SPAgentBinding) => !agent ? "尚未绑定" : researchPlatformName(agent.platform ?? "sciencepal");
 export function stageProject(project: SPProject, revision: number): SPProject {
   if (revision === project.revision) return project;
   const stage = project.history.find(h => h.revision === revision);

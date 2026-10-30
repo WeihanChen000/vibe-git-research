@@ -1,9 +1,10 @@
+import type { SPPlatform, SPLocalPlatform } from "./sciencepal-platform.js";
 import type { AlignmentIssue } from "./v20.js";
 import type { SciencePALAgent, SciencePALArtifact, SciencePALTaskStatus } from "./sciencepal.js";
 
 /** Team id identifies a member binding; runtimeAgentId is the SciencePAL id.
  * Legacy projects omit runtimeAgentId and use id directly. */
-export interface SPAgentBinding extends SciencePALAgent { runtimeAgentId?: string; platform?: "sciencepal" | "codex" }
+export interface SPAgentBinding extends SciencePALAgent { runtimeAgentId?: string; platform?: SPPlatform }
 
 export interface SPProposal { id: string; agentId: string; content: string; sha256: string; ownerNodeId?: string; documentId?: string; documentRevision?: number }
 /** Member identity is Vibe-Git's authenticated node; account ownership is not inferred from an Agent ID. */
@@ -50,7 +51,7 @@ export interface SPAlignment {
 }
 export interface SPRun {
   /** Local member receipt, not a SciencePAL thread or a proof of model identity. */
-  localExecution?: { id: string; platform: "codex" };
+  localExecution?: { id: string; platform: SPLocalPlatform };
   continuations?: SPContinuation[];
   claimId?: string;
   ownerNodeId?: string;

@@ -40,7 +40,8 @@ function trimOutput(value: string): string | null {
 export class CodexExecutor {
   constructor(
     private readonly capability: CodexProbe,
-    private readonly executable = process.env.CODEX_BIN?.trim() || "codex"
+    private readonly executable = process.env.CODEX_BIN?.trim() || "codex",
+    private readonly env: NodeJS.ProcessEnv = process.env
   ) {}
 
   async start(command: ExecutionCommand, workspaceRaw: string): Promise<ActiveRun> {
@@ -63,7 +64,7 @@ export class CodexExecutor {
 
   private async startCli(command: ExecutionCommand, workspace: string): Promise<ActiveRun> {
     const child = spawn(this.executable, ["exec", "--sandbox", "workspace-write", "--json", "--cd", workspace, "-"], {
-      cwd: workspace, windowsHide: true, stdio: ["pipe", "pipe", "pipe"]
+      cwd: workspace, env: this.env, windowsHide: true, stdio: ["pipe", "pipe", "pipe"]
     });
     const started = deferred<string>();
     const completion = deferred<ExecutionCompletion>();
@@ -126,7 +127,7 @@ export class CodexExecutor {
 
   private async startAppServer(command: ExecutionCommand, workspace: string): Promise<ActiveRun> {
     const child = spawn(this.executable, ["app-server", "--stdio"], {
-      cwd: workspace, windowsHide: true, stdio: ["pipe", "pipe", "pipe"]
+      cwd: workspace, env: this.env, windowsHide: true, stdio: ["pipe", "pipe", "pipe"]
     });
     const client = new AppServerClient(child);
     try {

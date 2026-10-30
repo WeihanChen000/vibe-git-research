@@ -1,9 +1,10 @@
+import { isLocalResearchPlatform, researchPlatformName, type SPPlatform } from "./sciencepal-platform.js";
 import { isLatestSPRun, type SPProject } from "./sciencepal-pipeline.js";
 
 export interface SPNextAction {
   kind: string; title: string; detail: string;
   ownerNodeId: string | null; ownerLabel: string; isMine: boolean;
-  runId?: string; taskKey?: string; platform?: "sciencepal" | "codex";
+  runId?: string; taskKey?: string; platform?: SPPlatform;
   operation?: string; body?: Record<string, unknown>;
 }
 /** Derived from the same frozen state for CLI and UI; never grants permission. */
@@ -26,14 +27,14 @@ export function projectNextActions(p: SPProject, viewerId: string) {
     for (const task of p.tasks.filter(t => t.status === "CHANGES_REQUESTED")) control("rework", `等待队长安排返工：${task.title}`, task.review?.requiredChanges.join("；") || task.feedback || "查看评审意见并给出明确修正说明。", { taskKey: task.key });
   } else {
     for (const run of p.runs.filter(r => r.revision === p.revision && isLatestSPRun(p.runs, r))) {
-      const platform = run.agent.platform ?? "sciencepal", local = platform === "codex", owner = run.ownerNodeId ?? null;
+      const platform = run.agent.platform ?? "sciencepal", local = isLocalResearchPlatform(platform), owner = run.ownerNodeId ?? null;
       const label = `${({ ALIGN: "对齐", TASK: "执行", REVIEW: "评审", CHANGE_REVIEW: "变更评审" })[run.kind]}${run.taskKey ? ` · ${run.taskKey}` : ""}`;
       const base = { runId: run.id, ...(run.taskKey ? { taskKey: run.taskKey } : {}), platform };
       if (run.status === "UNKNOWN") add(owner, { ...base, kind: "recover", title: `等待本人核对未知运行：${label}`, detail: "保留原日志，核对原任务；禁止重新提交或换 ID 绕过。", operation: "recover" });
       else if (["FAILED", "INVALID"].includes(run.status)) control("retry", `等待队长处理失败：${label}`, run.error || "查明原因后只重试已确定失败的任务。", { runId: run.id });
-      else if (p.phase !== "BLOCKED" && run.status === "READY") add(owner, { ...base, kind: "execute", title: `等待${local ? " Codex 领取" : " SciencePAL 连接器领取"}：${label}`, detail: local ? "领取任务包，读取冻结输入，在本人工作目录完成任务。" : "保持本人连接器运行；它会领取并启动。", operation: local ? "take" : "work" });
+      else if (p.phase !== "BLOCKED" && run.status === "READY") add(owner, { ...base, kind: "execute", title: `等待${local ? ` ${researchPlatformName(platform)} 领取` : " SciencePAL 连接器领取"}：${label}`, detail: local ? "领取任务包，读取冻结输入，在本人工作目录完成任务。" : "保持本人连接器运行；它会领取并启动。", operation: local ? "take" : "work" });
       else if (run.status === "NEEDS_INPUT") add(owner, { ...base, kind: "input", title: `等待本人回答：${label}`, detail: local ? "核对任务问题后继续处理原任务包。" : `在 SciencePAL 原线程 ${run.threadId ?? "（等待回执）"} 回复；或停止 work 后用 reply，再恢复 work。`, operation: local ? "submit" : "reply" });
-      else if (["STARTING", "RUNNING", "COMPLETED"].includes(run.status)) add(owner, { ...base, kind: "running", title: `${local ? "等待 Codex 交回成果" : "SciencePAL 正在处理"}：${label}`, detail: local ? "按原任务说明完成成果并交回；仍须经过对应的校验、独立评审或队长确认。" : "等待原运行与成果校验，不重复启动。在成员详情查看本项目连接器心跳。", operation: local ? "submit" : "work" });
+      else if (["STARTING", "RUNNING", "COMPLETED"].includes(run.status)) add(owner, { ...base, kind: "running", title: `${local ? `等待 ${researchPlatformName(platform)} 交回成果` : "SciencePAL 正在处理"}：${label}`, detail: local ? "按原任务说明完成成果并交回；仍须经过对应的校验、独立评审或队长确认。" : "等待原运行与成果校验，不重复启动。在成员详情查看本项目连接器心跳。", operation: local ? "submit" : "work" });
     }
   }
   if (!actions.length && ["EXECUTING", "REVIEWING"].includes(p.phase)) add(null, { kind: "dispatch", title: "等待 Host 派发下一项工作", detail: "协议已发布；Host 会按依赖和评审结果派发任务。若长时间不变，请确认 Host 正在运行。" });

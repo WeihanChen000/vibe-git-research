@@ -60,7 +60,7 @@ export function checkTaskResult(schemas: SPResultSchemas, taskKey: string, resul
   if (!schema) throw badRequest(`任务 ${taskKey} 没有冻结的成果格式`);
   const validate = compile(schema), passed = validate(result);
   return { status: passed ? "PASSED" : "FAILED", contractSha256, issues: passed ? [] : (validate.errors ?? []).slice(0, 1).map(e => ({
-    path: `/result${e.instancePath}`, message: `${e.message ?? e.keyword} ${JSON.stringify(e.params)}`,
+    path: `/result${e.instancePath}`, message: e.keyword === "const" ? `必须等于冻结值 ${JSON.stringify(e.params.allowedValue)}` : e.keyword === "minimum" ? `不得小于冻结下界 ${e.params.limit}` : e.keyword === "maximum" ? `不得大于冻结上界 ${e.params.limit}` : `${e.message ?? e.keyword} ${JSON.stringify(e.params)}`,
   })) };
 }
 export function resultValidationError(check: SPResultValidation): string {

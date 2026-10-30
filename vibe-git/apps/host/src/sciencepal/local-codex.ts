@@ -1,3 +1,4 @@
+import { isLocalResearchPlatform, researchPlatformName } from "@vibe-git/protocol";
 import {createHash} from 'node:crypto';
 import {readFile,lstat} from 'node:fs/promises';
 import {join} from 'node:path';
@@ -16,7 +17,7 @@ export async function managedCodexTask(command:'inspect'|'take'|'submit',request
  const {projectId,runId}=context;
  if(!/^[a-zA-Z0-9_-]{1,120}$/.test(projectId)||!/^[a-zA-Z0-9_-]{1,120}$/.test(runId))throw badRequest('请选择本项目的具体任务');
  const p=await request<SPProject>(`/api/sciencepal-team/projects/${projectId}`),run=p.runs.find(r=>r.id===runId);
- if(!run||run.ownerNodeId!==context.nodeId||run.agent.platform!=='codex')throw forbidden('只能处理本人冻结为 Codex 的任务');
+ if(!run||run.ownerNodeId!==context.nodeId||!isLocalResearchPlatform(run.agent.platform))throw forbidden('只能处理本人冻结为本地 Agent 的任务');
  if(run.revision!==p.revision||!isLatestSPRun(p.runs,run))throw revisionConflict('任务已被新版或返工替代，请回到当前待办');
  const scope=createHash('sha256').update(`${context.host}\n${context.nodeId}\n${projectId}`).digest('hex');
  const parent=join(context.profileDir,'codex-tasks'),directory=join(parent,createHash('sha256').update(`${scope}\n${runId}`).digest('hex'));
@@ -30,7 +31,7 @@ export async function managedCodexTask(command:'inspect'|'take'|'submit',request
  }
  if(command==='submit'){
   if(!exists)throw badRequest('请先准备本人任务包；CLI 已领取的任务继续从原目录交回');
-  if(!await ordinary(output))throw badRequest('尚未找到本次成果文件，请先让 Codex 按 TASK.md 完成任务');
+  if(!await ordinary(output))throw badRequest('尚未找到本次成果文件，请先让本人 Agent 按 TASK.md 完成任务');
   const result=await localMemberTask('submit',request,context,directory,output);
   if(result.status!=='COLLECTED')throw badRequest(result.error||'成果未通过校验，请查看任务失败原因');
   return {...result,directory,instructions,outputPath:output};

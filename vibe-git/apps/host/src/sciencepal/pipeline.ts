@@ -1,3 +1,5 @@
+import {constrainResearch} from "./research-constraints.js";
+import { isLocalResearchPlatform, researchPlatformName } from "@vibe-git/protocol";
 import { createHash, randomUUID } from "node:crypto";
 import { isLatestSPRun, type SPCreateProject, type SPInput, type SPProject, type SPRun, type SPTask, type SPTaskAttempt, type SciencePALArtifact, type SPTeam, type SPTeamPacket } from "@vibe-git/protocol";
 import { badRequest, forbidden, invalidState, notFound, revisionConflict } from "../domain/errors.js";
@@ -199,6 +201,13 @@ export class SciencePALPipeline {
           if (p.alignment!.issues.every(i => i.selectedOptionId)) this.alignment(p);
           break;
         }
+        case "set-constraints": {
+          if(p.phase!=="READY"||p.revision!==1||!p.alignment||p.tasks.length||p.runs.some(r=>r.kind==="TASK"))throw invalidState("科研约束只能在首次发布前收紧；发布后不可覆盖");
+          const schemas=constrainResearch(p,this.contracts(p),data.constraints);
+          p.resultContracts=this.storeFile(p,"result-contracts.json",Buffer.from(JSON.stringify(schemas,null,2)));
+          p.alignment.tasks=p.alignment.tasks.map(t=>({...t,resultSchema:schemas[t.key]!}));
+          this.save(p,"科研约束已冻结：方法、参数、源文件与数值约束将先于独立评审检查");break;
+        }
         case "publish": {
           if (p.phase !== "READY" || !p.alignment || p.alignment.runId !== data.alignmentRunId || p.alignment.revision !== p.revision) throw invalidState("对齐稿已过期或尚不可发布");
           this.contracts(p); // Verify immutable contracts again before publication.
@@ -333,7 +342,7 @@ export class SciencePALPipeline {
       claimId = string(claimId, "连接器领取 ID", 120);
       if (r.claimId && r.claimId !== claimId) throw revisionConflict("任务已由另一个连接器领取");
       if (p.paused || ["BLOCKED", "CHANGES_REQUESTED", "CHANGE_READY"].includes(p.phase)) throw invalidState("项目暂不能领取任务");
-      const localReplay = r.agent.platform === "codex" && r.claimId === claimId && r.status === "RUNNING";
+      const localReplay = isLocalResearchPlatform(r.agent.platform) && r.claimId === claimId && r.status === "RUNNING";
       if (!["READY", "STARTING"].includes(r.status) && !localReplay) throw invalidState("运行已领取或状态未知，不能再次启动");
       const active = p.runs.filter(x => x.id !== r.id && ["STARTING", "RUNNING", "NEEDS_INPUT", "UNKNOWN"].includes(x.status));
       if (active.length >= 2 || active.some(x => x.agent.id === r.agent.id)) throw invalidState("等待当前运行结束");
@@ -344,8 +353,8 @@ export class SciencePALPipeline {
         return { ...i, base64: Buffer.from(file.bytes).toString("base64") };
       });
       if (!localReplay) {
-        r.claimId = claimId; r.status = r.agent.platform === "codex" ? "RUNNING" : "STARTING";
-        if (r.agent.platform === "codex") r.localExecution = { id: randomUUID(), platform: "codex" };
+        r.claimId = claimId; r.status = isLocalResearchPlatform(r.agent.platform) ? "RUNNING" : "STARTING";
+        if (isLocalResearchPlatform(r.agent.platform)) r.localExecution = { id: randomUUID(), platform: r.agent.platform! };
         r.updatedAt = now(); this.save(p, `${nodeId} 已领取 ${r.kind}；等待成员连接器回执`);
       }
       return { projectId, run: r, files };
@@ -354,7 +363,7 @@ export class SciencePALPipeline {
   async memberStarted(projectId: string, nodeId: string, runId: string, data: { threadId: string; runId: string }) {
     return this.locked(projectId, p => {
       const r = this.memberRun(p, nodeId, runId);
-      if (r.agent.platform === "codex") throw badRequest("Codex 本地任务不能绑定 SciencePAL 远端运行");
+      if (isLocalResearchPlatform(r.agent.platform)) throw badRequest("Codex 本地任务不能绑定 SciencePAL 远端运行");
       const threadId = string(data.threadId, "线程 ID", 120), remoteRunId = string(data.runId, "运行 ID", 120);
       if (r.threadId && (r.threadId !== threadId || r.runId !== remoteRunId)) throw revisionConflict("不能替换已绑定的远端运行");
       if (this.list().some(other => other.runs.some(x => x.id !== r.id && (x.threadId === threadId || x.runId === remoteRunId || x.continuations?.some(c => c.previousRunId === remoteRunId || c.runId === remoteRunId))))) throw revisionConflict("远端线程或运行已绑定其他任务");
@@ -371,7 +380,7 @@ export class SciencePALPipeline {
   async memberContinued(projectId: string, nodeId: string, runId: string, data: Omit<NonNullable<SPRun["continuations"]>[number], "at">) {
     return this.locked(projectId, p => {
       const r = this.memberRun(p, nodeId, runId);
-      if (r.agent.platform === "codex") throw badRequest("Codex 本地任务不使用远端续接");
+      if (isLocalResearchPlatform(r.agent.platform)) throw badRequest("Codex 本地任务不使用远端续接");
       const threadId = string(data.threadId, "线程 ID", 120), previousRunId = string(data.previousRunId, "原运行 ID", 120), nextId = string(data.runId, "续接运行 ID", 120);
       if (threadId !== r.threadId || previousRunId === nextId) throw badRequest("续接必须保留原线程并使用新的运行 ID");
       if (!["sciencepal-web", "member-reply"].includes(data.source)) throw badRequest("续接来源无效");
@@ -398,7 +407,7 @@ export class SciencePALPipeline {
   async memberComplete(projectId: string, nodeId: string, runId: string, data: { threadId: string; runId: string; agentId: string; sandboxId: string; projectId?: string; base64: string }) {
     return this.locked(projectId, p => {
       const r = this.memberRun(p, nodeId, runId);
-      if (r.agent.platform === "codex") throw badRequest("Codex 成果须使用本地任务回执");
+      if (isLocalResearchPlatform(r.agent.platform)) throw badRequest("Codex 成果须使用本地任务回执");
       if (r.threadId !== data.threadId || r.runId !== data.runId || (r.agent.runtimeAgentId ?? r.agent.id) !== data.agentId) throw badRequest("成员回执与已绑定的远端身份不匹配");
       const sandboxId = string(data.sandboxId, "沙箱 ID", 120);
       const encoded = string(data.base64, "成果字节", Math.ceil(MAX_ARTIFACT_BYTES / 3) * 4);
@@ -426,7 +435,7 @@ export class SciencePALPipeline {
   async memberStatus(projectId: string, nodeId: string, runId: string, status: string) {
     return this.locked(projectId, p => {
       const r = this.memberRun(p, nodeId, runId);
-      if (r.agent.platform === "codex") throw badRequest("本地任务不接受远端运行状态");
+      if (isLocalResearchPlatform(r.agent.platform)) throw badRequest("本地任务不接受远端运行状态");
       if (!["STARTING", "RUNNING", "NEEDS_INPUT"].includes(r.status)) throw invalidState("当前运行不接受状态更新");
       if (status === "NEEDS_INPUT") { r.status = "NEEDS_INPUT"; r.error = "等待成员在 SciencePAL 回复"; this.save(p); }
       else if (status === "FAILED" || status === "UNKNOWN") this.block(p, r, status === "UNKNOWN" ? "成员提交结果未知；禁止自动重新提交" : "成员连接器报告远端明确失败", status);
@@ -437,7 +446,7 @@ export class SciencePALPipeline {
   async memberCompleteLocal(projectId: string, nodeId: string, runId: string, data: { claimId: string; base64: string }) {
     return this.locked(projectId, p => {
       const r = this.memberRun(p, nodeId, runId);
-      if (r.agent.platform !== "codex" || !r.localExecution || !r.claimId || data.claimId !== r.claimId) throw forbidden("本地成果与冻结平台或领取身份不匹配");
+      if (!isLocalResearchPlatform(r.agent.platform) || !r.localExecution || !r.claimId || data.claimId !== r.claimId) throw forbidden("本地成果与冻结平台或领取身份不匹配");
       const encoded = string(data.base64, "成果字节", Math.ceil(MAX_ARTIFACT_BYTES / 3) * 4), bytes = Buffer.from(encoded, "base64");
       if (bytes.toString("base64") !== encoded) throw badRequest("成果必须为规范 base64");
       if (r.output) {
@@ -448,7 +457,7 @@ export class SciencePALPipeline {
       if (p.paused || ["BLOCKED", "CHANGES_REQUESTED", "CHANGE_READY"].includes(p.phase)) throw invalidState("项目暂不能提交本地成果");
       if (r.status !== "RUNNING") throw invalidState("本地任务尚未领取或已停止");
       r.output = this.storeFile(p, r.outputFilename, bytes); r.status = "COMPLETED";
-      this.save(p, `${nodeId} 交回 Codex 本地成果；开始同一项目的校验与评审`);
+      this.save(p, `${nodeId} 交回 ${researchPlatformName(r.agent.platform)} 本地成果；开始同一项目的校验与评审`);
       this.acceptOutput(p, r); if (!p.paused && p.phase !== "BLOCKED") this.advance(p);
       return r;
     });

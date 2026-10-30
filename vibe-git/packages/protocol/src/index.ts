@@ -10,3 +10,5 @@ export * from "./sciencepal-iris-contracts.js";
 export * from "./sciencepal-presence.js";
 
 export * from "./sciencepal-crn-case.js";
+
+export * from "./sciencepal-platform.js";

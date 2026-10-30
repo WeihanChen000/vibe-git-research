@@ -8,17 +8,17 @@ export interface CodexProbe {
   transports: { appServer: CapabilityState; cli: CapabilityState; preferred: ExecutionTransport };
 }
 
-export function probeCodex(executable = process.env.CODEX_BIN?.trim() || "codex", preferred = (process.env.CODEX_TRANSPORT?.trim() || "auto") as ExecutionTransport): CodexProbe {
+export function probeCodex(executable = process.env.CODEX_BIN?.trim() || "codex", preferred = (process.env.CODEX_TRANSPORT?.trim() || "auto") as ExecutionTransport, env: NodeJS.ProcessEnv = process.env): CodexProbe {
   try {
-    const version = execFileSync(executable, ["--version"], { encoding: "utf8", windowsHide: true, timeout: 5_000, stdio: ["ignore", "pipe", "ignore"] }).trim();
+    const version = execFileSync(executable, ["--version"], { env, encoding: "utf8", windowsHide: true, timeout: 5_000, stdio: ["ignore", "pipe", "ignore"] }).trim();
     let authenticated = false;
     try {
-      execFileSync(executable, ["login", "status"], { encoding: "utf8", windowsHide: true, timeout: 5_000, stdio: ["ignore", "pipe", "ignore"] });
+      execFileSync(executable, ["login", "status"], { env, encoding: "utf8", windowsHide: true, timeout: 5_000, stdio: ["ignore", "pipe", "ignore"] });
       authenticated = true;
     } catch { /* installed but not authenticated */ }
     let appServer: CapabilityState = "unsupported";
     try {
-      execFileSync(executable, ["app-server", "--help"], { encoding: "utf8", windowsHide: true, timeout: 5_000, stdio: ["ignore", "pipe", "ignore"] });
+      execFileSync(executable, ["app-server", "--help"], { env, encoding: "utf8", windowsHide: true, timeout: 5_000, stdio: ["ignore", "pipe", "ignore"] });
       appServer = authenticated ? "available" : "unverified";
     } catch { /* CLI can still execute */ }
     const cli: CapabilityState = authenticated ? "available" : "unverified";

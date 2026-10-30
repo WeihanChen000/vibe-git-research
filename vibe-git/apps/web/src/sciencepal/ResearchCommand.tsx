@@ -3,7 +3,7 @@ import type { SPProject } from "@vibe-git/protocol";
 import type { TeamState } from "./research-model";
 import { Markdown } from "../Markdown";
 export type SendResearchCommand = (operation:string,body:Record<string,unknown>,snapshot:string)=>Promise<void>;
-export const commandNames:Record<string,string>={align:"启动协议对齐",publish:"发布研究任务",rework:"安排返工",decide:"确认裁决",retry:"重试失败任务",pause:"暂停派发",resume:"恢复派发",change:"提出研究变更","apply-change":"应用研究变更","dismiss-change":"关闭变更"};
+export const commandNames:Record<string,string>={"set-constraints":"保存科研约束",align:"启动协议对齐",publish:"发布研究任务",rework:"安排返工",decide:"确认裁决",retry:"重试失败任务",pause:"暂停派发",resume:"恢复派发",change:"提出研究变更","apply-change":"应用研究变更","dismiss-change":"关闭变更"};
 export function ResearchCommand({p,state,operation,body={},busy,disabled,send}:{p:SPProject;state:TeamState;operation:string;body?:Record<string,unknown>;busy:boolean;disabled:boolean;send:SendResearchCommand}){
  const [expanded,setExpanded]=useState(false),[snapshot,setSnapshot]=useState(""),[error,setError]=useState("");
  const [note,setNote]=useState(""),[option,setOption]=useState("");const immediate=useRef(false);
@@ -16,7 +16,7 @@ export function ResearchCommand({p,state,operation,body={},busy,disabled,send}:{
  }catch(e){setError(e instanceof Error?e.message:"操作失败，请刷新核对状态。");}finally{immediate.current=false;}};
  return <div className="rt-command">{!expanded?<button className="rt-primary" disabled={disabled||busy} onClick={begin}>{name}</button>:<section className="rt-confirm" aria-label={name+"确认"}>
   <h3>{name} · R{p.revision}</h3><p>以 {state.viewer.label} 的成员身份提交。</p>
-  {operation==="publish"&&<><p>确认以下分工与验收后，连接器将开始领取任务。</p><ul className="rt-publish-tasks">{p.alignment?.tasks.map(t=><li key={t.key}><strong>{t.title}</strong><small>{p.team?.members.find(m=>m.agent.id===t.assigneeAgentId)?.label} 执行 → {p.team?.members.find(m=>m.agent.id===t.reviewerAgentId)?.label} 评审</small><ul>{t.acceptance.map(a=><li key={a}>{a}</li>)}</ul></li>)}</ul></>}
+  {operation==="publish"&&<><p>确认以下分工与验收后，连接器将开始领取任务。需要固定方法、种子或数值范围时，先在右侧“协议 → 科研防漂移”添加约束。</p><ul className="rt-publish-tasks">{p.alignment?.tasks.map(t=><li key={t.key}><strong>{t.title}</strong><small>{p.team?.members.find(m=>m.agent.id===t.assigneeAgentId)?.label} 执行 → {p.team?.members.find(m=>m.agent.id===t.reviewerAgentId)?.label} 评审</small><ul>{t.acceptance.map(a=><li key={a}>{a}</li>)}</ul></li>)}</ul></>}
   {operation==="align"&&<p>根据成员已冻结的研究提案生成协议、分工和验收标准。</p>}
   {operation==="rework"&&<><p>原成果与评审保留。任务返工后仍须由另一成员重新评审。</p><label>返工说明<textarea aria-label="返工说明" maxLength={4000} value={note} onChange={e=>setNote(e.target.value)}/></label></>}
   {operation==="change"&&<label>新的研究目标或约束<textarea aria-label="研究变更说明" maxLength={8000} placeholder="说明要改变什么、为什么改变，以及预期影响。" value={note} onChange={e=>setNote(e.target.value)}/></label>}

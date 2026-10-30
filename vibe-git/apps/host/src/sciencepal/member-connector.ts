@@ -1,3 +1,7 @@
+import { isLocalResearchPlatform, researchPlatformName } from "@vibe-git/protocol";
+import {AgentExecutor} from '@vibe-git/relay/agent-executor';
+import {AgentRegistry} from '@vibe-git/relay/agent-registry';
+import type {ExecutionCommand} from '@vibe-git/protocol';
 import { createHash, randomUUID } from "node:crypto";
 import { isLatestSPRun, type SPContinuation, type SPProject, type SPTeamPacket, type SPAgentBinding, type projectNextActions } from "@vibe-git/protocol";
 import { SciencePALError, type SciencePALRemote } from "./client.js";
@@ -40,7 +44,7 @@ export class SciencePALMemberConnector {
     }
     if (j.phase === "IDLE") {
       const jobs = await this.request<{ projectId: string; paused: boolean; phase: string; run: { id: string; status: string; agent: SPAgentBinding } }[]>("/api/sciencepal-team/jobs");
-      const next = jobs.find(x => x.projectId === j.projectId && x.run.agent.platform !== "codex" && !x.paused && !["BLOCKED", "CHANGES_REQUESTED", "CHANGE_READY"].includes(x.phase) && x.run.status === "READY");
+      const next = jobs.find(x => x.projectId === j.projectId && (x.run.agent.platform ?? "sciencepal") === "sciencepal" && !x.paused && !["BLOCKED", "CHANGES_REQUESTED", "CHANGE_READY"].includes(x.phase) && x.run.status === "READY");
       if (!next) {
         const next = await this.request<ReturnType<typeof projectNextActions>>(`/api/sciencepal-team/projects/${j.projectId}/next`);
         return next.actions.map(a => `${a.isMine ? "我" : a.ownerLabel}：${a.title}。${a.detail}`).join("\n");
@@ -49,7 +53,7 @@ export class SciencePALMemberConnector {
     }
     if (j.phase === "CLAIMING") {
       j.packet = await this.request<SPTeamPacket>(this.path("claim"), { claimId: j.claimId });
-      if (j.packet.run.agent.platform === "codex") throw new Error("Codex 任务须使用本地 take / submit，不能发送到 SciencePAL");
+      if ((j.packet.run.agent.platform ?? "sciencepal") !== "sciencepal") throw new Error("Codex 任务须使用本地 take / submit，不能发送到 SciencePAL");
       const files = j.packet.files.map(f => {
         const bytes = Buffer.from(f.base64, "base64");
         if (bytes.length !== f.size || createHash("sha256").update(bytes).digest("hex") !== f.sha256) throw new Error("任务包字节校验失败");
@@ -60,7 +64,10 @@ export class SciencePALMemberConnector {
       if (!agents.some(a => a.id === runtimeId)) throw new Error("本账号无法使用所分配的 Agent，未提交任务");
       j.phase = "SUBMITTING"; await this.persist();
       try {
-        j.remote = await this.remote.start(runtimeId, j.packet.run.prompt, files[0], files.slice(1));
+        const executor = new AgentExecutor(new AgentRegistry({sciencepal:this.remote}), {VIBE_AGENT:"sciencepal"});
+        const handle = await executor.start({prompt:j.packet.run.prompt,transportRequested:"auto"} as ExecutionCommand, ".", {agentId:runtimeId,files});
+        if(!handle.remote)throw Error("SciencePAL 适配器未返回远端回执");
+        j.remote = handle.remote;
       } catch (error) {
         if (error instanceof SciencePALError && !error.uncertain) {
           if (error.retryable) { j.phase = "CLAIMING"; await this.persist(); throw error; }

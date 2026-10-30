@@ -520,3 +520,35 @@ describe('1CRN professional template',()=>{
   }
  });
 });
+
+
+describe("operator research drift constraints",()=>{
+ it.each([
+  [{taskKey:"data",field:"method",kind:"text",value:"fixed"},{method:"changed"}],
+  [{taskKey:"data",field:"seed",kind:"number",value:42},{seed:"42"}],
+  [{taskKey:"data",field:"score",kind:"range",min:0.9,max:1},{score:0.1}],
+ ])("blocks drift before review and keeps raw evidence: %j",async(rule,result)=>{
+  const s=await setup();await s.command("align");await until(s.pipeline,s.id,p=>p.phase==="READY");
+  const frozen=await s.command("set-constraints",{constraints:[rule]});
+  s.remote.transform=(kind,r)=>kind==="TASK"?{...r,...result}:r;
+  await s.command("publish",{alignmentRunId:frozen.alignmentRunId});
+  const blocked=await until(s.pipeline,s.id,p=>p.phase==="BLOCKED"),run=blocked.runs.find(r=>r.kind==="TASK")!;
+  expect(run.resultValidation?.status).toBe("FAILED");expect(run.output).not.toBeNull();
+  expect(s.remote.calls.filter(c=>c.kind==="REVIEW")).toHaveLength(0);
+  expect(s.remote.calls.filter(c=>c.kind==="TASK")).toHaveLength(1);
+  await expect(s.command("set-constraints",{constraints:[rule]})).rejects.toThrow("首次发布前");
+ });
+ it("repairs a blocked result, then goes through rejection, rework, review and handoff",async()=>{
+  const s=await setup();await s.command("align");await until(s.pipeline,s.id,p=>p.phase==="READY");
+  const frozen=await s.command("set-constraints",{constraints:[{taskKey:"data",field:"seed",kind:"number",value:42}]});
+  s.remote.transform=(kind,r)=>kind==="TASK"?{...r,seed:41}:r;
+  await s.command("publish",{alignmentRunId:frozen.alignmentRunId});
+  const blocked=await until(s.pipeline,s.id,p=>p.phase==="BLOCKED"),bad=blocked.runs.find(r=>r.kind==="TASK")!;
+  s.remote.transform=(kind,r)=>kind==="TASK"?{...r,seed:42}:r;s.remote.rejectOnce=true;
+  await s.command("retry",{runId:bad.id});await until(s.pipeline,s.id,p=>p.phase==="CHANGES_REQUESTED");
+  await s.command("rework",{taskKey:"data",note:"repair evidence"});const done=await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");
+  expect(done.resultContracts?.sha256).toBe(frozen.resultContracts?.sha256);
+  expect(s.pipeline.evidence(s.id).allApproved).toBe(true);
+  expect(done.runs.find(r=>r.id===bad.id)?.resultValidation?.status).toBe("FAILED");
+ });
+});

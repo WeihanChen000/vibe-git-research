@@ -2,8 +2,7 @@ import { hostname } from "node:os";
 import { resolve } from "node:path";
 import type { DeviceSignal, ExecutionCommand, MemberId } from "@vibe-git/protocol";
 import { acknowledgeCommand, nextCommand, sendHeartbeat } from "./client.js";
-import { probeCodex } from "./codex-capability.js";
-import { CodexExecutor, type ActiveRun, type ExecutionCompletion } from "./executor.js";
+import { AgentExecutor, type ActiveRun, type ExecutionCompletion } from "./agent-executor.js";
 import { probeGit } from "./git-probe.js";
 
 const memberId = (process.env.MEMBER_ID ?? "A") as MemberId;
@@ -13,14 +12,15 @@ const configuredTaskId = process.env.TASK_ID?.trim() || undefined;
 const hostUrl = (process.env.VIBE_HOST_URL ?? "http://localhost:8787").replace(/\/$/, "");
 const workspace = resolve(process.env.VIBE_WORKSPACE ?? process.cwd());
 const deviceId = process.env.DEVICE_ID ?? `${hostname()}-${memberId}`;
-const codex = probeCodex();
-const executor = new CodexExecutor(codex);
+const executor = new AgentExecutor();
+const agentProbe = executor.capability();
+if(executor.kind==="sciencepal")throw Error("SciencePAL 请从科研成员连接器启动；旧软件 Relay 没有冻结科研文件接口");
 const activeRuns = new Map<string, { command: ExecutionCommand; run: ActiveRun }>();
 
 const delay = (milliseconds: number) => new Promise((resolvePromise) => setTimeout(resolvePromise, milliseconds));
 const keyFor = (command: ExecutionCommand) => command.workUnitId ?? command.taskId;
 const fallbackTransport = (command: ExecutionCommand): "app-server" | "cli" =>
-  command.transportRequested === "app-server" || (command.transportRequested === "auto" && codex.transports.preferred === "app-server")
+  command.transportRequested === "app-server" || (command.transportRequested === "auto" && agentProbe.transports.preferred === "app-server")
     ? "app-server" : "cli";
 
 async function heartbeat(binding?: ExecutionCommand) {
@@ -30,9 +30,9 @@ async function heartbeat(binding?: ExecutionCommand) {
   const gitProbe = probeGit(workspace, memberId, boundTaskId ?? "UNBOUND", boundWorkUnitId ?? undefined);
   const gitReference = boundTaskId ? gitProbe : undefined;
   const device: DeviceSignal = {
-    memberId, deviceId, relay: "available", codex: codex.state, git: gitProbe ? "available" : "unsupported",
-    executionTransports: codex.transports,
-    detail: `${codex.detail}；Git ${gitProbe ? `已读取 ${gitProbe.branch}@${gitProbe.headSha?.slice(0, 8)}${boundTaskId ? "" : "（等待任务绑定）"}` : "工作区不可读"}`,
+    memberId, deviceId, relay: "available", codex: executor.kind === "codex" ? agentProbe.state : "unverified", git: gitProbe ? "available" : "unsupported",
+    executionTransports: agentProbe.transports,
+    detail: `Agent=${executor.kind}；${agentProbe.detail}；Git ${gitProbe ? `已读取 ${gitProbe.branch}@${gitProbe.headSha?.slice(0, 8)}${boundTaskId ? "" : "（等待任务绑定）"}` : "工作区不可读"}`,
     observedAt: new Date().toISOString()
   };
   await sendHeartbeat(hostUrl, memberId, device, gitReference);
@@ -50,6 +50,7 @@ async function report(command: ExecutionCommand, input: Parameters<typeof acknow
 
 async function finishStart(command: ExecutionCommand, run: ActiveRun, completion: ExecutionCompletion) {
   try {
+    if(run.transport==="cloud"||completion.status==="NEEDS_INPUT")throw Error("旧软件任务不能接收云端研究状态");
     await report(command, {
       status: completion.status,
       transportUsed: run.transport,
@@ -78,6 +79,7 @@ async function handleStart(command: ExecutionCommand) {
   let run: ActiveRun | undefined;
   try {
     run = await executor.start(command, workspace);
+    if(run.transport==="cloud")throw Error("旧 Relay 不支持云端传输");
     activeRuns.set(keyFor(command), { command, run });
     await report(command, {
       status: "STARTED", transportUsed: run.transport, runtimeId: run.runtimeId,
@@ -89,7 +91,7 @@ async function handleStart(command: ExecutionCommand) {
   } catch (error) {
     if (run) await run.interrupt().catch(() => undefined);
     const detail = error instanceof Error ? error.message : String(error);
-    await report(command, { status: "FAILED", transportUsed: run?.transport ?? fallbackTransport(command), runtimeId: run?.runtimeId ?? null, detail });
+    await report(command, { status: "FAILED", transportUsed: run?.transport === "cloud" ? fallbackTransport(command) : run?.transport ?? fallbackTransport(command), runtimeId: run?.runtimeId ?? null, detail });
     console.error(`[relay] ${command.id} 启动失败：${detail}`);
   }
 }
@@ -103,7 +105,7 @@ async function handleInterrupt(command: ExecutionCommand) {
   const completion = await active.run.interrupt();
   await report(command, {
     status: completion.status === "INTERRUPTED" ? "INTERRUPTED" : "FAILED",
-    transportUsed: active.run.transport, runtimeId: active.run.runtimeId,
+    transportUsed: active.run.transport === "cloud" ? fallbackTransport(command) : active.run.transport, runtimeId: active.run.runtimeId,
     detail: completion.detail, outputSummary: completion.outputSummary
   });
 }

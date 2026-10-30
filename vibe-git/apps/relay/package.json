@@ -15,5 +15,19 @@
   },
   "devDependencies": {
     "tsx": "^4.20.5"
+  },
+  "exports": {
+    "./agent-registry": {
+      "types": "./dist/agent-registry.d.ts",
+      "import": "./dist/agent-registry.js"
+    },
+    "./agent-executor": {
+      "types": "./dist/agent-executor.d.ts",
+      "import": "./dist/agent-executor.js"
+    },
+    "./agent-types": {
+      "types": "./dist/agent-types.d.ts",
+      "import": "./dist/agent-types.js"
+    }
   }
 }

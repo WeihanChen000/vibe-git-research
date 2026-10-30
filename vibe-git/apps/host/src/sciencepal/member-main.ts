@@ -1,3 +1,4 @@
+import { isLocalResearchPlatform, researchPlatformName } from "@vibe-git/protocol";
 import { mkdir, open, readFile, rename, unlink, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { createHash, randomUUID } from "node:crypto";
@@ -81,11 +82,11 @@ async function main() {
     const binding = state.members.find((m: any) => m.id === member.nodeId)?.binding;
     const frozenProject = args[0] ? await request(`/api/sciencepal-team/projects/${encodeURIComponent(args[0])}`) : undefined;
     const frozenMember = frozenProject?.team?.members.find((m: any) => m.nodeId === member.nodeId);
-    if ((frozenMember?.agent ?? binding?.agent)?.platform === "codex") {
-      if (args[0]) checks.push({ name: "本人参与冻结项目", passed: !!frozenMember, detail: frozenMember ? "本人拥有项目中的 Codex 绑定" : "本人不在冻结成员列表中" });
-      checks.push({ name: "Codex 成员任务入口", passed: true, detail: "使用 next / take / submit；不需要 SciencePAL Key，尚未验证具体模型或本地科研工具" });
+    if (isLocalResearchPlatform((frozenMember?.agent ?? binding?.agent)?.platform)) {
+      if (args[0]) checks.push({ name: "本人参与冻结项目", passed: !!frozenMember, detail: frozenMember ? "本人拥有项目中的本地 Agent 绑定" : "本人不在冻结成员列表中" });
+      checks.push({ name: "本地 Agent 成员任务入口", passed: true, detail: "使用 next / take / submit；不需要 SciencePAL Key，尚未验证具体模型或本地科研工具" });
       const ready = checks.every(c => c.passed);
-      console.log(JSON.stringify({ ready, checks, platform: "codex" }, null, 2)); if (!ready) process.exitCode = 1; return;
+      console.log(JSON.stringify({ ready, checks, platform: (frozenMember?.agent ?? binding?.agent)?.platform }, null, 2)); if (!ready) process.exitCode = 1; return;
     }
     let available: Awaited<ReturnType<SciencePALClient["agents"]>> = [];
     try { available = await new SciencePALClient(readSciencePALKey()).agents(); checks.push({ name: "本人 SciencePAL 账号可访问目录", passed: true, detail: `${available.length} 个可用 Agent；不启动运行` }); }
@@ -147,7 +148,7 @@ async function main() {
   if (!["work", "reply", "recover"].includes(command) || !args[0]) throw new Error("未知命令，请运行 help");
   const project = await request(`/api/sciencepal-team/projects/${encodeURIComponent(args[0])}`);
   if (!project.team?.members.some((m: any) => m.nodeId === member.nodeId)) throw new Error("本人未参与该项目");
-  if (project.team.members.find((m: any) => m.nodeId === member.nodeId)?.agent.platform === "codex") throw new Error("本项目的本人平台为 Codex，请使用 next / take / submit");
+  if (isLocalResearchPlatform(project.team.members.find((m: any) => m.nodeId === member.nodeId)?.agent.platform)) throw new Error("本项目的本人平台为本地 Agent，请使用 next / take / submit");
   if (!process.env.VIBE_GIT_CONNECTOR_STATE) throw new Error("请设置项目外的 VIBE_GIT_CONNECTOR_STATE 日志文件路径");
   const journalPath = resolve(process.env.VIBE_GIT_CONNECTOR_STATE), lockPath = journalPath + ".lock";
   await mkdir(dirname(journalPath), { recursive: true, mode: 0o700 });

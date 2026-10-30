@@ -1,3 +1,5 @@
+import {startLocalAgent,agentRunState} from "./local-agent.js";
+import { isLocalResearchPlatform, researchPlatformName } from "@vibe-git/protocol";
 import Fastify from 'fastify';
 import {randomBytes,randomUUID,timingSafeEqual,createHash} from 'node:crypto';
 import {mkdir,readFile,writeFile,unlink,stat} from 'node:fs/promises';
@@ -10,7 +12,7 @@ import {memberJournalPath} from './member-journal.js';
 import {managedCodexTask} from './local-codex.js';
 import {browserCommands} from './browser-commands.js';
 interface Credential {nodeId:string;nodeToken:string;hostUrl:string;roomId:string}
-interface Options {profileDir:string;captainFile?:string;hostUrl?:string;remote?:(key:string)=>SciencePALRemote;worker?:(env:NodeJS.ProcessEnv)=>ChildProcess;staticDir?:string}
+interface Options {allowLocalExecution?:boolean;profileDir:string;captainFile?:string;hostUrl?:string;remote?:(key:string)=>SciencePALRemote;worker?:(env:NodeJS.ProcessEnv)=>ChildProcess;staticDir?:string}
 const equal=(a:string,b:string)=>a.length===b.length&&timingSafeEqual(Buffer.from(a),Buffer.from(b));
 const validHost=(raw:string)=>{const u=new URL(raw);if(u.username||u.password||u.search||u.hash||u.pathname!=='/'||(u.protocol!=='https:'&&!(u.protocol==='http:'&&['127.0.0.1','localhost','[::1]'].includes(u.hostname))))throw badRequest('请输入 HTTPS 房间地址或本机回环地址');return u.origin;};
 const load=async<T>(p:string):Promise<T|null>=>{try{return JSON.parse((await readFile(p,'utf8')).replace(/^\uFEFF/,''));}catch(e){if((e as NodeJS.ErrnoException).code==='ENOENT')return null;throw e;}};
@@ -66,8 +68,8 @@ export async function buildResearchPanel(options:Options){
  });
  app.post<{Body:{platform?:string;agentId?:string}}>('/api/local/research/bind',async r=>{
   if(worker||starting)throw revisionConflict('连接器运行中，请先停止');
-  let agent;if(r.body.platform==='codex')agent={id:'codex-local',name:'Codex 本地',platform:'codex'};
-  else{const key=(await load<{apiKey:string}>(keyPath))?.apiKey;if(!key)throw badRequest('先验证本人 SciencePAL 账号');agent=(await remote(key).agents()).find(a=>a.id===r.body.agentId);if(!agent)throw badRequest('本人账号不可使用该 Agent');}
+  let agent;if(isLocalResearchPlatform(r.body.platform))agent={id:r.body.platform+'-local',name:researchPlatformName(r.body.platform)+' 本地',platform:r.body.platform};
+  else{if(r.body.platform!=='sciencepal')throw badRequest('不支持的执行平台');const key=(await load<{apiKey:string}>(keyPath))?.apiKey;if(!key)throw badRequest('先验证本人 SciencePAL 账号');agent=(await remote(key).agents()).find(a=>a.id===r.body.agentId);if(!agent)throw badRequest('本人账号不可使用该 Agent');}
   await value('/api/sciencepal-team/binding',{agent},'PUT');return info();
  });
  app.post<{Body:{projectId?:string}}>('/api/local/research/start',async r=>{
@@ -75,7 +77,7 @@ export async function buildResearchPanel(options:Options){
   if(starting)throw revisionConflict('正在启动，请等待');if(worker){if(id===workerProject)return info();throw revisionConflict('已有其他项目连接器运行，请先停止');}
   starting=true;try{
    const p=await value('/api/sciencepal-team/projects/'+id),m=p.team?.members.find((m:any)=>m.nodeId===credential!.nodeId);
-   if(!m||m.agent.platform==='codex')throw badRequest('此项目由本人 Codex 执行，请在 Codex 中处理任务包；网页不会伪装启动模型');
+   if(!m||isLocalResearchPlatform(m.agent.platform))throw badRequest('此项目由本人 Codex 执行，请在 Codex 中处理任务包；网页不会伪装启动模型');
    const key=(await load<{apiKey:string}>(keyPath))?.apiKey;if(!key)throw badRequest('请先在算力网入口验证账号');
    if(!(await remote(key).agents()).some(a=>a.id===(m.agent.runtimeAgentId??m.agent.id)))throw badRequest('当前账号不能使用项目冻结的 Agent');
    workerProject=id;workerInstance=randomUUID();await beat('connector');
@@ -91,10 +93,14 @@ export async function buildResearchPanel(options:Options){
  app.post('/api/local/research/stop',async()=>{stopWorker();return info();});
  const codexTask=async(command:'inspect'|'take'|'submit',input:{projectId?:string;runId?:string})=>{
   if(!credential)throw forbidden('请先加入房间');
-  return managedCodexTask(command,value,{host:credential.hostUrl,nodeId:credential.nodeId,projectId:String(input?.projectId??''),runId:String(input?.runId??''),profileDir:profile});
+  const context={host:credential.hostUrl,nodeId:credential.nodeId,projectId:String(input?.projectId??''),runId:String(input?.runId??''),profileDir:profile};
+  const inspected=await managedCodexTask('inspect',value,context),execution=await agentRunState(inspected.directory);
+  if(command==='submit'&&execution&&['STARTING','RUNNING'].includes(execution.state))throw revisionConflict('Agent 尚在执行或启动结果未知，请先核对原进程；不能交回仍可能变化的文件');
+  return {...await managedCodexTask(command,value,context),execution};
  };
  app.get<{Querystring:{projectId?:string;runId?:string}}>('/api/local/research/codex-task',r=>codexTask('inspect',r.query));
- app.post<{Body:{projectId?:string;runId?:string}}>('/api/local/research/codex-take',r=>codexTask('take',r.body));
+ app.post<{Body:{projectId?:string;runId?:string}}>('/api/local/research/agent-run',r=>{if(options.allowLocalExecution===false)throw forbidden('此演练禁止启动真实模型；请使用真实项目的本人待办');if(!credential)throw forbidden('请先加入房间');return startLocalAgent(value,{host:credential.hostUrl,nodeId:credential.nodeId,projectId:String(r.body.projectId??''),runId:String(r.body.runId??''),profileDir:profile});});
+ app.post<{Body:{projectId?:string;runId?:string}}>('/api/local/research/codex-take' ,r=>codexTask('take',r.body));
  app.post<{Body:{projectId?:string;runId?:string}}>('/api/local/research/codex-submit',r=>codexTask('submit',r.body));
  const proxyAllowed=(path:string,method:string)=>method==='GET'&&(path.startsWith('/api/sciencepal-team/')||['/api/v1/invite'].includes(path))||method==='POST'&&(/^\/api\/sciencepal-team\/projects\/[^/]+\/commands\/[a-z-]+$/.test(path)||path==='/api/sciencepal-team/projects'||path==='/api/v1/plans')||method==='PUT'&&/^\/api\/v1\/plans\/[^/]+$/.test(path);
  app.all('/api/*',async(r,reply)=>{

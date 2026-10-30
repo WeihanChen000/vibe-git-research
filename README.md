@@ -2,15 +2,21 @@
 
 **每个人使用自己的 Agent，在同一份研究协议下完成执行、文件交接、独立评审和返工。**
 
-在队友原 [Vibe-Git](https://github.com/TFboy1/vibe-git) 上扩展，沿用人员拓扑、项目甘特、成员提案和队长发布逻辑。当前打通 **Codex × SciencePAL**。这是通用科研协作原型，**1CRN 与 Iris 只是可选的验证案例**，不是平台限定的研究课题。
+在队友原 [Vibe-Git](https://github.com/TFboy1/vibe-git) 上扩展，沿用人员拓扑、项目甘特、成员提案和队长发布逻辑。当前主路径为 **Codex × SciencePAL**，并已整合队友的六种本地 Agent 适配接口；各平台真实运行验证范围见下方说明。这是通用科研协作原型，**1CRN 与 Iris 只是可选的验证案例**，不是平台限定的研究课题。
 
-[完整展示与讲解](docs/research/SHOWCASE.md) · [原版能力对照](docs/research/COMPARISON.md) · [队友快速开始](docs/research/START.md) · [架构与扩展](docs/research/ARCHITECTURE.md) · [验证与边界](docs/research/VALIDATION.md) · [全部材料导航](docs/research/INDEX.md)
+[本次多 Agent 整合与防漂移说明](docs/research/MULTI-AGENT-INTEGRATION.md) · [完整展示与讲解](docs/research/SHOWCASE.md) · [原版能力对照](docs/research/COMPARISON.md) · [队友快速开始](docs/research/START.md) · [架构与扩展](docs/research/ARCHITECTURE.md) · [验证与边界](docs/research/VALIDATION.md) · [全部材料导航](docs/research/INDEX.md)
 
 ![当前科研版：原拓扑中的工具、参数、结果与独立复核](docs/research/images/research-evidence-current.png)
 
 *实际构建界面的只读历史回放。单个真实 SciencePAL 账号与 Codex，两种工作流身份；不代表两位真实用户已经联调。*
 
 下载后可双击 [`docs/research/index.html`](docs/research/index.html) 查看无需安装的图文展示；GitHub 上请直接阅读上方展示页。
+
+## 本次新增
+
+- 原算力网选择七种平台；本地待办可以启动已安装的 Agent，也可复制任务包说明。
+- 原协议抽屉直接固定方法、参数、源数据哈希和范围，失败成果阻止评审与交接。
+- 科研/适配器 186 项回归通过；原软件流程另有 12 项可在修改前复现的旧测试失败，详见整合说明。
 
 ## 先看，还是直接使用？
 

@@ -71,7 +71,7 @@ class MemberRemote implements SciencePALRemote {
 }
 const cleanup: (() => Promise<unknown>)[] = [];
 afterEach(async () => { for (const fn of cleanup.splice(0).reverse()) await fn(); });
-async function setup(sharedExpert = false, codex = false) {
+async function setup(sharedExpert = false, codex = false, platform = "codex") {
   const root = await mkdtemp(join(tmpdir(), "vibe-team-")); cleanup.push(() => rm(root, { recursive: true, force: true }));
   const hostRemote = new MemberRemote("HOST-MUST-NOT-RUN"); hostRemote.configured = false;
   const app = await buildApp({ dbPath: ":memory:", dataDir: root, staticDir: false, backupDatabase: false, sciencepal: { remote: hostRemote, worker: false } });
@@ -83,7 +83,7 @@ async function setup(sharedExpert = false, codex = false) {
   const raw = (token: string, path: string, body?: unknown, method?: string) => app.inject({ method: (method ?? (body === undefined ? "GET" : "POST")) as any, url: path, headers: { authorization: `Bearer ${token}` }, ...(body === undefined ? {} : { payload: body as any }) });
   const request = (token: string): MemberRequest => async (path, body, method) => { const r = await raw(token, path, body, method); if (r.statusCode >= 400) throw new Error(`${r.statusCode}: ${r.body}`); return r.json(); };
   const a = request(captain.nodeToken), b = request(member.nodeToken);
-  await a("/api/sciencepal-team/binding", { agent: codex ? { id: "codex-local", name: "Codex A", platform: "codex" } : { id: sharedExpert ? "biology" : "a", name: "A" } }, "PUT");
+  await a("/api/sciencepal-team/binding", { agent: codex ? { id: platform+"-local", name: platform+" A", platform } : { id: sharedExpert ? "biology" : "a", name: "A" } }, "PUT");
   await b("/api/sciencepal-team/binding", { agent: { id: sharedExpert ? "biology" : "b", name: "B" } }, "PUT");
   const planA = await a("/api/v1/plans", { filename: "a.md", content: "# A\nSynthetic data" });
   const planB = await b("/api/v1/plans", { filename: "b.md", content: "\n# B\r\nAnalyze data\r\n" });
@@ -438,7 +438,7 @@ describe("Codex and SciencePAL in the same member project", () => {
   async function fixtureBytes(s: Awaited<ReturnType<typeof setup>>, packet: SPTeamPacket) {
     // Reuse deterministic research fixture generation only; no platform call is made.
     const files = packet.files.map(f => ({ filename: f.filename, bytes: Buffer.from(f.base64, 'base64') }));
-    await s.remoteA.start('a', packet.run.prompt.replace('Vibe-Git Codex', 'Vibe-Git SciencePAL'), files[0], files.slice(1));
+    await s.remoteA.start('a', packet.run.prompt.replace(/Vibe-Git [^ ]+ /, 'Vibe-Git SciencePAL '), files[0], files.slice(1));
     return s.remoteA.calls.at(-1)!.bytes;
   }
   async function localStep(s: Awaited<ReturnType<typeof setup>>) {
@@ -450,17 +450,17 @@ describe("Codex and SciencePAL in the same member project", () => {
     const output = join(dir, state.packet.run.outputFilename); await writeFile(output, await fixtureBytes(s, state.packet));
     await localMemberTask('submit', s.a, context(s), dir, output);
   }
-  it("uses one project for bidirectional review, rejection, rework, R2 and late-result rejection", async () => {
-    const s = await setup(false, true); s.remoteB.rejectOnce = true;
+  it.each(["codex","claude","cursor","gemini","opencode","deepseek"])("%s uses one project for review, rework, R2 and late-result rejection", async platform => {
+    const s = await setup(false, true, platform); s.remoteB.rejectOnce = true;
     const until = async (phase: string) => { for (let i=0;i<60;i++) { if (s.pipeline.get(s.project.id).phase === phase) return s.pipeline.get(s.project.id); await localStep(s); await s.connectorB.step(); await s.pipeline.tick(); } throw new Error('not settled'); };
     await s.command('align'); const ready = await until('READY'); await s.command('publish', { alignmentRunId: ready.alignmentRunId });
     await until('CHANGES_REQUESTED'); await s.command('rework', { taskKey:'data', note:'repair' }); await until('COMPLETED');
-    const old = s.pipeline.get(s.project.id).runs.find(r => r.agent.platform === 'codex')!;
+    const old = s.pipeline.get(s.project.id).runs.find(r => r.agent.platform === platform)!;
     const bytes = Buffer.from(s.pipeline.file(s.project.id, old.output!.id).bytes).toString('base64');
     await s.command('change', { request:'R2' }, s.b); const change = await until('CHANGE_READY'); await s.command('apply-change', { changeId:change.changes[0]!.id });
     const r2 = await until('READY'); await s.command('publish', { alignmentRunId:r2.alignmentRunId }); const done = await until('COMPLETED');
     expect(s.pipeline.evidence(done.id,1).allApproved).toBe(true); expect(s.pipeline.evidence(done.id,2).allApproved).toBe(true);
-    expect(done.runs.filter(r=>r.agent.platform === 'codex').every(r=>r.localExecution && !r.threadId && !r.runId && !r.sandboxId)).toBe(true);
+    expect(done.runs.filter(r=>r.agent.platform === platform).every(r=>r.localExecution && !r.threadId && !r.runId && !r.sandboxId)).toBe(true);
     expect(done.tasks.every(t => done.runs.find(r=>r.id===t.executionId)!.agent.platform !== done.runs.find(r=>r.id===t.reviewId)!.agent.platform)).toBe(true);
     await expect(s.pipeline.memberCompleteLocal(done.id,s.captain.nodeId,old.id,{claimId:old.claimId!,base64:bytes})).rejects.toThrow('新版本');
     expect(projectNextActions(done,s.captain.nodeId).actions[0]!.kind).toBe('completed');
@@ -717,5 +717,35 @@ describe('Same-project local Codex actions and shared continuation journal',()=>
   await writeFile(legacy,JSON.stringify({scope,journal:{projectId:'p',phase:'RUNNING'}}));expect(await memberJournalPath(root,'http://localhost','member','p')).toBe(legacy);
   await writeFile(current,JSON.stringify({scope,journal:{projectId:'p',phase:'IDLE'}}));await expect(memberJournalPath(root,'http://localhost','member','p')).rejects.toThrow('两份日志');
   await expect(memberJournalPath(root,'http://localhost','different-member','p')).rejects.toThrow('其他身份');
+ });
+});
+
+
+import {AgentRegistry} from '@vibe-git/relay/agent-registry';
+import {startLocalAgent,agentRunState} from '../src/sciencepal/local-agent.js';
+import {managedCodexTask} from '../src/sciencepal/local-codex.js';
+describe('shared research executor and constraints permissions',()=>{
+ it('starts the frozen local provider once, persists completion and rejects a restart duplicate',async()=>{
+  const s=await setup(false,true,'gemini');await s.command('align');const run=s.pipeline.get(s.project.id).runs[0]!;
+  const context={host:'http://localhost',nodeId:s.captain.nodeId,projectId:s.project.id,runId:run.id,profileDir:join(s.root,'profile')};
+  const task=await managedCodexTask('take',s.a,context),registry=new AgentRegistry();let count=0,finish:(v:any)=>void=()=>{},received:any;
+  registry.register({kind:'gemini',probe:()=>({kind:'gemini',state:'unverified',detail:'synthetic',version:null,transports:{appServer:'unsupported',cli:'unverified',preferred:'cli'}}),start:async(prompt,workspace,_transport,env)=>{count++;received={prompt,workspace,env};return {transport:'cli',runtimeId:'synthetic',done:new Promise(r=>{finish=r;}),interrupt:async()=>({status:'INTERRUPTED',detail:'test',outputSummary:null})};}});
+  await startLocalAgent(s.a,context,registry,{VIBE_AGENT:'codex',SCIENCEPAL_API_KEY:'TEST_SECRET',VIBE_GIT_MEMBER_FILE:'private-profile'});expect(received.env.VIBE_AGENT).toBe('gemini');expect(received.env.SCIENCEPAL_API_KEY).toBeUndefined();expect(received.env.VIBE_GIT_MEMBER_FILE).toBeUndefined();expect(received.workspace).toBe(task.directory);expect(received.prompt).toContain('Gemini');
+  await expect(startLocalAgent(s.a,context,registry)).rejects.toThrow('已有执行记录');expect(count).toBe(1);
+  finish({status:'COMPLETED',detail:'synthetic fixture',outputSummary:null});
+  for(let i=0;i<30&&(await agentRunState(task.directory))?.state!=='COMPLETED';i++)await new Promise(r=>setTimeout(r,10));
+  expect((await agentRunState(task.directory))?.state).toBe('COMPLETED');
+  await expect(startLocalAgent(s.a,context,new AgentRegistry())).rejects.toThrow('已有执行记录');
+  await writeFile(join(task.directory,'adapter-run.json'),'{');
+  expect((await agentRunState(task.directory))?.state).toBe('STARTING');
+  await expect(startLocalAgent(s.a,context,registry)).rejects.toThrow('已有执行记录');
+ });
+ it('rejects an unknown binding, wrong platform ID and a member editing captain constraints',async()=>{
+  const s=await setup();
+  expect((await s.raw(s.captain.nodeToken,'/api/sciencepal-team/binding',{agent:{id:'bad',name:'bad',platform:'typo'}},'PUT')).statusCode).toBe(400);
+  expect((await s.raw(s.captain.nodeToken,'/api/sciencepal-team/binding',{agent:{id:'codex-local',name:'bad',platform:'gemini'}},'PUT')).statusCode).toBe(400);
+  await s.command('align');await s.until('READY');
+  await expect(s.command('set-constraints',{constraints:[{taskKey:'data',field:'seed',kind:'number',value:42}]},s.b)).rejects.toThrow('403');
+  const frozen=await s.command('set-constraints',{constraints:[{taskKey:'data',field:'seed',kind:'number',value:42}]});expect(frozen.resultContracts).toBeDefined();
  });
 });

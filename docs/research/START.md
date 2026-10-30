@@ -24,7 +24,7 @@ npm run research:simulate-ui
 
 双方保存自定义简短提案，例如队长核对输入数据、队友根据获批数据复核结果。队长建立项目、对齐、发布。队友在自己的待办点击“启动本人连接器并领取”。退回后由队长安排返工，直到完成。
 
-**演练 worker 固定生成 data / analysis 两类合成任务，请使用自定义提案，不要套用 1CRN / Iris 的专用成果 schema。** 自动合成 Codex worker 只属于此演练；真实 Codex 要处理任务包。
+**演练 worker 固定生成 data / analysis 两类合成任务，请使用自定义提案，不要套用 1CRN / Iris 的专用成果 schema。** 自动合成 Codex worker 只属于此演练；真实项目可在本人待办启动已安装的 Agent，或复制说明处理任务包。
 
 ## 3. 用自己的账号研究
 
@@ -40,3 +40,5 @@ cd vibe-git-research/vibe-git
 ```
 
 真实执行会使用本人 SciencePAL 额度。当前真人双账号联合验收还未完成；请填写 [验收表](../../vibe-git/SCIENCEPAL-TEAM-ACCEPTANCE.md)，未触发的流程如实写“未触发”。
+
+当前七种平台接入、原界面操作步骤及环境限制见 [多 Agent 整合说明](MULTI-AGENT-INTEGRATION.md)。
