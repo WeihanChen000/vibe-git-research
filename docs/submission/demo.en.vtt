@@ -1,0 +1,109 @@
+WEBVTT
+
+00:00:00.200 --> 00:00:05.816
+A research team wants to answer a simple question: which parts of this protein are exposed to water?
+
+00:00:05.816 --> 00:00:10.133
+They use the public one C R N structure as their starting point.
+
+00:00:10.533 --> 00:00:17.390
+There is one captain and two team members. Member A uses Science Pal to calculate the surface area.
+
+00:00:17.390 --> 00:00:24.467
+Member B uses Codex to interpret the results. The captain coordinates the study and reviews their work.
+
+00:00:24.867 --> 00:00:31.831
+Everyone makes progress in their own agent conversation. But their work is scattered across different platforms.
+
+00:00:31.831 --> 00:00:41.467
+A calculation finishes. A file is revised. A new requirement appears. Who knows which version everyone else is using?
+
+00:00:41.867 --> 00:00:47.885
+Member B receives a result, but cannot tell whether it is the latest version or whether it has passed review.
+
+00:00:47.885 --> 00:00:55.717
+The captain has to chase messages and reconnect the evidence. A finished agent task is not yet a finished team workflow.
+
+00:00:56.117 --> 00:01:02.849
+That is where Vibe Git Research comes in. It connects each person's agent to one shared research workflow.
+
+00:01:02.849 --> 00:01:10.467
+People keep their own tools. The team shares the plan, task status, review decisions, and approved files.
+
+00:01:10.867 --> 00:01:18.277
+Here is the actual interface, in a clearly labeled three member rehearsal. Each member submits their research plan.
+
+00:01:18.277 --> 00:01:24.717
+The plan describes the question, the method, their responsibility, and what would count as an acceptable result.
+
+00:01:25.117 --> 00:01:32.420
+The captain selects the participants and uploads the protein structure. Everyone will work from the same frozen input.
+
+00:01:32.420 --> 00:01:38.133
+This removes the first source of confusion: different people silently using different files.
+
+00:01:38.533 --> 00:01:45.373
+The proposals become a shared protocol: who calculates, who analyzes, and what must be checked before handoff.
+
+00:01:45.373 --> 00:01:52.050
+The captain checks the plan and publishes it. The agents do not silently change the team's agreement.
+
+00:01:52.450 --> 00:01:57.825
+The topology now shows the captain and both members, with their tasks and dependencies.
+
+00:01:57.825 --> 00:02:05.300
+Member A calculates first. Member B waits for an approved result, instead of guessing when it is safe to continue.
+
+00:02:05.700 --> 00:02:15.709
+What does Science Pal contribute? In our recorded real run, its Biology Agent executed a protein surface area calculation with Python and Biopython.
+
+00:02:15.709 --> 00:02:23.550
+It returned numerical results, the code, and the method parameters. It was not just writing a description of the experiment.
+
+00:02:23.950 --> 00:02:31.923
+Submitting a result triggers an independent review. In this example, the first calculation is only an exploratory pass.
+
+00:02:31.923 --> 00:02:38.050
+The agreed final check needs a higher resolution comparison, so the result is returned for revision.
+
+00:02:38.450 --> 00:02:45.352
+The captain opens the review feedback and assigns the revision. Member A sees exactly what needs to change.
+
+00:02:45.352 --> 00:02:52.050
+The earlier result stays in the history. Member B remains blocked until the revised result is approved.
+
+00:02:52.450 --> 00:02:58.789
+In the real run, Science Pal repeated the calculation at one thousand and five thousand sampling points.
+
+00:02:58.789 --> 00:03:07.967
+The totals differed by about zero point one one percent, below the agreed two percent limit. Codex also checked them using a separate implementation.
+
+00:03:08.367 --> 00:03:16.492
+We also found a real handoff bug. Codex received the result, but not the approval evidence needed to trust that exact file.
+
+00:03:16.492 --> 00:03:23.133
+It reported the blocker instead of pretending the analysis was complete. We fixed the handoff packet.
+
+00:03:23.533 --> 00:03:29.105
+Now the handoff includes the approved file, its fingerprint, and the original review record.
+
+00:03:29.105 --> 00:03:34.967
+Click the connection to see what was produced, who approved it, and whether the downstream member received it.
+
+00:03:35.367 --> 00:03:42.822
+Member B can now analyze the approved result. The captain reviews the final interpretation before closing the study.
+
+00:03:42.822 --> 00:03:49.300
+The team can see the complete chain, including the rejected attempt and the revision, in the original topology.
+
+00:03:49.700 --> 00:03:58.254
+The contribution is a shared workflow around people's agents: alignment before work, review before release, and evidence attached to every handoff.
+
+00:03:58.254 --> 00:04:05.800
+Science Pal supplies the research execution environment. Vibe Git keeps that research connected to the rest of the team.
+
+00:04:06.200 --> 00:04:14.879
+The three person workflow you saw is a rehearsal. The published scientific evidence comes from one Science Pal account working with local Codex.
+
+00:04:14.879 --> 00:04:24.383
+This is a general research platform, not a tool limited to this protein. Open the evidence links below to inspect the real files and the Science Pal run.

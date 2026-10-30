@@ -6,13 +6,15 @@
 
 官方截止：**2026-10-31 23:59，香港时间 UTC+8**，以问卷系统时间为准。队伍已报名是用户提供的信息，不代表作品已提交。
 
+**先看新版：[无需登录，直接播放](https://weihanchen000.github.io/vibe-git-research/submission/watch.html)**。点击页面播放按钮即可，也可按章节跳转或下载 MP4。
+
 ## 必交项核对
 
 | 官方要求 | 本包材料 | 状态 |
 |---|---|---|
 | 名称、简介、科研问题、使用场景 | [可复制填表文本](FORM-COPY.md) | 已准备 |
 | 可访问、可演示的 SciencePAL 项目 / Agent / 工作流链接 | [SciencePAL 展示与复现](SCIENCEPAL-DEMO.md) | 原生公开只读回放已验证；重新执行需本人账号，详见该页边界 |
-| 3–5 分钟演示视频 | [4 分钟字幕演示](vibe-git-research-demo.mp4)、[逐段讲稿](DEMO-SCRIPT.md) | 成品由实际界面截图、原始结果和字幕组成；不是连续实时录屏 |
+| 3–5 分钟演示视频 | [直接播放新版故事演示](https://weihanchen000.github.io/vibe-git-research/submission/watch.html)、[逐段讲稿](DEMO-SCRIPT.md) | 约 4 分 25 秒；英文配音、中文字幕、界面操作演练与真实证据分别标注；不是连续实时录屏 |
 | 不超过 5 页的说明或幻灯片 | [5 页匿名技术说明](project-brief.pdf) | 含方案、创新、验证、局限与计划 |
 | 原创性与资源说明 | [声明草稿](ORIGINALITY-RESOURCES.md) | 技术资源已整理，实名分工和最终确认待本人填写 |
 | 推荐：代码、实验报告、配置与复现 | [仓库首页](../../README.md)、[真实联调证据](../research/INTEGRATED-LIVE-20261031.md) | 已公开，12 个原始附件与核验命令 |

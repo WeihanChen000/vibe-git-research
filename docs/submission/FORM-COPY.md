@@ -20,6 +20,8 @@ Vibe-Git Research 面向小型科研团队，在原 Vibe-Git 的人员拓扑、�
 
 ## 作品材料
 
+直接播放演示（英文配音 / 中文字幕）：https://weihanchen000.github.io/vibe-git-research/submission/watch.html
+
 代码与展示：https://github.com/WeihanChen000/vibe-git-research
 
 SciencePAL 公开真实核查回放：https://sciencepal.ai/share/3b6302a7-f055-460e-9e3d-588287a7b3ca

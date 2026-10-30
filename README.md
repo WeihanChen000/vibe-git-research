@@ -14,7 +14,7 @@
 
 ## 黑客松提交材料
 
-[提交包与缺项清单](docs/submission/README.md) · [5 页技术说明](docs/submission/project-brief.pdf) · [4 分钟字幕演示](docs/submission/vibe-git-research-demo.mp4) · [原创性与资源说明](docs/submission/ORIGINALITY-RESOURCES.md)
+[提交包与缺项清单](docs/submission/README.md) · [5 页技术说明](docs/submission/project-brief.pdf) · [▶ 直接播放故事演示（英文配音）](https://weihanchen000.github.io/vibe-git-research/submission/watch.html) · [原创性与资源说明](docs/submission/ORIGINALITY-RESOURCES.md)
 
 材料不等于已经提交。队伍身份、最终声明和问卷回执仍需队长完成；SciencePAL 展示链接的访问状态见提交包。
 

@@ -1,12 +1,12 @@
 {
   "pdf_pages": 5,
-  "video_seconds": 240,
+  "video_seconds": 264.6,
   "video_dimensions": [
     1920,
     1080
   ],
   "video_fps": 24,
-  "video_audio": false,
+  "video_audio": true,
   "full_decode_passed": true,
   "form_summary_characters": 654,
   "team_identity": "left blank by user",
@@ -17,8 +17,8 @@
       "sha256": "1db6a53bc2ce425da54d0bb0914b58fe70e7fd675fcb96c9c0875f94260df2c8"
     },
     "vibe-git-research-demo.mp4": {
-      "bytes": 1992154,
-      "sha256": "f7723e9f68933b59fb84912703a51995fdc2e284421cd99ecc805bc629fa33e3"
+      "bytes": 8430767,
+      "sha256": "d0d4f8afe21c1545ff4b54c161c2108d6a3e5cc5a7cf9182421e48a4f45d92ed"
     }
   },
   "sciencepal_public_share": "https://sciencepal.ai/share/3b6302a7-f055-460e-9e3d-588287a7b3ca",
@@ -35,5 +35,22 @@
   "offline_original_bundle": {
     "files": 12,
     "verifiedPublicInputReceipts": 20
+  },
+  "video_narration": "English synthetic voice en-US-AriaNeural via edge-tts 7.3.1",
+  "video_burned_subtitles": "zh-CN",
+  "video_optional_subtitles": "en WebVTT",
+  "video_scene_count": 18,
+  "video_scope": "edited story, synthetic three-member real-UI rehearsal, separately labeled prior real science evidence",
+  "player_url": "https://weihanchen000.github.io/vibe-git-research/submission/watch.html",
+  "video_audio_mean_db": -24.9,
+  "video_audio_peak_db": -4.5,
+  "local_browser_playback": {
+    "playing": true,
+    "muted": false,
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "duration_seconds": 264.604333
   }
 }

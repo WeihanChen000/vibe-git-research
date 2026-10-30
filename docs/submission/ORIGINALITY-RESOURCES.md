@@ -23,8 +23,8 @@
 | Iris | 另一历史验证案例，数据来源、字节与使用说明见仓库 fixtures；本主案例不混用其结果。 |
 | Python / Biopython / NumPy | 实际科学计算与独立复算。SciencePAL 产物记录 Python 3.12.3、Biopython 1.84、NumPy 1.26.4；审稿环境版本另行记录，不能混为一谈。保留各项目许可，不主张算法独占。 |
 | 应用依赖 | React、React Flow、Fastify、TypeScript、Vitest 等沿用/扩展现有依赖；准确版本见 package-lock.json，第三方各自许可证保持适用。 |
-| 材料制作 | ReportLab 生成 PDF、Pillow 排版字幕画面、imageio-ffmpeg 0.6.0 本机调用 FFmpeg 编码视频。imageio-ffmpeg 包装层为 BSD-2-Clause；FFmpeg 具有自己的构建许可。仅发布生成的视频，不随仓库分发编码器二进制。 |
-| 图片与视频 | 原项目界面截图、当前真实应用界面和公开实验结果；非虚构交互画面。字幕视频不是连续现场录屏，原版截图仅为界面对照，不是原版完整运行的效能实验。 |
+| 材料制作 | ReportLab 生成 PDF、Pillow 排版字幕画面、imageio-ffmpeg 0.6.0 本机调用 FFmpeg 编码视频。imageio-ffmpeg 包装层为 BSD-2-Clause；FFmpeg 具有自己的构建许可。仅发布生成的视频，不随仓库分发编码器二进制。新版英文配音由本机 edge-tts 7.3.1 调用微软在线 TTS（Aria）生成；只发送公开讲稿。edge-tts 主体 LGPLv3、字幕组件 MIT，仅用作制作工具，不加入产品或分发其代码。 |
+| 图片与视频 | 原项目界面截图、当前真实应用界面和公开实验结果；非虚构交互画面。英文配音与中文字幕视频不是连续现场录屏，原版截图仅为界面对照，不是原版完整运行的效能实验。 |
 
 ## 验证与限制声明
 

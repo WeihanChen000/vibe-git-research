@@ -16,7 +16,7 @@ API Key、成员 token、邀请令牌、浏览器认证票据、私有个人配�
 
 开发报告可能保留历史线程 ID、产物 ID、工作流成员 ID，作为证据关联，它们不应被当成访问凭据。某些高级调试脚本依赖原本机私有证据，因此分享版未声称可重跑所有历史远端抓取；受支持入口为快速开始列出的构建、测试、回放和新账号接入。
 
-原版 `docs/index.html` 是保留的原文档站，本仓库首页为科研扩展 README。Pages 不自动部署；工作流仅以模板保留在 docs/research/ci，不自动部署网站或运行模型。
+原版 `docs/index.html` 是保留的原文档站，本仓库首页为科研扩展 README。2026-10-31 根据用户要求启用 GitHub Pages，发布 docs 内的静态视频播放页；不会部署 Host、认证数据或自动运行模型。旧工作流模板仍保留在 docs/research/ci。
 
 根目录原有 EXPORT-MANIFEST / SANITIZATION-REPORT 为上游历史材料，不能当作本科研分享快照的完整清单；当前验证以 docs/research/VALIDATION.md 和 Git 提交为准。
 
