@@ -1,0 +1,80 @@
+{
+  "scope": "单账号跨平台真实运行回放；一次明示数值故障，一次自然代码交付缺陷。本轮未触发等待输入，不作为双账号联调证明。只读，不调用模型。",
+  "runs": [
+    {
+      "observedAt": "2026-10-30T02:09:34.899Z",
+      "threadId": "a658b1af-c220-42d3-b6a7-bfea9ad1a468",
+      "runId": "0c4175ad-1a9c-47d3-8f22-d8789a4311d5",
+      "projectId": "1ee592f1-a5fd-4e08-bd47-e20a8d255d9c",
+      "agentId": "10000000-0000-0000-0000-000000000002",
+      "status": "completed",
+      "files": [
+        {
+          "name": "review_check.py",
+          "size": 4397,
+          "sha256": "04d7ebe05ca69bcb1eb7c1fd73a6b76ca7ebfb792e16f04d327f6119b5ee8549"
+        },
+        {
+          "name": "write_review.py",
+          "size": 5853,
+          "sha256": "26d2b0f6c99b09bc005f9ab54e828269408d481860ef6ced1d4230baeea93a2a"
+        }
+      ]
+    },
+    {
+      "observedAt": "2026-10-30T02:12:44.857Z",
+      "threadId": "28b8e8fc-cb91-4675-8281-64aed0b4ad9d",
+      "runId": "2bd2f1a7-a4a9-433e-80e4-4adec9326894",
+      "projectId": "63cb42ac-3b83-483e-a783-b77ab47db46d",
+      "agentId": "10000000-0000-0000-0000-000000000002",
+      "status": "completed",
+      "files": [
+        {
+          "name": "review.py",
+          "size": 6894,
+          "sha256": "31c193ee98281d629e54519d2bfe65a8232554ae7cf94a9364b2fd7943a773f8"
+        },
+        {
+          "name": "verify_output.py",
+          "size": 774,
+          "sha256": "1613a8cf462fbe1bd9848aba9158bc947972caf306e0702959a9de1cb96fc4e0"
+        }
+      ]
+    },
+    {
+      "observedAt": "2026-10-30T02:16:28.457Z",
+      "threadId": "19f35257-4503-403d-b5c0-18c9e646dd0a",
+      "runId": "b695f389-8b70-4410-95a9-20d0c0fe77e3",
+      "projectId": "80580b7f-1996-4970-b43b-7896ef65ad8e",
+      "agentId": "10000000-0000-0000-0000-000000000002",
+      "status": "completed",
+      "files": [
+        {
+          "name": "compute_species_summary.py",
+          "size": 5288,
+          "sha256": "f4dd16df231780035130f2e9a33e2b6251d2b42651c2c6d829e7c917da001759"
+        }
+      ]
+    },
+    {
+      "observedAt": "2026-10-30T02:20:50.022Z",
+      "threadId": "32e9d398-807a-4c16-9c2c-311ac8999a25",
+      "runId": "a33bab38-1275-4aa0-82b9-890eda88d900",
+      "projectId": "70dd96b9-ffeb-4e67-97ae-508f52d4267e",
+      "agentId": "10000000-0000-0000-0000-000000000002",
+      "status": "completed",
+      "files": [
+        {
+          "name": "compute_species_summary.py",
+          "size": 1584,
+          "sha256": "ac29463459b3f3d782e491e933a366f830c46734719e49f951bcf640168b60d5"
+        },
+        {
+          "name": "write_output.py",
+          "size": 4579,
+          "sha256": "993b64c470c7f829fd499c4e88353656705f5e4bc81f2572e53a3c584fa0536e"
+        }
+      ]
+    }
+  ]
+}

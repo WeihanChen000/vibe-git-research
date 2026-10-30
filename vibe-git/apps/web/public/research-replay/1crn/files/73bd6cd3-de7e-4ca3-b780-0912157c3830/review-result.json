@@ -1,0 +1,52 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "62bb3952ba63abb6ea2dd36c20eedb19c47a7bb2ffbebf99cb072856c2c3a50e",
+      "size": 4338
+    },
+    {
+      "filename": "geometry.json",
+      "sha256": "4f3ded1a0ecc5831045e029bc6a366f2c17605407b2d46ca9e732545e2f44281",
+      "size": 7429
+    },
+    {
+      "filename": "sasa.json",
+      "sha256": "aa7ea3099f3e69beb6f1d14d2b88adf84c788f92f32666bfc78c35d70c9198d5",
+      "size": 9183
+    },
+    {
+      "filename": "source-1crn.txt",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    }
+  ],
+  "result": {
+    "verdict": "approve",
+    "summary": "Codex independently recomputed the public structure with NumPy; numerical and provenance checks passed.",
+    "checks": [
+      {
+        "criterion": "sasa.json sourceSha256 and upstreamSha256 match the actual source and approved geometry.json attachments; counts are 327 heavy atoms and 46 residues.",
+        "passed": true,
+        "evidence": "sasa.json sourceSha256 matches actual input: True; upstream geometry.json bytes: True; counts: True. Hashes independently recomputed locally."
+      },
+      {
+        "criterion": "sasa.json documents actual BioPython execution with PDBParser and ShrakeRupley, confirmed probe 1.4 angstrom, 960 points, explicit radii C=1.70 N=1.55 O=1.52 S=1.80, executed source and version/log.",
+        "passed": true,
+        "evidence": "sasa.json pythonCode contains PDBParser and ShrakeRupley; reported probe=1.4, nPoints=960, radii={'C': 1.7, 'N': 1.55, 'O': 1.52, 'S': 1.8}; toolLog={\"biopython_version\": \"1.84\", \"python_version\": \"3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]\", \"probe_radius_A\": 1.4, \"n_points\": 960, \"radii_A\": {\"C\": 1.7, \"N\": 1.55, \"O\": 1.52, \"S\": 1.8}, \"atomCount\": 327, \"residueCount\": 46, \"totalSasaA2\": 2970.1524474615703, \"residue_sum_check_A2\": 2970.1524474615703, \"sourceSha256\": \"42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811\", \"upstreamSha256\": \"4f3ded1a0ecc5831045e029bc6a366f2c17605407b2d46ca9e732545e2f44281\"}. Remote reported code/log reviewed without executing returned code."
+      },
+      {
+        "criterion": "The total SASA differs from the independent NumPy 5000-point baseline by at most 3%; each of six CYS whole-residue areas differs by at most max(3 A^2,5% baseline).",
+        "passed": true,
+        "evidence": "sasa.json total=2970.152447462 A^2; independently rerun NumPy 5000-point baseline=2973.162770614; relative difference=0.101249860%. CYS checks: [{\"id\": 3, \"sciencepalA2\": 0.0, \"codexA2\": 0.0, \"differenceA2\": 0.0, \"toleranceA2\": 3, \"passed\": true}, {\"id\": 4, \"sciencepalA2\": 0.0, \"codexA2\": 0.0, \"differenceA2\": 0.0, \"toleranceA2\": 3, \"passed\": true}, {\"id\": 16, \"sciencepalA2\": 20.39023222876736, \"codexA2\": 20.64086340129066, \"differenceA2\": 0.25063117252329903, \"toleranceA2\": 3, \"passed\": true}, {\"id\": 26, \"sciencepalA2\": 0.0, \"codexA2\": 0.0, \"differenceA2\": 0.0, \"toleranceA2\": 3, \"passed\": true}, {\"id\": 32, \"sciencepalA2\": 6.278546222027784, \"codexA2\": 6.434558802290506, \"differenceA2\": 0.1560125802627219, \"toleranceA2\": 3, \"passed\": true}, {\"id\": 40, \"sciencepalA2\": 48.49287938155375, \"codexA2\": 48.728180032222475, \"differenceA2\": 0.23530065066872652, \"toleranceA2\": 3, \"passed\": true}]"
+      },
+      {
+        "criterion": "All 46 residue SASA values are nonnegative A^2 and sum to total within 0.001 A^2; limitations prevent biological or causal overclaims.",
+        "passed": true,
+        "evidence": "sasa.json contains 46 unique-count 46 residues; residue sum=2970.152447462, total=2970.152447462; limitations=['Descriptive 1CRN reproduction only. Single structure, approximate numerical surface (Shrake-Rupley, 960 points); no causal or biological generalization, no inference of biological function.', 'Shrake-Rupley is a numerical approximation; values depend on probe radius, sphere-point count and radii set, and are not directly comparable to other parameterizations.', 'Model 0, chain A, standard heavy ATOM records only; hydrogens, hetero/water atoms excluded per frozen protocol.']."
+      }
+    ],
+    "requiredChanges": []
+  }
+}

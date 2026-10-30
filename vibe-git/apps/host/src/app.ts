@@ -11,6 +11,11 @@ import { V20Repository } from "./v20/repository.js";
 import { ensureV20Runtime } from "./v20/runtime-secrets.js";
 import { registerV20Routes } from "./v20/routes.js";
 import { V20Service } from "./v20/service.js";
+import { SciencePALClient, readSciencePALKey, type SciencePALRemote } from "./sciencepal/client.js";
+import { SciencePALService } from "./sciencepal/service.js";
+import { registerSciencePALRoutes } from "./sciencepal/routes.js";
+import { SciencePALPipeline } from "./sciencepal/pipeline.js";
+import { registerSciencePALTeamRoutes } from "./sciencepal/team-routes.js";
 
 const ROOT = resolve(fileURLToPath(new URL("../../..", import.meta.url)));
 
@@ -19,6 +24,7 @@ function defaultDataRoot(): string {
 }
 
 export interface BuildAppOptions {
+  sciencepal?: { remote: SciencePALRemote; worker?: boolean };
   dbPath?: string;
   dataDir?: string;
   staticDir?: string | false;
@@ -96,6 +102,15 @@ export async function buildApp(options: BuildAppOptions = {}) {
   });
 
   await registerV20Routes(app, service, cloudflareManager);
+  if (options.sciencepal || process.env.SCIENCEPAL_ENABLED === "1") {
+    const remote = options.sciencepal?.remote ?? new SciencePALClient(readSciencePALKey());
+    const pipeline = new SciencePALPipeline(repo, remote);
+    app.decorate("sciencepalPipeline", pipeline);
+    app.addHook("preClose", async () => pipeline.close());
+    await registerSciencePALRoutes(app, new SciencePALService(repo, remote), pipeline);
+    await registerSciencePALTeamRoutes(app, service, pipeline);
+    if (options.sciencepal?.worker !== false) pipeline.startWorker();
+  }
   if (options.staticDir !== false) await registerStatic(app, options.staticDir ?? resolve(ROOT, "apps/web/dist"));
   return app;
 }

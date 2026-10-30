@@ -1,8 +1,14 @@
-# Vibe-Git 0.20
+# Vibe-Git 科研协作原型
 
-Vibe-Git 是一个 **CLI 主导、网页观察** 的多人 Codex 协作控制面。队长只启动一个 Host 和 Cloudflare Quick Tunnel；每位成员从自己的 Git 工作区连接，不需要填写项目名称、成员名字或固定 A/B/C 身份。
+本分支把 Vibe-Git 的多人协作流程用于科研：**成员提出研究方案 → 对齐研究协议 → 各自 Agent 执行 → 独立评审 → 返工与成果交接**。SciencePAL 是默认科研执行平台，Codex 等平台保留为可选参与者。成员身份、提案权限、版本与交接机制沿用原项目。
 
-## 安装
+本地黑客松扩展：[SciencePAL 统一入口（兼容 Codex）](SCIENCEPAL-CODEX-ENTRY.md)、[原生科研专家实测](SCIENCEPAL-EXPERT-LIVE.md)、[多人 SciencePAL 连接器](SCIENCEPAL-TEAM-QUICKSTART.md)。[早期通用 Agent 科研闭环](fixtures/structure-case/README.md) 保留用于回归。扩展以当前源码为准，不代表已发布 npm 版本已包含这些功能。
+
+科研路径优先从 [图形接入与双击启动](SCIENCEPAL-FIRST-RUN.md) 开始，无需绑定 Codex 执行器；项目 Skill 位于仓库 `.agents/skills/vibe-git/skills/vibe-git/`。以下保留原版软件协作安装与命令，供旧路径兼容使用。
+
+队友接入包使用 `SCIENCEPAL-TEAM-QUICKSTART.md` 与 `fixtures/team-research/`，内含科研 Skill 的快照 `research-skill/`。两位成员可各用自己的账号选择同一个内置专家；绑定身份与平台专家 ID 分开。真实双账号联调结果按 [验收记录](SCIENCEPAL-TEAM-ACCEPTANCE.md) 填写，工程模拟通过不代表已完成真人接入。
+
+## 原版安装与兼容命令
 
 需要 Node.js 24+、Git、Codex CLI。通过 npm 手动安装已发布的 CLI：
 
@@ -225,3 +231,9 @@ Host API 健康检查：`GET /health`。运行问题优先查看：
 vibe-git logs
 Get-Content "$HOME/.vibe-git/host.log" -Tail 100
 ```
+
+
+## 科研协作入口
+
+- [队友使用自己的账号接入](SCIENCEPAL-TEAM-START.md)：队长建房、本人绑定、科研任务及恢复步骤。
+- [原拓扑真实案例回放](SCIENCEPAL-REPLAY.md)：双击 open-replay.cmd，或构建后运行 npm run research:replay；无需账号，不启动模型。

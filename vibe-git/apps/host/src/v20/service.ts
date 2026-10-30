@@ -12,6 +12,7 @@ import { badRequest, forbidden, invalidState, notFound, revisionConflict, unavai
 import { V20Repository } from "./repository.js";
 import { hashSecret, newSecret, rotateInvite } from "./runtime-secrets.js";
 import { taskMarkdown as renderTaskMarkdown, validBrief, workstreamMarkdown } from "./contract-format.js";
+import { validateDependencyGraph } from "../domain/dependency-graph.js";
 
 const DOCUMENT_LIMIT = 256 * 1024;
 const ALIGNMENT_INPUT_LIMIT = 2 * 1024 * 1024;
@@ -1794,16 +1795,7 @@ export class V20Service {
   }
 
   private validateDependencyGraph(graph: Map<string, string[]>): void {
-    const visited = new Set<string>();
-    const active = new Set<string>();
-    const visit = (taskId: string): void => {
-      if (active.has(taskId)) throw badRequest("任务依赖形成循环");
-      if (visited.has(taskId) || !graph.has(taskId)) return;
-      active.add(taskId);
-      for (const dependency of graph.get(taskId) ?? []) visit(dependency);
-      active.delete(taskId); visited.add(taskId);
-    };
-    for (const taskId of graph.keys()) visit(taskId);
+    validateDependencyGraph(graph);
   }
 
   private mergeReplacements(existing: ReplacementTask[], additions: ReplacementTask[]): ReplacementTask[] {

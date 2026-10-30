@@ -68,15 +68,17 @@ export function Avatar({
     </span>
   );
 }
-type MemberData = {
+export type MemberData = {
   id: string;
   name: string;
   role: string;
   branch: string;
   online: boolean;
+  presenceLabel?: string;
   tone: string;
   text: string;
   pulse: boolean;
+  showProgress?: boolean;
   done: number;
   total: number;
   pr: number;
@@ -85,10 +87,10 @@ type MemberData = {
   collaborations: number;
   open: (tab?: string) => void;
 };
-function MemberNode({ data: d }: NodeProps<Node<MemberData>>) {
+export function MemberCard({ data: d }: {data:MemberData}) {
   return (
     <button
-      className={`member-node ${d.tone} ${d.pulse ? "pulse" : ""} ${d.online ? "" : "offline"}`}
+      className={`member-node ${d.tone} ${d.pulse ? "pulse" : ""} ${d.online || d.presenceLabel ? "" : "offline"}`}
       onClick={() => d.open()}
     >
       <Avatar id={d.id} captain={d.role === "captain"} />
@@ -97,11 +99,11 @@ function MemberNode({ data: d }: NodeProps<Node<MemberData>>) {
         <small>
           <i className={`online-dot ${d.online ? "" : "is-offline"}`} />
           {d.role === "captain" ? "队长" : "成员"} ·{" "}
-          {d.online ? "在线" : "离线"}
+          {d.presenceLabel ?? (d.online ? "在线" : "离线")}
         </small>
         <span onClick={d.own && d.plan === "未提交" ? e => { e.stopPropagation(); d.open("plan"); } : undefined}>
           {d.own && d.plan === "未提交" ? "提交提案 · " : ""}
-          {d.text} · {d.done}/{d.total}
+          {d.text}{d.showProgress!==false&&<> · {d.done}/{d.total}</>}
         </span>
         <code title={d.branch}>{d.branch || "未连接工作区"}</code>
       </div>
@@ -156,6 +158,7 @@ function GroupNode({
     </div>
   );
 }
+function MemberNode({data}:NodeProps<Node<MemberData>>) {return <MemberCard data={data}/>;}
 const nodeTypes = { member: MemberNode, package: GroupNode };
 const fitPadding = { top: "24px", right: "24px", bottom: "175px", left: "24px" } as const;
 function Controls({

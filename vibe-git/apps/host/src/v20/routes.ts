@@ -59,11 +59,11 @@ export async function registerV20Routes(app: FastifyInstance, service: V20Servic
     return service.join(request.body.invite, publicBase(request));
   });
 
-  app.get<{ Params: { ticket: string } }>("/session/:ticket", async (request, reply) => {
+  app.get<{ Params: { ticket: string }; Querystring: { view?: string } }>("/session/:ticket", async (request, reply) => {
     const exchanged = service.exchangeBrowserTicket(request.params.ticket);
     const secure = publicBase(request).startsWith("https://") ? "; Secure" : "";
     reply.header("Set-Cookie", `vibe_session=${encodeURIComponent(exchanged.session)}; Path=/; HttpOnly; SameSite=Lax; Max-Age=2592000${secure}`);
-    return reply.redirect("/");
+    return reply.redirect(request.query.view === "sciencepal-team" ? "/sciencepal/team" : "/");
   });
 
   app.get("/api/v1/bootstrap", async (request) => service.bootstrap(authenticate(request, service)));

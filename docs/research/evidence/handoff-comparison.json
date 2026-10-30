@@ -1,0 +1,168 @@
+{
+  "observedAt": "2026-10-30T08:58:58.444Z",
+  "scope": "Executed isolated original doneTask with repository/event stubs; executed production research envelope/schema/review functions, not an end-to-end original UI trial. Manual checklist was carried out by Codex, not a human participant. No remote model execution.",
+  "baseline": {
+    "commit": "f3e888f",
+    "methodSha256": "e5e47b6c247388d6e3158fa0bed41dacf0ad32dff0962bd9068b35c127fcc7da",
+    "method": "V20Service.doneTask",
+    "task": "ordinary task with no interface CONTRACT edge; existing interface-contract gates not evaluated"
+  },
+  "protocolSha256": "c6d9080464a8eda368526db0316b488931d2c04aa10807667eede50fbffcdb0e",
+  "input": {
+    "candidateSha256": "aa7ea3099f3e69beb6f1d14d2b88adf84c788f92f32666bfc78c35d70c9198d5",
+    "sourceSha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+    "referenceSha256": "f27da6a0b71277c80eb5aea5d20738839c479e3acc0b0a98a42c973b162e03c1"
+  },
+  "rows": [
+    {
+      "id": "valid",
+      "label": "正确产物",
+      "syntheticPerturbation": false,
+      "original": {
+        "accepted": true,
+        "reason": "Original standard-task completion checks ownership, end state and fresh Git sync. It does not consume this research artifact; not a scientific endorsement."
+      },
+      "carefulManual": {
+        "accepted": true,
+        "reason": "Checks passed"
+      },
+      "platform": {
+        "accepted": true,
+        "reason": "Checks passed"
+      }
+    },
+    {
+      "id": "old-revision",
+      "label": "旧协议版本",
+      "syntheticPerturbation": true,
+      "original": {
+        "accepted": true,
+        "reason": "Original standard-task completion checks ownership, end state and fresh Git sync. It does not consume this research artifact; not a scientific endorsement."
+      },
+      "carefulManual": {
+        "accepted": false,
+        "reason": "Manual version check\n\n0 !== 1\n"
+      },
+      "platform": {
+        "accepted": false,
+        "reason": "Agent 输出的需求版本与冻结快照不符"
+      },
+      "manualOmittedVersion": {
+        "accepted": true,
+        "reason": "Checks passed"
+      }
+    },
+    {
+      "id": "wrong-receipt",
+      "label": "错误输入回执",
+      "syntheticPerturbation": true,
+      "original": {
+        "accepted": true,
+        "reason": "Original standard-task completion checks ownership, end state and fresh Git sync. It does not consume this research artifact; not a scientific endorsement."
+      },
+      "carefulManual": {
+        "accepted": false,
+        "reason": "Manual input-byte check"
+      },
+      "platform": {
+        "accepted": false,
+        "reason": "附件 context.json 的独立字节校验不一致"
+      }
+    },
+    {
+      "id": "missing-code",
+      "label": "未交付代码",
+      "syntheticPerturbation": true,
+      "original": {
+        "accepted": true,
+        "reason": "Original standard-task completion checks ownership, end state and fresh Git sync. It does not consume this research artifact; not a scientific endorsement."
+      },
+      "carefulManual": {
+        "accepted": false,
+        "reason": "Expected values to be strictly equal:\n\n'FAILED' !== 'PASSED'\n"
+      },
+      "platform": {
+        "accepted": false,
+        "reason": "Frozen result contract rejected\n\n'FAILED' !== 'PASSED'\n"
+      }
+    },
+    {
+      "id": "changed-parameter",
+      "label": "探针参数偏离",
+      "syntheticPerturbation": true,
+      "original": {
+        "accepted": true,
+        "reason": "Original standard-task completion checks ownership, end state and fresh Git sync. It does not consume this research artifact; not a scientific endorsement."
+      },
+      "carefulManual": {
+        "accepted": false,
+        "reason": "Expected values to be strictly equal:\n\n'FAILED' !== 'PASSED'\n"
+      },
+      "platform": {
+        "accepted": false,
+        "reason": "Frozen result contract rejected\n\n'FAILED' !== 'PASSED'\n"
+      }
+    },
+    {
+      "id": "missing-review",
+      "label": "没有独立评审",
+      "syntheticPerturbation": true,
+      "original": {
+        "accepted": true,
+        "reason": "Original standard-task completion checks ownership, end state and fresh Git sync. It does not consume this research artifact; not a scientific endorsement."
+      },
+      "carefulManual": {
+        "accepted": false,
+        "reason": "No independent review"
+      },
+      "platform": {
+        "accepted": false,
+        "reason": "No independent review"
+      }
+    },
+    {
+      "id": "rejected-review",
+      "label": "评审明确退回",
+      "syntheticPerturbation": true,
+      "original": {
+        "accepted": true,
+        "reason": "Original standard-task completion checks ownership, end state and fresh Git sync. It does not consume this research artifact; not a scientific endorsement."
+      },
+      "carefulManual": {
+        "accepted": false,
+        "reason": "Independent review requested changes\n+ actual - expected\n\n+ 'request_changes'\n- 'approve'\n"
+      },
+      "platform": {
+        "accepted": false,
+        "reason": "Independent review requested changes\n+ actual - expected\n\n+ 'request_changes'\n- 'approve'\n"
+      }
+    },
+    {
+      "id": "numerical-blindspot",
+      "label": "数值偏移且文字评审错误同意",
+      "syntheticPerturbation": true,
+      "original": {
+        "accepted": true,
+        "reason": "Original standard-task completion checks ownership, end state and fresh Git sync. It does not consume this research artifact; not a scientific endorsement."
+      },
+      "carefulManual": {
+        "accepted": false,
+        "reason": "The expression evaluated to a falsy value:\n\n  assert.ok(Math.abs(x.totalSasaA2-ref.total_A2)/ref.total_A2<=.03)\n"
+      },
+      "platform": {
+        "accepted": true,
+        "reason": "Checks passed"
+      }
+    }
+  ],
+  "summary": {
+    "validAcceptedByAll": true,
+    "platformRejectedFaults": 6,
+    "carefulManualRejectedFaults": 7,
+    "totalFaults": 7,
+    "originalResearchFileInspection": "not present in tested completion method",
+    "humanTimeSaved": null,
+    "humanErrorRate": null
+  },
+  "conclusion": "Adds automatic protocol and delivery gates; does not outperform careful scientific recomputation. Numeric-only error with falsely approving review remains a limitation. File hashes and Agent text do not certify scientific validity."
+}

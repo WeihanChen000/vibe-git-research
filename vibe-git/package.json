@@ -11,7 +11,13 @@
     "url": "https://github.com/TFboy1/vibe-git/issues"
   },
   "homepage": "https://github.com/TFboy1/vibe-git#readme",
-  "keywords": ["codex", "agents", "collaboration", "git", "cli"],
+  "keywords": [
+    "codex",
+    "agents",
+    "collaboration",
+    "git",
+    "cli"
+  ],
   "type": "module",
   "workspaces": [
     "apps/*",
@@ -28,6 +34,12 @@
     "vibe-git": "apps/cli/dist/index.js"
   },
   "scripts": {
+    "research:open": "node --use-env-proxy apps/host/dist/sciencepal/local-panel-main.js",
+    "sciencepal": "node --use-env-proxy apps/host/dist/sciencepal/main.js",
+    "sciencepal:member": "node --use-env-proxy apps/host/dist/sciencepal/member-main.js",
+    "sciencepal:call": "node --use-env-proxy apps/host/dist/sciencepal/bridge-main.js",
+    "sciencepal:simulate": "node apps/host/scripts/simulate-research-collaboration.mjs",
+    "test:sciencepal": "npm run build -w @vibe-git/protocol && vitest run apps/host/test/sciencepal.test.ts apps/host/test/sciencepal-pipeline.test.ts apps/host/test/sciencepal-team.test.ts apps/host/test/sciencepal-bridge.test.ts apps/web/src/sciencepal/research-model.test.ts apps/web/src/sciencepal/research-replay.test.ts",
     "predev": "npm run build -w @vibe-git/protocol",
     "dev": "concurrently -k -n host,web -c cyan,magenta \"npm run dev -w @vibe-git/host\" \"npm run dev -w @vibe-git/web\"",
     "dev:relay": "npm run dev -w @vibe-git/relay",
@@ -37,7 +49,10 @@
     "build": "npm run build -w @vibe-git/protocol && npm run build -w @vibe-git/host && npm run build -w @vibe-git/cli && npm run build -w @vibe-git/web",
     "prepack": "npm run build",
     "pack:check": "npm pack --dry-run",
-    "reset": "node apps/host/scripts/reset.mjs"
+    "reset": "node apps/host/scripts/reset.mjs",
+    "research:replay": "node scripts/open-replay.mjs",
+    "research:simulate-ui": "node apps/host/scripts/preview-research-onboarding.mjs",
+    "test:research-share": "node scripts/verify-share.mjs"
   },
   "dependencies": {
     "@vibe-git/protocol": "^0.1.0",
@@ -47,7 +62,7 @@
     "@types/node": "^24.5.2",
     "concurrently": "^9.2.1",
     "typescript": "^5.9.2",
-    "vitest": "^3.2.4"
+    "vitest": "5.0.5"
   },
   "engines": {
     "node": ">=24"

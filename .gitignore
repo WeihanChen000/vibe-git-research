@@ -5,3 +5,15 @@ apikey.txt
 .agentgit/
 node_modules/
 test-results/
+
+# Team sharing: generated/private runtime state stays local
+**/data/
+**/dist/
+**/coverage/
+**/__pycache__/
+*.db
+*.db-*
+*.pem
+*.key
+*.log
+*.tsbuildinfo

@@ -1,0 +1,44 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "4c772a7fc09102ca8e56f411e54c05ee7ad45f6a8d25318d5be11bb72c981002",
+      "size": 3257
+    },
+    {
+      "filename": "source-1crn.txt",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    }
+  ],
+  "result": {
+    "sourceSha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+    "atomCount": 327,
+    "residueCount": 46,
+    "disulfides": [
+      {
+        "residue1": 3,
+        "residue2": 40,
+        "distanceA": 0.20041072825574996
+      },
+      {
+        "residue1": 4,
+        "residue2": 32,
+        "distanceA": 0.2034701698038314
+      },
+      {
+        "residue1": 16,
+        "residue2": 26,
+        "distanceA": 0.20507630287285758
+      }
+    ],
+    "pythonCode": "\"\"\"Codex-authored protocol and genuine coordinate calculation; never simulates remote agents.\"\"\"\nimport json,hashlib,math,sys\nfrom pathlib import Path\nroot=Path(sys.argv[1]); kind=sys.argv[2]\nctx=json.loads((root/'inputs/context.json').read_text('utf-8'))\nreceipt=[dict(filename=f.name,sha256=hashlib.sha256(f.read_bytes()).hexdigest(),size=len(f.read_bytes())) for f in (root/'inputs').iterdir()]\nboundary='Descriptive 1CRN reproduction only. One account, two workflow identities. Real tools and unchanged source; no fabricated results, no installs, no inference of biological function.'\nif kind=='align':\n    result=dict(alignmentMarkdown='''# 1CRN 几何与溶剂可及表面积复核\nCodex prepares geometry; SciencePAL Biology independently reviews before handoff. A deliberately injected tenfold unit error in the first candidate tests rejection, not a naturally observed model failure. Corrected geometry is reviewed again. Biology then computes SASA with installed BioPython and requests operator confirmation of 1.4 angstrom probe BEFORE calculation using the user-question tool. It must stop and wait; on reply preserve the original thread and frozen files. This explicit confirmation tests NEEDS_INPUT; it is not scientific uncertainty.\nFixed method: model 0, chain A, standard heavy ATOM coordinates; SG distances for SSBOND pairs in angstrom. SASA: BioPython PDBParser + ShrakeRupley, 960 sphere points, radii C=1.70,N=1.55,O=1.52,S=1.80 angstrom. Report all 46 whole-residue areas and total A^2, source hash, upstream geometry.json hash, executed Python and version/log. Do not execute untrusted candidate code. No new dependencies or internet installs. Codex independently computes 5000-point NumPy sphere baseline: total relative difference <=3%, each CYS residue difference <=max(3 A^2,5% baseline). Passing code/schema alone is not scientific approval. Single structure, approximate numerical surface, no causal or biological generalization. Source https://www.rcsb.org/structure/1CRN; method https://biopython.org/docs/1.84/api/Bio.PDB.SASA.html\n''',issues=[],tasks=[dict(key='geometry',title='Codex 重算结构几何与单位',goal='Parse actual source-1crn.txt. Return sourceSha256, atomCount, residueCount, disulfides:[{residue1,residue2,distanceA}], pythonCode, toolLog, limitations, faultInjection. Initial candidate intentionally divides distances by 10 while field remains distanceA; label faultInjection true, but reviewer must reject because acceptance still requires correct angstrom. Rework fixes calculation and sets false.',boundary=boundary,acceptance=['Source SHA256 equals the actual source-1crn.txt bytes; chain A has 327 heavy atoms and 46 standard residues.','All three SSBOND SG distances in geometry.json are in angstrom and agree with independent calculation from source coordinates within 0.0001 angstrom.','geometry.json includes executed Python source, actual computation log, scope and limitations; fault injection is explicitly labeled.'],dependencies=[],assigneeAgentId=ctx['agents'][0]['id']),dict(key='sasa',title='Biology 专家计算表面积并交回复核',goal='FIRST use user-question tool to ask: Please confirm probe radius 1.4 angstrom for this 1CRN SASA calculation. Stop and wait; do NOT compute or create sasa.json before reply. AFTER confirmation use actual installed BioPython PDBParser + ShrakeRupley as frozen protocol. Return sourceSha256, upstreamSha256 for actual geometry.json, atomCount,residueCount,probeRadiusA,nPoints,atomicRadiiA,totalSasaA2,residues:[{id,name,sasaA2}],pythonCode (actual executed full script),toolLog (actual versions/numeric stdout),limitations. Preserve all original files; include receipts for current attachments.',boundary=boundary,acceptance=['sasa.json sourceSha256 and upstreamSha256 match the actual source and approved geometry.json attachments; counts are 327 heavy atoms and 46 residues.','sasa.json documents actual BioPython execution with PDBParser and ShrakeRupley, confirmed probe 1.4 angstrom, 960 points, explicit radii C=1.70 N=1.55 O=1.52 S=1.80, executed source and version/log.','The total SASA differs from the independent NumPy 5000-point baseline by at most 3%; each of six CYS whole-residue areas differs by at most max(3 A^2,5% baseline).','All 46 residue SASA values are nonnegative A^2 and sum to total within 0.001 A^2; limitations prevent biological or causal overclaims.'],dependencies=['geometry'],assigneeAgentId=ctx['agents'][1]['id'])]);name='align-result.json'\nelse:\n    raw=(root/'inputs/source-1crn.txt').read_bytes();rows=[];pairs=[]\n    for line in raw.decode('ascii').splitlines():\n        if line.startswith('ATOM  ') and line[16] in (' ','A') and line[21]=='A' and line[76:78].strip()!='H':\n            rows.append((int(line[22:26]),line[12:16].strip(),[float(line[i:i+8]) for i in (30,38,46)]))\n        if line.startswith('SSBOND'):pairs.append([int(line[17:21]),int(line[31:35])])\n    sg={rid:xyz for rid,name,xyz in rows if name=='SG'};fault=kind=='fault'\n    distances=[dict(residue1=a,residue2=b,distanceA=math.dist(sg[a],sg[b])/(10 if fault else 1)) for a,b in pairs]\n    log=json.dumps(dict(atomCount=len(rows),residueCount=len({r[0] for r in rows}),disulfides=distances,faultInjection=fault))\n    print(log)\n    result=dict(sourceSha256=hashlib.sha256(raw).hexdigest(),atomCount=len(rows),residueCount=len({r[0] for r in rows}),disulfides=distances,pythonCode=Path(__file__).read_text('utf-8'),toolLog=log,limitations=[boundary,'Initial candidate only: deliberate divide-by-ten unit fault for rejection testing.'] if fault else [boundary],faultInjection=fault);name='geometry.json'\n(root/name).write_text(json.dumps(dict(revision=ctx['revision'],inputReceipts=receipt,result=result),ensure_ascii=False,indent=2),'utf-8')\n",
+    "toolLog": "{\"atomCount\": 327, \"residueCount\": 46, \"disulfides\": [{\"residue1\": 3, \"residue2\": 40, \"distanceA\": 0.20041072825574996}, {\"residue1\": 4, \"residue2\": 32, \"distanceA\": 0.2034701698038314}, {\"residue1\": 16, \"residue2\": 26, \"distanceA\": 0.20507630287285758}], \"faultInjection\": true}",
+    "limitations": [
+      "Descriptive 1CRN reproduction only. One account, two workflow identities. Real tools and unchanged source; no fabricated results, no installs, no inference of biological function.",
+      "Initial candidate only: deliberate divide-by-ten unit fault for rejection testing."
+    ],
+    "faultInjection": true
+  }
+}

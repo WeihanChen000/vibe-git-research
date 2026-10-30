@@ -1,0 +1,46 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "2d680066a908c1d5d6cef90db398cdbd7ac925c5343366d82ff6a1ab4c9b13f3",
+      "size": 3327
+    },
+    {
+      "filename": "source-1crn.txt",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    },
+    {
+      "filename": "geometry.json",
+      "sha256": "93b65e8c675390fb0a5b7caf13a111b56165e6d327cf7a655424922c7fff6ca8",
+      "size": 7363
+    }
+  ],
+  "result": {
+    "verdict": "request_changes",
+    "summary": "The candidate geometry.json is the deliberately fault-injected version. Criterion 1 (source hash, 327 heavy atoms, 46 residues) and Criterion 3 (pythonCode, toolLog, limitations, explicit faultInjection label) pass. Criterion 2 FAILS: all three SSBOND SG distances are divided by 10 (0.2004, 0.2035, 0.2051 A) instead of the correct angstrom values (2.0041, 2.0347, 2.0508 A) independently recomputed from source-1crn.txt coordinates. Differences are ~1.8 A, far exceeding the 0.0001 A tolerance. The candidate must be reworked to report correct angstrom distances and set faultInjection to false.",
+    "checks": [
+      {
+        "criterion": "Source SHA256 equals the actual source-1crn.txt bytes; chain A has 327 heavy atoms and 46 standard residues.",
+        "passed": true,
+        "evidence": "geometry.json result.sourceSha256 = 42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811 equals hashlib.sha256 of actual source-1crn.txt bytes (42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811). Independent parse of source-1crn.txt (model 0, chain A, standard heavy ATOM) yields atomCount=327 and residueCount=46, matching candidate values."
+      },
+      {
+        "criterion": "All three SSBOND SG distances in geometry.json are in angstrom and agree with independent calculation from source coordinates within 0.0001 angstrom.",
+        "passed": false,
+        "evidence": "Independent recomputation from source-1crn.txt SG coordinates gives 3-40=2.004107 A, 4-32=2.034702 A, 16-26=2.050763 A. Candidate geometry.json reports 0.200411, 0.203470, 0.205076 A (divided by 10). Differences are 1.8037, 1.8312, 1.8457 A, all far exceeding the 0.0001 A tolerance. Distances are not in correct angstrom."
+      },
+      {
+        "criterion": "geometry.json includes executed Python source, actual computation log, scope and limitations; fault injection is explicitly labeled.",
+        "passed": true,
+        "evidence": "geometry.json result contains non-empty pythonCode (full executed script), toolLog (JSON with atomCount=327, residueCount=46, disulfides, faultInjection=true), limitations (boundary plus explicit 'Initial candidate only: deliberate divide-by-ten unit fault for rejection testing.'), and faultInjection=true is explicitly labeled."
+      }
+    ],
+    "requiredChanges": [
+      "Fix the divide-by-ten unit error: recompute the three SSBOND SG distances from source-1crn.txt coordinates and report them in correct angstrom (3-40=2.004107, 4-32=2.034702, 16-26=2.050763 A), so each agrees with the independent calculation within 0.0001 A.",
+      "Set faultInjection to false in the reworked geometry.json, since the corrected candidate no longer contains the deliberate fault.",
+      "Regenerate the toolLog to reflect the corrected (non-faulted) distances and faultInjection=false."
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+import {spawn} from 'node:child_process';
+import {mkdtemp,readFile,writeFile} from 'node:fs/promises';
+import {join,resolve} from 'node:path';
+import {tmpdir} from 'node:os';
+import assert from 'node:assert/strict';
+const out=resolve('data/research-topology'),origin=JSON.parse(await readFile(join(out,'preview.json'))).origin;
+const profile=await mkdtemp(join(tmpdir(),'vibe-topology-qa-'));
+const chrome=spawn('C:/Program Files/Google/Chrome/Application/chrome.exe',['--headless','--disable-gpu','--no-first-run','--no-default-browser-check','--disable-background-networking',`--user-data-dir=${profile}`,'--remote-debugging-port=0','about:blank'],{windowsHide:true,stdio:'ignore'});
+const delay=ms=>new Promise(r=>setTimeout(r,ms));let ws;const checks=[],errors=[];
+try{
+ let port;for(let i=0;i<80;i++){try{port=(await readFile(join(profile,'DevToolsActivePort'),'utf8')).split('\n')[0];break;}catch{await delay(100);}}
+ assert.ok(port,'Chrome CDP ready');const targets=await (await fetch(`http://127.0.0.1:${port}/json`)).json();ws=new WebSocket(targets.find(t=>t.type==='page').webSocketDebuggerUrl);
+ await new Promise(r=>ws.addEventListener('open',r,{once:true}));let id=0;const pending=new Map();
+ ws.addEventListener('message',e=>{const v=JSON.parse(e.data);if(v.id){const p=pending.get(v.id);pending.delete(v.id);v.error?p.reject(Error(JSON.stringify(v.error))):p.resolve(v.result);}else if(v.method==='Runtime.exceptionThrown')errors.push(v.params.exceptionDetails.text+': '+v.params.exceptionDetails.exception?.description);});
+ const send=(method,params={})=>new Promise((resolve,reject)=>{const n=++id;pending.set(n,{resolve,reject});ws.send(JSON.stringify({id:n,method,params}));});
+ const ev=async expression=>{const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.text);return r.result.value;};
+ const wait=async expression=>{for(let i=0;i<60;i++){if(await ev(`Boolean(${expression})`))return;await delay(100);}throw Error('Timeout '+expression);};
+ const shot=async name=>{await delay(250);await writeFile(join(out,name+'.png'),Buffer.from((await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false})).data,'base64'));};
+ const click=async selector=>{const pt=await ev(`(()=>{const e=document.querySelector(${JSON.stringify(selector)});if(!e)return null;const r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2}})()`);assert.ok(pt,selector);await send('Input.dispatchMouseEvent',{type:'mousePressed',...pt,button:'left',clickCount:1});await send('Input.dispatchMouseEvent',{type:'mouseReleased',...pt,button:'left',clickCount:1});await delay(100);};
+ const check=(name,value)=>{assert.ok(value,name);checks.push(name);console.log('PASS '+name);};
+ await send('Page.enable');await send('Runtime.enable');await send('Network.enable');await send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+ await send('Page.navigate',{url:origin+'/?scene=repair'});await wait("document.querySelectorAll('.rt-node').length===4");await delay(500);
+ check('Research project opens topology at root',await ev("document.querySelector('.rt-inspector h2').textContent==='现在轮到谁'"));await shot('research-topology');
+ await click('.rt-edge-label[aria-label^="查看评审"]');check('Review edge opens rejection and required changes',await ev("document.querySelector('.rt-inspector').textContent.includes('测量单位为 a.u.')"));await shot('review-rework');
+ await click('.rt-edge-label[aria-label^="查看文件交接"]');check('Handoff edge shows blocked state and no false downstream receipt',await ev("document.querySelector('.rt-inspector').textContent.includes('交接已阻断') && document.querySelectorAll('.rt-handoff-steps .done').length===1"));
+ const href=await ev("document.querySelector('.rt-inspector .rt-download').getAttribute('href')");const response=await fetch(origin+href);check('Actual rejected artifact downloads',response.ok&&JSON.parse(await response.text()).result.unit===null);
+ await click('.rt-node-button[aria-label^="查看成员"] .rt-node-heading');await shot('member-debug');check('Member inspector shows frozen Codex binding',await ev("document.querySelector('.rt-profile')?.textContent.includes('Codex')"));
+ await click('.rt-turn-button');await click('.rt-inspector details summary');check('Rework instructions include revision and actual task key',await ev("document.querySelector('.rt-code').textContent.includes('rework') && document.querySelector('.rt-code').textContent.includes('data')"));
+ await click('nav[aria-label="主视图"] button:nth-child(2)');await click('.rt-list-row');check('Task list opens actual task inspector',await ev("document.querySelector('.rt-inspector h2').textContent==='整理测量数据与单位'"));
+ await send('Page.navigate',{url:origin+'/?scene=completed'});await wait("document.querySelector('.rt-projectbar')?.textContent.includes('本轮已完成')");
+ await shot('completed');await click('.rt-edge-label[aria-label^="查看文件交接"]');check('Completed revision shows actual downstream receipt',await ev("document.querySelectorAll('.rt-handoff-steps .done').length===3"));
+ await ev("(()=>{const s=document.querySelector('select[aria-label=\"研究协议版本\"]');s.value='1';s.dispatchEvent(new Event('change',{bubbles:true}))})()");await delay(150);check('Old revision is readonly with no action commands',await ev("document.querySelector('.rt-inspector').textContent.includes('这是归档版本')&&!document.querySelector('.rt-inspector .rt-primary')"));
+ await send('Page.navigate',{url:origin+'/?scene=repair'});await wait("document.querySelector('.rt-node')");
+ await send('Network.setBlockedURLs',{urls:['*api/sciencepal-team/state*']});await click('button[aria-label="刷新状态"]');await wait("document.querySelector('.rt-error-banner')");check('Stale snapshot disables execution instruction copy',await ev("document.querySelector('.rt-action .rt-primary').disabled"));await send('Network.setBlockedURLs',{urls:[]});
+ await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});await send('Page.navigate',{url:origin+'/sciencepal/team?scene=repair'});await wait("document.querySelectorAll('.rt-node').length===4");await delay(500);check('390px mobile has no horizontal overflow',await ev("document.documentElement.scrollWidth<=window.innerWidth"));await shot('mobile');
+ await send('Page.navigate',{url:origin+'/sciencepal/team?scene=empty'});await wait("document.querySelector('.rt-empty')?.textContent.includes('从每个人')");check('Empty project has onboarding guidance',await ev("document.querySelector('.rt-empty').textContent.includes('panel')"));
+ await send('Page.navigate',{url:origin+'/sciencepal/team?scene=auth'});await wait("document.querySelector('[role=alert]')");check('Unauthorized view explains member session',await ev("document.querySelector('[role=alert]').textContent.includes('成员会话')"));
+ check('No browser JavaScript errors',errors.length===0);
+ await writeFile(join(out,'qa-report.json'),JSON.stringify({checks,errors,at:new Date().toISOString(),scope:'Actual browser interaction with synthetic state; no live API'},null,2));
+ console.log(JSON.stringify({passed:checks.length,out}));await send('Browser.close');
+}finally{ws?.close();if(chrome.exitCode===null)chrome.kill();}

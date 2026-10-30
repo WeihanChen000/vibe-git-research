@@ -1,0 +1,360 @@
+{
+  "revision": 1,
+  "requirement": "# Iris 真实科研协作协议 R1\n\n使用冻结 source-iris.csv 原始字节，150 条历史公开记录，单位 cm。当前 Codex 与真实 SciencePAL Biology 交叉执行与评审。保持 resultSchemas 中 data_audit / species_summary 字段不变；只有已获批 data_audit.json 才可作为下游输入。\n\n首轮 data_audit 候选明确标注受控数值错误，源 CSV 不变；真实评审独立决定 verdict，收到退回后才能返工。最终不将描述性均值解释为因果或完美分类。\n\nBiology 用实际 Python 工具复算，limitations 包含实际工具版本及运行代码；不得联网安装、不得执行候选内代码。所有 receipts 对本轮真实附件字节计算。一个用户的两个执行端，不作为双账号证据。",
+  "task": {
+    "resultSchema": {
+      "type": "object",
+      "properties": {
+        "synthetic": {
+          "type": "boolean",
+          "const": false
+        },
+        "source_sha256": {
+          "type": "string",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "measurement_unit": {
+          "type": "string",
+          "const": "cm"
+        },
+        "record_count": {
+          "type": "integer",
+          "const": 150
+        },
+        "limitations": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "dataset": {
+          "type": "string",
+          "minLength": 1
+        },
+        "species_counts": {
+          "type": "object",
+          "properties": {
+            "Iris-setosa": {
+              "type": "integer",
+              "const": 50
+            },
+            "Iris-versicolor": {
+              "type": "integer",
+              "const": 50
+            },
+            "Iris-virginica": {
+              "type": "integer",
+              "const": 50
+            }
+          },
+          "required": [
+            "Iris-setosa",
+            "Iris-versicolor",
+            "Iris-virginica"
+          ],
+          "additionalProperties": false
+        },
+        "rows": {
+          "type": "array",
+          "minItems": 150,
+          "maxItems": 150,
+          "items": {
+            "type": "array",
+            "minItems": 5,
+            "maxItems": 5,
+            "items": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "Iris-setosa",
+                  "Iris-versicolor",
+                  "Iris-virginica"
+                ]
+              }
+            ],
+            "additionalItems": false
+          }
+        }
+      },
+      "required": [
+        "synthetic",
+        "source_sha256",
+        "measurement_unit",
+        "record_count",
+        "limitations",
+        "dataset",
+        "species_counts",
+        "rows"
+      ],
+      "additionalProperties": false
+    },
+    "key": "data_audit",
+    "assigneeAgentId": "member_node-d63de4c4-b1b2-4a0e-9613-c7731008f670",
+    "reviewerAgentId": "member_node-f9ef5053-0244-4284-befe-6f20fffb7494",
+    "outputFilename": "data_audit.json",
+    "title": "Codex 核验 Iris 源数据与单位",
+    "goal": "用 Python csv 实际读取 source-iris.csv，生成 IRIS_RESULT_SCHEMAS.data_audit 指定的全部字段，保留原行序。首轮明示受控错误；收到真实退回后修正。",
+    "boundary": "公开历史数据的描述性核验。源文件不可改写。一次受控错误只出现在未获批候选，并写进 limitations。",
+    "acceptance": [
+      "source_sha256 matches the actual source-iris.csv bytes; dataset identifies UCI Iris and synthetic is false",
+      "record_count is 150 and species_counts has exactly three actual species with 50 each",
+      "All 150 rows match source-iris.csv in original order, all four measurements and species labels; independently compare every value",
+      "measurement_unit is cm; do not convert, rescale or silently repair source values",
+      "limitations state historical descriptive data and no new discovery; any controlled fault is explicitly labeled"
+    ],
+    "dependencies": [],
+    "status": "WAITING",
+    "attempt": 0,
+    "executionId": null,
+    "reviewId": null,
+    "artifactId": null,
+    "feedback": "",
+    "review": null
+  },
+  "feedback": "",
+  "upstream": [],
+  "resultSchemas": {
+    "data_audit": {
+      "type": "object",
+      "properties": {
+        "synthetic": {
+          "type": "boolean",
+          "const": false
+        },
+        "source_sha256": {
+          "type": "string",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "measurement_unit": {
+          "type": "string",
+          "const": "cm"
+        },
+        "record_count": {
+          "type": "integer",
+          "const": 150
+        },
+        "limitations": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "dataset": {
+          "type": "string",
+          "minLength": 1
+        },
+        "species_counts": {
+          "type": "object",
+          "properties": {
+            "Iris-setosa": {
+              "type": "integer",
+              "const": 50
+            },
+            "Iris-versicolor": {
+              "type": "integer",
+              "const": 50
+            },
+            "Iris-virginica": {
+              "type": "integer",
+              "const": 50
+            }
+          },
+          "required": [
+            "Iris-setosa",
+            "Iris-versicolor",
+            "Iris-virginica"
+          ],
+          "additionalProperties": false
+        },
+        "rows": {
+          "type": "array",
+          "minItems": 150,
+          "maxItems": 150,
+          "items": {
+            "type": "array",
+            "minItems": 5,
+            "maxItems": 5,
+            "items": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "Iris-setosa",
+                  "Iris-versicolor",
+                  "Iris-virginica"
+                ]
+              }
+            ],
+            "additionalItems": false
+          }
+        }
+      },
+      "required": [
+        "synthetic",
+        "source_sha256",
+        "measurement_unit",
+        "record_count",
+        "limitations",
+        "dataset",
+        "species_counts",
+        "rows"
+      ],
+      "additionalProperties": false
+    },
+    "species_summary": {
+      "type": "object",
+      "properties": {
+        "synthetic": {
+          "type": "boolean",
+          "const": false
+        },
+        "source_sha256": {
+          "type": "string",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "measurement_unit": {
+          "type": "string",
+          "const": "cm"
+        },
+        "record_count": {
+          "type": "integer",
+          "const": 150
+        },
+        "limitations": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "summary_rows": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "properties": {
+              "species": {
+                "type": "string",
+                "enum": [
+                  "Iris-setosa",
+                  "Iris-versicolor",
+                  "Iris-virginica"
+                ]
+              },
+              "n": {
+                "type": "integer",
+                "const": 50
+              },
+              "sepal_length_mean": {
+                "type": "number"
+              },
+              "sepal_width_mean": {
+                "type": "number"
+              },
+              "petal_length_mean": {
+                "type": "number"
+              },
+              "petal_width_mean": {
+                "type": "number"
+              },
+              "petal_length_min": {
+                "type": "number"
+              },
+              "petal_length_max": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "species",
+              "n",
+              "sepal_length_mean",
+              "sepal_width_mean",
+              "petal_length_mean",
+              "petal_width_mean",
+              "petal_length_min",
+              "petal_length_max"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "petal_length_mean_order": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "string",
+            "enum": [
+              "Iris-setosa",
+              "Iris-versicolor",
+              "Iris-virginica"
+            ]
+          }
+        },
+        "versicolor_virginica_range_overlap": {
+          "type": "boolean"
+        },
+        "conclusion_zh": {
+          "type": "string",
+          "minLength": 1
+        },
+        "citation": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "synthetic",
+        "source_sha256",
+        "measurement_unit",
+        "record_count",
+        "limitations",
+        "summary_rows",
+        "petal_length_mean_order",
+        "versicolor_virginica_range_overlap",
+        "conclusion_zh",
+        "citation"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "source": {
+    "filename": "source-iris.csv",
+    "sourceUrl": "https://archive.ics.uci.edu/dataset/53/iris",
+    "attribution": "Fisher, R. (1936). Iris [Dataset]. UCI Machine Learning Repository. DOI: 10.24432/C56C76. CC BY 4.0. 使用官方归档 bezdekIris.data 原始字节，仅将文件名改为 source-iris.csv；无表头，不改写记录。官方测量单位为 cm。"
+  }
+}

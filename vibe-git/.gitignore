@@ -6,6 +6,7 @@ data/*.db-*
 data/tools/
 data/v20/
 .env
+data/sciencepal/
 .DS_Store
 coverage/
 

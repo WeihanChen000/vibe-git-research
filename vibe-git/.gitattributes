@@ -1,0 +1,14 @@
+# Scientific inputs and frozen evidence are byte-addressed by SHA-256.
+# Never normalize their line endings on Windows checkout.
+fixtures/structure-case/1CRN.pdb -text
+fixtures/structure-case/candidate.py -text
+fixtures/structure-case/evidence/** -text
+fixtures/expert-case/1CRN.pdb -text
+fixtures/expert-case/research-skill.md -text
+fixtures/expert-case/research-protocol.md -text
+fixtures/expert-case/evidence/** -text
+
+# Shared replay and fixture hashes must survive every Git checkout.
+apps/web/public/research-replay/** -text -whitespace
+apps/web/public/sciencepal-examples/** -text -whitespace
+fixtures/** -text -whitespace

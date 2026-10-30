@@ -1,0 +1,55 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "880c6e41edf07c25edc963f7e39ea8c53513ae3f45bf8620dd2f663239bfdd96",
+      "size": 10475
+    },
+    {
+      "filename": "source-iris.csv",
+      "sha256": "0fed2a99db77ec533a62dc66894d3ec6df3b58b6a8f3cf4a6b47e4086b7f97dc",
+      "size": 4551
+    },
+    {
+      "filename": "data_audit.json",
+      "sha256": "25e6a90b8c1531d3ba44b4616d507a291b9792b260b79f6128ecc51d4e1fd367",
+      "size": 15955
+    }
+  ],
+  "result": {
+    "verdict": "request_changes",
+    "summary": "data_audit.json passes the data_audit result schema (types, consts, additionalProperties all valid) and most factual checks: source_sha256 equals the actual SHA-256 of source-iris.csv bytes (0fed2a99db77ec533a62dc66894d3ec6df3b58b6a8f3cf4a6b47e4086b7f97dc), record_count is 150, species_counts are exactly 50/50/50, measurement_unit is cm, dataset is 'UCI Iris' and synthetic is false. However, independent recomputation in Python (csv module, float comparison, tolerance 1e-12) found exactly 1 cell mismatch: rows[0][0] (sepal_length of the first record) is 6.1 in data_audit.json but 5.1 in source-iris.csv. This is the candidate's own declared controlled fault (limitations: '受控返工演练:首条数值人为增加 1'), honestly labeled, but acceptance criterion 3 requires all 150 rows to match the frozen source values. Since only an approved data_audit.json may serve as downstream input, the verdict is request_changes: remove the controlled fault so every value matches source-iris.csv.",
+    "checks": [
+      {
+        "criterion": "source_sha256 matches the actual source-iris.csv bytes; dataset identifies UCI Iris and synthetic is false",
+        "passed": true,
+        "evidence": "data_audit.json: result.source_sha256 = '0fed2a99db77ec533a62dc66894d3ec6df3b58b6a8f3cf4a6b47e4086b7f97dc', independently recomputed with hashlib.sha256 over the actual source-iris.csv bytes -> identical. result.dataset = 'UCI Iris' (identifies UCI Iris) and result.synthetic is JSON boolean false."
+      },
+      {
+        "criterion": "record_count is 150 and species_counts has exactly three actual species with 50 each",
+        "passed": true,
+        "evidence": "data_audit.json: result.record_count = 150 (integer). Independent parse of source-iris.csv via Python csv yielded 150 non-empty 5-field records. result.species_counts = {'Iris-setosa': 50, 'Iris-versicolor': 50, 'Iris-virginica': 50}; Counter over the CSV's 5th column gives exactly the same three species with 50 each."
+      },
+      {
+        "criterion": "All 150 rows match source-iris.csv in original order, all four measurements and species labels; independently compare every value",
+        "passed": false,
+        "evidence": "data_audit.json: element-wise comparison of all 150 result.rows against source-iris.csv (Python, original order, |diff| > 1e-12) found exactly 1 mismatch: rows[0][0] is 6.1 in data_audit.json but the first record of source-iris.csv is '5.1,3.5,1.4,0.2,Iris-setosa', i.e. sepal_length 5.1. All other 749 values (4 measurements x 150 rows minus this cell) and all 150 species labels match. The mismatch is the candidate's declared controlled fault ('首条数值人为增加 1'), but this criterion requires every value to match the frozen source, so it fails."
+      },
+      {
+        "criterion": "measurement_unit is cm; do not convert, rescale or silently repair source values",
+        "passed": true,
+        "evidence": "data_audit.json: result.measurement_unit = 'cm'. Values in result.rows are in the same cm scale as source-iris.csv (e.g. rows[0][1..3] = 3.5, 1.4, 0.2 equal the source values; no unit conversion or global rescaling detected — the only deviation is the single labeled +1 fault at rows[0][0], which is disclosed in limitations, not silent)."
+      },
+      {
+        "criterion": "limitations state historical descriptive data and no new discovery; any controlled fault is explicitly labeled",
+        "passed": true,
+        "evidence": "data_audit.json: result.limitations = ['公开历史数据的描述性复核,不是新科研发现。', '受控返工演练:首条数值人为增加 1;源 CSV 未改变。'] — the first entry states historical descriptive data with no new discovery, and the second explicitly labels the controlled fault (first value artificially increased by 1, source CSV unchanged)."
+      }
+    ],
+    "requiredChanges": [
+      "In data_audit.json, correct result.rows[0][0] from 6.1 back to the source value 5.1 (remove the controlled fault) so all 150 rows match source-iris.csv byte-faithfully in original order.",
+      "After correction, update or remove the limitations entry describing the controlled fault ('受控返工演练:首条数值人为增加 1') so it no longer describes a fault that no longer exists; keep the entry stating the data is historical descriptive data with no new discovery."
+    ]
+  }
+}

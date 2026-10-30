@@ -139,6 +139,7 @@ export function TopCommandBar({
         </button>
       </div>
       <div className="personal-actions">
+        <a href="/sciencepal" style={{ color: "#287865", padding: "8px" }}>SciencePAL 协作 ↗</a>
         <button
           onClick={() => open({ type: "member", id: member.id, tab: "plan" })}
         >

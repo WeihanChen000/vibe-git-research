@@ -1,0 +1,42 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "11e9e52f9a69ca3591cb0786f4c89ef83a7d0e1886602aede3221ec99bb67398",
+      "size": 5695
+    },
+    {
+      "filename": "source-1crn.txt",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    },
+    {
+      "filename": "geometry.json",
+      "sha256": "4f3ded1a0ecc5831045e029bc6a366f2c17605407b2d46ca9e732545e2f44281",
+      "size": 7429
+    }
+  ],
+  "result": {
+    "verdict": "approve",
+    "summary": "The reworked geometry.json candidate passes all three acceptance criteria. The source SHA-256 matches the actual source-1crn.txt bytes; chain A has 327 heavy atoms and 46 standard residues. All three SSBOND SG distances are reported in correct angstrom and agree with independent recomputation from source coordinates within 0.0001 A (differences are 0.000000 A). The candidate includes executed Python source, an actual computation log, scope/limitations, and explicitly labels faultInjection as false.",
+    "checks": [
+      {
+        "criterion": "Source SHA256 equals the actual source-1crn.txt bytes; chain A has 327 heavy atoms and 46 standard residues.",
+        "passed": true,
+        "evidence": "geometry.json result.sourceSha256 = 42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811, which equals hashlib.sha256 of the actual source-1crn.txt bytes (42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811). Independent parse of source-1crn.txt ATOM records (chain A, altLoc in (' ','A'), element != 'H') yields 327 heavy atoms and 46 unique residues, matching candidate atomCount=327 and residueCount=46."
+      },
+      {
+        "criterion": "All three SSBOND SG distances in geometry.json are in angstrom and agree with independent calculation from source coordinates within 0.0001 angstrom.",
+        "passed": true,
+        "evidence": "Independent recomputation from source-1crn.txt coordinates: SSBOND 3-40 = 2.004107 A (candidate 2.0041072825574995, diff 0.000000), SSBOND 4-32 = 2.034702 A (candidate 2.034701698038314, diff 0.000000), SSBOND 16-26 = 2.050763 A (candidate 2.050763028728576, diff 0.000000). All differences are 0.000000 A, well within the 0.0001 A tolerance. Distances are in angstrom (not divided by 10)."
+      },
+      {
+        "criterion": "geometry.json includes executed Python source, actual computation log, scope and limitations; fault injection is explicitly labeled.",
+        "passed": true,
+        "evidence": "geometry.json result.pythonCode is a non-empty string containing the executed Python script; result.toolLog is a non-empty JSON string with atomCount=327, residueCount=46, the three disulfide distances, and faultInjection=false; result.limitations is a non-empty list stating 'Descriptive 1CRN reproduction only...'; result.faultInjection is present and is the boolean false. The toolLog disulfide distances match the result disulfides exactly."
+      }
+    ],
+    "requiredChanges": []
+  }
+}

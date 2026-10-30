@@ -1,0 +1,77 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "3bbe70f1416241497fc9a6056d940700a78116e74ed98a65eee785d45c9f5d21",
+      "size": 18696
+    },
+    {
+      "filename": "source-iris.csv",
+      "sha256": "0fed2a99db77ec533a62dc66894d3ec6df3b58b6a8f3cf4a6b47e4086b7f97dc",
+      "size": 4551
+    },
+    {
+      "filename": "data_audit.json",
+      "sha256": "ec3ec5116f0003c97c18069f0e01b82944458c03a6c7a6b5ab33836f5b59e625",
+      "size": 16124
+    },
+    {
+      "filename": "previous-species_summary.json",
+      "sha256": "75fc73ff9713c1ecfd36a9204a6b88b3dbab2356d99a87ce63627a8c40871427",
+      "size": 2816
+    }
+  ],
+  "result": {
+    "synthetic": false,
+    "source_sha256": "0fed2a99db77ec533a62dc66894d3ec6df3b58b6a8f3cf4a6b47e4086b7f97dc",
+    "measurement_unit": "cm",
+    "record_count": 150,
+    "limitations": [
+      "Historical descriptive UCI Iris dataset (Fisher 1936); means and ranges are descriptive statistics, not evidence of perfect classification or causal relationships.",
+      "Computed with Python 3.12.3 standard library (csv, statistics, hashlib, json); no external packages installed, no network access.",
+      "Reproducible executed code:\nimport csv, json, hashlib, statistics\nwith open(\"source-iris.csv\", newline=\"\") as f:\n    rows = [r for r in csv.reader(f) if r]\ndata = {}\nfor r in rows:\n    sl, sw, pl, pw, sp = float(r[0]), float(r[1]), float(r[2]), float(r[3]), r[4]\n    data.setdefault(sp, []).append((sl, sw, pl, pw))\nsummary_rows = []\nfor sp in [\"Iris-setosa\", \"Iris-versicolor\", \"Iris-virginica\"]:\n    recs = data[sp]\n    sl = [x[0] for x in recs]; sw = [x[1] for x in recs]\n    pl = [x[2] for x in recs]; pw = [x[3] for x in recs]\n    summary_rows.append({\"species\": sp, \"n\": len(recs),\n        \"sepal_length_mean\": statistics.fmean(sl),\n        \"sepal_width_mean\": statistics.fmean(sw),\n        \"petal_length_mean\": statistics.fmean(pl),\n        \"petal_width_mean\": statistics.fmean(pw),\n        \"petal_length_min\": min(pl), \"petal_length_max\": max(pl)})\norder = [r[\"species\"] for r in sorted(summary_rows, key=lambda r: r[\"petal_length_mean\"])]\nv = next(r for r in summary_rows if r[\"species\"] == \"Iris-versicolor\")\ng = next(r for r in summary_rows if r[\"species\"] == \"Iris-virginica\")\noverlap = max(v[\"petal_length_min\"], g[\"petal_length_min\"]) <= min(v[\"petal_length_max\"], g[\"petal_length_max\"])\nsrc_sha = hashlib.sha256(open(\"source-iris.csv\", \"rb\").read()).hexdigest()",
+      "data_audit.json verified to exactly match source-iris.csv rows (0 mismatches across all 150 rows), source_sha256, record_count 150, and species counts 50 each."
+    ],
+    "summary_rows": [
+      {
+        "species": "Iris-setosa",
+        "n": 50,
+        "sepal_length_mean": 5.006,
+        "sepal_width_mean": 3.428,
+        "petal_length_mean": 1.462,
+        "petal_width_mean": 0.24600000000000002,
+        "petal_length_min": 1.0,
+        "petal_length_max": 1.9
+      },
+      {
+        "species": "Iris-versicolor",
+        "n": 50,
+        "sepal_length_mean": 5.936,
+        "sepal_width_mean": 2.77,
+        "petal_length_mean": 4.26,
+        "petal_width_mean": 1.3259999999999998,
+        "petal_length_min": 3.0,
+        "petal_length_max": 5.1
+      },
+      {
+        "species": "Iris-virginica",
+        "n": 50,
+        "sepal_length_mean": 6.587999999999999,
+        "sepal_width_mean": 2.9739999999999998,
+        "petal_length_mean": 5.5520000000000005,
+        "petal_width_mean": 2.026,
+        "petal_length_min": 4.5,
+        "petal_length_max": 6.9
+      }
+    ],
+    "petal_length_mean_order": [
+      "Iris-setosa",
+      "Iris-versicolor",
+      "Iris-virginica"
+    ],
+    "versicolor_virginica_range_overlap": true,
+    "conclusion_zh": "基于150条历史公开记录(单位cm),三种鸢尾花各50条。花瓣长度均值排序为 Iris-setosa < Iris-versicolor < Iris-virginica(均值分别为 1.462, 4.26, 5.552 cm)。versicolor 花瓣长度观测范围 [3.0,5.1] cm 与 virginica 范围 [4.5,6.9] cm 存在重叠。这些是描述性统计,不构成完美分类或因果结论。",
+    "citation": "Fisher, R. (1936). Iris [Dataset]. UCI Machine Learning Repository. https://archive.ics.uci.edu/dataset/53/iris, DOI: 10.24432/C56C76, CC BY 4.0."
+  }
+}

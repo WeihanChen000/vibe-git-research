@@ -1,0 +1,46 @@
+{
+  "revision": 1,
+  "requirement": "# 1CRN 几何与溶剂可及表面积复核\nCodex prepares geometry; SciencePAL Biology independently reviews before handoff. A deliberately injected tenfold unit error in the first candidate tests rejection, not a naturally observed model failure. Corrected geometry is reviewed again. Biology then computes SASA with installed BioPython and requests operator confirmation of 1.4 angstrom probe BEFORE calculation using the user-question tool. It must stop and wait; on reply preserve the original thread and frozen files. This explicit confirmation tests NEEDS_INPUT; it is not scientific uncertainty.\nFixed method: model 0, chain A, standard heavy ATOM coordinates; SG distances for SSBOND pairs in angstrom. SASA: BioPython PDBParser + ShrakeRupley, 960 sphere points, radii C=1.70,N=1.55,O=1.52,S=1.80 angstrom. Report all 46 whole-residue areas and total A^2, source hash, upstream geometry.json hash, executed Python and version/log. Do not execute untrusted candidate code. No new dependencies or internet installs. Codex independently computes 5000-point NumPy sphere baseline: total relative difference <=3%, each CYS residue difference <=max(3 A^2,5% baseline). Passing code/schema alone is not scientific approval. Single structure, approximate numerical surface, no causal or biological generalization. Source https://www.rcsb.org/structure/1CRN; method https://biopython.org/docs/1.84/api/Bio.PDB.SASA.html",
+  "task": {
+    "key": "sasa",
+    "assigneeAgentId": "member_node-695a8208-03e9-48d1-9e7d-f23b8fec8883",
+    "reviewerAgentId": "member_node-1f42559b-8124-4e6e-8313-fc011375ca5f",
+    "outputFilename": "sasa.json",
+    "title": "Biology 专家计算表面积并交回复核",
+    "goal": "FIRST use user-question tool to ask: Please confirm probe radius 1.4 angstrom for this 1CRN SASA calculation. Stop and wait; do NOT compute or create sasa.json before reply. AFTER confirmation use actual installed BioPython PDBParser + ShrakeRupley as frozen protocol. Return sourceSha256, upstreamSha256 for actual geometry.json, atomCount,residueCount,probeRadiusA,nPoints,atomicRadiiA,totalSasaA2,residues:[{id,name,sasaA2}],pythonCode (actual executed full script),toolLog (actual versions/numeric stdout),limitations. Preserve all original files; include receipts for current attachments.",
+    "boundary": "Descriptive 1CRN reproduction only. One account, two workflow identities. Real tools and unchanged source; no fabricated results, no installs, no inference of biological function.",
+    "acceptance": [
+      "sasa.json sourceSha256 and upstreamSha256 match the actual source and approved geometry.json attachments; counts are 327 heavy atoms and 46 residues.",
+      "sasa.json documents actual BioPython execution with PDBParser and ShrakeRupley, confirmed probe 1.4 angstrom, 960 points, explicit radii C=1.70 N=1.55 O=1.52 S=1.80, executed source and version/log.",
+      "The total SASA differs from the independent NumPy 5000-point baseline by at most 3%; each of six CYS whole-residue areas differs by at most max(3 A^2,5% baseline).",
+      "All 46 residue SASA values are nonnegative A^2 and sum to total within 0.001 A^2; limitations prevent biological or causal overclaims."
+    ],
+    "dependencies": [
+      "geometry"
+    ],
+    "status": "WAITING",
+    "attempt": 0,
+    "executionId": null,
+    "reviewId": null,
+    "artifactId": null,
+    "feedback": "",
+    "review": null
+  },
+  "feedback": "",
+  "upstream": [
+    {
+      "key": "geometry",
+      "filename": "geometry.json",
+      "acceptance": [
+        "Source SHA256 equals the actual source-1crn.txt bytes; chain A has 327 heavy atoms and 46 standard residues.",
+        "All three SSBOND SG distances in geometry.json are in angstrom and agree with independent calculation from source coordinates within 0.0001 angstrom.",
+        "geometry.json includes executed Python source, actual computation log, scope and limitations; fault injection is explicitly labeled."
+      ]
+    }
+  ],
+  "source": {
+    "filename": "source-1crn.txt",
+    "sourceUrl": "https://files.rcsb.org/download/1CRN.pdb",
+    "attribution": "RCSB PDB public 1CRN coordinate file, unchanged bytes; controlled unit fault injection in candidate only."
+  }
+}

@@ -1,0 +1,237 @@
+{
+  "title": "两位成员的 1CRN 科研复现与独立核验",
+  "sourceFile": {
+    "path": "../expert-case/1CRN.pdb",
+    "filename": "source-1crn.txt",
+    "sourceUrl": "https://files.rcsb.org/download/1CRN.pdb",
+    "attribution": "RCSB PDB 1CRN public structure; unchanged source bytes, renamed attachment only. Descriptive recomputation."
+  },
+  "resultSchemas": {
+    "structure": {
+      "type": "object",
+      "properties": {
+        "sourceSha256": {
+          "type": "string",
+          "const": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811"
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pythonCode": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Actual reproducible Python source executed for this task; include original attachment filenames."
+        },
+        "toolLog": {
+          "type": "string",
+          "minLength": 1
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "maxItems": 12
+        },
+        "nonce": {
+          "type": "string",
+          "minLength": 32,
+          "maxLength": 32
+        },
+        "atomCount": {
+          "type": "integer",
+          "const": 327
+        },
+        "residueCount": {
+          "type": "integer",
+          "const": 46
+        },
+        "totalSasaA2": {
+          "type": "number",
+          "minimum": 0
+        },
+        "residues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 46
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sasaA2": {
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "sasaA2"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 46,
+          "maxItems": 46
+        },
+        "disulfides": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "residue1": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 46
+              },
+              "residue2": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 46
+              },
+              "distanceA": {
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "residue1",
+              "residue2",
+              "distanceA"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 3,
+          "maxItems": 3
+        }
+      },
+      "required": [
+        "sourceSha256",
+        "method",
+        "pythonCode",
+        "toolLog",
+        "limitations",
+        "nonce",
+        "atomCount",
+        "residueCount",
+        "totalSasaA2",
+        "residues",
+        "disulfides"
+      ],
+      "additionalProperties": false
+    },
+    "analysis": {
+      "type": "object",
+      "properties": {
+        "sourceSha256": {
+          "type": "string",
+          "const": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811"
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pythonCode": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Actual reproducible Python source executed for this task; include original attachment filenames."
+        },
+        "toolLog": {
+          "type": "string",
+          "minLength": 1
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "maxItems": 12
+        },
+        "upstreamSha256": {
+          "type": "string",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "producerNonce": {
+          "type": "string",
+          "minLength": 32,
+          "maxLength": 32
+        },
+        "referenceTotalSasaA2": {
+          "type": "number",
+          "minimum": 0
+        },
+        "relativeTotalDifference": {
+          "type": "number",
+          "minimum": 0
+        },
+        "cysteines": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 46
+              },
+              "producerA2": {
+                "type": "number",
+                "minimum": 0
+              },
+              "referenceA2": {
+                "type": "number",
+                "minimum": 0
+              },
+              "differenceA2": {
+                "type": "number",
+                "minimum": 0
+              },
+              "withinTolerance": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "producerA2",
+              "referenceA2",
+              "differenceA2",
+              "withinTolerance"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 6,
+          "maxItems": 6
+        },
+        "conclusion": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "sourceSha256",
+        "method",
+        "pythonCode",
+        "toolLog",
+        "limitations",
+        "upstreamSha256",
+        "producerNonce",
+        "referenceTotalSasaA2",
+        "relativeTotalDifference",
+        "cysteines",
+        "conclusion"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

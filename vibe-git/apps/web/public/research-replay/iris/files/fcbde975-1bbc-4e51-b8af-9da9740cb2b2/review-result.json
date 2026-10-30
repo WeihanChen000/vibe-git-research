@@ -1,0 +1,52 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "a0958cb45702ad9900630cb3f4e963a37cb77a31cb21f8d60f2e7104350eaa7c",
+      "size": 14357
+    },
+    {
+      "filename": "source-iris.csv",
+      "sha256": "0fed2a99db77ec533a62dc66894d3ec6df3b58b6a8f3cf4a6b47e4086b7f97dc",
+      "size": 4551
+    },
+    {
+      "filename": "data_audit.json",
+      "sha256": "ec3ec5116f0003c97c18069f0e01b82944458c03a6c7a6b5ab33836f5b59e625",
+      "size": 16124
+    }
+  ],
+  "result": {
+    "verdict": "approve",
+    "summary": "All 5 acceptance criteria pass: source_sha256 matches actual source-iris.csv bytes, record_count=150 with 50/50/50 species counts, all 150 rows match source in original order with no mismatches, measurement_unit=cm, and limitations state historical descriptive data with no new discovery. The previously reported controlled fault (rows[0][0]=6.1) has been corrected to 5.1 and the fault limitation entry removed.",
+    "checks": [
+      {
+        "criterion": "source_sha256 matches the actual source-iris.csv bytes; dataset identifies UCI Iris and synthetic is false",
+        "passed": true,
+        "evidence": "data_audit.json result.source_sha256=0fed2a99db77ec533a62dc66894d3ec6df3b58b6a8f3cf4a6b47e4086b7f97dc equals computed SHA-256 of source-iris.csv bytes (0fed2a99db77ec533a62dc66894d3ec6df3b58b6a8f3cf4a6b47e4086b7f97dc); result.dataset='UCI Iris'; result.synthetic=False (JSON boolean false)."
+      },
+      {
+        "criterion": "record_count is 150 and species_counts has exactly three actual species with 50 each",
+        "passed": true,
+        "evidence": "data_audit.json result.record_count=150; result.species_counts={\"Iris-setosa\": 50, \"Iris-versicolor\": 50, \"Iris-virginica\": 50}; independently counted 150 source rows."
+      },
+      {
+        "criterion": "All 150 rows match source-iris.csv in original order, all four measurements and species labels; independently compare every value",
+        "passed": true,
+        "evidence": "data_audit.json result.rows has 150 rows; independently parsed 150 source rows; mismatches=none (float tolerance 1e-12)."
+      },
+      {
+        "criterion": "measurement_unit is cm; do not convert, rescale or silently repair source values",
+        "passed": true,
+        "evidence": "data_audit.json result.measurement_unit='cm'; source values used as-is in cm."
+      },
+      {
+        "criterion": "limitations state historical descriptive data and no new discovery; any controlled fault is explicitly labeled",
+        "passed": true,
+        "evidence": "data_audit.json result.limitations=[\"\\u516c\\u5f00\\u5386\\u53f2\\u6570\\u636e\\u7684\\u63cf\\u8ff0\\u6027\\u590d\\u6838\\uff0c\\u4e0d\\u662f\\u65b0\\u79d1\\u7814\\u53d1\\u73b0\\u3002\", \"\\u5df2\\u91cd\\u65b0\\u8bfb\\u53d6\\u539f\\u59cb CSV \\u5e76\\u4fee\\u590d\\u53d7\\u63a7\\u9519\\u8bef\\uff1b\\u6e90\\u6587\\u4ef6\\u672a\\u6539\\u53d8\\u3002\"]; contains historical-descriptive statement and '不是新科研发现'; all rows match source so no controlled fault remains."
+      }
+    ],
+    "requiredChanges": []
+  }
+}

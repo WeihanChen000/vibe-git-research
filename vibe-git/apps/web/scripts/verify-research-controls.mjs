@@ -1,0 +1,51 @@
+import {spawn} from 'node:child_process';
+import {mkdtemp,readFile,writeFile} from 'node:fs/promises';
+import {join,resolve} from 'node:path';
+import {tmpdir} from 'node:os';
+import assert from 'node:assert/strict';
+const out=resolve('data/browser-flow'),{origin,launch,projectId}=JSON.parse(await readFile(join(out,'preview.json')));
+const profile=await mkdtemp(join(tmpdir(),'vibe-topology-qa-'));
+const chrome=spawn('C:/Program Files/Google/Chrome/Application/chrome.exe',['--headless','--disable-gpu','--no-first-run','--no-default-browser-check','--disable-background-networking',`--user-data-dir=${profile}`,'--remote-debugging-port=0','about:blank'],{windowsHide:true,stdio:'ignore'});
+const delay=ms=>new Promise(r=>setTimeout(r,ms));let ws;const checks=[],errors=[],requests=[];
+try{
+ let port;for(let i=0;i<80;i++){try{port=(await readFile(join(profile,'DevToolsActivePort'),'utf8')).split('\n')[0];break;}catch{await delay(100);}}
+ assert.ok(port,'Chrome CDP ready');const targets=await (await fetch(`http://127.0.0.1:${port}/json`)).json();ws=new WebSocket(targets.find(t=>t.type==='page').webSocketDebuggerUrl);
+ await new Promise(r=>ws.addEventListener('open',r,{once:true}));let id=0;const pending=new Map();
+ ws.addEventListener('message',e=>{const v=JSON.parse(e.data);if(v.id){const p=pending.get(v.id);pending.delete(v.id);v.error?p.reject(Error(JSON.stringify(v.error))):p.resolve(v.result);}else if(v.method==='Network.requestWillBeSent' && v.params.request.url.includes('/commands/')) requests.push(v.params.request.url.split('/').at(-1));else if(v.method==='Runtime.exceptionThrown')errors.push(v.params.exceptionDetails.text+': '+v.params.exceptionDetails.exception?.description);});
+ const send=(method,params={})=>new Promise((resolve,reject)=>{const n=++id;pending.set(n,{resolve,reject});ws.send(JSON.stringify({id:n,method,params}));});
+ const ev=async expression=>{const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.text);return r.result.value;};
+ const wait=async expression=>{for(let i=0;i<250;i++){if(await ev(`Boolean(${expression})`))return;await delay(100);}throw Error('Timeout '+expression);};
+ const shot=async name=>{await delay(250);await writeFile(join(out,name+'.png'),Buffer.from((await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false})).data,'base64'));};
+ const click=async selector=>{const pt=await ev(`(()=>{const e=document.querySelector(${JSON.stringify(selector)});if(!e)return null;if(e.closest(".rt-inspector"))e.scrollIntoView({block:"center"});const r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2}})()`);assert.ok(pt,selector);await send('Input.dispatchMouseEvent',{type:'mousePressed',...pt,button:'left',clickCount:1});await send('Input.dispatchMouseEvent',{type:'mouseReleased',...pt,button:'left',clickCount:1});await delay(100);};
+ const check=(name,value)=>{assert.ok(value,name);checks.push(name);console.log('PASS '+name);};
+ const button=async text=>{const selector=await ev(`(()=>{const b=[...document.querySelectorAll('button')].find(e=>e.textContent.trim()===${JSON.stringify(text)});if(!b)return null;b.setAttribute('data-qa-target','click');return '[data-qa-target="click"]'})()`);assert.ok(selector,'Button '+text);await click(selector);await ev("document.querySelector('[data-qa-target]')?.removeAttribute('data-qa-target')");};
+ const has=text=>`[...document.querySelectorAll('button')].some(e=>e.textContent.trim()===${JSON.stringify(text)})`;
+ const phase=text=>`document.querySelector('.rt-projectbar')?.textContent.includes(${JSON.stringify(text)})`;
+ const identity=async role=>{await send('Page.navigate',{url:launch+'/'+role});await wait("document.querySelector('.rt-action')");};
+ await send('Page.enable');await send('Runtime.enable');await send('Network.enable');await send('Emulation.setDeviceMetricsOverride',{width:1440,height:1050,deviceScaleFactor:1,mobile:false});
+ await identity('captain');check('Disposable simulator clearly labels synthetic Agent output',await ev("document.querySelector('.rt-preview').textContent.includes('合成结果')"));
+ await shot('draft');await button('暂停派发');await button('确认暂停派发');await wait(phase('已暂停'));check('Pause command updates project state',true);
+ await button('恢复派发');await button('确认恢复派发');await wait(has('启动协议对齐'));
+ await button('启动协议对齐');await send('Network.setBlockedURLs',{urls:['*commands/align']});await button('确认启动协议对齐');await wait("document.querySelector('.rt-confirm [role=alert]')");check('Lost command response is explicit and never auto-retried',await ev("document.querySelector('.rt-confirm [role=alert]').textContent.includes('不会自动重试')"));await send('Network.setBlockedURLs',{urls:[]});await button('确认启动协议对齐');await wait(has('发布研究任务'));check('Browser starts actual alignment and receives READY protocol',true);
+ await identity('member');check('Member can see captain responsibility but has no publish button',!(await ev(has('发布研究任务')))&&(await ev("document.querySelector('.rt-action-owner').textContent.includes('研究员 A')")));
+ await identity('captain');await button('发布研究任务');check('Publish confirmation shows both owners and actual acceptance',await ev("document.querySelectorAll('.rt-publish-tasks>li').length===2&&document.querySelector('.rt-publish-tasks').textContent.includes('a.u.')"));await shot('publish-confirm');
+ // Dispatch two click events in one browser turn to exercise the synchronous duplicate guard.
+ await ev("(()=>{const b=[...document.querySelectorAll('button')].find(b=>b.textContent==='确认发布研究任务');b.click();b.click();})()");
+ await wait(phase('评审退回'));check('One publish request despite double click',requests.filter(v=>v==='publish').length===1);
+ await click('.rt-edge-label[aria-label^="查看评审"]');check('Rejected actual file evidence visible',await ev("document.querySelector('.rt-inspector').textContent.includes('缺少测量单位')"));await shot('rejected');
+ await button('查看返工待办');await button('安排返工');check('Rework form is prefilled from reviewer requirements',await ev("document.querySelector('textarea[aria-label=\"返工说明\"]').value.includes('a.u.')"));
+ await button('取消');check('Cancel rework does not send a command',!requests.includes('rework'));await button('安排返工');await shot('rework-confirm');
+ await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});await ev("document.querySelector('.rt-confirm').scrollIntoView({block:'start'})");await delay(200);check('Mobile rework form has no horizontal overflow',await ev("document.documentElement.scrollWidth<=window.innerWidth"));await shot('mobile-rework');await send('Emulation.setDeviceMetricsOverride',{width:1440,height:1050,deviceScaleFactor:1,mobile:false});await ev('window.scrollTo(0,0)');
+ await button('确认安排返工');await wait(phase('本轮已完成'));
+ const done=await ev("fetch('/api/sciencepal-team/state').then(r=>r.json())");check('Rework preserves first attempt and approves both tasks',done.projects[0].tasks.every(t=>t.status==='APPROVED')&&done.projects[0].tasks.find(t=>t.key==='data').attempt===2);
+ await click('.rt-edge-label[aria-label^="查看文件交接"]');check('Handoff requires validated downstream receipt',await ev("document.querySelectorAll('.rt-handoff-steps .done').length===3"));await shot('handoff-completed');
+ await identity('member');await button('提出研究变更');check('Empty research change cannot be submitted',await ev("[...document.querySelectorAll('button')].find(b=>b.textContent==='确认提出研究变更').disabled"));await click('textarea[aria-label="研究变更说明"]');await send('Input.insertText',{text:'将统计指标改为样本方差，分母使用 n-1；保留原始数据和单位。'});await button('确认提出研究变更');await wait(phase('等待确认变更'));
+ check('Member can propose change but cannot apply it',!(await ev(has('应用研究变更'))));
+ await identity('captain');await button('应用研究变更');await button('确认应用研究变更');await wait(has('发布研究任务'));await button('发布研究任务');await button('确认发布研究任务');await wait(phase('本轮已完成'));
+ const final=await ev("fetch('/api/sciencepal-team/state').then(r=>r.json())");check('Browser change loop reaches R2 with immutable R1 history',final.projects[0].revision===2&&final.projects[0].history.length===1);
+ const evidence=await ev(`fetch('/api/sciencepal-team/projects/${projectId}/evidence?revision=2').then(r=>r.json())`);check('R2 computes sample variance = 1 and evidence checks pass',evidence.allApproved&&evidence.tasks.find(t=>t.task.key==='analysis').attempts.at(-1).result.value===1&&evidence.handoffs.every(h=>h.checks.every(c=>c.passed)));
+ await shot('completed-r2');await ev("(()=>{const s=document.querySelector('select[aria-label=\"研究协议版本\"]');s.value='1';s.dispatchEvent(new Event('change',{bubbles:true}))})()");await wait("document.querySelector('.rt-inspector').textContent.includes('这是归档版本')");check('Archived revision offers no write controls',await ev("!document.querySelector('.rt-inspector .rt-command')"));
+ check('No browser JavaScript exceptions',errors.length===0);
+ await writeFile(join(out,'qa-report.json'),JSON.stringify({checks,errors,requests,at:new Date().toISOString(),scope:'Real browser commands and member auth; synthetic agents, no real account'},null,2));
+ console.log(JSON.stringify({passed:checks.length,requests,out}));await send('Browser.close');
+}finally{ws?.close();if(chrome.exitCode===null)chrome.kill();}

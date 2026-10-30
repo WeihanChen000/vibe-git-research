@@ -1,113 +1,71 @@
-<p align="center"><img src="docs/assets/vibe-git-logo-readme.svg" alt="Vibe-Git logo" width="180" /></p>
+# Vibe-Git Research · 多人、多 Agent 科研协作
 
-<h1 align="center">Vibe-Git</h1>
-<p align="center"><strong>One repo. Many agents. One intent.</strong><br />给多人 Codex 开发一条可追踪的协作协议。</p>
+**每个人使用自己的 Agent，在同一份研究协议下完成执行、文件交接、独立评审和返工。**
 
-<p align="center">
+在队友原 [Vibe-Git](https://github.com/TFboy1/vibe-git) 上扩展，沿用人员拓扑、项目甘特、成员提案和队长发布逻辑。当前打通 **Codex × SciencePAL**。这是通用科研协作原型，**1CRN 与 Iris 只是可选的验证案例**，不是平台限定的研究课题。
 
-[![Discord](https://img.shields.io/badge/Discord-加入讨论-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/DrqtEjk6)
-[![Skills.sh](https://img.shields.io/badge/Skills.sh-安装%20Skill-00C853?style=for-the-badge&logo=hackthebox&logoColor=white)](https://skills.sh/tfboy1/vibe-git-skill/vibe-git)
-[![爱发电](https://img.shields.io/badge/爱发电-支持项目-FF69B4?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white)](https://www.ifdian.net/item/1a20ed042f0711f1865a52540025c377)
-[![GitHub Stars](https://img.shields.io/github/stars/TFboy1/vibe-git?style=for-the-badge&logo=github&color=yellow)](https://github.com/TFboy1/vibe-git/stargazers)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-☕-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.creem.io/payment/prod_1yc40mIhKwwrc7iqFOG9G2)
+[完整展示与讲解](docs/research/SHOWCASE.md) · [原版能力对照](docs/research/COMPARISON.md) · [队友快速开始](docs/research/START.md) · [架构与扩展](docs/research/ARCHITECTURE.md) · [验证与边界](docs/research/VALIDATION.md) · [全部材料导航](docs/research/INDEX.md)
 
-</p>
+![当前科研版：原拓扑中的工具、参数、结果与独立复核](docs/research/images/research-evidence-current.png)
 
-<p align="center">
+*实际构建界面的只读历史回放。单个真实 SciencePAL 账号与 Codex，两种工作流身份；不代表两位真实用户已经联调。*
 
-[![简体中文](https://img.shields.io/badge/简体中文-当前语言-red?style=flat-square)](#)
-[![English](https://img.shields.io/badge/English-README-blue?style=flat-square)](docs/README_EN.md)
-[![日本語](https://img.shields.io/badge/日本語-README-blue?style=flat-square)](docs/README_JA.md)
-[![Français](https://img.shields.io/badge/Français-README-blue?style=flat-square)](docs/README_FR.md)
-[![Deutsch](https://img.shields.io/badge/Deutsch-README-blue?style=flat-square)](docs/README_DE.md)
+下载后可双击 [`docs/research/index.html`](docs/research/index.html) 查看无需安装的图文展示；GitHub 上请直接阅读上方展示页。
 
-</p>
+## 先看，还是直接使用？
 
-<p align="center"><code>CLI-first</code> · <code>Captain-hosted</code> · <code>Git + Codex</code> · <code>v0.20</code></p>
+| 目的 | 入口 | 是否调用真实模型 |
+|---|---|---|
+| 发给队友快速了解 | 本 README 与完整展示 | 否 |
+| 自己点击真实案例全过程 | `vibe-git/open-replay.cmd` | 否，使用已保存原始证据 |
+| 体验加入、提案、返工与交接 | 构建后 `npm run research:simulate-ui` | 否，明确标记合成演练 |
+| 开始自己的研究项目 | `vibe-git/open-research.cmd`；队长按接入指南先启动房间 | 是，执行时使用各自账号额度 |
 
-<p align="center"><a href="https://tfboy1.github.io/vibe-git/">文档站</a> · <a href="#快速开始">快速开始</a> · <a href="vibe-git/README.md">使用手册</a> · <a href="vibe-git/CHANGELOG.md">更新日志</a> · <a href="https://github.com/TFboy1/vibe-git/issues">Issues</a></p>
-
----
-
-## Git 记录代码，Vibe-Git 记录团队决定
-
-多个 Codex 可以同时写出正确的代码，却可能各自实现了不同的需求。Git 擅长保存分支、提交和 diff；它不会自动告诉团队哪份提案已获确认、冲突由谁裁决、任务按哪个版本开工。
-
-Vibe-Git 在现有 Git 工作区之上管理**提案 → 对齐 → 任务 → 变更审核**。队长托管协作房间，成员在自己的机器上使用 Codex 和 Git。代码仍由 Git 管理，团队决议有了明确的版本和状态。
-
-| 团队需要知道 | Git 中可见 | Vibe-Git 增加 |
-| --- | --- | --- |
-| 要做什么 | 需求文件的修改历史 | 每位成员的当前提案、冻结版本、对齐稿和待裁决问题 |
-| 何时开工 | 分支与提交 | 队长发布任务，负责人显式启动自己的 Codex |
-| 需求变了影响谁 | 代码 diff | 内部需求变更单、逐任务影响证据和队长确认 |
-| 何时算完成 | 最终 commit | Codex 与 Git 状态同步，以及负责人的完成确认 |
-
-## 快速开始
-
-需要 **Node.js 24+、Git、Codex CLI**。先安装 Skill，再手动安装 CLI：
+要求 **Node.js 24+**。从仓库根目录：
 
 ```powershell
-npx skills add TFboy1/vibe-git-skill --skill vibe-git
-npm install -g @vibe-git/vibe-git
-vibe-git --help
-```
-
-也可以从源码构建 CLI，构建入口在仓库的 `vibe-git/` 子目录：
-
-```powershell
-git clone --recurse-submodules https://github.com/TFboy1/vibe-git.git
-cd vibe-git/vibe-git
+cd vibe-git
 npm ci
 npm run build
-npm link
+npm run research:replay
 ```
 
-队长进入**自己的项目 Git 工作区**，启动房间并复制命令输出中的成员加入链接：
+终端输出本机链接，保持终端开启。首次安装需要网络；构建后的回放不需要 API Key。回放可选 1CRN 七阶段或 Iris 九阶段，能展开原始文件、评审和交接证据。Windows 也可双击 `open-replay.cmd` 自动准备。
 
-```powershell
-vibe-git host start
-vibe-git open
-```
+## 实际使用的主路径
 
-成员进入**各自的项目 Git 工作区**，运行队长给出的加入命令，然后提交一份 UTF-8 Markdown 提案：
+**加入房间 → 绑定本人 Agent → 写自己的研究提案 → 上传材料并冻结项目 → 对齐与发布 → 按“现在轮到谁”执行 → 评审 / 返工 → 获批文件交接。**
 
-```powershell
-vibe-git connect "https://xxxx.trycloudflare.com/join/xxxxx"
-vibe-git plan submit .\proposal.md
-```
+上传自己的材料、选择参与成员、定义自己的方法与验收标准即可建项。当前界面支持单份、不超过 256 KiB 的 UTF-8 CSV / TSV / TXT / JSON / DATA / PDB；它还不是任意格式、大文件的通用数据平台。自定义材料会移除案例专用成果约束。
 
-对齐与审核前，可在各节点运行 `vibe-git codex bind`，绑定独立的 Codex 审核池。队长随后使用 `vibe-git align start` 开始对齐；裁决、指派与发布命令见[完整使用手册](vibe-git/README.md)。加入链接含注册密钥，只交给预期成员。
+## 相比原版增加了什么？
 
-## 工作流
+| 原版基础（保留） | 科研扩展（新增） |
+|---|---|
+| 多人 Codex、成员提案、队长对齐与发布 | 同项目中的成员身份与 Codex / SciencePAL 绑定 |
+| Git、任务和需求版本 | 冻结科研输入字节、输出格式、来源与验收要求 |
+| 原拓扑与任务状态 | 文件交接与独立评审关系、“等谁 / 下一步” |
+| 完成确认与已有接口契约 | 研究产物回执、格式门禁、评审退回与重试版本 |
+| 软件开发流程 | 科研专家执行、原线程等待输入后接续、证据回放 |
 
-| 阶段 | 操作 | 保留下来的结果 |
-| --- | --- | --- |
-| **PLAN** | 成员 `plan submit <文件.md>` | 每人一份当前提案；更新形成新版本，团队可查看 |
-| **ALIGN** | 队长 `align start`，裁决后 `tasks publish` | 冻结的提案集合、对齐稿、冲突选择与任务 |
-| **BUILD** | 负责人 `task pull`、`task start`、`task sync`、`task done` | 明确的开工动作、Git/Codex 状态与完成确认 |
-| **CHANGE** | 成员 `pr submit`，队长 `review apply` 或 `review reject` | 需求变更、影响证据和应用决定 |
+详细对照以原版 **f3e888f** 为基线。界面旧图来自原仓库的交互演示，不冒充原版完整运行评测；六类自动门禁结果也不等于真人效率提升。见 [对照方法及盲点](docs/research/COMPARISON.md)。
 
-任务发布不会自动启动所有 Codex；Codex 结束也不会自动把任务标为完成。`pr submit` 创建的是 **Vibe-Git 内部需求变更单**，不会创建 GitHub Pull Request。
+## SciencePAL 的必要性怎么体现？
 
-## 运行方式
+它在本项目中是实际科研执行端：从账号可用 Agent 目录选择专家，接收任务文件，在其环境中执行并交回产物。1CRN 的真实 Biology 运行交付了 BioPython 1.84、计算参数、代码与输出；Codex 在另一端重算核对。平台管理的是这次合作的身份、版本、证据和交接。
 
-```text
-队长电脑：Git 工作区 + Codex + Vibe-Git CLI
-                         │
-                         └── Host + SQLite + Web 房间
-                                        ▲
-                            Cloudflare Quick Tunnel
-                                        │
-成员电脑：各自的 Git 工作区 + Codex + Vibe-Git CLI
-```
+这证明当前集成有实际用途，**不证明这些算法只有 SciencePAL 能做**。研究工具可用性与任务适配才是选择它的理由；不能把强制调用它或角色名称当成独特优势证据。
 
-每位成员保留自己的 Git 工作区和日常 Codex 配置。专用审核池的凭据保存在各节点本机；Host 接收协作状态和受限证据，不接收成员的日常 Codex 凭据、完整聊天正文或工具记录。网页集中展示提案、对齐、任务和审核状态，并支持部分提案与排期操作。
+## 当前验证状态
 
-## 文档与当前状态
+- 科研专项回归：**161 / 161** 通过；本次分享版再做清洁安装、构建与回放校验，结果见验证页。
+- 真实案例：1CRN 七阶段、Iris 九阶段，包含 **38 个原始附件**，均有字节数和 SHA256。
+- 真实跨平台：一个 SciencePAL 账号 + 本地 Codex 已验证；真实两位用户各自账号联调仍待完成。
+- 受控测试：1CRN 首版单位错误与参数确认、Iris 首次数值错误是明示设计；不冒充自然发生的错误。Iris 第二次缺代码为真实产物问题。
+- 当前 Codex 通过本地任务包交付；界面不能自动启动任意 Codex 会话。额外平台适配也不是已完成功能。
 
-- [使用手册](vibe-git/README.md)：完整 CLI 命令、队长与成员流程、数据边界。
-- [Codex Skill](https://github.com/TFboy1/vibe-git-skill)：独立发布、可通过 `npx skills add TFboy1/vibe-git-skill --skill vibe-git` 安装；主项目中的 `.agents/skills/vibe-git` 以 Git submodule 绑定。
-- [更新日志](vibe-git/CHANGELOG.md)：0.20 的界面、提案和排期更新。
-- [Issues](https://github.com/TFboy1/vibe-git/issues)：反馈问题与使用体验。
+## 来源与团队使用
 
-当前版本为 **0.20**。Cloudflare Quick Tunnel 使用临时地址；真实跨设备房间和公网 Host 仍需在目标环境联调。仓库根目录保留的 [AgentGit M0 交接](M0-HANDOFF.md)与[验证记录](M0-VALIDATION.md)属于历史快照，不是当前版本的安装步骤。
+这是公开的团队分享仓库，保留上游基线和作者归属，不改写队友原仓库。源码包包含科研 Skill：[`vibe-git/research-skill`](vibe-git/research-skill/SKILL.md)。原版文档入口为 [README-ORIGINAL.md](README-ORIGINAL.md)，早期研发报告可能描述历史阶段，请以本 README 和验证页为当前状态。
+
+仓库已由负责人授权公开，可直接分享给队友与评委。当前快照未发现统一的根级开源许可证，公开可见不等于授予任意使用许可；保留原作者及素材归属，不擅自补写 MIT。见 [来源和分享范围](docs/research/PROVENANCE.md)。API Key、邀请凭据、成员 token、私人数据库与完整运行目录均不进入分享快照。
