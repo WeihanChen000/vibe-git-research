@@ -4,7 +4,7 @@
 
 在队友原 [Vibe-Git](https://github.com/TFboy1/vibe-git) 上扩展，沿用人员拓扑、项目甘特、成员提案和队长发布逻辑。当前主路径为 **Codex × SciencePAL**，并已整合队友的六种本地 Agent 适配接口；各平台真实运行验证范围见下方说明。这是通用科研协作原型，**1CRN 与 Iris 只是可选的验证案例**，不是平台限定的研究课题。
 
-[本次多 Agent 整合与防漂移说明](docs/research/MULTI-AGENT-INTEGRATION.md) · [完整展示与讲解](docs/research/SHOWCASE.md) · [原版能力对照](docs/research/COMPARISON.md) · [队友快速开始](docs/research/START.md) · [架构与扩展](docs/research/ARCHITECTURE.md) · [验证与边界](docs/research/VALIDATION.md) · [全部材料导航](docs/research/INDEX.md)
+[本次多 Agent 整合与防漂移说明](docs/research/MULTI-AGENT-INTEGRATION.md) · [完整展示与讲解](docs/research/SHOWCASE.md) · [原版能力对照](docs/research/COMPARISON.md) · [队友三步接入](vibe-git/SCIENCEPAL-QUICKSTART.md) · [架构与扩展](docs/research/ARCHITECTURE.md) · [验证与边界](docs/research/VALIDATION.md) · [全部材料导航](docs/research/INDEX.md)
 
 ![当前科研版：原拓扑中的工具、参数、结果与独立复核](docs/research/images/research-evidence-current.png)
 
@@ -13,6 +13,8 @@
 下载后可双击 [`docs/research/index.html`](docs/research/index.html) 查看无需安装的图文展示；GitHub 上请直接阅读上方展示页。
 
 ## 本轮新增
+
+[评委与首次接入体验复查](docs/research/JUDGE-ONBOARDING-REVIEW.md)：视频明确原版增量与 SciencePAL 分工；新身份经上传、发布、退回、返工、数值检查及交接完成 2/2。快速说明保留在原弹层。
 
 [可执行科学检查与测试](docs/research/SCIENTIFIC-GATES.md)：已配置检查失败时，Agent 批准不能放行；1CRN 模板附独立参考。队长双击 `vibe-git/open-captain.cmd`，成员双击 `vibe-git/open-research.cmd`。
 
@@ -37,7 +39,7 @@
 | 发给队友快速了解 | 本 README 与完整展示 | 否 |
 | 自己点击真实案例全过程 | `vibe-git/open-replay.cmd` | 否，使用已保存原始证据 |
 | 体验加入、提案、返工与交接 | 构建后 `npm run research:simulate-ui` | 否，明确标记合成演练 |
-| 开始自己的研究项目 | `vibe-git/open-research.cmd`；队长按接入指南先启动房间 | 是，执行时使用各自账号额度 |
+| 开始自己的研究项目 | 队长 `vibe-git/open-captain.cmd`；成员 `vibe-git/open-research.cmd` | 是，执行时使用各自账号额度 |
 
 要求 **Node.js 24+**。从仓库根目录：
 

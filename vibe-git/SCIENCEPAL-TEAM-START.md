@@ -1,4 +1,6 @@
-# 队友用自己的 SciencePAL 账号接入
+# 队友用自己的 Agent 接入科研团队
+
+**先按 [三步快速开始](https://github.com/WeihanChen000/vibe-git-research/blob/codex/research-team-share/vibe-git/SCIENCEPAL-QUICKSTART.md) 操作。** 本文是完整参考，不需要从头执行所有命令。
 
 先看原拓扑里的真实案例回放，熟悉“现在轮到谁 → 任务 / 评审 / 文件交接 → 记录”。回放只读，不消耗模型额度；它使用一位用户的 SciencePAL 账号与 Codex，不能替代下面的真实双账号验收。
 
@@ -23,7 +25,9 @@
 
 不确定当前在哪一步时，看原拓扑“现在轮到谁”。未加入时可点“第一次接入？查看队友步骤”，用“返回填写邀请”继续，已填写的邀请不会丢失。加入后，说明可随时从右上角“当前成员 → 队友接入说明”重新打开。
 
-收到 ZIP 与同名 `.sha256` 后，在下载目录运行以下 PowerShell 命令；输出应为 `True`，再解压。校验文件用于确认传输完整，双方应使用队长发来的同一版本。
+推荐从[当前公开仓库下载源码 ZIP](https://github.com/WeihanChen000/vibe-git-research/archive/refs/heads/codex/research-team-share.zip)，解压后进入 `vibe-git` 子目录。不要把仓库外层目录当运行目录。若队长另外提供了专用接入包和同名 `.sha256`，才需要下面的校验；GitHub 源码 ZIP 不附带这个校验文件。
+
+收到专用接入包 ZIP 与同名 `.sha256` 后，在下载目录运行以下 PowerShell 命令；输出应为 `True`，再解压。校验文件用于确认传输完整，双方应使用队长发来的同一版本。
 
 ```powershell
 (Get-FileHash .\vibe-git-sciencepal-team-kit.zip -Algorithm SHA256).Hash -eq ((Get-Content .\vibe-git-sciencepal-team-kit.zip.sha256) -split '\s+')[0]
@@ -31,7 +35,7 @@
 
 ## 队长先做：准备房间与邀请
 
-1. 将同版本 `vibe-git-sciencepal-team-kit.zip` 和 `.sha256` 私下发给队友。双方解压到本机普通目录，安装 Node.js 24+。不要发自己的个人配置目录、API Key 或浏览器登录链接。
+1. 把同一版本仓库链接发给队友；双方下载源码 ZIP，解压后进入 `vibe-git` 子目录，安装 Node.js 24+。也可以提供专用接入包及校验文件。不要发自己的个人配置目录、API Key 或浏览器登录链接。
 2. 双击 `open-captain.cmd`，自动准备依赖、启动房间和本人入口，保持一个终端开启。
 3. 如果房间已经由 `npm run sciencepal` 启动，使用 `open-research.cmd --captain` 只打开本人入口，不再重复开房间。
 4. 跨电脑需要可访问的 HTTPS 房间地址。如果已有可信 HTTPS 入口，复用它；否则在队长终端依次运行：
@@ -53,7 +57,7 @@ npm --silent run sciencepal:member -- invite
 
 ## 队友自己做：账号、专家、提案
 
-1. 解压同一包，核对 `.sha256`，双击 `open-research.cmd`。首次自动安装依赖并构建；保留终端。没有自动打开页面时，使用终端打印的备用链接。本人链接两分钟内单次有效，过期则重开入口。
+1. 解压同版本源码 ZIP 后进入 `vibe-git`（专用接入包才需核对附带的 `.sha256`），双击 `open-research.cmd`。首次自动安装依赖并构建；保留终端。没有自动打开页面时，使用终端打印的备用链接。本人链接两分钟内单次有效，过期则重开入口。
 2. 在本机页面“加入协作房间”粘贴队长邀请。已加入同一房间就不要重复注册，也不要再次运行 CLI join。
 3. 登录**自己的** SciencePAL，在账号提供的 API / development 页面生成本人 Key。顶部“算力网”选择 SciencePAL，输入 Key，点“验证账号并读取 Agent”。选择自己账号中实际可用、适合课题的 Agent（1CRN 示例可选 Biology），再点“接入算力网”。不把 Key 发到聊天或交给队长。如果本人使用 Codex，则在同一位置选“Codex 本地执行”并接入，无需 SciencePAL Key；后续按待办准备任务包并交回成果。
 4. 点“我的提案”，写研究问题、数据、分工与验收标准并保存。示例：本人使用 Biology 工具计算 1CRN 表面积，独立复核队友几何量；保留单位、方法、代码、工具版本和文件字节回执。

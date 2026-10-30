@@ -4,7 +4,7 @@ import {createHash} from 'node:crypto';
 
 // Content fingerprints also detect a replacement ZIP with preserved timestamps.
 export function prepareResearch(root,{runNpm,log=console.log,rebuild=false}){
- const paths=['package.json','package-lock.json','tsconfig.base.json','SCIENCEPAL-TEAM-START.md','SCIENCEPAL-CASE-BRIEF.md'];
+ const paths=['package.json','package-lock.json','tsconfig.base.json','SCIENCEPAL-TEAM-START.md','SCIENCEPAL-QUICKSTART.md','SCIENCEPAL-CASE-BRIEF.md'];
  const manifests=['package.json','package-lock.json'];
  const walk=dir=>{if(!existsSync(join(root,dir)))return;for(const e of readdirSync(join(root,dir),{withFileTypes:true}).sort((a,b)=>a.name.localeCompare(b.name))){const p=dir+'/'+e.name;if(e.isSymbolicLink())throw Error('构建输入不能是符号链接：'+p);if(e.isDirectory())walk(p);else if(e.isFile())paths.push(p);}};
  for(const group of ['apps','packages'])for(const w of readdirSync(join(root,group),{withFileTypes:true}).filter(e=>e.isDirectory()).sort((a,b)=>a.name.localeCompare(b.name))){

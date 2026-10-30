@@ -52,17 +52,17 @@ The captain has to chase messages and reconnect the evidence. A finished agent t
 
 ## 00:55 我们补上的是团队协作这一层
 
-That is where Vibe Git Research comes in. It connects each person's agent to one shared research workflow.
+Vibe Git Research keeps the original team topology and proposal workflow. We add cross-platform research tasks, frozen inputs, numerical checks, and reviewed file handoffs.
 
-这就是 Vibe-Git Research 要解决的问题：让每个人的 Agent 接入同一条科研流程。
+保留原版拓扑与提案流程，新增跨平台科研任务、冻结输入、数值检查与获批文件交接。
 
-People keep their own tools. The team shares the plan, task status, review decisions, and approved files.
+Science Pal executes the research task. Codex checks and analyzes the results. Everyone shares one protocol and can see who acts next.
 
-成员继续用自己的工具，团队共享协议、进度、评审结论与获批文件。
+SciencePAL 执行科研任务，Codex 复核与分析。所有人共享协议，看清下一步轮到谁。
 
 性质：情境示意 · 一位队长、两位成员
 
-## 01:10 第一步：每位成员先提交自己的提案
+## 01:17 第一步：每位成员先提交自己的提案
 
 Here is the actual interface, in a clearly labeled three member rehearsal. Each member submits their research plan.
 
@@ -74,7 +74,7 @@ The plan describes the question, the method, their responsibility, and what woul
 
 性质：实际界面操作演练 · Agent 输出为合成结果
 
-## 01:24 第二步：队长建项，上传共同材料
+## 01:31 第二步：队长建项，上传共同材料
 
 The captain selects the participants and uploads the protein structure. Everyone will work from the same frozen input.
 
@@ -86,7 +86,7 @@ This removes the first source of confusion: different people silently using diff
 
 性质：实际界面操作演练 · 公开 1CRN 输入
 
-## 01:38 第三步：先对齐，再由队长发布
+## 01:45 第三步：先对齐，再由队长发布
 
 The proposals become a shared protocol: who calculates, who analyzes, and what must be checked before handoff.
 
@@ -98,7 +98,7 @@ The captain checks the plan and publishes it. The agents do not silently change 
 
 性质：实际界面操作演练 · 队长确认与发布
 
-## 01:52 现在轮到谁，一眼可见
+## 01:59 现在轮到谁，一眼可见
 
 The topology now shows the captain and both members, with their tasks and dependencies.
 
@@ -110,19 +110,19 @@ Member A calculates first. Member B waits for an approved result, instead of gue
 
 性质：实际界面操作演练 · 不代表三个真实账号联调
 
-## 02:05 SciencePAL 做的是实际科研计算
+## 02:12 SciencePAL 执行科研，Codex 独立复核
 
-What does Science Pal contribute? In our recorded real run, its Biology Agent executed a protein surface area calculation with Python and Biopython.
+Our real run used Science Pal’s official Biology Agent and cloud research workspace to execute Python and Biopython, returning code, parameters, and residue measurements.
 
-SciencePAL 的作用是什么？真实运行中，Biology Agent 使用 Python 和 Biopython 执行了蛋白表面积计算。
+真实运行调用 SciencePAL 官方 Biology Agent 和云端科研环境，交付代码、参数与逐残基数值。
 
-It returned numerical results, the code, and the method parameters. It was not just writing a description of the experiment.
+Codex checked the measurements independently. Our platform adds the shared protocol and verified handoff. The value is a connected research workflow, not an exclusive algorithm.
 
-它交付数值、代码和方法参数，不只是写一段实验介绍。
+Codex 独立复核，平台统一协议与核验交接。价值在于把科研执行接入团队流程，不是独占算法。
 
-性质：真实运行证据 · 一个 SciencePAL 账号 + 本机 Codex
+性质：真实记录 · 画面为另外公开的独立核查回放
 
-## 02:23 结果提交了，但还不能直接给下游
+## 02:34 结果提交了，但还不能直接给下游
 
 Submitting a result triggers an independent review. In this example, the first calculation is only an exploratory pass.
 
@@ -134,7 +134,7 @@ The agreed final check needs a higher resolution comparison, so the result is re
 
 性质：操作演练；真实案例也有预先约定的探索阶段退回
 
-## 02:38 队长安排返工，原结果保留
+## 02:49 队长安排返工，原结果保留
 
 The captain opens the review feedback and assigns the revision. Member A sees exactly what needs to change.
 
@@ -146,7 +146,7 @@ The earlier result stays in the history. Member B remains blocked until the revi
 
 性质：实际界面操作演练 · 原有返工确认流程
 
-## 02:52 独立复算，让“通过”有依据
+## 03:03 独立复算，让“通过”有依据
 
 In the real run, Science Pal repeated the calculation at one thousand and five thousand sampling points.
 
@@ -158,7 +158,7 @@ The totals differed by about zero point one one percent, below the agreed two pe
 
 性质：真实数值 · 固定构象的几何验证，不推断生物功能
 
-## 03:08 真正发生过的问题：批准依据没交过来
+## 03:19 真正发生过的问题：批准依据没交过来
 
 We also found a real handoff bug. Codex received the result, but not the approval evidence needed to trust that exact file.
 
@@ -170,7 +170,7 @@ It reported the blocker instead of pretending the analysis was complete. We fixe
 
 性质：真实联调发现 · 不是虚构的成员犯错
 
-## 03:23 交接文件，也交接这份文件的批准依据
+## 03:34 交接文件，也交接这份文件的批准依据
 
 Now the handoff includes the approved file, its fingerprint, and the original review record.
 
@@ -182,7 +182,7 @@ Click the connection to see what was produced, who approved it, and whether the 
 
 性质：实际界面操作演练 · 获批后放行下游
 
-## 03:35 研究结果：哪些残基有较大的绝对暴露面积？
+## 03:46 研究结果：哪些残基有较大的绝对暴露面积？
 
 The study now answers the original question. In this fixed structure, tyrosine twenty nine, leucine eighteen, and proline thirty six have the largest absolute exposed areas.
 
@@ -194,7 +194,7 @@ These are geometric measurements, not claims about biological function. The comp
 
 性质：已有真实 SciencePAL 结果 · 固定结构的几何描述
 
-## 03:55 检查失败，评审写“通过”也不能交接
+## 04:06 检查失败，评审写“通过”也不能交接
 
 The host now executes frozen numerical checks. A failed check blocks handoff, even if an agent review says approved. The original topology shows exactly what failed.
 
@@ -206,7 +206,7 @@ The saved real result passes. Three controlled errors fail, including changed re
 
 性质：新增门禁 · 受控错误演练 / 本次未调用远端 Agent
 
-## 04:20 真实证据可以打开，范围也说清楚
+## 04:30 真实证据可以打开，范围也说清楚
 
 The three person workflow you saw is a rehearsal. The published scientific evidence comes from one Science Pal account working with local Codex.
 

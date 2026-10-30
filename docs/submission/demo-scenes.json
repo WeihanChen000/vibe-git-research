@@ -50,18 +50,18 @@
   {
     "scene": 5,
     "start": 55.917,
-    "duration": 14.75,
+    "duration": 21.5,
     "title": "我们补上的是团队协作这一层",
     "scope": "情境示意 · 一位队长、两位成员",
     "screenshots": [],
     "narration": [
-      "That is where Vibe Git Research comes in. It connects each person's agent to one shared research workflow.",
-      "People keep their own tools. The team shares the plan, task status, review decisions, and approved files."
+      "Vibe Git Research keeps the original team topology and proposal workflow. We add cross-platform research tasks, frozen inputs, numerical checks, and reviewed file handoffs.",
+      "Science Pal executes the research task. Codex checks and analyzes the results. Everyone shares one protocol and can see who acts next."
     ]
   },
   {
     "scene": 6,
-    "start": 70.667,
+    "start": 77.417,
     "duration": 14.25,
     "title": "第一步：每位成员先提交自己的提案",
     "scope": "实际界面操作演练 · Agent 输出为合成结果",
@@ -75,7 +75,7 @@
   },
   {
     "scene": 7,
-    "start": 84.917,
+    "start": 91.667,
     "duration": 13.417,
     "title": "第二步：队长建项，上传共同材料",
     "scope": "实际界面操作演练 · 公开 1CRN 输入",
@@ -89,7 +89,7 @@
   },
   {
     "scene": 8,
-    "start": 98.333,
+    "start": 105.083,
     "duration": 13.917,
     "title": "第三步：先对齐，再由队长发布",
     "scope": "实际界面操作演练 · 队长确认与发布",
@@ -103,7 +103,7 @@
   },
   {
     "scene": 9,
-    "start": 112.25,
+    "start": 119.0,
     "duration": 13.25,
     "title": "现在轮到谁，一眼可见",
     "scope": "实际界面操作演练 · 不代表三个真实账号联调",
@@ -117,21 +117,21 @@
   },
   {
     "scene": 10,
-    "start": 125.5,
-    "duration": 18.25,
-    "title": "SciencePAL 做的是实际科研计算",
-    "scope": "真实运行证据 · 一个 SciencePAL 账号 + 本机 Codex",
+    "start": 132.25,
+    "duration": 22.333,
+    "title": "SciencePAL 执行科研，Codex 独立复核",
+    "scope": "真实记录 · 画面为另外公开的独立核查回放",
     "screenshots": [
       "integrated-live-completed.png"
     ],
     "narration": [
-      "What does Science Pal contribute? In our recorded real run, its Biology Agent executed a protein surface area calculation with Python and Biopython.",
-      "It returned numerical results, the code, and the method parameters. It was not just writing a description of the experiment."
+      "Our real run used Science Pal’s official Biology Agent and cloud research workspace to execute Python and Biopython, returning code, parameters, and residue measurements.",
+      "Codex checked the measurements independently. Our platform adds the shared protocol and verified handoff. The value is a connected research workflow, not an exclusive algorithm."
     ]
   },
   {
     "scene": 11,
-    "start": 143.75,
+    "start": 154.583,
     "duration": 14.5,
     "title": "结果提交了，但还不能直接给下游",
     "scope": "操作演练；真实案例也有预先约定的探索阶段退回",
@@ -145,7 +145,7 @@
   },
   {
     "scene": 12,
-    "start": 158.25,
+    "start": 169.083,
     "duration": 14.0,
     "title": "队长安排返工，原结果保留",
     "scope": "实际界面操作演练 · 原有返工确认流程",
@@ -159,7 +159,7 @@
   },
   {
     "scene": 13,
-    "start": 172.25,
+    "start": 183.083,
     "duration": 15.917,
     "title": "独立复算，让“通过”有依据",
     "scope": "真实数值 · 固定构象的几何验证，不推断生物功能",
@@ -171,7 +171,7 @@
   },
   {
     "scene": 14,
-    "start": 188.167,
+    "start": 199.0,
     "duration": 15.167,
     "title": "真正发生过的问题：批准依据没交过来",
     "scope": "真实联调发现 · 不是虚构的成员犯错",
@@ -183,7 +183,7 @@
   },
   {
     "scene": 15,
-    "start": 203.333,
+    "start": 214.167,
     "duration": 11.833,
     "title": "交接文件，也交接这份文件的批准依据",
     "scope": "实际界面操作演练 · 获批后放行下游",
@@ -197,7 +197,7 @@
   },
   {
     "scene": 16,
-    "start": 215.167,
+    "start": 226.0,
     "duration": 20.333,
     "title": "研究结果：哪些残基有较大的绝对暴露面积？",
     "scope": "已有真实 SciencePAL 结果 · 固定结构的几何描述",
@@ -209,7 +209,7 @@
   },
   {
     "scene": 17,
-    "start": 235.5,
+    "start": 246.333,
     "duration": 24.5,
     "title": "检查失败，评审写“通过”也不能交接",
     "scope": "新增门禁 · 受控错误演练 / 本次未调用远端 Agent",
@@ -221,7 +221,7 @@
   },
   {
     "scene": 18,
-    "start": 260.0,
+    "start": 270.833,
     "duration": 18.583,
     "title": "真实证据可以打开，范围也说清楚",
     "scope": "边界说明 · 不宣称已完成真人双账号验证",

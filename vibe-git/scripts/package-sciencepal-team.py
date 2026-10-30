@@ -18,7 +18,7 @@ def add(path, destination=None):
     files['vibe-git/' + name] = path.read_bytes()
 
 for name in ['package.json', 'package-lock.json', 'tsconfig.base.json', '.gitignore', '.gitattributes',
-             'README.md', 'SCIENCEPAL-COMPARISON-PROTOCOL.md', 'SCIENCEPAL-CRN-COMPARISON.md', 'open-replay.cmd', 'SCIENCEPAL-TEAM-START.md', 'SCIENCEPAL-CASE-BRIEF.md', 'SCIENCEPAL-IRIS-UI-EXPERIMENT.md', 'SCIENCEPAL-IRIS-LIVE-RESULT.md', 'SCIENCEPAL-IRIS-REPLAY-BRIEF.md', 'SCIENCEPAL-IRIS-REPLAY-REVIEW.md', 'SCIENCEPAL-REPLAY.md', 'open-research.cmd', 'SCIENCEPAL-FIRST-RUN.md', 'SCIENCEPAL-FIRST-USE-REVIEW.md', 'SCIENCEPAL-MIXED-FLOW-REVIEW.md', 'SCIENCEPAL-TEAM-QUICKSTART.md', 'SCIENCEPAL-TEAM-ACCEPTANCE.md', 'SCIENCEPAL-STABILITY-RESULT.md',
+             'README.md', 'SCIENCEPAL-COMPARISON-PROTOCOL.md', 'SCIENCEPAL-CRN-COMPARISON.md', 'open-replay.cmd', 'open-captain.cmd', 'SCIENCEPAL-QUICKSTART.md', 'SCIENCEPAL-TEAM-START.md', 'SCIENCEPAL-CASE-BRIEF.md', 'SCIENCEPAL-IRIS-UI-EXPERIMENT.md', 'SCIENCEPAL-IRIS-LIVE-RESULT.md', 'SCIENCEPAL-IRIS-REPLAY-BRIEF.md', 'SCIENCEPAL-IRIS-REPLAY-REVIEW.md', 'SCIENCEPAL-REPLAY.md', 'open-research.cmd', 'SCIENCEPAL-FIRST-RUN.md', 'SCIENCEPAL-FIRST-USE-REVIEW.md', 'SCIENCEPAL-MIXED-FLOW-REVIEW.md', 'SCIENCEPAL-TEAM-QUICKSTART.md', 'SCIENCEPAL-TEAM-ACCEPTANCE.md', 'SCIENCEPAL-STABILITY-RESULT.md',
              'SCIENCEPAL-MIXED-TEAM.md', 'SCIENCEPAL-CODEX-ENTRY.md', 'SCIENCEPAL-USABILITY-REVIEW.md']:
     add(root / name)
 for folder in ['apps', 'packages']:
@@ -34,7 +34,7 @@ for folder in ['apps', 'packages']:
                 for path in sorted(parent.rglob('*')):
                     if path.is_file() and not any(p in {'node_modules', '.git', 'data', 'dist', '__pycache__'} for p in path.relative_to(parent).parts):
                         add(path)
-for name in ['sciencepal-member-env.ps1', 'package-sciencepal-team.py', 'open-research.mjs', 'open-replay.mjs', 'research-setup.mjs', 'research-setup.test.mjs']:
+for name in ['sciencepal-member-env.ps1', 'package-sciencepal-team.py', 'open-research.mjs', 'research-captain.mjs', 'research-captain.test.mjs', 'open-replay.mjs', 'research-setup.mjs', 'research-setup.test.mjs']:
     add(root / 'scripts' / name)
 for path in sorted((root / 'fixtures/team-research').iterdir()):
     if path.is_file(): add(path)

@@ -24,86 +24,86 @@ Member B receives a result, but cannot tell whether it is the latest version or 
 00:00:47.885 --> 00:00:55.717
 The captain has to chase messages and reconnect the evidence. A finished agent task is not yet a finished team workflow.
 
-00:00:56.117 --> 00:01:02.849
-That is where Vibe Git Research comes in. It connects each person's agent to one shared research workflow.
+00:00:56.117 --> 00:01:07.215
+Vibe Git Research keeps the original team topology and proposal workflow. We add cross-platform research tasks, frozen inputs, numerical checks, and reviewed file handoffs.
 
-00:01:02.849 --> 00:01:10.467
-People keep their own tools. The team shares the plan, task status, review decisions, and approved files.
+00:01:07.215 --> 00:01:17.217
+Science Pal executes the research task. Codex checks and analyzes the results. Everyone shares one protocol and can see who acts next.
 
-00:01:10.867 --> 00:01:18.277
+00:01:17.617 --> 00:01:25.027
 Here is the actual interface, in a clearly labeled three member rehearsal. Each member submits their research plan.
 
-00:01:18.277 --> 00:01:24.717
+00:01:25.027 --> 00:01:31.467
 The plan describes the question, the method, their responsibility, and what would count as an acceptable result.
 
-00:01:25.117 --> 00:01:32.420
+00:01:31.867 --> 00:01:39.170
 The captain selects the participants and uploads the protein structure. Everyone will work from the same frozen input.
 
-00:01:32.420 --> 00:01:38.133
+00:01:39.170 --> 00:01:44.883
 This removes the first source of confusion: different people silently using different files.
 
-00:01:38.533 --> 00:01:45.373
+00:01:45.283 --> 00:01:52.123
 The proposals become a shared protocol: who calculates, who analyzes, and what must be checked before handoff.
 
-00:01:45.373 --> 00:01:52.050
+00:01:52.123 --> 00:01:58.800
 The captain checks the plan and publishes it. The agents do not silently change the team's agreement.
 
-00:01:52.450 --> 00:01:57.825
+00:01:59.200 --> 00:02:04.575
 The topology now shows the captain and both members, with their tasks and dependencies.
 
-00:01:57.825 --> 00:02:05.300
+00:02:04.575 --> 00:02:12.050
 Member A calculates first. Member B waits for an approved result, instead of guessing when it is safe to continue.
 
-00:02:05.700 --> 00:02:15.709
-What does Science Pal contribute? In our recorded real run, its Biology Agent executed a protein surface area calculation with Python and Biopython.
+00:02:12.450 --> 00:02:22.825
+Our real run used Science Pal’s official Biology Agent and cloud research workspace to execute Python and Biopython, returning code, parameters, and residue measurements.
 
-00:02:15.709 --> 00:02:23.550
-It returned numerical results, the code, and the method parameters. It was not just writing a description of the experiment.
+00:02:22.825 --> 00:02:34.383
+Codex checked the measurements independently. Our platform adds the shared protocol and verified handoff. The value is a connected research workflow, not an exclusive algorithm.
 
-00:02:23.950 --> 00:02:31.923
+00:02:34.783 --> 00:02:42.757
 Submitting a result triggers an independent review. In this example, the first calculation is only an exploratory pass.
 
-00:02:31.923 --> 00:02:38.050
+00:02:42.757 --> 00:02:48.883
 The agreed final check needs a higher resolution comparison, so the result is returned for revision.
 
-00:02:38.450 --> 00:02:45.352
+00:02:49.283 --> 00:02:56.185
 The captain opens the review feedback and assigns the revision. Member A sees exactly what needs to change.
 
-00:02:45.352 --> 00:02:52.050
+00:02:56.185 --> 00:03:02.883
 The earlier result stays in the history. Member B remains blocked until the revised result is approved.
 
-00:02:52.450 --> 00:02:58.789
+00:03:03.283 --> 00:03:09.623
 In the real run, Science Pal repeated the calculation at one thousand and five thousand sampling points.
 
-00:02:58.789 --> 00:03:07.967
+00:03:09.623 --> 00:03:18.800
 The totals differed by about zero point one one percent, below the agreed two percent limit. Codex also checked them using a separate implementation.
 
-00:03:08.367 --> 00:03:16.492
+00:03:19.200 --> 00:03:27.325
 We also found a real handoff bug. Codex received the result, but not the approval evidence needed to trust that exact file.
 
-00:03:16.492 --> 00:03:23.133
+00:03:27.325 --> 00:03:33.967
 It reported the blocker instead of pretending the analysis was complete. We fixed the handoff packet.
 
-00:03:23.533 --> 00:03:29.105
+00:03:34.367 --> 00:03:39.938
 Now the handoff includes the approved file, its fingerprint, and the original review record.
 
-00:03:29.105 --> 00:03:34.967
+00:03:39.938 --> 00:03:45.800
 Click the connection to see what was produced, who approved it, and whether the downstream member received it.
 
-00:03:35.367 --> 00:03:46.385
+00:03:46.200 --> 00:03:57.218
 The study now answers the original question. In this fixed structure, tyrosine twenty nine, leucine eighteen, and proline thirty six have the largest absolute exposed areas.
 
-00:03:46.385 --> 00:03:55.300
+00:03:57.218 --> 00:04:06.133
 These are geometric measurements, not claims about biological function. The complete residue results and independent reference are linked below.
 
-00:03:55.700 --> 00:04:06.932
+00:04:06.533 --> 00:04:17.765
 The host now executes frozen numerical checks. A failed check blocks handoff, even if an agent review says approved. The original topology shows exactly what failed.
 
-00:04:06.932 --> 00:04:19.800
+00:04:17.765 --> 00:04:30.633
 The saved real result passes. Three controlled errors fail, including changed residue areas with an unchanged total. This verifies the configured checks, not every possible scientific error.
 
-00:04:20.200 --> 00:04:28.879
+00:04:31.033 --> 00:04:39.712
 The three person workflow you saw is a rehearsal. The published scientific evidence comes from one Science Pal account working with local Codex.
 
-00:04:28.879 --> 00:04:38.383
+00:04:39.712 --> 00:04:49.217
 This is a general research platform, not a tool limited to this protein. Open the evidence links below to inspect the real files and the Science Pal run.

@@ -30,7 +30,7 @@ export function SourceFileInput({source,onChange,onExample,onReadyChange,disable
   if(sha!==(crn?CRN_CASE.sha256:'0fed2a99db77ec533a62dc66894d3ec6df3b58b6a8f3cf4a6b47e4086b7f97dc'))throw Error('示例文件与官方冻结版本不一致。');
   if(seq===sequence.current){if(crn)onCrnExample?.({filename:'source-1crn.txt',base64:encoded(bytes),sourceUrl:CRN_CASE.sourceUrl,attribution:CRN_CASE.attribution});else onExample({filename:'source-iris.csv',base64:encoded(bytes),sourceUrl:IRIS_CASE.sourceUrl,attribution:IRIS_CASE.attribution});}
  }catch(e){if(seq===sequence.current)setError(e instanceof Error?e.message:'示例加载失败');}finally{if(seq===sequence.current)setLoading(false);}}
- return <section className="sp-source-input"><h3>研究输入与来源</h3><p>可选一份公开或已获授权的数据。创建时冻结原始字节，随任务交给参与成员的 Agent；发布前不会执行模型。</p>
+ return <section className="sp-source-input"><h3>研究输入与来源</h3><p>可选一份公开或已获授权的数据。建项时冻结原始字节，随任务交给参与成员的 Agent。仅上传和建项不调用模型；随后启动协议对齐或执行任务会使用对应账号。</p>
 
  <label>选择数据文件（UTF-8，最多 256 KiB）<input aria-label="科研源文件" type="file" disabled={disabled||loading} accept=".csv,.tsv,.txt,.json,.data,.pdb" onChange={e=>{void upload(e.target.files?.[0]);e.target.value='';}}/></label>
  <details><summary>使用公开案例（可选）</summary><div>{onCrnExample&&<button type="button" disabled={disabled||loading} onClick={()=>void example(true)}>使用 1CRN 专业复现模板</button>}<button type="button" disabled={disabled||loading} onClick={()=>void example()}>{loading?'正在读取数据…':'使用 Iris 公开数据复核模板'}</button></div><small>真实公开数据，校验来源、单位并独立复算统计。{templateHint}</small></details>

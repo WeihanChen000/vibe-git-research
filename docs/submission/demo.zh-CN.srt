@@ -39,141 +39,141 @@ Member B receives a result, but cannot tell whether it is the latest version or 
 The captain has to chase messages and reconnect the evidence. A finished agent task is not yet a finished team workflow.
 
 9
-00:00:56,117 --> 00:01:02,849
-这就是 Vibe-Git Research 要解决的问题：让每个人的 Agent 接入同一条科研流程。
-That is where Vibe Git Research comes in. It connects each person's agent to one shared research workflow.
+00:00:56,117 --> 00:01:07,215
+保留原版拓扑与提案流程，新增跨平台科研任务、冻结输入、数值检查与获批文件交接。
+Vibe Git Research keeps the original team topology and proposal workflow. We add cross-platform research tasks, frozen inputs, numerical checks, and reviewed file handoffs.
 
 10
-00:01:02,849 --> 00:01:10,467
-成员继续用自己的工具，团队共享协议、进度、评审结论与获批文件。
-People keep their own tools. The team shares the plan, task status, review decisions, and approved files.
+00:01:07,215 --> 00:01:17,217
+SciencePAL 执行科研任务，Codex 复核与分析。所有人共享协议，看清下一步轮到谁。
+Science Pal executes the research task. Codex checks and analyzes the results. Everyone shares one protocol and can see who acts next.
 
 11
-00:01:10,867 --> 00:01:18,277
+00:01:17,617 --> 00:01:25,027
 现在看实际界面：这是明确标注的三成员操作演练。每人先提交提案。
 Here is the actual interface, in a clearly labeled three member rehearsal. Each member submits their research plan.
 
 12
-00:01:18,277 --> 00:01:24,717
+00:01:25,027 --> 00:01:31,467
 写清研究问题、方法、本人分工，以及怎样才算完成。
 The plan describes the question, the method, their responsibility, and what would count as an acceptable result.
 
 13
-00:01:25,117 --> 00:01:32,420
+00:01:31,867 --> 00:01:39,170
 队长选择参与成员，上传蛋白结构；所有人使用同一份冻结输入。
 The captain selects the participants and uploads the protein structure. Everyone will work from the same frozen input.
 
 14
-00:01:32,420 --> 00:01:38,133
+00:01:39,170 --> 00:01:44,883
 首先消除一种混乱：每个人悄悄用了不同的数据文件。
 This removes the first source of confusion: different people silently using different files.
 
 15
-00:01:38,533 --> 00:01:45,373
+00:01:45,283 --> 00:01:52,123
 各自提案被对齐为共同协议：谁计算、谁分析、交接前检查什么。
 The proposals become a shared protocol: who calculates, who analyzes, and what must be checked before handoff.
 
 16
-00:01:45,373 --> 00:01:52,050
+00:01:52,123 --> 00:01:58,800
 队长检查后发布。各个 Agent 不能悄悄改掉团队约定。
 The captain checks the plan and publishes it. The agents do not silently change the team's agreement.
 
 17
-00:01:52,450 --> 00:01:57,825
+00:01:59,200 --> 00:02:04,575
 拓扑中能看到队长、两位成员，以及任务和依赖关系。
 The topology now shows the captain and both members, with their tasks and dependencies.
 
 18
-00:01:57,825 --> 00:02:05,300
+00:02:04,575 --> 00:02:12,050
 成员 A 先计算；成员 B 等获批结果，不必猜什么时候可以继续。
 Member A calculates first. Member B waits for an approved result, instead of guessing when it is safe to continue.
 
 19
-00:02:05,700 --> 00:02:15,709
-SciencePAL 的作用是什么？真实运行中，Biology Agent 使用 Python 和 Biopython 执行了蛋白表面积计算。
-What does Science Pal contribute? In our recorded real run, its Biology Agent executed a protein surface area calculation with Python and Biopython.
+00:02:12,450 --> 00:02:22,825
+真实运行调用 SciencePAL 官方 Biology Agent 和云端科研环境，交付代码、参数与逐残基数值。
+Our real run used Science Pal’s official Biology Agent and cloud research workspace to execute Python and Biopython, returning code, parameters, and residue measurements.
 
 20
-00:02:15,709 --> 00:02:23,550
-它交付数值、代码和方法参数，不只是写一段实验介绍。
-It returned numerical results, the code, and the method parameters. It was not just writing a description of the experiment.
+00:02:22,825 --> 00:02:34,383
+Codex 独立复核，平台统一协议与核验交接。价值在于把科研执行接入团队流程，不是独占算法。
+Codex checked the measurements independently. Our platform adds the shared protocol and verified handoff. The value is a connected research workflow, not an exclusive algorithm.
 
 21
-00:02:23,950 --> 00:02:31,923
+00:02:34,783 --> 00:02:42,757
 提交成果后，还要独立评审。本例的第一轮只做探索计算。
 Submitting a result triggers an independent review. In this example, the first calculation is only an exploratory pass.
 
 22
-00:02:31,923 --> 00:02:38,050
+00:02:42,757 --> 00:02:48,883
 最终验收要求更精细的计算比较，因此需要退回返工。
 The agreed final check needs a higher resolution comparison, so the result is returned for revision.
 
 23
-00:02:38,450 --> 00:02:45,352
+00:02:49,283 --> 00:02:56,185
 队长打开退回意见并安排返工，成员 A 清楚知道要补什么。
 The captain opens the review feedback and assigns the revision. Member A sees exactly what needs to change.
 
 24
-00:02:45,352 --> 00:02:52,050
+00:02:56,185 --> 00:03:02,883
 旧版结果保留在记录中；新版通过前，成员 B 仍不会收到可用交接。
 The earlier result stays in the history. Member B remains blocked until the revised result is approved.
 
 25
-00:02:52,450 --> 00:02:58,789
+00:03:03,283 --> 00:03:09,623
 真实运行中，SciencePAL 补做了 1000 点和 5000 点计算。
 In the real run, Science Pal repeated the calculation at one thousand and five thousand sampling points.
 
 26
-00:02:58,789 --> 00:03:07,967
+00:03:09,623 --> 00:03:18,800
 两者总量相差约 0.11%，低于约定的 2%；Codex 还用另一实现复算核对。
 The totals differed by about zero point one one percent, below the agreed two percent limit. Codex also checked them using a separate implementation.
 
 27
-00:03:08,367 --> 00:03:16,492
+00:03:19,200 --> 00:03:27,325
 真实联调还暴露了一个交接问题：Codex 收到了结果，却没收到对应的批准依据。
 We also found a real handoff bug. Codex received the result, but not the approval evidence needed to trust that exact file.
 
 28
-00:03:16,492 --> 00:03:23,133
+00:03:27,325 --> 00:03:33,967
 它如实报告阻塞，没有假装完成分析。我们据此修复了交接包。
 It reported the blocker instead of pretending the analysis was complete. We fixed the handoff packet.
 
 29
-00:03:23,533 --> 00:03:29,105
+00:03:34,367 --> 00:03:39,938
 现在交接的不只有文件，还包括文件指纹和原始评审记录。
 Now the handoff includes the approved file, its fingerprint, and the original review record.
 
 30
-00:03:29,105 --> 00:03:34,967
+00:03:39,938 --> 00:03:45,800
 点击交接连线，就能看见产物、批准关系，以及下游是否已经收到。
 Click the connection to see what was produced, who approved it, and whether the downstream member received it.
 
 31
-00:03:35,367 --> 00:03:46,385
+00:03:46,200 --> 00:03:57,218
 回到研究问题：在这个固定结构中，TYR 29、LEU 18、PRO 36 的绝对暴露面积最大。
 The study now answers the original question. In this fixed structure, tyrosine twenty nine, leucine eighteen, and proline thirty six have the largest absolute exposed areas.
 
 32
-00:03:46,385 --> 00:03:55,300
+00:03:57,218 --> 00:04:06,133
 这是几何测量，不是生物功能判断。逐残基结果与独立参考都可以核查。
 These are geometric measurements, not claims about biological function. The complete residue results and independent reference are linked below.
 
 33
-00:03:55,700 --> 00:04:06,932
+00:04:06,533 --> 00:04:17,765
 Host 执行冻结的数值检查。检查失败时，Agent 写“通过”也不能交接；原拓扑指出具体原因。
 The host now executes frozen numerical checks. A failed check blocks handoff, even if an agent review says approved. The original topology shows exactly what failed.
 
 34
-00:04:06,932 --> 00:04:19,800
+00:04:17,765 --> 00:04:30,633
 保存的真实结果通过；三类受控错误被拒绝，包括总量不变但残基面积被改动。检查有明确覆盖范围。
 The saved real result passes. Three controlled errors fail, including changed residue areas with an unchanged total. This verifies the configured checks, not every possible scientific error.
 
 35
-00:04:20,200 --> 00:04:28,879
+00:04:31,033 --> 00:04:39,712
 三人流程是操作演练；公开科学证据来自一个 SciencePAL 账号与本机 Codex 的真实协作。
 The three person workflow you saw is a rehearsal. The published scientific evidence comes from one Science Pal account working with local Codex.
 
 36
-00:04:28,879 --> 00:04:38,383
+00:04:39,712 --> 00:04:49,217
 平台不限于这个蛋白。打开下方链接，可以核查真实文件和 SciencePAL 运行记录。
 This is a general research platform, not a tool limited to this protein. Open the evidence links below to inspect the real files and the Science Pal run.

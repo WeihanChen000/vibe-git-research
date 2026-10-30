@@ -1,6 +1,6 @@
 {
   "pdf_pages": 5,
-  "video_seconds": 278.583333,
+  "video_seconds": 289.416667,
   "video_dimensions": [
     1920,
     1080
@@ -17,8 +17,8 @@
       "sha256": "1db6a53bc2ce425da54d0bb0914b58fe70e7fd675fcb96c9c0875f94260df2c8"
     },
     "vibe-git-research-demo.mp4": {
-      "bytes": 8884378,
-      "sha256": "2acc4aeca707defcdbf55db850a9abfdfd9386ac79fe01b5390d7bdc4049dbdb"
+      "bytes": 9494117,
+      "sha256": "0b2fd10b6cf5b9147bd9cf23748b06996635e8d20649493bf9bb4b3c08f26561"
     }
   },
   "sciencepal_public_share": "https://sciencepal.ai/share/3b6302a7-f055-460e-9e3d-588287a7b3ca",
@@ -42,20 +42,7 @@
   "video_scene_count": 18,
   "video_scope": "edited story, synthetic three-member real-UI rehearsal, separately labeled prior real science evidence",
   "player_url": "https://weihanchen000.github.io/vibe-git-research/submission/watch.html",
-  "video_audio_mean_db": -24.9,
+  "video_audio_mean_db": -24.8,
   "video_audio_peak_db": -4.5,
-  "video_update": "Scientific results and numeric-v1 controlled rejection evidence added; no new remote run",
-  "public_player_verification": {
-    "content_commit": "253593731286dd7a863bb919d80573adde7f0731",
-    "url": "https://weihanchen000.github.io/vibe-git-research/submission/watch.html?v=numeric-v1",
-    "anonymous_page_status": 200,
-    "video_range_status": 206,
-    "video_content_type": "video/mp4",
-    "video_bytes": 8884378,
-    "browser_duration_seconds": 278.604333,
-    "playback_advanced_to_seconds": 2.168455,
-    "muted": false,
-    "chapter_seek_seconds": 235.5,
-    "browser_media_error": null
-  }
+  "video_update": "judge-v3: clarify original-project increment and SciencePAL/Codex/platform responsibilities; previous real evidence unchanged"
 }

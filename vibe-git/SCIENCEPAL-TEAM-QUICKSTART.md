@@ -1,4 +1,6 @@
-# 队友接入：两个人、各自账号、科研 Agent
+# 高级 CLI 参考：两个人、各自账号、科研 Agent
+
+**普通接入只看 [三步快速开始](SCIENCEPAL-QUICKSTART.md)。** 本页保留高级 CLI 路径；已在网页加入房间不要再次注册。
 
 **最新入口：** [队长 / 队友分步接入](SCIENCEPAL-TEAM-START.md) · [原拓扑真实案例回放](SCIENCEPAL-REPLAY.md)。解压后 `open-replay.cmd` 可先看已完成的单账号真实记录；`open-research.cmd` 才是本人接入与新任务入口。
 
