@@ -57,3 +57,7 @@ node --test scripts/research-captain.test.mjs
 ## 制图工具复用
 
 按 AGENTS.md 用 gh 查询 `matplotlib in:name user:matplotlib`。选官方 matplotlib/matplotlib：未归档，检查时最近推送 2026-10-30；README 明确支持科学图形，维护活跃。许可证为 Matplotlib 自身的宽松许可（LICENSE/LICENSE，允许使用与分发并要求保留声明），适合本次生成图像；未复制或分发库源码。搜索亦返回 derekbanas/matplotlib 教学笔记，不需要作为实现依赖，未采用。通过 PyPI 安装本机制图工具，不改变应用运行依赖；结果脚本使用正常 Matplotlib API。
+
+## 后续补强
+
+见 [运行预算与新验收配置补强](REVIEW-HARDENING-20261031.md)：重试统一计入续接预算；另建针对最新已保存产物的独立参考配置与反例测试，不覆盖历史验收的求和/计数规则。

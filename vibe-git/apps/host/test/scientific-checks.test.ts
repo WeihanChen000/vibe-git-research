@@ -17,3 +17,35 @@ describe("bounded scientific checks on real saved SciencePAL output",()=>{
  it("fails closed for mismatched source, unsupported engine and invalid tolerance",()=>{expect(()=>validateScientificChecks(config,"wrong")).toThrow();expect(()=>validateScientificChecks({...config,version:2},source)).toThrow();const x=structuredClone(config);x.tasks.sasa![0]!.absoluteTolerance=-1;expect(()=>validateScientificChecks(x,source)).toThrow();});
  it("does not execute fields containing code and rejects unsafe paths",()=>{const x=structuredClone(config);(x.tasks.sasa![0] as any).path="__proto__.value";expect(()=>validateScientificChecks(x,source)).toThrow();expect(check({...raw.result,code:"throw Error('do not execute')"}).status).toBe("PASSED");});
 });
+
+
+describe("new acceptance profile on the latest isolated artifact", () => {
+ const replay = new URL("../../../apps/web/public/research-replay/isolated/",import.meta.url);
+ const bundle = JSON.parse(readFileSync(new URL("case.json",replay),"utf8"));
+ const project = bundle.steps.at(-1).state.projects[0];
+ const file = (id:string) => JSON.parse(readFileSync(new URL(`files/${id}/${bundle.files[id].filename}`,replay),"utf8"));
+ const latestRun = project.runs.findLast((r:any)=>r.kind==="TASK"&&r.taskKey==="sasa");
+ const latest = file(latestRun.output.id).result;
+ const legacy = validateScientificChecks(file(latestRun.inputs.find((f:any)=>f.filename==="context.json").artifactId).scientificChecks,source);
+ const strengthened = validateScientificChecks(JSON.parse(readFileSync(new URL("../../../fixtures/acceptance-scientific-v2/checks.json",import.meta.url),"utf8")),source);
+ const validate = (rules:typeof legacy,value:unknown) => checkScientificResult(rules,"sasa",value,"rules","artifact",source)!;
+ it("accepts the saved final real result using the separate independent reference",()=>{
+  expect(validate(strengthened,latest).status).toBe("PASSED");
+  expect(strengthened.tasks.sasa!.some(r=>r.kind==="reference-table"&&r.keyField==="residue_id")).toBe(true);
+ });
+ it("documents the old sum/count blind spot and blocks a consistent 20 percent scaling",()=>{
+  const wrong=structuredClone(latest);wrong.total_A2*=1.2;wrong.residues.forEach((r:any)=>r.area_A2*=1.2);
+  expect(validate(legacy,wrong).status).toBe("PASSED");
+  const checked=validate(strengthened,wrong);expect(checked.status).toBe("FAILED");
+  expect(checked.checks.find(c=>c.id==="sum-residues")!.passed).toBe(true);
+  expect(checked.checks.find(c=>c.id==="independent-total")!.passed).toBe(false);
+ });
+ it("blocks redistribution across residues even when the total and sum still pass",()=>{
+  const wrong=structuredClone(latest);wrong.residues[0].area_A2+=20;wrong.residues[6].area_A2-=20;
+  expect(validate(legacy,wrong).status).toBe("PASSED");
+  const checked=validate(strengthened,wrong);expect(checked.status).toBe("FAILED");
+  expect(checked.checks.find(c=>c.id==="sum-residues")!.passed).toBe(true);
+  expect(checked.checks.find(c=>c.id==="independent-total")!.passed).toBe(true);
+  expect(checked.checks.find(c=>c.id==="independent-residues")!.passed).toBe(false);
+ });
+});

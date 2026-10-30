@@ -1,0 +1,239 @@
+{
+  "version": 1,
+  "sourceSha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+  "tasks": {
+    "sasa": [
+      {
+        "id": "atom-count",
+        "kind": "reference",
+        "path": "atom_count",
+        "expected": 327,
+        "absoluteTolerance": 0,
+        "relativeTolerance": 0,
+        "provenance": "Independent NumPy 5000-point Shrake-Rupley, phase 0.618; fixtures/expert-case/reference.py; reference SHA256 f27da6a0b71277c80eb5aea5d20738839c479e3acc0b0a98a42c973b162e03c1. Numerical agreement only, not biological validity."
+      },
+      {
+        "id": "residue-count",
+        "kind": "reference",
+        "path": "residue_count",
+        "expected": 46,
+        "absoluteTolerance": 0,
+        "relativeTolerance": 0,
+        "provenance": "Independent NumPy 5000-point Shrake-Rupley, phase 0.618; fixtures/expert-case/reference.py; reference SHA256 f27da6a0b71277c80eb5aea5d20738839c479e3acc0b0a98a42c973b162e03c1. Numerical agreement only, not biological validity."
+      },
+      {
+        "id": "independent-total",
+        "kind": "reference",
+        "path": "total_A2",
+        "expected": 2973.1627706139175,
+        "absoluteTolerance": 0,
+        "relativeTolerance": 0.03,
+        "provenance": "Independent NumPy 5000-point Shrake-Rupley, phase 0.618; fixtures/expert-case/reference.py; reference SHA256 f27da6a0b71277c80eb5aea5d20738839c479e3acc0b0a98a42c973b162e03c1. Numerical agreement only, not biological validity."
+      },
+      {
+        "id": "sum-residues",
+        "kind": "sum",
+        "totalPath": "total_A2",
+        "rowsPath": "residues",
+        "valueField": "area_A2",
+        "absoluteTolerance": 0.001
+      },
+      {
+        "id": "independent-residues",
+        "kind": "reference-table",
+        "rowsPath": "residues",
+        "keyField": "residue_id",
+        "valueField": "area_A2",
+        "expected": [
+          {
+            "key": 1,
+            "value": 72.02161200473395
+          },
+          {
+            "key": 2,
+            "value": 25.117324553921232
+          },
+          {
+            "key": 3,
+            "value": 0
+          },
+          {
+            "key": 4,
+            "value": 0
+          },
+          {
+            "key": 5,
+            "value": 56.093635463431724
+          },
+          {
+            "key": 6,
+            "value": 45.70177475292249
+          },
+          {
+            "key": 7,
+            "value": 122.49724212928197
+          },
+          {
+            "key": 8,
+            "value": 99.33636425524935
+          },
+          {
+            "key": 9,
+            "value": 6.555812717658107
+          },
+          {
+            "key": 10,
+            "value": 53.64314694938783
+          },
+          {
+            "key": 11,
+            "value": 62.87050220125737
+          },
+          {
+            "key": 12,
+            "value": 78.22888361570479
+          },
+          {
+            "key": 13,
+            "value": 7.922041097221851
+          },
+          {
+            "key": 14,
+            "value": 84.8425235036738
+          },
+          {
+            "key": 15,
+            "value": 93.4084405497616
+          },
+          {
+            "key": 16,
+            "value": 20.64086340129066
+          },
+          {
+            "key": 17,
+            "value": 91.52047707113749
+          },
+          {
+            "key": 18,
+            "value": 141.15892905084416
+          },
+          {
+            "key": 19,
+            "value": 110.49351618219082
+          },
+          {
+            "key": 20,
+            "value": 51.54521952399074
+          },
+          {
+            "key": 21,
+            "value": 35.876256741225674
+          },
+          {
+            "key": 22,
+            "value": 79.55854687270968
+          },
+          {
+            "key": 23,
+            "value": 67.43404604029874
+          },
+          {
+            "key": 24,
+            "value": 62.16545039563919
+          },
+          {
+            "key": 25,
+            "value": 99.05332359609753
+          },
+          {
+            "key": 26,
+            "value": 0
+          },
+          {
+            "key": 27,
+            "value": 12.454055409736974
+          },
+          {
+            "key": 28,
+            "value": 118.29363634109285
+          },
+          {
+            "key": 29,
+            "value": 167.30134146462407
+          },
+          {
+            "key": 30,
+            "value": 27.10517283468324
+          },
+          {
+            "key": 31,
+            "value": 34.04459839410366
+          },
+          {
+            "key": 32,
+            "value": 6.434558802290506
+          },
+          {
+            "key": 33,
+            "value": 49.85798923894108
+          },
+          {
+            "key": 34,
+            "value": 82.40049969687573
+          },
+          {
+            "key": 35,
+            "value": 36.61665774738205
+          },
+          {
+            "key": 36,
+            "value": 140.92267223550738
+          },
+          {
+            "key": 37,
+            "value": 38.39780908640343
+          },
+          {
+            "key": 38,
+            "value": 84.78915638962133
+          },
+          {
+            "key": 39,
+            "value": 119.47825050598965
+          },
+          {
+            "key": 40,
+            "value": 48.728180032222475
+          },
+          {
+            "key": 41,
+            "value": 53.218088458047475
+          },
+          {
+            "key": 42,
+            "value": 76.40164762572937
+          },
+          {
+            "key": 43,
+            "value": 105.86397577530212
+          },
+          {
+            "key": 44,
+            "value": 61.39814680061677
+          },
+          {
+            "key": 45,
+            "value": 73.01769818917916
+          },
+          {
+            "key": 46,
+            "value": 68.75270291593738
+          }
+        ],
+        "absoluteTolerance": 3,
+        "relativeTolerance": 0.05,
+        "provenance": "Independent NumPy 5000-point Shrake-Rupley, phase 0.618; fixtures/expert-case/reference.py; reference SHA256 f27da6a0b71277c80eb5aea5d20738839c479e3acc0b0a98a42c973b162e03c1. Numerical agreement only, not biological validity."
+      }
+    ]
+  }
+}

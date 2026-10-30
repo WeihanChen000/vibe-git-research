@@ -628,3 +628,67 @@ describe("Host executable scientific gates",()=>{
   const missing=await setup({...input,scientificChecks:{version:1,tasks:{missing:scientificChecks.tasks.data}}});await missing.command("align");const ready=await until(missing.pipeline,missing.id,p=>p.phase==="READY");await expect(missing.command("publish",{alignmentRunId:ready.alignment!.runId})).rejects.toThrow("遗漏");
  });
 });
+
+
+describe("shared project run budget", () => {
+  it.each([31, 32, 33])("retry counts queued jobs and continuations together at %i used units", async used => {
+    const s = await setup(); s.remote.malformed = true;
+    await s.command("align");
+    const p = await until(s.pipeline, s.id, p => p.phase === "BLOCKED");
+    const failed = p.runs[0]!;
+    // Simulate persisted earlier attempts: no run exceeds six continuations.
+    // Keep one continuation on the latest failed attempt, which retry must retain in history.
+    let remaining = used - 6 - 1;
+    const continued = (id: string, count: number) => Array.from({length:count}, (_, i) => ({
+      threadId:id,previousRunId:`${id}-${i}`,runId:`${id}-${i+1}`,source:"sciencepal-web" as const,at:p.createdAt,
+    }));
+    p.runs = [...Array.from({length:5}, (_, i) => {
+      const n = Math.min(6, remaining); remaining -= n;
+      return {...structuredClone(failed),id:`history-${i}`,continuations:continued(`history-${i}`,n)};
+    }), {...failed,continuations:continued(failed.id,1)}];
+    expect(remaining).toBe(0);
+    const count = (p: SPProject) => p.runs.reduce((n,r)=>n+1+(r.continuations?.length??0),0);
+    expect(count(p)).toBe(used); expect(p.maxRuns).toBe(32);
+    s.db.prepare("UPDATE sciencepal_projects SET data=? WHERE id=?").run(JSON.stringify(p),p.id);
+    const before = JSON.stringify(s.pipeline.get(p.id)), calls = s.remote.calls.length;
+    if (used >= 32) {
+      await expect(s.command("retry", {runId:failed.id})).rejects.toThrow("上限");
+      expect(JSON.stringify(s.pipeline.get(p.id))).toBe(before);
+    } else {
+      await s.command("retry", {runId:failed.id});
+      const after = s.pipeline.get(p.id);
+      expect(count(after)).toBe(32);
+      expect(after.runs.at(-1)!.continuations).toBeUndefined();
+      expect(after.runs.find(r=>r.id===failed.id)!.continuations).toHaveLength(1);
+    }
+    expect(s.remote.calls.length).toBe(calls); // Commands reserve slots; they do not call a model.
+  });
+});
+
+
+describe("strong new acceptance profile through Host dispatch",()=>{
+ it.each(["scale","redistribute"])("blocks %s before review and downstream, then accepts a corrected retry",async mode=>{
+  const replay=new URL("../../../apps/web/public/research-replay/isolated/",import.meta.url);
+  const bundle=JSON.parse(readFileSync(new URL("case.json",replay),"utf8"));
+  const historical=bundle.steps.at(-1).state.projects[0];
+  const artifactId=historical.tasks.find((t:any)=>t.key==="sasa").artifactId;
+  const f=bundle.files[artifactId];
+  const good=JSON.parse(readFileSync(new URL(`files/${artifactId}/${f.filename}`,replay),"utf8")).result;
+  const rules=JSON.parse(readFileSync(new URL("../../../fixtures/acceptance-scientific-v2/checks.json",import.meta.url),"utf8"));
+  const bytes=readFileSync(new URL("../../../fixtures/expert-case/1CRN.pdb",import.meta.url));
+  const s=await setup({...input,source:{filename:"source-1CRN.pdb",base64:bytes.toString("base64"),sourceUrl:"https://files.rcsb.org/download/1CRN.pdb",attribution:"Frozen public coordinates"},scientificChecks:{...rules,tasks:{data:rules.tasks.sasa}}});
+  const wrong=structuredClone(good);
+  if(mode==="scale"){wrong.total_A2*=1.2;wrong.residues.forEach((r:any)=>r.area_A2*=1.2);}
+  else{wrong.residues[0].area_A2+=20;wrong.residues[6].area_A2-=20;}
+  s.remote.transform=(kind,result)=>kind==="TASK"?wrong:result;await publish(s);
+  const blocked=await until(s.pipeline,s.id,p=>p.phase==="BLOCKED"),bad=blocked.runs.find(r=>r.kind==="TASK")!;
+  expect(bad.scientificValidation?.status).toBe("FAILED");expect(bad.output).not.toBeNull();
+  expect(s.remote.calls.map(c=>c.kind)).toEqual(["ALIGN","TASK"]);
+  expect(blocked.tasks[1]!.executionId).toBeNull();
+  s.remote.transform=(kind,result)=>kind==="TASK"?structuredClone(good):result;
+  await s.command("retry",{runId:bad.id});const done=await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");
+  expect(done.scientificChecks).toEqual(blocked.scientificChecks);
+  expect(done.runs.find(r=>r.id===bad.id)!.scientificValidation?.status).toBe("FAILED");
+  expect(s.pipeline.evidence(s.id).allApproved).toBe(true);
+ });
+});

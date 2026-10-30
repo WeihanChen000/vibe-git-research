@@ -815,3 +815,30 @@ describe('shared research executor and constraints permissions',()=>{
   const frozen=await s.command('set-constraints',{constraints:[{taskKey:'data',field:'seed',kind:'number',value:42}]});expect(frozen.resultContracts).toBeDefined();
  });
 });
+
+
+it("checks the shared budget before remote reply and keeps a repeated continuation receipt idempotent",async()=>{
+ const s=await setup();s.remoteA.askKinds.add("ALIGN");await s.command("align");await s.connectorA.step();
+ let p=s.pipeline.get(s.project.id);p.maxRuns=2;
+ s.service.repo.db.prepare("UPDATE sciencepal_projects SET data=? WHERE id=?").run(JSON.stringify(p),p.id);
+ await s.connectorA.reply("First continuation uses the final slot.");
+ p=s.pipeline.get(p.id);const r=p.runs[0]!,last=r.continuations![0]!;
+ const path=`/api/sciencepal-team/projects/${p.id}/runs/${r.id}/continued`;
+ const {at:_at,...receipt}=last;
+ expect((await s.raw(s.captain.nodeToken,path,receipt)).statusCode).toBe(200);
+ await s.pipeline.memberStatus(p.id,s.captain.nodeId,r.id,"NEEDS_INPUT");
+ const before=JSON.stringify(s.pipeline.get(p.id)),messages=s.remoteA.messageCalls.length;
+ await expect(s.connectorA.reply("Must not send or spend another slot.")).rejects.toThrow("上限");
+ expect(s.remoteA.messageCalls.length).toBe(messages);
+ expect((await s.raw(s.captain.nodeToken,path,{threadId:r.threadId,previousRunId:r.runId,runId:"over-budget",source:"sciencepal-web"})).statusCode).toBe(409);
+ expect(JSON.stringify(s.pipeline.get(p.id))).toBe(before);
+});
+
+it("rejects supplemental review at a continuation-filled project budget without changing evidence",async()=>{
+ const s=await setup();s.remoteB.rejectOnce=true;await s.publish();const p=await s.until("CHANGES_REQUESTED");
+ p.runs[0]!.continuations=[{threadId:"historical",previousRunId:"old",runId:"next",source:"sciencepal-web",at:p.createdAt}];p.maxRuns=p.runs.length+1;
+ s.service.repo.db.prepare("UPDATE sciencepal_projects SET data=? WHERE id=?").run(JSON.stringify(p),p.id);
+ const before=JSON.stringify(s.pipeline.get(p.id)),t=p.tasks[0]!;
+ await expect(s.command("supplement-review",{taskKey:t.key,reviewId:t.reviewId,note:"Additional evidence cannot bypass the shared run budget."})).rejects.toThrow(/上限|最多/);
+ expect(JSON.stringify(s.pipeline.get(p.id))).toBe(before);
+});

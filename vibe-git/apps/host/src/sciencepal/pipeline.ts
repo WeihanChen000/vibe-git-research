@@ -1,3 +1,4 @@
+import {hasRunCapacity} from "./run-budget.js";
 import {executionHistory} from './execution-history.js';
 import {validateScientificChecks,checkScientificResult,scientificError} from "./scientific-checks.js";
 import {constrainResearch} from "./research-constraints.js";
@@ -132,7 +133,7 @@ export class SciencePALPipeline {
     });
   }
   private queue(p: SPProject, kind: SPRun["kind"], agentId: string, context: unknown, files: string[] = [], taskKey: string | null = null): SPRun {
-    if (p.runs.length + p.runs.reduce((n, r) => n + (r.continuations?.length ?? 0), 0) >= p.maxRuns) throw invalidState("本项目达到 32 次运行上限；请结束当前实验并检查任务设计");
+    if (!hasRunCapacity(p)) throw invalidState(`本项目达到 ${p.maxRuns} 次运行上限（含续接）；请结束当前实验并检查任务设计`);
     const resultSchemas = this.contracts(p);
     const contextFile = this.storeFile(p, "context.json", Buffer.from(JSON.stringify({ ...object(context), ...(resultSchemas ? { resultSchemas } : {}), ...(p.scientificChecks ? {scientificChecks:this.scienceRules(p)} : {}), ...(p.source ? { source: { filename: p.source.artifact.filename, sourceUrl: p.source.sourceUrl, attribution: p.source.attribution } } : {}) }, null, 2)));
     const metas = [contextFile, ...(p.source ? [this.file(p.id, p.source.artifact.id)] : []), ...files.map(id => this.file(p.id, id))];
@@ -283,7 +284,8 @@ export class SciencePALPipeline {
           const execution = p.runs.find(r => r.id === t.executionId);
           if (!execution || execution.status !== "COLLECTED" || execution.output?.id !== t.artifactId || execution.resultValidation?.status === "FAILED" || execution.scientificValidation?.status === "FAILED") throw invalidState("原成果未通过文件或科学检查，必须修复成果后返工");
           const reviews = p.runs.filter(r => r.kind === "REVIEW" && r.revision === p.revision && r.taskKey === t.key && r.inputs.some(f => f.artifactId === t.artifactId));
-          if (reviews.length >= 2 || p.runs.length >= p.maxRuns) throw invalidState("同一成果最多补充复审一次；仍未通过时请返工或提出研究变更");
+          if (reviews.length >= 2) throw invalidState("同一成果最多补充复审一次；仍未通过时请返工或提出研究变更");
+          if (!hasRunCapacity(p)) throw invalidState("已达到项目运行上限（含续接），无法新增补证复审");
           t.feedback = [t.feedback, "Captain-supplied supplemental evidence (a claim to evaluate, not an override):", note, "Keep all frozen acceptance criteria, original artifact bytes and numeric checks. Independently review this evidence; reject if it does not resolve the original review."].filter(Boolean).join("\n");
           this.review(p, t); p.phase = "EXECUTING"; p.error = null;
           this.save(p, `${t.title} 补充证据后复审：原成果与退回评审保留，没有重新执行或直接放行`); break;
@@ -308,7 +310,7 @@ export class SciencePALPipeline {
           const r = p.runs.find(r => r.id === data.runId);
           if (!r || r.revision !== p.revision || !["FAILED", "INVALID"].includes(r.status)) throw invalidState("仅能重试确定失败或无效输出；未知提交不得重发");
           if (!isLatestSPRun(p.runs, r)) throw invalidState("该运行已经被后续尝试替代");
-          if (p.runs.length >= p.maxRuns) throw invalidState("已达到项目运行上限");
+          if (!hasRunCapacity(p)) throw invalidState("已达到项目运行上限");
           const retry: SPRun = { ...r, id: randomUUID(), status: "READY", output: null, threadId: null, runId: null, sandboxId: null, projectId: null,
             error: null, remoteStatus: null, createdAt: now(), updatedAt: now(), prompt: `${r.prompt}\nPrevious attempt failed validation: ${r.error ?? "unknown"}. Fix the protocol violation; read the original attachments again.${r.kind === "REVIEW" ? reviewOutputGuidance(p.tasks.find(t => t.key === r.taskKey)!.outputFilename) : ""}` };
           delete retry.resultValidation; delete retry.scientificValidation;
@@ -452,7 +454,7 @@ export class SciencePALPipeline {
         return r;
       }
       if (r.runId !== previousRunId || !["NEEDS_INPUT", "UNKNOWN"].includes(r.status) || r.output) throw revisionConflict("仅本人当前等待输入的运行可以续接");
-      if ((r.continuations?.length ?? 0) >= 6 || p.runs.length + p.runs.reduce((n, x) => n + (x.continuations?.length ?? 0), 0) >= p.maxRuns) throw invalidState("续接次数达到上限，请检查任务设计");
+      if ((r.continuations?.length ?? 0) >= 6 || !hasRunCapacity(p)) throw invalidState("续接次数达到上限，请检查任务设计");
       if (this.list().some(other => other.runs.some(x => x.runId === nextId || x.continuations?.some(c => c.previousRunId === nextId || c.runId === nextId)))) throw revisionConflict("续接运行已存在，不能复用旧运行");
       (r.continuations ??= []).push({ ...transition, at: now() });
       r.runId = nextId; r.status = "RUNNING"; r.remoteStatus = "running"; r.error = null; r.updatedAt = now();

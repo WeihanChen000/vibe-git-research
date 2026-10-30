@@ -1,3 +1,4 @@
+import {hasRunCapacity} from "./run-budget.js";
 import { isLocalResearchPlatform, researchPlatformName } from "@vibe-git/protocol";
 import {AgentExecutor} from '@vibe-git/relay/agent-executor';
 import {AgentRegistry} from '@vibe-git/relay/agent-registry';
@@ -125,7 +126,7 @@ export class SciencePALMemberConnector {
     const j = this.journal, p = await this.request<SPProject>(`/api/sciencepal-team/projects/${j.projectId}`);
     const r = p.runs.find(r => r.id === j.localRunId);
     if (!r || !isLatestSPRun(p.runs, r) || r.revision !== p.revision || r.ownerNodeId !== j.packet?.run.ownerNodeId || p.paused || !["RUNNING", "NEEDS_INPUT"].includes(r.status)) throw new Error("项目已暂停、被新版本替代或不允许回复，未提交答复");
-    if ((r.continuations?.length ?? 0) >= 6 || p.runs.length + p.runs.reduce((n, x) => n + (x.continuations?.length ?? 0), 0) >= p.maxRuns) throw new Error("续接次数已达上限，未提交答复");
+    if ((r.continuations?.length ?? 0) >= 6 || !hasRunCapacity(p)) throw new Error("续接次数已达上限，未提交答复");
   }
   async reply(content: string): Promise<string> {
     const j = this.journal;
