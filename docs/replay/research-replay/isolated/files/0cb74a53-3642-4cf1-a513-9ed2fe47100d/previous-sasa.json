@@ -1,0 +1,257 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "5f2d65e7a21884add0fd0044e14e2842970ff14127f00c7a12139dc27821a567",
+      "size": 39208
+    },
+    {
+      "filename": "source-1CRN.pdb",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    },
+    {
+      "filename": "previous-sasa.json",
+      "sha256": "23e795856bb3e14d27ef50273df8e232982f94eafb39c0bb50a1820d67700e31",
+      "size": 11777
+    }
+  ],
+  "result": {
+    "source_sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+    "method": "Shrake-Rupley",
+    "probe_radius_A": 1.4,
+    "n_points": 5000,
+    "total_A2": 2970.926660612643,
+    "atom_count": 327,
+    "residue_count": 46,
+    "residues": [
+      {
+        "residue_id": 1,
+        "area_A2": 72.13046039903105
+      },
+      {
+        "residue_id": 2,
+        "area_A2": 25.1474511708321
+      },
+      {
+        "residue_id": 3,
+        "area_A2": 0.0
+      },
+      {
+        "residue_id": 4,
+        "area_A2": 0.0
+      },
+      {
+        "residue_id": 5,
+        "area_A2": 56.16372766278967
+      },
+      {
+        "residue_id": 6,
+        "area_A2": 45.61333464715793
+      },
+      {
+        "residue_id": 7,
+        "area_A2": 121.85424607768644
+      },
+      {
+        "residue_id": 8,
+        "area_A2": 98.92076648168972
+      },
+      {
+        "residue_id": 9,
+        "area_A2": 6.507507589016511
+      },
+      {
+        "residue_id": 10,
+        "area_A2": 53.74203800293753
+      },
+      {
+        "residue_id": 11,
+        "area_A2": 62.66129927388882
+      },
+      {
+        "residue_id": 12,
+        "area_A2": 78.18786346343575
+      },
+      {
+        "residue_id": 13,
+        "area_A2": 7.970346225863446
+      },
+      {
+        "residue_id": 14,
+        "area_A2": 85.17153621909897
+      },
+      {
+        "residue_id": 15,
+        "area_A2": 93.6149200932906
+      },
+      {
+        "residue_id": 16,
+        "area_A2": 20.88143751891572
+      },
+      {
+        "residue_id": 17,
+        "area_A2": 91.42659019769383
+      },
+      {
+        "residue_id": 18,
+        "area_A2": 141.04633638075882
+      },
+      {
+        "residue_id": 19,
+        "area_A2": 110.590126439474
+      },
+      {
+        "residue_id": 20,
+        "area_A2": 51.52923711118857
+      },
+      {
+        "residue_id": 21,
+        "area_A2": 35.634288510444655
+      },
+      {
+        "residue_id": 22,
+        "area_A2": 79.46193661542648
+      },
+      {
+        "residue_id": 23,
+        "area_A2": 67.57771836084237
+      },
+      {
+        "residue_id": 24,
+        "area_A2": 62.14674459899748
+      },
+      {
+        "residue_id": 25,
+        "area_A2": 98.98631267081423
+      },
+      {
+        "residue_id": 26,
+        "area_A2": 0.0
+      },
+      {
+        "residue_id": 27,
+        "area_A2": 12.438072996934809
+      },
+      {
+        "residue_id": 28,
+        "area_A2": 118.18376705484704
+      },
+      {
+        "residue_id": 29,
+        "area_A2": 166.7188718397474
+      },
+      {
+        "residue_id": 30,
+        "area_A2": 27.180353911485184
+      },
+      {
+        "residue_id": 31,
+        "area_A2": 34.081124812241
+      },
+      {
+        "residue_id": 32,
+        "area_A2": 6.410406237969709
+      },
+      {
+        "residue_id": 33,
+        "area_A2": 49.78280816213914
+      },
+      {
+        "residue_id": 34,
+        "area_A2": 82.31759105612821
+      },
+      {
+        "residue_id": 35,
+        "area_A2": 36.340443894730186
+      },
+      {
+        "residue_id": 36,
+        "area_A2": 140.96508800889686
+      },
+      {
+        "residue_id": 37,
+        "area_A2": 38.08013249390948
+      },
+      {
+        "residue_id": 38,
+        "area_A2": 84.6132292116396
+      },
+      {
+        "residue_id": 39,
+        "area_A2": 119.46955306956002
+      },
+      {
+        "residue_id": 40,
+        "area_A2": 48.7172025535086
+      },
+      {
+        "residue_id": 41,
+        "area_A2": 53.13790320113949
+      },
+      {
+        "residue_id": 42,
+        "area_A2": 76.30687557713964
+      },
+      {
+        "residue_id": 43,
+        "area_A2": 105.69586085860394
+      },
+      {
+        "residue_id": 44,
+        "area_A2": 61.3576539332587
+      },
+      {
+        "residue_id": 45,
+        "area_A2": 73.18773601190875
+      },
+      {
+        "residue_id": 46,
+        "area_A2": 68.97576001558085
+      }
+    ],
+    "code": "#!/usr/bin/env python3\n\"\"\"\nSASA REWORK for frozen 1CRN chain A (Shrake-Rupley).\n\nThis is the REWORK attempt (attempt 2) of the sasa task. The first pilot\n(n_points=100) was rejected with request_changes. Per the frozen protocol and\ncaptain feedback, this rework:\n  - does NOT ask the verification-phrase question again (already handled in\n    the first attempt lifecycle);\n  - actually executes Bio.PDB.SASA.ShrakeRupley at n_points=1000 and n_points=5000;\n  - reports both measured totals and abs(total_1000-total_5000)/abs(total_5000)\n    with the 5000-point denominator stated;\n  - keeps the top-level total_A2 and residues at one stated resolution (5000);\n  - retains the truthful pilot history (n_points=100) in evidence;\n  - reads Bio.__version__ at runtime rather than hard-coding it.\n\nFrozen method: Shrake-Rupley, probe_radius_A=1.4, radii C=1.70 N=1.55 O=1.52 S=1.80.\nFilter: chain A, heavy ATOM records only, alternate location blank/A, no HETATM,\nno hydrogens. Units: coordinates/probe/radii in Angstrom (A), areas in square\nAngstrom (A2).\n\"\"\"\n\nimport hashlib\nimport json\nimport math\nimport sys\n\nimport Bio\nfrom Bio.PDB import PDBParser\nfrom Bio.PDB.SASA import ShrakeRupley\n\n# ---------------------------------------------------------------------------\n# 1. Frozen source hash and filter\n# ---------------------------------------------------------------------------\nSOURCE = \"source-1CRN.pdb\"\nFROZEN_SHA256 = \"42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811\"\n\nwith open(SOURCE, \"rb\") as fh:\n    source_bytes = fh.read()\nsource_sha256 = hashlib.sha256(source_bytes).hexdigest()\nassert source_sha256 == FROZEN_SHA256, \"source hash mismatch\"\n\n# ---------------------------------------------------------------------------\n# 2. Parse structure with the frozen filter\n# ---------------------------------------------------------------------------\nparser = PDBParser(QUIET=True)\nstructure = parser.get_structure(\"1CRN\", SOURCE)\n\n# Keep only chain A, heavy ATOM records, altloc blank/A, no HETATM/hydrogen.\nkept_atoms = []\nfor model in structure:\n    for chain in model:\n        if chain.id != \"A\":\n            continue\n        for residue in chain:\n            for atom in residue:\n                if atom.element == \"H\":\n                    continue\n                altloc = atom.get_altloc()\n                if altloc not in (\" \", \"A\"):\n                    continue\n                kept_atoms.append(atom)\n\n# Build a filtered structure containing only the kept atoms.\nfiltered = structure.copy()\nfor model in list(filtered):\n    for chain in list(model):\n        if chain.id != \"A\":\n            model.detach_child(chain.id)\n            continue\n        for residue in list(chain):\n            for atom in list(residue):\n                if atom not in kept_atoms:\n                    residue.detach_child(atom.id)\n\natom_count = sum(1 for a in kept_atoms)\nresidue_ids = sorted({r.id[1] for r in filtered[0][\"A\"]})\nresidue_count = len(residue_ids)\nassert atom_count == 327, f\"atom_count={atom_count}\"\nassert residue_count == 46, f\"residue_count={residue_count}\"\nassert residue_ids == list(range(1, 47)), \"residue ids not 1..46\"\n\n# ---------------------------------------------------------------------------\n# 3. Run Shrake-Rupley at 1000 and 5000 points\n# ---------------------------------------------------------------------------\nRADII = {\"C\": 1.70, \"N\": 1.55, \"O\": 1.52, \"S\": 1.80}\nPROBE = 1.4\n\ndef run_sasa(n_points):\n    sr = ShrakeRupley(probe_radius=PROBE, n_points=n_points, radii_dict=RADII)\n    sr.compute(filtered, level=\"R\")\n    total = 0.0\n    rows = []\n    for residue in filtered[0][\"A\"]:\n        rid = residue.id[1]\n        area = float(residue.sasa)\n        total += area\n        rows.append({\"residue_id\": rid, \"area_A2\": area})\n    return total, rows\n\ntotal_1000, rows_1000 = run_sasa(1000)\ntotal_5000, rows_5000 = run_sasa(5000)\n\n# Convergence metric: abs(total_1000-total_5000)/abs(total_5000), denominator 5000.\nrel_diff = abs(total_1000 - total_5000) / abs(total_5000)\n\n# Top-level resolution: 5000 points.\nfinal_n_points = 5000\nfinal_total = total_5000\nfinal_rows = rows_5000\n\n# ---------------------------------------------------------------------------\n# 4. Assemble result\n# ---------------------------------------------------------------------------\nresult = {\n    \"source_sha256\": source_sha256,\n    \"method\": \"Shrake-Rupley\",\n    \"probe_radius_A\": PROBE,\n    \"n_points\": final_n_points,\n    \"total_A2\": final_total,\n    \"atom_count\": atom_count,\n    \"residue_count\": residue_count,\n    \"residues\": final_rows,\n    \"code\": open(__file__).read(),\n    \"tool_versions\": {\n        \"python\": sys.version.split()[0],\n        \"biopython\": Bio.__version__,\n    },\n    \"evidence\": {\n        \"attempt\": \"rework\",\n        \"attempt_number\": 2,\n        \"pilot_history\": {\n            \"n_points\": 100,\n            \"total_A2\": 2975.651128,\n            \"status\": \"exploratory_pilot\",\n            \"note\": \"First attempt pilot, deliberately incomplete; rejected with request_changes.\",\n        },\n        \"convergence\": {\n            \"n_points_1000_total_A2\": total_1000,\n            \"n_points_5000_total_A2\": total_5000,\n            \"relative_difference\": rel_diff,\n            \"denominator\": \"abs(total_5000)\",\n            \"criterion\": \"<=0.02\",\n            \"met\": rel_diff <= 0.02,\n        },\n        \"top_level_resolution\": \"n_points=5000\",\n        \"units\": {\n            \"coordinates_probe_radii\": \"Angstrom (A)\",\n            \"areas\": \"square Angstrom (A2)\",\n        },\n        \"radii_A\": RADII,\n        \"filter\": {\n            \"chain\": \"A\",\n            \"heavy_atom_only\": True,\n            \"altloc_blank_or_A\": True,\n            \"no_hetatm\": True,\n            \"no_hydrogen\": True,\n        },\n        \"limitation\": (\n            \"Single fixed 1CRN chain A structure; computational geometry only. \"\n            \"Sampling agreement between 1000- and 5000-point runs is not \"\n            \"experimental validation and is not an uncertainty estimate for \"\n            \"structural variability. No biological function ranking is implied.\"\n        ),\n    },\n}\n\nprint(\"source_sha256:\", source_sha256)\nprint(\"atom_count:\", atom_count, \"residue_count:\", residue_count)\nprint(\"total_1000:\", total_1000)\nprint(\"total_5000:\", total_5000)\nprint(\"rel_diff:\", rel_diff, \"met<=0.02:\", rel_diff <= 0.02)\nprint(\"final n_points:\", final_n_points, \"final total:\", final_total)\nprint(\"sum(residues):\", math.fsum(r[\"area_A2\"] for r in final_rows))\n",
+    "tool_versions": {
+      "python": "3.12.3",
+      "biopython": "1.84"
+    },
+    "evidence": {
+      "attempt": "rework",
+      "attempt_number": 2,
+      "pilot_history": {
+        "n_points": 100,
+        "total_A2": 2975.651128,
+        "status": "exploratory_pilot",
+        "note": "First attempt pilot, deliberately incomplete; rejected with request_changes."
+      },
+      "convergence": {
+        "n_points_1000_total_A2": 2967.616530309649,
+        "n_points_5000_total_A2": 2970.926660612643,
+        "relative_difference": 0.0011141743574078402,
+        "denominator": "abs(total_5000)",
+        "criterion": "<=0.02",
+        "met": true
+      },
+      "top_level_resolution": "n_points=5000",
+      "units": {
+        "coordinates_probe_radii": "Angstrom (A)",
+        "areas": "square Angstrom (A2)"
+      },
+      "radii_A": {
+        "C": 1.7,
+        "N": 1.55,
+        "O": 1.52,
+        "S": 1.8
+      },
+      "filter": {
+        "chain": "A",
+        "heavy_atom_only": true,
+        "altloc_blank_or_A": true,
+        "no_hetatm": true,
+        "no_hydrogen": true
+      },
+      "limitation": "Single fixed 1CRN chain A structure; computational geometry only. Sampling agreement between 1000- and 5000-point runs is not experimental validation and is not an uncertainty estimate for structural variability. No biological function ranking is implied."
+    }
+  }
+}

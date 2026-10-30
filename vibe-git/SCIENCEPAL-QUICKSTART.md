@@ -29,6 +29,7 @@
 |---|---|
 | 等待本人执行 / 评审 | 打开“现在轮到谁”；SciencePAL 启动本人连接器，Codex 准备任务包并启动本人 Agent |
 | 评审退回 | 队长查看具体修改项并安排返工，作者处理新的尝试，旧文件保留 |
+| 结果不变、仅缺证据 | 队长从“现在轮到谁”提交“补充证据复审”，写清来源；原成果不重算，仍由独立评审者判断 |
 | 数值检查失败 | 作者按失败项修正，队长确认重试；评审写“通过”不能跳过已冻结的检查 |
 | 等待本人回答 | 在 SciencePAL 原线程回答，保持本人连接器运行；回到本页看同一线程是否接续 |
 | 已完成 | 查看结论、原始成果、独立评审和文件交接记录 |
@@ -36,3 +37,7 @@
 本机入口在线不代表模型正在执行。只有配置的数值检查通过、独立评审通过且交接依据齐全，成果才可供下游使用。没有配置的检查不等于已经核验。
 
 跨电脑房间配置、已有房间重开、升级和故障处理见下方“完整接入说明”。真实执行使用各自账号额度；本项目尚未完成两位真人各自账号的联合验收。
+
+## 暂时找不到队友
+
+可以先做[单机多成员验收](https://github.com/WeihanChen000/vibe-git-research/blob/codex/research-team-share/vibe-git/SCIENCEPAL-ISOLATED-ACCEPTANCE.md)：[已有记录可以直接回放](https://weihanchen000.github.io/vibe-git-research/replay/?case=isolated&step=members)；`npm run research:acceptance -- --live` 使用现有 Codex 和一个 SciencePAL 账号，验证真实返工、等待输入与连接器恢复。不会把它标成真人跨账号验证。

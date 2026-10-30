@@ -1,0 +1,33 @@
+{
+  "revision": 1,
+  "requirement": "# 1CRN 几何与溶剂可及表面积复核\nCodex prepares geometry; SciencePAL Biology independently reviews before handoff. A deliberately injected tenfold unit error in the first candidate tests rejection, not a naturally observed model failure. Corrected geometry is reviewed again. Biology then computes SASA with installed BioPython and requests operator confirmation of 1.4 angstrom probe BEFORE calculation using the user-question tool. It must stop and wait; on reply preserve the original thread and frozen files. This explicit confirmation tests NEEDS_INPUT; it is not scientific uncertainty.\nFixed method: model 0, chain A, standard heavy ATOM coordinates; SG distances for SSBOND pairs in angstrom. SASA: BioPython PDBParser + ShrakeRupley, 960 sphere points, radii C=1.70,N=1.55,O=1.52,S=1.80 angstrom. Report all 46 whole-residue areas and total A^2, source hash, upstream geometry.json hash, executed Python and version/log. Do not execute untrusted candidate code. No new dependencies or internet installs. Codex independently computes 5000-point NumPy sphere baseline: total relative difference <=3%, each CYS residue difference <=max(3 A^2,5% baseline). Passing code/schema alone is not scientific approval. Single structure, approximate numerical surface, no causal or biological generalization. Source https://www.rcsb.org/structure/1CRN; method https://biopython.org/docs/1.84/api/Bio.PDB.SASA.html",
+  "task": {
+    "key": "geometry",
+    "assigneeAgentId": "member_node-1f42559b-8124-4e6e-8313-fc011375ca5f",
+    "reviewerAgentId": "member_node-695a8208-03e9-48d1-9e7d-f23b8fec8883",
+    "outputFilename": "geometry.json",
+    "title": "Codex 重算结构几何与单位",
+    "goal": "Parse actual source-1crn.txt. Return sourceSha256, atomCount, residueCount, disulfides:[{residue1,residue2,distanceA}], pythonCode, toolLog, limitations, faultInjection. Initial candidate intentionally divides distances by 10 while field remains distanceA; label faultInjection true, but reviewer must reject because acceptance still requires correct angstrom. Rework fixes calculation and sets false.",
+    "boundary": "Descriptive 1CRN reproduction only. One account, two workflow identities. Real tools and unchanged source; no fabricated results, no installs, no inference of biological function.",
+    "acceptance": [
+      "Source SHA256 equals the actual source-1crn.txt bytes; chain A has 327 heavy atoms and 46 standard residues.",
+      "All three SSBOND SG distances in geometry.json are in angstrom and agree with independent calculation from source coordinates within 0.0001 angstrom.",
+      "geometry.json includes executed Python source, actual computation log, scope and limitations; fault injection is explicitly labeled."
+    ],
+    "dependencies": [],
+    "status": "REVIEWING",
+    "attempt": 2,
+    "executionId": "1231321e-84ec-407e-8b41-e39b705afb9d",
+    "reviewId": null,
+    "artifactId": "847b0763-96ea-424f-ba99-cef20b1e8ea8",
+    "feedback": "The candidate geometry.json is the deliberately fault-injected version. Criterion 1 (source hash, 327 heavy atoms, 46 residues) and Criterion 3 (pythonCode, toolLog, limitations, explicit faultInjection label) pass. Criterion 2 FAILS: all three SSBOND SG distances are divided by 10 (0.2004, 0.2035, 0.2051 A) instead of the correct angstrom values (2.0041, 2.0347, 2.0508 A) independently recomputed from source-1crn.txt coordinates. Differences are ~1.8 A, far exceeding the 0.0001 A tolerance. The candidate must be reworked to report correct angstrom distances and set faultInjection to false.\nFix the divide-by-ten unit error: recompute the three SSBOND SG distances from source-1crn.txt coordinates and report them in correct angstrom (3-40=2.004107, 4-32=2.034702, 16-26=2.050763 A), so each agrees with the independent calculation within 0.0001 A.\nSet faultInjection to false in the reworked geometry.json, since the corrected candidate no longer contains the deliberate fault.\nRegenerate the toolLog to reflect the corrected (non-faulted) distances and faultInjection=false.\nRepair the measured unit conversion based on the independent review. Preserve original evidence.",
+    "review": null
+  },
+  "feedback": "The candidate geometry.json is the deliberately fault-injected version. Criterion 1 (source hash, 327 heavy atoms, 46 residues) and Criterion 3 (pythonCode, toolLog, limitations, explicit faultInjection label) pass. Criterion 2 FAILS: all three SSBOND SG distances are divided by 10 (0.2004, 0.2035, 0.2051 A) instead of the correct angstrom values (2.0041, 2.0347, 2.0508 A) independently recomputed from source-1crn.txt coordinates. Differences are ~1.8 A, far exceeding the 0.0001 A tolerance. The candidate must be reworked to report correct angstrom distances and set faultInjection to false.\nFix the divide-by-ten unit error: recompute the three SSBOND SG distances from source-1crn.txt coordinates and report them in correct angstrom (3-40=2.004107, 4-32=2.034702, 16-26=2.050763 A), so each agrees with the independent calculation within 0.0001 A.\nSet faultInjection to false in the reworked geometry.json, since the corrected candidate no longer contains the deliberate fault.\nRegenerate the toolLog to reflect the corrected (non-faulted) distances and faultInjection=false.\nRepair the measured unit conversion based on the independent review. Preserve original evidence.",
+  "upstream": [],
+  "source": {
+    "filename": "source-1crn.txt",
+    "sourceUrl": "https://files.rcsb.org/download/1CRN.pdb",
+    "attribution": "RCSB PDB public 1CRN coordinate file, unchanged bytes; controlled unit fault injection in candidate only."
+  }
+}

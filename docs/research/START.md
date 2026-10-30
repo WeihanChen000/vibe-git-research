@@ -4,6 +4,8 @@
 
 ## 1. 只看作品，不配置账号
 
+现在可以[直接打开原拓扑回放](https://weihanchen000.github.io/vibe-git-research/replay/?case=isolated&step=members)，无需安装或登录。下拉框可切换案例。
+
 先读 [完整展示](SHOWCASE.md) 和 [原版对照](COMPARISON.md)。要自己点击：下载仓库，安装 Node.js 24+，进入 `vibe-git`，双击 `open-replay.cmd`；或者运行：
 
 ```powershell
@@ -66,3 +68,7 @@ cd vibe-git-research/vibe-git
 ## 数值检查如何使用
 
 1CRN 模板自动冻结独立参考和求和检查。自己的研究在发布前打开“协议 → 可执行科学检查”，选择任务、求和字段或独立参考值及容差，无需写 JSON。已配置的检查在成果提交、批准和交接时由 Host 执行；失败后原文件保留，按原待办修正重试。检查不能由 Agent 评审绕过，发布后也不能删除或放宽。没有配置检查的任务会明确显示缺少检查记录，不追认历史成果。
+
+## 找不到队友时
+
+使用[单机多成员一键验收](../../vibe-git/SCIENCEPAL-ISOLATED-ACCEPTANCE.md)，现有 Codex 和一个 SciencePAL 账号即可跑受控的真实闭环。应用身份隔离与跨账号隔离分别说明，不能相互代替。

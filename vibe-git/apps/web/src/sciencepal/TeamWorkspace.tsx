@@ -13,7 +13,7 @@ import {ResearchGantt} from "./ResearchGantt";
 import { commandNames, type SendResearchCommand } from "./ResearchCommand";
 export function TeamWorkspace() {
  const [liveState,setState]=useState<TeamState|null>(null),[liveError,setError]=useState(""),[selected,setSelected]=useState("");
- const [replayMode]=useState(()=>new URLSearchParams(location.search).get("replay")==="1");const replay=useResearchReplay(replayMode);const state=replayMode?replay.state:liveState,error=replayMode?replay.error:liveError;
+ const [replayMode]=useState(()=>import.meta.env.VITE_PUBLIC_REPLAY==="1"||new URLSearchParams(location.search).get("replay")==="1");const replay=useResearchReplay(replayMode);const state=replayMode?replay.state:liveState,error=replayMode?replay.error:liveError;
  const [revision,setRevision]=useState<number|null>(null),[target,setTarget]=useState<ResearchTarget>({type:"next"}),[panel,setPanel]=useState(true);
  const [view,setViewState]=useState<"graph"|"list">(new URLSearchParams(location.search).get("view")==="gantt"?"list":"graph"),[relations,setRelations]=useState<"all"|"handoffs">("all");
  const [updated,setUpdated]=useState(""),[busy,setBusy]=useState(false),[refreshKey,setRefreshKey]=useState(0);

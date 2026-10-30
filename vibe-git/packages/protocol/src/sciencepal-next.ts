@@ -24,7 +24,11 @@ export function projectNextActions(p: SPProject, viewerId: string) {
     if (change?.status === "REJECTED") control("dismiss-change", "等待队长关闭未通过的变更", change.result?.rationale || "变更评审未通过，关闭后恢复原阶段。", { changeId: change.id });
     else control("apply-change", "等待队长确认研究变更", "确认后生成下一版协议并重新对齐。", { changeId: change?.id });
   } else if (p.phase === "CHANGES_REQUESTED") {
-    for (const task of p.tasks.filter(t => t.status === "CHANGES_REQUESTED")) control("rework", `等待队长安排返工：${task.title}`, task.review?.requiredChanges.join("；") || task.feedback || "查看评审意见并给出明确修正说明。", { taskKey: task.key });
+    for (const task of p.tasks.filter(t => t.status === "CHANGES_REQUESTED")) {
+      if(task.attempt < 3) control("rework", `等待队长安排返工：${task.title}`, task.review?.requiredChanges.join("；") || task.feedback || "查看评审意见并给出明确修正说明。", { taskKey: task.key });
+      if(task.artifactId && task.reviewId && p.runs.length < p.maxRuns && p.runs.filter(r=>r.kind==="REVIEW"&&r.revision===p.revision&&r.taskKey===task.key&&r.inputs.some(f=>f.artifactId===task.artifactId)).length < 2) control("supplement-review", `仅缺证据时补充复审：${task.title}`, "原成果不变，由原独立评审者核查新增来源；每份成果最多一次。若数值或方法有错，应返工。", {taskKey:task.key,reviewId:task.reviewId});
+      else if(task.attempt >= 3) control("change", `等待队长处理执行上限：${task.title}`, "已达三次执行上限。保留原记录，说明需要改变的研究范围并提交影响评审。");
+    }
   } else {
     for (const run of p.runs.filter(r => r.revision === p.revision && isLatestSPRun(p.runs, r))) {
       const platform = run.agent.platform ?? "sciencepal", local = isLocalResearchPlatform(platform), owner = run.ownerNodeId ?? null;

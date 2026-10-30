@@ -1,0 +1,274 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "3f4bbba222487b80f03262fe70fb9e77db68f552f0a2e7db8c2dd08303e5ced0",
+      "size": 4268
+    },
+    {
+      "filename": "source-1crn.txt",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    },
+    {
+      "filename": "geometry.json",
+      "sha256": "4f3ded1a0ecc5831045e029bc6a366f2c17605407b2d46ca9e732545e2f44281",
+      "size": 7429
+    }
+  ],
+  "result": {
+    "sourceSha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+    "upstreamSha256": "4f3ded1a0ecc5831045e029bc6a366f2c17605407b2d46ca9e732545e2f44281",
+    "atomCount": 327,
+    "residueCount": 46,
+    "probeRadiusA": 1.4,
+    "nPoints": 960,
+    "atomicRadiiA": {
+      "C": 1.7,
+      "N": 1.55,
+      "O": 1.52,
+      "S": 1.8
+    },
+    "totalSasaA2": 2970.1524474615703,
+    "residues": [
+      {
+        "id": 1,
+        "name": "THR",
+        "sasaA2": 71.36573164287555
+      },
+      {
+        "id": 2,
+        "name": "THR",
+        "sasaA2": 25.786248787533395
+      },
+      {
+        "id": 3,
+        "name": "CYS",
+        "sasaA2": 0.0
+      },
+      {
+        "id": 4,
+        "name": "CYS",
+        "sasaA2": 0.0
+      },
+      {
+        "id": 5,
+        "name": "PRO",
+        "sasaA2": 56.408673159984545
+      },
+      {
+        "id": 6,
+        "name": "SER",
+        "sasaA2": 45.59479288354064
+      },
+      {
+        "id": 7,
+        "name": "ILE",
+        "sasaA2": 123.4305691466374
+      },
+      {
+        "id": 8,
+        "name": "VAL",
+        "sasaA2": 99.11666309912621
+      },
+      {
+        "id": 9,
+        "name": "ALA",
+        "sasaA2": 6.415524897712055
+      },
+      {
+        "id": 10,
+        "name": "ARG",
+        "sasaA2": 53.82572505704079
+      },
+      {
+        "id": 11,
+        "name": "SER",
+        "sasaA2": 62.576745276348845
+      },
+      {
+        "id": 12,
+        "name": "ASN",
+        "sasaA2": 78.27747895420374
+      },
+      {
+        "id": 13,
+        "name": "PHE",
+        "sasaA2": 7.799265561924459
+      },
+      {
+        "id": 14,
+        "name": "ASN",
+        "sasaA2": 84.57326335692116
+      },
+      {
+        "id": 15,
+        "name": "VAL",
+        "sasaA2": 94.46242892575029
+      },
+      {
+        "id": 16,
+        "name": "CYS",
+        "sasaA2": 20.39023222876736
+      },
+      {
+        "id": 17,
+        "name": "ARG",
+        "sasaA2": 91.44031627676429
+      },
+      {
+        "id": 18,
+        "name": "LEU",
+        "sasaA2": 141.14909280802158
+      },
+      {
+        "id": 19,
+        "name": "PRO",
+        "sasaA2": 109.75060472934497
+      },
+      {
+        "id": 20,
+        "name": "GLY",
+        "sasaA2": 52.07119137490375
+      },
+      {
+        "id": 21,
+        "name": "THR",
+        "sasaA2": 35.631484419089844
+      },
+      {
+        "id": 22,
+        "name": "PRO",
+        "sasaA2": 78.99901246594452
+      },
+      {
+        "id": 23,
+        "name": "GLU",
+        "sasaA2": 67.25833094076509
+      },
+      {
+        "id": 24,
+        "name": "ALA",
+        "sasaA2": 62.05067773252361
+      },
+      {
+        "id": 25,
+        "name": "ILE",
+        "sasaA2": 99.2784485758014
+      },
+      {
+        "id": 26,
+        "name": "CYS",
+        "sasaA2": 0.0
+      },
+      {
+        "id": 27,
+        "name": "ALA",
+        "sasaA2": 12.240901615447267
+      },
+      {
+        "id": 28,
+        "name": "THR",
+        "sasaA2": 118.593441920945
+      },
+      {
+        "id": 29,
+        "name": "TYR",
+        "sasaA2": 167.12162625894038
+      },
+      {
+        "id": 30,
+        "name": "THR",
+        "sasaA2": 27.24596494308205
+      },
+      {
+        "id": 31,
+        "name": "GLY",
+        "sasaA2": 34.5042299241012
+      },
+      {
+        "id": 32,
+        "name": "CYS",
+        "sasaA2": 6.278546222027784
+      },
+      {
+        "id": 33,
+        "name": "ILE",
+        "sasaA2": 49.47796895498582
+      },
+      {
+        "id": 34,
+        "name": "ILE",
+        "sasaA2": 81.73726258372461
+      },
+      {
+        "id": 35,
+        "name": "ILE",
+        "sasaA2": 36.16651728295027
+      },
+      {
+        "id": 36,
+        "name": "PRO",
+        "sasaA2": 140.81097497168815
+      },
+      {
+        "id": 37,
+        "name": "GLY",
+        "sasaA2": 38.06558778909733
+      },
+      {
+        "id": 38,
+        "name": "ALA",
+        "sasaA2": 84.94781974104541
+      },
+      {
+        "id": 39,
+        "name": "THR",
+        "sasaA2": 119.52974779645457
+      },
+      {
+        "id": 40,
+        "name": "CYS",
+        "sasaA2": 48.49287938155375
+      },
+      {
+        "id": 41,
+        "name": "PRO",
+        "sasaA2": 53.47502776012362
+      },
+      {
+        "id": 42,
+        "name": "GLY",
+        "sasaA2": 76.12872382692792
+      },
+      {
+        "id": 43,
+        "name": "ASP",
+        "sasaA2": 105.43638381987012
+      },
+      {
+        "id": 44,
+        "name": "TYR",
+        "sasaA2": 60.85744586481876
+      },
+      {
+        "id": 45,
+        "name": "ALA",
+        "sasaA2": 72.82435609497708
+      },
+      {
+        "id": 46,
+        "name": "ASN",
+        "sasaA2": 68.56453840728383
+      }
+    ],
+    "pythonCode": "\"\"\"1CRN SASA via BioPython PDBParser + ShrakeRupley (frozen protocol).\n\nModel 0, chain A, standard heavy ATOM coordinates; probe 1.4 A,\n960 sphere points, radii C=1.70, N=1.55, O=1.52, S=1.80 angstrom.\n\"\"\"\nimport hashlib\nimport json\nimport sys\n\nimport Bio\nfrom Bio.PDB import PDBParser\nfrom Bio.PDB.SASA import ShrakeRupley\n\nRADII = {\"C\": 1.70, \"N\": 1.55, \"O\": 1.52, \"S\": 1.80}\nPROBE = 1.4\nNPOINTS = 960\n\nsrc_bytes = open(\"source-1crn.txt\", \"rb\").read()\ngeo_bytes = open(\"geometry.json\", \"rb\").read()\nsource_sha = hashlib.sha256(src_bytes).hexdigest()\nupstream_sha = hashlib.sha256(geo_bytes).hexdigest()\n\nparser = PDBParser(QUIET=True)\nstructure = parser.get_structure(\"1CRN\", \"source-1crn.txt\")\nmodel = structure[0]\nchain = model[\"A\"]\n\natoms = [a for a in chain.get_atoms() if a.element != \"H\"]\nresidues = [r for r in chain.get_residues() if r.id[0] == \" \"]\natom_count = len(atoms)\nresidue_count = len(residues)\n\nsr = ShrakeRupley(probe_radius=PROBE, n_points=NPOINTS, radii_dict=RADII)\nsr.compute(chain, level=\"R\")\n\nres_list = []\nfor r in residues:\n    res_list.append({\n        \"id\": r.id[1],\n        \"name\": r.resname,\n        \"sasaA2\": float(r.sasa),\n    })\ntotal = float(sum(x[\"sasaA2\"] for x in res_list))\n\nlog = {\n    \"biopython_version\": Bio.__version__,\n    \"python_version\": sys.version,\n    \"probe_radius_A\": PROBE,\n    \"n_points\": NPOINTS,\n    \"radii_A\": RADII,\n    \"atomCount\": atom_count,\n    \"residueCount\": residue_count,\n    \"totalSasaA2\": total,\n    \"residue_sum_check_A2\": sum(x[\"sasaA2\"] for x in res_list),\n    \"sourceSha256\": source_sha,\n    \"upstreamSha256\": upstream_sha,\n}\nprint(json.dumps(log, indent=2))\n\nresult = {\n    \"sourceSha256\": source_sha,\n    \"upstreamSha256\": upstream_sha,\n    \"atomCount\": atom_count,\n    \"residueCount\": residue_count,\n    \"probeRadiusA\": PROBE,\n    \"nPoints\": NPOINTS,\n    \"atomicRadiiA\": RADII,\n    \"totalSasaA2\": total,\n    \"residues\": res_list,\n    \"pythonCode\": open(__file__, \"r\", encoding=\"utf-8\").read(),\n    \"toolLog\": json.dumps(log),\n    \"limitations\": [\n        \"Descriptive 1CRN reproduction only. Single structure, approximate numerical surface (Shrake-Rupley, 960 points); no causal or biological generalization, no inference of biological function.\",\n        \"Shrake-Rupley is a numerical approximation; values depend on probe radius, sphere-point count and radii set, and are not directly comparable to other parameterizations.\",\n        \"Model 0, chain A, standard heavy ATOM records only; hydrogens, hetero/water atoms excluded per frozen protocol.\",\n    ],\n}\nwith open(\"sasa_result.json\", \"w\", encoding=\"utf-8\") as fh:\n    json.dump(result, fh, ensure_ascii=False, indent=2)\nprint(\"WROTE sasa_result.json\")\n",
+    "toolLog": "{\"biopython_version\": \"1.84\", \"python_version\": \"3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]\", \"probe_radius_A\": 1.4, \"n_points\": 960, \"radii_A\": {\"C\": 1.7, \"N\": 1.55, \"O\": 1.52, \"S\": 1.8}, \"atomCount\": 327, \"residueCount\": 46, \"totalSasaA2\": 2970.1524474615703, \"residue_sum_check_A2\": 2970.1524474615703, \"sourceSha256\": \"42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811\", \"upstreamSha256\": \"4f3ded1a0ecc5831045e029bc6a366f2c17605407b2d46ca9e732545e2f44281\"}",
+    "limitations": [
+      "Descriptive 1CRN reproduction only. Single structure, approximate numerical surface (Shrake-Rupley, 960 points); no causal or biological generalization, no inference of biological function.",
+      "Shrake-Rupley is a numerical approximation; values depend on probe radius, sphere-point count and radii set, and are not directly comparable to other parameterizations.",
+      "Model 0, chain A, standard heavy ATOM records only; hydrogens, hetero/water atoms excluded per frozen protocol."
+    ]
+  }
+}

@@ -41,7 +41,7 @@ function ContinuationEvidence({run}:{run:SPRun}){
 function TaskReview({task,p}:{task:SPTask;p:SPProject}){
   const reviewer=memberForAgent(p,task.reviewerAgentId);
   return <section className="rt-detail-section"><h3><ShieldCheck size={15}/> 独立评审 <span>{reviewer?.label??"待分配"}</span></h3>
-    {task.review?<><div className={`rt-review-verdict ${task.review.verdict==="approve"?"approved":"attention"}`}>{task.review.verdict==="approve"?"通过 · 可以进入下游":"要求修改 · 下游暂不放行"}</div><p>{task.review.summary}</p>
+    {task.review?<><div className={`rt-review-verdict ${task.status==="APPROVED"?"approved":"attention"}`}>{task.status==="APPROVED"?"通过 · 可以进入下游":task.status==="REVIEWING"?"复审进行中 · 以下保留上一轮意见":task.review.verdict==="approve"?"评审同意 · 仍须通过全部交接检查":"要求修改 · 下游暂不放行"}</div><p>{task.review.summary}</p>
       <ul className="rt-checks">{task.review.checks.map(c=><li key={c.criterion}><span className={c.passed?"approved":"attention"}>{c.passed?"✓":"!"}</span><div>{c.criterion}<small>{c.evidence}</small></div></li>)}</ul>
       {!!task.review.requiredChanges.length&&<div className="rt-required"><strong>需要修正</strong><ol>{task.review.requiredChanges.map(c=><li key={c}>{c}</li>)}</ol></div>}</>:<p className="rt-note">{task.reviewId?"已派发独立评审，等待评审成员交回结论。":"执行成果提交后，由另一位成员按原验收标准评审。"}</p>}
   </section>;

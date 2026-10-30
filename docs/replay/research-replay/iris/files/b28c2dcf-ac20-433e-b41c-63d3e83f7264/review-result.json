@@ -1,0 +1,64 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "51434da3b7c3357da7995dc53e8ba8df76cbf604eb70cee688d437588b4d83d1",
+      "size": 12139
+    },
+    {
+      "filename": "source-iris.csv",
+      "sha256": "0fed2a99db77ec533a62dc66894d3ec6df3b58b6a8f3cf4a6b47e4086b7f97dc",
+      "size": 4551
+    },
+    {
+      "filename": "species_summary.json",
+      "sha256": "75fc73ff9713c1ecfd36a9204a6b88b3dbab2356d99a87ce63627a8c40871427",
+      "size": 2816
+    },
+    {
+      "filename": "data_audit.json",
+      "sha256": "ec3ec5116f0003c97c18069f0e01b82944458c03a6c7a6b5ab33836f5b59e625",
+      "size": 16124
+    }
+  ],
+  "result": {
+    "verdict": "request_changes",
+    "summary": "当前 Codex 独立用 Python csv/statistics 复算实际交接文件；未执行 Biology 提供的代码。",
+    "checks": [
+      {
+        "criterion": "Upstream data_audit.json rows exactly match the source; source_sha256, 150 records and cm units agree in both outputs",
+        "passed": true,
+        "evidence": "species_summary.json: Actual source hash 0fed2a99db77ec533a62dc66894d3ec6df3b58b6a8f3cf4a6b47e4086b7f97dc; all 150 upstream rows independently compared."
+      },
+      {
+        "criterion": "Exactly three summary_rows, each n=50; all four means match independent original-CSV computation within absolute error 1e-6",
+        "passed": true,
+        "evidence": "species_summary.json: [{\"species\": \"Iris-setosa\", \"n\": 50, \"petal_length_min\": 1.0, \"petal_length_max\": 1.9, \"sepal_length_mean\": 5.006, \"sepal_width_mean\": 3.428, \"petal_length_mean\": 1.462, \"petal_width_mean\": 0.24600000000000002}, {\"species\": \"Iris-versicolor\", \"n\": 50, \"petal_length_min\": 3.0, \"petal_length_max\": 5.1, \"sepal_length_mean\": 5.936, \"sepal_width_mean\": 2.77, \"petal_length_mean\": 4.26, \"petal_width_mean\": 1.3259999999999998}, {\"species\": \"Iris-virginica\", \"n\": 50, \"petal_length_min\": 4.5, \"petal_length_max\": 6.9, \"sepal_length_mean\": 6.587999999999999, \"sepal_width_mean\": 2.9739999999999998, \"petal_length_mean\": 5.5520000000000005, \"petal_width_mean\": 2.026}]"
+      },
+      {
+        "criterion": "All three petal_length minima and maxima match original CSV; petal_length_mean_order matches independently sorted means",
+        "passed": true,
+        "evidence": "species_summary.json: Independently computed minima/maxima and sorted means: [{\"species\": \"Iris-setosa\", \"n\": 50, \"petal_length_min\": 1.0, \"petal_length_max\": 1.9, \"sepal_length_mean\": 5.006, \"sepal_width_mean\": 3.428, \"petal_length_mean\": 1.462, \"petal_width_mean\": 0.24600000000000002}, {\"species\": \"Iris-versicolor\", \"n\": 50, \"petal_length_min\": 3.0, \"petal_length_max\": 5.1, \"sepal_length_mean\": 5.936, \"sepal_width_mean\": 2.77, \"petal_length_mean\": 4.26, \"petal_width_mean\": 1.3259999999999998}, {\"species\": \"Iris-virginica\", \"n\": 50, \"petal_length_min\": 4.5, \"petal_length_max\": 6.9, \"sepal_length_mean\": 6.587999999999999, \"sepal_width_mean\": 2.9739999999999998, \"petal_length_mean\": 5.5520000000000005, \"petal_width_mean\": 2.026}]"
+      },
+      {
+        "criterion": "versicolor_virginica_range_overlap correctly reports intersection of the two observed ranges",
+        "passed": true,
+        "evidence": "species_summary.json: Independent range intersection: True"
+      },
+      {
+        "criterion": "conclusion_zh states actual mean values and overlapping ranges, no perfect-classification or causal claim; limitations mark historical descriptive data, not a new discovery",
+        "passed": true,
+        "evidence": "species_summary.json: Current Codex scientific interpretation: 当前 Codex 阅读原始成果后确认：conclusion_zh 明确给出 1.462/4.260/5.552 cm、两组范围 [3.0,5.1] 与 [4.5,6.9] 的重叠，并写明不构成完美分类或因果结论。limitations 将数据限定为 Fisher 1936 历史数据与描述性统计，没有新的发现主张。代码交付不足单独在第 6 项判定，不混入科学结论判断。 Conclusion: 基于150条历史公开记录(单位cm),三种鸢尾花各50条。花瓣长度均值排序为 Iris-setosa < Iris-versicolor < Iris-virginica(均值分别为 1.462, 4.26, 5.552 cm)。versicolor 花瓣长度观测范围 [3.0,5.1] cm 与 virginica 范围 [4.5,6.9] cm 存在重叠。这些是描述性统计,不构成完美分类或因果结论。"
+      },
+      {
+        "criterion": "citation includes UCI source URL, DOI 10.24432/C56C76 and CC BY 4.0; limitations include actual Python/tool versions and reproducible executed code",
+        "passed": false,
+        "evidence": "species_summary.json: Reported tool/code evidence: Historical descriptive UCI Iris dataset (Fisher 1936); means and ranges are descriptive statistics, not evidence of perfect classification or causal relationships. Computed with Python 3.11 standard library (csv, hashlib, json); no external packages installed, no network access. Executed code: compute_species_summary.py; receipts computed from actual attachment bytes via hashlib.sha256. data_audit.json verified to exactly match source-iris.csv rows, source_sha256, record_count 150, and species counts 50 each."
+      }
+    ],
+    "requiredChanges": [
+      "species_summary.json: include the actual reproducible executed Python source in limitations, with actual Python/tool versions. A filename such as compute_species_summary.py alone is not code delivered to the downstream reviewer. Preserve the independently verified numerical results, input receipts, frozen schema and scientific conclusion boundaries."
+    ]
+  }
+}

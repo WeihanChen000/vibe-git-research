@@ -1,0 +1,317 @@
+{
+  "remoteProof": {
+    "observedAt": "2026-10-30T21:42:46.668Z",
+    "observations": [
+      {
+        "localRunId": "c37504e7-0d78-4e60-a242-8d4cbb7a5992",
+        "threadId": "d612c756-d8ef-4d51-890d-64182f4d049f",
+        "runId": "c05ee743-b5c5-429f-98b4-b0b82dca9973",
+        "status": "completed",
+        "identity": {
+          "sandboxId": "9a4a93f2-5eb9-456b-bcb6-b9a2787a7e3e",
+          "projectId": "cf0f3320-4380-4876-a3c4-5a11d9650dd9",
+          "agentId": "10000000-0000-0000-0000-000000000002"
+        },
+        "previous": [
+          {
+            "runId": "1e6cfda9-1190-444a-8dba-d491dc2335f5",
+            "status": "asked"
+          }
+        ]
+      },
+      {
+        "localRunId": "ccca028b-b02d-4393-b4b8-e3c7b7c54b3b",
+        "threadId": "8e03cde7-13f9-42c4-9fc0-d6b4108a9993",
+        "runId": "6750578b-85a3-447a-9e9e-60d9a8ee4aa5",
+        "status": "completed",
+        "identity": {
+          "sandboxId": "74abffb9-db7c-45fe-a7f9-8aa8a3e64b52",
+          "projectId": "0d2f7cc8-574d-4d64-a6cf-ab5e94d9bc52",
+          "agentId": "10000000-0000-0000-0000-000000000002"
+        },
+        "previous": []
+      },
+      {
+        "localRunId": "3deb50b2-e540-4a32-9acf-f88d7afdc71f",
+        "threadId": "f7c9b1c2-7922-418e-8c71-d27f5cf2aa86",
+        "runId": "29a8dc5c-421b-4398-9cbd-ab72d855404a",
+        "status": "completed",
+        "identity": {
+          "sandboxId": "b05f994d-7d7a-4e64-a9e4-77b7ad40b866",
+          "projectId": "4bfd80a1-3981-4dde-aca0-38c487251dd2",
+          "agentId": "10000000-0000-0000-0000-000000000002"
+        },
+        "previous": []
+      }
+    ]
+  },
+  "operatorEvidence": {
+    "sha256": "97c66ba8d0275f371b2ef68fdfb8333bf0e88548983198e66fec750aee5b6464",
+    "record": {
+      "source": "operator-observed-sciencepal-ui",
+      "observedAt": "2026-10-30T21:32:53.695317+00:00",
+      "threadId": "d612c756-d8ef-4d51-890d-64182f4d049f",
+      "originalRunId": "1e6cfda9-1190-444a-8dba-d491dc2335f5",
+      "continuedRunId": "c05ee743-b5c5-429f-98b4-b0b82dca9973",
+      "uiTimezone": "Asia/Shanghai",
+      "events": [
+        {
+          "type": "ask-user-tool",
+          "source": "SciencePAL original thread UI",
+          "step": 5,
+          "totalSteps": 11,
+          "title": "Controlled NEEDS_INPUT verification phrase",
+          "request": "FIRST attempt; before any SASA computation request the controlled verification phrase and wait for a real answer; then exploratory n_points=100.",
+          "state": "Response received / submitted"
+        },
+        {
+          "type": "NEEDS_INPUT",
+          "source": "Host observed real remote status",
+          "at": "2026-10-30T21:08:37.805Z"
+        },
+        {
+          "type": "user-answer",
+          "source": "SciencePAL original thread UI",
+          "displayedAt": "2026-10-31T05:08:46+08:00",
+          "replySha256": "d436e768d4f1168dfc6109153fd03052b6762749e5331f304061a5e59f8e33e2"
+        },
+        {
+          "type": "continuation-ack",
+          "source": "Host accepted same-thread continuation",
+          "at": "2026-10-30T21:08:50.744Z"
+        },
+        {
+          "type": "first-SASA-computation",
+          "source": "SciencePAL original thread tool pane",
+          "step": 8,
+          "totalSteps": 11,
+          "displayedAt": "2026-10-31T05:09:36+08:00",
+          "command": "cd /workspace && python3 sasa_pilot.py 2>&1",
+          "state": "success",
+          "output": {
+            "source_sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+            "atom_count": 327,
+            "residue_count": 46,
+            "total_A2": 2975.651128,
+            "n_points": 100,
+            "label": "exploratory pilot"
+          }
+        }
+      ],
+      "limitations": "Bounded operator observation of existing SciencePAL UI, not signed provider telemetry. UI step ordering and displayed times are preserved; no exact timestamp is asserted for the question tool. Host records independently bind NEEDS_INPUT and reply to this thread. No private answer, credentials or full transcript included."
+    },
+    "boundToAttempt": 3
+  },
+  "formatVersion": 1,
+  "scope": "One computer; one human; three project identities; real existing Codex account and one SciencePAL account. Controlled process exit, question and pilot refinement; not cross-account or OS sandbox isolation.",
+  "projectId": "a2a2632b-0b9d-40e1-8f85-53a00655d126",
+  "completedAt": "2026-10-30T21:42:46.682Z",
+  "checks": [
+    {
+      "name": "Three distinct member identities",
+      "passed": true,
+      "at": "2026-10-30T21:04:19.288Z",
+      "detail": "Captain and two distinct member node IDs"
+    },
+    {
+      "name": "Nonparticipant cannot read project",
+      "passed": true,
+      "at": "2026-10-30T21:04:19.301Z",
+      "detail": "HTTP 403; project bytes unchanged"
+    },
+    {
+      "name": "Member cannot publish",
+      "passed": true,
+      "at": "2026-10-30T21:04:19.305Z",
+      "detail": "HTTP 403; project bytes unchanged"
+    },
+    {
+      "name": "Member cannot rework for captain",
+      "passed": true,
+      "at": "2026-10-30T21:04:19.308Z",
+      "detail": "HTTP 403; project bytes unchanged"
+    },
+    {
+      "name": "Other member cannot claim Codex task",
+      "passed": true,
+      "at": "2026-10-30T21:04:19.344Z",
+      "detail": "HTTP 403; project bytes unchanged"
+    },
+    {
+      "name": "Captain publishes frozen scientific rules",
+      "passed": true,
+      "at": "2026-10-30T21:07:28.429Z",
+      "detail": "Only captain token; source hash, method, units and numeric predicates fixed"
+    },
+    {
+      "name": "Other member cannot claim SciencePAL task",
+      "passed": true,
+      "at": "2026-10-30T21:07:28.437Z",
+      "detail": "HTTP 403; project bytes unchanged"
+    },
+    {
+      "name": "Other member cannot submit SciencePAL result",
+      "passed": true,
+      "at": "2026-10-30T21:07:28.439Z",
+      "detail": "HTTP 403; project bytes unchanged"
+    },
+    {
+      "name": "Real connector process interrupted after durable receipt",
+      "passed": true,
+      "at": "2026-10-30T21:07:34.771Z",
+      "detail": {
+        "at": "2026-10-30T21:07:34.761Z",
+        "threadId": "d612c756-d8ef-4d51-890d-64182f4d049f",
+        "runId": "1e6cfda9-1190-444a-8dba-d491dc2335f5",
+        "localRunId": "c37504e7-0d78-4e60-a242-8d4cbb7a5992"
+      }
+    },
+    {
+      "name": "Restart restores original remote run without resubmission",
+      "passed": true,
+      "at": "2026-10-30T21:07:40.374Z",
+      "detail": {
+        "threadId": "d612c756-d8ef-4d51-890d-64182f4d049f",
+        "runId": "1e6cfda9-1190-444a-8dba-d491dc2335f5"
+      }
+    },
+    {
+      "name": "Real SciencePAL NEEDS_INPUT observed",
+      "passed": true,
+      "at": "2026-10-30T21:08:37.805Z",
+      "detail": {
+        "threadId": "d612c756-d8ef-4d51-890d-64182f4d049f",
+        "runId": "1e6cfda9-1190-444a-8dba-d491dc2335f5"
+      }
+    },
+    {
+      "name": "Explicit answer continues original thread",
+      "passed": true,
+      "at": "2026-10-30T21:08:50.759Z",
+      "detail": [
+        {
+          "threadId": "d612c756-d8ef-4d51-890d-64182f4d049f",
+          "previousRunId": "1e6cfda9-1190-444a-8dba-d491dc2335f5",
+          "runId": "c05ee743-b5c5-429f-98b4-b0b82dca9973",
+          "source": "member-reply",
+          "messageId": "2288c8a2-7f9c-48d3-a4ce-473eb5ee9c1c",
+          "replySha256": "d436e768d4f1168dfc6109153fd03052b6762749e5331f304061a5e59f8e33e2",
+          "at": "2026-10-30T21:08:50.744Z"
+        }
+      ]
+    },
+    {
+      "name": "Review rejection holds downstream",
+      "passed": true,
+      "at": "2026-10-30T21:12:59.789Z",
+      "detail": {
+        "task": "sasa",
+        "attempt": 1,
+        "verdict": "request_changes"
+      }
+    },
+    {
+      "name": "Approved immutable handoff verified",
+      "passed": true,
+      "at": "2026-10-30T21:42:43.007Z",
+      "detail": [
+        {
+          "checks": [
+            {
+              "label": "交接文件与该轮上游成果完全一致",
+              "passed": true
+            },
+            {
+              "label": "上游获批后才派发下游",
+              "passed": true
+            },
+            {
+              "label": "评审由另一成员/Agent 的不同执行记录完成（本地回执不证明进程隔离）",
+              "passed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Host executed numeric checks",
+      "passed": true,
+      "at": "2026-10-30T21:42:43.009Z",
+      "detail": "Residue sum and count passed on actual candidate bytes"
+    },
+    {
+      "name": "Codex lost acknowledgement safely replayed",
+      "passed": true,
+      "at": "2026-10-30T21:42:43.033Z",
+      "detail": {
+        "scope": "Controlled retransmission of already frozen real output; discarded first HTTP acknowledgement, then retried from original local task directory. No model rerun.",
+        "runId": "e2ea1f15-0f95-4421-b830-f262c25c9bf0",
+        "artifactId": "bd5057b3-115e-4446-8d2c-0db4d6e197d9",
+        "sha256": "bae24e1607ed7c0e6837bf75927d384aaa2adf23c63739e372363e350d16696f"
+      }
+    },
+    {
+      "name": "No duplicate remote starts",
+      "passed": true,
+      "at": "2026-10-30T21:42:43.034Z",
+      "detail": {
+        "startCalls": 3,
+        "remoteJobs": 3
+      }
+    }
+  ],
+  "remoteReceipts": [
+    {
+      "at": "2026-10-30T21:07:29.161Z",
+      "event": "start-attempt"
+    },
+    {
+      "at": "2026-10-30T21:07:34.759Z",
+      "event": "start-receipt",
+      "threadId": "d612c756-d8ef-4d51-890d-64182f4d049f",
+      "runId": "1e6cfda9-1190-444a-8dba-d491dc2335f5"
+    },
+    {
+      "at": "2026-10-30T21:07:34.762Z",
+      "event": "injected-process-exit",
+      "threadId": "d612c756-d8ef-4d51-890d-64182f4d049f",
+      "runId": "1e6cfda9-1190-444a-8dba-d491dc2335f5"
+    },
+    {
+      "at": "2026-10-30T21:08:46.626Z",
+      "event": "continueRun-attempt"
+    },
+    {
+      "at": "2026-10-30T21:08:49.835Z",
+      "event": "continueRun-receipt",
+      "runId": "c05ee743-b5c5-429f-98b4-b0b82dca9973"
+    },
+    {
+      "at": "2026-10-30T21:13:01.289Z",
+      "event": "start-attempt"
+    },
+    {
+      "at": "2026-10-30T21:13:07.297Z",
+      "event": "start-receipt",
+      "threadId": "8e03cde7-13f9-42c4-9fc0-d6b4108a9993",
+      "runId": "6750578b-85a3-447a-9e9e-60d9a8ee4aa5"
+    },
+    {
+      "at": "2026-10-30T21:19:48.612Z",
+      "event": "start-attempt"
+    },
+    {
+      "at": "2026-10-30T21:19:54.647Z",
+      "event": "start-receipt",
+      "threadId": "f7c9b1c2-7922-418e-8c71-d27f5cf2aa86",
+      "runId": "29a8dc5c-421b-4398-9cbd-ab72d855404a"
+    }
+  ],
+  "limitations": [
+    "One computer, one person and one SciencePAL account; no cross-account or cross-device validation",
+    "Member identity/workspace isolation is application-level; the same OS user still owns the files",
+    "Controlled process exit, question and pilot rejection are test arrangements; scientific computation and reviews are actual Agent runs",
+    "Numeric checks cover declared predicates only; independent review is not a guarantee of scientific truth",
+    "This recorded run needed operator-observed original-thread chronology after three review rejections; it was not unattended end-to-end. Supplemental evidence is attributed observation, not signed provider telemetry"
+  ]
+}

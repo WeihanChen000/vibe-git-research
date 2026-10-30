@@ -10,4 +10,4 @@ import { WorkspaceEntry } from "./WorkspaceEntry";
 
 
 
-ReactDOM.createRoot(document.getElementById("root")!).render(<React.StrictMode>{location.pathname.startsWith("/sciencepal/team") ? <TeamWorkspace /> : location.pathname.startsWith("/sciencepal/handoff") ? <SciencePALWorkspace /> : location.pathname.startsWith("/sciencepal") ? <CollaborationWorkspace /> : <WorkspaceEntry/>}</React.StrictMode>);
+ReactDOM.createRoot(document.getElementById("root")!).render(<React.StrictMode>{(import.meta.env.VITE_PUBLIC_REPLAY==="1"||location.pathname.startsWith("/sciencepal/team")) ? <TeamWorkspace /> : location.pathname.startsWith("/sciencepal/handoff") ? <SciencePALWorkspace /> : location.pathname.startsWith("/sciencepal") ? <CollaborationWorkspace /> : <WorkspaceEntry/>}</React.StrictMode>);

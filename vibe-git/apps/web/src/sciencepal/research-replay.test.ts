@@ -1,7 +1,7 @@
-import {describe,it,expect} from 'vitest';
+import {describe,it,expect,vi} from 'vitest';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
-import {parseReplay,replayState,replayRunSummary} from './research-replay';
+import {parseReplay,replayState,replayRunSummary,replayResourceUrl} from './research-replay';
 import {researchHandoffs,taskDisplay} from './research-model';
 const bundle=parseReplay(JSON.parse(readFileSync(new URL('../../public/research-replay/1crn/case.json',import.meta.url),'utf8')));
 const at=(id:string)=>bundle.steps.find(s=>s.id===id)!.state.projects[0]!;
@@ -77,3 +77,40 @@ describe('Stage-bound scientific evidence',()=>{
   const d=scienceResult({result:{code:'print(1)',method:'Custom public method',tool_versions:{Python:'3.12',unverified:{version:'x'}},total:42,invalid:Infinity}});
   expect(d.code).toBe('print(1)');expect(d.reportedTools).toEqual([{name:'Python',version:'3.12'}]);expect(d.reportedValues).toEqual([{name:'total',value:42}]);expect(d.method).toBeNull();
  });
+
+
+describe('Static topology replay under a public subdirectory',()=>{
+ it('resolves case, artifact and evidence paths under the same base',()=>{
+  vi.stubEnv('BASE_URL','./');
+  try{
+   expect(replayResourceUrl('/research-replay/iris/case.json')).toBe('./research-replay/iris/case.json');
+   const s=replayState(iris,0);
+   expect(s.replay!.evidenceUrl).toBe('./research-replay/iris/evidence.json');
+   expect(Object.values(s.replay!.files).every(f=>f.url.startsWith('./research-replay/iris/'))).toBe(true);
+   expect(s.browserCommands).toBeUndefined();expect(s.localResearch).toBeUndefined();
+  }finally{vi.unstubAllEnvs();}
+ });
+});
+
+
+describe('Observed single-machine three-member acceptance replay',()=>{
+ const isolated=parseReplay(JSON.parse(readFileSync(new URL('../../public/research-replay/isolated/case.json',import.meta.url),'utf8')));
+ const at=(id:string)=>isolated.steps.find(s=>s.id===id)!.state.projects[0]!;
+ it('keeps three member identities and each real blocked stage before handoff',()=>{
+  expect(isolated.steps).toHaveLength(13);expect(new Set(at('members').team!.members.map(m=>m.nodeId)).size).toBe(3);
+  for(const stage of ['needs-input','rejected','evidence-rejected','chronology-rejected','supplement-review']){
+   const p=at(stage);expect(p.tasks.find(t=>t.key==='synthesis')!.executionId).toBeNull();expect(researchHandoffs(p)[0]!.state).not.toBe('delivered');
+  }
+  expect(researchHandoffs(at('completed'))[0]!.state).toBe('delivered');
+ });
+ it('supplements the same candidate without hiding its rejected review or changing criteria',()=>{
+  const before=at('chronology-rejected').tasks[0]!,pending=at('supplement-review').tasks[0]!,final=at('completed');
+  expect(pending.artifactId).toBe(before.artifactId);expect(pending.executionId).toBe(before.executionId);expect(pending.attempt).toBe(3);expect(pending.acceptance).toEqual(before.acceptance);expect(pending.reviewId).not.toBe(before.reviewId);
+  expect(final.runs.filter(r=>r.kind==='REVIEW'&&r.taskKey==='sasa'&&r.inputs.some(f=>f.artifactId===before.artifactId))).toHaveLength(2);
+  expect(final.runs.filter(r=>r.kind==='TASK'&&r.taskKey==='sasa')).toHaveLength(3);
+ });
+ it('exposes no live actions or credentials in the static replay',()=>{
+  for(let i=0;i<isolated.steps.length;i++){const s=replayState(isolated,i);expect(s.browserCommands).toBeUndefined();expect(s.localResearch).toBeUndefined();expect(s.csrfToken).toBeUndefined();}
+  expect(JSON.stringify(isolated)).not.toMatch(/"(?:claimId|apiKey|nodeToken|csrfToken|inviteToken)"\s*:/);
+ });
+});

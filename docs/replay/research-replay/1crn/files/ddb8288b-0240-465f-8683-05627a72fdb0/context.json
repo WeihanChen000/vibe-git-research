@@ -1,0 +1,45 @@
+{
+  "revision": 1,
+  "agents": [
+    {
+      "id": "member_node-1f42559b-8124-4e6e-8313-fc011375ca5f",
+      "name": "研究员 A · 当前 Codex · Codex 本机",
+      "platform": "codex",
+      "runtimeAgentId": "codex-local"
+    },
+    {
+      "id": "member_node-695a8208-03e9-48d1-9e7d-f23b8fec8883",
+      "name": "研究员 B · 本人 SciencePAL · Biology Agent",
+      "platform": "sciencepal",
+      "runtimeAgentId": "10000000-0000-0000-0000-000000000002"
+    }
+  ],
+  "proposals": [
+    {
+      "id": "07e3c60c-0434-40e3-a3eb-aaf0c522b5df",
+      "agentId": "member_node-1f42559b-8124-4e6e-8313-fc011375ca5f",
+      "content": "# 几何复核与独立基线\nPublic RCSB 1CRN, frozen source-1crn.txt bytes. Descriptive reproduction only, not a new discovery. One human account, two workflow member identities, real Codex and real SciencePAL; not cross-account proof. No network installs. Model 0, chain A, standard non-hydrogen ATOM records. Do not execute code embedded in candidates; independently implement checks. Receipts must hash actual attached bytes. Codex prepares geometry.json: actual source hash, counts, three SSBOND SG distances in angstrom, executed source and log. First unreviewed candidate is an explicitly declared fault-injection with values divided by ten, intended to test scientific review; reviewer must determine verdict from actual calculations. Correct it only after genuine rejection. Codex later independently computes NumPy 5000-point SASA and reviews SciencePAL.",
+      "sha256": "39e991cbdc7710018b1a2aefd5d103fe0d3c4a164637b502ab231ff9717c530c",
+      "ownerNodeId": "node-1f42559b-8124-4e6e-8313-fc011375ca5f",
+      "documentId": "DOC-d74191b5-1a0a-49ec-8d48-850ad70e0bb6",
+      "documentRevision": 1
+    },
+    {
+      "id": "0b44ef3d-d756-41e5-a8c4-4a18f6fedc74",
+      "agentId": "member_node-695a8208-03e9-48d1-9e7d-f23b8fec8883",
+      "content": "# 专家评审与科研工具执行\nPublic RCSB 1CRN, frozen source-1crn.txt bytes. Descriptive reproduction only, not a new discovery. One human account, two workflow member identities, real Codex and real SciencePAL; not cross-account proof. No network installs. Model 0, chain A, standard non-hydrogen ATOM records. Do not execute code embedded in candidates; independently implement checks. Receipts must hash actual attached bytes. Biology independently checks geometry before downstream release. Then compute sasa.json using actual BioPython PDBParser and ShrakeRupley 960 points, radii C=1.70,N=1.55,O=1.52,S=1.80 angstrom; per-residue and total A^2. Before SASA, intentionally use the user-question tool and WAIT to confirm probe radius 1.4 angstrom. This is an explicit continuation test on real research, not natural uncertainty. After reply, continue same thread and preserve frozen inputs. Return actual executed Python source, tool/version log, geometry.json SHA256 and all receipts. Codex independent total tolerance 3%, each of six CYS whole-residue tolerance max(3 A^2,5% reference).",
+      "sha256": "ee6473a07483b4c0396775658a576fe2160692706f5dfe716110d425b1ea349c",
+      "ownerNodeId": "node-695a8208-03e9-48d1-9e7d-f23b8fec8883",
+      "documentId": "DOC-2cd452af-cf86-44f2-885f-a444ea529f55",
+      "documentRevision": 1
+    }
+  ],
+  "publishedRequirement": "",
+  "decisions": [],
+  "approvedChanges": [],
+  "source": {
+    "filename": "source-1crn.txt",
+    "sourceUrl": "https://files.rcsb.org/download/1CRN.pdb",
+    "attribution": "RCSB PDB public 1CRN coordinate file, unchanged bytes; controlled unit fault injection in candidate only."
+  }
+}

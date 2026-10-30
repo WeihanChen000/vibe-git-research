@@ -1,0 +1,452 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "0b269acc2bff44b0e7ea7ecf76fae124a30e993cb68d101cf4feb11abeb8fffe",
+      "size": 107054
+    },
+    {
+      "filename": "sasa.json",
+      "sha256": "57217210b2e6be2bd915f65315792c3466c7ac5a22b5f149be98d16330252ede",
+      "size": 10179
+    },
+    {
+      "filename": "source-1CRN.pdb",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    },
+    {
+      "filename": "synthesis.json",
+      "sha256": "bae24e1607ed7c0e6837bf75927d384aaa2adf23c63739e372363e350d16696f",
+      "size": 26885
+    }
+  ],
+  "result": {
+    "verdict": "approve",
+    "summary": "Approve synthesis.json (SHA-256 bae24e1607ed7c0e6837bf75927d384aaa2adf23c63739e372363e350d16696f). All seven exact acceptance criteria pass. Independent local Python verifies the approved upstream/review binding and actual hashes, recounts 327 heavy chain-A atoms and 46 residues 1..46, and obtains residue sum 2970.9266606126434 A2 with zero residual against the approved total. Recomputed 1000/5000-point relative difference is 0.001114174357408299 (0.1114%). Unchanged schemas and frozen numerical rules pass. Complete executed independent review code and measured versions are included in reproduction. Author-reported execution, Host lifecycle/approval records, transported prior geometric baseline and current independent calculations remain distinct; no provider transcript or new SASA calculation is claimed. Conclusions remain computational geometry for a single fixed structure, without biological ranking, clinical inference or experimental validation.",
+    "checks": [
+      {
+        "criterion": "Enforce HARD dependency sasa: consume only APPROVED sasa.json with approval bound to its reviewedArtifact; no synthesis from the first pilot or request_changes artifact. Hash UTF-8 reviewFileUtf8 against reviewArtifact, parse original review envelope, verify approve verdict and captain member reviewer identity, and verify its receipt against actual sasa.json bytes.",
+        "passed": true,
+        "evidence": "synthesis.json consumes the exact 10179-byte sasa.json whose SHA-256 is 57217210b2e6be2bd915f65315792c3466c7ac5a22b5f149be98d16330252ede. Independently hashed all 75993 UTF-8 bytes of approval.reviewFileUtf8: c2153ad17cbdd6ceeb0b2b8fc1793f1dcb8707dd25d694edaf877a7b39efc820, matching reviewArtifact. Parsed original envelope has verdict approve, eight true checks matching upstream acceptance, and no requiredChanges. Its sasa.json and source receipts match actual bytes. Host approval and original reproduction both bind reviewerAgentId member_node-4050b257-1656-4536-aaff-faff95fd7973. Approved upstream n_points=5000; the 100-point pilot remains separately labelled exploratory. No embedded source was executed for provenance. See reproduction.results.approval."
+      },
+      {
+        "criterion": "Independently hash actual approved upstream envelope bytes for upstream_sha256 (64 hex characters), and actual frozen PDB bytes for source_sha256=42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811. Validate source identity without comparing nested producer/reviewer context receipts to current context.json; own inputReceipts hash only this attempt attachments.",
+        "passed": true,
+        "evidence": "synthesis.json source_sha256 matches independently hashed 49491 original PDB bytes: 42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811. Its upstream_sha256 matches the actual approved envelope bytes: 57217210b2e6be2bd915f65315792c3466c7ac5a22b5f149be98d16330252ede (64 hex characters). Candidate source/upstream receipts match these files; its context receipt belongs to its producing run and is not compared with the present context. Host verification of original producer receipts is accepted as instructed. This review hashes all four actual attachments, including its own context.json. See reproduction.results.inputReceipts."
+      },
+      {
+        "criterion": "Independently recount 327 retained heavy chain-A ATOM records and 46 residues 1..46 under frozen filters; independently sum all 46 measured residue areas and compare to approved total_A2 within 0.001 A2, reporting the measured sum and difference. Deliver total_A2 as the independently computed sum and do not modify upstream data.",
+        "passed": true,
+        "evidence": "synthesis.json reports 327 retained atoms and 46 residues, independently confirmed by parsing all 611 frozen PDB lines with heavy ATOM, chain A, blank/A altloc filters. Elements are C=202, N=55, O=64, S=6; no coordinate records are excluded in this fixture. There are 327 distinct residue/atom-name pairs and original residue IDs exactly 1..46. The 46 unique, finite, nonnegative upstream rows match the candidate's preserved rows. Independent math.fsum=2970.9266606126434 A2, exactly equal to candidate total_A2 and approved upstream total_A2; absolute residual=0.0 A2 <=0.001 A2. Inputs were not modified. Complete rows and sums are in reproduction.results."
+      },
+      {
+        "criterion": "Deliver summary (at least 30 characters), numeric total_A2 in A2, source_sha256, upstream_sha256 and code with exact types under unchanged synthesis schema. Include complete portable actually executed Python source, actual tool versions in code comments or summary, and concrete count/sum/hash evidence rather than filenames alone.",
+        "passed": true,
+        "evidence": "synthesis.json passes Draft7Validator against unchanged context.resultSchemas.synthesis and context.task.resultSchema with zero errors; upstream sasa also passes its unchanged schema. Required summary, numeric total_A2, both string hashes and code are present. Delivered code contains 13439 characters of complete portable Python, successfully parsed with ast; it reads relative inputs, hashes original bytes, validates approval and schemas, parses source, independently sums areas and emits the envelope. Summary and evidence report Python 3.12.10/jsonschema 4.26.0 and concrete count/sum/hash results. Its three-input guard correctly targets its producing run, not this four-input review run. Author execution is supplied report-level evidence, corroborated by the independent review calculations; no full provider execution transcript is available or claimed, and author code was not rerun. Reviewer execution used measured Python 3.12.10/jsonschema 4.26.0. See reproduction code and separately labelled versions/results."
+      },
+      {
+        "criterion": "Summary explicitly states single fixed structure, computational geometry only, no biological function ranking or clinical inference; retain the approved calculation resolution/convergence and its limitations without claiming structural ensemble or experimental validation.",
+        "passed": true,
+        "evidence": "synthesis.json summary explicitly states single fixed structure, computational geometry only, no biological function ranking or clinical inference. It retains approved top-level n_points=5000, probe 1.4 A and C/N/O/S radii 1.70/1.55/1.52/1.80 A. Upstream totals are 2967.616530309648 A2 (1000 points) and 2970.9266606126434 A2 (5000 points); independently recomputed abs(total_1000-total_5000)/abs(total_5000)=0.001114174357408299, or 0.1114174357408299%, below 2%. Summary expressly rejects experimental-validation, structural-ensemble and structural-variability-uncertainty claims. These are approved upstream geometric results with newly checked arithmetic, not new SASA runs by synthesis or this review. See reproduction.results.sampling and limitations."
+      },
+      {
+        "criterion": "Captain reviewerAgentId=member_node-4050b257-1656-4536-aaff-faff95fd7973 independently recomputes source counts, residue sums and source/upstream hashes, validates approval binding and the unchanged schema, and documents numeric reproduction evidence before approving; scientific checks and execution success remain distinct.",
+        "passed": true,
+        "evidence": "synthesis.json is independently reviewed under reviewerAgentId member_node-4050b257-1656-4536-aaff-faff95fd7973, distinct from assigneeAgentId member_node-9c374e0b-1909-42e3-86cd-2b2f05b4b65b. Locally executed Python confirms source/upstream hashes, approval binding, 327 atoms, 46 residues, sum 2970.9266606126434 A2 and residual 0.0 A2, with all three schema validations reporting zero errors. Recomputed frozen residue-sum and residue-count rules both pass. Transported Host numeric-v1 status PASSED is separately identified, not claimed as a new Host invocation. Task-local COLLECTED attempt binds candidate SHA-256 bae24e1607ed7c0e6837bf75927d384aaa2adf23c63739e372363e350d16696f and size 26885; lifecycle records are not scientific execution proof. Complete independently executed source, measured tool versions and numerical results are in reproduction. Scientific approval rests on all seven criteria, not process exit or schema validity alone."
+      },
+      {
+        "criterion": "Use only available local tools and relative input paths; no installs, network refetch, unrelated files, or sensitive public details. Report missing/invalid approval or inputs rather than fabricate; stop after the required synthesis envelope exists.",
+        "passed": true,
+        "evidence": "synthesis.json code uses relative inputs and available standard-library/jsonschema tools; delivered summary/code/evidence contain no personal paths, tokens or contact details. Review used only local Python 3.12.10/jsonschema 4.26.0 and the four assigned inputs, without installs, refetch, screen control or unrelated file reads. Approval/input prerequisites are present and independently verified. Producer and upstream execution reports are distinguished from current observed calculations; historical activity outside supplied records is not claimed to have been audited. Current context has one collected synthesis attempt with no continuations; no verification question was repeated or private reply inferred. Original candidate/source/upstream bytes remain unchanged, and this review stops on writing review-result.json. See reproduction.results.lifecycle and limitations."
+      }
+    ],
+    "requiredChanges": [],
+    "reproduction": {
+      "code": "from pathlib import Path\nfrom collections import Counter\nimport ast\nimport hashlib\nimport importlib.metadata\nimport json\nimport math\nimport platform\nfrom jsonschema import Draft7Validator\n\n# Independent synthesis review; run from the assigned directory.\n# No embedded author or upstream reviewer source is executed.\nREVIEWER = \"member_node-4050b257-1656-4536-aaff-faff95fd7973\"\nAUTHOR = \"member_node-9c374e0b-1909-42e3-86cd-2b2f05b4b65b\"\nSOURCE = \"42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811\"\nraw = {p.relative_to(\"inputs\").as_posix(): p.read_bytes()\n       for p in sorted(Path(\"inputs\").rglob(\"*\")) if p.is_file()}\nassert set(raw) == {\"context.json\", \"source-1CRN.pdb\", \"synthesis.json\", \"sasa.json\"}\ndef digest(data):\n    return hashlib.sha256(data).hexdigest()\nreceipts = [{\"filename\": n, \"sha256\": digest(b), \"size\": len(b)} for n,b in raw.items()]\nc = json.loads(raw[\"context.json\"])\ncandidate = json.loads(raw[\"synthesis.json\"])\nupstream = json.loads(raw[\"sasa.json\"])\ny, s = candidate[\"result\"], upstream[\"result\"]\nassert c[\"task\"][\"key\"] == \"synthesis\" and c[\"task\"][\"outputFilename\"] == \"synthesis.json\"\nassert c[\"task\"][\"reviewerAgentId\"] == REVIEWER\nassert c[\"task\"][\"assigneeAgentId\"] == AUTHOR and AUTHOR != REVIEWER\nassert y[\"assigneeAgentId\"] == AUTHOR and y[\"reviewerAgentId\"] == REVIEWER\nassert c[\"task\"][\"dependencies\"] == [\"sasa\"]\nassert candidate[\"revision\"] == upstream[\"revision\"] == 1\nassert set(c[\"resultSchemas\"]) == {\"sasa\", \"synthesis\"}\nschema_errors = {}\nfor name, obj, schema in [\n    (\"synthesis_contract\",y,c[\"resultSchemas\"][\"synthesis\"]),\n    (\"synthesis_task\",y,c[\"task\"][\"resultSchema\"]),\n    (\"upstream_sasa\",s,c[\"resultSchemas\"][\"sasa\"])]:\n    Draft7Validator.check_schema(schema)\n    schema_errors[name] = [e.message for e in Draft7Validator(schema).iter_errors(obj)]\nassert not any(schema_errors.values())\n\nsource_hash, upstream_hash = digest(raw[\"source-1CRN.pdb\"]), digest(raw[\"sasa.json\"])\nassert source_hash == SOURCE == c[\"scientificChecks\"][\"sourceSha256\"] == y[\"source_sha256\"] == s[\"source_sha256\"]\nassert upstream_hash == y[\"upstream_sha256\"]\nassert len(upstream_hash) == 64 and int(upstream_hash,16) >= 0\ndef same_receipt(env, name):\n    matches = [r for r in env[\"inputReceipts\"] if r[\"filename\"] == name]\n    return len(matches) == 1 and matches[0][\"sha256\"] == digest(raw[name]) and matches[0][\"size\"] == len(raw[name])\nassert same_receipt(candidate,\"sasa.json\") and same_receipt(candidate,\"source-1CRN.pdb\")\nassert same_receipt(upstream,\"source-1CRN.pdb\")\nassert {r[\"filename\"] for r in candidate[\"inputReceipts\"]} == {\"context.json\",\"sasa.json\",\"source-1CRN.pdb\"}\n# Producer contexts are intentionally not compared to this review's context.\n\nu = [u for u in c[\"upstream\"] if u[\"key\"] == \"sasa\"]\nassert len(u) == 1 and u[0][\"filename\"] == \"sasa.json\"\na = u[0][\"approval\"]\nassert a[\"verdict\"] == \"approve\" and a[\"reviewerAgentId\"] == REVIEWER\nbound = a[\"reviewedArtifact\"]\nassert bound[\"filename\"] == \"sasa.json\" and bound[\"sha256\"] == upstream_hash and bound[\"size\"] == len(raw[\"sasa.json\"])\nrb = a[\"reviewFileUtf8\"].encode(\"utf-8\")\nassert digest(rb) == a[\"reviewArtifact\"][\"sha256\"] and len(rb) == a[\"reviewArtifact\"][\"size\"]\nr = json.loads(rb)\nassert r[\"revision\"] == 1 and r[\"result\"][\"verdict\"] == \"approve\"\nassert r[\"result\"][\"requiredChanges\"] == [] and all(x[\"passed\"] is True for x in r[\"result\"][\"checks\"])\nassert [x[\"criterion\"] for x in r[\"result\"][\"checks\"]] == u[0][\"acceptance\"]\nassert same_receipt(r,\"sasa.json\") and same_receipt(r,\"source-1CRN.pdb\")\nassert r[\"result\"][\"reproduction\"][\"results\"][\"reviewerAgentId\"] == REVIEWER\nhost = a[\"scientificValidation\"]\nassert host[\"status\"] == \"PASSED\" and host[\"artifactSha256\"] == upstream_hash and host[\"sourceSha256\"] == source_hash\nassert all(v[\"passed\"] is True for v in host[\"checks\"])\n\natoms = []\nlines = raw[\"source-1CRN.pdb\"].decode(\"ascii\").splitlines()\nexcluded = Counter()\ncoordinate_records = 0\nfor line in lines:\n    if line[:6] not in (\"ATOM  \",\"HETATM\"):\n        continue\n    coordinate_records += 1\n    element = line[76:78].strip()\n    if line[:6] != \"ATOM  \":\n        excluded[\"HETATM\"] += 1\n    elif line[21] != \"A\":\n        excluded[\"other_chain\"] += 1\n    elif line[16] not in (\" \",\"A\"):\n        excluded[\"other_altloc\"] += 1\n    elif element in (\"H\",\"D\"):\n        excluded[\"hydrogen\"] += 1\n    else:\n        xyz = [float(line[i:i+8]) for i in (30,38,46)]\n        assert all(math.isfinite(x) for x in xyz)\n        assert element in (\"C\",\"N\",\"O\",\"S\") and line[26] == \" \"\n        atoms.append((int(line[22:26]),line[12:16].strip(),element,xyz))\nids = sorted({x[0] for x in atoms})\nelements = dict(Counter(x[2] for x in atoms))\nassert len(atoms) == s[\"atom_count\"] == 327\nassert len({(x[0],x[1]) for x in atoms}) == 327\nassert ids == list(range(1,47)) and len(ids) == s[\"residue_count\"] == 46\nrows = s[\"residues\"]\nassert len(rows) == 46 and sorted(x[\"residue_id\"] for x in rows) == ids\nassert all(type(x[\"residue_id\"]) is int and type(x[\"area_A2\"]) in (int,float) and math.isfinite(x[\"area_A2\"]) and x[\"area_A2\"] >= 0 for x in rows)\ntotal = math.fsum(x[\"area_A2\"] for x in rows)\ndiff = total - s[\"total_A2\"]\nassert abs(diff) <= 0.001 and y[\"total_A2\"] == total\nassert y[\"evidence\"][\"approved_residues\"] == rows\nassert y[\"evidence\"][\"source\"][\"atom_count\"] == len(atoms)\nassert y[\"evidence\"][\"source\"][\"residue_ids\"] == ids\nassert y[\"evidence\"][\"source\"][\"elements\"] == elements\nassert y[\"evidence\"][\"sum_check\"][\"residue_sum_A2\"] == total\nassert y[\"evidence\"][\"sum_check\"][\"absolute_difference_A2\"] == abs(diff)\n\nconv = s[\"evidence\"][\"convergence\"]\nt1, t5 = conv[\"n_points_1000_total_A2\"], conv[\"n_points_5000_total_A2\"]\nratio = abs(t1-t5)/abs(t5)\nassert s[\"n_points\"] == 5000 and t5 == s[\"total_A2\"]\nassert ratio == conv[\"relative_difference\"] == y[\"evidence\"][\"sampling\"][\"locally_recomputed_relative_difference\"]\nassert conv[\"denominator\"] == \"abs(total_5000)\" and ratio <= 0.02\nassert s[\"method\"] == \"Shrake-Rupley\" and s[\"probe_radius_A\"] == 1.4\nassert s[\"evidence\"][\"radii_A\"] == {\"C\":1.70,\"N\":1.55,\"O\":1.52,\"S\":1.80}\nassert y[\"evidence\"][\"sampling\"][\"upstream_total_1000_A2\"] == t1\nassert y[\"evidence\"][\"sampling\"][\"upstream_total_5000_A2\"] == t5\nassert y[\"evidence\"][\"approval_binding\"][\"computed_review_sha256\"] == digest(rb)\n\nfrozen = c[\"scientificChecks\"]\nlocal_rules = []\nfor rule in frozen[\"tasks\"][\"sasa\"]:\n    if rule[\"kind\"] == \"sum\":\n        measured = math.fsum(row[rule[\"valueField\"]] for row in s[rule[\"rowsPath\"]])\n        residual = abs(s[rule[\"totalPath\"]] - measured)\n        passed = residual <= rule[\"absoluteTolerance\"]\n        local_rules.append({\"id\":rule[\"id\"],\"passed\":passed,\"measured_sum_A2\":measured,\"absolute_difference_A2\":residual})\n    elif rule[\"kind\"] == \"reference\":\n        measured = s[rule[\"path\"]]\n        passed = abs(measured-rule[\"expected\"]) <= rule[\"absoluteTolerance\"] + rule[\"relativeTolerance\"]*abs(rule[\"expected\"])\n        local_rules.append({\"id\":rule[\"id\"],\"passed\":passed,\"measured\":measured})\n    else:\n        raise AssertionError(\"Unrecognized frozen rule\")\nassert all(x[\"passed\"] for x in local_rules)\n# Source completeness is inspected without executing data-embedded source.\ntree = ast.parse(y[\"code\"])\nimports = sorted({n.module for n in ast.walk(tree) if isinstance(n, ast.ImportFrom)})\nassert len(y[\"code\"]) > 30 and len(y[\"summary\"]) >= 30\nsummary_lower = y[\"summary\"].lower()\nfor phrase in [\"single fixed structure\",\"computational geometry only\",\"no biological function ranking or clinical inference\",\"not experimental validation\",\"structural variability\"]:\n    assert phrase in summary_lower\nhistory = c[\"executionHistory\"][\"attempts\"]\nassert len(history) == 1 and history[0][\"agentId\"] == AUTHOR\nartifact = history[0][\"artifact\"]\nassert artifact[\"sha256\"] == digest(raw[\"synthesis.json\"]) and artifact[\"size\"] == len(raw[\"synthesis.json\"])\nassert history[0][\"executionId\"] == c[\"task\"][\"executionId\"]\nversions = {\"python\":platform.python_version(),\"jsonschema\":importlib.metadata.version(\"jsonschema\"),\"other_modules\":\"Python standard library\"}\nresults = {\n    \"assigneeAgentId\":AUTHOR,\"reviewerAgentId\":REVIEWER,\n    \"inputReceipts\":receipts,\n    \"candidate_sha256\":digest(raw[\"synthesis.json\"]),\n    \"candidate_size\":len(raw[\"synthesis.json\"]),\n    \"source\":{\"sha256\":source_hash,\"size\":len(raw[\"source-1CRN.pdb\"]),\"line_count\":len(lines),\"coordinate_records\":coordinate_records,\"atom_count\":len(atoms),\"residue_count\":len(ids),\"residue_ids\":ids,\"elements\":elements,\"excluded\":dict(excluded)},\n    \"sum\":{\"independent_fsum_A2\":total,\"ordinary_sum_A2\":sum(x[\"area_A2\"] for x in rows),\"upstream_total_A2\":s[\"total_A2\"],\"candidate_total_A2\":y[\"total_A2\"],\"signed_difference_A2\":diff,\"absolute_difference_A2\":abs(diff),\"tolerance_A2\":0.001},\n    \"residues\":rows,\n    \"sampling\":{\"n_points\":s[\"n_points\"],\"upstream_1000_total_A2\":t1,\"upstream_5000_total_A2\":t5,\"recomputed_relative_difference\":ratio,\"percent_difference\":100*ratio,\"denominator\":\"abs(total_5000)\",\"maximum\":0.02,\"provenance\":\"Upstream approved SASA totals; this review independently recomputes arithmetic, not new geometry.\"},\n    \"approval\":{\"upstream_sha256\":upstream_hash,\"review_sha256\":digest(rb),\"review_utf8_size\":len(rb),\"verdict\":r[\"result\"][\"verdict\"],\"reviewerAgentId\":a[\"reviewerAgentId\"],\"reviewRunId\":a[\"reviewRunId\"],\"review_receipts_match\":True,\"bound_artifact\":bound},\n    \"schema_errors\":schema_errors,\"local_frozen_numeric_checks\":local_rules,\n    \"transported_host_validation\":host,\n    \"code_inspection\":{\"syntax_valid\":True,\"characters\":len(y[\"code\"]),\"imports_from\":imports,\"executed_by_this_reviewer\":False},\n    \"candidate_reported_versions\":y[\"evidence\"][\"tool_versions\"],\n    \"lifecycle\":{\"task_local_attempts\":len(history),\"candidate_binding_matches\":True,\"status\":history[0][\"status\"],\"continuations\":history[0][\"continuations\"],\"provenance\":\"Host member connector receipt, not provider tool transcript or proof of scientific execution.\"},\n    \"limitations\":[\"No author/upstream embedded code executed. Author execution and versions are supplied evidence; independent reviewer computations and measured versions are reported separately.\",\"No new SASA geometric baseline is required or claimed for synthesis review; the approved upstream review transports its earlier independent baseline.\",\"Producer/reviewer context receipts belong to their own runs and are not compared with the current context. Actual source/upstream bytes and transported review bytes are verified.\",\"Single fixed structure; sampling agreement is not experimental validation or an estimate of structural variability.\",\"No network, installs, unrelated file reads or personal memory operations. No time or memory budget was specified.\"]\n}\nprint(json.dumps({\"toolVersions\":versions,\"results\":results},ensure_ascii=False,allow_nan=False))\n",
+      "toolVersions": {
+        "python": "3.12.10",
+        "jsonschema": "4.26.0",
+        "other_modules": "Python standard library"
+      },
+      "results": {
+        "assigneeAgentId": "member_node-9c374e0b-1909-42e3-86cd-2b2f05b4b65b",
+        "reviewerAgentId": "member_node-4050b257-1656-4536-aaff-faff95fd7973",
+        "inputReceipts": [
+          {
+            "filename": "context.json",
+            "sha256": "0b269acc2bff44b0e7ea7ecf76fae124a30e993cb68d101cf4feb11abeb8fffe",
+            "size": 107054
+          },
+          {
+            "filename": "sasa.json",
+            "sha256": "57217210b2e6be2bd915f65315792c3466c7ac5a22b5f149be98d16330252ede",
+            "size": 10179
+          },
+          {
+            "filename": "source-1CRN.pdb",
+            "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+            "size": 49491
+          },
+          {
+            "filename": "synthesis.json",
+            "sha256": "bae24e1607ed7c0e6837bf75927d384aaa2adf23c63739e372363e350d16696f",
+            "size": 26885
+          }
+        ],
+        "candidate_sha256": "bae24e1607ed7c0e6837bf75927d384aaa2adf23c63739e372363e350d16696f",
+        "candidate_size": 26885,
+        "source": {
+          "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+          "size": 49491,
+          "line_count": 611,
+          "coordinate_records": 327,
+          "atom_count": 327,
+          "residue_count": 46,
+          "residue_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46
+          ],
+          "elements": {
+            "N": 55,
+            "C": 202,
+            "O": 64,
+            "S": 6
+          },
+          "excluded": {}
+        },
+        "sum": {
+          "independent_fsum_A2": 2970.9266606126434,
+          "ordinary_sum_A2": 2970.9266606126434,
+          "upstream_total_A2": 2970.9266606126434,
+          "candidate_total_A2": 2970.9266606126434,
+          "signed_difference_A2": 0.0,
+          "absolute_difference_A2": 0.0,
+          "tolerance_A2": 0.001
+        },
+        "residues": [
+          {
+            "residue_id": 1,
+            "area_A2": 72.13046039903105
+          },
+          {
+            "residue_id": 2,
+            "area_A2": 25.1474511708321
+          },
+          {
+            "residue_id": 3,
+            "area_A2": 0.0
+          },
+          {
+            "residue_id": 4,
+            "area_A2": 0.0
+          },
+          {
+            "residue_id": 5,
+            "area_A2": 56.16372766278967
+          },
+          {
+            "residue_id": 6,
+            "area_A2": 45.61333464715793
+          },
+          {
+            "residue_id": 7,
+            "area_A2": 121.85424607768644
+          },
+          {
+            "residue_id": 8,
+            "area_A2": 98.92076648168972
+          },
+          {
+            "residue_id": 9,
+            "area_A2": 6.507507589016511
+          },
+          {
+            "residue_id": 10,
+            "area_A2": 53.74203800293753
+          },
+          {
+            "residue_id": 11,
+            "area_A2": 62.66129927388882
+          },
+          {
+            "residue_id": 12,
+            "area_A2": 78.18786346343575
+          },
+          {
+            "residue_id": 13,
+            "area_A2": 7.970346225863446
+          },
+          {
+            "residue_id": 14,
+            "area_A2": 85.17153621909897
+          },
+          {
+            "residue_id": 15,
+            "area_A2": 93.6149200932906
+          },
+          {
+            "residue_id": 16,
+            "area_A2": 20.88143751891572
+          },
+          {
+            "residue_id": 17,
+            "area_A2": 91.42659019769383
+          },
+          {
+            "residue_id": 18,
+            "area_A2": 141.04633638075882
+          },
+          {
+            "residue_id": 19,
+            "area_A2": 110.590126439474
+          },
+          {
+            "residue_id": 20,
+            "area_A2": 51.52923711118857
+          },
+          {
+            "residue_id": 21,
+            "area_A2": 35.634288510444655
+          },
+          {
+            "residue_id": 22,
+            "area_A2": 79.46193661542648
+          },
+          {
+            "residue_id": 23,
+            "area_A2": 67.57771836084237
+          },
+          {
+            "residue_id": 24,
+            "area_A2": 62.14674459899748
+          },
+          {
+            "residue_id": 25,
+            "area_A2": 98.98631267081423
+          },
+          {
+            "residue_id": 26,
+            "area_A2": 0.0
+          },
+          {
+            "residue_id": 27,
+            "area_A2": 12.438072996934809
+          },
+          {
+            "residue_id": 28,
+            "area_A2": 118.18376705484704
+          },
+          {
+            "residue_id": 29,
+            "area_A2": 166.7188718397474
+          },
+          {
+            "residue_id": 30,
+            "area_A2": 27.180353911485184
+          },
+          {
+            "residue_id": 31,
+            "area_A2": 34.081124812241
+          },
+          {
+            "residue_id": 32,
+            "area_A2": 6.410406237969709
+          },
+          {
+            "residue_id": 33,
+            "area_A2": 49.78280816213914
+          },
+          {
+            "residue_id": 34,
+            "area_A2": 82.31759105612821
+          },
+          {
+            "residue_id": 35,
+            "area_A2": 36.340443894730186
+          },
+          {
+            "residue_id": 36,
+            "area_A2": 140.96508800889686
+          },
+          {
+            "residue_id": 37,
+            "area_A2": 38.08013249390948
+          },
+          {
+            "residue_id": 38,
+            "area_A2": 84.6132292116396
+          },
+          {
+            "residue_id": 39,
+            "area_A2": 119.46955306956002
+          },
+          {
+            "residue_id": 40,
+            "area_A2": 48.7172025535086
+          },
+          {
+            "residue_id": 41,
+            "area_A2": 53.13790320113949
+          },
+          {
+            "residue_id": 42,
+            "area_A2": 76.30687557713964
+          },
+          {
+            "residue_id": 43,
+            "area_A2": 105.69586085860394
+          },
+          {
+            "residue_id": 44,
+            "area_A2": 61.3576539332587
+          },
+          {
+            "residue_id": 45,
+            "area_A2": 73.18773601190875
+          },
+          {
+            "residue_id": 46,
+            "area_A2": 68.97576001558085
+          }
+        ],
+        "sampling": {
+          "n_points": 5000,
+          "upstream_1000_total_A2": 2967.616530309648,
+          "upstream_5000_total_A2": 2970.9266606126434,
+          "recomputed_relative_difference": 0.001114174357408299,
+          "percent_difference": 0.1114174357408299,
+          "denominator": "abs(total_5000)",
+          "maximum": 0.02,
+          "provenance": "Upstream approved SASA totals; this review independently recomputes arithmetic, not new geometry."
+        },
+        "approval": {
+          "upstream_sha256": "57217210b2e6be2bd915f65315792c3466c7ac5a22b5f149be98d16330252ede",
+          "review_sha256": "c2153ad17cbdd6ceeb0b2b8fc1793f1dcb8707dd25d694edaf877a7b39efc820",
+          "review_utf8_size": 75993,
+          "verdict": "approve",
+          "reviewerAgentId": "member_node-4050b257-1656-4536-aaff-faff95fd7973",
+          "reviewRunId": "c47cc007-164f-42f0-9fcc-281de181baa1",
+          "review_receipts_match": true,
+          "bound_artifact": {
+            "id": "a6c80bf9-a1d0-4bc1-bccd-b8f9b7d2050c",
+            "filename": "sasa.json",
+            "size": 10179,
+            "sha256": "57217210b2e6be2bd915f65315792c3466c7ac5a22b5f149be98d16330252ede"
+          }
+        },
+        "schema_errors": {
+          "synthesis_contract": [],
+          "synthesis_task": [],
+          "upstream_sasa": []
+        },
+        "local_frozen_numeric_checks": [
+          {
+            "id": "residue-sum",
+            "passed": true,
+            "measured_sum_A2": 2970.9266606126434,
+            "absolute_difference_A2": 0.0
+          },
+          {
+            "id": "residue-count",
+            "passed": true,
+            "measured": 46
+          }
+        ],
+        "transported_host_validation": {
+          "status": "PASSED",
+          "engineVersion": "numeric-v1",
+          "rulesSha256": "7dc750f163354f395a3507751a73d83852bbf6dd420075ccc732f4d023181b71",
+          "artifactSha256": "57217210b2e6be2bd915f65315792c3466c7ac5a22b5f149be98d16330252ede",
+          "sourceSha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+          "checks": [
+            {
+              "id": "residue-sum",
+              "passed": true,
+              "detail": "总量 2970.9266606126434；逐项求和 2970.926660612643；容差 0.001"
+            },
+            {
+              "id": "residue-count",
+              "passed": true,
+              "detail": "实际 46；独立参考 46"
+            }
+          ]
+        },
+        "code_inspection": {
+          "syntax_valid": true,
+          "characters": 13439,
+          "imports_from": [
+            "collections",
+            "jsonschema",
+            "pathlib"
+          ],
+          "executed_by_this_reviewer": false
+        },
+        "candidate_reported_versions": {
+          "python": "3.12.10",
+          "jsonschema": "4.26.0",
+          "other_modules": "Python standard library"
+        },
+        "lifecycle": {
+          "task_local_attempts": 1,
+          "candidate_binding_matches": true,
+          "status": "COLLECTED",
+          "continuations": [],
+          "provenance": "Host member connector receipt, not provider tool transcript or proof of scientific execution."
+        },
+        "limitations": [
+          "No author/upstream embedded code executed. Author execution and versions are supplied evidence; independent reviewer computations and measured versions are reported separately.",
+          "No new SASA geometric baseline is required or claimed for synthesis review; the approved upstream review transports its earlier independent baseline.",
+          "Producer/reviewer context receipts belong to their own runs and are not compared with the current context. Actual source/upstream bytes and transported review bytes are verified.",
+          "Single fixed structure; sampling agreement is not experimental validation or an estimate of structural variability.",
+          "No network, installs, unrelated file reads or personal memory operations. No time or memory budget was specified."
+        ]
+      }
+    }
+  }
+}

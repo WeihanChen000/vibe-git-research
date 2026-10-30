@@ -79,7 +79,7 @@ npm run research:replay
 ## 当前验证状态
 
 - 正式回归与真实整合记录见 [最新验证记录](docs/research/INTEGRATED-LIVE-20261031.md)，旧测试已恢复通过。
-- 真实案例：1CRN 七阶段、Iris 九阶段，包含 **38 个原始附件**，均有字节数和 SHA256。
+- 原有真实案例：1CRN 七阶段、Iris 九阶段，共 **38 个原始附件**；新增单机三成员案例另列于下方，均保留字节数和 SHA256。
 - 真实跨平台：一个 SciencePAL 账号 + 本地 Codex 已验证；真实两位用户各自账号联调仍待完成。
 - 受控测试：1CRN 首版单位错误与参数确认、Iris 首次数值错误是明示设计；不冒充自然发生的错误。Iris 第二次缺代码为真实产物问题。
 - 当前 Codex 可从本人任务入口启动已登录的本地执行器，使用冻结任务包交回；不会接管任意已有会话。其他平台接口已接入，除 Codex / SciencePAL 外真实模型仍待验证。
@@ -89,3 +89,11 @@ npm run research:replay
 这是公开的团队分享仓库，保留上游基线和作者归属，不改写队友原仓库。源码包包含科研 Skill：[`vibe-git/research-skill`](vibe-git/research-skill/SKILL.md)。原版文档入口为 [README-ORIGINAL.md](README-ORIGINAL.md)，早期研发报告可能描述历史阶段，请以本 README 和验证页为当前状态。
 
 仓库已由负责人授权公开，可直接分享给队友与评委。当前快照未发现统一的根级开源许可证，公开可见不等于授予任意使用许可；保留原作者及素材归属，不擅自补写 MIT。见 [来源和分享范围](docs/research/PROVENANCE.md)。API Key、邀请凭据、成员 token、私人数据库与完整运行目录均不进入分享快照。
+
+## 无需队友配合的验收
+
+- [单机多成员验收与一键命令](vibe-git/SCIENCEPAL-ISOLATED-ACCEPTANCE.md)：默认离线；`--live` 才使用现有账号。
+- [直接打开原拓扑只读回放](https://weihanchen000.github.io/vibe-git-research/replay/?case=isolated&step=members)：不需要安装或登录。
+- [本轮真实验收结果与修复](docs/research/ISOLATED-ACCEPTANCE-20261031.md)。
+
+范围为一个操作者、同一台电脑、独立项目成员身份和工作目录；不宣称真人跨电脑或 SciencePAL 跨账号隔离已验证。

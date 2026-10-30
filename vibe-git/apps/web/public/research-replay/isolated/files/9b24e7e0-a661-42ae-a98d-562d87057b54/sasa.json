@@ -1,0 +1,242 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "8b50a159e3024e9103667826baed7bc6e0ff5d176d991a25cd2ce964d2e9d8f4",
+      "size": 22644
+    },
+    {
+      "filename": "source-1CRN.pdb",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    }
+  ],
+  "result": {
+    "source_sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+    "method": "Shrake-Rupley",
+    "probe_radius_A": 1.4,
+    "n_points": 100,
+    "total_A2": 2975.651128,
+    "atom_count": 327,
+    "residue_count": 46,
+    "residues": [
+      {
+        "residue_id": 1,
+        "area_A2": 75.74861179799521
+      },
+      {
+        "residue_id": 2,
+        "area_A2": 24.687816310746342
+      },
+      {
+        "residue_id": 3,
+        "area_A2": 0.0
+      },
+      {
+        "residue_id": 4,
+        "area_A2": 0.0
+      },
+      {
+        "residue_id": 5,
+        "area_A2": 57.38568857849751
+      },
+      {
+        "residue_id": 6,
+        "area_A2": 48.81401638599574
+      },
+      {
+        "residue_id": 7,
+        "area_A2": 127.66647146025521
+      },
+      {
+        "residue_id": 8,
+        "area_A2": 98.91147390194783
+      },
+      {
+        "residue_id": 9,
+        "area_A2": 7.131729482914189
+      },
+      {
+        "residue_id": 10,
+        "area_A2": 51.834393828639435
+      },
+      {
+        "residue_id": 11,
+        "area_A2": 67.69177124319313
+      },
+      {
+        "residue_id": 12,
+        "area_A2": 78.35360785998125
+      },
+      {
+        "residue_id": 13,
+        "area_A2": 7.245769296239498
+      },
+      {
+        "residue_id": 14,
+        "area_A2": 83.58839343317547
+      },
+      {
+        "residue_id": 15,
+        "area_A2": 93.6503240832047
+      },
+      {
+        "residue_id": 16,
+        "area_A2": 21.026855559665087
+      },
+      {
+        "residue_id": 17,
+        "area_A2": 88.84020643855214
+      },
+      {
+        "residue_id": 18,
+        "area_A2": 140.69414097349687
+      },
+      {
+        "residue_id": 19,
+        "area_A2": 108.75113058855027
+      },
+      {
+        "residue_id": 20,
+        "area_A2": 48.3876142983093
+      },
+      {
+        "residue_id": 21,
+        "area_A2": 36.487525220294074
+      },
+      {
+        "residue_id": 22,
+        "area_A2": 78.49583404259457
+      },
+      {
+        "residue_id": 23,
+        "area_A2": 68.97425732898279
+      },
+      {
+        "residue_id": 24,
+        "area_A2": 61.751572455561856
+      },
+      {
+        "residue_id": 25,
+        "area_A2": 96.6102572831933
+      },
+      {
+        "residue_id": 26,
+        "area_A2": 0.0
+      },
+      {
+        "residue_id": 27,
+        "area_A2": 9.524856536342135
+      },
+      {
+        "residue_id": 28,
+        "area_A2": 122.95243628532003
+      },
+      {
+        "residue_id": 29,
+        "area_A2": 156.71234279917314
+      },
+      {
+        "residue_id": 30,
+        "area_A2": 27.60349075343118
+      },
+      {
+        "residue_id": 31,
+        "area_A2": 35.025453132054615
+      },
+      {
+        "residue_id": 32,
+        "area_A2": 8.571672192501763
+      },
+      {
+        "residue_id": 33,
+        "area_A2": 54.20710052981904
+      },
+      {
+        "residue_id": 34,
+        "area_A2": 79.1936194700687
+      },
+      {
+        "residue_id": 35,
+        "area_A2": 40.514682577448376
+      },
+      {
+        "residue_id": 36,
+        "area_A2": 138.00654615746265
+      },
+      {
+        "residue_id": 37,
+        "area_A2": 35.772687227896256
+      },
+      {
+        "residue_id": 38,
+        "area_A2": 85.25388992892016
+      },
+      {
+        "residue_id": 39,
+        "area_A2": 122.04351069878344
+      },
+      {
+        "residue_id": 40,
+        "area_A2": 50.712908083160954
+      },
+      {
+        "residue_id": 41,
+        "area_A2": 50.58421588169929
+      },
+      {
+        "residue_id": 42,
+        "area_A2": 76.29668148596987
+      },
+      {
+        "residue_id": 43,
+        "area_A2": 107.4200377812243
+      },
+      {
+        "residue_id": 44,
+        "area_A2": 61.771904843215886
+      },
+      {
+        "residue_id": 45,
+        "area_A2": 74.02438008599898
+      },
+      {
+        "residue_id": 46,
+        "area_A2": 66.7292500859863
+      }
+    ],
+    "code": "#!/usr/bin/env python3\n\"\"\"\nFrozen 1CRN SASA pilot (FIRST attempt, exploratory, n_points=100).\n\nPer the frozen protocol:\n- Source: source-1CRN.pdb (frozen fixture, RCSB PDB / 1CRN chain A).\n- Filter: chain A, heavy ATOM records only, alternate location blank/A,\n  no HETATM, no hydrogens. Angstrom units.\n- Method: Bio.PDB.SASA.ShrakeRupley, probe_radius_A=1.4,\n  radii C=1.70, N=1.55, O=1.52, S=1.80 (Angstrom).\n- This is the deliberately incomplete PILOT: n_points=100, labeled exploratory.\n  It intentionally does NOT meet the final acceptance criterion\n  (final n_points>=1000 and <=2% convergence comparison).\n- Computational geometry only; not functional/clinical evidence.\n\"\"\"\nimport hashlib\nimport json\nimport sys\n\nfrom Bio.PDB import PDBParser\nfrom Bio.PDB.SASA import ShrakeRupley\n\nSOURCE = \"source-1CRN.pdb\"\nFROZEN_SHA256 = \"42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811\"\n\n# Frozen Shrake-Rupley radii (Angstrom)\nRADII = {\"C\": 1.70, \"N\": 1.55, \"O\": 1.52, \"S\": 1.80}\nPROBE = 1.4\nN_POINTS = 100  # exploratory pilot only\n\ndef sha256_of(path):\n    h = hashlib.sha256()\n    with open(path, \"rb\") as f:\n        for chunk in iter(lambda: f.read(65536), b\"\"):\n            h.update(chunk)\n    return h.hexdigest()\n\ndef main():\n    # 1) Hash the exact frozen source bytes.\n    src_sha = sha256_of(SOURCE)\n    print(f\"source_sha256 = {src_sha}\")\n    assert src_sha == FROZEN_SHA256, \"source hash mismatch vs frozen fixture\"\n\n    # 2) Parse and apply the frozen filters.\n    parser = PDBParser(QUIET=True)\n    structure = parser.get_structure(\"1CRN\", SOURCE)\n    model = structure[0]\n    chain = model[\"A\"]\n\n    kept_atoms = []\n    residue_ids = []\n    for residue in chain:\n        if residue.id[0] != \" \":  # skip hetero/water residues\n            continue\n        for atom in residue:\n            if atom.element == \"H\":\n                continue  # no hydrogens\n            altloc = atom.get_altloc()\n            if altloc not in (\" \", \"A\"):\n                continue  # alternate location blank/A only\n            kept_atoms.append(atom)\n        residue_ids.append(residue.id[1])\n\n    atom_count = len(kept_atoms)\n    residue_count = len(residue_ids)\n    unique_ids = sorted(set(residue_ids))\n    print(f\"atom_count = {atom_count}\")\n    print(f\"residue_count = {residue_count}\")\n    print(f\"unique residue_ids = {unique_ids}\")\n    assert atom_count == 327, f\"expected 327 atoms, got {atom_count}\"\n    assert residue_count == 46, f\"expected 46 residues, got {residue_count}\"\n    assert unique_ids == list(range(1, 47)), \"residue ids must be 1..46\"\n\n    # Element counts for evidence.\n    from collections import Counter\n    elem_counts = Counter(a.element for a in kept_atoms)\n    print(f\"element counts = {dict(elem_counts)}\")\n\n    # 3) Run Shrake-Rupley SASA on the filtered structure (n_points=100).\n    sr = ShrakeRupley(probe_radius=PROBE, n_points=N_POINTS, radii_dict=RADII)\n    sr.compute(structure, level=\"R\")\n\n    residues_out = []\n    total = 0.0\n    for residue in chain:\n        if residue.id[0] != \" \":\n            continue\n        area = float(residue.sasa)\n        residues_out.append({\"residue_id\": int(residue.id[1]), \"area_A2\": area})\n        total += area\n\n    print(f\"total_A2 (sum of per-residue) = {total:.6f}\")\n    print(f\"n_points = {N_POINTS}\")\n\n    # 4) Build the result object (exploratory pilot).\n    result = {\n        \"source_sha256\": src_sha,\n        \"method\": \"Shrake-Rupley\",\n        \"probe_radius_A\": PROBE,\n        \"n_points\": N_POINTS,\n        \"total_A2\": round(total, 6),\n        \"atom_count\": atom_count,\n        \"residue_count\": residue_count,\n        \"residues\": residues_out,\n        \"code\": open(__file__).read(),\n        \"tool_versions\": {\n            \"python\": sys.version.split()[0],\n            \"biopython\": \"1.84\",\n            \"shrake_rupley_implementation\": \"Bio.PDB.SASA.ShrakeRupley\",\n        },\n        \"evidence\": {\n            \"attempt\": \"first\",\n            \"status\": \"exploratory_pilot\",\n            \"exploratory\": True,\n            \"pilot_n_points\": N_POINTS,\n            \"final_acceptance_met\": False,\n            \"note\": (\n                \"Deliberately incomplete PILOT per frozen protocol: only n_points=100 \"\n                \"computed. Final acceptance requires n_points>=1000 and an executed \"\n                \"5000-point comparison with abs(total_1000-total_5000)/abs(total_5000)<=0.02. \"\n                \"This pilot intentionally does not meet final acceptance.\"\n            ),\n            \"units\": {\n                \"coordinates_probe_radii\": \"Angstrom\",\n                \"areas\": \"square Angstrom (A2)\",\n            },\n            \"radii_A\": RADII,\n            \"element_counts\": dict(elem_counts),\n            \"filter\": (\n                \"chain A, heavy ATOM records only, alternate location blank/A, \"\n                \"no HETATM, no hydrogens\"\n            ),\n            \"limitation\": (\n                \"Single fixed structure, computational geometry only. Sampling agreement \"\n                \"is not experimental validation nor an uncertainty estimate for structural \"\n                \"variability. Pilot is exploratory and not final.\"\n            ),\n        },\n    }\n\n    # 5) Write the envelope.\n    envelope = {\n        \"revision\": 1,\n        \"inputReceipts\": [\n            {\n                \"filename\": \"context.json\",\n                \"sha256\": sha256_of(\"context.json\"),\n                \"size\": __import__(\"os\").path.getsize(\"context.json\"),\n            },\n            {\n                \"filename\": \"source-1CRN.pdb\",\n                \"sha256\": src_sha,\n                \"size\": __import__(\"os\").path.getsize(SOURCE),\n            },\n        ],\n        \"result\": result,\n    }\n\n    with open(\"sasa.json\", \"w\", encoding=\"utf-8\") as f:\n        json.dump(envelope, f, indent=2, ensure_ascii=False)\n\n    print(\"WROTE sasa.json (exploratory pilot)\")\n\nif __name__ == \"__main__\":\n    main()\n",
+    "tool_versions": {
+      "python": "3.12.3",
+      "biopython": "1.84",
+      "shrake_rupley_implementation": "Bio.PDB.SASA.ShrakeRupley"
+    },
+    "evidence": {
+      "attempt": "first",
+      "status": "exploratory_pilot",
+      "exploratory": true,
+      "pilot_n_points": 100,
+      "final_acceptance_met": false,
+      "note": "Deliberately incomplete PILOT per frozen protocol: only n_points=100 computed. Final acceptance requires n_points>=1000 and an executed 5000-point comparison with abs(total_1000-total_5000)/abs(total_5000)<=0.02. This pilot intentionally does not meet final acceptance.",
+      "units": {
+        "coordinates_probe_radii": "Angstrom",
+        "areas": "square Angstrom (A2)"
+      },
+      "radii_A": {
+        "C": 1.7,
+        "N": 1.55,
+        "O": 1.52,
+        "S": 1.8
+      },
+      "element_counts": {
+        "N": 55,
+        "C": 202,
+        "O": 64,
+        "S": 6
+      },
+      "filter": "chain A, heavy ATOM records only, alternate location blank/A, no HETATM, no hydrogens",
+      "limitation": "Single fixed structure, computational geometry only. Sampling agreement is not experimental validation nor an uncertainty estimate for structural variability. Pilot is exploratory and not final."
+    }
+  }
+}

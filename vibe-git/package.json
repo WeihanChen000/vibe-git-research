@@ -53,7 +53,11 @@
     "research:replay": "node scripts/open-replay.mjs",
     "research:simulate-ui": "node apps/host/scripts/preview-research-onboarding.mjs",
     "test:research-share": "node scripts/verify-share.mjs",
-    "test:integrated-live": "node scripts/verify-integrated-live.mjs"
+    "test:integrated-live": "node scripts/verify-integrated-live.mjs",
+    "research:acceptance": "node --use-env-proxy apps/host/scripts/acceptance-isolated-live.mjs",
+    "research:acceptance:export": "node apps/host/scripts/export-isolated-acceptance.mjs",
+    "test:isolated-acceptance": "node scripts/verify-isolated-acceptance.mjs",
+    "research:replay:build-public": "node scripts/build-public-replay.mjs"
   },
   "dependencies": {
     "@vibe-git/protocol": "^0.1.0",

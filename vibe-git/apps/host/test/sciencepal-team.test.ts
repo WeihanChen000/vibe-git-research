@@ -106,6 +106,46 @@ async function setup(sharedExpert = false, codex = false, platform = "codex") {
 }
 
 describe("SciencePAL original member identity and distributed handoff", () => {
+
+  it("carries original continuation history into review and rework without private replies", async()=>{
+    const s=await setup();await s.publish();s.remoteA.askKinds.add('TASK');s.remoteB.rejectOnce=true;await s.pipeline.tick();
+    await s.connectorA.step();expect(s.pipeline.get(s.project.id).runs.at(-1)!.status).toBe('NEEDS_INPUT');
+    const original={...s.connectorA.journal.remote!};await s.connectorA.reply('PRIVATE ANSWER: research parameter');
+    s.remoteA.askKinds.clear();await s.connectorA.step();await s.pipeline.tick();
+    const p=s.pipeline.get(s.project.id),review=p.runs.find(r=>r.kind==='REVIEW')!;
+    const context=JSON.parse(Buffer.from(s.pipeline.file(p.id,review.inputs[0]!.artifactId).bytes).toString());
+    expect(context.executionHistory.attempts).toHaveLength(1);
+    expect(context.executionHistory.attempts[0]).toMatchObject({threadId:original.threadId,artifact:{id:p.tasks[0]!.artifactId},continuations:[{previousRunId:original.runId,source:'member-reply'}]});
+    expect(JSON.stringify(context.executionHistory)).not.toMatch(/PRIVATE ANSWER|claimId|nodeToken|replyText|messageId/);
+    await s.connectorB.step();await s.pipeline.tick();expect(s.pipeline.get(p.id).phase).toBe('CHANGES_REQUESTED');
+    await s.command('rework',{taskKey:'data'});
+    const repaired=s.pipeline.get(p.id).runs.at(-1)!;
+    const retryContext=JSON.parse(Buffer.from(s.pipeline.file(p.id,repaired.inputs[0]!.artifactId).bytes).toString());
+    expect(retryContext.executionHistory.attempts).toHaveLength(1);
+    expect(retryContext.executionHistory.attempts[0].continuations[0].threadId).toBe(original.threadId);
+    expect(retryContext.executionHistory.limitation).toContain('Not an independent provider audit');
+  });
+
+  it("supplements rejected evidence once without changing bytes, criteria, author or execution count", async()=>{
+    const s=await setup();s.remoteB.rejectOnce=true;await s.publish();const rejected=await s.until('CHANGES_REQUESTED');
+    const task=rejected.tasks[0]!, old={artifactId:task.artifactId,executionId:task.executionId,attempt:task.attempt,acceptance:task.acceptance,reviewId:task.reviewId};
+    const path=`/api/sciencepal-team/projects/${rejected.id}/commands/supplement-review`;
+    const body={revision:rejected.revision,taskKey:'data',reviewId:old.reviewId,note:'Observed original tool record; source and timestamps supplied for independent assessment.'};
+    expect((await s.raw(s.member.nodeToken,path,body)).statusCode).toBe(403);
+    expect((await s.raw(s.captain.nodeToken,path,{...body,reviewId:'stale'})).statusCode).toBe(409);
+    expect((await s.raw(s.captain.nodeToken,path,{...body,note:''})).statusCode).toBe(400);
+    const p=await s.command('supplement-review',body), revised=p.tasks[0]!;
+    expect(revised).toMatchObject({artifactId:old.artifactId,executionId:old.executionId,attempt:old.attempt,acceptance:old.acceptance,status:'REVIEWING'});
+    expect(p.runs.find(r=>r.id===old.reviewId)!.output).not.toBeNull();expect(p.runs.filter(r=>r.kind==='TASK'&&r.taskKey==='data')).toHaveLength(1);
+    const review=p.runs.find(r=>r.id===revised.reviewId)!;expect(review.agent.id).toBe(task.reviewerAgentId);
+    const context=JSON.parse(Buffer.from(s.pipeline.file(p.id,review.inputs[0]!.artifactId).bytes).toString());expect(context.feedback).toContain(body.note);
+    expect(p.tasks[1]!.executionId).toBeNull();expect((await s.raw(s.captain.nodeToken,path,body)).statusCode).toBe(409);
+    s.remoteB.rejected=false;await s.until('CHANGES_REQUESTED');
+    const latest=s.pipeline.get(p.id);expect((await s.raw(s.captain.nodeToken,path,{...body,reviewId:latest.tasks[0]!.reviewId})).statusCode).toBe(409);
+    expect(projectNextActions(latest,s.captain.nodeId).actions.some(a=>a.operation==='supplement-review'&&a.body?.taskKey==='data')).toBe(false);
+    await s.command('rework',{taskKey:'data'});await s.until('COMPLETED');
+  });
+
   it("retries an explicitly throttled initial submission with the same claim identity", async () => {
     const s = await setup(); await s.command('align');
     const start = s.remoteA.start.bind(s.remoteA); let rejected = false;
@@ -572,6 +612,16 @@ describe('Authenticated browser research controls',()=>{
   const s=await setup(),a=await browserClient(s,s.captain.nodeId),st=await a.state();
   const n=s.service.repo.getNode(s.captain.nodeId)!;s.service.repo.putNode({...n,revoked:true});
   expect((await a.post('align',{expectedState:st.commandSnapshots[s.project.id]},{'x-vibe-csrf':st.csrfToken})).statusCode).toBe(403);
+ });
+ it('accepts supplemental evidence only through a fresh captain browser session',async()=>{
+  const s=await setup(),a=await browserClient(s,s.captain.nodeId),b=await browserClient(s,s.member.node.id);s.remoteB.rejectOnce=true;
+  await s.publish();const p=await s.until('CHANGES_REQUESTED'),t=p.tasks[0]!;
+  const body={taskKey:t.key,reviewId:t.reviewId,note:'Original tool event observed; independent reviewer must evaluate its limits.'};
+  expect((await b.post('supplement-review',body)).statusCode).toBe(403);
+  expect((await a.post('supplement-review',body,{origin:'https://foreign.example'})).statusCode).toBe(403);
+  expect((await a.post('supplement-review',body)).statusCode).toBe(200);
+  expect((await a.post('supplement-review',body)).statusCode).toBe(409);
+  const done=await s.until('COMPLETED');expect(done.tasks[0]!.executionId).toBe(t.executionId);expect(done.tasks[0]!.artifactId).toBe(t.artifactId);expect(done.tasks[0]!.attempt).toBe(1);
  });
  it('runs browser publish, pause/resume, rejection/rework and member-proposed R2 with the real pipeline',async()=>{
   const s=await setup(),a=await browserClient(s,s.captain.nodeId),b=await browserClient(s,s.member.node.id);s.remoteB.rejectOnce=true;

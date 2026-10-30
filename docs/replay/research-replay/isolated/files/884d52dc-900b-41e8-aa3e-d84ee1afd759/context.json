@@ -1,0 +1,374 @@
+{
+  "revision": 1,
+  "requirement": "# Alignment draft for captain review and publication\n\nThis ALIGN artifact aligns the frozen proposals; it does not publish the research protocol or approve scientific results. All three proposals have identical common requirements and compatible role assignments. No selected decisions or approved changes are present; issues=[]. Exactly two authoring tasks are retained: sasa and synthesis. No additional captain authoring task is created.\n\n## Question, source and scope\nCompute the solvent-accessible surface area of the single frozen public 1CRN chain A structure, including per-residue areas, and assess numerical sampling convergence under the frozen method. This is computational geometry only, not functional or clinical evidence and not biological function ranking. Source attribution: RCSB PDB / 1CRN public coordinates; frozen fixture. The source URL in context is provenance only, not authorization to refetch. Use the actual source-1CRN.pdb bytes, not another revision or reconstructed coordinates.\n\nAlignment-time local Python 3.12.10 read every input file and parsed all 327 retained coordinate records; source contains 46 residues with integer identifiers 1 through 46. Elements: C=202, N=55, O=64, S=6. This establishes input/filter evidence only, not SASA execution, convergence, a numerical baseline, or final scientific acceptance. No SASA calculation was run during alignment. Availability of Bio.PDB and member-specific question tools must be established by the assigned member; a missing required tool or input is a limitation, not permission to install, substitute, or fabricate.\n\nFrozen source SHA-256: 42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811. Coordinates, probe and radii use Angstrom (A); areas use square Angstrom (A2). Retain heavy ATOM records from chain A with alternate location blank/A only; exclude HETATM and hydrogens. No coordinate repair, additional structures, structural ensemble or biological extrapolation is authorized.\n\n## Role binding and hard handoff\n- sasa assigneeAgentId: member_node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0.\n- synthesis assigneeAgentId: member_node-9c374e0b-1909-42e3-86cd-2b2f05b4b65b.\n- Both downstream review assignments use reviewerAgentId: member_node-4050b257-1656-4536-aaff-faff95fd7973. The captain independently reviews each task, coordinates alignment, and publishes the protocol after checking this draft; the captain does not author either task.\n- HARD dependency edge: sasa -> synthesis. In tasks this is synthesis.dependencies=[\"sasa\"]. The file handoff is the exact APPROVED sasa.json envelope plus its Host-validated approval evidence; synthesis also receives the frozen source. A pilot, unapproved result, or request_changes verdict cannot unlock synthesis. Rework is a new attempt of sasa, not a third task.\n\n## Lifecycle, evidence and review\nThe verification-phrase interaction belongs to the FIRST sasa attempt, not this ALIGN job. Before any SASA computation on that attempt, the SciencePAL member must use its actual ask-user/question tool, enter the controlled NEEDS_INPUT lifecycle, and wait for a real answer. No answer is supplied in the frozen files. After the answer, run ONLY n_points=100, label the result exploratory, and submit the intentionally incomplete pilot. Even a numerically correct pilot requires captain verdict request_changes because the final precision criterion is unmet. On REWORK with previous-sasa.json and feedback, do not ask again: actually execute both 1000- and 5000-point calculations, retain the true pilot history, and provide measured totals and convergence. Report the relative difference as abs(total_1000-total_5000)/abs(total_5000), with its denominator stated; the final criterion remains <=0.02 and final n_points>=1000. Preserve both measured resolutions and make clear which resolution the top-level residues and total_A2 represent. Discuss that sampling agreement is not experimental validation or an uncertainty estimate for structural variability.\n\nThe captain's sasa review must independently implement and execute a baseline from actual filtered source using standard Python or available NumPy, with the same units/probe/radii, and place numerical totals, residue/count/sum checks, sampling settings, differences and reproducible execution evidence in reproduction. Do not treat rerunning the submitted Bio.PDB call alone as an independent baseline. Report differences honestly; no extra numerical baseline tolerance is invented here. Separate execution success, schema checks, Host numeric checks and scientific judgment. An approve verdict cannot override any frozen failed check, missing convergence run, or exploratory pilot status.\n\nFor upstream approval, use context.upstream[].approval bound to reviewedArtifact: hash the exact UTF-8 bytes of reviewFileUtf8 against reviewArtifact; parse that original review envelope; check its approve verdict, exact captain member-scoped reviewer binding, and receipt for the actual upstream sasa.json bytes. Independently hash those actual bytes for upstream_sha256. Producer and reviewer nested receipts belong to their producing contexts, already Host-validated; never compare their context.json receipts with the current context.json. Do not execute embedded source merely to establish provenance. Approval transports review evidence and does not replace synthesis's own counts, sums and source checks.\n\nEach TASK result must satisfy its unchanged draft-07 schema below. Include complete actually executed portable Python source in code, using relative paths, not only a filename. For sasa, report actual Python/Biopython and other used library versions in tool_versions. Include executed synthesis tool versions in its code comments or summary. The frozen schemas permit additional properties by omission of additionalProperties; evidence such as exploratory status, pilot history, radii, both convergence runs and limitations may be recorded in those permitted result evidence fields without removing or changing required fields. Required numbers remain numeric and residue rows remain an array of objects. Every task envelope must follow its supplied protocol and hash only that attempt's actual original attachments, including its own context.json. Do not reconstruct receipts.\n\nOnly available local tools are allowed, using python or py on Windows when present. No package installs, network refetch, unrelated-path scans, personal-memory edits, or public user paths/tokens/personal contact details. No numeric runtime or memory budget is supplied; none is invented. If a required input/tool is missing, report the limitation and preserve the lifecycle rather than fabricating a result. Stop after the required output envelope exists.\n\n## Frozen common proposal (verbatim)\n# Preregistered single-machine three-member acceptance\nReal public 1CRN structure, chain A, heavy ATOM records only, alternate location blank/A, no HETATM or hydrogens, Angstrom. Exact source attachment; do not refetch. This is computational geometry, not functional or clinical evidence.\nExactly TWO tasks: sasa assigned to the SciencePAL member, synthesis assigned to the non-captain Codex member. Captain coordinates alignment and independently reviews both tasks; captain has no authoring task. Use member-scoped IDs from context, never merge the two Codex members.\nSciencePAL sasa MUST actually run Bio.PDB.SASA.ShrakeRupley, probe_radius_A=1.4, radii C=1.70 N=1.55 O=1.52 S=1.80. Deliver total_A2 and residues [{residue_id:integer,area_A2:number}], n_points, atom_count, residue_count, source_sha256, method literal Shrake-Rupley, code (complete portable executed Python source) and tool_versions. All values must be computed, not copied from earlier studies.\nFIRST sasa attempt is a deliberately incomplete PILOT: BEFORE computing, use your actual ask-user/question tool to ask for the verification phrase. The required answer is not in these files; wait, do not invent one. This is an authorized controlled NEEDS_INPUT lifecycle test. Once an answer arrives, compute ONLY n_points=100, label exploratory, and submit. It intentionally FAILS the final acceptance requirement; reviewer must request_changes. On REWORK (when previous-sasa.json and feedback are provided), do not ask again: compute 1000 and 5000 points, report convergence total relative difference <=2% and limitation. This is planned refinement, not an accidental model mistake.\nSasa acceptance must include: correct frozen source/filter/counts; actual code and tool versions with units/radii; final n_points>=1000 AND an actually executed 5000-point comparison with <=2% total difference. Retain pilot truthfully; no fabricating success. Codex reviewer must compute an independent baseline using actual source and standard Python or available NumPy, and report numeric evidence in reproduction. For pilot, a correct 100-point output still requires changes because precision criterion is unmet.\nSynthesis reads only APPROVED sasa.json and source, independently sums residues and hashes approved upstream bytes, and emits summary, total_A2, source_sha256, upstream_sha256, code. Explicitly say single fixed structure, no biological function ranking. Captain independently reviews synthesis by recomputing counts/sums/hashes.\nOnly use available tools; no package installs or network refetch. For local Windows Python use python or py if available; do not scan unrelated paths. All public evidence must avoid user paths, tokens, personal contact details. Code should use relative input paths. Stop after actual required envelope exists.\n\n## Immutable resultSchemas (exact task keys and schema content)\n```json\n{\n  \"sasa\": {\n    \"type\": \"object\",\n    \"required\": [\n      \"source_sha256\",\n      \"method\",\n      \"probe_radius_A\",\n      \"n_points\",\n      \"total_A2\",\n      \"atom_count\",\n      \"residue_count\",\n      \"residues\",\n      \"code\",\n      \"tool_versions\"\n    ],\n    \"properties\": {\n      \"source_sha256\": {\n        \"type\": \"string\"\n      },\n      \"method\": {\n        \"type\": \"string\"\n      },\n      \"probe_radius_A\": {\n        \"type\": \"number\"\n      },\n      \"atom_count\": {\n        \"type\": \"integer\"\n      },\n      \"residue_count\": {\n        \"type\": \"integer\"\n      },\n      \"tool_versions\": {\n        \"type\": \"object\"\n      },\n      \"n_points\": {\n        \"type\": \"integer\",\n        \"minimum\": 100\n      },\n      \"total_A2\": {\n        \"type\": \"number\",\n        \"minimum\": 0\n      },\n      \"residues\": {\n        \"type\": \"array\",\n        \"minItems\": 46,\n        \"maxItems\": 46,\n        \"items\": {\n          \"type\": \"object\",\n          \"required\": [\n            \"residue_id\",\n            \"area_A2\"\n          ],\n          \"properties\": {\n            \"residue_id\": {\n              \"type\": \"integer\"\n            },\n            \"area_A2\": {\n              \"type\": \"number\",\n              \"minimum\": 0\n            }\n          }\n        }\n      },\n      \"code\": {\n        \"type\": \"string\",\n        \"minLength\": 30\n      }\n    }\n  },\n  \"synthesis\": {\n    \"type\": \"object\",\n    \"required\": [\n      \"summary\",\n      \"total_A2\",\n      \"source_sha256\",\n      \"upstream_sha256\",\n      \"code\"\n    ],\n    \"properties\": {\n      \"source_sha256\": {\n        \"type\": \"string\"\n      },\n      \"code\": {\n        \"type\": \"string\"\n      },\n      \"summary\": {\n        \"type\": \"string\",\n        \"minLength\": 30\n      },\n      \"upstream_sha256\": {\n        \"type\": \"string\",\n        \"minLength\": 64,\n        \"maxLength\": 64\n      },\n      \"total_A2\": {\n        \"type\": \"number\"\n      }\n    }\n  }\n}\n```\n\n## Immutable scientificChecks (version 1)\n```json\n{\n  \"version\": 1,\n  \"sourceSha256\": \"42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811\",\n  \"tasks\": {\n    \"sasa\": [\n      {\n        \"id\": \"residue-sum\",\n        \"kind\": \"sum\",\n        \"totalPath\": \"total_A2\",\n        \"rowsPath\": \"residues\",\n        \"valueField\": \"area_A2\",\n        \"absoluteTolerance\": 0.001\n      },\n      {\n        \"id\": \"residue-count\",\n        \"kind\": \"reference\",\n        \"path\": \"residue_count\",\n        \"expected\": 46,\n        \"absoluteTolerance\": 0,\n        \"relativeTolerance\": 0,\n        \"provenance\": \"Independent count of chain A residue identifiers in frozen public 1CRN ATOM records.\"\n      }\n    ]\n  }\n}\n```\nThese Host rules require abs(total_A2 - sum(residues[*].area_A2)) <= 0.001 A2 and residue_count exactly 46 (zero absolute and relative tolerance). Deliver unique original integer residue_id values 1..46 and the actually measured area_A2 values. The schema accepts n_points=100 for truthful pilot delivery; it does not waive the separate final precision acceptance criteria. Passing the two Host numeric rules alone is insufficient for approval.",
+  "task": {
+    "resultSchema": {
+      "type": "object",
+      "required": [
+        "source_sha256",
+        "method",
+        "probe_radius_A",
+        "n_points",
+        "total_A2",
+        "atom_count",
+        "residue_count",
+        "residues",
+        "code",
+        "tool_versions"
+      ],
+      "properties": {
+        "source_sha256": {
+          "type": "string",
+          "const": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811"
+        },
+        "method": {
+          "type": "string",
+          "const": "Shrake-Rupley"
+        },
+        "probe_radius_A": {
+          "type": "number",
+          "const": 1.4
+        },
+        "atom_count": {
+          "type": "integer"
+        },
+        "residue_count": {
+          "type": "integer"
+        },
+        "tool_versions": {
+          "type": "object"
+        },
+        "n_points": {
+          "type": "integer",
+          "minimum": 100
+        },
+        "total_A2": {
+          "type": "number",
+          "minimum": 0
+        },
+        "residues": {
+          "type": "array",
+          "minItems": 46,
+          "maxItems": 46,
+          "items": {
+            "type": "object",
+            "required": [
+              "residue_id",
+              "area_A2"
+            ],
+            "properties": {
+              "residue_id": {
+                "type": "integer"
+              },
+              "area_A2": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        },
+        "code": {
+          "type": "string",
+          "minLength": 30
+        }
+      }
+    },
+    "key": "sasa",
+    "assigneeAgentId": "member_node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0",
+    "reviewerAgentId": "member_node-4050b257-1656-4536-aaff-faff95fd7973",
+    "outputFilename": "sasa.json",
+    "title": "Compute and refine frozen 1CRN SASA",
+    "goal": "Execute Bio.PDB.SASA.ShrakeRupley on the frozen filtered chain A through the controlled exploratory pilot and rework lifecycle. Deliver sasa.json with source_sha256, method literal Shrake-Rupley, probe_radius_A, n_points, total_A2, atom_count, residue_count, residues [{residue_id:integer,area_A2:number}], complete executed code and tool_versions, matching the exact sasa resultSchema reproduced in alignmentMarkdown; include truthful pilot, convergence and limitation evidence in schema-permitted fields.",
+    "boundary": "Assigned only to the SciencePAL member; captain independently reviews. Single frozen structure, computational geometry only. Do not bypass the required first-attempt question, install packages, refetch source, author synthesis, invent verification text, copy historical SASA values, or claim the pilot meets final acceptance. Rework requires previous-sasa.json and feedback; no repeat question.",
+    "acceptance": [
+      "Read and hash the exact frozen source-1CRN.pdb; source_sha256 must equal 42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811. Apply chain A, heavy ATOM, alternate location blank/A, no HETATM/hydrogen filters; independently confirm atom_count=327, residue_count=46, and unique residue_id values 1..46.",
+      "Actually execute Bio.PDB.SASA.ShrakeRupley with probe_radius_A=1.4 and radii C=1.70, N=1.55, O=1.52, S=1.80 Angstrom; method must be Shrake-Rupley; total_A2 and per-residue area_A2 are computed square-Angstrom values, not copied references.",
+      "On FIRST attempt, before SASA computation use an actual ask-user/question tool to request the verification phrase and wait for a real answer in NEEDS_INPUT. After receiving it, execute ONLY n_points=100, label exploratory, submit the truthful deliberately incomplete pilot, and receive request_changes; missing tool/answer must be reported without invention.",
+      "On REWORK with previous-sasa.json and feedback, do not ask again; actually run n_points=1000 and 5000. Deliver final n_points>=1000, both measured totals, abs(total_1000-total_5000)/abs(total_5000)<=0.02 with denominator stated, consistent top-level resolution, retained pilot evidence and a numerical/structural limitation. A missing comparison or 100-point-only output fails final acceptance.",
+      "Deliver every required field with exact types under the unchanged sasa schema: 46 residue objects, integer residue_id, nonnegative numeric area_A2 and total_A2, integer n_points, complete portable actually executed Python code and actual tool_versions; include units, radii, run settings and execution evidence. Use relative paths and no sensitive public details.",
+      "Pass frozen scientificChecks version 1: abs(total_A2-sum(residues[*].area_A2))<=0.001 A2 and residue_count=46 exactly. Schema validity, execution success, these checks and scientific approval must be distinguished; do not alter observations or frozen rules to force a pass.",
+      "Captain reviewerAgentId=member_node-4050b257-1656-4536-aaff-faff95fd7973 independently executes a standard-Python or available-NumPy baseline from the actual source, checks counts/sums/hashes/settings, and reports numeric baseline comparisons and reproducible evidence in reproduction. Pilot must receive request_changes even if correct; final approval requires all final criteria.",
+      "Use only actually available tools, no installs or network refetch, and include own-run original input receipts. Hand off exact sasa.json only after captain approval with bound Host-validated approval evidence; report unavailable prerequisites, and stop once the required attempt envelope exists."
+    ],
+    "dependencies": [],
+    "scientificChecks": [
+      {
+        "id": "residue-sum",
+        "kind": "sum",
+        "totalPath": "total_A2",
+        "rowsPath": "residues",
+        "valueField": "area_A2",
+        "absoluteTolerance": 0.001
+      },
+      {
+        "id": "residue-count",
+        "kind": "reference",
+        "path": "residue_count",
+        "expected": 46,
+        "absoluteTolerance": 0,
+        "relativeTolerance": 0,
+        "provenance": "Independent count of chain A residue identifiers in frozen public 1CRN ATOM records."
+      }
+    ],
+    "status": "CHANGES_REQUESTED",
+    "attempt": 3,
+    "executionId": "3deb50b2-e540-4a32-9acf-f88d7afdc71f",
+    "reviewId": "e836fb27-70cb-41ed-a84e-7ce657966b8b",
+    "artifactId": "a6c80bf9-a1d0-4bc1-bccd-b8f9b7d2050c",
+    "feedback": "The rework's scientific numbers are independently corroborated: frozen source/filter/counts and both schemas pass; 5000-point SASA is 2970.926660612643 A2, the 1000-versus-5000 relative difference is 0.0011141743574078402 (0.1114%), and both frozen numeric checks pass. Independent NumPy code reproduced totals and all 46 residue areas. Approval is withheld because the prior review's mandatory first-attempt question/NEEDS_INPUT/real-answer chronology remains unverified, and the requested actual author Bio.PDB runtime output/version capture is absent. Submitted code, numerical agreement and claimed versions are distinguished from observed author execution; this is an evidence limitation, not a finding of fabrication. Local Bio.PDB is unavailable and was not installed. Captain should resolve the existing history and execution evidence through rework, retain the truthful pilot, and keep synthesis blocked until every criterion is satisfied. Findings concern computational geometry of one fixed structure only; sampling agreement is not experimental validation or structural-variability uncertainty.\nCaptain: bind the existing first-attempt question-tool request, NEEDS_INPUT/wait, real-answer event and their ordering before the first SASA computation to this task's history. Do not ask again on rework or invent/reconstruct an unobserved answer. If the existing record cannot be supplied, retain the explicit unmet verification limitation; do not mark the frozen lifecycle criterion satisfied.\nCaptain: route the missing execution-evidence item to the assigned sasa author. Supply actual captured Bio.PDB.SASA.ShrakeRupley execution output for 1000 and 5000 points and measured Python/Bio.__version__ (and used NumPy) versions with the exact portable executed source in schema-permitted evidence fields. Preserve current measured results unless a real rerun changes them; keep one consistent 5000-point top-level resolution and truthful pilot/convergence history. Distinguish producer execution from this review's independent NumPy baseline.\nCaptain: retain request_changes and block synthesis until all exact acceptance criteria are satisfied; then bind a new approve review to the exact new sasa.json bytes and original input receipts. Do not alter immutable schemas, numeric rules or observations to obtain approval.\nFollow the actual independent review; retain pilot; run final 1000 and 5000 points and deliver full reproducible code.\nCaptain-supplied supplemental evidence (a claim to evaluate, not an override):\n{\"source\":\"operator-observed-sciencepal-ui\",\"observedAt\":\"2026-10-30T21:32:53.695317+00:00\",\"threadId\":\"d612c756-d8ef-4d51-890d-64182f4d049f\",\"originalRunId\":\"1e6cfda9-1190-444a-8dba-d491dc2335f5\",\"continuedRunId\":\"c05ee743-b5c5-429f-98b4-b0b82dca9973\",\"uiTimezone\":\"Asia/Shanghai\",\"events\":[{\"type\":\"ask-user-tool\",\"source\":\"SciencePAL original thread UI\",\"step\":5,\"totalSteps\":11,\"title\":\"Controlled NEEDS_INPUT verification phrase\",\"request\":\"FIRST attempt; before any SASA computation request the controlled verification phrase and wait for a real answer; then exploratory n_points=100.\",\"state\":\"Response received / submitted\"},{\"type\":\"NEEDS_INPUT\",\"source\":\"Host observed real remote status\",\"at\":\"2026-10-30T21:08:37.805Z\"},{\"type\":\"user-answer\",\"source\":\"SciencePAL original thread UI\",\"displayedAt\":\"2026-10-31T05:08:46+08:00\",\"replySha256\":\"d436e768d4f1168dfc6109153fd03052b6762749e5331f304061a5e59f8e33e2\"},{\"type\":\"continuation-ack\",\"source\":\"Host accepted same-thread continuation\",\"at\":\"2026-10-30T21:08:50.744Z\"},{\"type\":\"first-SASA-computation\",\"source\":\"SciencePAL original thread tool pane\",\"step\":8,\"totalSteps\":11,\"displayedAt\":\"2026-10-31T05:09:36+08:00\",\"command\":\"cd /workspace && python3 sasa_pilot.py 2>&1\",\"state\":\"success\",\"output\":{\"source_sha256\":\"42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811\",\"atom_count\":327,\"residue_count\":46,\"total_A2\":2975.651128,\"n_points\":100,\"label\":\"exploratory pilot\"}}],\"limitations\":\"Bounded operator observation of existing SciencePAL UI, not signed provider telemetry. UI step ordering and displayed times are preserved; no exact timestamp is asserted for the question tool. Host records independently bind NEEDS_INPUT and reply to this thread. No private answer, credentials or full transcript included.\"}\nKeep all frozen acceptance criteria, original artifact bytes and numeric checks. Independently review this evidence; reject if it does not resolve the original review.",
+    "review": {
+      "verdict": "request_changes",
+      "summary": "Independent numerical review of sasa.json succeeds: frozen source/counts, both schemas and both version-1 scientific checks pass. NumPy baseline gives 2970.9266606126434 A2 at 5000 points and corroborates all 46 residue areas; candidate 1000/5000 relative difference is 0.001114174357408299 (0.1114%). The added author-reported Bio.PDB execution capture addresses the previously missing run-output evidence at the supplied-report level; it is kept distinct from this review's observed NumPy execution. Host-accepted same-thread continuation now corroborates the first-attempt member reply, but it does not identify the question/NEEDS_INPUT/first-computation ordering required by the exact lifecycle criterion. Request changes only for that remaining evidence gap; no repeat question or altered numerical observations are requested. This is not a finding of fabrication. Captain must resolve the record and keep synthesis blocked until all criteria pass. Findings apply to computational geometry of one fixed structure; sampling agreement is not experimental validation or structural-variability uncertainty.",
+      "checks": [
+        {
+          "criterion": "Read and hash the exact frozen source-1CRN.pdb; source_sha256 must equal 42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811. Apply chain A, heavy ATOM, alternate location blank/A, no HETATM/hydrogen filters; independently confirm atom_count=327, residue_count=46, and unique residue_id values 1..46.",
+          "passed": true,
+          "evidence": "sasa.json source_sha256 equals the independently hashed frozen source: 42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811 (49491 bytes). Direct fixed-column parsing of all source records retained 327 chain-A heavy ATOM records with blank/A altloc; 46 unique original integer residue IDs are exactly 1..46. Elements C=202, N=55, O=64, S=6. All 327 coordinate records in this fixture satisfy the filter; thus the submitted code computing the whole chain rather than detaching excluded atoms has no effect for these actual bytes. Candidate counts and row IDs match. Full parsing and receipts are in reproduction."
+        },
+        {
+          "criterion": "Actually execute Bio.PDB.SASA.ShrakeRupley with probe_radius_A=1.4 and radii C=1.70, N=1.55, O=1.52, S=1.80 Angstrom; method must be Shrake-Rupley; total_A2 and per-residue area_A2 are computed square-Angstrom values, not copied references.",
+          "passed": true,
+          "evidence": "sasa.json contains the Bio.PDB.SASA.ShrakeRupley calls, method Shrake-Rupley, 1.4 A probe and C/N/O/S radii 1.70/1.55/1.52/1.80 A. evidence.execution now reports both runs as executed and supplies captured totals 2967.616530309648 and 2970.9266606126434 A2. Reported producer versions are Python 3.12.3, Biopython 1.84, NumPy 1.26.4. Independent NumPy execution here corroborates the totals to 4.55e-13 A2 and all 46 final rows to 2.85e-14 A2. This passes on the supplied author execution report plus independently corroborated calculations; it does not claim direct observation of the producer runtime or that Host lifecycle records prove Bio.PDB execution. Bio.PDB is unavailable locally and was not installed. See reproduction for independent code and measured reviewer versions."
+        },
+        {
+          "criterion": "On FIRST attempt, before SASA computation use an actual ask-user/question tool to request the verification phrase and wait for a real answer in NEEDS_INPUT. After receiving it, execute ONLY n_points=100, label exploratory, submit the truthful deliberately incomplete pilot, and receive request_changes; missing tool/answer must be reported without invention.",
+          "passed": false,
+          "evidence": "sasa.json preserves a 100-point exploratory pilot, total 2975.651128 A2, and reports its request_changes verdict and first-attempt question/answer. Independent 100-point baseline is 2975.6511283884624 A2 (difference 3.8846246752655134e-7 A2, consistent with reported rounding). context.executionHistory supplies a Host-accepted member-reply continuation at 2026-10-30T21:08:50.744Z on thread d612c756-d8ef-4d51-890d-64182f4d049f, previous run 1e6cfda9-1190-444a-8dba-d491dc2335f5 to c05ee743-b5c5-429f-98b4-b0b82dca9973, with reply SHA-256 d436e768d4f1168dfc6109153fd03052b6762749e5331f304061a5e59f8e33e2. This positively corroborates an actual same-thread reply; it is not dismissed for lacking a provider transcript. However, the supplied records show only final COLLECTED status and do not identify the question-tool request, NEEDS_INPUT transition, or first-computation event/order. The exact requirement that the question and wait precede all first-attempt SASA computations remains unverified. A reply hash does not reveal its text. This is an evidence gap, not a finding that the interaction did not occur. Reproduction retains the exact supplied lifecycle records."
+        },
+        {
+          "criterion": "On REWORK with previous-sasa.json and feedback, do not ask again; actually run n_points=1000 and 5000. Deliver final n_points>=1000, both measured totals, abs(total_1000-total_5000)/abs(total_5000)<=0.02 with denominator stated, consistent top-level resolution, retained pilot evidence and a numerical/structural limitation. A missing comparison or 100-point-only output fails final acceptance.",
+          "passed": true,
+          "evidence": "sasa.json is a rework artifact: its previous-sasa.json receipt matches Host attempt 2 hash fe7b50ba01dab36a0a1573ca0c41fec744b9d917cd9d656a6c002b3fa77a4e62, and current bytes match Host attempt 3 hash 57217210b2e6be2bd915f65315792c3466c7ac5a22b5f149be98d16330252ede. Later attempt continuation arrays are empty; code has no question call and pilot_history reports no repeat question. evidence.execution reports both 1000 and 5000 runs; independent totals are 2967.6165303096477 and 2970.9266606126434 A2. Recomputed candidate relative difference = 0.001114174357408299 (0.1114174357408299%), denominator abs(total_5000), below 0.02. Top-level n_points=5000, total and every row match the 5000-point baseline. Pilot remains exploratory. Limitation explicitly excludes experimental validation, structural-variability uncertainty and biological function ranking. Independent calculations support the numerical requirement; historical first-attempt chronology remains the separate failed check above."
+        },
+        {
+          "criterion": "Deliver every required field with exact types under the unchanged sasa schema: 46 residue objects, integer residue_id, nonnegative numeric area_A2 and total_A2, integer n_points, complete portable actually executed Python code and actual tool_versions; include units, radii, run settings and execution evidence. Use relative paths and no sensitive public details.",
+          "passed": true,
+          "evidence": "sasa.json passes Draft7Validator against both context.resultSchemas.sasa and context.task.resultSchema, with zero errors. It has 46 residue objects, integer unique IDs 1..46, finite nonnegative numeric areas and total, integer n_points=5000, full Python calculation source, relative attachment paths, reported versions, units, radii and run settings. Source includes both ShrakeRupley runs; no embedded code was executed merely for provenance. The source's emitter sets code=__file__, whereas the delivered artifact embeds the source itself and adds execution evidence; the delivered source supports reproduction of calculations but not byte-identical regeneration of the final enriched envelope. No byte-identical generator criterion was imposed. Actual reviewer versions and executed source are in reproduction; producer versions and runtime capture remain identified as author-reported evidence."
+        },
+        {
+          "criterion": "Pass frozen scientificChecks version 1: abs(total_A2-sum(residues[*].area_A2))<=0.001 A2 and residue_count=46 exactly. Schema validity, execution success, these checks and scientific approval must be distinguished; do not alter observations or frozen rules to force a pass.",
+          "passed": true,
+          "evidence": "sasa.json passes both frozen scientificChecks version 1 independently: math.fsum of all 46 area_A2 values = 2970.9266606126434 A2, identical to total_A2, absolute residual 0.0 A2 <= 0.001 A2. residue_count=46 exactly, with independently verified source count 46 and row IDs 1..46. These are local recomputations of the frozen rules, not a claim that a new Host checker execution was observed. Schema validity and independent numerical execution are separately recorded in reproduction; neither overrides the unmet lifecycle acceptance criterion. No observations, tolerances or frozen schemas were changed."
+        },
+        {
+          "criterion": "Captain reviewerAgentId=member_node-4050b257-1656-4536-aaff-faff95fd7973 independently executes a standard-Python or available-NumPy baseline from the actual source, checks counts/sums/hashes/settings, and reports numeric baseline comparisons and reproducible evidence in reproduction. Pilot must receive request_changes even if correct; final approval requires all final criteria.",
+          "passed": true,
+          "evidence": "sasa.json was independently reviewed under reviewerAgentId member_node-4050b257-1656-4536-aaff-faff95fd7973, distinct from author assigneeAgentId member_node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0. Actual Python 3.12.10 / NumPy 2.5.3 direct sphere-sampling and distance-occlusion code ran on the original source, with no Bio.PDB calls. Baseline totals at 100/1000/5000 points are 2975.6511283884624 / 2967.6165303096477 / 2970.9266606126434 A2; 5000-point maximum absolute residue discrepancy is 2.842170943040401e-14 A2. Counts, hashes, settings, sums and both schemas are verified. Reproduction includes complete executed source, measured tool versions, all baseline rows, row differences and numeric checks. No extra baseline tolerance was invented. This final review is request_changes because the historical lifecycle criterion remains unmet, despite correct final scientific numbers."
+        },
+        {
+          "criterion": "Use only actually available tools, no installs or network refetch, and include own-run original input receipts. Hand off exact sasa.json only after captain approval with bound Host-validated approval evidence; report unavailable prerequisites, and stop once the required attempt envelope exists.",
+          "passed": true,
+          "evidence": "sasa.json contains original producer receipts for its own context.json, source-1CRN.pdb and previous-sasa.json. The source receipt matches actual source bytes; previous-sasa matches Host attempt 2. Producer context is correctly treated as a different run, not compared to this review's context. Host producer receipt verification is accepted as specified; prior producer attachments are not fabricated or reconstructed. Current sasa.json SHA-256 and size (10179 bytes) match the latest Host artifact. All three actual review attachments are independently hashed into this review envelope. This review used available local Python/NumPy/jsonschema only, without package installation, network refetch, unrelated reads, embedded-source execution or handoff. context.upstream is empty. No approve review is supplied and synthesis must remain blocked; the captain must bind any future approval to the exact subsequently reviewed bytes. The review stops after writing its required envelope."
+        }
+      ],
+      "requiredChanges": [
+        "Captain: supply or bind the existing first-attempt question-tool request, NEEDS_INPUT/wait transition and first-SASA-computation ordering to the Host-accepted same-thread reply already present in context.executionHistory. A bounded event record with event types, thread/run binding and ordering is sufficient; no full provider transcript or raw private reply is requested. Do not ask the verification question again. If the historical ordering cannot be established, retain the explicit unmet criterion instead of claiming success. Preserve the truthful pilot, current numerical results, frozen schemas and checks; keep synthesis blocked until a new review passes every acceptance criterion and is bound to the exact sasa.json bytes."
+      ]
+    }
+  },
+  "feedback": "The rework's scientific numbers are independently corroborated: frozen source/filter/counts and both schemas pass; 5000-point SASA is 2970.926660612643 A2, the 1000-versus-5000 relative difference is 0.0011141743574078402 (0.1114%), and both frozen numeric checks pass. Independent NumPy code reproduced totals and all 46 residue areas. Approval is withheld because the prior review's mandatory first-attempt question/NEEDS_INPUT/real-answer chronology remains unverified, and the requested actual author Bio.PDB runtime output/version capture is absent. Submitted code, numerical agreement and claimed versions are distinguished from observed author execution; this is an evidence limitation, not a finding of fabrication. Local Bio.PDB is unavailable and was not installed. Captain should resolve the existing history and execution evidence through rework, retain the truthful pilot, and keep synthesis blocked until every criterion is satisfied. Findings concern computational geometry of one fixed structure only; sampling agreement is not experimental validation or structural-variability uncertainty.\nCaptain: bind the existing first-attempt question-tool request, NEEDS_INPUT/wait, real-answer event and their ordering before the first SASA computation to this task's history. Do not ask again on rework or invent/reconstruct an unobserved answer. If the existing record cannot be supplied, retain the explicit unmet verification limitation; do not mark the frozen lifecycle criterion satisfied.\nCaptain: route the missing execution-evidence item to the assigned sasa author. Supply actual captured Bio.PDB.SASA.ShrakeRupley execution output for 1000 and 5000 points and measured Python/Bio.__version__ (and used NumPy) versions with the exact portable executed source in schema-permitted evidence fields. Preserve current measured results unless a real rerun changes them; keep one consistent 5000-point top-level resolution and truthful pilot/convergence history. Distinguish producer execution from this review's independent NumPy baseline.\nCaptain: retain request_changes and block synthesis until all exact acceptance criteria are satisfied; then bind a new approve review to the exact new sasa.json bytes and original input receipts. Do not alter immutable schemas, numeric rules or observations to obtain approval.\nFollow the actual independent review; retain pilot; run final 1000 and 5000 points and deliver full reproducible code.\nCaptain-supplied supplemental evidence (a claim to evaluate, not an override):\n{\"source\":\"operator-observed-sciencepal-ui\",\"observedAt\":\"2026-10-30T21:32:53.695317+00:00\",\"threadId\":\"d612c756-d8ef-4d51-890d-64182f4d049f\",\"originalRunId\":\"1e6cfda9-1190-444a-8dba-d491dc2335f5\",\"continuedRunId\":\"c05ee743-b5c5-429f-98b4-b0b82dca9973\",\"uiTimezone\":\"Asia/Shanghai\",\"events\":[{\"type\":\"ask-user-tool\",\"source\":\"SciencePAL original thread UI\",\"step\":5,\"totalSteps\":11,\"title\":\"Controlled NEEDS_INPUT verification phrase\",\"request\":\"FIRST attempt; before any SASA computation request the controlled verification phrase and wait for a real answer; then exploratory n_points=100.\",\"state\":\"Response received / submitted\"},{\"type\":\"NEEDS_INPUT\",\"source\":\"Host observed real remote status\",\"at\":\"2026-10-30T21:08:37.805Z\"},{\"type\":\"user-answer\",\"source\":\"SciencePAL original thread UI\",\"displayedAt\":\"2026-10-31T05:08:46+08:00\",\"replySha256\":\"d436e768d4f1168dfc6109153fd03052b6762749e5331f304061a5e59f8e33e2\"},{\"type\":\"continuation-ack\",\"source\":\"Host accepted same-thread continuation\",\"at\":\"2026-10-30T21:08:50.744Z\"},{\"type\":\"first-SASA-computation\",\"source\":\"SciencePAL original thread tool pane\",\"step\":8,\"totalSteps\":11,\"displayedAt\":\"2026-10-31T05:09:36+08:00\",\"command\":\"cd /workspace && python3 sasa_pilot.py 2>&1\",\"state\":\"success\",\"output\":{\"source_sha256\":\"42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811\",\"atom_count\":327,\"residue_count\":46,\"total_A2\":2975.651128,\"n_points\":100,\"label\":\"exploratory pilot\"}}],\"limitations\":\"Bounded operator observation of existing SciencePAL UI, not signed provider telemetry. UI step ordering and displayed times are preserved; no exact timestamp is asserted for the question tool. Host records independently bind NEEDS_INPUT and reply to this thread. No private answer, credentials or full transcript included.\"}\nKeep all frozen acceptance criteria, original artifact bytes and numeric checks. Independently review this evidence; reject if it does not resolve the original review.",
+  "executionHistory": {
+    "source": "host-member-connector-records",
+    "limitation": "Host-accepted lifecycle receipts from the assigned member connector. Not an independent provider audit, a full tool transcript, or proof of scientific correctness. Raw reply text is private; its SHA256 is recorded when available.",
+    "attempts": [
+      {
+        "executionId": "c37504e7-0d78-4e60-a242-8d4cbb7a5992",
+        "ownerNodeId": "node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0",
+        "agentId": "member_node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0",
+        "platform": "sciencepal",
+        "status": "COLLECTED",
+        "createdAt": "2026-10-30T21:07:28.431Z",
+        "updatedAt": "2026-10-30T21:10:11.132Z",
+        "threadId": "d612c756-d8ef-4d51-890d-64182f4d049f",
+        "runId": "c05ee743-b5c5-429f-98b4-b0b82dca9973",
+        "artifact": {
+          "id": "9b24e7e0-a661-42ae-a98d-562d87057b54",
+          "filename": "sasa.json",
+          "sha256": "23e795856bb3e14d27ef50273df8e232982f94eafb39c0bb50a1820d67700e31",
+          "size": 11777
+        },
+        "continuations": [
+          {
+            "threadId": "d612c756-d8ef-4d51-890d-64182f4d049f",
+            "previousRunId": "1e6cfda9-1190-444a-8dba-d491dc2335f5",
+            "runId": "c05ee743-b5c5-429f-98b4-b0b82dca9973",
+            "source": "member-reply",
+            "at": "2026-10-30T21:08:50.744Z",
+            "replySha256": "d436e768d4f1168dfc6109153fd03052b6762749e5331f304061a5e59f8e33e2"
+          }
+        ]
+      },
+      {
+        "executionId": "ccca028b-b02d-4393-b4b8-e3c7b7c54b3b",
+        "ownerNodeId": "node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0",
+        "agentId": "member_node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0",
+        "platform": "sciencepal",
+        "status": "COLLECTED",
+        "createdAt": "2026-10-30T21:12:59.799Z",
+        "updatedAt": "2026-10-30T21:16:53.842Z",
+        "threadId": "8e03cde7-13f9-42c4-9fc0-d6b4108a9993",
+        "runId": "6750578b-85a3-447a-9e9e-60d9a8ee4aa5",
+        "artifact": {
+          "id": "2c3d8204-9ad6-435e-94fe-5e77f1d3ce3d",
+          "filename": "sasa.json",
+          "sha256": "fe7b50ba01dab36a0a1573ca0c41fec744b9d917cd9d656a6c002b3fa77a4e62",
+          "size": 12647
+        },
+        "continuations": []
+      },
+      {
+        "executionId": "3deb50b2-e540-4a32-9acf-f88d7afdc71f",
+        "ownerNodeId": "node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0",
+        "agentId": "member_node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0",
+        "platform": "sciencepal",
+        "status": "COLLECTED",
+        "createdAt": "2026-10-30T21:19:47.964Z",
+        "updatedAt": "2026-10-30T21:23:34.420Z",
+        "threadId": "f7c9b1c2-7922-418e-8c71-d27f5cf2aa86",
+        "runId": "29a8dc5c-421b-4398-9cbd-ab72d855404a",
+        "artifact": {
+          "id": "a6c80bf9-a1d0-4bc1-bccd-b8f9b7d2050c",
+          "filename": "sasa.json",
+          "sha256": "57217210b2e6be2bd915f65315792c3466c7ac5a22b5f149be98d16330252ede",
+          "size": 10179
+        },
+        "continuations": []
+      }
+    ]
+  },
+  "upstream": [],
+  "resultSchemas": {
+    "sasa": {
+      "type": "object",
+      "required": [
+        "source_sha256",
+        "method",
+        "probe_radius_A",
+        "n_points",
+        "total_A2",
+        "atom_count",
+        "residue_count",
+        "residues",
+        "code",
+        "tool_versions"
+      ],
+      "properties": {
+        "source_sha256": {
+          "type": "string",
+          "const": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811"
+        },
+        "method": {
+          "type": "string",
+          "const": "Shrake-Rupley"
+        },
+        "probe_radius_A": {
+          "type": "number",
+          "const": 1.4
+        },
+        "atom_count": {
+          "type": "integer"
+        },
+        "residue_count": {
+          "type": "integer"
+        },
+        "tool_versions": {
+          "type": "object"
+        },
+        "n_points": {
+          "type": "integer",
+          "minimum": 100
+        },
+        "total_A2": {
+          "type": "number",
+          "minimum": 0
+        },
+        "residues": {
+          "type": "array",
+          "minItems": 46,
+          "maxItems": 46,
+          "items": {
+            "type": "object",
+            "required": [
+              "residue_id",
+              "area_A2"
+            ],
+            "properties": {
+              "residue_id": {
+                "type": "integer"
+              },
+              "area_A2": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        },
+        "code": {
+          "type": "string",
+          "minLength": 30
+        }
+      }
+    },
+    "synthesis": {
+      "type": "object",
+      "required": [
+        "summary",
+        "total_A2",
+        "source_sha256",
+        "upstream_sha256",
+        "code"
+      ],
+      "properties": {
+        "source_sha256": {
+          "type": "string",
+          "const": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811"
+        },
+        "code": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 30
+        },
+        "upstream_sha256": {
+          "type": "string",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "total_A2": {
+          "type": "number"
+        }
+      }
+    }
+  },
+  "scientificChecks": {
+    "version": 1,
+    "sourceSha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+    "tasks": {
+      "sasa": [
+        {
+          "id": "residue-sum",
+          "kind": "sum",
+          "totalPath": "total_A2",
+          "rowsPath": "residues",
+          "valueField": "area_A2",
+          "absoluteTolerance": 0.001
+        },
+        {
+          "id": "residue-count",
+          "kind": "reference",
+          "path": "residue_count",
+          "expected": 46,
+          "absoluteTolerance": 0,
+          "relativeTolerance": 0,
+          "provenance": "Independent count of chain A residue identifiers in frozen public 1CRN ATOM records."
+        }
+      ]
+    }
+  },
+  "source": {
+    "filename": "source-1CRN.pdb",
+    "sourceUrl": "https://files.rcsb.org/download/1CRN.pdb",
+    "attribution": "RCSB PDB / 1CRN public coordinates; frozen fixture"
+  }
+}

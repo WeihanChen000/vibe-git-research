@@ -1,0 +1,33 @@
+{
+  "revision": 1,
+  "requirement": "# 1CRN 几何与溶剂可及表面积复核\nCodex prepares geometry; SciencePAL Biology independently reviews before handoff. A deliberately injected tenfold unit error in the first candidate tests rejection, not a naturally observed model failure. Corrected geometry is reviewed again. Biology then computes SASA with installed BioPython and requests operator confirmation of 1.4 angstrom probe BEFORE calculation using the user-question tool. It must stop and wait; on reply preserve the original thread and frozen files. This explicit confirmation tests NEEDS_INPUT; it is not scientific uncertainty.\nFixed method: model 0, chain A, standard heavy ATOM coordinates; SG distances for SSBOND pairs in angstrom. SASA: BioPython PDBParser + ShrakeRupley, 960 sphere points, radii C=1.70,N=1.55,O=1.52,S=1.80 angstrom. Report all 46 whole-residue areas and total A^2, source hash, upstream geometry.json hash, executed Python and version/log. Do not execute untrusted candidate code. No new dependencies or internet installs. Codex independently computes 5000-point NumPy sphere baseline: total relative difference <=3%, each CYS residue difference <=max(3 A^2,5% baseline). Passing code/schema alone is not scientific approval. Single structure, approximate numerical surface, no causal or biological generalization. Source https://www.rcsb.org/structure/1CRN; method https://biopython.org/docs/1.84/api/Bio.PDB.SASA.html",
+  "task": {
+    "key": "geometry",
+    "assigneeAgentId": "member_node-1f42559b-8124-4e6e-8313-fc011375ca5f",
+    "reviewerAgentId": "member_node-695a8208-03e9-48d1-9e7d-f23b8fec8883",
+    "outputFilename": "geometry.json",
+    "title": "Codex 重算结构几何与单位",
+    "goal": "Parse actual source-1crn.txt. Return sourceSha256, atomCount, residueCount, disulfides:[{residue1,residue2,distanceA}], pythonCode, toolLog, limitations, faultInjection. Initial candidate intentionally divides distances by 10 while field remains distanceA; label faultInjection true, but reviewer must reject because acceptance still requires correct angstrom. Rework fixes calculation and sets false.",
+    "boundary": "Descriptive 1CRN reproduction only. One account, two workflow identities. Real tools and unchanged source; no fabricated results, no installs, no inference of biological function.",
+    "acceptance": [
+      "Source SHA256 equals the actual source-1crn.txt bytes; chain A has 327 heavy atoms and 46 standard residues.",
+      "All three SSBOND SG distances in geometry.json are in angstrom and agree with independent calculation from source coordinates within 0.0001 angstrom.",
+      "geometry.json includes executed Python source, actual computation log, scope and limitations; fault injection is explicitly labeled."
+    ],
+    "dependencies": [],
+    "status": "REVIEWING",
+    "attempt": 1,
+    "executionId": "44d221be-7677-464d-a587-da18b7f3ecee",
+    "reviewId": null,
+    "artifactId": "b3c5a062-6c42-4609-97f4-6713024b8128",
+    "feedback": "",
+    "review": null
+  },
+  "feedback": "",
+  "upstream": [],
+  "source": {
+    "filename": "source-1crn.txt",
+    "sourceUrl": "https://files.rcsb.org/download/1CRN.pdb",
+    "attribution": "RCSB PDB public 1CRN coordinate file, unchanged bytes; controlled unit fault injection in candidate only."
+  }
+}

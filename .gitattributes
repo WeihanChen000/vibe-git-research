@@ -4,3 +4,7 @@
 # Preserve SciencePAL original evidence bytes on every platform
 docs/submission/sciencepal-demo/judge-verification.json -text
 docs/submission/sciencepal-demo/judge-verification-source.py -text
+
+# Public static copies retain the exact scientific evidence bytes and fixed-width inputs.
+docs/replay/research-replay/** -text -whitespace
+docs/replay/sciencepal-examples/** -text -whitespace

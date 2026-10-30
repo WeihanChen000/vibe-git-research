@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-29T22:28:46.664Z",
+  "threadId": "c575e5de-2762-4915-814b-82634977ac9e",
+  "previousRunId": "f4525e34-c278-43ca-ba68-5a2e1b5cfe7c",
+  "currentRunId": "e26c9f95-7669-4df6-a2cd-8283e9ce9d0e",
+  "previous": "asked",
+  "current": "completed",
+  "history": [
+    {
+      "id": "e26c9f95-7669-4df6-a2cd-8283e9ce9d0e",
+      "threadId": "c575e5de-2762-4915-814b-82634977ac9e",
+      "agentId": "10000000-0000-0000-0000-000000000002",
+      "startedAt": "2026-10-29T22:22:39.436017+00:00"
+    },
+    {
+      "id": "f4525e34-c278-43ca-ba68-5a2e1b5cfe7c",
+      "threadId": "c575e5de-2762-4915-814b-82634977ac9e",
+      "agentId": "10000000-0000-0000-0000-000000000002",
+      "startedAt": "2026-10-29T22:21:16.507647+00:00"
+    }
+  ]
+}

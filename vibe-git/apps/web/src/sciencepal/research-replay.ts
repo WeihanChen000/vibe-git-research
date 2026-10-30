@@ -1,8 +1,9 @@
 import type {SPProject} from '@vibe-git/protocol';
 import type {ResearchTarget,TeamState} from './research-model';
-export const replayCases = {iris:{label:'Iris · 两次退回与交接',purpose:'公开 Iris：Codex 核验源数据，SciencePAL Biology 计算统计；双方交叉评审，保留两次退回与返工。'},'1crn':{label:'1CRN · 专业计算与独立复核',purpose:'公开蛋白 1CRN：Codex 算几何，SciencePAL 用 Biology 工具算表面积，双方交叉复核。'}} as const;
+export const replayCases = {isolated:{label:'三成员 · 真实恢复与权限验收',purpose:'一个队长、两个成员身份；真实 Codex 与 SciencePAL 执行，验证返工、原线程续接和连接器恢复。单机单账号，故障为主动测试。'},iris:{label:'Iris · 两次退回与交接',purpose:'公开 Iris：Codex 核验源数据，SciencePAL Biology 计算统计；双方交叉评审，保留两次退回与返工。'},'1crn':{label:'1CRN · 专业计算与独立复核',purpose:'公开蛋白 1CRN：Codex 算几何，SciencePAL 用 Biology 工具算表面积，双方交叉复核。'}} as const;
+export function replayResourceUrl(path:string):string{return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;}
 export type ReplayCaseId=keyof typeof replayCases;
-export function replayCaseId(value:string|null):ReplayCaseId{return value==='iris'?'iris':'1crn';}
+export function replayCaseId(value:string|null):ReplayCaseId{return value==='isolated'?'isolated':value==='iris'?'iris':'1crn';}
 export interface ReplayFile {filename:string;url:string;sha256:string;size:number}
 export interface ReplayScienceReport extends ReplayFile {artifactId:string;candidateSha256:string;reviewArtifactId:string}
 export interface ReplayStep {id:string;title:string;summary:string;observedAt:string;origin:'captured-snapshot'|'continuation-receipt';source:string;focus:ResearchTarget;state:TeamState}
@@ -21,7 +22,7 @@ export function parseReplay(value:unknown):ResearchReplay{
 export function replayState(bundle:ResearchReplay,index:number):TeamState{
  const step=bundle.steps[index];if(!step)throw Error('回放阶段不存在');
  // Never inherit capabilities, CSRF, live presence or local entry flags from an export.
- return {viewer:step.state.viewer,members:step.state.members,projects:step.state.projects,replay:{id:bundle.id,stepId:step.id,scienceReports:(bundle.scienceReports??[]).filter(report=>{const p=step.state.projects[0]!;return p.tasks.some(t=>t.artifactId===report.artifactId&&t.status==='APPROVED')&&p.runs.some(r=>r.kind==='REVIEW'&&r.status==='COLLECTED'&&r.output?.id===report.reviewArtifactId&&r.inputs.some(f=>f.artifactId===report.artifactId&&f.sha256===report.candidateSha256));}),...(bundle.brief?{brief:bundle.brief}:{}),guide:bundle.guide,files:bundle.files,evidenceUrl:bundle.evidenceUrl,remoteEvidenceUrl:bundle.remoteEvidenceUrl}};
+ return {viewer:step.state.viewer,members:step.state.members,projects:step.state.projects,replay:{id:bundle.id,stepId:step.id,scienceReports:(bundle.scienceReports??[]).filter(report=>{const p=step.state.projects[0]!;return p.tasks.some(t=>t.artifactId===report.artifactId&&t.status==='APPROVED')&&p.runs.some(r=>r.kind==='REVIEW'&&r.status==='COLLECTED'&&r.output?.id===report.reviewArtifactId&&r.inputs.some(f=>f.artifactId===report.artifactId&&f.sha256===report.candidateSha256));}).map(r=>({...r,url:replayResourceUrl(r.url)})),...(bundle.brief?{brief:bundle.brief}:{}),guide:bundle.guide,files:Object.fromEntries(Object.entries(bundle.files).map(([id,f])=>[id,{...f,url:replayResourceUrl(f.url)}])),evidenceUrl:replayResourceUrl(bundle.evidenceUrl),remoteEvidenceUrl:replayResourceUrl(bundle.remoteEvidenceUrl)}};
 }
 export function replayArtifactUrl(context:ReplayContext,id:string):string{return context.files[id]?.url??'#';}
 export function replayRunSummary(p:SPProject){return p.runs.filter(r=>r.continuations?.length).flatMap(r=>r.continuations!.map(c=>({threadId:c.threadId,previousRunId:c.previousRunId,runId:c.runId})));}

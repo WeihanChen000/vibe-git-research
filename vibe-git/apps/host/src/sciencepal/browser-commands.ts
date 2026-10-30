@@ -3,7 +3,7 @@ import type { FastifyRequest } from "fastify";
 import type { SPProject } from "@vibe-git/protocol";
 import { forbidden } from "../domain/errors.js";
 
-export const browserCommands = new Set(["set-scientific-checks", "set-constraints", "align", "decide", "publish", "rework", "retry", "pause", "resume", "change", "apply-change", "dismiss-change"]);
+export const browserCommands = new Set(["set-scientific-checks", "set-constraints", "align", "decide", "publish", "rework", "supplement-review", "retry", "pause", "resume", "change", "apply-change", "dismiss-change"]);
 export const commandSnapshot = (p: SPProject) => createHash("sha256").update(JSON.stringify(p)).digest("hex");
 
 /** A per-process synchronizer token bound to the HttpOnly session, never the member bearer. */

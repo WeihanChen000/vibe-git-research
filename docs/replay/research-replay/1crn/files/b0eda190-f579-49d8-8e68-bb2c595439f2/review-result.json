@@ -1,0 +1,42 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "11e9e52f9a69ca3591cb0786f4c89ef83a7d0e1886602aede3221ec99bb67398",
+      "size": 5695
+    },
+    {
+      "filename": "source-1crn.txt",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    },
+    {
+      "filename": "geometry.json",
+      "sha256": "4f3ded1a0ecc5831045e029bc6a366f2c17605407b2d46ca9e732545e2f44281",
+      "size": 7429
+    }
+  ],
+  "result": {
+    "verdict": "approve",
+    "summary": "The reworked geometry.json (attempt 2) fixes the deliberate divide-by-ten unit fault. Independent recomputation from source-1crn.txt confirms all three SSBOND SG distances are reported in correct angstrom and agree within 0.0001 A; source hash, atom/residue counts, and provenance fields (pythonCode, toolLog, limitations, faultInjection=false) all satisfy the acceptance criteria.",
+    "checks": [
+      {
+        "criterion": "Source SHA256 equals the actual source-1crn.txt bytes; chain A has 327 heavy atoms and 46 standard residues.",
+        "passed": true,
+        "evidence": "geometry.json result.sourceSha256 = 42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811, which equals hashlib.sha256 of the actual source-1crn.txt bytes (49491 bytes). Independent parse of source-1crn.txt yields 327 heavy ATOM records and 46 unique residues for chain A, matching geometry.json atomCount=327 and residueCount=46."
+      },
+      {
+        "criterion": "All three SSBOND SG distances in geometry.json are in angstrom and agree with independent calculation from source coordinates within 0.0001 angstrom.",
+        "passed": true,
+        "evidence": "geometry.json disulfides report 3-40=2.004107283, 4-32=2.034701698, 16-26=2.050763029 A. Independent recomputation from source-1crn.txt SG coordinates gives 2.004107283, 2.034701698, 2.050763029 A; each absolute difference is 0.000e+00, well within the 0.0001 A tolerance. The divide-by-ten fault (0.2004/0.2035/0.2051) is absent."
+      },
+      {
+        "criterion": "geometry.json includes executed Python source, actual computation log, scope and limitations; fault injection is explicitly labeled.",
+        "passed": true,
+        "evidence": "geometry.json contains nonempty pythonCode (the executed coordinate-calculation script), toolLog ({\"atomCount\":327,\"residueCount\":46,\"disulfides\":[...],\"faultInjection\":false}), limitations (descriptive 1CRN reproduction only, no inference of biological function), and faultInjection explicitly set to false."
+      }
+    ],
+    "requiredChanges": []
+  }
+}

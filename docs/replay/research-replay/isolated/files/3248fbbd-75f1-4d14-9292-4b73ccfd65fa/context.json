@@ -1,0 +1,185 @@
+{
+  "revision": 1,
+  "agents": [
+    {
+      "id": "member_node-4050b257-1656-4536-aaff-faff95fd7973",
+      "name": "Captain · 队长 · Codex 方法复核",
+      "platform": "codex",
+      "runtimeAgentId": "codex-local"
+    },
+    {
+      "id": "member_node-9c374e0b-1909-42e3-86cd-2b2f05b4b65b",
+      "name": "Member-B65B · 成员 A · Codex 结果汇总",
+      "platform": "codex",
+      "runtimeAgentId": "codex-local"
+    },
+    {
+      "id": "member_node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0",
+      "name": "Member-4BA0 · 成员 B · SciencePAL Biology",
+      "platform": "sciencepal",
+      "runtimeAgentId": "10000000-0000-0000-0000-000000000002"
+    }
+  ],
+  "proposals": [
+    {
+      "id": "4ff6fc5d-284b-4c2c-baf7-c58ddfbb6488",
+      "agentId": "member_node-4050b257-1656-4536-aaff-faff95fd7973",
+      "content": "# Preregistered single-machine three-member acceptance\nReal public 1CRN structure, chain A, heavy ATOM records only, alternate location blank/A, no HETATM or hydrogens, Angstrom. Exact source attachment; do not refetch. This is computational geometry, not functional or clinical evidence.\nExactly TWO tasks: sasa assigned to the SciencePAL member, synthesis assigned to the non-captain Codex member. Captain coordinates alignment and independently reviews both tasks; captain has no authoring task. Use member-scoped IDs from context, never merge the two Codex members.\nSciencePAL sasa MUST actually run Bio.PDB.SASA.ShrakeRupley, probe_radius_A=1.4, radii C=1.70 N=1.55 O=1.52 S=1.80. Deliver total_A2 and residues [{residue_id:integer,area_A2:number}], n_points, atom_count, residue_count, source_sha256, method literal Shrake-Rupley, code (complete portable executed Python source) and tool_versions. All values must be computed, not copied from earlier studies.\nFIRST sasa attempt is a deliberately incomplete PILOT: BEFORE computing, use your actual ask-user/question tool to ask for the verification phrase. The required answer is not in these files; wait, do not invent one. This is an authorized controlled NEEDS_INPUT lifecycle test. Once an answer arrives, compute ONLY n_points=100, label exploratory, and submit. It intentionally FAILS the final acceptance requirement; reviewer must request_changes. On REWORK (when previous-sasa.json and feedback are provided), do not ask again: compute 1000 and 5000 points, report convergence total relative difference <=2% and limitation. This is planned refinement, not an accidental model mistake.\nSasa acceptance must include: correct frozen source/filter/counts; actual code and tool versions with units/radii; final n_points>=1000 AND an actually executed 5000-point comparison with <=2% total difference. Retain pilot truthfully; no fabricating success. Codex reviewer must compute an independent baseline using actual source and standard Python or available NumPy, and report numeric evidence in reproduction. For pilot, a correct 100-point output still requires changes because precision criterion is unmet.\nSynthesis reads only APPROVED sasa.json and source, independently sums residues and hashes approved upstream bytes, and emits summary, total_A2, source_sha256, upstream_sha256, code. Explicitly say single fixed structure, no biological function ranking. Captain independently reviews synthesis by recomputing counts/sums/hashes.\nOnly use available tools; no package installs or network refetch. For local Windows Python use python or py if available; do not scan unrelated paths. All public evidence must avoid user paths, tokens, personal contact details. Code should use relative input paths. Stop after actual required envelope exists.\n\nROLE: Captain: align and independently review, do not author sasa/synthesis",
+      "sha256": "71fd5ba5e2fde8a4019446ab08309e993be02183362d2ea47f3f34298f892841",
+      "ownerNodeId": "node-4050b257-1656-4536-aaff-faff95fd7973",
+      "documentId": "DOC-67a8892e-5f96-456a-ab93-86bc6464d8b4",
+      "documentRevision": 1
+    },
+    {
+      "id": "6b28fd56-2e72-44ba-b406-9808dc0e34a6",
+      "agentId": "member_node-9c374e0b-1909-42e3-86cd-2b2f05b4b65b",
+      "content": "# Preregistered single-machine three-member acceptance\nReal public 1CRN structure, chain A, heavy ATOM records only, alternate location blank/A, no HETATM or hydrogens, Angstrom. Exact source attachment; do not refetch. This is computational geometry, not functional or clinical evidence.\nExactly TWO tasks: sasa assigned to the SciencePAL member, synthesis assigned to the non-captain Codex member. Captain coordinates alignment and independently reviews both tasks; captain has no authoring task. Use member-scoped IDs from context, never merge the two Codex members.\nSciencePAL sasa MUST actually run Bio.PDB.SASA.ShrakeRupley, probe_radius_A=1.4, radii C=1.70 N=1.55 O=1.52 S=1.80. Deliver total_A2 and residues [{residue_id:integer,area_A2:number}], n_points, atom_count, residue_count, source_sha256, method literal Shrake-Rupley, code (complete portable executed Python source) and tool_versions. All values must be computed, not copied from earlier studies.\nFIRST sasa attempt is a deliberately incomplete PILOT: BEFORE computing, use your actual ask-user/question tool to ask for the verification phrase. The required answer is not in these files; wait, do not invent one. This is an authorized controlled NEEDS_INPUT lifecycle test. Once an answer arrives, compute ONLY n_points=100, label exploratory, and submit. It intentionally FAILS the final acceptance requirement; reviewer must request_changes. On REWORK (when previous-sasa.json and feedback are provided), do not ask again: compute 1000 and 5000 points, report convergence total relative difference <=2% and limitation. This is planned refinement, not an accidental model mistake.\nSasa acceptance must include: correct frozen source/filter/counts; actual code and tool versions with units/radii; final n_points>=1000 AND an actually executed 5000-point comparison with <=2% total difference. Retain pilot truthfully; no fabricating success. Codex reviewer must compute an independent baseline using actual source and standard Python or available NumPy, and report numeric evidence in reproduction. For pilot, a correct 100-point output still requires changes because precision criterion is unmet.\nSynthesis reads only APPROVED sasa.json and source, independently sums residues and hashes approved upstream bytes, and emits summary, total_A2, source_sha256, upstream_sha256, code. Explicitly say single fixed structure, no biological function ranking. Captain independently reviews synthesis by recomputing counts/sums/hashes.\nOnly use available tools; no package installs or network refetch. For local Windows Python use python or py if available; do not scan unrelated paths. All public evidence must avoid user paths, tokens, personal contact details. Code should use relative input paths. Stop after actual required envelope exists.\n\nROLE: Non-captain Codex member: author synthesis",
+      "sha256": "703131aecedfdd9e6cc34c78cefd7ba2a600ecf61f86c5ecafabc906d227ea80",
+      "ownerNodeId": "node-9c374e0b-1909-42e3-86cd-2b2f05b4b65b",
+      "documentId": "DOC-19fea31a-7f6a-486c-8583-9aeff61723ef",
+      "documentRevision": 1
+    },
+    {
+      "id": "6ecbc1c0-5fc8-45eb-a035-11a22aedb1bf",
+      "agentId": "member_node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0",
+      "content": "# Preregistered single-machine three-member acceptance\nReal public 1CRN structure, chain A, heavy ATOM records only, alternate location blank/A, no HETATM or hydrogens, Angstrom. Exact source attachment; do not refetch. This is computational geometry, not functional or clinical evidence.\nExactly TWO tasks: sasa assigned to the SciencePAL member, synthesis assigned to the non-captain Codex member. Captain coordinates alignment and independently reviews both tasks; captain has no authoring task. Use member-scoped IDs from context, never merge the two Codex members.\nSciencePAL sasa MUST actually run Bio.PDB.SASA.ShrakeRupley, probe_radius_A=1.4, radii C=1.70 N=1.55 O=1.52 S=1.80. Deliver total_A2 and residues [{residue_id:integer,area_A2:number}], n_points, atom_count, residue_count, source_sha256, method literal Shrake-Rupley, code (complete portable executed Python source) and tool_versions. All values must be computed, not copied from earlier studies.\nFIRST sasa attempt is a deliberately incomplete PILOT: BEFORE computing, use your actual ask-user/question tool to ask for the verification phrase. The required answer is not in these files; wait, do not invent one. This is an authorized controlled NEEDS_INPUT lifecycle test. Once an answer arrives, compute ONLY n_points=100, label exploratory, and submit. It intentionally FAILS the final acceptance requirement; reviewer must request_changes. On REWORK (when previous-sasa.json and feedback are provided), do not ask again: compute 1000 and 5000 points, report convergence total relative difference <=2% and limitation. This is planned refinement, not an accidental model mistake.\nSasa acceptance must include: correct frozen source/filter/counts; actual code and tool versions with units/radii; final n_points>=1000 AND an actually executed 5000-point comparison with <=2% total difference. Retain pilot truthfully; no fabricating success. Codex reviewer must compute an independent baseline using actual source and standard Python or available NumPy, and report numeric evidence in reproduction. For pilot, a correct 100-point output still requires changes because precision criterion is unmet.\nSynthesis reads only APPROVED sasa.json and source, independently sums residues and hashes approved upstream bytes, and emits summary, total_A2, source_sha256, upstream_sha256, code. Explicitly say single fixed structure, no biological function ranking. Captain independently reviews synthesis by recomputing counts/sums/hashes.\nOnly use available tools; no package installs or network refetch. For local Windows Python use python or py if available; do not scan unrelated paths. All public evidence must avoid user paths, tokens, personal contact details. Code should use relative input paths. Stop after actual required envelope exists.\n\nROLE: SciencePAL member: author sasa",
+      "sha256": "e57b857d8d48dd7f56ca7cb84c6eddbe112d6f9ab40a262857c2ba22e00949a8",
+      "ownerNodeId": "node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0",
+      "documentId": "DOC-7e7c8814-081e-42ef-8a65-a64259df7f05",
+      "documentRevision": 1
+    }
+  ],
+  "publishedRequirement": "",
+  "decisions": [],
+  "approvedChanges": [],
+  "resultSchemas": {
+    "sasa": {
+      "type": "object",
+      "required": [
+        "source_sha256",
+        "method",
+        "probe_radius_A",
+        "n_points",
+        "total_A2",
+        "atom_count",
+        "residue_count",
+        "residues",
+        "code",
+        "tool_versions"
+      ],
+      "properties": {
+        "source_sha256": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "probe_radius_A": {
+          "type": "number"
+        },
+        "atom_count": {
+          "type": "integer"
+        },
+        "residue_count": {
+          "type": "integer"
+        },
+        "tool_versions": {
+          "type": "object"
+        },
+        "n_points": {
+          "type": "integer",
+          "minimum": 100
+        },
+        "total_A2": {
+          "type": "number",
+          "minimum": 0
+        },
+        "residues": {
+          "type": "array",
+          "minItems": 46,
+          "maxItems": 46,
+          "items": {
+            "type": "object",
+            "required": [
+              "residue_id",
+              "area_A2"
+            ],
+            "properties": {
+              "residue_id": {
+                "type": "integer"
+              },
+              "area_A2": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        },
+        "code": {
+          "type": "string",
+          "minLength": 30
+        }
+      }
+    },
+    "synthesis": {
+      "type": "object",
+      "required": [
+        "summary",
+        "total_A2",
+        "source_sha256",
+        "upstream_sha256",
+        "code"
+      ],
+      "properties": {
+        "source_sha256": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 30
+        },
+        "upstream_sha256": {
+          "type": "string",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "total_A2": {
+          "type": "number"
+        }
+      }
+    }
+  },
+  "scientificChecks": {
+    "version": 1,
+    "sourceSha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+    "tasks": {
+      "sasa": [
+        {
+          "id": "residue-sum",
+          "kind": "sum",
+          "totalPath": "total_A2",
+          "rowsPath": "residues",
+          "valueField": "area_A2",
+          "absoluteTolerance": 0.001
+        },
+        {
+          "id": "residue-count",
+          "kind": "reference",
+          "path": "residue_count",
+          "expected": 46,
+          "absoluteTolerance": 0,
+          "relativeTolerance": 0,
+          "provenance": "Independent count of chain A residue identifiers in frozen public 1CRN ATOM records."
+        }
+      ]
+    }
+  },
+  "source": {
+    "filename": "source-1CRN.pdb",
+    "sourceUrl": "https://files.rcsb.org/download/1CRN.pdb",
+    "attribution": "RCSB PDB / 1CRN public coordinates; frozen fixture"
+  }
+}

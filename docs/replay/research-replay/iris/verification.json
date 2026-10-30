@@ -1,0 +1,468 @@
+{
+  "projectId": "b75ade29-5566-4a0d-89a1-5ef634d8f72c",
+  "phase": "COMPLETED",
+  "scope": "Real public Iris, current Codex and native SciencePAL Biology; one human account; controlled fault in first candidate only",
+  "passed": 79,
+  "total": 79,
+  "checks": [
+    {
+      "check": "Project completed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Two independently owned member bindings",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "4efdc526-363c-47e5-9e50-6b6dc40874e5 collected",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "4efdc526-363c-47e5-9e50-6b6dc40874e5 context.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "4efdc526-363c-47e5-9e50-6b6dc40874e5 source-iris.csv frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "4efdc526-363c-47e5-9e50-6b6dc40874e5 align-result.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "4efdc526-363c-47e5-9e50-6b6dc40874e5 exact receipts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "75c8f43c-a159-489f-a175-def0d57d966c collected",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "75c8f43c-a159-489f-a175-def0d57d966c context.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "75c8f43c-a159-489f-a175-def0d57d966c source-iris.csv frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "75c8f43c-a159-489f-a175-def0d57d966c data_audit.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "75c8f43c-a159-489f-a175-def0d57d966c exact receipts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eab9dbd1-217f-4ed8-ac8f-710c8b03436c collected",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eab9dbd1-217f-4ed8-ac8f-710c8b03436c context.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eab9dbd1-217f-4ed8-ac8f-710c8b03436c source-iris.csv frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eab9dbd1-217f-4ed8-ac8f-710c8b03436c data_audit.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eab9dbd1-217f-4ed8-ac8f-710c8b03436c review-result.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eab9dbd1-217f-4ed8-ac8f-710c8b03436c exact receipts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eab9dbd1-217f-4ed8-ac8f-710c8b03436c independent reviewer",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bb2621bb-360e-4dd1-b120-7cf7e5dfa0f9 collected",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bb2621bb-360e-4dd1-b120-7cf7e5dfa0f9 context.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bb2621bb-360e-4dd1-b120-7cf7e5dfa0f9 source-iris.csv frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bb2621bb-360e-4dd1-b120-7cf7e5dfa0f9 previous-data_audit.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bb2621bb-360e-4dd1-b120-7cf7e5dfa0f9 data_audit.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bb2621bb-360e-4dd1-b120-7cf7e5dfa0f9 exact receipts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "7d160ff9-3b8a-49f7-89c3-e6d30fb85e1a collected",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "7d160ff9-3b8a-49f7-89c3-e6d30fb85e1a context.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "7d160ff9-3b8a-49f7-89c3-e6d30fb85e1a source-iris.csv frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "7d160ff9-3b8a-49f7-89c3-e6d30fb85e1a data_audit.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "7d160ff9-3b8a-49f7-89c3-e6d30fb85e1a review-result.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "7d160ff9-3b8a-49f7-89c3-e6d30fb85e1a exact receipts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "7d160ff9-3b8a-49f7-89c3-e6d30fb85e1a independent reviewer",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "78684c17-de1e-4e92-901e-84c87360ed42 collected",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "78684c17-de1e-4e92-901e-84c87360ed42 context.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "78684c17-de1e-4e92-901e-84c87360ed42 source-iris.csv frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "78684c17-de1e-4e92-901e-84c87360ed42 data_audit.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "78684c17-de1e-4e92-901e-84c87360ed42 species_summary.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "78684c17-de1e-4e92-901e-84c87360ed42 exact receipts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "29594afe-78ee-46a7-85cb-33aa710eebb2 collected",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "29594afe-78ee-46a7-85cb-33aa710eebb2 context.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "29594afe-78ee-46a7-85cb-33aa710eebb2 source-iris.csv frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "29594afe-78ee-46a7-85cb-33aa710eebb2 species_summary.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "29594afe-78ee-46a7-85cb-33aa710eebb2 data_audit.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "29594afe-78ee-46a7-85cb-33aa710eebb2 review-result.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "29594afe-78ee-46a7-85cb-33aa710eebb2 exact receipts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "29594afe-78ee-46a7-85cb-33aa710eebb2 independent reviewer",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "af8a67c9-5e01-4e7d-941a-f5fed1969758 collected",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "af8a67c9-5e01-4e7d-941a-f5fed1969758 context.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "af8a67c9-5e01-4e7d-941a-f5fed1969758 source-iris.csv frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "af8a67c9-5e01-4e7d-941a-f5fed1969758 data_audit.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "af8a67c9-5e01-4e7d-941a-f5fed1969758 previous-species_summary.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "af8a67c9-5e01-4e7d-941a-f5fed1969758 species_summary.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "af8a67c9-5e01-4e7d-941a-f5fed1969758 exact receipts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "2e14292c-644d-4251-a65c-c4be9031f9ea collected",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "2e14292c-644d-4251-a65c-c4be9031f9ea context.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "2e14292c-644d-4251-a65c-c4be9031f9ea source-iris.csv frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "2e14292c-644d-4251-a65c-c4be9031f9ea species_summary.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "2e14292c-644d-4251-a65c-c4be9031f9ea data_audit.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "2e14292c-644d-4251-a65c-c4be9031f9ea review-result.json frozen bytes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "2e14292c-644d-4251-a65c-c4be9031f9ea exact receipts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "2e14292c-644d-4251-a65c-c4be9031f9ea independent reviewer",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Original public CSV preserved",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Fault then real repair",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Real Biology reject then approve",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Downstream receives approved artifact ID and SHA",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Rejected candidate never sent downstream",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Downstream is native Biology real run",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Iris-setosa independent numerical replication",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Iris-versicolor independent numerical replication",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Iris-virginica independent numerical replication",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Observed range overlap",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Natural reproducibility defect rejected and repaired",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Repair preserves independently verified statistics within frozen 1e-6 tolerance",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Executable source delivered in frozen result",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eab9dbd1-217f-4ed8-ac8f-710c8b03436c native completed runtime proof",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "7d160ff9-3b8a-49f7-89c3-e6d30fb85e1a native completed runtime proof",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "78684c17-de1e-4e92-901e-84c87360ed42 native completed runtime proof",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "af8a67c9-5e01-4e7d-941a-f5fed1969758 native completed runtime proof",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Codex final independent review approves",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "independentlyComputed": [
+    {
+      "species": "Iris-setosa",
+      "n": 50,
+      "petal_length_min": 1,
+      "petal_length_max": 1.9,
+      "sepal_length_mean": 5.006,
+      "sepal_width_mean": 3.428,
+      "petal_length_mean": 1.462,
+      "petal_width_mean": 0.24600000000000002
+    },
+    {
+      "species": "Iris-versicolor",
+      "n": 50,
+      "petal_length_min": 3,
+      "petal_length_max": 5.1,
+      "sepal_length_mean": 5.936,
+      "sepal_width_mean": 2.77,
+      "petal_length_mean": 4.26,
+      "petal_width_mean": 1.3259999999999998
+    },
+    {
+      "species": "Iris-virginica",
+      "n": 50,
+      "petal_length_min": 4.5,
+      "petal_length_max": 6.9,
+      "sepal_length_mean": 6.587999999999999,
+      "sepal_width_mean": 2.9739999999999998,
+      "petal_length_mean": 5.5520000000000005,
+      "petal_width_mean": 2.026
+    }
+  ],
+  "handoff": {
+    "artifactId": "42947e5e-5ae2-43ca-bcb7-4da8624d881a",
+    "filename": "data_audit.json",
+    "size": 16124,
+    "sha256": "ec3ec5116f0003c97c18069f0e01b82944458c03a6c7a6b5ab33836f5b59e625"
+  },
+  "sciencepalRuns": [
+    {
+      "kind": "REVIEW",
+      "task": "data_audit",
+      "threadId": "a658b1af-c220-42d3-b6a7-bfea9ad1a468",
+      "runId": "0c4175ad-1a9c-47d3-8f22-d8789a4311d5"
+    },
+    {
+      "kind": "REVIEW",
+      "task": "data_audit",
+      "threadId": "28b8e8fc-cb91-4675-8281-64aed0b4ad9d",
+      "runId": "2bd2f1a7-a4a9-433e-80e4-4adec9326894"
+    },
+    {
+      "kind": "TASK",
+      "task": "species_summary",
+      "threadId": "19f35257-4503-403d-b5c0-18c9e646dd0a",
+      "runId": "b695f389-8b70-4410-95a9-20d0c0fe77e3"
+    },
+    {
+      "kind": "TASK",
+      "task": "species_summary",
+      "threadId": "32e9d398-807a-4c16-9c2c-311ac8999a25",
+      "runId": "a33bab38-1275-4aa0-82b9-890eda88d900"
+    }
+  ]
+}

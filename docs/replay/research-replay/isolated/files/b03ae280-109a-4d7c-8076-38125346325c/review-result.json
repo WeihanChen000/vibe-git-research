@@ -1,0 +1,2060 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "f59d63b6807cb13ffe6b5e786ec2d29e7cc0ad5c7e51da778287394863702e81",
+      "size": 27880
+    },
+    {
+      "filename": "sasa.json",
+      "sha256": "fe7b50ba01dab36a0a1573ca0c41fec744b9d917cd9d656a6c002b3fa77a4e62",
+      "size": 12647
+    },
+    {
+      "filename": "source-1CRN.pdb",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    }
+  ],
+  "result": {
+    "verdict": "request_changes",
+    "summary": "The rework's scientific numbers are independently corroborated: frozen source/filter/counts and both schemas pass; 5000-point SASA is 2970.926660612643 A2, the 1000-versus-5000 relative difference is 0.0011141743574078402 (0.1114%), and both frozen numeric checks pass. Independent NumPy code reproduced totals and all 46 residue areas. Approval is withheld because the prior review's mandatory first-attempt question/NEEDS_INPUT/real-answer chronology remains unverified, and the requested actual author Bio.PDB runtime output/version capture is absent. Submitted code, numerical agreement and claimed versions are distinguished from observed author execution; this is an evidence limitation, not a finding of fabrication. Local Bio.PDB is unavailable and was not installed. Captain should resolve the existing history and execution evidence through rework, retain the truthful pilot, and keep synthesis blocked until every criterion is satisfied. Findings concern computational geometry of one fixed structure only; sampling agreement is not experimental validation or structural-variability uncertainty.",
+    "checks": [
+      {
+        "criterion": "Read and hash the exact frozen source-1CRN.pdb; source_sha256 must equal 42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811. Apply chain A, heavy ATOM, alternate location blank/A, no HETATM/hydrogen filters; independently confirm atom_count=327, residue_count=46, and unique residue_id values 1..46.",
+        "passed": true,
+        "evidence": "sasa.json reports source_sha256=42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811; hashing all 49491 original source-1CRN.pdb bytes reproduces it. Independent fixed-column filtering retains 327 atoms, 46 unique residues with IDs 1..46, elements C=202/N=55/O=64/S=6. Candidate rows have exactly those 46 unique IDs. No HETATM, hydrogen, other-chain or excluded-altloc coordinate records occur in this fixture. The submitted code lacks an explicit HETATM exclusion, but this does not change this frozen fixture. See reproduction.results."
+      },
+      {
+        "criterion": "Actually execute Bio.PDB.SASA.ShrakeRupley with probe_radius_A=1.4 and radii C=1.70, N=1.55, O=1.52, S=1.80 Angstrom; method must be Shrake-Rupley; total_A2 and per-residue area_A2 are computed square-Angstrom values, not copied references.",
+        "passed": false,
+        "evidence": "sasa.json includes Bio.PDB.SASA.ShrakeRupley calls with probe 1.4 A and C/N/O/S radii 1.70/1.55/1.52/1.80 A, and method Shrake-Rupley. Independent NumPy baseline gives 2967.6165303096477 A2 at 1000 points and 2970.9266606126434 A2 at 5000, agreeing with reported totals to 1.365e-12 A2; maximum 5000-point residue difference is 2.842170943040401e-14 A2. Numerical claims are corroborated. However, no author runtime output or measured-version capture accompanies this rework despite the explicit prior feedback; local Bio.PDB is unavailable, so reviewer did not execute submitted Bio.PDB code. Numerical agreement and source text do not independently establish the required actual author Bio.PDB execution. This is an evidence limitation, not proof of fabrication. See reproduction."
+      },
+      {
+        "criterion": "On FIRST attempt, before SASA computation use an actual ask-user/question tool to request the verification phrase and wait for a real answer in NEEDS_INPUT. After receiving it, execute ONLY n_points=100, label exploratory, submit the truthful deliberately incomplete pilot, and receive request_changes; missing tool/answer must be reported without invention.",
+        "passed": false,
+        "evidence": "sasa.json retains pilot n_points=100, total_A2=2975.651128 and exploratory_pilot/request_changes history. Independent baseline at 100 points gives 2975.6511283884624 A2. The supplied context feedback confirms the prior request_changes but explicitly says the first-attempt question/NEEDS_INPUT/wait/real-answer chronology was not established. No existing event record is attached now; code comments merely assert it was already handled. Therefore the mandatory ordering and real answer remain unverified. Do not repeat the question on rework or invent an event. See reproduction.results.historical_event_evidence_status."
+      },
+      {
+        "criterion": "On REWORK with previous-sasa.json and feedback, do not ask again; actually run n_points=1000 and 5000. Deliver final n_points>=1000, both measured totals, abs(total_1000-total_5000)/abs(total_5000)<=0.02 with denominator stated, consistent top-level resolution, retained pilot evidence and a numerical/structural limitation. A missing comparison or 100-point-only output fails final acceptance.",
+        "passed": false,
+        "evidence": "sasa.json is labelled rework attempt 2, has final n_points=5000, consistent top-level total/residues, both reported totals 2967.616530309649 and 2970.926660612643 A2, retained 100-point pilot and an appropriate fixed-structure/sampling limitation. Recalculated abs(total_1000-total_5000)/abs(total_5000)=0.0011141743574078402 (0.11141743574078402%), with the 5000-point denominator explicitly stated; the numerical convergence requirement passes. Its code calls both resolutions and includes no repeat question. Actual execution of those author calls and the claimed chronology remain unsupported by runtime/event evidence requested in feedback, so this composite criterion is not fully verified. Producer receipt for previous-sasa.json is prior-run provenance, not a missing current attachment or a hash mismatch. See reproduction for independent measured runs."
+      },
+      {
+        "criterion": "Deliver every required field with exact types under the unchanged sasa schema: 46 residue objects, integer residue_id, nonnegative numeric area_A2 and total_A2, integer n_points, complete portable actually executed Python code and actual tool_versions; include units, radii, run settings and execution evidence. Use relative paths and no sensitive public details.",
+        "passed": false,
+        "evidence": "sasa.json passes both unchanged draft-07 schemas with zero errors: 46 residue objects, integer IDs/n_points=5000, nonnegative numeric areas/total and all required fields. Submitted Python parses successfully, uses relative source/__file__ paths, states units, radii and both settings, and reads sys.version and Bio.__version__ in source. It claims Python 3.12.3/Biopython 1.84 but provides no requested actual execution output/version capture; those claims were not observed by this reviewer. Reviewer versions are separately measured as Python 3.12.10, NumPy 2.5.3 and jsonschema 4.26.0; Bio is absent locally. Schema validity is established; the complete actually-executed-code/tool-version evidence component remains unverified. See reproduction."
+      },
+      {
+        "criterion": "Pass frozen scientificChecks version 1: abs(total_A2-sum(residues[*].area_A2))<=0.001 A2 and residue_count=46 exactly. Schema validity, execution success, these checks and scientific approval must be distinguished; do not alter observations or frozen rules to force a pass.",
+        "passed": true,
+        "evidence": "sasa.json total_A2=2970.926660612643; independent math.fsum of its 46 area_A2 rows is 2970.9266606126434. Absolute difference=4.547473508864641e-13 A2 <=0.001 A2. residue_count=46 exactly, independently matching the frozen source and IDs 1..46. Thus both frozen scientificChecks version 1 pass when independently evaluated locally; this is not a claim that this reviewer executed the Host service. Schema checks also pass, but execution/lifecycle evidence and scientific approval remain separate; no data or frozen rules were changed. See reproduction.results.frozen_checks."
+      },
+      {
+        "criterion": "Captain reviewerAgentId=member_node-4050b257-1656-4536-aaff-faff95fd7973 independently executes a standard-Python or available-NumPy baseline from the actual source, checks counts/sums/hashes/settings, and reports numeric baseline comparisons and reproducible evidence in reproduction. Pilot must receive request_changes even if correct; final approval requires all final criteria.",
+        "passed": true,
+        "evidence": "For sasa.json, reviewerAgentId=member_node-4050b257-1656-4536-aaff-faff95fd7973 independently executed original NumPy geometry from the actual source, not the submitted Bio.PDB routine. Python 3.12.10/NumPy 2.5.3 baseline totals at 100/1000/5000 points are 2975.6511283884624/2967.6165303096477/2970.9266606126434 A2. Candidate-minus-baseline totals at 1000/5000 are +1.3642420526593924e-12/-4.547473508864641e-13 A2; independent convergence=0.0011141743574084521. Counts, hashes, settings, residue sums and all 46 row comparisons are recorded, with complete executed code and measured versions in reproduction. No extra baseline tolerance is invented. Final verdict remains request_changes because not every criterion is verified; prior pilot rejection is retained."
+      },
+      {
+        "criterion": "Use only actually available tools, no installs or network refetch, and include own-run original input receipts. Hand off exact sasa.json only after captain approval with bound Host-validated approval evidence; report unavailable prerequisites, and stop once the required attempt envelope exists.",
+        "passed": true,
+        "evidence": "sasa.json contains producer-run input receipts for context.json, source-1CRN.pdb and previous-sasa.json. Its source receipt matches the actual 49491 bytes and frozen hash. Producer context/previous-pilot receipts remain Host-validated prior-run provenance and were not incorrectly compared with this review's context. Current review hashes only its three actual attachments (context.json, source-1CRN.pdb, sasa.json). No packages installed, no network refetch or unrelated files read for this review; local Bio.PDB unavailability is explicitly reported. context.upstream=[] has no transported approval to validate. No synthesis handoff is authorized by this request_changes verdict; the captain must bind an eventual approve review to exact artifact bytes before handoff. See reproduction.results.inputReceipts."
+      }
+    ],
+    "requiredChanges": [
+      "Captain: bind the existing first-attempt question-tool request, NEEDS_INPUT/wait, real-answer event and their ordering before the first SASA computation to this task's history. Do not ask again on rework or invent/reconstruct an unobserved answer. If the existing record cannot be supplied, retain the explicit unmet verification limitation; do not mark the frozen lifecycle criterion satisfied.",
+      "Captain: route the missing execution-evidence item to the assigned sasa author. Supply actual captured Bio.PDB.SASA.ShrakeRupley execution output for 1000 and 5000 points and measured Python/Bio.__version__ (and used NumPy) versions with the exact portable executed source in schema-permitted evidence fields. Preserve current measured results unless a real rerun changes them; keep one consistent 5000-point top-level resolution and truthful pilot/convergence history. Distinguish producer execution from this review's independent NumPy baseline.",
+      "Captain: retain request_changes and block synthesis until all exact acceptance criteria are satisfied; then bind a new approve review to the exact new sasa.json bytes and original input receipts. Do not alter immutable schemas, numeric rules or observations to obtain approval."
+    ],
+    "reproduction": {
+      "toolVersions": {
+        "python": "3.12.10",
+        "numpy": "2.5.3",
+        "jsonschema": "4.26.0",
+        "Bio_available": false
+      },
+      "results": {
+        "assigneeAgentId": "member_node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0",
+        "reviewerAgentId": "member_node-4050b257-1656-4536-aaff-faff95fd7973",
+        "inputReceipts": [
+          {
+            "filename": "context.json",
+            "sha256": "f59d63b6807cb13ffe6b5e786ec2d29e7cc0ad5c7e51da778287394863702e81",
+            "size": 27880
+          },
+          {
+            "filename": "sasa.json",
+            "sha256": "fe7b50ba01dab36a0a1573ca0c41fec744b9d917cd9d656a6c002b3fa77a4e62",
+            "size": 12647
+          },
+          {
+            "filename": "source-1CRN.pdb",
+            "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+            "size": 49491
+          }
+        ],
+        "source_sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+        "atom_count": 327,
+        "residue_count": 46,
+        "residue_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46
+        ],
+        "elements": {
+          "N": 55,
+          "C": 202,
+          "O": 64,
+          "S": 6
+        },
+        "excluded_coordinate_records": {},
+        "all_coordinate_records_retained": true,
+        "nonblank_insertion_codes": [],
+        "method": "independent NumPy Shrake-Rupley geometry",
+        "sampling": "golden spiral; z=1-(i+0.5)*2/n; phi=i*pi*(3-sqrt(5)); float64",
+        "probe_radius_A": 1.4,
+        "radii_A": {
+          "C": 1.7,
+          "N": 1.55,
+          "O": 1.52,
+          "S": 1.8
+        },
+        "units": {
+          "length": "Angstrom",
+          "area": "Angstrom squared"
+        },
+        "baseline_runs": {
+          "100": {
+            "n_points": 100,
+            "total_A2": 2975.6511283884624,
+            "residues": [
+              {
+                "residue_id": 1,
+                "area_A2": 75.7486117979952
+              },
+              {
+                "residue_id": 2,
+                "area_A2": 24.687816310746342
+              },
+              {
+                "residue_id": 3,
+                "area_A2": 0.0
+              },
+              {
+                "residue_id": 4,
+                "area_A2": 0.0
+              },
+              {
+                "residue_id": 5,
+                "area_A2": 57.3856885784975
+              },
+              {
+                "residue_id": 6,
+                "area_A2": 48.81401638599574
+              },
+              {
+                "residue_id": 7,
+                "area_A2": 127.66647146025518
+              },
+              {
+                "residue_id": 8,
+                "area_A2": 98.9114739019478
+              },
+              {
+                "residue_id": 9,
+                "area_A2": 7.131729482914188
+              },
+              {
+                "residue_id": 10,
+                "area_A2": 51.83439382863943
+              },
+              {
+                "residue_id": 11,
+                "area_A2": 67.69177124319312
+              },
+              {
+                "residue_id": 12,
+                "area_A2": 78.35360785998124
+              },
+              {
+                "residue_id": 13,
+                "area_A2": 7.245769296239497
+              },
+              {
+                "residue_id": 14,
+                "area_A2": 83.58839343317545
+              },
+              {
+                "residue_id": 15,
+                "area_A2": 93.65032408320468
+              },
+              {
+                "residue_id": 16,
+                "area_A2": 21.026855559665083
+              },
+              {
+                "residue_id": 17,
+                "area_A2": 88.84020643855213
+              },
+              {
+                "residue_id": 18,
+                "area_A2": 140.69414097349687
+              },
+              {
+                "residue_id": 19,
+                "area_A2": 108.75113058855027
+              },
+              {
+                "residue_id": 20,
+                "area_A2": 48.38761429830931
+              },
+              {
+                "residue_id": 21,
+                "area_A2": 36.48752522029407
+              },
+              {
+                "residue_id": 22,
+                "area_A2": 78.49583404259455
+              },
+              {
+                "residue_id": 23,
+                "area_A2": 68.97425732898277
+              },
+              {
+                "residue_id": 24,
+                "area_A2": 61.75157245556184
+              },
+              {
+                "residue_id": 25,
+                "area_A2": 96.61025728319329
+              },
+              {
+                "residue_id": 26,
+                "area_A2": 0.0
+              },
+              {
+                "residue_id": 27,
+                "area_A2": 9.524856536342133
+              },
+              {
+                "residue_id": 28,
+                "area_A2": 122.95243628532
+              },
+              {
+                "residue_id": 29,
+                "area_A2": 156.71234279917314
+              },
+              {
+                "residue_id": 30,
+                "area_A2": 27.603490753431185
+              },
+              {
+                "residue_id": 31,
+                "area_A2": 35.02545313205461
+              },
+              {
+                "residue_id": 32,
+                "area_A2": 8.571672192501762
+              },
+              {
+                "residue_id": 33,
+                "area_A2": 54.20710052981903
+              },
+              {
+                "residue_id": 34,
+                "area_A2": 79.1936194700687
+              },
+              {
+                "residue_id": 35,
+                "area_A2": 40.51468257744837
+              },
+              {
+                "residue_id": 36,
+                "area_A2": 138.00654615746265
+              },
+              {
+                "residue_id": 37,
+                "area_A2": 35.77268722789625
+              },
+              {
+                "residue_id": 38,
+                "area_A2": 85.25388992892016
+              },
+              {
+                "residue_id": 39,
+                "area_A2": 122.04351069878342
+              },
+              {
+                "residue_id": 40,
+                "area_A2": 50.71290808316095
+              },
+              {
+                "residue_id": 41,
+                "area_A2": 50.584215881699286
+              },
+              {
+                "residue_id": 42,
+                "area_A2": 76.29668148596987
+              },
+              {
+                "residue_id": 43,
+                "area_A2": 107.42003778122427
+              },
+              {
+                "residue_id": 44,
+                "area_A2": 61.771904843215886
+              },
+              {
+                "residue_id": 45,
+                "area_A2": 74.02438008599897
+              },
+              {
+                "residue_id": 46,
+                "area_A2": 66.72925008598628
+              }
+            ],
+            "atom_accessible_point_counts": [
+              19,
+              11,
+              0,
+              0,
+              0,
+              22,
+              15,
+              2,
+              0,
+              0,
+              7,
+              0,
+              14,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              22,
+              18,
+              10,
+              0,
+              0,
+              2,
+              0,
+              0,
+              26,
+              14,
+              3,
+              0,
+              0,
+              0,
+              7,
+              10,
+              36,
+              50,
+              1,
+              3,
+              0,
+              0,
+              1,
+              28,
+              49,
+              1,
+              1,
+              0,
+              0,
+              4,
+              0,
+              0,
+              0,
+              0,
+              2,
+              13,
+              3,
+              3,
+              5,
+              12,
+              7,
+              0,
+              5,
+              0,
+              4,
+              20,
+              31,
+              0,
+              1,
+              0,
+              3,
+              0,
+              3,
+              35,
+              30,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              5,
+              1,
+              0,
+              0,
+              1,
+              1,
+              6,
+              13,
+              4,
+              21,
+              29,
+              0,
+              0,
+              0,
+              4,
+              1,
+              38,
+              35,
+              0,
+              7,
+              0,
+              1,
+              1,
+              8,
+              0,
+              0,
+              0,
+              11,
+              10,
+              2,
+              0,
+              6,
+              2,
+              10,
+              39,
+              0,
+              3,
+              1,
+              31,
+              8,
+              0,
+              34,
+              43,
+              0,
+              7,
+              2,
+              35,
+              26,
+              20,
+              4,
+              0,
+              16,
+              1,
+              26,
+              1,
+              4,
+              0,
+              0,
+              0,
+              15,
+              12,
+              0,
+              3,
+              0,
+              0,
+              18,
+              30,
+              14,
+              5,
+              0,
+              0,
+              0,
+              4,
+              4,
+              2,
+              22,
+              26,
+              2,
+              1,
+              0,
+              6,
+              43,
+              0,
+              0,
+              0,
+              0,
+              0,
+              17,
+              22,
+              41,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              7,
+              0,
+              6,
+              1,
+              30,
+              10,
+              16,
+              44,
+              0,
+              5,
+              0,
+              23,
+              1,
+              1,
+              15,
+              0,
+              24,
+              15,
+              4,
+              50,
+              0,
+              3,
+              2,
+              19,
+              0,
+              0,
+              1,
+              1,
+              21,
+              0,
+              8,
+              0,
+              0,
+              0,
+              8,
+              0,
+              0,
+              0,
+              2,
+              0,
+              1,
+              6,
+              0,
+              21,
+              15,
+              4,
+              0,
+              0,
+              27,
+              4,
+              1,
+              21,
+              12,
+              0,
+              0,
+              1,
+              4,
+              3,
+              0,
+              19,
+              7,
+              0,
+              5,
+              2,
+              33,
+              27,
+              30,
+              21,
+              4,
+              24,
+              2,
+              0,
+              5,
+              0,
+              0,
+              26,
+              43,
+              2,
+              2,
+              0,
+              16,
+              10,
+              35,
+              42,
+              5,
+              0,
+              0,
+              20,
+              8,
+              11,
+              0,
+              7,
+              0,
+              1,
+              21,
+              10,
+              3,
+              13,
+              26,
+              5,
+              23,
+              3,
+              4,
+              1,
+              11,
+              23,
+              5,
+              11,
+              38,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              11,
+              0,
+              2,
+              43,
+              1,
+              4,
+              0,
+              32,
+              28,
+              0,
+              3,
+              3,
+              5,
+              0,
+              0,
+              16,
+              25,
+              9
+            ],
+            "residue_sum_A2": 2975.6511283884624,
+            "elapsed_seconds": 0.05159940000157803
+          },
+          "1000": {
+            "n_points": 1000,
+            "total_A2": 2967.6165303096477,
+            "residues": [
+              {
+                "residue_id": 1,
+                "area_A2": 71.73578135997833
+              },
+              {
+                "residue_id": 2,
+                "area_A2": 24.957686659512074
+              },
+              {
+                "residue_id": 3,
+                "area_A2": 0.0
+              },
+              {
+                "residue_id": 4,
+                "area_A2": 0.0
+              },
+              {
+                "residue_id": 5,
+                "area_A2": 56.18988783047982
+              },
+              {
+                "residue_id": 6,
+                "area_A2": 44.85786656263493
+              },
+              {
+                "residue_id": 7,
+                "area_A2": 122.07980614702888
+              },
+              {
+                "residue_id": 8,
+                "area_A2": 99.24431559049917
+              },
+              {
+                "residue_id": 9,
+                "area_A2": 6.279666723407565
+              },
+              {
+                "residue_id": 10,
+                "area_A2": 53.34056759454998
+              },
+              {
+                "residue_id": 11,
+                "area_A2": 62.31370139897986
+              },
+              {
+                "residue_id": 12,
+                "area_A2": 78.02017429537396
+              },
+              {
+                "residue_id": 13,
+                "area_A2": 7.849583404259455
+              },
+              {
+                "residue_id": 14,
+                "area_A2": 85.45149610683097
+              },
+              {
+                "residue_id": 15,
+                "area_A2": 93.99899562881895
+              },
+              {
+                "residue_id": 16,
+                "area_A2": 20.647875184766058
+              },
+              {
+                "residue_id": 17,
+                "area_A2": 91.46252147251889
+              },
+              {
+                "residue_id": 18,
+                "area_A2": 141.6738604655265
+              },
+              {
+                "residue_id": 19,
+                "area_A2": 111.77326103989465
+              },
+              {
+                "residue_id": 20,
+                "area_A2": 51.01895198637716
+              },
+              {
+                "residue_id": 21,
+                "area_A2": 35.52363558532733
+              },
+              {
+                "residue_id": 22,
+                "area_A2": 79.46193661542648
+              },
+              {
+                "residue_id": 23,
+                "area_A2": 67.85267230917644
+              },
+              {
+                "residue_id": 24,
+                "area_A2": 62.198198860115035
+              },
+              {
+                "residue_id": 25,
+                "area_A2": 99.39962964810734
+              },
+              {
+                "residue_id": 26,
+                "area_A2": 0.0
+              },
+              {
+                "residue_id": 27,
+                "area_A2": 12.12717093483907
+              },
+              {
+                "residue_id": 28,
+                "area_A2": 118.66302128671816
+              },
+              {
+                "residue_id": 29,
+                "area_A2": 167.37895589343177
+              },
+              {
+                "residue_id": 30,
+                "area_A2": 27.416432787014074
+              },
+              {
+                "residue_id": 31,
+                "area_A2": 34.39798408799018
+              },
+              {
+                "residue_id": 32,
+                "area_A2": 6.348842080365489
+              },
+              {
+                "residue_id": 33,
+                "area_A2": 49.471906100043405
+              },
+              {
+                "residue_id": 34,
+                "area_A2": 81.93874187413839
+              },
+              {
+                "residue_id": 35,
+                "area_A2": 35.21652479724594
+              },
+              {
+                "residue_id": 36,
+                "area_A2": 140.63873081890992
+              },
+              {
+                "residue_id": 37,
+                "area_A2": 37.939863397855646
+              },
+              {
+                "residue_id": 38,
+                "area_A2": 84.47587199498453
+              },
+              {
+                "residue_id": 39,
+                "area_A2": 118.48641351410397
+              },
+              {
+                "residue_id": 40,
+                "area_A2": 48.58375146749529
+              },
+              {
+                "residue_id": 41,
+                "area_A2": 52.905943330570565
+              },
+              {
+                "residue_id": 42,
+                "area_A2": 76.26255373665539
+              },
+              {
+                "residue_id": 43,
+                "area_A2": 105.55404358569041
+              },
+              {
+                "residue_id": 44,
+                "area_A2": 60.875676317548034
+              },
+              {
+                "residue_id": 45,
+                "area_A2": 72.41616487742571
+              },
+              {
+                "residue_id": 46,
+                "area_A2": 69.1858649570321
+              }
+            ],
+            "atom_accessible_point_counts": [
+              189,
+              94,
+              0,
+              0,
+              0,
+              214,
+              139,
+              32,
+              0,
+              0,
+              67,
+              0,
+              122,
+              10,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              228,
+              159,
+              104,
+              0,
+              0,
+              10,
+              0,
+              0,
+              247,
+              129,
+              35,
+              7,
+              0,
+              7,
+              62,
+              85,
+              315,
+              504,
+              9,
+              23,
+              0,
+              3,
+              21,
+              290,
+              477,
+              0,
+              15,
+              0,
+              0,
+              37,
+              0,
+              0,
+              0,
+              0,
+              13,
+              146,
+              47,
+              23,
+              41,
+              109,
+              83,
+              0,
+              30,
+              2,
+              35,
+              185,
+              302,
+              0,
+              6,
+              0,
+              26,
+              19,
+              40,
+              337,
+              286,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              59,
+              6,
+              0,
+              0,
+              4,
+              9,
+              61,
+              145,
+              40,
+              199,
+              308,
+              0,
+              1,
+              0,
+              41,
+              20,
+              378,
+              343,
+              5,
+              74,
+              0,
+              13,
+              1,
+              75,
+              0,
+              0,
+              11,
+              108,
+              93,
+              16,
+              0,
+              55,
+              29,
+              113,
+              398,
+              0,
+              12,
+              13,
+              309,
+              76,
+              6,
+              356,
+              436,
+              3,
+              73,
+              11,
+              365,
+              260,
+              207,
+              48,
+              0,
+              178,
+              20,
+              253,
+              11,
+              38,
+              0,
+              0,
+              0,
+              149,
+              114,
+              0,
+              50,
+              0,
+              0,
+              170,
+              295,
+              143,
+              45,
+              0,
+              0,
+              0,
+              37,
+              29,
+              39,
+              208,
+              261,
+              22,
+              12,
+              5,
+              61,
+              424,
+              0,
+              0,
+              0,
+              8,
+              0,
+              172,
+              228,
+              416,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              6,
+              14,
+              82,
+              0,
+              42,
+              8,
+              293,
+              101,
+              145,
+              443,
+              1,
+              41,
+              0,
+              255,
+              23,
+              17,
+              165,
+              8,
+              249,
+              166,
+              56,
+              489,
+              0,
+              29,
+              23,
+              186,
+              3,
+              0,
+              7,
+              10,
+              217,
+              2,
+              64,
+              0,
+              0,
+              0,
+              57,
+              2,
+              0,
+              0,
+              18,
+              2,
+              3,
+              45,
+              0,
+              200,
+              142,
+              43,
+              0,
+              0,
+              261,
+              45,
+              3,
+              214,
+              146,
+              0,
+              0,
+              15,
+              30,
+              26,
+              0,
+              170,
+              54,
+              2,
+              68,
+              10,
+              339,
+              271,
+              314,
+              199,
+              44,
+              250,
+              19,
+              6,
+              55,
+              0,
+              0,
+              242,
+              435,
+              12,
+              19,
+              0,
+              154,
+              88,
+              349,
+              417,
+              45,
+              0,
+              1,
+              214,
+              62,
+              102,
+              0,
+              75,
+              0,
+              8,
+              208,
+              104,
+              44,
+              140,
+              260,
+              38,
+              233,
+              23,
+              45,
+              9,
+              106,
+              223,
+              43,
+              110,
+              385,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              4,
+              0,
+              107,
+              2,
+              22,
+              415,
+              5,
+              33,
+              7,
+              327,
+              265,
+              0,
+              26,
+              33,
+              49,
+              7,
+              0,
+              157,
+              258,
+              102
+            ],
+            "residue_sum_A2": 2967.6165303096477,
+            "elapsed_seconds": 0.13348819999373518
+          },
+          "5000": {
+            "n_points": 5000,
+            "total_A2": 2970.9266606126434,
+            "residues": [
+              {
+                "residue_id": 1,
+                "area_A2": 72.13046039903105
+              },
+              {
+                "residue_id": 2,
+                "area_A2": 25.1474511708321
+              },
+              {
+                "residue_id": 3,
+                "area_A2": 0.0
+              },
+              {
+                "residue_id": 4,
+                "area_A2": 0.0
+              },
+              {
+                "residue_id": 5,
+                "area_A2": 56.16372766278967
+              },
+              {
+                "residue_id": 6,
+                "area_A2": 45.613334647157934
+              },
+              {
+                "residue_id": 7,
+                "area_A2": 121.85424607768644
+              },
+              {
+                "residue_id": 8,
+                "area_A2": 98.92076648168972
+              },
+              {
+                "residue_id": 9,
+                "area_A2": 6.507507589016511
+              },
+              {
+                "residue_id": 10,
+                "area_A2": 53.74203800293753
+              },
+              {
+                "residue_id": 11,
+                "area_A2": 62.66129927388882
+              },
+              {
+                "residue_id": 12,
+                "area_A2": 78.18786346343575
+              },
+              {
+                "residue_id": 13,
+                "area_A2": 7.970346225863446
+              },
+              {
+                "residue_id": 14,
+                "area_A2": 85.17153621909895
+              },
+              {
+                "residue_id": 15,
+                "area_A2": 93.6149200932906
+              },
+              {
+                "residue_id": 16,
+                "area_A2": 20.88143751891572
+              },
+              {
+                "residue_id": 17,
+                "area_A2": 91.42659019769384
+              },
+              {
+                "residue_id": 18,
+                "area_A2": 141.0463363807588
+              },
+              {
+                "residue_id": 19,
+                "area_A2": 110.590126439474
+              },
+              {
+                "residue_id": 20,
+                "area_A2": 51.52923711118857
+              },
+              {
+                "residue_id": 21,
+                "area_A2": 35.63428851044465
+              },
+              {
+                "residue_id": 22,
+                "area_A2": 79.46193661542648
+              },
+              {
+                "residue_id": 23,
+                "area_A2": 67.57771836084237
+              },
+              {
+                "residue_id": 24,
+                "area_A2": 62.14674459899748
+              },
+              {
+                "residue_id": 25,
+                "area_A2": 98.98631267081423
+              },
+              {
+                "residue_id": 26,
+                "area_A2": 0.0
+              },
+              {
+                "residue_id": 27,
+                "area_A2": 12.438072996934807
+              },
+              {
+                "residue_id": 28,
+                "area_A2": 118.18376705484704
+              },
+              {
+                "residue_id": 29,
+                "area_A2": 166.71887183974744
+              },
+              {
+                "residue_id": 30,
+                "area_A2": 27.18035391148518
+              },
+              {
+                "residue_id": 31,
+                "area_A2": 34.081124812241
+              },
+              {
+                "residue_id": 32,
+                "area_A2": 6.410406237969708
+              },
+              {
+                "residue_id": 33,
+                "area_A2": 49.78280816213914
+              },
+              {
+                "residue_id": 34,
+                "area_A2": 82.31759105612821
+              },
+              {
+                "residue_id": 35,
+                "area_A2": 36.340443894730186
+              },
+              {
+                "residue_id": 36,
+                "area_A2": 140.96508800889683
+              },
+              {
+                "residue_id": 37,
+                "area_A2": 38.08013249390949
+              },
+              {
+                "residue_id": 38,
+                "area_A2": 84.6132292116396
+              },
+              {
+                "residue_id": 39,
+                "area_A2": 119.46955306956002
+              },
+              {
+                "residue_id": 40,
+                "area_A2": 48.7172025535086
+              },
+              {
+                "residue_id": 41,
+                "area_A2": 53.13790320113949
+              },
+              {
+                "residue_id": 42,
+                "area_A2": 76.30687557713964
+              },
+              {
+                "residue_id": 43,
+                "area_A2": 105.69586085860392
+              },
+              {
+                "residue_id": 44,
+                "area_A2": 61.35765393325871
+              },
+              {
+                "residue_id": 45,
+                "area_A2": 73.18773601190875
+              },
+              {
+                "residue_id": 46,
+                "area_A2": 68.97576001558085
+              }
+            ],
+            "atom_accessible_point_counts": [
+              939,
+              474,
+              0,
+              0,
+              0,
+              1072,
+              711,
+              153,
+              0,
+              0,
+              331,
+              1,
+              630,
+              49,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1123,
+              804,
+              525,
+              0,
+              0,
+              52,
+              0,
+              0,
+              1235,
+              678,
+              168,
+              42,
+              0,
+              35,
+              303,
+              410,
+              1577,
+              2530,
+              48,
+              119,
+              0,
+              16,
+              100,
+              1443,
+              2376,
+              6,
+              79,
+              0,
+              0,
+              185,
+              0,
+              0,
+              0,
+              0,
+              75,
+              717,
+              238,
+              115,
+              218,
+              550,
+              414,
+              0,
+              148,
+              13,
+              190,
+              910,
+              1527,
+              0,
+              28,
+              0,
+              122,
+              93,
+              201,
+              1694,
+              1440,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              297,
+              33,
+              0,
+              0,
+              22,
+              41,
+              323,
+              710,
+              195,
+              1002,
+              1527,
+              0,
+              3,
+              0,
+              213,
+              98,
+              1904,
+              1682,
+              28,
+              377,
+              0,
+              50,
+              14,
+              379,
+              0,
+              0,
+              49,
+              546,
+              469,
+              68,
+              0,
+              278,
+              154,
+              565,
+              1985,
+              1,
+              68,
+              57,
+              1544,
+              372,
+              30,
+              1757,
+              2185,
+              8,
+              351,
+              56,
+              1813,
+              1284,
+              1060,
+              212,
+              0,
+              905,
+              115,
+              1255,
+              49,
+              195,
+              0,
+              0,
+              0,
+              736,
+              583,
+              0,
+              246,
+              0,
+              0,
+              841,
+              1490,
+              713,
+              234,
+              0,
+              0,
+              0,
+              191,
+              140,
+              186,
+              1032,
+              1300,
+              116,
+              50,
+              26,
+              310,
+              2117,
+              0,
+              0,
+              0,
+              41,
+              0,
+              859,
+              1134,
+              2069,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              34,
+              80,
+              410,
+              0,
+              203,
+              40,
+              1447,
+              499,
+              715,
+              2233,
+              10,
+              197,
+              0,
+              1272,
+              123,
+              88,
+              815,
+              36,
+              1244,
+              829,
+              278,
+              2429,
+              0,
+              142,
+              122,
+              928,
+              9,
+              0,
+              29,
+              55,
+              1083,
+              5,
+              308,
+              0,
+              0,
+              0,
+              289,
+              9,
+              0,
+              0,
+              88,
+              7,
+              25,
+              228,
+              0,
+              1008,
+              708,
+              204,
+              0,
+              0,
+              1317,
+              233,
+              29,
+              1072,
+              721,
+              0,
+              1,
+              75,
+              163,
+              129,
+              0,
+              864,
+              291,
+              8,
+              354,
+              50,
+              1701,
+              1345,
+              1575,
+              996,
+              221,
+              1253,
+              104,
+              22,
+              278,
+              0,
+              0,
+              1228,
+              2162,
+              64,
+              98,
+              0,
+              795,
+              448,
+              1737,
+              2096,
+              222,
+              0,
+              5,
+              1060,
+              309,
+              527,
+              3,
+              372,
+              4,
+              41,
+              1053,
+              508,
+              224,
+              691,
+              1307,
+              185,
+              1174,
+              108,
+              223,
+              40,
+              545,
+              1135,
+              208,
+              548,
+              1919,
+              0,
+              0,
+              0,
+              5,
+              0,
+              0,
+              21,
+              0,
+              540,
+              11,
+              99,
+              2102,
+              29,
+              168,
+              32,
+              1641,
+              1348,
+              0,
+              128,
+              167,
+              240,
+              38,
+              0,
+              783,
+              1281,
+              513
+            ],
+            "residue_sum_A2": 2970.9266606126434,
+            "elapsed_seconds": 0.31888289999915287
+          }
+        },
+        "candidate_schema_errors": [],
+        "candidate_task_schema_errors": [],
+        "candidate_total_A2": 2970.926660612643,
+        "candidate_residue_sum_A2": 2970.9266606126434,
+        "frozen_checks": [
+          {
+            "id": "residue-sum",
+            "absolute_error_A2": 4.547473508864641e-13,
+            "absoluteTolerance": 0.001,
+            "passed": true
+          },
+          {
+            "id": "residue-count",
+            "observed": 46,
+            "expected": 46,
+            "passed": true
+          }
+        ],
+        "candidate_relative_difference_recalculated": 0.0011141743574078402,
+        "candidate_relative_difference_reported": 0.0011141743574078402,
+        "baseline_relative_difference": 0.0011141743574084521,
+        "candidate_minus_baseline_total_A2": {
+          "1000": 1.3642420526593924e-12,
+          "5000": -4.547473508864641e-13
+        },
+        "residue_comparisons_5000": [
+          {
+            "residue_id": 1,
+            "candidate_A2": 72.13046039903105,
+            "baseline_A2": 72.13046039903105,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 2,
+            "candidate_A2": 25.1474511708321,
+            "baseline_A2": 25.1474511708321,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 3,
+            "candidate_A2": 0.0,
+            "baseline_A2": 0.0,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 4,
+            "candidate_A2": 0.0,
+            "baseline_A2": 0.0,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 5,
+            "candidate_A2": 56.16372766278967,
+            "baseline_A2": 56.16372766278967,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 6,
+            "candidate_A2": 45.61333464715793,
+            "baseline_A2": 45.613334647157934,
+            "candidate_minus_baseline_A2": -7.105427357601002e-15
+          },
+          {
+            "residue_id": 7,
+            "candidate_A2": 121.85424607768644,
+            "baseline_A2": 121.85424607768644,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 8,
+            "candidate_A2": 98.92076648168972,
+            "baseline_A2": 98.92076648168972,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 9,
+            "candidate_A2": 6.507507589016511,
+            "baseline_A2": 6.507507589016511,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 10,
+            "candidate_A2": 53.74203800293753,
+            "baseline_A2": 53.74203800293753,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 11,
+            "candidate_A2": 62.66129927388882,
+            "baseline_A2": 62.66129927388882,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 12,
+            "candidate_A2": 78.18786346343575,
+            "baseline_A2": 78.18786346343575,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 13,
+            "candidate_A2": 7.970346225863446,
+            "baseline_A2": 7.970346225863446,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 14,
+            "candidate_A2": 85.17153621909897,
+            "baseline_A2": 85.17153621909895,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 15,
+            "candidate_A2": 93.6149200932906,
+            "baseline_A2": 93.6149200932906,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 16,
+            "candidate_A2": 20.88143751891572,
+            "baseline_A2": 20.88143751891572,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 17,
+            "candidate_A2": 91.42659019769383,
+            "baseline_A2": 91.42659019769384,
+            "candidate_minus_baseline_A2": -1.4210854715202004e-14
+          },
+          {
+            "residue_id": 18,
+            "candidate_A2": 141.04633638075882,
+            "baseline_A2": 141.0463363807588,
+            "candidate_minus_baseline_A2": 2.842170943040401e-14
+          },
+          {
+            "residue_id": 19,
+            "candidate_A2": 110.590126439474,
+            "baseline_A2": 110.590126439474,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 20,
+            "candidate_A2": 51.52923711118857,
+            "baseline_A2": 51.52923711118857,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 21,
+            "candidate_A2": 35.634288510444655,
+            "baseline_A2": 35.63428851044465,
+            "candidate_minus_baseline_A2": 7.105427357601002e-15
+          },
+          {
+            "residue_id": 22,
+            "candidate_A2": 79.46193661542648,
+            "baseline_A2": 79.46193661542648,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 23,
+            "candidate_A2": 67.57771836084237,
+            "baseline_A2": 67.57771836084237,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 24,
+            "candidate_A2": 62.14674459899748,
+            "baseline_A2": 62.14674459899748,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 25,
+            "candidate_A2": 98.98631267081423,
+            "baseline_A2": 98.98631267081423,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 26,
+            "candidate_A2": 0.0,
+            "baseline_A2": 0.0,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 27,
+            "candidate_A2": 12.438072996934809,
+            "baseline_A2": 12.438072996934807,
+            "candidate_minus_baseline_A2": 1.7763568394002505e-15
+          },
+          {
+            "residue_id": 28,
+            "candidate_A2": 118.18376705484704,
+            "baseline_A2": 118.18376705484704,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 29,
+            "candidate_A2": 166.7188718397474,
+            "baseline_A2": 166.71887183974744,
+            "candidate_minus_baseline_A2": -2.842170943040401e-14
+          },
+          {
+            "residue_id": 30,
+            "candidate_A2": 27.180353911485184,
+            "baseline_A2": 27.18035391148518,
+            "candidate_minus_baseline_A2": 3.552713678800501e-15
+          },
+          {
+            "residue_id": 31,
+            "candidate_A2": 34.081124812241,
+            "baseline_A2": 34.081124812241,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 32,
+            "candidate_A2": 6.410406237969709,
+            "baseline_A2": 6.410406237969708,
+            "candidate_minus_baseline_A2": 8.881784197001252e-16
+          },
+          {
+            "residue_id": 33,
+            "candidate_A2": 49.78280816213914,
+            "baseline_A2": 49.78280816213914,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 34,
+            "candidate_A2": 82.31759105612821,
+            "baseline_A2": 82.31759105612821,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 35,
+            "candidate_A2": 36.340443894730186,
+            "baseline_A2": 36.340443894730186,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 36,
+            "candidate_A2": 140.96508800889686,
+            "baseline_A2": 140.96508800889683,
+            "candidate_minus_baseline_A2": 2.842170943040401e-14
+          },
+          {
+            "residue_id": 37,
+            "candidate_A2": 38.08013249390948,
+            "baseline_A2": 38.08013249390949,
+            "candidate_minus_baseline_A2": -7.105427357601002e-15
+          },
+          {
+            "residue_id": 38,
+            "candidate_A2": 84.6132292116396,
+            "baseline_A2": 84.6132292116396,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 39,
+            "candidate_A2": 119.46955306956002,
+            "baseline_A2": 119.46955306956002,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 40,
+            "candidate_A2": 48.7172025535086,
+            "baseline_A2": 48.7172025535086,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 41,
+            "candidate_A2": 53.13790320113949,
+            "baseline_A2": 53.13790320113949,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 42,
+            "candidate_A2": 76.30687557713964,
+            "baseline_A2": 76.30687557713964,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 43,
+            "candidate_A2": 105.69586085860394,
+            "baseline_A2": 105.69586085860392,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 44,
+            "candidate_A2": 61.3576539332587,
+            "baseline_A2": 61.35765393325871,
+            "candidate_minus_baseline_A2": -7.105427357601002e-15
+          },
+          {
+            "residue_id": 45,
+            "candidate_A2": 73.18773601190875,
+            "baseline_A2": 73.18773601190875,
+            "candidate_minus_baseline_A2": 0.0
+          },
+          {
+            "residue_id": 46,
+            "candidate_A2": 68.97576001558085,
+            "baseline_A2": 68.97576001558085,
+            "candidate_minus_baseline_A2": 0.0
+          }
+        ],
+        "max_absolute_residue_difference_A2": 2.842170943040401e-14,
+        "candidate_versions_claimed": {
+          "python": "3.12.3",
+          "biopython": "1.84"
+        },
+        "limitations": [
+          "Bio.PDB is unavailable locally; submitted Bio.PDB code was statically reviewed, not executed by the reviewer. No package installation or network refetch.",
+          "Independent float64 geometry is a baseline, not proof of the author's execution or library versions. No additional baseline tolerance is imposed.",
+          "The attachments do not include first-attempt question/NEEDS_INPUT/real-answer chronological events or author runtime logs.",
+          "Producer context and previous-sasa receipts refer to the producer run and are not compared to this review context.",
+          "Single fixed structure only; sampling agreement is not experimental validation or structural uncertainty."
+        ],
+        "upstream_approval_count": 0,
+        "candidate_code_syntax_valid": true,
+        "candidate_residue_identifiers_match_source": true,
+        "producer_source_receipt_matches_actual_attachment": true,
+        "historical_event_evidence_status": "Not supplied; current feedback explicitly carries this unresolved limitation. No conclusion of fabrication.",
+        "author_execution_evidence_status": "Submitted source, results and claimed versions are present; requested runtime output/version capture is absent. Reviewer Bio.PDB execution is unavailable."
+      },
+      "code": "import collections\nimport hashlib\nimport importlib.metadata\nimport importlib.util\nimport json\nimport math\nfrom pathlib import Path\nimport platform\nimport time\nimport numpy as np\nfrom jsonschema import Draft7Validator\n\nroot = Path(\"inputs\")\nraw = {p.name: p.read_bytes() for p in sorted(root.iterdir()) if p.is_file()}\nreceipts = [{\"filename\": k, \"sha256\": hashlib.sha256(v).hexdigest(), \"size\": len(v)} for k,v in raw.items()]\ncontext = json.loads(raw[\"context.json\"])\ncandidate = json.loads(raw[\"sasa.json\"])\nresult = candidate[\"result\"]\nlines = raw[\"source-1CRN.pdb\"].decode(\"ascii\").splitlines()\natoms = []\nexcluded = collections.Counter()\nfor line in lines:\n    if line[:6].strip() not in (\"ATOM\",\"HETATM\"):\n        continue\n    element = line[76:78].strip().upper()\n    if line[:6] != \"ATOM  \":\n        excluded[\"HETATM\"] += 1\n    elif line[21] != \"A\":\n        excluded[\"other_chain\"] += 1\n    elif line[16] not in (\" \",\"A\"):\n        excluded[\"other_altloc\"] += 1\n    elif element in (\"H\",\"D\"):\n        excluded[\"hydrogen\"] += 1\n    else:\n        atoms.append((int(line[22:26]), line[26], element,\n                     [float(line[30:38]),float(line[38:46]),float(line[46:54])]))\nradii = {\"C\":1.70,\"N\":1.55,\"O\":1.52,\"S\":1.80}\nprobe = 1.4\nxyz = np.array([a[3] for a in atoms], dtype=np.float64)\nexpanded = np.array([radii[a[2]]+probe for a in atoms])\nresids = sorted(set(a[0] for a in atoms))\ndistances = np.linalg.norm(xyz[:,None,:]-xyz[None,:,:], axis=2)\nneighbors = [np.flatnonzero((distances[i] < expanded[i]+expanded) & (np.arange(len(atoms)) != i))\n             for i in range(len(atoms))]\n\ndef independent_sasa(n):\n    # Independent NumPy geometry, not a Bio.PDB call or submitted source execution.\n    # Golden spiral samples at equal z intervals, float64 coordinates and samples.\n    # Occluded points have distance <= the neighboring expanded radius.\n    start = time.perf_counter()\n    idx = np.arange(n, dtype=np.float64)\n    z = 1.0-(idx+0.5)*2.0/n\n    phi = idx*math.pi*(3.0-math.sqrt(5.0))\n    rho = np.sqrt(1.0-z*z)\n    unit = np.column_stack((rho*np.cos(phi),rho*np.sin(phi),z))\n    areas = []\n    accessible_counts = []\n    for i in range(len(atoms)):\n        points = xyz[i]+expanded[i]*unit\n        accessible = np.ones(n,dtype=bool)\n        for j in neighbors[i]:\n            slots = np.flatnonzero(accessible)\n            if not len(slots):\n                break\n            delta = points[slots]-xyz[j]\n            accessible[slots] = np.einsum(\"ij,ij->i\",delta,delta) > expanded[j]**2\n        count = int(accessible.sum())\n        accessible_counts.append(count)\n        areas.append(count*4.0*math.pi*expanded[i]**2/n)\n    rows = [{\"residue_id\":rid,\"area_A2\":math.fsum(areas[i] for i,a in enumerate(atoms) if a[0]==rid)}\n            for rid in resids]\n    return {\"n_points\":n,\"total_A2\":math.fsum(areas),\"residues\":rows,\n            \"atom_accessible_point_counts\":accessible_counts,\n            \"residue_sum_A2\":math.fsum(r[\"area_A2\"] for r in rows),\n            \"elapsed_seconds\":time.perf_counter()-start}\n\nruns = {str(n):independent_sasa(n) for n in (100,1000,5000)}\ncon = result[\"evidence\"][\"convergence\"]\ncandidate_rel = abs(con[\"n_points_1000_total_A2\"]-con[\"n_points_5000_total_A2\"])/abs(con[\"n_points_5000_total_A2\"])\nbaseline_rel = abs(runs[\"1000\"][\"total_A2\"]-runs[\"5000\"][\"total_A2\"])/abs(runs[\"5000\"][\"total_A2\"])\nschema_errors = [e.message for e in Draft7Validator(context[\"resultSchemas\"][\"sasa\"]).iter_errors(result)]\ntask_schema_errors = [e.message for e in Draft7Validator(context[\"task\"][\"resultSchema\"]).iter_errors(result)]\ns = math.fsum(r[\"area_A2\"] for r in result[\"residues\"])\nrow_diffs = [{\"residue_id\":b[\"residue_id\"],\"candidate_A2\":c[\"area_A2\"],\n              \"baseline_A2\":b[\"area_A2\"],\"candidate_minus_baseline_A2\":c[\"area_A2\"]-b[\"area_A2\"]}\n             for c,b in zip(result[\"residues\"],runs[\"5000\"][\"residues\"])]\nmeasured = {\n    \"assigneeAgentId\":context[\"task\"][\"assigneeAgentId\"],\n    \"reviewerAgentId\":context[\"task\"][\"reviewerAgentId\"],\n    \"inputReceipts\":receipts,\n    \"source_sha256\":hashlib.sha256(raw[\"source-1CRN.pdb\"]).hexdigest(),\n    \"atom_count\":len(atoms), \"residue_count\":len(resids), \"residue_ids\":resids,\n    \"elements\":dict(collections.Counter(a[2] for a in atoms)),\n    \"excluded_coordinate_records\":dict(excluded),\n    \"all_coordinate_records_retained\":len(atoms)==sum(l.startswith((\"ATOM  \",\"HETATM\")) for l in lines),\n    \"nonblank_insertion_codes\":sorted({a[1] for a in atoms if a[1]!=\" \"}),\n    \"method\":\"independent NumPy Shrake-Rupley geometry\",\n    \"sampling\":\"golden spiral; z=1-(i+0.5)*2/n; phi=i*pi*(3-sqrt(5)); float64\",\n    \"probe_radius_A\":probe,\"radii_A\":radii,\"units\":{\"length\":\"Angstrom\",\"area\":\"Angstrom squared\"},\n    \"baseline_runs\":runs,\n    \"candidate_schema_errors\":schema_errors,\"candidate_task_schema_errors\":task_schema_errors,\n    \"candidate_total_A2\":result[\"total_A2\"],\"candidate_residue_sum_A2\":s,\n    \"frozen_checks\":[{\"id\":\"residue-sum\",\"absolute_error_A2\":abs(s-result[\"total_A2\"]),\"absoluteTolerance\":0.001,\"passed\":abs(s-result[\"total_A2\"])<=0.001},\n                     {\"id\":\"residue-count\",\"observed\":result[\"residue_count\"],\"expected\":46,\"passed\":result[\"residue_count\"]==46}],\n    \"candidate_relative_difference_recalculated\":candidate_rel,\n    \"candidate_relative_difference_reported\":con[\"relative_difference\"],\n    \"baseline_relative_difference\":baseline_rel,\n    \"candidate_minus_baseline_total_A2\":{str(n):con[f\"n_points_{n}_total_A2\"]-runs[str(n)][\"total_A2\"] for n in (1000,5000)},\n    \"residue_comparisons_5000\":row_diffs,\n    \"max_absolute_residue_difference_A2\":max(abs(r[\"candidate_minus_baseline_A2\"]) for r in row_diffs),\n    \"candidate_versions_claimed\":result[\"tool_versions\"],\n    \"limitations\":[\n        \"Bio.PDB is unavailable locally; submitted Bio.PDB code was statically reviewed, not executed by the reviewer. No package installation or network refetch.\",\n        \"Independent float64 geometry is a baseline, not proof of the author's execution or library versions. No additional baseline tolerance is imposed.\",\n        \"The attachments do not include first-attempt question/NEEDS_INPUT/real-answer chronological events or author runtime logs.\",\n        \"Producer context and previous-sasa receipts refer to the producer run and are not compared to this review context.\",\n        \"Single fixed structure only; sampling agreement is not experimental validation or structural uncertainty.\"\n    ],\n    \"upstream_approval_count\":len(context[\"upstream\"]),\n}\nversions={\"python\":platform.python_version(),\"numpy\":np.__version__,\"jsonschema\":importlib.metadata.version(\"jsonschema\"),\n          \"Bio_available\":importlib.util.find_spec(\"Bio\") is not None}\npayload={\"toolVersions\":versions,\"results\":measured}\nPath(\"review-reproduction-data.json\").write_text(json.dumps(payload,indent=2,allow_nan=False),encoding=\"utf-8\")\nprint(json.dumps({k:v for k,v in measured.items() if k not in (\"baseline_runs\",\"residue_comparisons_5000\")},indent=2))\nprint(\"BASELINE TOTALS\",json.dumps({k:v[\"total_A2\"] for k,v in runs.items()}))\nprint(\"VERSIONS\",json.dumps(versions))\n"
+    }
+  }
+}

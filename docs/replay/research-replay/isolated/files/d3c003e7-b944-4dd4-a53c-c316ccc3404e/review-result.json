@@ -1,0 +1,493 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "4b762b215c35880bd2d22948e4d68837ad38bc5936d5c16614c203dcf1ef507c",
+      "size": 22714
+    },
+    {
+      "filename": "sasa.json",
+      "sha256": "23e795856bb3e14d27ef50273df8e232982f94eafb39c0bb50a1820d67700e31",
+      "size": 11777
+    },
+    {
+      "filename": "source-1CRN.pdb",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    }
+  ],
+  "result": {
+    "verdict": "request_changes",
+    "summary": "The deliberately incomplete first pilot is numerically corroborated but cannot be approved. Independent NumPy execution on the frozen 1CRN source gives 2975.6511283884624 A2 at 100 points; the candidate total differs by only 3.8846246752655134e-7 A2. Source/filter/counts, schema and both frozen numeric rules pass. Final n_points>=1000 and an actually executed 5000-point convergence comparison are absent. The supplied attachments also do not establish the mandatory pre-computation question/NEEDS_INPUT/real-answer chronology or the author's actual Bio.PDB execution and measured Biopython version. These are verification limitations, not findings that the history was fabricated. Captain should manage REWORK, preserve the truthful pilot and existing interaction history, and keep synthesis blocked pending approval. Findings concern computational geometry of one fixed structure only; sampling agreement is neither experimental validation nor an uncertainty estimate for structural variability.",
+    "checks": [
+      {
+        "passed": true,
+        "evidence": "sasa.json reports source_sha256=42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811, matching SHA-256 of the actual 49,491-byte source-1CRN.pdb. Independent fixed-column parsing retained 327 heavy ATOM records, chain A, altloc blank/A, with 46 unique integer residue identifiers 1..46; elements C=202, N=55, O=64, S=6. The file has zero HETATM and zero excluded ATOM records, so the submitted code's unpruned sr.compute(structure) has no filter-related numerical effect for this frozen fixture. Candidate rows match all 46 identifiers. See reproduction.results.",
+        "criterion": "Read and hash the exact frozen source-1CRN.pdb; source_sha256 must equal 42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811. Apply chain A, heavy ATOM, alternate location blank/A, no HETATM/hydrogen filters; independently confirm atom_count=327, residue_count=46, and unique residue_id values 1..46."
+      },
+      {
+        "passed": false,
+        "evidence": "sasa.json includes a complete program calling Bio.PDB.SASA.ShrakeRupley with probe 1.4 A, radii C=1.70/N=1.55/O=1.52/S=1.80 A and n_points=100; method and A2 units are correct. Independent NumPy execution gives 2975.6511283884624 A2 versus submitted 2975.651128 A2 (absolute difference 3.8846246752655134e-7 A2); maximum per-residue difference is 4.263256414560601e-14 A2. Numerical values are corroborated. However, supplied attachments contain no author execution transcript; local Biopython is unavailable, so the submitted Bio.PDB program was not rerun. Numerical agreement cannot independently establish the required historical Bio.PDB execution. This is an evidence limitation, not evidence of fabricated values. See reproduction for executed independent code and comparison.",
+        "criterion": "Actually execute Bio.PDB.SASA.ShrakeRupley with probe_radius_A=1.4 and radii C=1.70, N=1.55, O=1.52, S=1.80 Angstrom; method must be Shrake-Rupley; total_A2 and per-residue area_A2 are computed square-Angstrom values, not copied references."
+      },
+      {
+        "passed": false,
+        "evidence": "sasa.json evidence identifies attempt='first', status='exploratory_pilot', exploratory=true, pilot_n_points=100 and final_acceptance_met=false; context.task.attempt=1. It truthfully delivers the deliberately incomplete pilot and this review returns request_changes. Neither sasa.json nor the other supplied attachments contains an actual question-tool event, NEEDS_INPUT/wait record, or receipt showing a real answer before computation. That mandatory chronological interaction cannot be verified from the available inputs; no answer is inferred or invented. The reviewer did not ask again.",
+        "criterion": "On FIRST attempt, before SASA computation use an actual ask-user/question tool to request the verification phrase and wait for a real answer in NEEDS_INPUT. After receiving it, execute ONLY n_points=100, label exploratory, submit the truthful deliberately incomplete pilot, and receive request_changes; missing tool/answer must be reported without invention."
+      },
+      {
+        "passed": false,
+        "evidence": "sasa.json contains only n_points=100 and total_A2=2975.651128; there are no measured 1000-point and 5000-point totals or computed abs(total_1000-total_5000)/abs(total_5000). Thus the final resolution and <=0.02 convergence criteria fail, exactly as expected for the first pilot. Its limitation correctly identifies a single fixed structure and distinguishes sampling agreement from experimental validation and structural variability. Reviewer baseline is also only 100 points and does not substitute for author REWORK. See reproduction.results.settings.",
+        "criterion": "On REWORK with previous-sasa.json and feedback, do not ask again; actually run n_points=1000 and 5000. Deliver final n_points>=1000, both measured totals, abs(total_1000-total_5000)/abs(total_5000)<=0.02 with denominator stated, consistent top-level resolution, retained pilot evidence and a numerical/structural limitation. A missing comparison or 100-point-only output fails final acceptance."
+      },
+      {
+        "passed": false,
+        "evidence": "sasa.json passes both unchanged context.resultSchemas.sasa and context.task.resultSchema under Draft7Validator: zero schema errors, 46 nonnegative numeric residue areas, integer identifiers and n_points=100, nonnegative total, complete relative-path Python source, units and radii. It reports Python 3.12.3/Biopython 1.84, but its code hard-codes Biopython '1.84' and supplies no independently verifiable author execution/version output. Consequently schema/portable-code requirements pass, while actual tool-version and executed-source provenance remain unverified. Reviewer execution used Python 3.12.10, NumPy 2.5.3 and jsonschema 4.26.0; those are separate from the producer versions. No sensitive absolute paths are included in reproduction.",
+        "criterion": "Deliver every required field with exact types under the unchanged sasa schema: 46 residue objects, integer residue_id, nonnegative numeric area_A2 and total_A2, integer n_points, complete portable actually executed Python code and actual tool_versions; include units, radii, run settings and execution evidence. Use relative paths and no sensitive public details."
+      },
+      {
+        "passed": true,
+        "evidence": "sasa.json passes independently recomputed frozen scientificChecks version 1: residue-sum uses math.fsum over row IDs 1..46, yielding 2975.651128388463 A2; abs(2975.651128-2975.651128388463)=3.884629222739022e-7 A2 <=0.001 A2. residue-count is exactly 46 in both candidate and independently parsed source. These are local recomputations of the Host rules, not a claim to have invoked the Host executor. Rule IDs, measured quantities and all per-residue comparisons appear in reproduction.results. Numeric/schema success does not override the failed final acceptance criteria.",
+        "criterion": "Pass frozen scientificChecks version 1: abs(total_A2-sum(residues[*].area_A2))<=0.001 A2 and residue_count=46 exactly. Schema validity, execution success, these checks and scientific approval must be distinguished; do not alter observations or frozen rules to force a pass."
+      },
+      {
+        "passed": true,
+        "evidence": "sasa.json was independently reviewed under reviewerAgentId=member_node-4050b257-1656-4536-aaff-faff95fd7973, distinct from assigneeAgentId=member_node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0. Executed NumPy direct sphere-point/ball occlusion baseline, without Bio.PDB calls, at 100 points/atom using the actual frozen source and specified probe/radii. Total=2975.6511283884624 A2; candidate-minus-baseline=-3.8846246752655134e-7 A2; relative absolute difference with baseline denominator=1.3054704693723045e-10. This introduces no new tolerance. Complete executed code, versions, 46 residue comparisons, hashes, counts and settings are in reproduction. Verdict is request_changes because an accurate pilot cannot satisfy final acceptance.",
+        "criterion": "Captain reviewerAgentId=member_node-4050b257-1656-4536-aaff-faff95fd7973 independently executes a standard-Python or available-NumPy baseline from the actual source, checks counts/sums/hashes/settings, and reports numeric baseline comparisons and reproducible evidence in reproduction. Pilot must receive request_changes even if correct; final approval requires all final criteria."
+      },
+      {
+        "passed": true,
+        "evidence": "sasa.json has producer inputReceipts for context.json and source-1CRN.pdb; the source receipt matches the actual 49,491 bytes and frozen hash. The producer's context receipt belongs to its own run and is not compared with the current 22,714-byte review context; producer receipt validation is Host-owned per protocol. context.upstream=[] and task.dependencies=[]: no upstream approval transport is applicable here. Reviewer used only installed Python/NumPy/jsonschema, performed no installs/refetch or embedded-code execution, and records local Biopython unavailability. Current review receipts are freshly computed from all three actual attachments. This request_changes review grants no downstream handoff approval.",
+        "criterion": "Use only actually available tools, no installs or network refetch, and include own-run original input receipts. Hand off exact sasa.json only after captain approval with bound Host-validated approval evidence; report unavailable prerequisites, and stop once the required attempt envelope exists."
+      }
+    ],
+    "requiredChanges": [
+      "Captain: route this first-pilot request_changes to the assigned sasa author as REWORK with exact previous-sasa.json and feedback. Actually execute Bio.PDB.SASA.ShrakeRupley at both 1000 and 5000 points with the frozen source, filters, probe and radii. Report both measured totals and abs(total_1000-total_5000)/abs(total_5000), explicitly naming the 5000-point denominator; final n_points must be >=1000 and relative difference <=0.02. Keep top-level total/residues at one stated resolution and preserve truthful pilot history and numerical/structural limitations.",
+      "Captain: attach or bind the existing first-attempt question-tool/NEEDS_INPUT/wait/real-answer event evidence and its ordering before the first computation. Do not ask again on rework, invent an answer, or reconstruct an unobserved event. If unavailable, explicitly retain that verification limitation for captain resolution.",
+      "Author via captain: deliver the exact portable Python source actually executed for rework, actual execution output for both resolutions, and measured Python/Biopython (and any used NumPy) versions, reading Bio.__version__ rather than hard-coding it. Ensure the atoms passed to the calculation satisfy the frozen filter; the current counted kept_atoms list does not itself prune the computed structure, although no excluded atoms exist in this fixture. Preserve original-byte receipts and allow no synthesis handoff until an approve review is bound to the exact artifact."
+    ],
+    "reproduction": {
+      "code": "import json, math, hashlib, sys, importlib.metadata as md\nfrom pathlib import Path\nfrom collections import Counter\nimport numpy as np\nfrom jsonschema import Draft7Validator\n\nroot = Path(\"inputs\")\nraw = {p.name: p.read_bytes() for p in sorted(root.iterdir()) if p.is_file()}\ncontext = json.loads(raw[\"context.json\"])\nenvelope = json.loads(raw[\"sasa.json\"])\ncandidate = envelope[\"result\"]\nreceipts = [{\"filename\": name, \"sha256\": hashlib.sha256(data).hexdigest(), \"size\": len(data)} for name, data in raw.items()]\nradii = {\"C\": 1.70, \"N\": 1.55, \"O\": 1.52, \"S\": 1.80}\nprobe = 1.4\natoms = []\nrecords = Counter()\nexcluded = Counter()\nfor line in raw[\"source-1CRN.pdb\"].decode(\"ascii\").splitlines():\n    records[line[:6].strip()] += 1\n    if line[:6] != \"ATOM  \":\n        continue\n    element = line[76:78].strip()\n    if line[21] != \"A\":\n        excluded[\"other_chain\"] += 1\n        continue\n    if line[16] not in (\" \", \"A\"):\n        excluded[\"other_altloc\"] += 1\n        continue\n    if element in (\"H\", \"D\"):\n        excluded[\"hydrogen\"] += 1\n        continue\n    assert element in radii\n    atoms.append((int(line[22:26]), element,\n                  [float(line[30:38]), float(line[38:46]), float(line[46:54])]))\ncoords = np.array([a[2] for a in atoms], dtype=np.float64)\nexpanded = np.array([radii[a[1]] + probe for a in atoms], dtype=np.float64)\nids = sorted(set(a[0] for a in atoms))\n# Independent direct point/ball occlusion, with no Bio.PDB calls.\n# Deterministic golden-angle sphere: z=1-(2*k+1)/n, phi=k*pi*(3-sqrt(5)).\n# Strict interior occlusion (< radius^2); coordinates/probe/radii in A, areas in A2.\ndef baseline(n):\n    k = np.arange(n, dtype=np.float64)\n    z = 1.0 - (2.0*k + 1.0)/n\n    angle = k*math.pi*(3.0-math.sqrt(5.0))\n    radial = np.sqrt(1.0-z*z)\n    sphere = np.column_stack((radial*np.cos(angle), radial*np.sin(angle), z))\n    areas = {rid: 0.0 for rid in ids}\n    counts = []\n    for i, (rid, element, xyz) in enumerate(atoms):\n        points = coords[i] + expanded[i]*sphere\n        neighbor_distance2 = np.sum((coords-coords[i])**2, axis=1)\n        neighbors = np.flatnonzero((neighbor_distance2 < (expanded+expanded[i])**2)\n                                  & (np.arange(len(atoms)) != i))\n        exposed = np.ones(n, dtype=bool)\n        for j in neighbors:\n            exposed &= np.sum((points-coords[j])**2, axis=1) >= expanded[j]**2\n        count = int(exposed.sum())\n        counts.append(count)\n        areas[rid] += count*(4.0*math.pi*expanded[i]**2/n)\n    return {\"n_points\": n, \"total_A2\": math.fsum(areas.values()),\n            \"residues\": [{\"residue_id\": rid, \"area_A2\": areas[rid]} for rid in ids],\n            \"exposed_point_counts_by_atom\": counts}\nb = baseline(100)\nrows = candidate[\"residues\"]\ns = math.fsum(row[\"area_A2\"] for row in rows)\ncomparison = [{\"residue_id\": x[\"residue_id\"], \"candidate_A2\": x[\"area_A2\"],\n               \"baseline_A2\": y[\"area_A2\"], \"candidate_minus_baseline_A2\": x[\"area_A2\"]-y[\"area_A2\"]}\n              for x,y in zip(rows,b[\"residues\"])]\nschema_errors = [e.message for e in Draft7Validator(context[\"resultSchemas\"][context[\"task\"][\"key\"]]).iter_errors(candidate)]\ntask_schema_errors = [e.message for e in Draft7Validator(context[\"task\"][\"resultSchema\"]).iter_errors(candidate)]\nversions = {\"python\": sys.version.split()[0], \"numpy\": np.__version__, \"jsonschema\": md.version(\"jsonschema\")}\ntry:\n    import Bio\n    versions[\"biopython\"] = Bio.__version__\nexcept ImportError:\n    versions[\"biopython\"] = \"unavailable in reviewer environment; no installation attempted\"\nsource_receipt = next(x for x in envelope[\"inputReceipts\"] if x[\"filename\"]==\"source-1CRN.pdb\")\nsource_hash = hashlib.sha256(raw[\"source-1CRN.pdb\"]).hexdigest()\nobserved = {\n \"reviewerAgentId\": context[\"task\"][\"reviewerAgentId\"],\n \"assigneeAgentId\": context[\"task\"][\"assigneeAgentId\"],\n \"current_input_receipts\": receipts,\n \"source_sha256\": source_hash,\n \"atom_count\": len(atoms), \"residue_count\": len(ids), \"residue_ids\": ids,\n \"element_counts\": dict(Counter(a[1] for a in atoms)),\n \"coordinate_record_counts\": {key: records[key] for key in (\"ATOM\",\"HETATM\",\"MODEL\")},\n \"excluded_ATOM_counts\": dict(excluded),\n \"candidate_residue_ids_match\": [r[\"residue_id\"] for r in rows]==ids,\n \"producer_source_receipt_matches\": source_receipt[\"sha256\"]==source_hash and source_receipt[\"size\"]==len(raw[\"source-1CRN.pdb\"]),\n \"producer_context_receipt_policy\": \"Not compared with current context; producer run receipt validation is Host-owned.\",\n \"schema_errors\": schema_errors, \"task_schema_errors\": task_schema_errors,\n \"scientificChecks\": [\n   {\"id\":\"residue-sum\",\"total_A2\":candidate[\"total_A2\"],\"residue_sum_A2\":s,\n    \"absolute_difference_A2\":abs(candidate[\"total_A2\"]-s),\"absoluteTolerance\":0.001,\n    \"passed\":abs(candidate[\"total_A2\"]-s)<=0.001},\n   {\"id\":\"residue-count\",\"measured\":candidate[\"residue_count\"],\"independent_source_count\":len(ids),\"expected\":46,\n    \"passed\":candidate[\"residue_count\"]==len(ids)==46}],\n \"baseline_method\": \"Independent NumPy float64 direct point/ball occlusion with deterministic golden-angle sphere; no Bio.PDB calls.\",\n \"settings\":{\"n_points\":100,\"probe_radius_A\":probe,\"radii_A\":radii,\"coordinate_units\":\"Angstrom\",\"area_units\":\"A2\"},\n \"baseline\": b,\n \"candidate_total_A2\":candidate[\"total_A2\"],\n \"candidate_minus_baseline_A2\":candidate[\"total_A2\"]-b[\"total_A2\"],\n \"relative_total_difference_denominator_baseline\":abs(candidate[\"total_A2\"]-b[\"total_A2\"])/abs(b[\"total_A2\"]),\n \"max_absolute_residue_difference_A2\":max(abs(x[\"candidate_minus_baseline_A2\"]) for x in comparison),\n \"per_residue_comparison\":comparison,\n \"execution_limitations\":[\n \"Only independent reviewer baseline n_points=100 executed; no author rework performed.\",\n \"Biopython unavailable locally; submitted Bio.PDB program was inspected, not executed.\",\n \"No ask-user/NEEDS_INPUT event transcript, real-answer receipt, or author execution log in supplied attachments.\",\n \"Submitted code hard-codes Biopython 1.84 rather than measuring Bio.__version__.\",\n \"Submitted kept_atoms is used for counts but not to prune structure passed to sr.compute; frozen file has no excluded coordinate atoms, so this does not change this fixture result.\",\n \"Sampling comparison is computational geometry on one fixed structure, not biological function, experimental validation, or structural variability uncertainty.\"\n ]}\nprint(json.dumps({\"toolVersions\":versions,\"results\":observed},allow_nan=False))\n",
+      "toolVersions": {
+        "python": "3.12.10",
+        "numpy": "2.5.3",
+        "jsonschema": "4.26.0",
+        "biopython": "unavailable in reviewer environment; no installation attempted"
+      },
+      "results": {
+        "reviewerAgentId": "member_node-4050b257-1656-4536-aaff-faff95fd7973",
+        "assigneeAgentId": "member_node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0",
+        "current_input_receipts": [
+          {
+            "filename": "context.json",
+            "sha256": "4b762b215c35880bd2d22948e4d68837ad38bc5936d5c16614c203dcf1ef507c",
+            "size": 22714
+          },
+          {
+            "filename": "sasa.json",
+            "sha256": "23e795856bb3e14d27ef50273df8e232982f94eafb39c0bb50a1820d67700e31",
+            "size": 11777
+          },
+          {
+            "filename": "source-1CRN.pdb",
+            "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+            "size": 49491
+          }
+        ],
+        "source_sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+        "atom_count": 327,
+        "residue_count": 46,
+        "residue_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46
+        ],
+        "element_counts": {
+          "N": 55,
+          "C": 202,
+          "O": 64,
+          "S": 6
+        },
+        "coordinate_record_counts": {
+          "ATOM": 327,
+          "HETATM": 0,
+          "MODEL": 0
+        },
+        "excluded_ATOM_counts": {},
+        "candidate_residue_ids_match": true,
+        "producer_source_receipt_matches": true,
+        "producer_context_receipt_policy": "Not compared with current context; producer run receipt validation is Host-owned.",
+        "schema_errors": [],
+        "task_schema_errors": [],
+        "scientificChecks": [
+          {
+            "id": "residue-sum",
+            "total_A2": 2975.651128,
+            "residue_sum_A2": 2975.651128388463,
+            "absolute_difference_A2": 3.884629222739022e-07,
+            "absoluteTolerance": 0.001,
+            "passed": true
+          },
+          {
+            "id": "residue-count",
+            "measured": 46,
+            "independent_source_count": 46,
+            "expected": 46,
+            "passed": true
+          }
+        ],
+        "baseline_method": "Independent NumPy float64 direct point/ball occlusion with deterministic golden-angle sphere; no Bio.PDB calls.",
+        "settings": {
+          "n_points": 100,
+          "probe_radius_A": 1.4,
+          "radii_A": {
+            "C": 1.7,
+            "N": 1.55,
+            "O": 1.52,
+            "S": 1.8
+          },
+          "coordinate_units": "Angstrom",
+          "area_units": "A2"
+        },
+        "baseline": {
+          "n_points": 100,
+          "total_A2": 2975.6511283884624
+        },
+        "candidate_total_A2": 2975.651128,
+        "candidate_minus_baseline_A2": -3.8846246752655134e-07,
+        "relative_total_difference_denominator_baseline": 1.3054704693723045e-10,
+        "max_absolute_residue_difference_A2": 4.263256414560601e-14,
+        "per_residue_comparison": [
+          {
+            "residue_id": 1,
+            "candidate_A2": 75.74861179799521,
+            "baseline_A2": 75.7486117979952,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 2,
+            "candidate_A2": 24.687816310746342,
+            "baseline_A2": 24.687816310746335,
+            "candidate_minus_baseline_A2": 7.105427357601002e-15
+          },
+          {
+            "residue_id": 3,
+            "candidate_A2": 0,
+            "baseline_A2": 0,
+            "candidate_minus_baseline_A2": 0
+          },
+          {
+            "residue_id": 4,
+            "candidate_A2": 0,
+            "baseline_A2": 0,
+            "candidate_minus_baseline_A2": 0
+          },
+          {
+            "residue_id": 5,
+            "candidate_A2": 57.38568857849751,
+            "baseline_A2": 57.38568857849749,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 6,
+            "candidate_A2": 48.81401638599574,
+            "baseline_A2": 48.81401638599573,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 7,
+            "candidate_A2": 127.66647146025521,
+            "baseline_A2": 127.66647146025517,
+            "candidate_minus_baseline_A2": 4.263256414560601e-14
+          },
+          {
+            "residue_id": 8,
+            "candidate_A2": 98.91147390194783,
+            "baseline_A2": 98.91147390194782,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 9,
+            "candidate_A2": 7.131729482914189,
+            "baseline_A2": 7.131729482914188,
+            "candidate_minus_baseline_A2": 8.881784197001252e-16
+          },
+          {
+            "residue_id": 10,
+            "candidate_A2": 51.834393828639435,
+            "baseline_A2": 51.83439382863942,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 11,
+            "candidate_A2": 67.69177124319313,
+            "baseline_A2": 67.69177124319312,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 12,
+            "candidate_A2": 78.35360785998125,
+            "baseline_A2": 78.35360785998124,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 13,
+            "candidate_A2": 7.245769296239498,
+            "baseline_A2": 7.245769296239497,
+            "candidate_minus_baseline_A2": 8.881784197001252e-16
+          },
+          {
+            "residue_id": 14,
+            "candidate_A2": 83.58839343317547,
+            "baseline_A2": 83.58839343317545,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 15,
+            "candidate_A2": 93.6503240832047,
+            "baseline_A2": 93.65032408320468,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 16,
+            "candidate_A2": 21.026855559665087,
+            "baseline_A2": 21.026855559665087,
+            "candidate_minus_baseline_A2": 0
+          },
+          {
+            "residue_id": 17,
+            "candidate_A2": 88.84020643855214,
+            "baseline_A2": 88.84020643855212,
+            "candidate_minus_baseline_A2": 2.842170943040401e-14
+          },
+          {
+            "residue_id": 18,
+            "candidate_A2": 140.69414097349687,
+            "baseline_A2": 140.69414097349687,
+            "candidate_minus_baseline_A2": 0
+          },
+          {
+            "residue_id": 19,
+            "candidate_A2": 108.75113058855027,
+            "baseline_A2": 108.75113058855025,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 20,
+            "candidate_A2": 48.3876142983093,
+            "baseline_A2": 48.3876142983093,
+            "candidate_minus_baseline_A2": 0
+          },
+          {
+            "residue_id": 21,
+            "candidate_A2": 36.487525220294074,
+            "baseline_A2": 36.48752522029407,
+            "candidate_minus_baseline_A2": 7.105427357601002e-15
+          },
+          {
+            "residue_id": 22,
+            "candidate_A2": 78.49583404259457,
+            "baseline_A2": 78.49583404259454,
+            "candidate_minus_baseline_A2": 2.842170943040401e-14
+          },
+          {
+            "residue_id": 23,
+            "candidate_A2": 68.97425732898279,
+            "baseline_A2": 68.97425732898276,
+            "candidate_minus_baseline_A2": 2.842170943040401e-14
+          },
+          {
+            "residue_id": 24,
+            "candidate_A2": 61.751572455561856,
+            "baseline_A2": 61.75157245556184,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 25,
+            "candidate_A2": 96.6102572831933,
+            "baseline_A2": 96.61025728319329,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 26,
+            "candidate_A2": 0,
+            "baseline_A2": 0,
+            "candidate_minus_baseline_A2": 0
+          },
+          {
+            "residue_id": 27,
+            "candidate_A2": 9.524856536342135,
+            "baseline_A2": 9.524856536342133,
+            "candidate_minus_baseline_A2": 1.7763568394002505e-15
+          },
+          {
+            "residue_id": 28,
+            "candidate_A2": 122.95243628532003,
+            "baseline_A2": 122.95243628532002,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 29,
+            "candidate_A2": 156.71234279917314,
+            "baseline_A2": 156.71234279917311,
+            "candidate_minus_baseline_A2": 2.842170943040401e-14
+          },
+          {
+            "residue_id": 30,
+            "candidate_A2": 27.60349075343118,
+            "baseline_A2": 27.603490753431178,
+            "candidate_minus_baseline_A2": 3.552713678800501e-15
+          },
+          {
+            "residue_id": 31,
+            "candidate_A2": 35.025453132054615,
+            "baseline_A2": 35.02545313205461,
+            "candidate_minus_baseline_A2": 7.105427357601002e-15
+          },
+          {
+            "residue_id": 32,
+            "candidate_A2": 8.571672192501763,
+            "baseline_A2": 8.571672192501762,
+            "candidate_minus_baseline_A2": 1.7763568394002505e-15
+          },
+          {
+            "residue_id": 33,
+            "candidate_A2": 54.20710052981904,
+            "baseline_A2": 54.20710052981903,
+            "candidate_minus_baseline_A2": 7.105427357601002e-15
+          },
+          {
+            "residue_id": 34,
+            "candidate_A2": 79.1936194700687,
+            "baseline_A2": 79.19361947006868,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 35,
+            "candidate_A2": 40.514682577448376,
+            "baseline_A2": 40.514682577448355,
+            "candidate_minus_baseline_A2": 2.1316282072803006e-14
+          },
+          {
+            "residue_id": 36,
+            "candidate_A2": 138.00654615746265,
+            "baseline_A2": 138.00654615746262,
+            "candidate_minus_baseline_A2": 2.842170943040401e-14
+          },
+          {
+            "residue_id": 37,
+            "candidate_A2": 35.772687227896256,
+            "baseline_A2": 35.77268722789624,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 38,
+            "candidate_A2": 85.25388992892016,
+            "baseline_A2": 85.25388992892016,
+            "candidate_minus_baseline_A2": 0
+          },
+          {
+            "residue_id": 39,
+            "candidate_A2": 122.04351069878344,
+            "baseline_A2": 122.04351069878342,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 40,
+            "candidate_A2": 50.712908083160954,
+            "baseline_A2": 50.71290808316095,
+            "candidate_minus_baseline_A2": 7.105427357601002e-15
+          },
+          {
+            "residue_id": 41,
+            "candidate_A2": 50.58421588169929,
+            "baseline_A2": 50.58421588169928,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 42,
+            "candidate_A2": 76.29668148596987,
+            "baseline_A2": 76.29668148596986,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 43,
+            "candidate_A2": 107.4200377812243,
+            "baseline_A2": 107.42003778122427,
+            "candidate_minus_baseline_A2": 2.842170943040401e-14
+          },
+          {
+            "residue_id": 44,
+            "candidate_A2": 61.771904843215886,
+            "baseline_A2": 61.77190484321588,
+            "candidate_minus_baseline_A2": 7.105427357601002e-15
+          },
+          {
+            "residue_id": 45,
+            "candidate_A2": 74.02438008599898,
+            "baseline_A2": 74.02438008599897,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 46,
+            "candidate_A2": 66.7292500859863,
+            "baseline_A2": 66.72925008598628,
+            "candidate_minus_baseline_A2": 1.4210854715202004e-14
+          }
+        ],
+        "execution_limitations": [
+          "Only independent reviewer baseline n_points=100 executed; no author rework performed.",
+          "Biopython unavailable locally; submitted Bio.PDB program was inspected, not executed.",
+          "No ask-user/NEEDS_INPUT event transcript, real-answer receipt, or author execution log in supplied attachments.",
+          "Submitted code hard-codes Biopython 1.84 rather than measuring Bio.__version__.",
+          "Submitted kept_atoms is used for counts but not to prune structure passed to sr.compute; frozen file has no excluded coordinate atoms, so this does not change this fixture result.",
+          "Sampling comparison is computational geometry on one fixed structure, not biological function, experimental validation, or structural variability uncertainty."
+        ]
+      }
+    }
+  }
+}

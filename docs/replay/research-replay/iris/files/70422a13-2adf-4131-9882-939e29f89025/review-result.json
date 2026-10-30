@@ -1,0 +1,62 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "84754e2f434b5010bf1b06552b13bbe2de71e9d63e86498e8b939a3a64338588",
+      "size": 13615
+    },
+    {
+      "filename": "source-iris.csv",
+      "sha256": "0fed2a99db77ec533a62dc66894d3ec6df3b58b6a8f3cf4a6b47e4086b7f97dc",
+      "size": 4551
+    },
+    {
+      "filename": "species_summary.json",
+      "sha256": "1d1b660c141a3f5f3d9aead30315afa3454ec5c119e3a55e17f5dad8b7ce7e87",
+      "size": 4337
+    },
+    {
+      "filename": "data_audit.json",
+      "sha256": "ec3ec5116f0003c97c18069f0e01b82944458c03a6c7a6b5ab33836f5b59e625",
+      "size": 16124
+    }
+  ],
+  "result": {
+    "verdict": "approve",
+    "summary": "当前 Codex 独立用 Python csv/statistics 复算实际交接文件；未执行 Biology 提供的代码。",
+    "checks": [
+      {
+        "criterion": "Upstream data_audit.json rows exactly match the source; source_sha256, 150 records and cm units agree in both outputs",
+        "passed": true,
+        "evidence": "species_summary.json: Actual source hash 0fed2a99db77ec533a62dc66894d3ec6df3b58b6a8f3cf4a6b47e4086b7f97dc; all 150 upstream rows independently compared."
+      },
+      {
+        "criterion": "Exactly three summary_rows, each n=50; all four means match independent original-CSV computation within absolute error 1e-6",
+        "passed": true,
+        "evidence": "species_summary.json: [{\"species\": \"Iris-setosa\", \"n\": 50, \"petal_length_min\": 1.0, \"petal_length_max\": 1.9, \"sepal_length_mean\": 5.006, \"sepal_width_mean\": 3.428, \"petal_length_mean\": 1.462, \"petal_width_mean\": 0.24600000000000002}, {\"species\": \"Iris-versicolor\", \"n\": 50, \"petal_length_min\": 3.0, \"petal_length_max\": 5.1, \"sepal_length_mean\": 5.936, \"sepal_width_mean\": 2.77, \"petal_length_mean\": 4.26, \"petal_width_mean\": 1.3259999999999998}, {\"species\": \"Iris-virginica\", \"n\": 50, \"petal_length_min\": 4.5, \"petal_length_max\": 6.9, \"sepal_length_mean\": 6.587999999999999, \"sepal_width_mean\": 2.9739999999999998, \"petal_length_mean\": 5.5520000000000005, \"petal_width_mean\": 2.026}]"
+      },
+      {
+        "criterion": "All three petal_length minima and maxima match original CSV; petal_length_mean_order matches independently sorted means",
+        "passed": true,
+        "evidence": "species_summary.json: Independently computed minima/maxima and sorted means: [{\"species\": \"Iris-setosa\", \"n\": 50, \"petal_length_min\": 1.0, \"petal_length_max\": 1.9, \"sepal_length_mean\": 5.006, \"sepal_width_mean\": 3.428, \"petal_length_mean\": 1.462, \"petal_width_mean\": 0.24600000000000002}, {\"species\": \"Iris-versicolor\", \"n\": 50, \"petal_length_min\": 3.0, \"petal_length_max\": 5.1, \"sepal_length_mean\": 5.936, \"sepal_width_mean\": 2.77, \"petal_length_mean\": 4.26, \"petal_width_mean\": 1.3259999999999998}, {\"species\": \"Iris-virginica\", \"n\": 50, \"petal_length_min\": 4.5, \"petal_length_max\": 6.9, \"sepal_length_mean\": 6.587999999999999, \"sepal_width_mean\": 2.9739999999999998, \"petal_length_mean\": 5.5520000000000005, \"petal_width_mean\": 2.026}]"
+      },
+      {
+        "criterion": "versicolor_virginica_range_overlap correctly reports intersection of the two observed ranges",
+        "passed": true,
+        "evidence": "species_summary.json: Independent range intersection: True"
+      },
+      {
+        "criterion": "conclusion_zh states actual mean values and overlapping ranges, no perfect-classification or causal claim; limitations mark historical descriptive data, not a new discovery",
+        "passed": true,
+        "evidence": "species_summary.json: Current Codex scientific interpretation: 当前 Codex 阅读补交成果：中文结论保留三组实际均值、后两组范围及其重叠，明确不构成完美分类或因果结论；英文 limitations 保留历史描述性数据边界。已阅读嵌入的完整计算逻辑，并与实际远端 compute_species_summary.py 比较：都从 source-iris.csv 读取、按物种分组、用 statistics.fmean 计算四列均值，求花瓣范围/排序/交集并计算来源 SHA256；无硬编码统计答案。代码格式和打印部分不同，不宣称源文件逐字节相同。数值复算由独立脚本执行，不执行候选代码。 Conclusion: 基于150条历史公开记录(单位cm),三种鸢尾花各50条。花瓣长度均值排序为 Iris-setosa < Iris-versicolor < Iris-virginica(均值分别为 1.462, 4.26, 5.552 cm)。versicolor 花瓣长度观测范围 [3.0,5.1] cm 与 virginica 范围 [4.5,6.9] cm 存在重叠。这些是描述性统计,不构成完美分类或因果结论。"
+      },
+      {
+        "criterion": "citation includes UCI source URL, DOI 10.24432/C56C76 and CC BY 4.0; limitations include actual Python/tool versions and reproducible executed code",
+        "passed": true,
+        "evidence": "species_summary.json: Tool/code evidence in limitations: 1730 characters; SHA256 e68f9ae7c9220f791d49f7e5fb97d2b220f30313ecdc0c5deb79a9ce18653da8; excerpt: Historical descriptive UCI Iris dataset (Fisher 1936); means and ranges are descriptive statistics, not evidence of perfect classification or causal relationships. Computed with Python 3.12.3 standard library (csv, statistics, hashlib, json); no external packages installed, no network access. Reproducible executed code:\nimport csv, json, hashlib, statistics\nwith open(\"source-iris.csv\", newline=\"\") as f:\n    rows = [r for r in csv.reader(f) if r]\ndata = {}\nfor r in rows:\n    sl, sw, pl, pw, sp = float(r[0]), float(r[1]), float(r[2]), float(r[3]), r[4]\n    data.setdefault(sp, []).append((sl, sw, pl, pw))\nsummary_rows = []\nfor sp in [\"Iris-setosa\", \"Iris-versicolor\", \"Iris-virginica\"]:\n    recs = data[sp]\n    sl = [x[0] for x in recs]; sw = [x[1] for x in recs]\n    pl = [x[2] for x in recs]; pw = [x[3] for x in recs]\n    summary_rows.append({\"species\": sp, \"n\": len(recs),\n        \"sepal_length_mean\": statistics.fmean(sl),\n        \"sepal_width_mean\": statistics.fmean(sw),\n        \"petal_length_mean\": statistics.fmean(pl),\n        \"petal_width_mean\": statistics.fmean(pw),\n        \"petal_length_min\": min(pl), \"petal_length_max\": max(pl)})\norder = [r[\"species\"] for r in sorted(summary_rows, key=lambda r: r[\"petal_length_mean\"])]\nv = next(r for r in summary_rows if r[\"species\"] == \"Iris-versicolor\")\ng = next(r for r in summary_rows if r[\"species\"] == \"Iris-virginica\")\noverlap = max(v[\"petal_length_min\"], g[\"petal_length_min\"]) <= min(v[\"petal_length_max\"], g[\"petal_length_max\"])\nsrc_"
+      }
+    ],
+    "requiredChanges": []
+  }
+}
