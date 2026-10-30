@@ -1,3 +1,4 @@
+import {reviewsForAttempt} from "./research-model";
 import {ResearchConstraints} from "./ResearchConstraints";
 import {ResultContract} from "./ResultContract";
 import { isLocalResearchPlatform, researchPlatformName } from "@vibe-git/protocol";
@@ -70,7 +71,7 @@ export function ResearchInspector({state,p,target,open,close,archived,stale,busy
         <section className="rt-detail-section"><h3><FileJson size={15}/> 本轮成果</h3>{task.artifactId?<><a className="rt-download" href={artifactUrl(p,task.artifactId,state.replay)}><FileDown size={15}/>{task.outputFilename}</a>{task.status!=="APPROVED"&&<p className="rt-note">可查看成果；尚未通过评审，不代表已向下游放行。</p>}</>:<p className="rt-note">{p.runs.find(r=>r.id===task.executionId)?.output?"本轮原文件已保留在下方执行记录；未通过约束，不交给下游。":"尚未生成本轮成果文件。"}</p>}</section>
         {target.type!=="review"&&<TaskReview task={task} p={p}/>}
         <section className="rt-detail-section"><h3>关联交接</h3>{researchHandoffs(p).filter(h=>h.from.key===task.key||h.to.key===task.key).map(h=><button className="rt-detail-link" key={h.id} onClick={()=>open({type:"handoff",id:h.id})}><span>{h.filename}<small>{h.label}</small></span><ArrowRight size={14}/></button>)}</section>
-        <section className="rt-detail-section"><h3><History size={15}/> 执行与返工版本</h3>{p.runs.filter(r=>r.revision===p.revision&&r.taskKey===task.key&&r.kind==="TASK").map((r,i)=><div className="rt-attempt" key={r.id}><b>第 {i+1} 次</b><span>{runLabels[r.status]} · {platformName(r.agent)}</span><ContinuationEvidence run={r}/>{r.output&&<a href={artifactUrl(p,r.output.id,state.replay)}>查看冻结文件 ↗</a>}{r.output&&p.runs.filter(v=>v.kind==="REVIEW"&&v.revision===p.revision&&v.inputs.some(f=>f.artifactId===r.output!.id)).map(v=><small key={v.id}>评审记录：{runLabels[v.status]}{v.output&&<> · <a href={artifactUrl(p,v.output.id,state.replay)}>查看评审文件</a></>}</small>)}</div>)}</section>
+        <section className="rt-detail-section"><h3><History size={15}/> 执行与返工版本</h3>{p.runs.filter(r=>r.revision===p.revision&&r.taskKey===task.key&&r.kind==="TASK").map((r,i)=><div className="rt-attempt" key={r.id}><b>第 {i+1} 次</b><span>{runLabels[r.status]} · {platformName(r.agent)}</span><ContinuationEvidence run={r}/>{r.output&&<a href={artifactUrl(p,r.output.id,state.replay)}>查看冻结文件 ↗</a>}{r.output&&reviewsForAttempt(p,r).map(v=><small key={v.id}>评审记录：{runLabels[v.status]}{v.output&&<> · <a href={artifactUrl(p,v.output.id,state.replay)}>查看评审文件</a></>}</small>)}</div>)}</section>
         {!archived&&task.status==="CHANGES_REQUESTED"&&<button className="rt-primary" onClick={()=>open({type:"next"})}>查看返工待办 <ArrowRight size={14}/></button>}
       </>}
       {handoff&&<>

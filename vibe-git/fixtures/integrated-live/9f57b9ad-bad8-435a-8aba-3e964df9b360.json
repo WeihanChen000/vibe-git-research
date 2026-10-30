@@ -1,0 +1,141 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "5abfdbe3aa0881b21cf2668a2630bc06c1a2aa36332967a6a4c7a846e743023e",
+      "size": 19942
+    },
+    {
+      "filename": "sasa.json",
+      "sha256": "bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2",
+      "size": 50482
+    },
+    {
+      "filename": "source-1CRN.pdb",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    }
+  ],
+  "result": {
+    "source_sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+    "method": "Shrake-Rupley",
+    "probe_radius_A": 1.4,
+    "upstream_sha256": "bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2",
+    "summary": "Synthesis is blocked at the preregistered HARD dependency approval gate. All three original attachments were read and hashed. The supplied sasa.json identifies itself as the final 1000-point primary run with a 5000-point comparison, but the supplied context and artifact contain no final independent scientific approval decision or binding of that approval to these exact upstream bytes. Final-stage labeling and successful code execution cannot substitute for approval. Therefore no approved evidence synthesis, independent area-sum verification, residue interpretation, or downstream release is claimed in this result. Supply the final SASA reviewer approval linked to the upstream SHA256 before resuming synthesis; this does not assert that SASA was rejected or that approval never occurred outside the supplied packet.",
+    "code": "import hashlib\nimport json\nimport platform\nimport sys\nfrom pathlib import Path\n\n# Run from the assigned task directory. Only original attachments are hashed.\n# This is a provenance/approval preflight, not a scientific synthesis.\nroot = Path('inputs')\nfiles = sorted(p for p in root.iterdir() if p.is_file())\nraw = {p.name: p.read_bytes() for p in files}\nassert set(raw) == {'context.json', 'source-1CRN.pdb', 'sasa.json'}\ncontext = json.loads(raw['context.json'])\nupstream = json.loads(raw['sasa.json'])\npdb_text = raw['source-1CRN.pdb'].decode('utf-8')\nassert context['task']['key'] == 'synthesis'\nassert context['task']['dependencies'] == ['sasa']\nreceipts = [{'filename': name, 'sha256': hashlib.sha256(data).hexdigest(), 'size': len(data)} for name, data in raw.items()]\nhashes = {r['filename']: r['sha256'] for r in receipts}\nassert hashes['source-1CRN.pdb'] == '42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811'\nassert upstream['result']['source_sha256'] == hashes['source-1CRN.pdb']\n# The delivered context identifies the dependency but supplies no final approval\n# event, reviewer decision, or approved-artifact binding. A producer's final\n# stage label is not an independent scientific approval.\nassert set(context['upstream'][0]) == {'key', 'filename', 'acceptance'}\nassert context['upstream'][0]['key'] == 'sasa'\nassert set(upstream) == {'revision', 'inputReceipts', 'result'}\nassert not any(k in upstream['result'] for k in ('review', 'approval', 'reviewDecision', 'approved'))\nexecuted_source = globals().get('_executed_source')\nif executed_source is None:\n    executed_source = Path(__file__).read_text(encoding='utf-8')\nresult = {\n    'source_sha256': hashes['source-1CRN.pdb'],\n    'method': 'Shrake-Rupley',\n    'probe_radius_A': 1.4,\n    'upstream_sha256': hashes['sasa.json'],\n    'summary': 'Synthesis is blocked at the preregistered HARD dependency approval gate. All three original attachments were read and hashed. The supplied sasa.json identifies itself as the final 1000-point primary run with a 5000-point comparison, but the supplied context and artifact contain no final independent scientific approval decision or binding of that approval to these exact upstream bytes. Final-stage labeling and successful code execution cannot substitute for approval. Therefore no approved evidence synthesis, independent area-sum verification, residue interpretation, or downstream release is claimed in this result. Supply the final SASA reviewer approval linked to the upstream SHA256 before resuming synthesis; this does not assert that SASA was rejected or that approval never occurred outside the supplied packet.',\n    'code': executed_source,\n    'status': 'blocked_missing_upstream_scientific_approval_evidence',\n    'assigneeAgentId': context['task']['assigneeAgentId'],\n    'reviewerAgentId': context['task']['reviewerAgentId'],\n    'tool_versions': {'python': platform.python_version(), 'implementation': platform.python_implementation(), 'python_full': sys.version, 'libraries_used': 'Python standard library: hashlib, json, pathlib, platform, sys'},\n    'approval_gate': {\n        'required': 'Final sasa scientific approval before synthesis execution; approval must identify the supplied complete sasa.json bytes.',\n        'confirmed': False,\n        'context_upstream_entry_keys': sorted(context['upstream'][0]),\n        'upstream_envelope_keys': sorted(upstream),\n        'upstream_result_keys': sorted(upstream['result']),\n        'context_synthesis_task_status': context['task']['status'],\n        'upstream_stage_label_only': upstream['result']['stage'],\n        'upstream_primary_n_points_label_only': upstream['result']['n_points'],\n        'upstream_comparison_n_points_label_only': upstream['result']['runs']['n5000']['n_points'],\n        'interpretation': 'Missing approval evidence, not evidence of rejection. Neither final stage nor presence of a dependency attachment independently confirms scientific approval.',\n        'required_missing_input': 'Final independent SASA approval decision, including reviewed artifact SHA256 bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2 and reviewer identity; the referenced separate-baseline review evidence must be available to establish the frozen gate.'\n    },\n    'provenance': {\n        'scientific_input_filenames': ['sasa.json', 'source-1CRN.pdb'],\n        'protocol_input_filename': 'context.json',\n        'all_original_attachment_bytes_read': True,\n        'source_hash_matches_frozen_protocol': True,\n        'source_hash_matches_upstream_source_sha256': True,\n        'upstream_hash_scope': 'Original complete sasa.json bytes, including its envelope; not reserialized JSON.',\n        'producer_context_receipts_compared_to_consumer_context': False,\n        'upstream_producer_receipts': 'Belong to the producing run; not reverified against this consumer context.',\n        'synthetic_data_used': False,\n        'new_sasa_runs_executed': False\n    },\n    'frozen_protocol_preserved': {\n        'research_question': 'Quantify geometric solvent accessibility for the supplied frozen 1CRN chain A conformation.',\n        'selection': 'One implicit model; chain A heavy ATOM records; altLoc blank or A; exclude HETATM and hydrogens.',\n        'radii_A': {'C': 1.70, 'N': 1.55, 'O': 1.52, 'S': 1.80},\n        'coordinate_units': 'Angstrom', 'area_units': 'A2',\n        'primary_n_points': 1000, 'comparison_n_points': 5000,\n        'convergence_formula': 'abs(total_1000_A2-total_5000_A2)/total_5000_A2',\n        'maximum_relative_difference': 0.02,\n        'independent_baseline_requirement': 'A separate sphere-sampling implementation is required in the upstream independent review; no approval report was attached here.',\n        'resources': 'Available local Python only; no network, installation, new structure, or numerical resource budget introduced.',\n        'stage_note': 'The 100-point exploratory pilot and subsequent 1000/5000 refinement are preregistered; no pilot is rerun or overwritten.'\n    },\n    'execution_evidence': {\n        'performed': ['Read every original attachment completely', 'Parse both JSON envelopes/protocol', 'Decode entire frozen PDB', 'Compute SHA256 and byte counts', 'Check frozen and upstream source hashes', 'Inspect available approval metadata', 'Validate result against supplied synthesis schema using the explicit contract checks in code'],\n        'scientific_synthesis_executed': False,\n        'independent_sum_count_verification_executed': False,\n        'scientific_acceptance_established': False,\n        'note': 'Provenance preflight success and schema validity do not establish scientific acceptance.'\n    },\n    'limitations': [\n        'Final upstream scientific approval cannot be confirmed from the supplied inputs. Do not hand this result downstream as an accepted synthesis.',\n        'No numeric SASA totals or residue-level interpretations are asserted as independently verified here; they remain pending the approval gate.',\n        'Finite 1000/5000 sphere sampling is approximate; a total-area comparison does not establish exact analytical area or uniform per-residue accuracy.',\n        'Geometric accessibility is limited to the supplied conformation, selected atoms, radii, and probe. No activity, clinical efficacy, irreplaceability, biological-function experiment, normalized accessibility, or single-PDB generalization is inferred.',\n        'The independent Biology review of this output remains a separate workflow step; it has not been performed by this task.'\n    ],\n    'handoff': {'ready_for_downstream': False, 'independent_review_required': True, 'next_action': 'Return missing approval evidence through the task workflow, then resume synthesis and independently verify sums/counts before Biology review.'}\n}\n# Validate every keyword present in the actual frozen synthesis RESULT contract.\n# No dependencies are installed and no schema is modified.\nschema = context['resultSchemas']['synthesis']\nassert set(schema) <= {'type', 'required', 'properties', 'additionalProperties'}\nassert schema['type'] == 'object' and isinstance(result, dict)\nassert all(k in result for k in schema['required'])\nfor name, spec in schema['properties'].items():\n    assert set(spec) <= {'type', 'const', 'minLength', 'maxLength'}\n    if name not in result:\n        continue\n    value = result[name]\n    if spec['type'] == 'string':\n        assert isinstance(value, str)\n    elif spec['type'] == 'number':\n        assert isinstance(value, (int, float)) and not isinstance(value, bool)\n    else:\n        raise AssertionError('Unexpected schema type; do not silently skip')\n    if 'const' in spec: assert value == spec['const']\n    if 'minLength' in spec: assert len(value) >= spec['minLength']\n    if 'maxLength' in spec: assert len(value) <= spec['maxLength']\nassert schema['additionalProperties'] is True or set(result) <= set(schema['properties'])\nassert context['task']['resultSchema'] == schema\nassert not Path('synthesis.json').exists(), 'Refuse to overwrite an existing deliverable'\nenvelope = {'revision': 1, 'inputReceipts': receipts, 'result': result}\n# Confirm serializability before opening the sole output file.\njson.dumps(envelope, ensure_ascii=False, allow_nan=False)\nwith Path('synthesis.json').open('w', encoding='utf-8', newline='\\n') as stream:\n    json.dump(envelope, stream, ensure_ascii=False, allow_nan=False, indent=2)\n",
+    "status": "blocked_missing_upstream_scientific_approval_evidence",
+    "assigneeAgentId": "member_node-0ee7f2e6-16fc-483f-928c-5933b42d7fd7",
+    "reviewerAgentId": "member_node-ba0b6a8b-4e93-46e4-b959-b6566dbd6ad2",
+    "tool_versions": {
+      "python": "3.12.10",
+      "implementation": "CPython",
+      "python_full": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+      "libraries_used": "Python standard library: hashlib, json, pathlib, platform, sys"
+    },
+    "approval_gate": {
+      "required": "Final sasa scientific approval before synthesis execution; approval must identify the supplied complete sasa.json bytes.",
+      "confirmed": false,
+      "context_upstream_entry_keys": [
+        "acceptance",
+        "filename",
+        "key"
+      ],
+      "upstream_envelope_keys": [
+        "inputReceipts",
+        "result",
+        "revision"
+      ],
+      "upstream_result_keys": [
+        "atom_count",
+        "code",
+        "convergence",
+        "exploratory",
+        "limitations",
+        "method",
+        "n_points",
+        "primary_n_points_valid",
+        "probe_radius_A",
+        "provenance",
+        "radii_A",
+        "residue_count",
+        "residues",
+        "runs",
+        "selection",
+        "source_sha256",
+        "stage",
+        "sum_check",
+        "tool_versions",
+        "total_A2",
+        "units"
+      ],
+      "context_synthesis_task_status": "WAITING",
+      "upstream_stage_label_only": "final-1000-primary-with-5000-convergence",
+      "upstream_primary_n_points_label_only": 1000,
+      "upstream_comparison_n_points_label_only": 5000,
+      "interpretation": "Missing approval evidence, not evidence of rejection. Neither final stage nor presence of a dependency attachment independently confirms scientific approval.",
+      "required_missing_input": "Final independent SASA approval decision, including reviewed artifact SHA256 bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2 and reviewer identity; the referenced separate-baseline review evidence must be available to establish the frozen gate."
+    },
+    "provenance": {
+      "scientific_input_filenames": [
+        "sasa.json",
+        "source-1CRN.pdb"
+      ],
+      "protocol_input_filename": "context.json",
+      "all_original_attachment_bytes_read": true,
+      "source_hash_matches_frozen_protocol": true,
+      "source_hash_matches_upstream_source_sha256": true,
+      "upstream_hash_scope": "Original complete sasa.json bytes, including its envelope; not reserialized JSON.",
+      "producer_context_receipts_compared_to_consumer_context": false,
+      "upstream_producer_receipts": "Belong to the producing run; not reverified against this consumer context.",
+      "synthetic_data_used": false,
+      "new_sasa_runs_executed": false
+    },
+    "frozen_protocol_preserved": {
+      "research_question": "Quantify geometric solvent accessibility for the supplied frozen 1CRN chain A conformation.",
+      "selection": "One implicit model; chain A heavy ATOM records; altLoc blank or A; exclude HETATM and hydrogens.",
+      "radii_A": {
+        "C": 1.7,
+        "N": 1.55,
+        "O": 1.52,
+        "S": 1.8
+      },
+      "coordinate_units": "Angstrom",
+      "area_units": "A2",
+      "primary_n_points": 1000,
+      "comparison_n_points": 5000,
+      "convergence_formula": "abs(total_1000_A2-total_5000_A2)/total_5000_A2",
+      "maximum_relative_difference": 0.02,
+      "independent_baseline_requirement": "A separate sphere-sampling implementation is required in the upstream independent review; no approval report was attached here.",
+      "resources": "Available local Python only; no network, installation, new structure, or numerical resource budget introduced.",
+      "stage_note": "The 100-point exploratory pilot and subsequent 1000/5000 refinement are preregistered; no pilot is rerun or overwritten."
+    },
+    "execution_evidence": {
+      "performed": [
+        "Read every original attachment completely",
+        "Parse both JSON envelopes/protocol",
+        "Decode entire frozen PDB",
+        "Compute SHA256 and byte counts",
+        "Check frozen and upstream source hashes",
+        "Inspect available approval metadata",
+        "Validate result against supplied synthesis schema using the explicit contract checks in code"
+      ],
+      "scientific_synthesis_executed": false,
+      "independent_sum_count_verification_executed": false,
+      "scientific_acceptance_established": false,
+      "note": "Provenance preflight success and schema validity do not establish scientific acceptance."
+    },
+    "limitations": [
+      "Final upstream scientific approval cannot be confirmed from the supplied inputs. Do not hand this result downstream as an accepted synthesis.",
+      "No numeric SASA totals or residue-level interpretations are asserted as independently verified here; they remain pending the approval gate.",
+      "Finite 1000/5000 sphere sampling is approximate; a total-area comparison does not establish exact analytical area or uniform per-residue accuracy.",
+      "Geometric accessibility is limited to the supplied conformation, selected atoms, radii, and probe. No activity, clinical efficacy, irreplaceability, biological-function experiment, normalized accessibility, or single-PDB generalization is inferred.",
+      "The independent Biology review of this output remains a separate workflow step; it has not been performed by this task."
+    ],
+    "handoff": {
+      "ready_for_downstream": false,
+      "independent_review_required": true,
+      "next_action": "Return missing approval evidence through the task workflow, then resume synthesis and independently verify sums/counts before Biology review."
+    }
+  }
+}

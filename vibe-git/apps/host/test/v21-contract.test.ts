@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { mkdtemp, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { basename, dirname, resolve } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import type { AgentJob, AlignmentRun, CloudflareTunnelStatus, CollaborationNode, InterfaceContract, StageTask, TaskBrief } from "@vibe-git/protocol";
 import { buildApp } from "../src/app.js";
@@ -9,8 +9,22 @@ import type { CloudflareManager } from "../src/integrations/cloudflare/manager.j
 import type { V20Service } from "../src/v20/service.js";
 
 type App = Awaited<ReturnType<typeof buildApp>>;
+
+// The module catalogue is empty in these fixtures; still account for every frozen plan.
+const planImpacts = (alignment: AlignmentRun) => alignment.planSnapshot.map((plan) => ({
+  documentId: plan.documentId, moduleIds: [], rationale: "当前模块目录为空；按冻结提案建立任务边界"
+}));
+
 const roots: string[] = [];
-afterEach(async () => { await Promise.all(roots.splice(0).map((path) => rm(path, { recursive: true, force: true }))); });
+const apps: Awaited<ReturnType<typeof buildApp>>[] = [];
+afterEach(async () => {
+  await Promise.all(apps.splice(0).map((app) => app.close()));
+  for (const path of roots.splice(0)) {
+    const target = resolve(path);
+    if (dirname(target) !== resolve(tmpdir()) || !basename(target).startsWith("vibe-git-v21-")) throw new Error("Unsafe test cleanup target");
+    await rm(target, { recursive: true, force: true });
+  }
+});
 class FakeCloudflare implements CloudflareManager {
   async status(): Promise<CloudflareTunnelStatus> { return { phase: "ready", installed: false, running: false, version: null, url: null, logs: [], lastError: null, updatedAt: new Date().toISOString() }; }
   async install() { return this.status(); } async start() { return this.status(); } async stop() { return this.status(); } async close() {}
@@ -27,6 +41,7 @@ async function setup() {
   const root = await mkdtemp(resolve(tmpdir(), "vibe-git-v21-")); roots.push(root);
   const dir = resolve(root, "runtime");
   const app = await buildApp({ dbPath: resolve(root, "room.db"), dataDir: dir, staticDir: false, backupDatabase: false, cloudflareManager: new FakeCloudflare() });
+  apps.push(app);
   const captain = JSON.parse(await readFile(resolve(dir, "captain.json"), "utf8")) as { nodeId: string; nodeToken: string };
   const invite = JSON.parse(await readFile(resolve(dir, "invite.json"), "utf8")) as { inviteToken: string };
   const joined = await app.inject({ method: "POST", url: "/api/v1/join", payload: { invite: invite.inviteToken } });
@@ -53,7 +68,7 @@ async function richAlignment(ctx: Awaited<ReturnType<typeof setup>>) {
   await post(app, member.nodeToken, "/api/v1/plans", { filename: "feature.md", content: "# 需求\n提供核心接口与 UI，要求可测试" });
   const alignment = (await post(app, captain.nodeToken, "/api/v1/alignments")).json() as AlignmentRun;
   const job = service.repo.getJob(alignment.agentJobId!)!;
-  await finishJob(app, service, tokens, job, { alignmentMarkdown: "# 统一需求\n\n## 验收\n核心接口和 UI 可测试", issues: [],
+  await finishJob(app, service, tokens, job, { planImpacts: planImpacts(alignment), alignmentMarkdown: "# 统一需求\n\n## 验收\n核心接口和 UI 可测试", issues: [],
     contracts: [{ key: "core-api", providerTaskKey: "core", consumerTaskKeys: ["ui"], kind: "module", name: "Core API",
       signature: "load(input: string): Promise<Result>", behavior: ["非空输入返回结果"], examples: ["load('a') => {ok:true}"], errors: ["load('') => InvalidInput"],
       testCommand: "node --test contract.test.mjs", handoff: "apps/host/src/core.ts + 提交 SHA" }],
@@ -64,6 +79,7 @@ async function richAlignment(ctx: Awaited<ReturnType<typeof setup>>) {
         dependencyEdges: [{ upstreamKey: "core", mode: "CONTRACT", contractKey: "core-api", reason: "输入输出已冻结，可用 Mock 并行" }],
         assigneeNodeId: member.node.id, sourcePlanNodeIds: [member.node.id], assignmentRationale: "提案认领", effort: "M" }
     ] });
+  expect(service.repo.getJob(job.id)?.status, service.repo.getJob(job.id)?.error ?? "Alignment must finish before detail jobs").toBe("COMPLETED");
   const detailJobs = service.repo.listJobs().filter((item) => item.entityId === alignment.id && item.kind === "DESCRIBE_WORKSTREAM");
   expect(detailJobs).toHaveLength(2);
   for (const detail of detailJobs) {
@@ -114,7 +130,6 @@ describe("契约先行的阶段与并行切片", () => {
     await new Promise((resolveDelay) => setTimeout(resolveDelay, 2));
     await post(app, member.nodeToken, "/api/v1/nodes/heartbeat", { ...heartbeat, currentTaskId: consumer.id });
     expect((await post(app, member.nodeToken, `/api/v1/tasks/${consumer.id}/done`)).statusCode).toBe(200);
-    await app.close();
   });
 
   it("未开工阶段可按已发布需求原子重编排，旧切片归档；开工后拒绝", async () => {
@@ -127,7 +142,7 @@ describe("契约先行的阶段与并行切片", () => {
     expect(request.statusCode, request.body).toBe(200);
     const replan = request.json() as AlignmentRun;
     const job = service.repo.getJob(replan.agentJobId!)!;
-    await finishJob(app, service, tokens, job, { alignmentMarkdown: service.repo.getStage(stage.id)!.requirementMarkdown, issues: [], contracts: [], tasks: [
+    await finishJob(app, service, tokens, job, { planImpacts: planImpacts(replan), alignmentMarkdown: service.repo.getStage(stage.id)!.requirementMarkdown, issues: [], contracts: [], tasks: [
       { key: "new-core", title: "重编排接口", goal: "完整实现接口", boundary: "apps/host/src", acceptance: ["接口测试通过"], dependencies: [], dependencyEdges: [],
         assigneeNodeId: captain.nodeId, sourcePlanNodeIds: [], assignmentRationale: "接口独占", effort: "M" },
       { key: "new-ui", title: "重编排界面", goal: "实现界面", boundary: "apps/web/src", acceptance: ["界面测试通过"], dependencies: ["new-core"],
@@ -149,6 +164,5 @@ describe("契约先行的阶段与并行切片", () => {
     const newProvider = service.repo.listTasks(stage.id).find((item) => item.assigneeNodeId === captain.nodeId)!;
     await post(app, captain.nodeToken, `/api/v1/tasks/${newProvider.id}/start`);
     expect((await post(app, captain.nodeToken, `/api/v1/stages/${stage.id}/replan`)).statusCode).toBe(409);
-    await app.close();
   });
 });

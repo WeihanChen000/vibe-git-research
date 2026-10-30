@@ -1,7 +1,7 @@
 import { mkdtemp, readFile, rm } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { basename, dirname, resolve } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import type { AgentJob, AlignmentRun, CloudflareTunnelStatus, CollaborationNode, StageTask, V20BootstrapPayload } from "@vibe-git/protocol";
 import { buildApp } from "../src/app.js";
@@ -17,13 +17,28 @@ class FakeCloudflare implements CloudflareManager {
   async stop() { return { ...tunnelStatus, phase: "ready" as const, running: false, url: null }; } async close() {}
 }
 
+
+// The module catalogue is empty in these fixtures; still account for every frozen plan.
+const planImpacts = (alignment: AlignmentRun) => alignment.planSnapshot.map((plan) => ({
+  documentId: plan.documentId, moduleIds: [], rationale: "当前模块目录为空；按冻结提案建立任务边界"
+}));
+
 const roots: string[] = [];
-afterEach(async () => { await Promise.all(roots.splice(0).map((path) => rm(path, { recursive: true, force: true }))); });
+const apps: Awaited<ReturnType<typeof buildApp>>[] = [];
+afterEach(async () => {
+  await Promise.all(apps.splice(0).map((app) => app.close()));
+  for (const path of roots.splice(0)) {
+    const target = resolve(path);
+    if (dirname(target) !== resolve(tmpdir()) || !basename(target).startsWith("vibe-git-v20-test-")) throw new Error("Unsafe test cleanup target");
+    await rm(target, { recursive: true, force: true });
+  }
+});
 
 async function setup() {
   const root = await mkdtemp(resolve(tmpdir(), "vibe-git-v20-test-")); roots.push(root);
   const dataDir = resolve(root, "v20");
   const app = await buildApp({ dbPath: resolve(root, "test.db"), dataDir, staticDir: false, backupDatabase: false, cloudflareManager: new FakeCloudflare(), logger: process.env.VIBE_TEST_LOG === "1" });
+  apps.push(app);
   const captain = JSON.parse(await readFile(resolve(dataDir, "captain.json"), "utf8")) as { nodeId: string; nodeToken: string };
   const invite = JSON.parse(await readFile(resolve(dataDir, "invite.json"), "utf8")) as { inviteToken: string };
   const auth = (token: string) => ({ authorization: `Bearer ${token}` });
@@ -55,7 +70,9 @@ async function bootstrap(app: Awaited<ReturnType<typeof buildApp>>, token: strin
 async function completeAlignment(app: Awaited<ReturnType<typeof buildApp>>, captainToken: string, memberToken: string, memberId: string): Promise<AlignmentRun> {
   expect((await post(app, "/api/v1/nodes/heartbeat", captainToken, heartbeat)).statusCode).toBe(200);
   expect((await post(app, "/api/v1/nodes/heartbeat", memberToken, heartbeat)).statusCode).toBe(200);
+  if (!(await bootstrap(app, memberToken)).plans.some((plan) => plan.ownerNodeId === memberId)) {
   expect((await post(app, "/api/v1/plans", memberToken, { filename: "plan.md", content: "# 成员计划\n实现可验证功能" })).statusCode).toBe(200);
+  }
   const queued = await post(app, "/api/v1/alignments", captainToken);
   expect(queued.statusCode).toBe(200);
   const alignment = queued.json() as AlignmentRun;
@@ -66,15 +83,36 @@ async function completeAlignment(app: Awaited<ReturnType<typeof buildApp>>, capt
   expect((await post(app, `/api/v1/jobs/${job.id}/status`, executorToken, { leaseToken: job.leaseToken, phase: "started", runtimeId: "fake-align" })).statusCode).toBe(200);
   const completed = await post(app, `/api/v1/jobs/${job.id}/status`, executorToken, {
     leaseToken: job.leaseToken, phase: "completed", result: {
+      planImpacts: planImpacts(alignment),
       alignmentMarkdown: "# 统一需求\n\n## 验收\n- 可测试",
       tasks: [{ title: "实现功能", goal: "完成主流程", boundary: "只改源码", acceptance: ["测试通过"], dependencies: [], assigneeNodeId: memberId, sourcePlanNodeIds: [memberId] }]
     }
   });
   expect(completed.statusCode).toBe(200);
+  expect(completed.json().status, completed.body).toBe("COMPLETED");
   return (await bootstrap(app, captainToken)).alignments.find((item) => item.id === alignment.id)!;
 }
 
 describe("Vibe-Git v0.20 Host", () => {
+  it("缺少冻结提案的模块影响说明时不放行，也不创建任务", async () => {
+    const {app,captain,member}=await setup();
+    await post(app,"/api/v1/nodes/heartbeat",captain.nodeToken,heartbeat);
+    await post(app,"/api/v1/nodes/heartbeat",member.nodeToken,heartbeat);
+    await post(app,"/api/v1/plans",member.nodeToken,{filename:"plan.md",content:"# 本人提案"});
+    const alignment=(await post(app,"/api/v1/alignments",captain.nodeToken)).json() as AlignmentRun;
+    const token=alignment.executorNodeId===member.node.id?member.nodeToken:captain.nodeToken;
+    const job=(await post(app,"/api/v1/nodes/jobs/next",token)).json() as AgentJob;
+    const result=await post(app,`/api/v1/jobs/${job.id}/status`,token,{leaseToken:job.leaseToken,phase:"completed",result:{
+      alignmentMarkdown:"# 对齐稿",issues:[],tasks:[{title:"任务",goal:"实现",boundary:"源码",acceptance:["通过"],dependencies:[],assigneeNodeId:member.node.id,sourcePlanNodeIds:[member.node.id]}]
+    }});
+    expect(result.statusCode).toBe(200);
+    expect(result.json().status).not.toBe("COMPLETED");
+    const state=await bootstrap(app,captain.nodeToken);
+    expect(state.alignments.find(a=>a.id===alignment.id)?.status).not.toBe("READY");
+    expect(state.tasks).toHaveLength(0);
+    expect((await post(app,`/api/v1/alignments/${alignment.id}/publish`,captain.nodeToken)).statusCode).toBe(409);
+  });
+
   it("动态加入、邀请轮换、会话票据和撤销不会泄漏凭据", async () => {
     const { app, captain, invite, member } = await setup();
     const before = await bootstrap(app, captain.nodeToken);
@@ -91,7 +129,6 @@ describe("Vibe-Git v0.20 Host", () => {
     expect((await app.inject({ method: "GET", url: ticketUrl.pathname })).statusCode).toBe(403);
     expect((await post(app, `/api/v1/nodes/${member.node.id}/revoke`, captain.nodeToken)).statusCode).toBe(200);
     expect((await app.inject({ method: "GET", url: "/api/v1/bootstrap", headers: { authorization: `Bearer ${member.nodeToken}` } })).statusCode).toBe(403);
-    await app.close();
   });
 
   it("所有节点都能查看团队最新提案，但只能由所有者修改", async () => {
@@ -123,7 +160,6 @@ describe("Vibe-Git v0.20 Host", () => {
       expect(visible.plans).toHaveLength(3);
       expect(visible.plans.find((plan) => plan.ownerNodeId === member.node.id)?.content).toContain("第二版");
     }
-    await app.close();
   });
 
   it("校验 Markdown、保留版本和哈希，并隔离任务权限", async () => {
@@ -132,7 +168,8 @@ describe("Vibe-Git v0.20 Host", () => {
     expect((await post(app, "/api/v1/plans", member.nodeToken, { filename: "empty.md", content: "" })).statusCode).toBe(400);
     const first = await post(app, "/api/v1/plans", member.nodeToken, { filename: "frontend-design.md", content: "# A" });
     const same = await post(app, "/api/v1/plans", member.nodeToken, { filename: "frontend-design.md", content: "# A" });
-    const second = await post(app, "/api/v1/plans", member.nodeToken, { filename: "implementation-notes.MD", content: "# B" });
+    expect((await post(app, "/api/v1/plans", member.nodeToken, { filename: "implementation-notes.MD", content: "# B" })).statusCode).toBe(409);
+    const second = await put(app, `/api/v1/plans/${first.json().id}`, member.nodeToken, { expectedRevision: 1, filename: "implementation-notes.MD", content: "# B" });
     expect(first.json().revision).toBe(1); expect(same.json().id).toBe(first.json().id); expect(second.json().revision).toBe(2);
     expect(first.json().filename).toBe("frontend-design.md"); expect(second.json().filename).toBe("implementation-notes.MD");
     expect(first.json().sha256).toMatch(/^[0-9a-f]{64}$/);
@@ -144,7 +181,6 @@ describe("Vibe-Git v0.20 Host", () => {
     expect((await post(app, `/api/v1/tasks/${task.id}/detail`, captain.nodeToken, { filename: "task.md", content: "越权" })).statusCode).toBe(403);
     const detail = await post(app, `/api/v1/tasks/${task.id}/detail`, member.nodeToken, { filename: "my-steps.md", content: "# 执行细节\n只补步骤" });
     expect(detail.statusCode).toBe(200); expect(detail.json().filename).toBe("my-steps.md");
-    await app.close();
   });
 
   it("完成对齐、发布、显式开工、同步并由成员确认完成", async () => {
@@ -164,7 +200,6 @@ describe("Vibe-Git v0.20 Host", () => {
     expect((await post(app, `/api/v1/tasks/${task.id}/done`, member.nodeToken)).statusCode).toBe(200);
     const final = await bootstrap(app, captain.nodeToken);
     expect(final.tasks[0]?.status).toBe("DONE"); expect(final.stages[0]?.status).toBe("COMPLETED");
-    await app.close();
   });
 
   it("批量变更只能由队长强制审核，且只暂停受影响任务并等待应用", async () => {
@@ -209,7 +244,6 @@ describe("Vibe-Git v0.20 Host", () => {
     expect(updated.status).toBe("PUBLISHED"); expect(updated.goal).toBe("更新后的目标"); expect(state.room.requirementRevision).toBe(2);
     expect(state.room.currentRequirementMarkdown).toContain("# 统一需求");
     expect(state.room.currentRequirementMarkdown).toContain("# 统一需求 R2");
-    await app.close();
   }, 30_000);
 
   it("按负载与额度选择审核节点，并在失败后跨节点重试且隔离迟到结果", async () => {
@@ -228,7 +262,6 @@ describe("Vibe-Git v0.20 Host", () => {
     expect((await post(app, `/api/v1/jobs/${first.id}/status`, member.nodeToken, { leaseToken: first.leaseToken, phase: "completed", result: {} })).statusCode).toBe(403);
     const second = (await post(app, "/api/v1/nodes/jobs/next", captain.nodeToken)).json() as AgentJob;
     expect(second.id).toBe(first.id); expect(second.leaseToken).not.toBe(first.leaseToken);
-    await app.close();
   });
 
   it("提案实质冲突必须由队长裁决，定稿任务校验依赖后才能发布", async () => {
@@ -241,6 +274,7 @@ describe("Vibe-Git v0.20 Host", () => {
     const token = created.executorNodeId === member.node.id ? member.nodeToken : captain.nodeToken;
     const job = (await post(app, "/api/v1/nodes/jobs/next", token)).json() as AgentJob;
     const analyzed = await post(app, `/api/v1/jobs/${job.id}/status`, token, { leaseToken: job.leaseToken, phase: "completed", result: {
+      planImpacts: planImpacts(created),
       alignmentMarkdown: "# 待裁决需求", tasks: [], issues: [{ title: "数据库选型", evidence: [
         { nodeId: captain.nodeId, excerpt: "使用 SQLite" }, { nodeId: member.node.id, excerpt: "使用 PostgreSQL" }
       ], options: [{ id: "sqlite", label: "SQLite", impact: "沿用现有结构" }, { id: "pg", label: "PostgreSQL", impact: "需要迁移" }], recommendedOptionId: "sqlite" }]
@@ -259,6 +293,7 @@ describe("Vibe-Git v0.20 Host", () => {
     const finalJob = (await post(app, "/api/v1/nodes/jobs/next", finalToken)).json() as AgentJob;
     expect(finalJob.kind).toBe("ALIGN_FINALIZE");
     const final = await post(app, `/api/v1/jobs/${finalJob.id}/status`, finalToken, { leaseToken: finalJob.leaseToken, phase: "completed", result: {
+      planImpacts: planImpacts(alignment),
       alignmentMarkdown: "# 统一需求\n使用 SQLite", issues: [], tasks: [{ key: "T1", title: "落地数据库", goal: "实现持久化", boundary: "仅数据库", acceptance: ["数据库测试通过"], dependencies: [], assigneeNodeId: member.node.id, sourcePlanNodeIds: [member.node.id], assignmentRationale: "成员明确认领且具备方案", effort: "M" }]
     } });
     expect(final.statusCode).toBe(200);
@@ -267,7 +302,6 @@ describe("Vibe-Git v0.20 Host", () => {
     expect(alignment.tasks[0]?.assignmentRationale).toContain("明确认领");
     expect((await post(app, `/api/v1/alignments/${created.id}/publish`, captain.nodeToken)).statusCode).toBe(200);
     expect((await bootstrap(app, captain.nodeToken)).stages[0]?.baselineSha).toBe(git.headSha);
-    await app.close();
   });
 
   it("离线成员让审核待补证，重连后排队轻检，队长可取消且迟到结果无效", async () => {
@@ -289,7 +323,6 @@ describe("Vibe-Git v0.20 Host", () => {
     expect((await post(app, `/api/v1/reviews/${review.id}/cancel`, captain.nodeToken)).statusCode).toBe(200);
     expect((await post(app, `/api/v1/jobs/${indexJob.id}/status`, member.nodeToken, { leaseToken: indexJob.leaseToken, phase: "completed", result: {} })).statusCode).toBe(403);
     expect((await bootstrap(app, captain.nodeToken)).pullRequests[0]?.status).toBe("QUEUED");
-    await app.close();
   });
 
   it("长变更分片摘要后才发起轻检，单个审核输入不越预算", async () => {
@@ -311,7 +344,6 @@ describe("Vibe-Git v0.20 Host", () => {
     }
     expect(service.repo.getReview(review.id)?.changeBrief).toContain("更新验收");
     expect(service.repo.listJobs().some((job) => job.entityId === review.id && job.kind === "IMPACT_INDEX")).toBe(true);
-    await app.close();
   });
 
   it("大提案先分片摘要再对齐，冻结版本且每次输入不越预算", async () => {
@@ -341,7 +373,6 @@ describe("Vibe-Git v0.20 Host", () => {
     expect(analyze.kind).toBe("ALIGN_PLANS");
     expect(Buffer.byteLength(String(analyze.payload.prompt), "utf8")).toBeLessThan(48 * 1024);
     expect(String(analyze.payload.prompt)).not.toContain("新版提案");
-    await app.close();
   });
 
   it("同节点多任务分别深查，工作树漂移取消旧租约并重新轻检", async () => {
@@ -387,7 +418,6 @@ describe("Vibe-Git v0.20 Host", () => {
     expect(service.repo.getReview(review.id)?.probes?.[member.node.id]?.affectedTaskIds).toEqual([first.id]);
     expect(service.repo.getReview(review.id)?.pendingNodeIds).toEqual([]);
     expect(service.repo.getReview(review.id)?.agentJobId).toBeTruthy();
-    await app.close();
   });
 
   it("显式无交集的轻检结论也受代码版本约束，漂移后不得应用", async () => {
@@ -410,7 +440,6 @@ describe("Vibe-Git v0.20 Host", () => {
     expect(service.repo.getJob(aggregate!)?.status).toBe("CANCELLED");
     expect(service.repo.getReview(review.id)?.status).toBe("NEEDS_EVIDENCE");
     expect((await post(app, `/api/v1/reviews/${review.id}/apply`, captain.nodeToken)).statusCode).toBe(409);
-    await app.close();
   });
 
   it("阶段结束后连续审核批次保留先前获批的下一阶段任务", async () => {
@@ -458,7 +487,6 @@ describe("Vibe-Git v0.20 Host", () => {
     const draft = service.repo.listAlignments().find((item) => item.source === "change_review" && item.status === "READY");
     expect(draft?.tasks[0]?.title).toBe("下一阶段实现");
     expect(service.repo.getStage(stage.id)?.status).toBe("COMPLETED");
-    await app.close();
   });
 
   it("长需求经摘要审核后应用增量修订，不丢失旧需求原文", async () => {
@@ -502,6 +530,5 @@ describe("Vibe-Git v0.20 Host", () => {
     const requirement = service.repo.requirementMarkdown();
     expect(requirement).toContain("UNIQUE_OLD_REQUIREMENT_END");
     expect(requirement).toContain("增加日志字段说明");
-    await app.close();
   });
 });

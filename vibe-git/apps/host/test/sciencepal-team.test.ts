@@ -725,6 +725,21 @@ import {AgentRegistry} from '@vibe-git/relay/agent-registry';
 import {startLocalAgent,agentRunState} from '../src/sciencepal/local-agent.js';
 import {managedCodexTask} from '../src/sciencepal/local-codex.js';
 describe('shared research executor and constraints permissions',()=>{
+ it.each([true,false])('local startup failure is retryable only when dispatch is known not to occur: %s',async safe=>{
+  const s=await setup(false,true,'gemini');await s.command('align');const run=s.pipeline.get(s.project.id).runs[0]!;
+  const context={host:'http://localhost',nodeId:s.captain.nodeId,projectId:s.project.id,runId:run.id,profileDir:join(s.root,'profile')};
+  const info=await managedCodexTask('take',s.a,context),registry=new AgentRegistry();
+  registry.register({kind:'gemini',probe:()=>({kind:'gemini',state:'unverified',detail:'fixture',version:null,transports:{appServer:'unsupported',cli:'unverified',preferred:'cli'}}),start:async()=>{throw Object.assign(new Error('start rejected'),{safeToRetry:safe});}});
+  const task=JSON.parse(await readFile(join(info.directory,'task.json'),'utf8'));
+  const path=`/api/sciencepal-team/projects/${s.project.id}/runs/${run.id}/failed-local`;
+  expect((await s.raw(s.member.nodeToken,path,{claimId:task.claimId})).statusCode).toBe(403);
+  expect((await s.raw(s.captain.nodeToken,path,{claimId:'wrong'})).statusCode).toBe(403);
+  await expect(startLocalAgent(s.a,context,registry)).rejects.toThrow('start rejected');
+  expect(s.pipeline.get(s.project.id).runs[0]!.status).toBe(safe?'FAILED':'RUNNING');
+  expect((await agentRunState(info.directory))?.state).toBe('FAILED');
+  if(safe){await s.command('retry',{runId:run.id});expect(s.pipeline.get(s.project.id).runs.at(-1)!.status).toBe('READY');await expect(s.a(path,{claimId:task.claimId})).rejects.toThrow('新版本');}
+ });
+
  it('starts the frozen local provider once, persists completion and rejects a restart duplicate',async()=>{
   const s=await setup(false,true,'gemini');await s.command('align');const run=s.pipeline.get(s.project.id).runs[0]!;
   const context={host:'http://localhost',nodeId:s.captain.nodeId,projectId:s.project.id,runId:run.id,profileDir:join(s.root,'profile')};

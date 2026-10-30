@@ -72,3 +72,8 @@ describe('Stage-bound scientific evidence',()=>{
   expect(result.method?.measurements[0]!.name).toBe('平均值');
   expect(independentEvidence({formatVersion:1,candidateSha256:'candidate',reviewArtifactId:'review',passed:true,method:'Independent arithmetic fixture',metrics:[{name:'平均值',observed:2.5,reference:2.5,tolerance:0.001,comparison:'absolute',unit:'a.u.'}],checks:[{passed:true}]},'candidate','review').passed).toBe(true);
  });
+
+ it('shows generic reported code and tool versions without inventing validated methodology',()=>{
+  const d=scienceResult({result:{code:'print(1)',method:'Custom public method',tool_versions:{Python:'3.12',unverified:{version:'x'}},total:42,invalid:Infinity}});
+  expect(d.code).toBe('print(1)');expect(d.reportedTools).toEqual([{name:'Python',version:'3.12'}]);expect(d.reportedValues).toEqual([{name:'total',value:42}]);expect(d.method).toBeNull();
+ });

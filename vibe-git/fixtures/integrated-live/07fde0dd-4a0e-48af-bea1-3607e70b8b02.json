@@ -1,0 +1,404 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "2c66e828ec86cd6d1accb34581d3dce55e9460dfa7f66809156dd237345f2e56",
+      "size": 18674
+    },
+    {
+      "filename": "source-1CRN.pdb",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    }
+  ],
+  "result": {
+    "source_sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+    "method": "Shrake-Rupley",
+    "probe_radius_A": 1.4,
+    "n_points": 100,
+    "total_A2": 2975.651128388463,
+    "atom_count": 327,
+    "residue_count": 46,
+    "residues": [
+      {
+        "chain": "A",
+        "residue_number": 1,
+        "insertion_code": "",
+        "residue_name": "THR",
+        "area_A2": 75.74861179799521
+      },
+      {
+        "chain": "A",
+        "residue_number": 2,
+        "insertion_code": "",
+        "residue_name": "THR",
+        "area_A2": 24.687816310746342
+      },
+      {
+        "chain": "A",
+        "residue_number": 3,
+        "insertion_code": "",
+        "residue_name": "CYS",
+        "area_A2": 0.0
+      },
+      {
+        "chain": "A",
+        "residue_number": 4,
+        "insertion_code": "",
+        "residue_name": "CYS",
+        "area_A2": 0.0
+      },
+      {
+        "chain": "A",
+        "residue_number": 5,
+        "insertion_code": "",
+        "residue_name": "PRO",
+        "area_A2": 57.38568857849751
+      },
+      {
+        "chain": "A",
+        "residue_number": 6,
+        "insertion_code": "",
+        "residue_name": "SER",
+        "area_A2": 48.81401638599574
+      },
+      {
+        "chain": "A",
+        "residue_number": 7,
+        "insertion_code": "",
+        "residue_name": "ILE",
+        "area_A2": 127.66647146025521
+      },
+      {
+        "chain": "A",
+        "residue_number": 8,
+        "insertion_code": "",
+        "residue_name": "VAL",
+        "area_A2": 98.91147390194783
+      },
+      {
+        "chain": "A",
+        "residue_number": 9,
+        "insertion_code": "",
+        "residue_name": "ALA",
+        "area_A2": 7.131729482914189
+      },
+      {
+        "chain": "A",
+        "residue_number": 10,
+        "insertion_code": "",
+        "residue_name": "ARG",
+        "area_A2": 51.834393828639435
+      },
+      {
+        "chain": "A",
+        "residue_number": 11,
+        "insertion_code": "",
+        "residue_name": "SER",
+        "area_A2": 67.69177124319313
+      },
+      {
+        "chain": "A",
+        "residue_number": 12,
+        "insertion_code": "",
+        "residue_name": "ASN",
+        "area_A2": 78.35360785998125
+      },
+      {
+        "chain": "A",
+        "residue_number": 13,
+        "insertion_code": "",
+        "residue_name": "PHE",
+        "area_A2": 7.245769296239498
+      },
+      {
+        "chain": "A",
+        "residue_number": 14,
+        "insertion_code": "",
+        "residue_name": "ASN",
+        "area_A2": 83.58839343317547
+      },
+      {
+        "chain": "A",
+        "residue_number": 15,
+        "insertion_code": "",
+        "residue_name": "VAL",
+        "area_A2": 93.6503240832047
+      },
+      {
+        "chain": "A",
+        "residue_number": 16,
+        "insertion_code": "",
+        "residue_name": "CYS",
+        "area_A2": 21.026855559665087
+      },
+      {
+        "chain": "A",
+        "residue_number": 17,
+        "insertion_code": "",
+        "residue_name": "ARG",
+        "area_A2": 88.84020643855214
+      },
+      {
+        "chain": "A",
+        "residue_number": 18,
+        "insertion_code": "",
+        "residue_name": "LEU",
+        "area_A2": 140.69414097349687
+      },
+      {
+        "chain": "A",
+        "residue_number": 19,
+        "insertion_code": "",
+        "residue_name": "PRO",
+        "area_A2": 108.75113058855027
+      },
+      {
+        "chain": "A",
+        "residue_number": 20,
+        "insertion_code": "",
+        "residue_name": "GLY",
+        "area_A2": 48.3876142983093
+      },
+      {
+        "chain": "A",
+        "residue_number": 21,
+        "insertion_code": "",
+        "residue_name": "THR",
+        "area_A2": 36.487525220294074
+      },
+      {
+        "chain": "A",
+        "residue_number": 22,
+        "insertion_code": "",
+        "residue_name": "PRO",
+        "area_A2": 78.49583404259457
+      },
+      {
+        "chain": "A",
+        "residue_number": 23,
+        "insertion_code": "",
+        "residue_name": "GLU",
+        "area_A2": 68.97425732898279
+      },
+      {
+        "chain": "A",
+        "residue_number": 24,
+        "insertion_code": "",
+        "residue_name": "ALA",
+        "area_A2": 61.751572455561856
+      },
+      {
+        "chain": "A",
+        "residue_number": 25,
+        "insertion_code": "",
+        "residue_name": "ILE",
+        "area_A2": 96.6102572831933
+      },
+      {
+        "chain": "A",
+        "residue_number": 26,
+        "insertion_code": "",
+        "residue_name": "CYS",
+        "area_A2": 0.0
+      },
+      {
+        "chain": "A",
+        "residue_number": 27,
+        "insertion_code": "",
+        "residue_name": "ALA",
+        "area_A2": 9.524856536342135
+      },
+      {
+        "chain": "A",
+        "residue_number": 28,
+        "insertion_code": "",
+        "residue_name": "THR",
+        "area_A2": 122.95243628532003
+      },
+      {
+        "chain": "A",
+        "residue_number": 29,
+        "insertion_code": "",
+        "residue_name": "TYR",
+        "area_A2": 156.71234279917314
+      },
+      {
+        "chain": "A",
+        "residue_number": 30,
+        "insertion_code": "",
+        "residue_name": "THR",
+        "area_A2": 27.60349075343118
+      },
+      {
+        "chain": "A",
+        "residue_number": 31,
+        "insertion_code": "",
+        "residue_name": "GLY",
+        "area_A2": 35.025453132054615
+      },
+      {
+        "chain": "A",
+        "residue_number": 32,
+        "insertion_code": "",
+        "residue_name": "CYS",
+        "area_A2": 8.571672192501763
+      },
+      {
+        "chain": "A",
+        "residue_number": 33,
+        "insertion_code": "",
+        "residue_name": "ILE",
+        "area_A2": 54.20710052981904
+      },
+      {
+        "chain": "A",
+        "residue_number": 34,
+        "insertion_code": "",
+        "residue_name": "ILE",
+        "area_A2": 79.1936194700687
+      },
+      {
+        "chain": "A",
+        "residue_number": 35,
+        "insertion_code": "",
+        "residue_name": "ILE",
+        "area_A2": 40.514682577448376
+      },
+      {
+        "chain": "A",
+        "residue_number": 36,
+        "insertion_code": "",
+        "residue_name": "PRO",
+        "area_A2": 138.00654615746265
+      },
+      {
+        "chain": "A",
+        "residue_number": 37,
+        "insertion_code": "",
+        "residue_name": "GLY",
+        "area_A2": 35.772687227896256
+      },
+      {
+        "chain": "A",
+        "residue_number": 38,
+        "insertion_code": "",
+        "residue_name": "ALA",
+        "area_A2": 85.25388992892016
+      },
+      {
+        "chain": "A",
+        "residue_number": 39,
+        "insertion_code": "",
+        "residue_name": "THR",
+        "area_A2": 122.04351069878344
+      },
+      {
+        "chain": "A",
+        "residue_number": 40,
+        "insertion_code": "",
+        "residue_name": "CYS",
+        "area_A2": 50.712908083160954
+      },
+      {
+        "chain": "A",
+        "residue_number": 41,
+        "insertion_code": "",
+        "residue_name": "PRO",
+        "area_A2": 50.58421588169929
+      },
+      {
+        "chain": "A",
+        "residue_number": 42,
+        "insertion_code": "",
+        "residue_name": "GLY",
+        "area_A2": 76.29668148596987
+      },
+      {
+        "chain": "A",
+        "residue_number": 43,
+        "insertion_code": "",
+        "residue_name": "ASP",
+        "area_A2": 107.4200377812243
+      },
+      {
+        "chain": "A",
+        "residue_number": 44,
+        "insertion_code": "",
+        "residue_name": "TYR",
+        "area_A2": 61.771904843215886
+      },
+      {
+        "chain": "A",
+        "residue_number": 45,
+        "insertion_code": "",
+        "residue_name": "ALA",
+        "area_A2": 74.02438008599898
+      },
+      {
+        "chain": "A",
+        "residue_number": 46,
+        "insertion_code": "",
+        "residue_name": "ASN",
+        "area_A2": 66.7292500859863
+      }
+    ],
+    "code": "#!/usr/bin/env python3\n\"\"\"SASA pilot (first attempt) for frozen 1CRN chain A.\n\nPer the frozen protocol, this FIRST attempt intentionally computes only the\n100 sphere-point pilot using Bio.PDB.SASA.ShrakeRupley and is labeled\nexploratory. Final acceptance requires >=1000 points and a 5000-point\nconvergence comparison, which this pilot deliberately does not satisfy.\n\nSelection: 1 implicit model, chain A, heavy ATOM records only, altLoc blank,\nno HETATM/hydrogens. Radii C=1.70, N=1.55, O=1.52, S=1.80 A. Probe 1.4 A.\nUnits: coordinates Angstrom, areas square Angstrom (A2).\n\"\"\"\nimport hashlib\nimport json\nimport sys\nimport platform\n\nfrom Bio.PDB import PDBParser\nfrom Bio.PDB.SASA import ShrakeRupley\nfrom Bio import __version__ as BIO_VERSION\n\nPDB = \"source-1CRN.pdb\"\nPROBE = 1.4\nN_POINTS = 100\nRADII = {\"C\": 1.70, \"N\": 1.55, \"O\": 1.52, \"S\": 1.80}\n\n# --- Hash actual file bytes ---\nwith open(PDB, \"rb\") as f:\n    raw = f.read()\nsource_sha256 = hashlib.sha256(raw).hexdigest()\nsource_size = len(raw)\n\n# --- Parse structure ---\nparser = PDBParser(QUIET=True)\nstructure = parser.get_structure(\"1CRN\", PDB)\nmodel = structure[0]\nchain = model[\"A\"]\n\n# --- Selection verification ---\natoms = list(chain.get_atoms())\natom_count = len(atoms)\nresidues = list(chain.get_residues())\nresidue_count = len(residues)\nfrom collections import Counter\nelem_counts = Counter(a.element for a in atoms)\nh_atoms = [a for a in atoms if a.element == \"H\"]\naltlocs = set(a.get_altloc() for a in atoms)\nhet_res = [r for r in residues if r.id[0] != \" \"]\n\n# --- Compute SASA (pilot: 100 points) ---\nsr = ShrakeRupley(probe_radius=PROBE, n_points=N_POINTS, radii_dict=RADII)\nsr.compute(chain, level=\"R\")\n\n# Per-residue areas\nresidue_areas = []\nfor res in residues:\n    area = res.sasa if hasattr(res, \"sasa\") else None\n    residue_areas.append({\n        \"chain\": \"A\",\n        \"residue_number\": res.id[1],\n        \"insertion_code\": res.id[2].strip() if res.id[2] else \"\",\n        \"residue_name\": res.get_resname(),\n        \"area_A2\": area,\n    })\n\ntotal_A2 = sum(r[\"area_A2\"] for r in residue_areas if r[\"area_A2\"] is not None)\nsum_check = sum(r[\"area_A2\"] for r in residue_areas if r[\"area_A2\"] is not None)\n\n# --- Tool versions ---\ntool_versions = {\n    \"python\": platform.python_version(),\n    \"biopython\": BIO_VERSION,\n    \"method\": \"Bio.PDB.SASA.ShrakeRupley\",\n    \"probe_radius_A\": PROBE,\n    \"n_points\": N_POINTS,\n    \"radii_A\": RADII,\n}\n\n# --- Executed source (this file) ---\nwith open(__file__, \"r\") as f:\n    code = f.read()\n\nresult = {\n    \"source_sha256\": source_sha256,\n    \"method\": \"Shrake-Rupley\",\n    \"probe_radius_A\": PROBE,\n    \"n_points\": N_POINTS,\n    \"total_A2\": total_A2,\n    \"atom_count\": atom_count,\n    \"residue_count\": residue_count,\n    \"residues\": residue_areas,\n    \"code\": code,\n    \"tool_versions\": tool_versions,\n    # --- permitted evidence fields ---\n    \"stage\": \"pilot-100-exploratory\",\n    \"exploratory\": True,\n    \"selection\": {\n        \"model\": \"implicit (no MODEL records)\",\n        \"chain\": \"A\",\n        \"record_types\": \"ATOM only\",\n        \"altLoc\": \"blank\",\n        \"hydrogens\": len(h_atoms),\n        \"hetatm\": len(het_res),\n        \"element_counts\": dict(elem_counts),\n        \"atom_count\": atom_count,\n        \"residue_count\": residue_count,\n    },\n    \"radii_A\": RADII,\n    \"units\": \"coordinates Angstrom; areas square Angstrom (A2)\",\n    \"sum_check\": {\n        \"residue_sum_A2\": sum_check,\n        \"total_A2\": total_A2,\n        \"residual_A2\": sum_check - total_A2,\n    },\n    \"limitations\": [\n        \"Pilot uses n_points=100 only; final acceptance requires n_points>=1000 \"\n        \"and a 5000-point convergence comparison (relative difference <=0.02).\",\n        \"This pilot is exploratory and does not satisfy the final convergence criterion.\",\n        \"No biological activity, clinical efficacy, or irreplaceability is inferred.\",\n        \"Single PDB conformation; no generalization beyond the supplied structure.\",\n    ],\n    \"provenance\": {\n        \"source_filename\": PDB,\n        \"source_size_bytes\": source_size,\n        \"source_sha256\": source_sha256,\n        \"attribution\": \"RCSB PDB / 1CRN; public coordinate data; frozen local fixture\",\n    },\n}\n\n# --- Write sasa.json envelope ---\nenvelope = {\n    \"revision\": 1,\n    \"inputReceipts\": [\n        {\"filename\": \"context.json\",\n         \"sha256\": hashlib.sha256(open(\"context.json\", \"rb\").read()).hexdigest(),\n         \"size\": len(open(\"context.json\", \"rb\").read())},\n        {\"filename\": \"source-1CRN.pdb\",\n         \"sha256\": source_sha256,\n         \"size\": source_size},\n    ],\n    \"result\": result,\n}\n\nwith open(\"sasa.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump(envelope, f, indent=2, ensure_ascii=False)\n\nprint(\"WROTE sasa.json\")\nprint(\"source_sha256:\", source_sha256)\nprint(\"atom_count:\", atom_count, \"residue_count:\", residue_count)\nprint(\"total_A2 (pilot 100):\", total_A2)\nprint(\"n_points:\", N_POINTS)\n",
+    "tool_versions": {
+      "python": "3.12.3",
+      "biopython": "1.84",
+      "method": "Bio.PDB.SASA.ShrakeRupley",
+      "probe_radius_A": 1.4,
+      "n_points": 100,
+      "radii_A": {
+        "C": 1.7,
+        "N": 1.55,
+        "O": 1.52,
+        "S": 1.8
+      }
+    },
+    "stage": "pilot-100-exploratory",
+    "exploratory": true,
+    "selection": {
+      "model": "implicit (no MODEL records)",
+      "chain": "A",
+      "record_types": "ATOM only",
+      "altLoc": "blank",
+      "hydrogens": 0,
+      "hetatm": 0,
+      "element_counts": {
+        "N": 55,
+        "C": 202,
+        "O": 64,
+        "S": 6
+      },
+      "atom_count": 327,
+      "residue_count": 46
+    },
+    "radii_A": {
+      "C": 1.7,
+      "N": 1.55,
+      "O": 1.52,
+      "S": 1.8
+    },
+    "units": "coordinates Angstrom; areas square Angstrom (A2)",
+    "sum_check": {
+      "residue_sum_A2": 2975.651128388463,
+      "total_A2": 2975.651128388463,
+      "residual_A2": 0.0
+    },
+    "limitations": [
+      "Pilot uses n_points=100 only; final acceptance requires n_points>=1000 and a 5000-point convergence comparison (relative difference <=0.02).",
+      "This pilot is exploratory and does not satisfy the final convergence criterion.",
+      "No biological activity, clinical efficacy, or irreplaceability is inferred.",
+      "Single PDB conformation; no generalization beyond the supplied structure."
+    ],
+    "provenance": {
+      "source_filename": "source-1CRN.pdb",
+      "source_size_bytes": 49491,
+      "source_sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "attribution": "RCSB PDB / 1CRN; public coordinate data; frozen local fixture"
+    }
+  }
+}

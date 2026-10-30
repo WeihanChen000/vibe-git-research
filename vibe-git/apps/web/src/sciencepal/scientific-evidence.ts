@@ -13,8 +13,11 @@ export function scienceResult(raw:unknown){
   if(!e.tools.every((t:any)=>record(t)&&text(t.name)&&(!t.version||text(t.version))&&(!t.log||text(t.log)))||!e.parameters.every((p:any)=>record(p)&&text(p.name)&&(['string','boolean'].includes(typeof p.value)||(typeof p.value==='number'&&Number.isFinite(p.value)))&&(!p.unit||text(p.unit)))||!e.measurements.every((m:any)=>record(m)&&text(m.name)&&typeof m.value==='number'&&Number.isFinite(m.value)&&(!m.unit||text(m.unit)))||!e.limitations.every(text))throw Error('科研证据字段无效，请查看原始产物');
   method=e as unknown as MethodEvidence;
  }
- const hasCode=typeof result.pythonCode==='string'&&result.pythonCode.trim().length>0;
- return {result,method,hasCode,code:hasCode?String(result.pythonCode):'',rawLog:typeof result.toolLog==='string'?result.toolLog:'',log:{},total:typeof result.totalSasaA2==='number'?result.totalSasaA2:undefined};
+ const code=[result.pythonCode,result.code].find(v=>text(v)&&v.trim().length>0);
+ const hasCode=typeof code==='string';
+ const reportedTools=record(result.tool_versions)?Object.entries(result.tool_versions).filter(([,v])=>typeof v==='string'&&v.length<=200).slice(0,30).map(([name,version])=>({name,version:String(version)})):[];
+ const reportedValues=Object.entries(result).filter(([,v])=>typeof v==='number'&&Number.isFinite(v)).slice(0,12).map(([name,value])=>({name,value:Number(value)}));
+ return {result,method,reportedTools,reportedValues,reportedMethod:typeof result.method==='string'?result.method.slice(0,300):'',hasCode,code:hasCode?code:'',rawLog:typeof result.toolLog==='string'?result.toolLog:'',log:{},total:typeof result.totalSasaA2==='number'?result.totalSasaA2:undefined};
 }
 export interface VerificationMetric {name:string;observed:number;reference:number;tolerance:number;comparison:'absolute'|'relative';unit:string}
 export function independentEvidence(raw:unknown,candidateSha256:string,reviewArtifactId:string){

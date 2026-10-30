@@ -7,6 +7,7 @@
 | 原版能力及手工交接的公平对照 | [COMPARISON](COMPARISON.md) |
 | 只看回放、模拟体验、本人接入 | [START](START.md) |
 | 通用性、模块职责、扩展边界 | [ARCHITECTURE](ARCHITECTURE.md) |
+| 最新适配器真实联调与旧测试修复 | [INTEGRATED-LIVE-20261031](INTEGRATED-LIVE-20261031.md) |
 | 本次分享版验证 | [VALIDATION](VALIDATION.md) |
 | 来源与许可边界 | [PROVENANCE](PROVENANCE.md) |
 | 当前科研 Skill | [SKILL](../../vibe-git/research-skill/SKILL.md) |

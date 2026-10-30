@@ -8,7 +8,7 @@ import {badRequest,revisionConflict} from "../domain/errors.js";
 import {managedCodexTask} from "./local-codex.js";
 import type {MemberRequest} from "./member-connector.js";
 type Context=Parameters<typeof managedCodexTask>[2];
-export interface AgentRunState {state:"STARTING"|"RUNNING"|"COMPLETED"|"FAILED"|"INTERRUPTED"|"NEEDS_INPUT";platform:string;at:string;detail:string}
+export interface AgentRunState {state:"STARTING"|"RUNNING"|"COMPLETED"|"FAILED"|"INTERRUPTED"|"NEEDS_INPUT";platform:string;at:string;detail:string;runtimeId?:string;transport?:string}
 export async function agentRunState(directory:string):Promise<AgentRunState|null>{
  const path=join(directory,"adapter-run.json");
  try{const s=await lstat(path);if(!s.isFile()||s.isSymbolicLink()||s.size>8192)throw badRequest("执行记录不是普通文件");try{return JSON.parse(await readFile(path,"utf8"));}catch(e){if(e instanceof SyntaxError)return {state:"STARTING",platform:"unknown",at:"",detail:"执行记录正在写入或不完整，请核对原任务；不会重复启动"};throw e;}}
@@ -26,6 +26,7 @@ export async function startLocalAgent(request:MemberRequest,context:Context,regi
  const executor=new AgentExecutor(registry,runtimeEnv);
  if(executor.probe.state==="unsupported")throw badRequest(executor.probe.detail+"；可复制下方任务说明到本人 Agent 执行");
  if(run.agent.platform==="cursor")throw badRequest("Cursor 无交互模式默认不能写文件；请复制任务说明到本人 Cursor，由本人确认执行权限");
+ const reportFailed=async()=>{const task=JSON.parse(await readFile(join(info.directory,"task.json"),"utf8"));await request(`/api/sciencepal-team/projects/${context.projectId}/runs/${context.runId}/failed-local`,{claimId:task.claimId});};
  const marker=join(info.directory,"adapter-run.json");
  let state:AgentRunState={state:"STARTING",platform:run.agent.platform,at:new Date().toISOString(),detail:"启动中；中断后先核对原任务，不重复派发"};
  await writeFile(marker,JSON.stringify(state),{flag:"wx",mode:0o600}).catch(()=>{throw revisionConflict("已有本次执行记录，请核对原任务");});
@@ -33,8 +34,8 @@ export async function startLocalAgent(request:MemberRequest,context:Context,regi
  try {
   const handle=await executor.start({prompt:await readFile(info.instructions,"utf8"),transportRequested:"auto"} as ExecutionCommand,info.directory);
   if(handle.transport==="cloud")throw Error("本地平台不能启动云端运行");
-  state={...state,state:"RUNNING",detail:"本人 Agent 正在执行；成果完成后仍须点击检查并交回"};await save();
-  void handle.done.then(async completion=>{state={...state,state:completion.status,detail:completion.status==="COMPLETED"?"执行结束，请检查并交回成果；尚未通过科研校验或评审":"执行未完成，请从原任务包继续并核对成果"};await save();}).catch(()=>{/* Retain uncertain marker; never re-dispatch silently. */});
+  state={...state,state:"RUNNING",runtimeId:handle.runtimeId,transport:handle.transport,detail:"本人 Agent 正在执行；成果完成后仍须点击检查并交回"};await save();
+  void handle.done.then(async completion=>{state={...state,state:completion.status,detail:completion.status==="COMPLETED"?"执行结束，请检查并交回成果；尚未通过科研校验或评审":"执行未完成，请从原任务包继续并核对成果"};await save();if(["FAILED","INTERRUPTED"].includes(completion.status))await reportFailed();}).catch(()=>{/* Retain uncertain marker; never re-dispatch silently. */});
   return state;
- }catch(e){state={...state,state:"FAILED",detail:"启动失败，请从原任务包继续；不会自动重复启动"};await save();throw e;}
+ }catch(e){state={...state,state:"FAILED",detail:"启动失败，请从原任务包继续；不会自动重复启动"};await save();if(e&&typeof e==="object"&&"safeToRetry" in e&&e.safeToRetry===true)await reportFailed();throw e;}
 }

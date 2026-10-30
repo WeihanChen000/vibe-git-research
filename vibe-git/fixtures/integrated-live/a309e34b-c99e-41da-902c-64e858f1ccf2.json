@@ -1,0 +1,119 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "54530650186859e574bbdd1ab7479f69a0bafdf3231e80ee37b05b24fd4f1a2c",
+      "size": 20012
+    },
+    {
+      "filename": "source-1CRN.pdb",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    },
+    {
+      "filename": "synthesis.json",
+      "sha256": "500b75d3663718ac4028998d4cfa8b3d55f9d7e4825cc572b24e1a9660bcbf23",
+      "size": 16910
+    },
+    {
+      "filename": "sasa.json",
+      "sha256": "bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2",
+      "size": 50482
+    }
+  ],
+  "result": {
+    "verdict": "request_changes",
+    "summary": "The synthesis.json candidate is a blocked/refusal result, not a completed synthesis. It correctly sets upstream_sha256=bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2 (matching the actual sasa.json bytes) and source_sha256=42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811 (matching the frozen PDB), and it is schema-valid. However, it did not confirm final sasa scientific approval, did not independently verify source/selection counts or residue-area sums, and did not provide the required substantive summary with residue-level geometric accessibility interpretation. The Biology reviewer independently verified the upstream sasa.json: PDB heavy ATOM=327, elements C=202,N=55,O=64,S=6, residues=46; n1000 and n5000 residue sums equal their totals (residual 0.0); convergence ratio 0.001114<=0.02. No numerical discrepancies were found in the upstream sasa.json. The candidate's blocking concern about missing explicit approval evidence is legitimate, but the acceptance criteria require the synthesis to actually be performed. Verdict: request_changes.",
+    "checks": [
+      {
+        "criterion": "Confirm final sasa scientific approval before execution, consume the actual approved sasa.json through the HARD dependency, and set upstream_sha256 to SHA256 of its original complete file bytes; set source_sha256 from the unchanged frozen PDB. Do not compare producer context receipts with a different consumer context.",
+        "passed": false,
+        "evidence": "synthesis.json sets upstream_sha256=bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2 which matches the actual sasa.json bytes (verified by hashing the attachment), and source_sha256=42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811 matches the frozen PDB. However, the candidate did NOT confirm final sasa scientific approval before execution: its own status is 'blocked_missing_upstream_scientific_approval_evidence' and approval_gate.confirmed=false. The candidate correctly avoided comparing producer context receipts to the consumer context. Because final sasa approval was not confirmed, this criterion is not met. See reproduction."
+      },
+      {
+        "criterion": "Independently execute verification of source/selection counts and approved residue-area sums against reported totals; embed full executed source in code and actual tool_versions plus numeric verification residuals/results in schema-permitted evidence fields.",
+        "passed": false,
+        "evidence": "synthesis.json reports execution_evidence.independent_sum_count_verification_executed=false and scientific_synthesis_executed=false. The candidate did not independently verify source/selection counts or approved residue-area sums against reported totals, and did not embed numeric verification residuals. The Biology reviewer independently verified (see reproduction): PDB heavy ATOM count=327, elements C=202,N=55,O=64,S=6, residues=46; sasa.json n1000 residue sum=2967.616530 equals total_A2 (residual 0.0) and n5000 residue sum=2970.926661 equals total_A2 (residual 0.0). The candidate itself performed none of this verification, so this criterion is not met."
+      },
+      {
+        "criterion": "Preserve method literal Shrake-Rupley, numeric probe_radius_A=1.4, frozen element radii, A2 area units, primary sample count and actual 1000/5000 convergence evidence; verify them against approved upstream content.",
+        "passed": false,
+        "evidence": "synthesis.json preserves method='Shrake-Rupley', probe_radius_A=1.4, radii C=1.70,N=1.55,O=1.52,S=1.80, A2 units, primary n_points=1000 and 1000/5000 convergence formula in frozen_protocol_preserved. However, the candidate did NOT verify these against approved upstream content (no verification was executed). The Biology reviewer independently confirmed the upstream sasa.json convergence: abs(2967.616530-2970.926661)/2970.926661=0.001114<=0.02. Preservation alone without verification against approved upstream does not satisfy this criterion."
+      },
+      {
+        "criterion": "Provide a substantive summary with evidence-based total and residue-level geometric accessibility interpretation traceable to numeric upstream areas; disclose sampling/convergence and single-structure limitations and avoid activity, clinical efficacy, irreplacability or biological-function claims.",
+        "passed": false,
+        "evidence": "synthesis.json summary explicitly states 'no approved evidence synthesis, independent area-sum verification, residue interpretation, or downstream release is claimed in this result.' No residue-level geometric accessibility interpretation traceable to numeric upstream areas is provided. The candidate discloses limitations (sampling/convergence, single-structure) and avoids biological-function claims, which is correct, but it fails to provide the required substantive evidence-based total and residue-level interpretation. This criterion is not met."
+      },
+      {
+        "criterion": "Biology reviewer independently recalculates sums/counts and checks original upstream/source hashes, reports numerical discrepancies with actual executed code/tool versions in permitted review evidence, and separately assesses scientific interpretation and limitations.",
+        "passed": true,
+        "evidence": "Biology reviewer independently recalculated sums/counts and checked hashes in this review run (see reproduction object for executed code and results). Verified: source-1CRN.pdb sha256=42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811 (49491 bytes); sasa.json sha256=bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2 (50482 bytes); PDB heavy ATOM=327, elements C=202,N=55,O=64,S=6, residues=46; sasa.json n1000 and n5000 residue sums equal their totals (residual 0.0); convergence ratio 0.001114<=0.02. No numerical discrepancies found in the upstream sasa.json. The candidate synthesis.json itself performed no such verification, which is the basis for request_changes on criteria 1-4."
+      },
+      {
+        "criterion": "Deliver a schema-valid synthesis RESULT with required source_sha256, method, probe_radius_A, summary, upstream_sha256 and code, preserving exact types/length constraints; passing schema or execution checks alone does not establish scientific approval.",
+        "passed": true,
+        "evidence": "synthesis.json result is schema-valid: all required fields (source_sha256, method, probe_radius_A, summary, upstream_sha256, code) present with correct types; source_sha256 const matches, method const 'Shrake-Rupley' matches, probe_radius_A const 1.4 matches, upstream_sha256 length 64, summary length 822 >=30, code length 9419 >=30. However, schema validity alone does not establish scientific approval; the candidate is schema-valid but scientifically incomplete (blocked, no synthesis performed), which is why the overall verdict is request_changes."
+      }
+    ],
+    "requiredChanges": [
+      "Perform the actual synthesis: independently verify source/selection counts (327 heavy ATOM, 46 residues, C=202,N=55,O=64,S=6) and approved residue-area sums against the reported totals, embedding numeric verification residuals in schema-permitted evidence fields.",
+      "Provide a substantive summary with evidence-based total (2967.616530 A2 at n_points=1000) and residue-level geometric accessibility interpretation traceable to the numeric upstream areas in sasa.json, while disclosing sampling/convergence and single-structure limitations and avoiding biological-function claims.",
+      "Confirm the final sasa scientific approval before execution (or clearly document the missing approval evidence and request it through the workflow, then resume synthesis once the approved sasa.json is confirmed). The candidate's blocking concern is legitimate, but the acceptance criteria require the synthesis to actually be performed; a blocked placeholder does not satisfy them."
+    ],
+    "reproduction": {
+      "code": "\n# Biology reviewer independent verification (executed in this review run)\nimport json, hashlib, math\n\n# 1) Hash actual attachment bytes\nfor fn in ['context.json','source-1CRN.pdb','sasa.json','synthesis.json']:\n    b = open(fn,'rb').read()\n    print(fn, hashlib.sha256(b).hexdigest(), len(b))\n\n# 2) Parse frozen PDB: heavy ATOM, altLoc blank/A, no HETATM/hydrogens\natoms=[]; elements={}; residues=set()\nfor line in open('source-1CRN.pdb'):\n    if line.startswith('ATOM'):\n        el=line[76:78].strip()\n        if el=='H': continue\n        if line[16] not in (' ','A'): continue\n        atoms.append(line[12:16].strip())\n        elements[el]=elements.get(el,0)+1\n        residues.add((line[21],line[22:26].strip(),line[17:20].strip()))\nprint('heavy ATOM count', len(atoms))\nprint('elements', elements)\nprint('residue count', len(residues))\n\n# 3) Verify sasa.json residue sums vs totals\nsasa=json.load(open('sasa.json'))['result']\nfor k in ['n1000','n5000']:\n    run=sasa['runs'][k]\n    s=sum(r['area_A2'] for r in run['residues'])\n    print(k,'residue_sum',s,'total',run['total_A2'],'residual',s-run['total_A2'])\n\n# 4) Verify convergence\nt1000=sasa['runs']['n1000']['total_A2']; t5000=sasa['runs']['n5000']['total_A2']\nratio=abs(t1000-t5000)/t5000\nprint('convergence ratio', ratio, '<=0.02', ratio<=0.02)\n",
+      "toolVersions": {
+        "python": "3.12.3",
+        "implementation": "CPython",
+        "python_full": "3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]",
+        "libraries_used": "Python standard library: hashlib, json, math, platform, sys"
+      },
+      "results": {
+        "hash_verification": {
+          "context.json": "54530650186859e574bbdd1ab7479f69a0bafdf3231e80ee37b05b24fd4f1a2c (20012 bytes)",
+          "source-1CRN.pdb": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811 (49491 bytes)",
+          "sasa.json": "bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2 (50482 bytes)",
+          "synthesis.json": "500b75d3663718ac4028998d4cfa8b3d55f9d7e4825cc572b24e1a9660bcbf23 (16910 bytes)"
+        },
+        "pdb_source_counts": {
+          "heavy_atom_count": 327,
+          "element_counts": {
+            "C": 202,
+            "N": 55,
+            "O": 64,
+            "S": 6
+          },
+          "residue_count": 46,
+          "chain": "A",
+          "matches_sasa_selection": true
+        },
+        "sasa_residue_sum_vs_total": {
+          "n1000_residue_sum_A2": 2967.616530309648,
+          "n1000_total_A2": 2967.616530309648,
+          "n1000_residual_A2": 0.0,
+          "n5000_residue_sum_A2": 2970.9266606126434,
+          "n5000_total_A2": 2970.9266606126434,
+          "n5000_residual_A2": 0.0
+        },
+        "convergence_verification": {
+          "total_1000_A2": 2967.616530309648,
+          "total_5000_A2": 2970.9266606126434,
+          "abs_difference_A2": 3.310130302995276,
+          "ratio": 0.001114174357408299,
+          "threshold": 0.02,
+          "within_threshold": true
+        },
+        "synthesis_candidate_state": {
+          "status": "blocked_missing_upstream_scientific_approval_evidence",
+          "scientific_synthesis_executed": false,
+          "independent_sum_count_verification_executed": false,
+          "schema_valid": true,
+          "upstream_sha256_correct": true,
+          "source_sha256_correct": true
+        }
+      }
+    }
+  }
+}

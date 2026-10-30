@@ -130,13 +130,15 @@ export class CodexExecutor {
       cwd: workspace, env: this.env, windowsHide: true, stdio: ["pipe", "pipe", "pipe"]
     });
     const client = new AppServerClient(child);
+    let turnRequested = false;
     try {
       await client.request("initialize", { clientInfo: { name: "vibe_git_relay", title: "Vibe-Git Relay", version: "0.1.0" } }, 20_000);
       client.notify("initialized", {});
       const threadResult = await client.request<{ thread: { id: string } }>("thread/start", {
-        cwd: workspace, approvalPolicy: "never", sandbox: "workspaceWrite", serviceName: "vibe_git_relay"
+        cwd: workspace, approvalPolicy: "never", sandbox: "workspace-write", serviceName: "vibe_git_relay"
       }, 20_000);
       const threadId = threadResult.thread.id;
+      turnRequested = true;
       const turnResult = await client.request<{ turn: { id: string } }>("turn/start", {
         threadId,
         input: [{ type: "text", text: command.prompt }],
@@ -158,6 +160,8 @@ export class CodexExecutor {
       };
     } catch (error) {
       client.kill();
+      // Before turn/start no model work was dispatched, so an explicit new attempt is safe.
+      if (!turnRequested && error instanceof Error) Object.assign(error, { safeToRetry: true });
       throw error;
     }
   }
@@ -237,7 +241,7 @@ class AppServerClient {
       const turn = message.params?.turn as { status?: string; error?: { message?: string } } | undefined;
       const status = turn?.status;
       const interrupted = this.interruptRequested || status === "interrupted";
-      const failed = status === "failed" || Boolean(turn?.error);
+      const failed = status !== "completed" || Boolean(turn?.error);
       this.finish({
         status: interrupted ? "INTERRUPTED" : failed ? "FAILED" : "COMPLETED",
         detail: interrupted ? "Codex App Server 轮次已中断" : failed ? turn?.error?.message || "Codex App Server 轮次失败" : "Codex App Server 轮次已完成",

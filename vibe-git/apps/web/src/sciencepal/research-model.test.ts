@@ -1,6 +1,6 @@
 import { describe,it,expect } from 'vitest';
 import type { SPProject,SPTask,SPRun } from '@vibe-git/protocol';
-import { taskDisplay,connectionSummary,researchHandoffs,stageProject,actionTarget,taskActionText } from './research-model.js';
+import { reviewsForAttempt,taskDisplay,connectionSummary,researchHandoffs,stageProject,actionTarget,taskActionText } from './research-model.js';
 const task=(key:string,rest:Partial<SPTask>={}):SPTask=>({key,title:key,goal:'',boundary:'',acceptance:[],dependencies:[],assigneeAgentId:'a',reviewerAgentId:'b',outputFilename:key+'.json',status:'WAITING',attempt:0,executionId:null,reviewId:null,artifactId:null,feedback:'',review:null,...rest});
 const run=(rest:Partial<SPRun>={}):SPRun=>({id:'consumer',kind:'TASK',revision:2,taskKey:'analysis',agent:{id:'b',name:'B'},status:'RUNNING',prompt:'',inputs:[],outputFilename:'analysis.json',output:null,threadId:null,runId:null,sandboxId:null,projectId:null,createdAt:'',updatedAt:'',error:null,remoteStatus:null,...rest});
 const project=():SPProject=>({id:'p',roomId:'room',title:'test',revision:2,phase:'EXECUTING',paused:false,agents:[],coordinatorId:'a',proposals:[],requirementMarkdown:'R2',alignment:null,alignmentRunId:null,tasks:[task('data',{status:'APPROVED',artifactId:'approved'}),task('analysis',{dependencies:['data'],executionId:'consumer'})],runs:[run({inputs:[{artifactId:'approved',filename:'data.json',sha256:'sha',size:1}]})],changes:[],history:[],maxRuns:10,error:null,createdAt:'',updatedAt:'',events:[]});
@@ -19,3 +19,11 @@ it('does not interpret absent panel heartbeat as Codex execution being blocked',
 
 it('shows waiting input consistently and clears it after same-thread continuation',()=>{const p=project(),t=p.tasks[1]!;t.status='RUNNING';p.runs[0]!.status='NEEDS_INPUT';expect(taskDisplay(p,t)).toEqual({label:'等待本人回答',tone:'attention'});p.runs[0]!.status='RUNNING';expect(taskDisplay(p,t)).toEqual({label:'执行中',tone:'active'});});
 it('uses the active review and ignores stale waiting executions',()=>{const p=project(),t=p.tasks[1]!;t.status='REVIEWING';t.reviewId='review';p.runs[0]!.status='NEEDS_INPUT';p.runs.push(run({id:'review',kind:'REVIEW'}));expect(taskDisplay(p,t).label).toBe('评审中');p.runs[1]!.status='NEEDS_INPUT';expect(taskDisplay(p,t).label).toBe('评审等待回答');t.status='APPROVED';expect(taskDisplay(p,t).label).toBe('已通过评审');});
+
+it('keeps own review retries but excludes downstream reviews that consume the same artifact',()=>{
+ const p=project(),output={id:'candidate',filename:'data.json',sha256:'sha',size:1,collectedAt:''};
+ const execution=run({id:'producer',taskKey:'data',output});
+ const input={artifactId:output.id,filename:output.filename,sha256:output.sha256,size:output.size};
+ p.runs=[execution,run({id:'own-invalid',kind:'REVIEW',taskKey:'data',status:'INVALID',inputs:[input]}),run({id:'own-valid',kind:'REVIEW',taskKey:'data',status:'COLLECTED',inputs:[input]}),run({id:'downstream',kind:'REVIEW',taskKey:'analysis',inputs:[input]}),run({id:'old-version',kind:'REVIEW',taskKey:'data',revision:1,inputs:[input]})];
+ expect(reviewsForAttempt(p,execution).map(r=>r.id)).toEqual(['own-invalid','own-valid']);
+});

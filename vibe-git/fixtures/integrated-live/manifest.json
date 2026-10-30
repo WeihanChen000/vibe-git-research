@@ -1,0 +1,568 @@
+{
+  "version": 1,
+  "projectId": "3ca69c64-3854-4c56-b500-04785dd0bec2",
+  "phase": "COMPLETED",
+  "sourceSha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+  "scope": "One real SciencePAL account and local Codex, two workflow identities. Preregistered exploratory pilot and planned refinement. No two-human or model quality comparison.",
+  "privacy": "Private context bodies, alignment and member credentials are withheld. Receipt hashes alone do not independently prove their content or remote execution.",
+  "runs": [
+    {
+      "id": "d48bacfb-8c58-417e-9b54-7f35ccff2743",
+      "kind": "TASK",
+      "taskKey": "sasa",
+      "status": "COLLECTED",
+      "revision": 1,
+      "createdAt": "2026-10-30T16:54:50.226Z",
+      "updatedAt": "2026-10-30T16:59:12.680Z",
+      "threadId": "e0671a84-46a0-4278-97c0-ffb0c346a11d",
+      "runId": "f29de5a4-b92c-4969-a8d6-1a0e5e58cb4b",
+      "platform": "sciencepal",
+      "upstreamApprovals": [],
+      "inputs": [
+        {
+          "artifactId": "b94b929b-1b9c-461d-a68f-8aef3bf0e503",
+          "filename": "context.json",
+          "sha256": "2c66e828ec86cd6d1accb34581d3dce55e9460dfa7f66809156dd237345f2e56",
+          "size": 18674
+        },
+        {
+          "artifactId": "6fc12244-1f43-4bd0-96dc-9047d6e743ca",
+          "filename": "source-1CRN.pdb",
+          "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+          "size": 49491
+        }
+      ],
+      "output": {
+        "id": "07fde0dd-4a0e-48af-bea1-3607e70b8b02",
+        "filename": "sasa.json",
+        "sha256": "4c0d0970b9c0dc0b24e5e41116424bbf9547072e95a2ab371c7446ba1ca44b44",
+        "size": 15242
+      }
+    },
+    {
+      "id": "dd1bb654-b4ce-481d-abd5-98517ef8d3d9",
+      "kind": "REVIEW",
+      "taskKey": "sasa",
+      "status": "INVALID",
+      "revision": 1,
+      "createdAt": "2026-10-30T16:59:12.683Z",
+      "updatedAt": "2026-10-30T17:02:22.031Z",
+      "threadId": null,
+      "runId": null,
+      "platform": "codex",
+      "upstreamApprovals": [],
+      "inputs": [
+        {
+          "artifactId": "74ef22a4-c57f-4854-bd29-2f9eee06e359",
+          "filename": "context.json",
+          "sha256": "a0ab4cfa8a6047441a7167fd87bea0fc746ac2f81b3a96f817ca6de75bcf5d3f",
+          "size": 18744
+        },
+        {
+          "artifactId": "6fc12244-1f43-4bd0-96dc-9047d6e743ca",
+          "filename": "source-1CRN.pdb",
+          "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+          "size": 49491
+        },
+        {
+          "artifactId": "07fde0dd-4a0e-48af-bea1-3607e70b8b02",
+          "filename": "sasa.json",
+          "sha256": "4c0d0970b9c0dc0b24e5e41116424bbf9547072e95a2ab371c7446ba1ca44b44",
+          "size": 15242
+        }
+      ],
+      "output": {
+        "id": "cfd55ce0-4378-47e4-be4b-bb33fb299731",
+        "filename": "review-result.json",
+        "sha256": "b56660b32473244ac4b587ad87774941a06ff2f06cdae282154193122a8b8b0a",
+        "size": 39115
+      }
+    },
+    {
+      "id": "17469ad5-26af-4e89-bf9f-b438749046ef",
+      "kind": "REVIEW",
+      "taskKey": "sasa",
+      "status": "COLLECTED",
+      "revision": 1,
+      "createdAt": "2026-10-30T17:05:01.360Z",
+      "updatedAt": "2026-10-30T17:08:25.501Z",
+      "threadId": null,
+      "runId": null,
+      "platform": "codex",
+      "upstreamApprovals": [],
+      "inputs": [
+        {
+          "artifactId": "74ef22a4-c57f-4854-bd29-2f9eee06e359",
+          "filename": "context.json",
+          "sha256": "a0ab4cfa8a6047441a7167fd87bea0fc746ac2f81b3a96f817ca6de75bcf5d3f",
+          "size": 18744
+        },
+        {
+          "artifactId": "6fc12244-1f43-4bd0-96dc-9047d6e743ca",
+          "filename": "source-1CRN.pdb",
+          "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+          "size": 49491
+        },
+        {
+          "artifactId": "07fde0dd-4a0e-48af-bea1-3607e70b8b02",
+          "filename": "sasa.json",
+          "sha256": "4c0d0970b9c0dc0b24e5e41116424bbf9547072e95a2ab371c7446ba1ca44b44",
+          "size": 15242
+        }
+      ],
+      "output": {
+        "id": "f0a15d6a-78b5-4c96-843c-4106276ffbd7",
+        "filename": "review-result.json",
+        "sha256": "2ed5a78dd36bfe3ba92ee67f593a1b266442bd0a51806bae2968190ada1437ec",
+        "size": 56589
+      }
+    },
+    {
+      "id": "a9e8a7ab-f5a7-4035-9fc5-de9f955a2f13",
+      "kind": "TASK",
+      "taskKey": "sasa",
+      "status": "COLLECTED",
+      "revision": 1,
+      "createdAt": "2026-10-30T17:11:06.194Z",
+      "updatedAt": "2026-10-30T17:17:36.181Z",
+      "threadId": "677a966b-f716-4f83-a5f6-7524ab36e231",
+      "runId": "2255bca8-553d-45ae-b21b-d4a63ef2bdad",
+      "platform": "sciencepal",
+      "upstreamApprovals": [],
+      "inputs": [
+        {
+          "artifactId": "2e69a0b1-83bf-4334-ae3f-fe4ffb89521b",
+          "filename": "context.json",
+          "sha256": "d6e35631e8b2997f3e7694794b37288118bc0bbac50128c0048371c40cb9f7c9",
+          "size": 32515
+        },
+        {
+          "artifactId": "6fc12244-1f43-4bd0-96dc-9047d6e743ca",
+          "filename": "source-1CRN.pdb",
+          "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+          "size": 49491
+        },
+        {
+          "artifactId": "61a62ebc-c523-40fc-b81f-8ae79a906408",
+          "filename": "previous-sasa.json",
+          "sha256": "4c0d0970b9c0dc0b24e5e41116424bbf9547072e95a2ab371c7446ba1ca44b44",
+          "size": 15242
+        }
+      ],
+      "output": {
+        "id": "d66660eb-1ad0-4bb2-8730-ecb834277164",
+        "filename": "sasa.json",
+        "sha256": "bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2",
+        "size": 50482
+      }
+    },
+    {
+      "id": "39423245-71fb-4dbf-8dcb-44fb4a08018b",
+      "kind": "REVIEW",
+      "taskKey": "sasa",
+      "status": "COLLECTED",
+      "revision": 1,
+      "createdAt": "2026-10-30T17:17:36.184Z",
+      "updatedAt": "2026-10-30T17:21:40.227Z",
+      "threadId": null,
+      "runId": null,
+      "platform": "codex",
+      "upstreamApprovals": [],
+      "inputs": [
+        {
+          "artifactId": "43f01e8e-9bc8-449f-8c70-c3824f5b6108",
+          "filename": "context.json",
+          "sha256": "aa120eef67353b4aea3ef93a9b786ad93dc662de170adab1adccc98e5720b227",
+          "size": 22772
+        },
+        {
+          "artifactId": "6fc12244-1f43-4bd0-96dc-9047d6e743ca",
+          "filename": "source-1CRN.pdb",
+          "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+          "size": 49491
+        },
+        {
+          "artifactId": "d66660eb-1ad0-4bb2-8730-ecb834277164",
+          "filename": "sasa.json",
+          "sha256": "bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2",
+          "size": 50482
+        }
+      ],
+      "output": {
+        "id": "a9c9ccd2-1fa3-4199-92bb-74f1fa10a5ab",
+        "filename": "review-result.json",
+        "sha256": "2e7a10ea2fa5ffda0d911bd8ea4d971c2b55d11920179657e219b720daabdc61",
+        "size": 91906
+      }
+    },
+    {
+      "id": "ba62329f-2391-46b8-8d26-916b28d3e222",
+      "kind": "TASK",
+      "taskKey": "synthesis",
+      "status": "COLLECTED",
+      "revision": 1,
+      "createdAt": "2026-10-30T17:21:40.229Z",
+      "updatedAt": "2026-10-30T17:24:19.192Z",
+      "threadId": null,
+      "runId": null,
+      "platform": "codex",
+      "upstreamApprovals": [],
+      "inputs": [
+        {
+          "artifactId": "ac6f3357-a766-473f-a0ac-cec8d4f3bb18",
+          "filename": "context.json",
+          "sha256": "5abfdbe3aa0881b21cf2668a2630bc06c1a2aa36332967a6a4c7a846e743023e",
+          "size": 19942
+        },
+        {
+          "artifactId": "6fc12244-1f43-4bd0-96dc-9047d6e743ca",
+          "filename": "source-1CRN.pdb",
+          "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+          "size": 49491
+        },
+        {
+          "artifactId": "d66660eb-1ad0-4bb2-8730-ecb834277164",
+          "filename": "sasa.json",
+          "sha256": "bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2",
+          "size": 50482
+        }
+      ],
+      "output": {
+        "id": "c7d5915f-0fe4-42a6-80e0-a8f4577aa5ff",
+        "filename": "synthesis.json",
+        "sha256": "500b75d3663718ac4028998d4cfa8b3d55f9d7e4825cc572b24e1a9660bcbf23",
+        "size": 16910
+      }
+    },
+    {
+      "id": "23fbbf43-186b-41bc-bf47-114616cd06bc",
+      "kind": "REVIEW",
+      "taskKey": "synthesis",
+      "status": "COLLECTED",
+      "revision": 1,
+      "createdAt": "2026-10-30T17:24:19.195Z",
+      "updatedAt": "2026-10-30T17:29:39.249Z",
+      "threadId": "59f658ff-3776-4ec0-9d03-86e4b8411213",
+      "runId": "85f57fe9-5960-4b45-a07c-add9ae014cf9",
+      "platform": "sciencepal",
+      "upstreamApprovals": [],
+      "inputs": [
+        {
+          "artifactId": "e622dd5c-5edb-4133-b2b7-abedf873f1b6",
+          "filename": "context.json",
+          "sha256": "54530650186859e574bbdd1ab7479f69a0bafdf3231e80ee37b05b24fd4f1a2c",
+          "size": 20012
+        },
+        {
+          "artifactId": "6fc12244-1f43-4bd0-96dc-9047d6e743ca",
+          "filename": "source-1CRN.pdb",
+          "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+          "size": 49491
+        },
+        {
+          "artifactId": "c7d5915f-0fe4-42a6-80e0-a8f4577aa5ff",
+          "filename": "synthesis.json",
+          "sha256": "500b75d3663718ac4028998d4cfa8b3d55f9d7e4825cc572b24e1a9660bcbf23",
+          "size": 16910
+        },
+        {
+          "artifactId": "d66660eb-1ad0-4bb2-8730-ecb834277164",
+          "filename": "sasa.json",
+          "sha256": "bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2",
+          "size": 50482
+        }
+      ],
+      "output": {
+        "id": "a309e34b-c99e-41da-902c-64e858f1ccf2",
+        "filename": "review-result.json",
+        "sha256": "7f744461f11c92f460629accf30b7c170d48926540acdeea393142b4d2540f0b",
+        "size": 12114
+      }
+    },
+    {
+      "id": "df3d717a-5d40-4615-a4d7-44fa06476072",
+      "kind": "TASK",
+      "taskKey": "synthesis",
+      "status": "COLLECTED",
+      "revision": 1,
+      "createdAt": "2026-10-30T17:30:47.661Z",
+      "updatedAt": "2026-10-30T17:34:15.795Z",
+      "threadId": null,
+      "runId": null,
+      "platform": "codex",
+      "upstreamApprovals": [
+        {
+          "verdict": "approve",
+          "reviewerAgentId": "member_node-0ee7f2e6-16fc-483f-928c-5933b42d7fd7",
+          "reviewRunId": "39423245-71fb-4dbf-8dcb-44fb4a08018b",
+          "reviewedArtifact": {
+            "id": "d66660eb-1ad0-4bb2-8730-ecb834277164",
+            "filename": "sasa.json",
+            "size": 50482,
+            "sha256": "bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2"
+          },
+          "reviewArtifact": {
+            "id": "a9c9ccd2-1fa3-4199-92bb-74f1fa10a5ab",
+            "filename": "review-result.json",
+            "size": 91906,
+            "sha256": "2e7a10ea2fa5ffda0d911bd8ea4d971c2b55d11920179657e219b720daabdc61"
+          }
+        }
+      ],
+      "inputs": [
+        {
+          "artifactId": "4d48faf7-9d11-4282-a5f5-95fe644995e6",
+          "filename": "context.json",
+          "sha256": "b47a29ddc625ee97e7e96bb2de84b193e18482a4d66e378c1b6a05832d60e80f",
+          "size": 133458
+        },
+        {
+          "artifactId": "6fc12244-1f43-4bd0-96dc-9047d6e743ca",
+          "filename": "source-1CRN.pdb",
+          "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+          "size": 49491
+        },
+        {
+          "artifactId": "d66660eb-1ad0-4bb2-8730-ecb834277164",
+          "filename": "sasa.json",
+          "sha256": "bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2",
+          "size": 50482
+        },
+        {
+          "artifactId": "9f57b9ad-bad8-435a-8aba-3e964df9b360",
+          "filename": "previous-synthesis.json",
+          "sha256": "500b75d3663718ac4028998d4cfa8b3d55f9d7e4825cc572b24e1a9660bcbf23",
+          "size": 16910
+        }
+      ],
+      "output": {
+        "id": "ca091406-6cdc-49f1-b15c-67a3279a0f80",
+        "filename": "synthesis.json",
+        "sha256": "c4bc82aae31595aa4d4b9edecfc09babdd09765dffd548422342b23816e91d3c",
+        "size": 51946
+      }
+    },
+    {
+      "id": "b49a2f1e-3e45-454a-b032-3f5faad44776",
+      "kind": "REVIEW",
+      "taskKey": "synthesis",
+      "status": "COLLECTED",
+      "revision": 1,
+      "createdAt": "2026-10-30T17:34:15.798Z",
+      "updatedAt": "2026-10-30T17:40:05.837Z",
+      "threadId": "2f55a21a-46cb-4b35-ac81-433aed0da7ed",
+      "runId": "432aa23b-c390-4c0a-9780-0d3361716551",
+      "platform": "sciencepal",
+      "upstreamApprovals": [
+        {
+          "verdict": "approve",
+          "reviewerAgentId": "member_node-0ee7f2e6-16fc-483f-928c-5933b42d7fd7",
+          "reviewRunId": "39423245-71fb-4dbf-8dcb-44fb4a08018b",
+          "reviewedArtifact": {
+            "id": "d66660eb-1ad0-4bb2-8730-ecb834277164",
+            "filename": "sasa.json",
+            "size": 50482,
+            "sha256": "bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2"
+          },
+          "reviewArtifact": {
+            "id": "a9c9ccd2-1fa3-4199-92bb-74f1fa10a5ab",
+            "filename": "review-result.json",
+            "size": 91906,
+            "sha256": "2e7a10ea2fa5ffda0d911bd8ea4d971c2b55d11920179657e219b720daabdc61"
+          }
+        }
+      ],
+      "inputs": [
+        {
+          "artifactId": "e6f7a127-c110-490b-8d47-d1eeec9337b0",
+          "filename": "context.json",
+          "sha256": "7bda4c220c9162af79c676a132a0e4d6230beb52dfdc0a60872a93576465ce74",
+          "size": 125325
+        },
+        {
+          "artifactId": "6fc12244-1f43-4bd0-96dc-9047d6e743ca",
+          "filename": "source-1CRN.pdb",
+          "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+          "size": 49491
+        },
+        {
+          "artifactId": "ca091406-6cdc-49f1-b15c-67a3279a0f80",
+          "filename": "synthesis.json",
+          "sha256": "c4bc82aae31595aa4d4b9edecfc09babdd09765dffd548422342b23816e91d3c",
+          "size": 51946
+        },
+        {
+          "artifactId": "d66660eb-1ad0-4bb2-8730-ecb834277164",
+          "filename": "sasa.json",
+          "sha256": "bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2",
+          "size": 50482
+        }
+      ],
+      "output": {
+        "id": "9b2c4f06-f083-4d2d-a395-5ab3e89826dc",
+        "filename": "review-result.json",
+        "sha256": "bfa14539a5563cd75ab825d0ee976984779be068051cbf0306b4d8ffab69b876",
+        "size": 13598
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "key": "sasa",
+      "status": "APPROVED",
+      "attempt": 2,
+      "executionId": "a9e8a7ab-f5a7-4035-9fc5-de9f955a2f13",
+      "reviewId": "39423245-71fb-4dbf-8dcb-44fb4a08018b",
+      "artifactId": "d66660eb-1ad0-4bb2-8730-ecb834277164",
+      "outputFilename": "sasa.json",
+      "acceptance": [
+        "Hash the actual frozen PDB into source_sha256 and document model/chain/filter selection; independently verify atom_count=327, residue_count=46 and element counts C=202,N=55,O=64,S=6, with no excluded record types entering the calculation.",
+        "First attempt actually executes only n_points=100 using Bio.PDB.SASA.ShrakeRupley, emits a schema-valid sasa.json labeled exploratory, and retains its original result/source; captain returns request_changes because final convergence acceptance is unmet, explicitly identifying planned methodological refinement.",
+        "Set method exactly Shrake-Rupley, numeric probe_radius_A=1.4 and explicit radii C=1.70,N=1.55,O=1.52,S=1.80 A; report A2 units and actual Python/Biopython and any other used tool versions, with complete actually executed reproducible Python source embedded in code.",
+        "Provide numeric total_A2 and identified per-residue numeric areas for all selected residues; execute and report sum/count consistency checks, including the numerical residual between the residue sum and total, rather than asserting agreement without calculations.",
+        "Only after feedback, execute both 1000 and 5000 sphere-point runs without overwriting the pilot; final primary n_points=1000 (>=1000), with actual numeric comparison totals/per-residue areas and abs(total_1000-total_5000)/total_5000<=0.02, formula, numerical differences and limitations in allowed evidence fields.",
+        "Captain reviewer independently parses frozen coordinates and executes a separate sphere-sampling baseline with matching selection/probe/radii, cites the actual reviewed sasa.json and its hash, and embeds baseline source/versions, sampling details, numeric total/residue discrepancies and limitations; author assertions or schema validation alone cannot support approval.",
+        "Deliver the unchanged-schema sasa RESULT with all required typed fields and permitted provenance/evidence; distinguish pilot/execution success/scientific acceptance, retain conclusion boundaries, and release approved sasa.json to synthesis only after final scientific review approval."
+      ]
+    },
+    {
+      "key": "synthesis",
+      "status": "APPROVED",
+      "attempt": 2,
+      "executionId": "df3d717a-5d40-4615-a4d7-44fa06476072",
+      "reviewId": "b49a2f1e-3e45-454a-b032-3f5faad44776",
+      "artifactId": "ca091406-6cdc-49f1-b15c-67a3279a0f80",
+      "outputFilename": "synthesis.json",
+      "acceptance": [
+        "Confirm final sasa scientific approval before execution, consume the actual approved sasa.json through the HARD dependency, and set upstream_sha256 to SHA256 of its original complete file bytes; set source_sha256 from the unchanged frozen PDB. Do not compare producer context receipts with a different consumer context.",
+        "Independently execute verification of source/selection counts and approved residue-area sums against reported totals; embed full executed source in code and actual tool_versions plus numeric verification residuals/results in schema-permitted evidence fields.",
+        "Preserve method literal Shrake-Rupley, numeric probe_radius_A=1.4, frozen element radii, A2 area units, primary sample count and actual 1000/5000 convergence evidence; verify them against approved upstream content.",
+        "Provide a substantive summary with evidence-based total and residue-level geometric accessibility interpretation traceable to numeric upstream areas; disclose sampling/convergence and single-structure limitations and avoid activity, clinical efficacy, irreplacability or biological-function claims.",
+        "Biology reviewer independently recalculates sums/counts and checks original upstream/source hashes, reports numerical discrepancies with actual executed code/tool versions in permitted review evidence, and separately assesses scientific interpretation and limitations.",
+        "Deliver a schema-valid synthesis RESULT with required source_sha256, method, probe_radius_A, summary, upstream_sha256 and code, preserving exact types/length constraints; passing schema or execution checks alone does not establish scientific approval."
+      ]
+    }
+  ],
+  "files": [
+    {
+      "artifactId": "07fde0dd-4a0e-48af-bea1-3607e70b8b02",
+      "file": "07fde0dd-4a0e-48af-bea1-3607e70b8b02.json",
+      "sha256": "4c0d0970b9c0dc0b24e5e41116424bbf9547072e95a2ab371c7446ba1ca44b44",
+      "size": 15242
+    },
+    {
+      "artifactId": "cfd55ce0-4378-47e4-be4b-bb33fb299731",
+      "file": "cfd55ce0-4378-47e4-be4b-bb33fb299731.json",
+      "sha256": "b56660b32473244ac4b587ad87774941a06ff2f06cdae282154193122a8b8b0a",
+      "size": 39115
+    },
+    {
+      "artifactId": "f0a15d6a-78b5-4c96-843c-4106276ffbd7",
+      "file": "f0a15d6a-78b5-4c96-843c-4106276ffbd7.json",
+      "sha256": "2ed5a78dd36bfe3ba92ee67f593a1b266442bd0a51806bae2968190ada1437ec",
+      "size": 56589
+    },
+    {
+      "artifactId": "d66660eb-1ad0-4bb2-8730-ecb834277164",
+      "file": "d66660eb-1ad0-4bb2-8730-ecb834277164.json",
+      "sha256": "bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2",
+      "size": 50482
+    },
+    {
+      "artifactId": "a9c9ccd2-1fa3-4199-92bb-74f1fa10a5ab",
+      "file": "a9c9ccd2-1fa3-4199-92bb-74f1fa10a5ab.json",
+      "sha256": "2e7a10ea2fa5ffda0d911bd8ea4d971c2b55d11920179657e219b720daabdc61",
+      "size": 91906
+    },
+    {
+      "artifactId": "c7d5915f-0fe4-42a6-80e0-a8f4577aa5ff",
+      "file": "c7d5915f-0fe4-42a6-80e0-a8f4577aa5ff.json",
+      "sha256": "500b75d3663718ac4028998d4cfa8b3d55f9d7e4825cc572b24e1a9660bcbf23",
+      "size": 16910
+    },
+    {
+      "artifactId": "a309e34b-c99e-41da-902c-64e858f1ccf2",
+      "file": "a309e34b-c99e-41da-902c-64e858f1ccf2.json",
+      "sha256": "7f744461f11c92f460629accf30b7c170d48926540acdeea393142b4d2540f0b",
+      "size": 12114
+    },
+    {
+      "artifactId": "ca091406-6cdc-49f1-b15c-67a3279a0f80",
+      "file": "ca091406-6cdc-49f1-b15c-67a3279a0f80.json",
+      "sha256": "c4bc82aae31595aa4d4b9edecfc09babdd09765dffd548422342b23816e91d3c",
+      "size": 51946
+    },
+    {
+      "artifactId": "9b2c4f06-f083-4d2d-a395-5ab3e89826dc",
+      "file": "9b2c4f06-f083-4d2d-a395-5ab3e89826dc.json",
+      "sha256": "bfa14539a5563cd75ab825d0ee976984779be068051cbf0306b4d8ffab69b876",
+      "size": 13598
+    },
+    {
+      "artifactId": "6fc12244-1f43-4bd0-96dc-9047d6e743ca",
+      "file": "source-1crn.pdb",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    },
+    {
+      "artifactId": "61a62ebc-c523-40fc-b81f-8ae79a906408",
+      "file": "61a62ebc-c523-40fc-b81f-8ae79a906408.json",
+      "sha256": "4c0d0970b9c0dc0b24e5e41116424bbf9547072e95a2ab371c7446ba1ca44b44",
+      "size": 15242
+    },
+    {
+      "artifactId": "9f57b9ad-bad8-435a-8aba-3e964df9b360",
+      "file": "9f57b9ad-bad8-435a-8aba-3e964df9b360.json",
+      "sha256": "500b75d3663718ac4028998d4cfa8b3d55f9d7e4825cc572b24e1a9660bcbf23",
+      "size": 16910
+    }
+  ],
+  "localRuntimeReceipts": [
+    {
+      "id": "79827882-03f8-45a6-b885-04798caeb97c",
+      "kind": "ALIGN",
+      "taskKey": null,
+      "startedAt": "2026-10-30T13:29:07.446Z"
+    },
+    {
+      "id": "dd1bb654-b4ce-481d-abd5-98517ef8d3d9",
+      "kind": "REVIEW",
+      "taskKey": "sasa",
+      "runtimeId": "01a18dc0-5b9a-78c3-96bb-0a3d644a59e1:01a18dc0-5d41-7641-8601-97178e11d9c9",
+      "transport": "app-server",
+      "startedAt": "2026-10-30T16:59:16.702Z"
+    },
+    {
+      "id": "17469ad5-26af-4e89-bf9f-b438749046ef",
+      "kind": "REVIEW",
+      "taskKey": "sasa",
+      "runtimeId": "01a18dc5-ac4d-7093-bcf2-68c35e448d34:01a18dc5-ad97-7113-bfac-46f851e32ac1",
+      "transport": "app-server",
+      "startedAt": "2026-10-30T17:05:05.118Z"
+    },
+    {
+      "id": "39423245-71fb-4dbf-8dcb-44fb4a08018b",
+      "kind": "REVIEW",
+      "taskKey": "sasa",
+      "runtimeId": "01a18dd1-a6d4-72d1-9b73-1b18ebcfcc94:01a18dd1-a7d3-7ab0-a6bf-769ac5cd68ef",
+      "transport": "app-server",
+      "startedAt": "2026-10-30T17:18:09.894Z"
+    },
+    {
+      "id": "ba62329f-2391-46b8-8d26-916b28d3e222",
+      "kind": "TASK",
+      "taskKey": "synthesis",
+      "runtimeId": "01a18dd5-606e-7083-a7bc-5b6c7c5f88ad:01a18dd5-6173-7310-89ca-1506d0b8eafa",
+      "transport": "app-server",
+      "startedAt": "2026-10-30T17:22:14.022Z"
+    },
+    {
+      "id": "df3d717a-5d40-4615-a4d7-44fa06476072",
+      "kind": "TASK",
+      "taskKey": "synthesis",
+      "runtimeId": "01a18ddd-68b3-7172-a112-f61a22bebaa4:01a18ddd-69b1-70a1-9d38-7efc853c6e68",
+      "transport": "app-server",
+      "startedAt": "2026-10-30T17:31:00.418Z"
+    }
+  ]
+}

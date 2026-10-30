@@ -5,7 +5,7 @@ import { isLatestSPRun, type SPCreateProject, type SPInput, type SPProject, type
 import { badRequest, forbidden, invalidState, notFound, revisionConflict } from "../domain/errors.js";
 import type { V20Repository } from "../v20/repository.js";
 import { MAX_ARTIFACT_BYTES, SciencePALError, type SciencePALRemote } from "./client.js";
-import { alignmentResult, changeResult, envelope, jobPrompt, object, reviewResult, string } from "./pipeline-contract.js";
+import { alignmentResult, changeResult, envelope, jobPrompt, object, reviewResult, reviewOutputGuidance, string } from "./pipeline-contract.js";
 import { projectEvidence } from "./evidence.js";
 import { validateSource } from "./source.js";
 import { checkTaskResult, resultValidationError, validateResultSchemas } from "./result-contract.js";
@@ -157,20 +157,38 @@ export class SciencePALPipeline {
       publishedRequirement: p.requirementMarkdown, decisions: p.alignment?.issues.filter(i => i.selectedOptionId) ?? [], approvedChanges: p.changes.filter(c => c.status === "APPLIED") });
     p.alignmentRunId = run.id; p.phase = "ALIGNING"; p.error = null; this.save(p, "自动对齐已启动；发布前仍需检查对齐稿");
   }
+  private approvalProof(p: SPProject, t: SPTask) {
+    const r = p.runs.find(r => r.id === t.reviewId);
+    if (t.status !== "APPROVED" || !t.artifactId || !r?.output || r.kind !== "REVIEW" || r.taskKey !== t.key || r.revision !== p.revision || r.status !== "COLLECTED" || !isLatestSPRun(p.runs, r) || r.agent.id !== t.reviewerAgentId || r.agent.id === t.assigneeAgentId) throw invalidState("上游缺少当前独立评审的批准依据");
+    const artifact = this.file(p.id, t.artifactId), reviewed = r.inputs.find(i => i.artifactId === artifact.id);
+    if (!reviewed || reviewed.sha256 !== artifact.sha256 || reviewed.size !== artifact.size || reviewed.filename !== artifact.filename) throw invalidState("上游批准记录没有绑定当前成果字节");
+    const reviewFile = this.file(p.id, r.output.id);
+    if (reviewFile.sha256 !== r.output.sha256 || reviewFile.size !== r.output.size) throw invalidState("上游评审与冻结记录不匹配");
+    const reviewFileUtf8 = Buffer.from(reviewFile.bytes).toString("utf8");
+    if (hash(Buffer.from(reviewFileUtf8, "utf8")) !== reviewFile.sha256) throw invalidState("上游评审不是可无损交接的 UTF-8 文件");
+    const result = reviewResult(envelope(JSON.parse(reviewFileUtf8), r), t.acceptance, t.outputFilename);
+    if (result.verdict !== "approve") throw invalidState("上游原始评审没有批准当前成果");
+    const meta = ({id,filename,size,sha256}: SciencePALArtifact) => ({id,filename,size,sha256});
+    // Embed exact original text in the frozen context: independently hashable, no
+    // extra attachment slot per dependency, and subject to the existing size cap.
+    return { verdict: result.verdict, reviewerAgentId: r.agent.id, reviewRunId: r.id,
+      reviewedArtifact: meta(artifact), reviewArtifact: meta(reviewFile), reviewFileUtf8 };
+  }
   private context(p: SPProject, t: SPTask) {
     return { revision: p.revision, requirement: p.requirementMarkdown, task: t, feedback: t.feedback,
-      upstream: t.dependencies.map(key => { const upstream = p.tasks.find(t => t.key === key)!; return { key, filename: upstream.outputFilename, acceptance: upstream.acceptance }; }) };
+      upstream: t.dependencies.map(key => { const upstream = p.tasks.find(t => t.key === key)!; return { key, filename: upstream.outputFilename, acceptance: upstream.acceptance, approval: this.approvalProof(p, upstream) }; }) };
   }
   private execution(p: SPProject, t: SPTask) {
     const deps = t.dependencies.map(key => p.tasks.find(t => t.key === key)!);
     if (deps.some(d => d.status !== "APPROVED" || !d.artifactId)) throw invalidState("上游成果尚未通过独立评审");
+    const context = this.context(p, t); // Validate upstream approval before creating any new artifact.
     // A repaired attempt gets the previous file under a distinct immutable attachment name.
     const files = deps.map(d => d.artifactId!);
     if (t.artifactId) {
       const old = this.file(p.id, t.artifactId);
       files.push(this.storeFile(p, `previous-${t.outputFilename}`, old.bytes).id);
     }
-    const r = this.queue(p, "TASK", t.assigneeAgentId, this.context(p, t), files, t.key);
+    const r = this.queue(p, "TASK", t.assigneeAgentId, context, files, t.key);
     t.attempt++; t.executionId = r.id; t.reviewId = null; t.artifactId = null; t.review = null; t.status = "RUNNING";
     this.save(p, `${t.title} 第 ${t.attempt} 次执行已排队`);
   }
@@ -252,7 +270,7 @@ export class SciencePALPipeline {
           if (!isLatestSPRun(p.runs, r)) throw invalidState("该运行已经被后续尝试替代");
           if (p.runs.length >= p.maxRuns) throw invalidState("已达到项目运行上限");
           const retry: SPRun = { ...r, id: randomUUID(), status: "READY", output: null, threadId: null, runId: null, sandboxId: null, projectId: null,
-            error: null, remoteStatus: null, createdAt: now(), updatedAt: now(), prompt: `${r.prompt}\nPrevious attempt failed validation: ${r.error ?? "unknown"}. Fix the protocol violation; read the original attachments again.${r.kind === "REVIEW" ? ` Every checks[i].evidence MUST explicitly contain the literal filename ${p.tasks.find(t => t.key === r.taskKey)!.outputFilename}; mentioning it only in criterion or summary is insufficient. Keep each passed a JSON boolean. Independently assess the evidence; do not change the scientific verdict just to satisfy formatting.` : ""}` };
+            error: null, remoteStatus: null, createdAt: now(), updatedAt: now(), prompt: `${r.prompt}\nPrevious attempt failed validation: ${r.error ?? "unknown"}. Fix the protocol violation; read the original attachments again.${r.kind === "REVIEW" ? reviewOutputGuidance(p.tasks.find(t => t.key === r.taskKey)!.outputFilename) : ""}` };
           delete retry.resultValidation;
           delete retry.claimId;
           delete retry.localExecution;
@@ -440,6 +458,16 @@ export class SciencePALPipeline {
       if (status === "NEEDS_INPUT") { r.status = "NEEDS_INPUT"; r.error = "等待成员在 SciencePAL 回复"; this.save(p); }
       else if (status === "FAILED" || status === "UNKNOWN") this.block(p, r, status === "UNKNOWN" ? "成员提交结果未知；禁止自动重新提交" : "成员连接器报告远端明确失败", status);
       else throw badRequest("无效成员状态");
+      return r;
+    });
+  }
+  async memberLocalFailed(projectId: string, nodeId: string, runId: string, data: { claimId: string }) {
+    return this.locked(projectId, p => {
+      const r = this.memberRun(p, nodeId, runId);
+      if (!isLocalResearchPlatform(r.agent.platform) || !r.localExecution || !r.claimId || data.claimId !== r.claimId) throw forbidden("本地失败回执与领取身份不匹配");
+      if (r.status === "FAILED") return r;
+      if (r.status !== "RUNNING" || r.output) throw invalidState("已停止或已交回的任务不能改写为失败");
+      this.block(p, r, "本人本地 Agent 已明确失败；保留原任务包，请由队长确认重试", "FAILED");
       return r;
     });
   }

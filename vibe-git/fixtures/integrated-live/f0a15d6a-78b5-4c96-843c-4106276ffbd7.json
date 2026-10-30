@@ -1,0 +1,1047 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "a0ab4cfa8a6047441a7167fd87bea0fc746ac2f81b3a96f817ca6de75bcf5d3f",
+      "size": 18744
+    },
+    {
+      "filename": "sasa.json",
+      "sha256": "4c0d0970b9c0dc0b24e5e41116424bbf9547072e95a2ab371c7446ba1ca44b44",
+      "size": 15242
+    },
+    {
+      "filename": "source-1CRN.pdb",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    }
+  ],
+  "result": {
+    "verdict": "request_changes",
+    "summary": "The 100-point exploratory pilot in sasa.json is schema-valid and independently numerically corroborated, but final scientific acceptance is not met: the preregistered 1000/5000-point convergence comparison is absent. This is planned methodological refinement, not a spontaneous author mistake. Independent parsing confirms 327 atoms, 46 residues and the required element counts; total area is 2975.651128388463 A2 and residue-sum residual is 0.0 A2. The separately executed 100-point NumPy baseline differs by only 4.547473508864641e-13 A2. Approval and the HARD handoff to synthesis remain withheld. Author source/version claims were inspected; Biopython is unavailable locally, so no author-code rerun or independent historical execution attestation is claimed. Full reviewer computation source, actual tool versions, discrepancy tables and limitations are in reproduction.",
+    "checks": [
+      {
+        "criterion": "Hash the actual frozen PDB into source_sha256 and document model/chain/filter selection; independently verify atom_count=327, residue_count=46 and element counts C=202,N=55,O=64,S=6, with no excluded record types entering the calculation.",
+        "passed": true,
+        "evidence": "sasa.json records source_sha256=42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811, matching the actual 49,491-byte frozen PDB. Independent fixed-column parsing found one implicit model (0 MODEL records), chain A, 327 heavy ATOM records, 46 residues, C=202/N=55/O=64/S=6. All 327 altLocs are blank; no HETATM or hydrogen coordinate records exist. The author selects the whole chain rather than explicitly deleting excluded records; inspection confirms this selects exactly the prescribed atoms in this frozen file. See reproduction.results.source_selection."
+      },
+      {
+        "criterion": "First attempt actually executes only n_points=100 using Bio.PDB.SASA.ShrakeRupley, emits a schema-valid sasa.json labeled exploratory, and retains its original result/source; captain returns request_changes because final convergence acceptance is unmet, explicitly identifying planned methodological refinement.",
+        "passed": true,
+        "evidence": "sasa.json is attempt-1 pilot-100-exploratory, exploratory=true, n_points=100, total_A2=2975.651128388463. Its retained 4,891-character code sets N_POINTS=100 and has one ShrakeRupley compute call; no final-stage results are present. Separate executed 100-point baseline gives 2975.6511283884624 A2, corroborating the pilot values. This review returns request_changes as preregistered planned methodological refinement, not an unplanned author error. The supplied pilot bytes/source remain untouched. Historical execution and long-term version retention cannot be independently witnessed from these attachments; no claim of a Bio rerun is made."
+      },
+      {
+        "criterion": "Set method exactly Shrake-Rupley, numeric probe_radius_A=1.4 and explicit radii C=1.70,N=1.55,O=1.52,S=1.80 A; report A2 units and actual Python/Biopython and any other used tool versions, with complete actually executed reproducible Python source embedded in code.",
+        "passed": true,
+        "evidence": "sasa.json sets method='Shrake-Rupley', numeric probe_radius_A=1.4, radii_A={C:1.70,N:1.55,O:1.52,S:1.80}, and explicit Angstrom/A2 units. Its full embedded source includes source hashing, Bio.PDB.SASA.ShrakeRupley import/call, residue aggregation, runtime version capture, self-source embedding and JSON output; it reports producer Python 3.12.3/Biopython 1.84. Independent baseline numerically corroborates all 46 residue areas (maximum absolute discrepancy 4.263256414560601e-14 A2). Reviewer Python 3.12.10/NumPy 2.5.3/jsonschema 4.26.0 are recorded separately in reproduction.toolVersions. Biopython is unavailable in both checked local interpreters, so author code and producer version claims were inspected, not rerun or historically attested."
+      },
+      {
+        "criterion": "Provide numeric total_A2 and identified per-residue numeric areas for all selected residues; execute and report sum/count consistency checks, including the numerical residual between the residue sum and total, rather than asserting agreement without calculations.",
+        "passed": true,
+        "evidence": "sasa.json contains 46 unique, fully identified chain/residue-number/insertion-code/name entries with finite nonnegative numeric area_A2, matching all independently parsed residues. Both Python sum and math.fsum give 2975.651128388463 A2, equal to total_A2; numerical residual=0.0 A2. Independent counts are 327 atoms/46 residues, equal to candidate counts. The embedded author code calculates and reports residue_sum_A2 and residual_A2=0.0; its total is itself defined by that residue sum, so this internal check is not an independent estimator. Separate per-residue baseline comparisons are in reproduction.results.baseline_runs."
+      },
+      {
+        "criterion": "Only after feedback, execute both 1000 and 5000 sphere-point runs without overwriting the pilot; final primary n_points=1000 (>=1000), with actual numeric comparison totals/per-residue areas and abs(total_1000-total_5000)/total_5000<=0.02, formula, numerical differences and limitations in allowed evidence fields.",
+        "passed": false,
+        "evidence": "sasa.json has n_points=100, below final required 1000, and contains neither an actual 1000-point primary run nor a 5000-point comparison, per-residue comparison table, or convergence ratio. Therefore abs(total_1000-total_5000)/total_5000 cannot be evaluated from submitted data. The final <=0.02 acceptance criterion fails as intentionally preregistered. No final runs were precomputed by this reviewer; the two 100-point orientation checks are exploratory and cannot substitute for convergence. Captain must route feedback, preserve this pilot and obtain the planned final revision."
+      },
+      {
+        "criterion": "Captain reviewer independently parses frozen coordinates and executes a separate sphere-sampling baseline with matching selection/probe/radii, cites the actual reviewed sasa.json and its hash, and embeds baseline source/versions, sampling details, numeric total/residue discrepancies and limitations; author assertions or schema validation alone cannot support approval.",
+        "passed": true,
+        "evidence": "sasa.json actual SHA256=4c0d0970b9c0dc0b24e5e41116424bbf9547072e95a2ab371c7446ba1ca44b44 (15,242 bytes). Reviewer independently parsed coordinates and executed NumPy sphere sampling with matching selection, probe and radii, without Bio calls. At 100 points, equal-z midpoint/golden-angle phase 0 gives total=2975.6511283884624 A2; baseline-minus-candidate=-4.547473508864641e-13 A2 and max absolute residue difference=4.263256414560601e-14 A2 (floating-point scale). Rotating only the grid by pi/7 gives 2963.236999354096 A2, difference=-12.414129034366852 A2 (0.4171903391473861% of candidate), max residue difference=12.875402800507459 A2. The controlled orientation change exposes finite-sampling sensitivity; it is not final convergence or an invented approval tolerance. Complete executed source, versions, sampling formula, both 46-row discrepancy tables and limitations are embedded in reproduction."
+      },
+      {
+        "criterion": "Deliver the unchanged-schema sasa RESULT with all required typed fields and permitted provenance/evidence; distinguish pilot/execution success/scientific acceptance, retain conclusion boundaries, and release approved sasa.json to synthesis only after final scientific review approval.",
+        "passed": true,
+        "evidence": "sasa.json RESULT passes both unchanged context.resultSchemas.sasa and context.task.resultSchema using Draft7Validator, with zero errors; required numeric/string/array/object fields retain their types. Its exploratory stage and limitations explicitly deny final convergence, biological activity/clinical efficacy/irreplaceability inference and generalization beyond this conformation. This is acceptance of schema delivery and pilot-stage boundaries only, not final scientific approval. This review withholds approval and does not release the HARD sasa-to-synthesis handoff. Producer nested context receipts were not compared with this different reviewer context; current original attachment receipts were independently hashed."
+      }
+    ],
+    "requiredChanges": [
+      "Captain: preserve the original sasa.json pilot bytes (SHA256 4c0d0970b9c0dc0b24e5e41116424bbf9547072e95a2ab371c7446ba1ca44b44) and embedded executed source as an immutable versioned artifact before routing this planned methodological refinement to the assigned Biology member. Do not overwrite the pilot.",
+      "After this feedback, the assigned Biology member must actually execute Bio.PDB.SASA.ShrakeRupley at 1000 and 5000 points using the unchanged frozen source, selection, probe and radii. Deliver primary n_points=1000 and numeric totals/identified per-residue areas for both runs, complete executed source and actual tool versions, sum/count checks, and provenance linking the preserved pilot.",
+      "Report abs(total_1000-total_5000)/total_5000 with both totals, absolute difference, denominator and numeric ratio; require a finite positive denominator and ratio<=0.02. Report limitations and investigate discrepancies if the bound fails. Captain must obtain independent final scientific review approval before releasing sasa.json to synthesis; schema validity, successful execution and current 100-point agreement do not release that gate."
+    ],
+    "reproduction": {
+      "code": "import json, hashlib, math, platform, importlib.util, importlib.metadata\nfrom pathlib import Path\nfrom collections import Counter, defaultdict\nimport numpy as np\nfrom jsonschema import Draft7Validator\n\nbase = Path(__file__).resolve().parent\npaths = sorted((base / \"inputs\").iterdir())\nassert all(p.is_file() for p in paths)\nraws = {p.name: p.read_bytes() for p in paths}\nassert set(raws) == {\"context.json\", \"source-1CRN.pdb\", \"sasa.json\"}\nctx = json.loads(raws[\"context.json\"])\ncandidate = json.loads(raws[\"sasa.json\"])\nr = candidate[\"result\"]\nreceipts = [{\"filename\": k, \"sha256\": hashlib.sha256(v).hexdigest(), \"size\": len(v)}\n            for k, v in raws.items()]\nlines = raws[\"source-1CRN.pdb\"].decode(\"ascii\").splitlines()\nrecords = Counter(line[:6].strip() for line in lines)\nassert records[\"MODEL\"] == 0\natoms = []\nexcluded = Counter()\nfor line in lines:\n    if line[:6] not in (\"ATOM  \", \"HETATM\"):\n        continue\n    element = line[76:78].strip().upper()\n    reason = (\"HETATM\" if line[:6] == \"HETATM\" else\n              \"other_chain\" if line[21] != \"A\" else\n              \"altLoc\" if line[16] not in (\" \", \"A\") else\n              \"hydrogen\" if element in (\"H\", \"D\") else None)\n    if reason:\n        excluded[reason] += 1\n        continue\n    assert element in (\"C\", \"N\", \"O\", \"S\")\n    atoms.append({\"serial\": int(line[6:11]), \"element\": element,\n                  \"key\": (line[21], int(line[22:26]), line[26].strip(), line[17:20]),\n                  \"xyz\": [float(line[a:b]) for a,b in ((30,38),(38,46),(46,54))],\n                  \"altloc\": line[16]})\nkeys = list(dict.fromkeys(a[\"key\"] for a in atoms))\nauthor = {(x[\"chain\"], x[\"residue_number\"], x[\"insertion_code\"], x[\"residue_name\"]):\n          x[\"area_A2\"] for x in r[\"residues\"]}\nassert len(author) == len(r[\"residues\"]) == 46 and set(author) == set(keys)\nassert all(type(v) in (int,float) and math.isfinite(v) and v >= 0 for v in author.values())\nradii = {\"C\":1.70, \"N\":1.55, \"O\":1.52, \"S\":1.80}\nprobe = 1.4\ncoords = np.array([a[\"xyz\"] for a in atoms], dtype=np.float64)\nexpanded = np.array([radii[a[\"element\"]] + probe for a in atoms])\n# Independent implementation: direct squared-distance occlusion; no Bio import or calls.\n# Golden-angle equal-z midpoint sphere; two 100-point orientations, not final convergence.\ndef baseline(phase):\n    n = 100\n    k = np.arange(n, dtype=np.float64)\n    z = 1 - 2*(k+0.5)/n\n    theta = k*math.pi*(3-math.sqrt(5)) + phase\n    xy = np.sqrt(1-z*z)\n    sphere = np.column_stack((xy*np.cos(theta), xy*np.sin(theta), z))\n    areas = []\n    for i, center in enumerate(coords):\n        neighbors = np.flatnonzero(np.sum((coords-center)**2, axis=1) <\n                                   (expanded + expanded[i])**2)\n        neighbors = neighbors[neighbors != i]\n        surface = center + expanded[i]*sphere\n        d2 = np.sum((surface[:,None,:]-coords[neighbors][None,:,:])**2, axis=2)\n        visible = np.all(d2 > expanded[neighbors][None,:]**2, axis=1)\n        areas.append(float(visible.sum()) * 4*math.pi*expanded[i]**2/n)\n    by_residue = defaultdict(float)\n    for a,area in zip(atoms,areas):\n        by_residue[a[\"key\"]] += area\n    table = [{\"chain\":key[0], \"residue_number\":key[1], \"insertion_code\":key[2],\n              \"residue_name\":key[3], \"baseline_A2\":by_residue[key],\n              \"candidate_A2\":author[key], \"signed_difference_A2\":by_residue[key]-author[key]}\n             for key in keys]\n    total = math.fsum(areas)\n    return {\"n_points\": n, \"phase_radians\":phase, \"total_A2\":total,\n            \"signed_total_difference_A2\":total-r[\"total_A2\"],\n            \"absolute_total_difference_A2\":abs(total-r[\"total_A2\"]),\n            \"relative_difference_denominator_candidate\":abs(total-r[\"total_A2\"])/r[\"total_A2\"],\n            \"maximum_absolute_residue_difference_A2\":max(abs(x[\"signed_difference_A2\"]) for x in table),\n            \"mean_absolute_residue_difference_A2\":math.fsum(abs(x[\"signed_difference_A2\"]) for x in table)/len(table),\n            \"residues\":table}\nruns = [baseline(0.0), baseline(math.pi/7)]\nschema_errors = {}\nfor label,schema in ((\"resultSchemas.sasa\",ctx[\"resultSchemas\"][\"sasa\"]),\n                     (\"task.resultSchema\",ctx[\"task\"][\"resultSchema\"])):\n    Draft7Validator.check_schema(schema)\n    schema_errors[label] = [e.message for e in Draft7Validator(schema).iter_errors(r)]\nsum_plain = sum(author.values())\nsum_precise = math.fsum(author.values())\nresults = {\n    \"inputReceipts\":receipts,\n    \"assigneeAgentId\":ctx[\"task\"][\"assigneeAgentId\"],\n    \"reviewerAgentId\":ctx[\"task\"][\"reviewerAgentId\"],\n    \"schema_errors\":schema_errors,\n    \"source_selection\":{\"models\":1,\"explicit_MODEL_records\":records[\"MODEL\"],\n       \"chain\":\"A\",\"atom_count\":len(atoms),\"residue_count\":len(keys),\n       \"element_counts\":dict(Counter(a[\"element\"] for a in atoms)),\n       \"altloc_counts\":dict(Counter(a[\"altloc\"] for a in atoms)),\n       \"raw_record_counts\":dict(records),\"excluded_coordinate_records\":dict(excluded)},\n    \"candidate_total_A2\":r[\"total_A2\"],\"candidate_n_points\":r[\"n_points\"],\n    \"residue_sum_A2\":sum_plain,\"residue_sum_residual_A2\":sum_plain-r[\"total_A2\"],\n    \"math_fsum_A2\":sum_precise,\"math_fsum_residual_A2\":sum_precise-r[\"total_A2\"],\n    \"reported_sum_check\":r[\"sum_check\"],\n    \"reported_author_versions\":r[\"tool_versions\"],\n    \"baseline_runs\":runs,\n    \"author_source_sha256\":hashlib.sha256(r[\"code\"].encode(\"utf-8\")).hexdigest(),\n    \"author_source_review\":{\n       \"single_100_point_call\":r[\"code\"].count(\"sr.compute(\")==1 and \"N_POINTS = 100\" in r[\"code\"],\n       \"uses_required_Bio_class\":\"from Bio.PDB.SASA import ShrakeRupley\" in r[\"code\"],\n       \"source_embedded\":len(r[\"code\"]),\n       \"historical_execution_independently_observed\":False,\n       \"author_code_rerun\":False,\n       \"rerun_limitation\":\"Biopython is unavailable in both checked local interpreters. Author source was inspected, not executed. Independent NumPy baseline was executed.\",\n       \"producer_context_receipt\":\"Not compared against reviewer context; producer receipts belong to producer run.\"\n    },\n    \"final_convergence\":{\"executed_by_reviewer\":False,\n       \"present_in_candidate\":\"convergence\" in r,\n       \"limitation\":\"Attempt 1 is the planned 100-point pilot. No 1000/5000-point author data; no final convergence ratio can be calculated.\"},\n    \"limitations\":[\n       \"Independent baseline uses exact decimal PDB coordinates parsed to float64; candidate Bio parser precision and implementation may differ.\",\n       \"Both reviewer runs use only 100 sphere points. Rotation is exploratory sensitivity evidence, not 1000/5000-point convergence.\",\n       \"No independent-baseline numerical acceptance tolerance has been invented.\",\n       \"Artifact source and numerical consistency support the reported pilot but do not independently prove historical producer execution or storage immutability.\",\n       \"Geometric accessibility for the frozen conformation only; no biological function, efficacy, irreplaceability or structural-population generalization.\"\n    ]\n}\nversions = {\"python\":platform.python_version(),\"numpy\":np.__version__,\n            \"jsonschema\":importlib.metadata.version(\"jsonschema\"),\n            \"biopython_available\":importlib.util.find_spec(\"Bio\") is not None}\npayload = {\"code\":Path(__file__).read_text(encoding=\"utf-8\"), \"toolVersions\":versions,\n           \"samplingDetails\":\"100 points: z=1-2(k+0.5)/100; theta=k*pi*(3-sqrt(5))+phase, phases 0 and pi/7. Each atom surface radius=element radius+1.4 A. A point is exposed only if outside every other expanded atom sphere. Area=4*pi*R^2*exposed/100. Explicit fixed-column parsing and direct NumPy occlusion; no Bio.PDB calls.\",\n           \"results\":results}\nwith (base/\"review-reproduction.json\").open(\"w\",encoding=\"utf-8\") as f:\n    json.dump(payload,f,ensure_ascii=False,indent=2,allow_nan=False)\nprint(json.dumps({**{k:v for k,v in results.items() if k != \"baseline_runs\"},\n \"baseline_summary\":[{k:v for k,v in x.items() if k!=\"residues\"} for x in runs],\n \"toolVersions\":versions},ensure_ascii=False,indent=2))\n\n",
+      "toolVersions": {
+        "python": "3.12.10",
+        "numpy": "2.5.3",
+        "jsonschema": "4.26.0",
+        "biopython_available": false
+      },
+      "samplingDetails": "100 points: z=1-2(k+0.5)/100; theta=k*pi*(3-sqrt(5))+phase, phases 0 and pi/7. Each atom surface radius=element radius+1.4 A. A point is exposed only if outside every other expanded atom sphere. Area=4*pi*R^2*exposed/100. Explicit fixed-column parsing and direct NumPy occlusion; no Bio.PDB calls.",
+      "results": {
+        "inputReceipts": [
+          {
+            "filename": "context.json",
+            "sha256": "a0ab4cfa8a6047441a7167fd87bea0fc746ac2f81b3a96f817ca6de75bcf5d3f",
+            "size": 18744
+          },
+          {
+            "filename": "sasa.json",
+            "sha256": "4c0d0970b9c0dc0b24e5e41116424bbf9547072e95a2ab371c7446ba1ca44b44",
+            "size": 15242
+          },
+          {
+            "filename": "source-1CRN.pdb",
+            "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+            "size": 49491
+          }
+        ],
+        "assigneeAgentId": "member_node-ba0b6a8b-4e93-46e4-b959-b6566dbd6ad2",
+        "reviewerAgentId": "member_node-0ee7f2e6-16fc-483f-928c-5933b42d7fd7",
+        "schema_errors": {
+          "resultSchemas.sasa": [],
+          "task.resultSchema": []
+        },
+        "source_selection": {
+          "models": 1,
+          "explicit_MODEL_records": 0,
+          "chain": "A",
+          "atom_count": 327,
+          "residue_count": 46,
+          "element_counts": {
+            "N": 55,
+            "C": 202,
+            "O": 64,
+            "S": 6
+          },
+          "altloc_counts": {
+            " ": 327
+          },
+          "raw_record_counts": {
+            "HEADER": 1,
+            "TITLE": 2,
+            "COMPND": 4,
+            "SOURCE": 4,
+            "KEYWDS": 1,
+            "EXPDTA": 1,
+            "AUTHOR": 1,
+            "REVDAT": 9,
+            "JRNL": 8,
+            "REMARK": 225,
+            "DBREF": 1,
+            "SEQRES": 4,
+            "HELIX": 2,
+            "SHEET": 2,
+            "SSBOND": 3,
+            "CRYST1": 1,
+            "ORIGX1": 1,
+            "ORIGX2": 1,
+            "ORIGX3": 1,
+            "SCALE1": 1,
+            "SCALE2": 1,
+            "SCALE3": 1,
+            "ATOM": 327,
+            "TER": 1,
+            "CONECT": 6,
+            "MASTER": 1,
+            "END": 1
+          },
+          "excluded_coordinate_records": {}
+        },
+        "candidate_total_A2": 2975.651128388463,
+        "candidate_n_points": 100,
+        "residue_sum_A2": 2975.651128388463,
+        "residue_sum_residual_A2": 0.0,
+        "math_fsum_A2": 2975.651128388463,
+        "math_fsum_residual_A2": 0.0,
+        "reported_sum_check": {
+          "residue_sum_A2": 2975.651128388463,
+          "total_A2": 2975.651128388463,
+          "residual_A2": 0.0
+        },
+        "reported_author_versions": {
+          "python": "3.12.3",
+          "biopython": "1.84",
+          "method": "Bio.PDB.SASA.ShrakeRupley",
+          "probe_radius_A": 1.4,
+          "n_points": 100,
+          "radii_A": {
+            "C": 1.7,
+            "N": 1.55,
+            "O": 1.52,
+            "S": 1.8
+          }
+        },
+        "baseline_runs": [
+          {
+            "n_points": 100,
+            "phase_radians": 0.0,
+            "total_A2": 2975.6511283884624,
+            "signed_total_difference_A2": -4.547473508864641e-13,
+            "absolute_total_difference_A2": 4.547473508864641e-13,
+            "relative_difference_denominator_candidate": 1.5282280457815084e-16,
+            "maximum_absolute_residue_difference_A2": 4.263256414560601e-14,
+            "mean_absolute_residue_difference_A2": 9.383798086396975e-15,
+            "residues": [
+              {
+                "chain": "A",
+                "residue_number": 1,
+                "insertion_code": "",
+                "residue_name": "THR",
+                "baseline_A2": 75.7486117979952,
+                "candidate_A2": 75.74861179799521,
+                "signed_difference_A2": -1.4210854715202004e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 2,
+                "insertion_code": "",
+                "residue_name": "THR",
+                "baseline_A2": 24.687816310746342,
+                "candidate_A2": 24.687816310746342,
+                "signed_difference_A2": 0.0
+              },
+              {
+                "chain": "A",
+                "residue_number": 3,
+                "insertion_code": "",
+                "residue_name": "CYS",
+                "baseline_A2": 0.0,
+                "candidate_A2": 0.0,
+                "signed_difference_A2": 0.0
+              },
+              {
+                "chain": "A",
+                "residue_number": 4,
+                "insertion_code": "",
+                "residue_name": "CYS",
+                "baseline_A2": 0.0,
+                "candidate_A2": 0.0,
+                "signed_difference_A2": 0.0
+              },
+              {
+                "chain": "A",
+                "residue_number": 5,
+                "insertion_code": "",
+                "residue_name": "PRO",
+                "baseline_A2": 57.38568857849749,
+                "candidate_A2": 57.38568857849751,
+                "signed_difference_A2": -1.4210854715202004e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 6,
+                "insertion_code": "",
+                "residue_name": "SER",
+                "baseline_A2": 48.81401638599574,
+                "candidate_A2": 48.81401638599574,
+                "signed_difference_A2": 0.0
+              },
+              {
+                "chain": "A",
+                "residue_number": 7,
+                "insertion_code": "",
+                "residue_name": "ILE",
+                "baseline_A2": 127.66647146025517,
+                "candidate_A2": 127.66647146025521,
+                "signed_difference_A2": -4.263256414560601e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 8,
+                "insertion_code": "",
+                "residue_name": "VAL",
+                "baseline_A2": 98.9114739019478,
+                "candidate_A2": 98.91147390194783,
+                "signed_difference_A2": -2.842170943040401e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 9,
+                "insertion_code": "",
+                "residue_name": "ALA",
+                "baseline_A2": 7.131729482914188,
+                "candidate_A2": 7.131729482914189,
+                "signed_difference_A2": -8.881784197001252e-16
+              },
+              {
+                "chain": "A",
+                "residue_number": 10,
+                "insertion_code": "",
+                "residue_name": "ARG",
+                "baseline_A2": 51.83439382863942,
+                "candidate_A2": 51.834393828639435,
+                "signed_difference_A2": -1.4210854715202004e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 11,
+                "insertion_code": "",
+                "residue_name": "SER",
+                "baseline_A2": 67.69177124319312,
+                "candidate_A2": 67.69177124319313,
+                "signed_difference_A2": -1.4210854715202004e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 12,
+                "insertion_code": "",
+                "residue_name": "ASN",
+                "baseline_A2": 78.35360785998124,
+                "candidate_A2": 78.35360785998125,
+                "signed_difference_A2": -1.4210854715202004e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 13,
+                "insertion_code": "",
+                "residue_name": "PHE",
+                "baseline_A2": 7.245769296239497,
+                "candidate_A2": 7.245769296239498,
+                "signed_difference_A2": -8.881784197001252e-16
+              },
+              {
+                "chain": "A",
+                "residue_number": 14,
+                "insertion_code": "",
+                "residue_name": "ASN",
+                "baseline_A2": 83.58839343317547,
+                "candidate_A2": 83.58839343317547,
+                "signed_difference_A2": 0.0
+              },
+              {
+                "chain": "A",
+                "residue_number": 15,
+                "insertion_code": "",
+                "residue_name": "VAL",
+                "baseline_A2": 93.65032408320468,
+                "candidate_A2": 93.6503240832047,
+                "signed_difference_A2": -1.4210854715202004e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 16,
+                "insertion_code": "",
+                "residue_name": "CYS",
+                "baseline_A2": 21.026855559665087,
+                "candidate_A2": 21.026855559665087,
+                "signed_difference_A2": 0.0
+              },
+              {
+                "chain": "A",
+                "residue_number": 17,
+                "insertion_code": "",
+                "residue_name": "ARG",
+                "baseline_A2": 88.84020643855214,
+                "candidate_A2": 88.84020643855214,
+                "signed_difference_A2": 0.0
+              },
+              {
+                "chain": "A",
+                "residue_number": 18,
+                "insertion_code": "",
+                "residue_name": "LEU",
+                "baseline_A2": 140.69414097349687,
+                "candidate_A2": 140.69414097349687,
+                "signed_difference_A2": 0.0
+              },
+              {
+                "chain": "A",
+                "residue_number": 19,
+                "insertion_code": "",
+                "residue_name": "PRO",
+                "baseline_A2": 108.75113058855025,
+                "candidate_A2": 108.75113058855027,
+                "signed_difference_A2": -1.4210854715202004e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 20,
+                "insertion_code": "",
+                "residue_name": "GLY",
+                "baseline_A2": 48.3876142983093,
+                "candidate_A2": 48.3876142983093,
+                "signed_difference_A2": 0.0
+              },
+              {
+                "chain": "A",
+                "residue_number": 21,
+                "insertion_code": "",
+                "residue_name": "THR",
+                "baseline_A2": 36.48752522029407,
+                "candidate_A2": 36.487525220294074,
+                "signed_difference_A2": -7.105427357601002e-15
+              },
+              {
+                "chain": "A",
+                "residue_number": 22,
+                "insertion_code": "",
+                "residue_name": "PRO",
+                "baseline_A2": 78.49583404259454,
+                "candidate_A2": 78.49583404259457,
+                "signed_difference_A2": -2.842170943040401e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 23,
+                "insertion_code": "",
+                "residue_name": "GLU",
+                "baseline_A2": 68.97425732898277,
+                "candidate_A2": 68.97425732898279,
+                "signed_difference_A2": -1.4210854715202004e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 24,
+                "insertion_code": "",
+                "residue_name": "ALA",
+                "baseline_A2": 61.75157245556184,
+                "candidate_A2": 61.751572455561856,
+                "signed_difference_A2": -1.4210854715202004e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 25,
+                "insertion_code": "",
+                "residue_name": "ILE",
+                "baseline_A2": 96.61025728319329,
+                "candidate_A2": 96.6102572831933,
+                "signed_difference_A2": -1.4210854715202004e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 26,
+                "insertion_code": "",
+                "residue_name": "CYS",
+                "baseline_A2": 0.0,
+                "candidate_A2": 0.0,
+                "signed_difference_A2": 0.0
+              },
+              {
+                "chain": "A",
+                "residue_number": 27,
+                "insertion_code": "",
+                "residue_name": "ALA",
+                "baseline_A2": 9.524856536342133,
+                "candidate_A2": 9.524856536342135,
+                "signed_difference_A2": -1.7763568394002505e-15
+              },
+              {
+                "chain": "A",
+                "residue_number": 28,
+                "insertion_code": "",
+                "residue_name": "THR",
+                "baseline_A2": 122.95243628532,
+                "candidate_A2": 122.95243628532003,
+                "signed_difference_A2": -2.842170943040401e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 29,
+                "insertion_code": "",
+                "residue_name": "TYR",
+                "baseline_A2": 156.71234279917314,
+                "candidate_A2": 156.71234279917314,
+                "signed_difference_A2": 0.0
+              },
+              {
+                "chain": "A",
+                "residue_number": 30,
+                "insertion_code": "",
+                "residue_name": "THR",
+                "baseline_A2": 27.60349075343118,
+                "candidate_A2": 27.60349075343118,
+                "signed_difference_A2": 0.0
+              },
+              {
+                "chain": "A",
+                "residue_number": 31,
+                "insertion_code": "",
+                "residue_name": "GLY",
+                "baseline_A2": 35.02545313205461,
+                "candidate_A2": 35.025453132054615,
+                "signed_difference_A2": -7.105427357601002e-15
+              },
+              {
+                "chain": "A",
+                "residue_number": 32,
+                "insertion_code": "",
+                "residue_name": "CYS",
+                "baseline_A2": 8.571672192501762,
+                "candidate_A2": 8.571672192501763,
+                "signed_difference_A2": -1.7763568394002505e-15
+              },
+              {
+                "chain": "A",
+                "residue_number": 33,
+                "insertion_code": "",
+                "residue_name": "ILE",
+                "baseline_A2": 54.20710052981903,
+                "candidate_A2": 54.20710052981904,
+                "signed_difference_A2": -7.105427357601002e-15
+              },
+              {
+                "chain": "A",
+                "residue_number": 34,
+                "insertion_code": "",
+                "residue_name": "ILE",
+                "baseline_A2": 79.19361947006868,
+                "candidate_A2": 79.1936194700687,
+                "signed_difference_A2": -1.4210854715202004e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 35,
+                "insertion_code": "",
+                "residue_name": "ILE",
+                "baseline_A2": 40.51468257744837,
+                "candidate_A2": 40.514682577448376,
+                "signed_difference_A2": -7.105427357601002e-15
+              },
+              {
+                "chain": "A",
+                "residue_number": 36,
+                "insertion_code": "",
+                "residue_name": "PRO",
+                "baseline_A2": 138.00654615746265,
+                "candidate_A2": 138.00654615746265,
+                "signed_difference_A2": 0.0
+              },
+              {
+                "chain": "A",
+                "residue_number": 37,
+                "insertion_code": "",
+                "residue_name": "GLY",
+                "baseline_A2": 35.77268722789624,
+                "candidate_A2": 35.772687227896256,
+                "signed_difference_A2": -1.4210854715202004e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 38,
+                "insertion_code": "",
+                "residue_name": "ALA",
+                "baseline_A2": 85.25388992892016,
+                "candidate_A2": 85.25388992892016,
+                "signed_difference_A2": 0.0
+              },
+              {
+                "chain": "A",
+                "residue_number": 39,
+                "insertion_code": "",
+                "residue_name": "THR",
+                "baseline_A2": 122.04351069878342,
+                "candidate_A2": 122.04351069878344,
+                "signed_difference_A2": -1.4210854715202004e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 40,
+                "insertion_code": "",
+                "residue_name": "CYS",
+                "baseline_A2": 50.71290808316095,
+                "candidate_A2": 50.712908083160954,
+                "signed_difference_A2": -7.105427357601002e-15
+              },
+              {
+                "chain": "A",
+                "residue_number": 41,
+                "insertion_code": "",
+                "residue_name": "PRO",
+                "baseline_A2": 50.584215881699286,
+                "candidate_A2": 50.58421588169929,
+                "signed_difference_A2": -7.105427357601002e-15
+              },
+              {
+                "chain": "A",
+                "residue_number": 42,
+                "insertion_code": "",
+                "residue_name": "GLY",
+                "baseline_A2": 76.29668148596986,
+                "candidate_A2": 76.29668148596987,
+                "signed_difference_A2": -1.4210854715202004e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 43,
+                "insertion_code": "",
+                "residue_name": "ASP",
+                "baseline_A2": 107.42003778122427,
+                "candidate_A2": 107.4200377812243,
+                "signed_difference_A2": -2.842170943040401e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 44,
+                "insertion_code": "",
+                "residue_name": "TYR",
+                "baseline_A2": 61.771904843215886,
+                "candidate_A2": 61.771904843215886,
+                "signed_difference_A2": 0.0
+              },
+              {
+                "chain": "A",
+                "residue_number": 45,
+                "insertion_code": "",
+                "residue_name": "ALA",
+                "baseline_A2": 74.02438008599897,
+                "candidate_A2": 74.02438008599898,
+                "signed_difference_A2": -1.4210854715202004e-14
+              },
+              {
+                "chain": "A",
+                "residue_number": 46,
+                "insertion_code": "",
+                "residue_name": "ASN",
+                "baseline_A2": 66.72925008598628,
+                "candidate_A2": 66.7292500859863,
+                "signed_difference_A2": -1.4210854715202004e-14
+              }
+            ]
+          },
+          {
+            "n_points": 100,
+            "phase_radians": 0.4487989505128276,
+            "total_A2": 2963.236999354096,
+            "signed_total_difference_A2": -12.414129034366852,
+            "absolute_total_difference_A2": 12.414129034366852,
+            "relative_difference_denominator_candidate": 0.004171903391473861,
+            "maximum_absolute_residue_difference_A2": 12.875402800507459,
+            "mean_absolute_residue_difference_A2": 2.8180017807207967,
+            "residues": [
+              {
+                "chain": "A",
+                "residue_number": 1,
+                "insertion_code": "",
+                "residue_name": "THR",
+                "baseline_A2": 66.4518348883037,
+                "candidate_A2": 75.74861179799521,
+                "signed_difference_A2": -9.296776909691516
+              },
+              {
+                "chain": "A",
+                "residue_number": 2,
+                "insertion_code": "",
+                "residue_name": "THR",
+                "baseline_A2": 27.011162308152752,
+                "candidate_A2": 24.687816310746342,
+                "signed_difference_A2": 2.3233459974064097
+              },
+              {
+                "chain": "A",
+                "residue_number": 3,
+                "insertion_code": "",
+                "residue_name": "CYS",
+                "baseline_A2": 0.0,
+                "candidate_A2": 0.0,
+                "signed_difference_A2": 0.0
+              },
+              {
+                "chain": "A",
+                "residue_number": 4,
+                "insertion_code": "",
+                "residue_name": "CYS",
+                "baseline_A2": 0.0,
+                "candidate_A2": 0.0,
+                "signed_difference_A2": 0.0
+              },
+              {
+                "chain": "A",
+                "residue_number": 5,
+                "insertion_code": "",
+                "residue_name": "PRO",
+                "baseline_A2": 55.10660133839486,
+                "candidate_A2": 57.38568857849751,
+                "signed_difference_A2": -2.2790872401026476
+              },
+              {
+                "chain": "A",
+                "residue_number": 6,
+                "insertion_code": "",
+                "residue_name": "SER",
+                "baseline_A2": 46.3987599539159,
+                "candidate_A2": 48.81401638599574,
+                "signed_difference_A2": -2.4152564320798433
+              },
+              {
+                "chain": "A",
+                "residue_number": 7,
+                "insertion_code": "",
+                "residue_name": "ILE",
+                "baseline_A2": 118.11948554526117,
+                "candidate_A2": 127.66647146025521,
+                "signed_difference_A2": -9.546985914994039
+              },
+              {
+                "chain": "A",
+                "residue_number": 8,
+                "insertion_code": "",
+                "residue_name": "VAL",
+                "baseline_A2": 96.49621746986799,
+                "candidate_A2": 98.91147390194783,
+                "signed_difference_A2": -2.4152564320798433
+              },
+              {
+                "chain": "A",
+                "residue_number": 9,
+                "insertion_code": "",
+                "residue_name": "ALA",
+                "baseline_A2": 7.245769296239496,
+                "candidate_A2": 7.131729482914189,
+                "signed_difference_A2": 0.11403981332530755
+              },
+              {
+                "chain": "A",
+                "residue_number": 10,
+                "insertion_code": "",
+                "residue_name": "ARG",
+                "baseline_A2": 54.47772988736987,
+                "candidate_A2": 51.834393828639435,
+                "signed_difference_A2": 2.6433360587304335
+              },
+              {
+                "chain": "A",
+                "residue_number": 11,
+                "insertion_code": "",
+                "residue_name": "SER",
+                "baseline_A2": 60.58217113893081,
+                "candidate_A2": 67.69177124319313,
+                "signed_difference_A2": -7.10960010426232
+              },
+              {
+                "chain": "A",
+                "residue_number": 12,
+                "insertion_code": "",
+                "residue_name": "ASN",
+                "baseline_A2": 79.81144508132367,
+                "candidate_A2": 78.35360785998125,
+                "signed_difference_A2": 1.457837221342416
+              },
+              {
+                "chain": "A",
+                "residue_number": 13,
+                "insertion_code": "",
+                "residue_name": "PHE",
+                "baseline_A2": 7.245769296239497,
+                "candidate_A2": 7.245769296239498,
+                "signed_difference_A2": -8.881784197001252e-16
+              },
+              {
+                "chain": "A",
+                "residue_number": 14,
+                "insertion_code": "",
+                "residue_name": "ASN",
+                "baseline_A2": 87.14149702527368,
+                "candidate_A2": 83.58839343317547,
+                "signed_difference_A2": 3.5531035920982106
+              },
+              {
+                "chain": "A",
+                "residue_number": 15,
+                "insertion_code": "",
+                "residue_name": "VAL",
+                "baseline_A2": 96.20174970726171,
+                "candidate_A2": 93.6503240832047,
+                "signed_difference_A2": 2.5514256240570177
+              },
+              {
+                "chain": "A",
+                "residue_number": 16,
+                "insertion_code": "",
+                "residue_name": "CYS",
+                "baseline_A2": 20.912815746339774,
+                "candidate_A2": 21.026855559665087,
+                "signed_difference_A2": -0.11403981332531288
+              },
+              {
+                "chain": "A",
+                "residue_number": 17,
+                "insertion_code": "",
+                "residue_name": "ARG",
+                "baseline_A2": 93.55667948938648,
+                "candidate_A2": 88.84020643855214,
+                "signed_difference_A2": 4.716473050834338
+              },
+              {
+                "chain": "A",
+                "residue_number": 18,
+                "insertion_code": "",
+                "residue_name": "LEU",
+                "baseline_A2": 140.83031016547406,
+                "candidate_A2": 140.69414097349687,
+                "signed_difference_A2": 0.13616919197718858
+              },
+              {
+                "chain": "A",
+                "residue_number": 19,
+                "insertion_code": "",
+                "residue_name": "PRO",
+                "baseline_A2": 113.44547426073272,
+                "candidate_A2": 108.75113058855027,
+                "signed_difference_A2": 4.694343672182455
+              },
+              {
+                "chain": "A",
+                "residue_number": 20,
+                "insertion_code": "",
+                "residue_name": "GLY",
+                "baseline_A2": 47.45232446622378,
+                "candidate_A2": 48.3876142983093,
+                "signed_difference_A2": -0.9352898320855232
+              },
+              {
+                "chain": "A",
+                "residue_number": 21,
+                "insertion_code": "",
+                "residue_name": "THR",
+                "baseline_A2": 36.48752522029407,
+                "candidate_A2": 36.487525220294074,
+                "signed_difference_A2": -7.105427357601002e-15
+              },
+              {
+                "chain": "A",
+                "residue_number": 22,
+                "insertion_code": "",
+                "residue_name": "PRO",
+                "baseline_A2": 79.70346225863446,
+                "candidate_A2": 78.49583404259457,
+                "signed_difference_A2": 1.2076282160398932
+              },
+              {
+                "chain": "A",
+                "residue_number": 23,
+                "insertion_code": "",
+                "residue_name": "GLU",
+                "baseline_A2": 66.71729946753203,
+                "candidate_A2": 68.97425732898279,
+                "signed_difference_A2": -2.2569578614507577
+              },
+              {
+                "chain": "A",
+                "residue_number": 24,
+                "insertion_code": "",
+                "residue_name": "ALA",
+                "baseline_A2": 57.05722878337938,
+                "candidate_A2": 61.751572455561856,
+                "signed_difference_A2": -4.694343672182477
+              },
+              {
+                "chain": "A",
+                "residue_number": 25,
+                "insertion_code": "",
+                "residue_name": "ILE",
+                "baseline_A2": 99.02551371527312,
+                "candidate_A2": 96.6102572831933,
+                "signed_difference_A2": 2.415256432079815
+              },
+              {
+                "chain": "A",
+                "residue_number": 26,
+                "insertion_code": "",
+                "residue_name": "CYS",
+                "baseline_A2": 0.0,
+                "candidate_A2": 0.0,
+                "signed_difference_A2": 0.0
+              },
+              {
+                "chain": "A",
+                "residue_number": 27,
+                "insertion_code": "",
+                "residue_name": "ALA",
+                "baseline_A2": 13.011571992484686,
+                "candidate_A2": 9.524856536342135,
+                "signed_difference_A2": 3.4867154561425515
+              },
+              {
+                "chain": "A",
+                "residue_number": 28,
+                "insertion_code": "",
+                "residue_name": "THR",
+                "baseline_A2": 116.1151745650121,
+                "candidate_A2": 122.95243628532003,
+                "signed_difference_A2": -6.837261720307936
+              },
+              {
+                "chain": "A",
+                "residue_number": 29,
+                "insertion_code": "",
+                "residue_name": "TYR",
+                "baseline_A2": 169.5877455996806,
+                "candidate_A2": 156.71234279917314,
+                "signed_difference_A2": 12.875402800507459
+              },
+              {
+                "chain": "A",
+                "residue_number": 30,
+                "insertion_code": "",
+                "residue_name": "THR",
+                "baseline_A2": 27.739659945408377,
+                "candidate_A2": 27.60349075343118,
+                "signed_difference_A2": 0.13616919197719568
+              },
+              {
+                "chain": "A",
+                "residue_number": 31,
+                "insertion_code": "",
+                "residue_name": "GLY",
+                "baseline_A2": 34.11229267862097,
+                "candidate_A2": 35.025453132054615,
+                "signed_difference_A2": -0.9131604534336475
+              },
+              {
+                "chain": "A",
+                "residue_number": 32,
+                "insertion_code": "",
+                "residue_name": "CYS",
+                "baseline_A2": 6.428754144376322,
+                "candidate_A2": 8.571672192501763,
+                "signed_difference_A2": -2.1429180481254413
+              },
+              {
+                "chain": "A",
+                "residue_number": 33,
+                "insertion_code": "",
+                "residue_name": "ILE",
+                "baseline_A2": 49.51275685763656,
+                "candidate_A2": 54.20710052981904,
+                "signed_difference_A2": -4.694343672182477
+              },
+              {
+                "chain": "A",
+                "residue_number": 34,
+                "insertion_code": "",
+                "residue_name": "ILE",
+                "baseline_A2": 80.37911830745671,
+                "candidate_A2": 79.1936194700687,
+                "signed_difference_A2": 1.1854988373880104
+              },
+              {
+                "chain": "A",
+                "residue_number": 35,
+                "insertion_code": "",
+                "residue_name": "ILE",
+                "baseline_A2": 36.89179792932862,
+                "candidate_A2": 40.514682577448376,
+                "signed_difference_A2": -3.622884648119758
+              },
+              {
+                "chain": "A",
+                "residue_number": 36,
+                "insertion_code": "",
+                "residue_name": "PRO",
+                "baseline_A2": 142.5647206376679,
+                "candidate_A2": 138.00654615746265,
+                "signed_difference_A2": 4.558174480205253
+              },
+              {
+                "chain": "A",
+                "residue_number": 37,
+                "insertion_code": "",
+                "residue_name": "GLY",
+                "baseline_A2": 39.237273305386914,
+                "candidate_A2": 35.772687227896256,
+                "signed_difference_A2": 3.464586077490658
+              },
+              {
+                "chain": "A",
+                "residue_number": 38,
+                "insertion_code": "",
+                "residue_name": "ALA",
+                "baseline_A2": 83.24714107277191,
+                "candidate_A2": 85.25388992892016,
+                "signed_difference_A2": -2.006748856148249
+              },
+              {
+                "chain": "A",
+                "residue_number": 39,
+                "insertion_code": "",
+                "residue_name": "THR",
+                "baseline_A2": 117.48533621857814,
+                "candidate_A2": 122.04351069878344,
+                "signed_difference_A2": -4.558174480205295
+              },
+              {
+                "chain": "A",
+                "residue_number": 40,
+                "insertion_code": "",
+                "residue_name": "CYS",
+                "baseline_A2": 48.196354137558764,
+                "candidate_A2": 50.712908083160954,
+                "signed_difference_A2": -2.5165539456021904
+              },
+              {
+                "chain": "A",
+                "residue_number": 41,
+                "insertion_code": "",
+                "residue_name": "PRO",
+                "baseline_A2": 52.86330312180192,
+                "candidate_A2": 50.58421588169929,
+                "signed_difference_A2": 2.2790872401026263
+              },
+              {
+                "chain": "A",
+                "residue_number": 42,
+                "insertion_code": "",
+                "residue_name": "GLY",
+                "baseline_A2": 75.93243266734206,
+                "candidate_A2": 76.29668148596987,
+                "signed_difference_A2": -0.36424881862781433
+              },
+              {
+                "chain": "A",
+                "residue_number": 43,
+                "insertion_code": "",
+                "residue_name": "ASP",
+                "baseline_A2": 105.11882116246974,
+                "candidate_A2": 107.4200377812243,
+                "signed_difference_A2": -2.3012166187545517
+              },
+              {
+                "chain": "A",
+                "residue_number": 44,
+                "insertion_code": "",
+                "residue_name": "TYR",
+                "baseline_A2": 64.32333046727291,
+                "candidate_A2": 61.771904843215886,
+                "signed_difference_A2": 2.5514256240570248
+              },
+              {
+                "chain": "A",
+                "residue_number": 45,
+                "insertion_code": "",
+                "residue_name": "ALA",
+                "baseline_A2": 75.0737097314098,
+                "candidate_A2": 74.02438008599898,
+                "signed_difference_A2": 1.0493296454108219
+              },
+              {
+                "chain": "A",
+                "residue_number": 46,
+                "insertion_code": "",
+                "residue_name": "ASN",
+                "baseline_A2": 67.9368783020262,
+                "candidate_A2": 66.7292500859863,
+                "signed_difference_A2": 1.2076282160399074
+              }
+            ]
+          }
+        ],
+        "author_source_sha256": "463fd476783c2e364e3f2748bb64a167fb2a66366e09c696b4a1bb0103095f8a",
+        "author_source_review": {
+          "single_100_point_call": true,
+          "uses_required_Bio_class": true,
+          "source_embedded": 4891,
+          "historical_execution_independently_observed": false,
+          "author_code_rerun": false,
+          "rerun_limitation": "Biopython is unavailable in both checked local interpreters. Author source was inspected, not executed. Independent NumPy baseline was executed.",
+          "producer_context_receipt": "Not compared against reviewer context; producer receipts belong to producer run."
+        },
+        "final_convergence": {
+          "executed_by_reviewer": false,
+          "present_in_candidate": false,
+          "limitation": "Attempt 1 is the planned 100-point pilot. No 1000/5000-point author data; no final convergence ratio can be calculated."
+        },
+        "limitations": [
+          "Independent baseline uses exact decimal PDB coordinates parsed to float64; candidate Bio parser precision and implementation may differ.",
+          "Both reviewer runs use only 100 sphere points. Rotation is exploratory sensitivity evidence, not 1000/5000-point convergence.",
+          "No independent-baseline numerical acceptance tolerance has been invented.",
+          "Artifact source and numerical consistency support the reported pilot but do not independently prove historical producer execution or storage immutability.",
+          "Geometric accessibility for the frozen conformation only; no biological function, efficacy, irreplaceability or structural-population generalization."
+        ]
+      }
+    }
+  }
+}

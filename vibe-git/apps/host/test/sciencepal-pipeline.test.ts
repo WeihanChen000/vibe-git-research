@@ -552,3 +552,36 @@ describe("operator research drift constraints",()=>{
   expect(done.runs.find(r=>r.id===bad.id)?.resultValidation?.status).toBe("FAILED");
  });
 });
+
+it('keeps bounded review checks while allowing complete reproducibility material in the frozen raw result',()=>{
+ const base={verdict:'request_changes',summary:'Method refinement needed',checks:[{criterion:'check',passed:false,evidence:'sasa.json: 100 point pilot; convergence not yet measured'}],requiredChanges:['Run convergence comparison'],reproduction:{code:'print(1)\n'.repeat(1000),toolVersions:{Python:'3.12'},results:{points:100}}};
+ expect(reviewResult(base,['check'],'sasa.json').verdict).toBe('request_changes');
+ expect(()=>reviewResult({...base,checks:[{...base.checks[0],evidence:'sasa.json '+base.reproduction.code}]},['check'],'sasa.json')).toThrow('3000');
+});
+
+
+describe("downstream approval proof",()=>{
+ it("carries original approved review bytes bound to the exact upstream artifact",async()=>{
+  const s=await setup();await publish(s);const done=await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");
+  const task=done.tasks[0]!,review=done.runs.find(r=>r.id===task.reviewId)!;
+  const upstream=s.pipeline.file(s.id,task.artifactId!);
+  for(const call of s.remote.calls.filter(c=>c.context.task?.key==="analysis")){
+   const proof=call.context.upstream[0].approval;expect(proof).toBeDefined();
+   expect(proof.verdict).toBe("approve");expect(proof.reviewerAgentId).toBe(task.reviewerAgentId);
+   expect(proof.reviewedArtifact).toMatchObject({id:upstream.id,sha256:upstream.sha256,size:upstream.size});
+   const raw=Buffer.from(proof.reviewFileUtf8,"utf8");expect(hash(raw)).toBe(review.output!.sha256);
+   expect(raw.length).toBe(review.output!.size);expect(JSON.parse(raw.toString()).result.verdict).toBe("approve");
+  }
+ });
+ it.each(["corrupt-review","wrong-byte-binding","self-review"])("blocks %s approval proof before a new downstream dispatch",async fault=>{
+  const s=await setup();await publish(s);const p=await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");
+  const upstream=p.tasks[0]!,review=p.runs.find(r=>r.id===upstream.reviewId)!;
+  if(fault==="corrupt-review")s.db.prepare("UPDATE sciencepal_pipeline_files SET bytes=? WHERE id=?").run(Buffer.from("changed"),review.output!.id);
+  if(fault==="wrong-byte-binding")review.inputs.find(i=>i.artifactId===upstream.artifactId)!.sha256="0".repeat(64);
+  if(fault==="self-review")review.agent=p.runs.find(r=>r.id===upstream.executionId)!.agent;
+  p.tasks[1]!.status="WAITING";p.phase="EXECUTING";
+  s.db.prepare("UPDATE sciencepal_projects SET data=? WHERE id=?").run(JSON.stringify(p),p.id);
+  const count=p.runs.length;await s.pipeline.tick();const after=s.pipeline.get(p.id);
+  expect(after.phase).toBe("BLOCKED");expect(after.runs).toHaveLength(count);
+ });
+});

@@ -1,0 +1,113 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "7bda4c220c9162af79c676a132a0e4d6230beb52dfdc0a60872a93576465ce74",
+      "size": 125325
+    },
+    {
+      "filename": "source-1CRN.pdb",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    },
+    {
+      "filename": "synthesis.json",
+      "sha256": "c4bc82aae31595aa4d4b9edecfc09babdd09765dffd548422342b23816e91d3c",
+      "size": 51946
+    },
+    {
+      "filename": "sasa.json",
+      "sha256": "bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2",
+      "size": 50482
+    }
+  ],
+  "result": {
+    "verdict": "approve",
+    "summary": "Approve the synthesis.json candidate after all six frozen acceptance criteria pass. The candidate correctly confirms the upstream sasa scientific approval (verdict=approve, reviewer member_node-0ee7f2e6-16fc-483f-928c-5933b42d7fd7, reviewRunId 39423245-71fb-4dbf-8dcb-44fb4a08018b) by hashing reviewFileUtf8 against reviewArtifact (sha256 2e7a10ea2fa5ffda0d911bd8ea4d971c2b55d11920179657e219b720daabdc61, 91906 bytes) and verifying the upstream receipt for sasa.json (bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2, 50482 bytes). Independent PDB parsing confirms 327 heavy ATOM records, 46 residues, C=202, N=55, O=64, S=6, with no excluded record types. Independent residue-area sums equal reported totals with 0.0 A2 residuals at both 1000 and 5000 points. Convergence ratio 0.001114174357408299 <= 0.02 passes. Residue-level interpretation (top 5, zero-sampled, lowest positive, max difference PRO A19) verified against actual residue rows. Summary provides substantive geometric accessibility interpretation with limitations disclosed and no biological-function claims. Schema validation passes with 0 errors. No numerical discrepancies found.",
+    "checks": [
+      {
+        "criterion": "Confirm final sasa scientific approval before execution, consume the actual approved sasa.json through the HARD dependency, and set upstream_sha256 to SHA256 of its original complete file bytes; set source_sha256 from the unchanged frozen PDB. Do not compare producer context receipts with a different consumer context.",
+        "passed": true,
+        "evidence": "synthesis.json result.upstream_sha256=bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2 matches the actual sasa.json bytes (50482 bytes). result.source_sha256=42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811 matches the actual source-1CRN.pdb bytes (49491 bytes). result.approval_gate confirms verdict=approve, reviewerAgentId=member_node-0ee7f2e6-16fc-483f-928c-5933b42d7fd7, reviewRunId=39423245-71fb-4dbf-8dcb-44fb4a08018b. Recomputed reviewFileUtf8 sha256=2e7a10ea2fa5ffda0d911bd8ea4d971c2b55d11920179657e219b720daabdc61 matches reviewArtifact sha256 and size 91906. All 7 transported review checks passed, requiredChanges empty. The embedded code explicitly states 'Never execute embedded upstream/reviewer source, or compare their context receipts to our context.' Producer context receipts are not compared to this run's distinct context.json.",
+        "requiredChanges": []
+      },
+      {
+        "criterion": "Independently execute verification of source/selection counts and approved residue-area sums against reported totals; embed full executed source in code and actual tool_versions plus numeric verification residuals/results in schema-permitted evidence fields.",
+        "passed": true,
+        "evidence": "synthesis.json result.selection_verification reports atom_count=327, residue_count=46, element_counts C=202/N=55/O=64/S=6, ATOM_records=327, HETATM_records=0, all matching my independent fixed-column PDB parsing. result.sum_verification reports independent_residue_sum_A2=2967.616530309648 and fsum=2967.616530309648 for 1000 points (residual 0.0), and 2970.9266606126434 for 5000 points (residual 0.0). I independently recomputed sum(area_A2)=2967.616530309648 and sum(area_A2_n5000)=2970.9266606126434, both matching reported totals with 0.0 residuals. result.code (18421 chars) parses as valid Python and contains the full independent verification logic (PDB parsing, sum checks, convergence, approval gate). result.tool_versions reports python 3.12.10, jsonschema 4.26.0. Full verification code and numeric residuals are in result.code and result.sum_verification.",
+        "requiredChanges": []
+      },
+      {
+        "criterion": "Preserve method literal Shrake-Rupley, numeric probe_radius_A=1.4, frozen element radii, A2 area units, primary sample count and actual 1000/5000 convergence evidence; verify them against approved upstream content.",
+        "passed": true,
+        "evidence": "synthesis.json result.method='Shrake-Rupley' (exact literal), result.probe_radius_A=1.4 (numeric float), result.radii_A={'C':1.7,'N':1.55,'O':1.52,'S':1.8}, result.units='coordinates Angstrom; areas square Angstrom (A2)', result.n_points=1000, result.comparison_n_points=5000. result.convergence reports total_1000_A2=2967.616530309648, total_5000_A2=2970.9266606126434, absolute_difference_A2=3.310130302995276, relative_difference=0.001114174357408299 (0.111417436%), threshold=0.02, passes=true. I independently recomputed ratio=abs(2967.616530309648-2970.9266606126434)/2970.9266606126434=0.001114174357408299, matching exactly. All values verified against approved upstream sasa.json content (total_A2=2967.616530309648, n_points=1000, radii, method).",
+        "requiredChanges": []
+      },
+      {
+        "criterion": "Provide a substantive summary with evidence-based total and residue-level geometric accessibility interpretation traceable to numeric upstream areas; disclose sampling/convergence and single-structure limitations and avoid activity, clinical efficacy, irreplacability or biological-function claims.",
+        "passed": true,
+        "evidence": "synthesis.json result.summary (1480 chars) provides total 2967.616530310 A2 at 1000 points, 2970.926660613 A2 at 5000 points, convergence ratio 0.001114174357408, and residue-level interpretation: top 5 areas (TYR A29=167.378956, LEU A18=141.673860, PRO A36=140.638731, ILE A7=122.079806, THR A28=118.663021 A2), zero-sampled CYS A3/A4/A26, lowest positive ALA A9=6.279667, CYS A32=6.348842, PHE A13=7.849583 A2, max residue change PRO A19=1.183134600 A2. I verified all these values against the actual residue rows in result.residues. Summary discloses finite-sampling and single-structure limitations and explicitly states 'no activity, clinical efficacy, irreplaceability or generalization beyond this single structure'. result.residue_interpretation provides ranking_basis='Primary absolute SASA A2; no normalization or functional inference'.",
+        "requiredChanges": []
+      },
+      {
+        "criterion": "Biology reviewer independently recalculates sums/counts and checks original upstream/source hashes, reports numerical discrepancies with actual executed code/tool versions in permitted review evidence, and separately assesses scientific interpretation and limitations.",
+        "passed": true,
+        "evidence": "This review independently parsed source-1CRN.pdb (sha256=42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811, 49491 bytes) finding 327 heavy ATOM, 46 residues, C=202/N=55/O=64/S=6, no excluded records. Independently recomputed sum(area_A2)=2967.616530309648 and sum(area_A2_n5000)=2970.9266606126434 from synthesis.json result.residues, both matching reported totals with 0.0 residuals. Convergence ratio recomputed as 0.001114174357408299 <= 0.02, matching synthesis.json result.convergence.relative_difference. Verified upstream sasa.json sha256=bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2 (50482 bytes) matches synthesis.json result.upstream_sha256. Verified reviewFileUtf8 hash matches reviewArtifact. No numerical discrepancies found. Reviewer tool versions: python 3.12.10, jsonschema 4.26.0. Scientific interpretation (residue-level geometric accessibility) and limitations (single structure, finite sampling, no functional claims) in synthesis.json assessed as appropriate and correctly bounded.",
+        "requiredChanges": []
+      },
+      {
+        "criterion": "Deliver a schema-valid synthesis RESULT with required source_sha256, method, probe_radius_A, summary, upstream_sha256 and code, preserving exact types/length constraints; passing schema or execution checks alone does not establish scientific approval.",
+        "passed": true,
+        "evidence": "synthesis.json result passes Draft-07 schema validation with 0 errors. Required fields present with correct types: source_sha256 (string, 64 chars), method (string, 'Shrake-Rupley'), probe_radius_A (number/float, 1.4), summary (string, 1480 chars >= 30), upstream_sha256 (string, 64 chars), code (string, 18421 chars >= 30). additionalProperties=true allows the extra evidence fields. The scientific content (counts, sums, convergence, residue interpretation) was independently verified and is scientifically sound; schema validity alone was not used as the basis for approval.",
+        "requiredChanges": []
+      }
+    ],
+    "requiredChanges": [],
+    "reproduction": {
+      "code": "import json, hashlib, math\nfrom collections import Counter\n\n# Compute receipts from real file bytes\nfiles = ['context.json', 'source-1CRN.pdb', 'synthesis.json', 'sasa.json']\nreceipts = {}\nfor fn in files:\n    with open(fn, 'rb') as f:\n        data = f.read()\n    receipts[fn] = {'sha256': hashlib.sha256(data).hexdigest(), 'size': len(data)}\n\n# Independent PDB parsing\nwith open('source-1CRN.pdb', 'rb') as f:\n    pdb_bytes = f.read()\nlines = pdb_bytes.decode('utf-8').splitlines()\nrecords = Counter(line[:6].strip() for line in lines)\nradii = {'C': 1.70, 'N': 1.55, 'O': 1.52, 'S': 1.80}\natoms = []\nfor line in lines:\n    record = line[:6].strip()\n    if record not in ('ATOM', 'HETATM'):\n        continue\n    element = line[76:78].strip().upper()\n    if record == 'HETATM' or line[21] != 'A' or line[16] not in (' ', 'A') or element in ('H', 'D'):\n        continue\n    key = (line[21], int(line[22:26]), line[26].strip(), line[17:20].strip())\n    atoms.append((key, element))\nresidue_keys = set(a[0] for a in atoms)\nelem_counts = Counter(a[1] for a in atoms)\nprint('ATOM:', records['ATOM'], 'HETATM:', records['HETATM'])\nprint('Selected atoms:', len(atoms), 'Residues:', len(residue_keys))\nprint('Elements:', dict(elem_counts))\n\n# Load synthesis and verify sums\nwith open('synthesis.json') as f:\n    syn = json.load(f)\nr = syn['result']\nresidues = r['residues']\nsum_1000 = sum(x['area_A2'] for x in residues)\nsum_5000 = sum(x['area_A2_n5000'] for x in residues)\nprint('Sum 1000:', sum_1000, 'Reported total:', r['total_A2'], 'Residual:', sum_1000 - r['total_A2'])\nprint('Sum 5000:', sum_5000, 'Reported 5000:', r['convergence']['total_5000_A2'], 'Residual:', sum_5000 - r['convergence']['total_5000_A2'])\n\n# Verify convergence\nconv = r['convergence']\nt1000, t5000 = conv['total_1000_A2'], conv['total_5000_A2']\nratio = abs(t1000 - t5000) / t5000\nprint('Ratio:', ratio, 'Reported:', conv['relative_difference'], 'Passes 0.02:', ratio <= 0.02)\n\n# Verify residue keys match PDB\nsyn_keys = set((x['chain'], x['residue_number'], x['insertion_code'], x['residue_name']) for x in residues)\nprint('Residue keys match PDB:', syn_keys == residue_keys)\n\n# Verify approval gate\nwith open('context.json') as f:\n    ctx = json.load(f)\nup = [u for u in ctx['upstream'] if u['key'] == 'sasa'][0]\napproval = up['approval']\nreview_bytes = approval['reviewFileUtf8'].encode('utf-8')\nreview_hash = hashlib.sha256(review_bytes).hexdigest()\nprint('Review hash matches:', review_hash == approval['reviewArtifact']['sha256'])\nprint('Review size matches:', len(review_bytes) == approval['reviewArtifact']['size'])\nreview = json.loads(review_bytes)\nprint('Review verdict:', review['result']['verdict'])\nprint('All checks passed:', all(c['passed'] is True for c in review['result']['checks']))\n\n# Schema validation\nfrom jsonschema import Draft7Validator\nschema = ctx['resultSchemas']['synthesis']\nDraft7Validator.check_schema(schema)\nerrors = list(Draft7Validator(schema).iter_errors(r))\nprint('Schema errors:', len(errors))",
+      "toolVersions": {
+        "python": "3.12.10",
+        "jsonschema": "4.26.0",
+        "hashlib": "standard library",
+        "collections": "standard library"
+      },
+      "results": {
+        "pdb_parsing": {
+          "ATOM_records": 327,
+          "HETATM_records": 0,
+          "selected_atoms": 327,
+          "residues": 46,
+          "element_counts": {
+            "C": 202,
+            "N": 55,
+            "O": 64,
+            "S": 6
+          }
+        },
+        "sum_verification": {
+          "sum_1000_A2": 2967.616530309648,
+          "reported_total_1000_A2": 2967.616530309648,
+          "residual_1000_A2": 0.0,
+          "sum_5000_A2": 2970.9266606126434,
+          "reported_total_5000_A2": 2970.9266606126434,
+          "residual_5000_A2": 0.0
+        },
+        "convergence": {
+          "ratio": 0.001114174357408299,
+          "reported_ratio": 0.001114174357408299,
+          "passes_0_02": true,
+          "absolute_difference_A2": 3.310130302995276
+        },
+        "residue_key_match": true,
+        "approval_gate": {
+          "review_hash_matches": true,
+          "review_size_matches": true,
+          "review_verdict": "approve",
+          "all_checks_passed": true
+        },
+        "schema_errors": 0
+      }
+    }
+  }
+}
