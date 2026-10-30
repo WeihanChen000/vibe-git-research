@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Preserve SciencePAL original evidence bytes on every platform
+docs/submission/sciencepal-demo/judge-verification.json -text
+docs/submission/sciencepal-demo/judge-verification-source.py -text
