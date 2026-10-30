@@ -1,0 +1,1189 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "6e8c56a46a2514084fadd37b5e1e7b4bf62132403b359976a9bdbeb051a3d6e2",
+      "size": 30660
+    },
+    {
+      "filename": "sasa.json",
+      "sha256": "57217210b2e6be2bd915f65315792c3466c7ac5a22b5f149be98d16330252ede",
+      "size": 10179
+    },
+    {
+      "filename": "source-1CRN.pdb",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    }
+  ],
+  "result": {
+    "verdict": "request_changes",
+    "summary": "Independent numerical review of sasa.json succeeds: frozen source/counts, both schemas and both version-1 scientific checks pass. NumPy baseline gives 2970.9266606126434 A2 at 5000 points and corroborates all 46 residue areas; candidate 1000/5000 relative difference is 0.001114174357408299 (0.1114%). The added author-reported Bio.PDB execution capture addresses the previously missing run-output evidence at the supplied-report level; it is kept distinct from this review's observed NumPy execution. Host-accepted same-thread continuation now corroborates the first-attempt member reply, but it does not identify the question/NEEDS_INPUT/first-computation ordering required by the exact lifecycle criterion. Request changes only for that remaining evidence gap; no repeat question or altered numerical observations are requested. This is not a finding of fabrication. Captain must resolve the record and keep synthesis blocked until all criteria pass. Findings apply to computational geometry of one fixed structure; sampling agreement is not experimental validation or structural-variability uncertainty.",
+    "checks": [
+      {
+        "criterion": "Read and hash the exact frozen source-1CRN.pdb; source_sha256 must equal 42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811. Apply chain A, heavy ATOM, alternate location blank/A, no HETATM/hydrogen filters; independently confirm atom_count=327, residue_count=46, and unique residue_id values 1..46.",
+        "passed": true,
+        "evidence": "sasa.json source_sha256 equals the independently hashed frozen source: 42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811 (49491 bytes). Direct fixed-column parsing of all source records retained 327 chain-A heavy ATOM records with blank/A altloc; 46 unique original integer residue IDs are exactly 1..46. Elements C=202, N=55, O=64, S=6. All 327 coordinate records in this fixture satisfy the filter; thus the submitted code computing the whole chain rather than detaching excluded atoms has no effect for these actual bytes. Candidate counts and row IDs match. Full parsing and receipts are in reproduction."
+      },
+      {
+        "criterion": "Actually execute Bio.PDB.SASA.ShrakeRupley with probe_radius_A=1.4 and radii C=1.70, N=1.55, O=1.52, S=1.80 Angstrom; method must be Shrake-Rupley; total_A2 and per-residue area_A2 are computed square-Angstrom values, not copied references.",
+        "passed": true,
+        "evidence": "sasa.json contains the Bio.PDB.SASA.ShrakeRupley calls, method Shrake-Rupley, 1.4 A probe and C/N/O/S radii 1.70/1.55/1.52/1.80 A. evidence.execution now reports both runs as executed and supplies captured totals 2967.616530309648 and 2970.9266606126434 A2. Reported producer versions are Python 3.12.3, Biopython 1.84, NumPy 1.26.4. Independent NumPy execution here corroborates the totals to 4.55e-13 A2 and all 46 final rows to 2.85e-14 A2. This passes on the supplied author execution report plus independently corroborated calculations; it does not claim direct observation of the producer runtime or that Host lifecycle records prove Bio.PDB execution. Bio.PDB is unavailable locally and was not installed. See reproduction for independent code and measured reviewer versions."
+      },
+      {
+        "criterion": "On FIRST attempt, before SASA computation use an actual ask-user/question tool to request the verification phrase and wait for a real answer in NEEDS_INPUT. After receiving it, execute ONLY n_points=100, label exploratory, submit the truthful deliberately incomplete pilot, and receive request_changes; missing tool/answer must be reported without invention.",
+        "passed": false,
+        "evidence": "sasa.json preserves a 100-point exploratory pilot, total 2975.651128 A2, and reports its request_changes verdict and first-attempt question/answer. Independent 100-point baseline is 2975.6511283884624 A2 (difference 3.8846246752655134e-7 A2, consistent with reported rounding). context.executionHistory supplies a Host-accepted member-reply continuation at 2026-10-30T21:08:50.744Z on thread d612c756-d8ef-4d51-890d-64182f4d049f, previous run 1e6cfda9-1190-444a-8dba-d491dc2335f5 to c05ee743-b5c5-429f-98b4-b0b82dca9973, with reply SHA-256 d436e768d4f1168dfc6109153fd03052b6762749e5331f304061a5e59f8e33e2. This positively corroborates an actual same-thread reply; it is not dismissed for lacking a provider transcript. However, the supplied records show only final COLLECTED status and do not identify the question-tool request, NEEDS_INPUT transition, or first-computation event/order. The exact requirement that the question and wait precede all first-attempt SASA computations remains unverified. A reply hash does not reveal its text. This is an evidence gap, not a finding that the interaction did not occur. Reproduction retains the exact supplied lifecycle records."
+      },
+      {
+        "criterion": "On REWORK with previous-sasa.json and feedback, do not ask again; actually run n_points=1000 and 5000. Deliver final n_points>=1000, both measured totals, abs(total_1000-total_5000)/abs(total_5000)<=0.02 with denominator stated, consistent top-level resolution, retained pilot evidence and a numerical/structural limitation. A missing comparison or 100-point-only output fails final acceptance.",
+        "passed": true,
+        "evidence": "sasa.json is a rework artifact: its previous-sasa.json receipt matches Host attempt 2 hash fe7b50ba01dab36a0a1573ca0c41fec744b9d917cd9d656a6c002b3fa77a4e62, and current bytes match Host attempt 3 hash 57217210b2e6be2bd915f65315792c3466c7ac5a22b5f149be98d16330252ede. Later attempt continuation arrays are empty; code has no question call and pilot_history reports no repeat question. evidence.execution reports both 1000 and 5000 runs; independent totals are 2967.6165303096477 and 2970.9266606126434 A2. Recomputed candidate relative difference = 0.001114174357408299 (0.1114174357408299%), denominator abs(total_5000), below 0.02. Top-level n_points=5000, total and every row match the 5000-point baseline. Pilot remains exploratory. Limitation explicitly excludes experimental validation, structural-variability uncertainty and biological function ranking. Independent calculations support the numerical requirement; historical first-attempt chronology remains the separate failed check above."
+      },
+      {
+        "criterion": "Deliver every required field with exact types under the unchanged sasa schema: 46 residue objects, integer residue_id, nonnegative numeric area_A2 and total_A2, integer n_points, complete portable actually executed Python code and actual tool_versions; include units, radii, run settings and execution evidence. Use relative paths and no sensitive public details.",
+        "passed": true,
+        "evidence": "sasa.json passes Draft7Validator against both context.resultSchemas.sasa and context.task.resultSchema, with zero errors. It has 46 residue objects, integer unique IDs 1..46, finite nonnegative numeric areas and total, integer n_points=5000, full Python calculation source, relative attachment paths, reported versions, units, radii and run settings. Source includes both ShrakeRupley runs; no embedded code was executed merely for provenance. The source's emitter sets code=__file__, whereas the delivered artifact embeds the source itself and adds execution evidence; the delivered source supports reproduction of calculations but not byte-identical regeneration of the final enriched envelope. No byte-identical generator criterion was imposed. Actual reviewer versions and executed source are in reproduction; producer versions and runtime capture remain identified as author-reported evidence."
+      },
+      {
+        "criterion": "Pass frozen scientificChecks version 1: abs(total_A2-sum(residues[*].area_A2))<=0.001 A2 and residue_count=46 exactly. Schema validity, execution success, these checks and scientific approval must be distinguished; do not alter observations or frozen rules to force a pass.",
+        "passed": true,
+        "evidence": "sasa.json passes both frozen scientificChecks version 1 independently: math.fsum of all 46 area_A2 values = 2970.9266606126434 A2, identical to total_A2, absolute residual 0.0 A2 <= 0.001 A2. residue_count=46 exactly, with independently verified source count 46 and row IDs 1..46. These are local recomputations of the frozen rules, not a claim that a new Host checker execution was observed. Schema validity and independent numerical execution are separately recorded in reproduction; neither overrides the unmet lifecycle acceptance criterion. No observations, tolerances or frozen schemas were changed."
+      },
+      {
+        "criterion": "Captain reviewerAgentId=member_node-4050b257-1656-4536-aaff-faff95fd7973 independently executes a standard-Python or available-NumPy baseline from the actual source, checks counts/sums/hashes/settings, and reports numeric baseline comparisons and reproducible evidence in reproduction. Pilot must receive request_changes even if correct; final approval requires all final criteria.",
+        "passed": true,
+        "evidence": "sasa.json was independently reviewed under reviewerAgentId member_node-4050b257-1656-4536-aaff-faff95fd7973, distinct from author assigneeAgentId member_node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0. Actual Python 3.12.10 / NumPy 2.5.3 direct sphere-sampling and distance-occlusion code ran on the original source, with no Bio.PDB calls. Baseline totals at 100/1000/5000 points are 2975.6511283884624 / 2967.6165303096477 / 2970.9266606126434 A2; 5000-point maximum absolute residue discrepancy is 2.842170943040401e-14 A2. Counts, hashes, settings, sums and both schemas are verified. Reproduction includes complete executed source, measured tool versions, all baseline rows, row differences and numeric checks. No extra baseline tolerance was invented. This final review is request_changes because the historical lifecycle criterion remains unmet, despite correct final scientific numbers."
+      },
+      {
+        "criterion": "Use only actually available tools, no installs or network refetch, and include own-run original input receipts. Hand off exact sasa.json only after captain approval with bound Host-validated approval evidence; report unavailable prerequisites, and stop once the required attempt envelope exists.",
+        "passed": true,
+        "evidence": "sasa.json contains original producer receipts for its own context.json, source-1CRN.pdb and previous-sasa.json. The source receipt matches actual source bytes; previous-sasa matches Host attempt 2. Producer context is correctly treated as a different run, not compared to this review's context. Host producer receipt verification is accepted as specified; prior producer attachments are not fabricated or reconstructed. Current sasa.json SHA-256 and size (10179 bytes) match the latest Host artifact. All three actual review attachments are independently hashed into this review envelope. This review used available local Python/NumPy/jsonschema only, without package installation, network refetch, unrelated reads, embedded-source execution or handoff. context.upstream is empty. No approve review is supplied and synthesis must remain blocked; the captain must bind any future approval to the exact subsequently reviewed bytes. The review stops after writing its required envelope."
+      }
+    ],
+    "requiredChanges": [
+      "Captain: supply or bind the existing first-attempt question-tool request, NEEDS_INPUT/wait transition and first-SASA-computation ordering to the Host-accepted same-thread reply already present in context.executionHistory. A bounded event record with event types, thread/run binding and ordering is sufficient; no full provider transcript or raw private reply is requested. Do not ask the verification question again. If the historical ordering cannot be established, retain the explicit unmet criterion instead of claiming success. Preserve the truthful pilot, current numerical results, frozen schemas and checks; keep synthesis blocked until a new review passes every acceptance criterion and is bound to the exact sasa.json bytes."
+    ],
+    "reproduction": {
+      "code": "import json, math, hashlib, sys, importlib.util\nfrom pathlib import Path\nfrom collections import Counter\nfrom importlib.metadata import version\nimport numpy as np\nfrom jsonschema import Draft7Validator\n\nroot = Path('inputs')\nfiles = {p.name:p.read_bytes() for p in sorted(root.iterdir()) if p.is_file()}\nctx = json.loads(files['context.json'])\nenv = json.loads(files['sasa.json'])\nres = env['result']\nreceipts = [{'filename':k, 'sha256':hashlib.sha256(v).hexdigest(), 'size':len(v)} for k,v in files.items()]\nlines = files['source-1CRN.pdb'].decode('ascii').splitlines()\natoms = []\nrecord_counts = Counter(s[:6].strip() for s in lines)\nfor s in lines:\n    if s[:6] != 'ATOM  ' or s[21] != 'A' or s[16] not in (' ', 'A'):\n        continue\n    element = s[76:78].strip()\n    if element in ('H','D'):\n        continue\n    atoms.append((int(s[22:26]), s[26], element, [float(s[i:i+8]) for i in (30,38,46)]))\nids = sorted(set(a[0] for a in atoms))\nradii = {'C':1.70, 'N':1.55, 'O':1.52, 'S':1.80}\nprobe = 1.4\ncoords = np.array([a[3] for a in atoms], dtype=np.float64)\nexpanded = np.array([radii[a[2]]+probe for a in atoms])\ndeltas = coords[:,None,:]-coords[None,:,:]\ndist2 = np.einsum('ijk,ijk->ij', deltas, deltas)\nneighbors = [np.flatnonzero((dist2[i] < (expanded[i]+expanded)**2) & (np.arange(len(atoms))!=i)) for i in range(len(atoms))]\n\ndef independent_sasa(n):\n    # Golden-angle spherical samples. Independent direct distance occlusion,\n    # no Bio.PDB calls or submitted-source execution. Coordinates are float64.\n    k = np.arange(n, dtype=np.float64)\n    z = 1.0 - 2.0*(k+0.5)/n\n    theta = k * (math.pi*(3.0-math.sqrt(5.0)))\n    rho = np.sqrt(1.0-z*z)\n    unit = np.column_stack((rho*np.cos(theta),rho*np.sin(theta),z))\n    areas = []\n    for i in range(len(atoms)):\n        points = coords[i]+expanded[i]*unit\n        visible = np.ones(n,dtype=bool)\n        for j in neighbors[i]:\n            delta = points-coords[j]\n            visible &= np.einsum('ij,ij->i',delta,delta) > expanded[j]**2\n        areas.append(float(visible.sum()*4.0*math.pi*expanded[i]**2/n))\n    rows = [{'residue_id':rid, 'area_A2':math.fsum(areas[i] for i,a in enumerate(atoms) if a[0]==rid)} for rid in ids]\n    return {'n_points':n, 'total_A2':math.fsum(x['area_A2'] for x in rows), 'residues':rows, 'atom_sum_A2':math.fsum(areas)}\n\nruns = {str(n):independent_sasa(n) for n in (100,1000,5000)}\ncon = res['evidence']['convergence']\nreference_totals = {'100':res['evidence']['pilot_history']['total_A2'], '1000':con['n_points_1000_total_A2'],'5000':res['total_A2']}\ncomparisons = {n:{'candidate_A2':reference_totals[n], 'baseline_A2':run['total_A2'], 'baseline_minus_candidate_A2':run['total_A2']-reference_totals[n]} for n,run in runs.items()}\nrow_comparisons = [{'residue_id':a['residue_id'],'candidate_A2':b['area_A2'],'baseline_A2':a['area_A2'],'baseline_minus_candidate_A2':a['area_A2']-b['area_A2']} for a,b in zip(runs['5000']['residues'],res['residues'])]\nschemas = {'resultSchemas.sasa':ctx['resultSchemas']['sasa'],'task.resultSchema':ctx['task']['resultSchema']}\nschema_results = {k:[{'path':list(e.path),'message':e.message} for e in Draft7Validator(s).iter_errors(res)] for k,s in schemas.items()}\nreported_sum = math.fsum(r['area_A2'] for r in res['residues'])\nscientific = {'version':ctx['scientificChecks']['version'], 'residue-sum':{'total_A2':res['total_A2'],'sum_A2':reported_sum,'absolute_difference_A2':abs(reported_sum-res['total_A2']),'absoluteTolerance':0.001,'passed':abs(reported_sum-res['total_A2'])<=0.001},'residue-count':{'observed':res['residue_count'],'expected':46,'passed':res['residue_count']==46}}\nversions = {'python':sys.version.split()[0],'numpy':np.__version__,'jsonschema':version('jsonschema'),'Bio_available':importlib.util.find_spec('Bio') is not None}\nresults = {'inputReceipts':receipts,'record_counts':dict(record_counts),'source_sha256':hashlib.sha256(files['source-1CRN.pdb']).hexdigest(),'atom_count':len(atoms),'residue_count':len(ids),'residue_ids':ids,'insertion_codes':sorted(set(a[1] for a in atoms)),'elements':dict(Counter(a[2] for a in atoms)), 'candidate_unique_ids_match':sorted(r['residue_id'] for r in res['residues'])==ids,'schema_errors':schema_results,'scientificChecks':scientific,'settings':{'probe_radius_A':probe,'radii_A':radii,'coordinates_dtype':'float64','sphere_dtype':'float64','sphere':'golden-angle; z=1-2*(k+0.5)/n; theta=k*pi*(3-sqrt(5))','occlusion':'distance_squared <= expanded_neighbor_radius_squared','units':'coordinates/probe/radii Angstrom; areas Angstrom squared'},'runs':runs,'total_comparisons':comparisons,'residue_comparisons_5000':row_comparisons,'max_abs_residue_difference_A2':max(abs(r['baseline_minus_candidate_A2']) for r in row_comparisons),'candidate_relative_difference_recomputed':abs(con['n_points_1000_total_A2']-con['n_points_5000_total_A2'])/abs(con['n_points_5000_total_A2']),'baseline_relative_difference':abs(runs['1000']['total_A2']-runs['5000']['total_A2'])/abs(runs['5000']['total_A2']),'lifecycle_history':ctx.get('executionHistory'),'current_artifact_matches_latest_host_receipt':ctx['executionHistory']['attempts'][-1]['artifact']['sha256']==hashlib.sha256(files['sasa.json']).hexdigest(),'producer_execution':res['evidence']['execution'],'producer_reported_versions':res['tool_versions'],'reviewerAgentId':ctx['task']['reviewerAgentId'],'assigneeAgentId':ctx['task']['assigneeAgentId'],'limitations':['Independent NumPy execution is observed in this review; producer Bio.PDB execution is reported in sasa.json, not directly observed by reviewer.','Host-accepted connector records are lifecycle evidence, not provider transcripts or proof of scientific execution.','No upstream dependencies in this task. Producer context receipts are not compared with this review context.','Single fixed structure computational geometry; sampling agreement is not experimental validation or structural variability uncertainty.','No added independent-baseline numerical tolerance.']}\npayload = {'toolVersions':versions,'results':results}\nPath('review-computation.json').write_text(json.dumps(payload,ensure_ascii=False,indent=2,allow_nan=False),encoding='utf-8')\nprint(json.dumps({k:results[k] for k in ('source_sha256','atom_count','residue_count','elements','schema_errors','scientificChecks','total_comparisons','max_abs_residue_difference_A2','candidate_relative_difference_recomputed','baseline_relative_difference','current_artifact_matches_latest_host_receipt')},indent=2))\nprint(json.dumps(versions))\n\n",
+      "toolVersions": {
+        "python": "3.12.10",
+        "numpy": "2.5.3",
+        "jsonschema": "4.26.0",
+        "Bio_available": false
+      },
+      "results": {
+        "inputReceipts": [
+          {
+            "filename": "context.json",
+            "sha256": "6e8c56a46a2514084fadd37b5e1e7b4bf62132403b359976a9bdbeb051a3d6e2",
+            "size": 30660
+          },
+          {
+            "filename": "sasa.json",
+            "sha256": "57217210b2e6be2bd915f65315792c3466c7ac5a22b5f149be98d16330252ede",
+            "size": 10179
+          },
+          {
+            "filename": "source-1CRN.pdb",
+            "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+            "size": 49491
+          }
+        ],
+        "record_counts": {
+          "HEADER": 1,
+          "TITLE": 2,
+          "COMPND": 4,
+          "SOURCE": 4,
+          "KEYWDS": 1,
+          "EXPDTA": 1,
+          "AUTHOR": 1,
+          "REVDAT": 9,
+          "JRNL": 8,
+          "REMARK": 225,
+          "DBREF": 1,
+          "SEQRES": 4,
+          "HELIX": 2,
+          "SHEET": 2,
+          "SSBOND": 3,
+          "CRYST1": 1,
+          "ORIGX1": 1,
+          "ORIGX2": 1,
+          "ORIGX3": 1,
+          "SCALE1": 1,
+          "SCALE2": 1,
+          "SCALE3": 1,
+          "ATOM": 327,
+          "TER": 1,
+          "CONECT": 6,
+          "MASTER": 1,
+          "END": 1
+        },
+        "source_sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+        "atom_count": 327,
+        "residue_count": 46,
+        "residue_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46
+        ],
+        "insertion_codes": [
+          " "
+        ],
+        "elements": {
+          "N": 55,
+          "C": 202,
+          "O": 64,
+          "S": 6
+        },
+        "candidate_unique_ids_match": true,
+        "schema_errors": {
+          "resultSchemas.sasa": [],
+          "task.resultSchema": []
+        },
+        "scientificChecks": {
+          "version": 1,
+          "residue-sum": {
+            "total_A2": 2970.9266606126434,
+            "sum_A2": 2970.9266606126434,
+            "absolute_difference_A2": 0.0,
+            "absoluteTolerance": 0.001,
+            "passed": true
+          },
+          "residue-count": {
+            "observed": 46,
+            "expected": 46,
+            "passed": true
+          }
+        },
+        "settings": {
+          "probe_radius_A": 1.4,
+          "radii_A": {
+            "C": 1.7,
+            "N": 1.55,
+            "O": 1.52,
+            "S": 1.8
+          },
+          "coordinates_dtype": "float64",
+          "sphere_dtype": "float64",
+          "sphere": "golden-angle; z=1-2*(k+0.5)/n; theta=k*pi*(3-sqrt(5))",
+          "occlusion": "distance_squared <= expanded_neighbor_radius_squared",
+          "units": "coordinates/probe/radii Angstrom; areas Angstrom squared"
+        },
+        "runs": {
+          "100": {
+            "n_points": 100,
+            "total_A2": 2975.6511283884624,
+            "residues": [
+              {
+                "residue_id": 1,
+                "area_A2": 75.7486117979952
+              },
+              {
+                "residue_id": 2,
+                "area_A2": 24.687816310746342
+              },
+              {
+                "residue_id": 3,
+                "area_A2": 0.0
+              },
+              {
+                "residue_id": 4,
+                "area_A2": 0.0
+              },
+              {
+                "residue_id": 5,
+                "area_A2": 57.3856885784975
+              },
+              {
+                "residue_id": 6,
+                "area_A2": 48.81401638599574
+              },
+              {
+                "residue_id": 7,
+                "area_A2": 127.66647146025518
+              },
+              {
+                "residue_id": 8,
+                "area_A2": 98.9114739019478
+              },
+              {
+                "residue_id": 9,
+                "area_A2": 7.131729482914188
+              },
+              {
+                "residue_id": 10,
+                "area_A2": 51.83439382863943
+              },
+              {
+                "residue_id": 11,
+                "area_A2": 67.69177124319312
+              },
+              {
+                "residue_id": 12,
+                "area_A2": 78.35360785998124
+              },
+              {
+                "residue_id": 13,
+                "area_A2": 7.245769296239497
+              },
+              {
+                "residue_id": 14,
+                "area_A2": 83.58839343317545
+              },
+              {
+                "residue_id": 15,
+                "area_A2": 93.65032408320468
+              },
+              {
+                "residue_id": 16,
+                "area_A2": 21.026855559665083
+              },
+              {
+                "residue_id": 17,
+                "area_A2": 88.84020643855213
+              },
+              {
+                "residue_id": 18,
+                "area_A2": 140.69414097349687
+              },
+              {
+                "residue_id": 19,
+                "area_A2": 108.75113058855027
+              },
+              {
+                "residue_id": 20,
+                "area_A2": 48.38761429830931
+              },
+              {
+                "residue_id": 21,
+                "area_A2": 36.48752522029407
+              },
+              {
+                "residue_id": 22,
+                "area_A2": 78.49583404259455
+              },
+              {
+                "residue_id": 23,
+                "area_A2": 68.97425732898277
+              },
+              {
+                "residue_id": 24,
+                "area_A2": 61.75157245556184
+              },
+              {
+                "residue_id": 25,
+                "area_A2": 96.61025728319329
+              },
+              {
+                "residue_id": 26,
+                "area_A2": 0.0
+              },
+              {
+                "residue_id": 27,
+                "area_A2": 9.524856536342133
+              },
+              {
+                "residue_id": 28,
+                "area_A2": 122.95243628532
+              },
+              {
+                "residue_id": 29,
+                "area_A2": 156.71234279917314
+              },
+              {
+                "residue_id": 30,
+                "area_A2": 27.603490753431185
+              },
+              {
+                "residue_id": 31,
+                "area_A2": 35.02545313205461
+              },
+              {
+                "residue_id": 32,
+                "area_A2": 8.571672192501762
+              },
+              {
+                "residue_id": 33,
+                "area_A2": 54.20710052981903
+              },
+              {
+                "residue_id": 34,
+                "area_A2": 79.1936194700687
+              },
+              {
+                "residue_id": 35,
+                "area_A2": 40.51468257744837
+              },
+              {
+                "residue_id": 36,
+                "area_A2": 138.00654615746265
+              },
+              {
+                "residue_id": 37,
+                "area_A2": 35.77268722789625
+              },
+              {
+                "residue_id": 38,
+                "area_A2": 85.25388992892016
+              },
+              {
+                "residue_id": 39,
+                "area_A2": 122.04351069878342
+              },
+              {
+                "residue_id": 40,
+                "area_A2": 50.71290808316095
+              },
+              {
+                "residue_id": 41,
+                "area_A2": 50.584215881699286
+              },
+              {
+                "residue_id": 42,
+                "area_A2": 76.29668148596987
+              },
+              {
+                "residue_id": 43,
+                "area_A2": 107.42003778122427
+              },
+              {
+                "residue_id": 44,
+                "area_A2": 61.771904843215886
+              },
+              {
+                "residue_id": 45,
+                "area_A2": 74.02438008599897
+              },
+              {
+                "residue_id": 46,
+                "area_A2": 66.72925008598628
+              }
+            ],
+            "atom_sum_A2": 2975.6511283884624
+          },
+          "1000": {
+            "n_points": 1000,
+            "total_A2": 2967.6165303096477,
+            "residues": [
+              {
+                "residue_id": 1,
+                "area_A2": 71.73578135997833
+              },
+              {
+                "residue_id": 2,
+                "area_A2": 24.957686659512074
+              },
+              {
+                "residue_id": 3,
+                "area_A2": 0.0
+              },
+              {
+                "residue_id": 4,
+                "area_A2": 0.0
+              },
+              {
+                "residue_id": 5,
+                "area_A2": 56.18988783047982
+              },
+              {
+                "residue_id": 6,
+                "area_A2": 44.85786656263493
+              },
+              {
+                "residue_id": 7,
+                "area_A2": 122.07980614702888
+              },
+              {
+                "residue_id": 8,
+                "area_A2": 99.24431559049917
+              },
+              {
+                "residue_id": 9,
+                "area_A2": 6.279666723407565
+              },
+              {
+                "residue_id": 10,
+                "area_A2": 53.34056759454998
+              },
+              {
+                "residue_id": 11,
+                "area_A2": 62.31370139897986
+              },
+              {
+                "residue_id": 12,
+                "area_A2": 78.02017429537396
+              },
+              {
+                "residue_id": 13,
+                "area_A2": 7.849583404259455
+              },
+              {
+                "residue_id": 14,
+                "area_A2": 85.45149610683097
+              },
+              {
+                "residue_id": 15,
+                "area_A2": 93.99899562881895
+              },
+              {
+                "residue_id": 16,
+                "area_A2": 20.647875184766058
+              },
+              {
+                "residue_id": 17,
+                "area_A2": 91.46252147251889
+              },
+              {
+                "residue_id": 18,
+                "area_A2": 141.6738604655265
+              },
+              {
+                "residue_id": 19,
+                "area_A2": 111.77326103989465
+              },
+              {
+                "residue_id": 20,
+                "area_A2": 51.01895198637716
+              },
+              {
+                "residue_id": 21,
+                "area_A2": 35.52363558532733
+              },
+              {
+                "residue_id": 22,
+                "area_A2": 79.46193661542648
+              },
+              {
+                "residue_id": 23,
+                "area_A2": 67.85267230917644
+              },
+              {
+                "residue_id": 24,
+                "area_A2": 62.198198860115035
+              },
+              {
+                "residue_id": 25,
+                "area_A2": 99.39962964810734
+              },
+              {
+                "residue_id": 26,
+                "area_A2": 0.0
+              },
+              {
+                "residue_id": 27,
+                "area_A2": 12.12717093483907
+              },
+              {
+                "residue_id": 28,
+                "area_A2": 118.66302128671816
+              },
+              {
+                "residue_id": 29,
+                "area_A2": 167.37895589343177
+              },
+              {
+                "residue_id": 30,
+                "area_A2": 27.416432787014074
+              },
+              {
+                "residue_id": 31,
+                "area_A2": 34.39798408799018
+              },
+              {
+                "residue_id": 32,
+                "area_A2": 6.348842080365489
+              },
+              {
+                "residue_id": 33,
+                "area_A2": 49.471906100043405
+              },
+              {
+                "residue_id": 34,
+                "area_A2": 81.93874187413839
+              },
+              {
+                "residue_id": 35,
+                "area_A2": 35.21652479724594
+              },
+              {
+                "residue_id": 36,
+                "area_A2": 140.63873081890992
+              },
+              {
+                "residue_id": 37,
+                "area_A2": 37.939863397855646
+              },
+              {
+                "residue_id": 38,
+                "area_A2": 84.47587199498453
+              },
+              {
+                "residue_id": 39,
+                "area_A2": 118.48641351410397
+              },
+              {
+                "residue_id": 40,
+                "area_A2": 48.58375146749529
+              },
+              {
+                "residue_id": 41,
+                "area_A2": 52.905943330570565
+              },
+              {
+                "residue_id": 42,
+                "area_A2": 76.26255373665539
+              },
+              {
+                "residue_id": 43,
+                "area_A2": 105.55404358569041
+              },
+              {
+                "residue_id": 44,
+                "area_A2": 60.875676317548034
+              },
+              {
+                "residue_id": 45,
+                "area_A2": 72.41616487742571
+              },
+              {
+                "residue_id": 46,
+                "area_A2": 69.1858649570321
+              }
+            ],
+            "atom_sum_A2": 2967.6165303096477
+          },
+          "5000": {
+            "n_points": 5000,
+            "total_A2": 2970.9266606126434,
+            "residues": [
+              {
+                "residue_id": 1,
+                "area_A2": 72.13046039903105
+              },
+              {
+                "residue_id": 2,
+                "area_A2": 25.1474511708321
+              },
+              {
+                "residue_id": 3,
+                "area_A2": 0.0
+              },
+              {
+                "residue_id": 4,
+                "area_A2": 0.0
+              },
+              {
+                "residue_id": 5,
+                "area_A2": 56.16372766278967
+              },
+              {
+                "residue_id": 6,
+                "area_A2": 45.613334647157934
+              },
+              {
+                "residue_id": 7,
+                "area_A2": 121.85424607768644
+              },
+              {
+                "residue_id": 8,
+                "area_A2": 98.92076648168972
+              },
+              {
+                "residue_id": 9,
+                "area_A2": 6.507507589016511
+              },
+              {
+                "residue_id": 10,
+                "area_A2": 53.74203800293753
+              },
+              {
+                "residue_id": 11,
+                "area_A2": 62.66129927388882
+              },
+              {
+                "residue_id": 12,
+                "area_A2": 78.18786346343575
+              },
+              {
+                "residue_id": 13,
+                "area_A2": 7.970346225863446
+              },
+              {
+                "residue_id": 14,
+                "area_A2": 85.17153621909895
+              },
+              {
+                "residue_id": 15,
+                "area_A2": 93.6149200932906
+              },
+              {
+                "residue_id": 16,
+                "area_A2": 20.88143751891572
+              },
+              {
+                "residue_id": 17,
+                "area_A2": 91.42659019769384
+              },
+              {
+                "residue_id": 18,
+                "area_A2": 141.0463363807588
+              },
+              {
+                "residue_id": 19,
+                "area_A2": 110.590126439474
+              },
+              {
+                "residue_id": 20,
+                "area_A2": 51.52923711118857
+              },
+              {
+                "residue_id": 21,
+                "area_A2": 35.63428851044465
+              },
+              {
+                "residue_id": 22,
+                "area_A2": 79.46193661542648
+              },
+              {
+                "residue_id": 23,
+                "area_A2": 67.57771836084237
+              },
+              {
+                "residue_id": 24,
+                "area_A2": 62.14674459899748
+              },
+              {
+                "residue_id": 25,
+                "area_A2": 98.98631267081423
+              },
+              {
+                "residue_id": 26,
+                "area_A2": 0.0
+              },
+              {
+                "residue_id": 27,
+                "area_A2": 12.438072996934807
+              },
+              {
+                "residue_id": 28,
+                "area_A2": 118.18376705484704
+              },
+              {
+                "residue_id": 29,
+                "area_A2": 166.71887183974744
+              },
+              {
+                "residue_id": 30,
+                "area_A2": 27.18035391148518
+              },
+              {
+                "residue_id": 31,
+                "area_A2": 34.081124812241
+              },
+              {
+                "residue_id": 32,
+                "area_A2": 6.410406237969708
+              },
+              {
+                "residue_id": 33,
+                "area_A2": 49.78280816213914
+              },
+              {
+                "residue_id": 34,
+                "area_A2": 82.31759105612821
+              },
+              {
+                "residue_id": 35,
+                "area_A2": 36.340443894730186
+              },
+              {
+                "residue_id": 36,
+                "area_A2": 140.96508800889683
+              },
+              {
+                "residue_id": 37,
+                "area_A2": 38.08013249390949
+              },
+              {
+                "residue_id": 38,
+                "area_A2": 84.6132292116396
+              },
+              {
+                "residue_id": 39,
+                "area_A2": 119.46955306956002
+              },
+              {
+                "residue_id": 40,
+                "area_A2": 48.7172025535086
+              },
+              {
+                "residue_id": 41,
+                "area_A2": 53.13790320113949
+              },
+              {
+                "residue_id": 42,
+                "area_A2": 76.30687557713964
+              },
+              {
+                "residue_id": 43,
+                "area_A2": 105.69586085860392
+              },
+              {
+                "residue_id": 44,
+                "area_A2": 61.35765393325871
+              },
+              {
+                "residue_id": 45,
+                "area_A2": 73.18773601190875
+              },
+              {
+                "residue_id": 46,
+                "area_A2": 68.97576001558085
+              }
+            ],
+            "atom_sum_A2": 2970.9266606126434
+          }
+        },
+        "total_comparisons": {
+          "100": {
+            "candidate_A2": 2975.651128,
+            "baseline_A2": 2975.6511283884624,
+            "baseline_minus_candidate_A2": 3.8846246752655134e-07
+          },
+          "1000": {
+            "candidate_A2": 2967.616530309648,
+            "baseline_A2": 2967.6165303096477,
+            "baseline_minus_candidate_A2": -4.547473508864641e-13
+          },
+          "5000": {
+            "candidate_A2": 2970.9266606126434,
+            "baseline_A2": 2970.9266606126434,
+            "baseline_minus_candidate_A2": 0.0
+          }
+        },
+        "residue_comparisons_5000": [
+          {
+            "residue_id": 1,
+            "candidate_A2": 72.13046039903105,
+            "baseline_A2": 72.13046039903105,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 2,
+            "candidate_A2": 25.1474511708321,
+            "baseline_A2": 25.1474511708321,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 3,
+            "candidate_A2": 0.0,
+            "baseline_A2": 0.0,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 4,
+            "candidate_A2": 0.0,
+            "baseline_A2": 0.0,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 5,
+            "candidate_A2": 56.16372766278967,
+            "baseline_A2": 56.16372766278967,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 6,
+            "candidate_A2": 45.61333464715793,
+            "baseline_A2": 45.613334647157934,
+            "baseline_minus_candidate_A2": 7.105427357601002e-15
+          },
+          {
+            "residue_id": 7,
+            "candidate_A2": 121.85424607768644,
+            "baseline_A2": 121.85424607768644,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 8,
+            "candidate_A2": 98.92076648168972,
+            "baseline_A2": 98.92076648168972,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 9,
+            "candidate_A2": 6.507507589016511,
+            "baseline_A2": 6.507507589016511,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 10,
+            "candidate_A2": 53.74203800293753,
+            "baseline_A2": 53.74203800293753,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 11,
+            "candidate_A2": 62.66129927388882,
+            "baseline_A2": 62.66129927388882,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 12,
+            "candidate_A2": 78.18786346343575,
+            "baseline_A2": 78.18786346343575,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 13,
+            "candidate_A2": 7.970346225863446,
+            "baseline_A2": 7.970346225863446,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 14,
+            "candidate_A2": 85.17153621909897,
+            "baseline_A2": 85.17153621909895,
+            "baseline_minus_candidate_A2": -1.4210854715202004e-14
+          },
+          {
+            "residue_id": 15,
+            "candidate_A2": 93.6149200932906,
+            "baseline_A2": 93.6149200932906,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 16,
+            "candidate_A2": 20.88143751891572,
+            "baseline_A2": 20.88143751891572,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 17,
+            "candidate_A2": 91.42659019769383,
+            "baseline_A2": 91.42659019769384,
+            "baseline_minus_candidate_A2": 1.4210854715202004e-14
+          },
+          {
+            "residue_id": 18,
+            "candidate_A2": 141.04633638075882,
+            "baseline_A2": 141.0463363807588,
+            "baseline_minus_candidate_A2": -2.842170943040401e-14
+          },
+          {
+            "residue_id": 19,
+            "candidate_A2": 110.590126439474,
+            "baseline_A2": 110.590126439474,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 20,
+            "candidate_A2": 51.52923711118857,
+            "baseline_A2": 51.52923711118857,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 21,
+            "candidate_A2": 35.634288510444655,
+            "baseline_A2": 35.63428851044465,
+            "baseline_minus_candidate_A2": -7.105427357601002e-15
+          },
+          {
+            "residue_id": 22,
+            "candidate_A2": 79.46193661542648,
+            "baseline_A2": 79.46193661542648,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 23,
+            "candidate_A2": 67.57771836084237,
+            "baseline_A2": 67.57771836084237,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 24,
+            "candidate_A2": 62.14674459899748,
+            "baseline_A2": 62.14674459899748,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 25,
+            "candidate_A2": 98.98631267081423,
+            "baseline_A2": 98.98631267081423,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 26,
+            "candidate_A2": 0.0,
+            "baseline_A2": 0.0,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 27,
+            "candidate_A2": 12.438072996934809,
+            "baseline_A2": 12.438072996934807,
+            "baseline_minus_candidate_A2": -1.7763568394002505e-15
+          },
+          {
+            "residue_id": 28,
+            "candidate_A2": 118.18376705484704,
+            "baseline_A2": 118.18376705484704,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 29,
+            "candidate_A2": 166.7188718397474,
+            "baseline_A2": 166.71887183974744,
+            "baseline_minus_candidate_A2": 2.842170943040401e-14
+          },
+          {
+            "residue_id": 30,
+            "candidate_A2": 27.180353911485184,
+            "baseline_A2": 27.18035391148518,
+            "baseline_minus_candidate_A2": -3.552713678800501e-15
+          },
+          {
+            "residue_id": 31,
+            "candidate_A2": 34.081124812241,
+            "baseline_A2": 34.081124812241,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 32,
+            "candidate_A2": 6.410406237969709,
+            "baseline_A2": 6.410406237969708,
+            "baseline_minus_candidate_A2": -8.881784197001252e-16
+          },
+          {
+            "residue_id": 33,
+            "candidate_A2": 49.78280816213914,
+            "baseline_A2": 49.78280816213914,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 34,
+            "candidate_A2": 82.31759105612821,
+            "baseline_A2": 82.31759105612821,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 35,
+            "candidate_A2": 36.340443894730186,
+            "baseline_A2": 36.340443894730186,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 36,
+            "candidate_A2": 140.96508800889686,
+            "baseline_A2": 140.96508800889683,
+            "baseline_minus_candidate_A2": -2.842170943040401e-14
+          },
+          {
+            "residue_id": 37,
+            "candidate_A2": 38.08013249390948,
+            "baseline_A2": 38.08013249390949,
+            "baseline_minus_candidate_A2": 7.105427357601002e-15
+          },
+          {
+            "residue_id": 38,
+            "candidate_A2": 84.6132292116396,
+            "baseline_A2": 84.6132292116396,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 39,
+            "candidate_A2": 119.46955306956002,
+            "baseline_A2": 119.46955306956002,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 40,
+            "candidate_A2": 48.7172025535086,
+            "baseline_A2": 48.7172025535086,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 41,
+            "candidate_A2": 53.13790320113949,
+            "baseline_A2": 53.13790320113949,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 42,
+            "candidate_A2": 76.30687557713964,
+            "baseline_A2": 76.30687557713964,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 43,
+            "candidate_A2": 105.69586085860394,
+            "baseline_A2": 105.69586085860392,
+            "baseline_minus_candidate_A2": -1.4210854715202004e-14
+          },
+          {
+            "residue_id": 44,
+            "candidate_A2": 61.3576539332587,
+            "baseline_A2": 61.35765393325871,
+            "baseline_minus_candidate_A2": 7.105427357601002e-15
+          },
+          {
+            "residue_id": 45,
+            "candidate_A2": 73.18773601190875,
+            "baseline_A2": 73.18773601190875,
+            "baseline_minus_candidate_A2": 0.0
+          },
+          {
+            "residue_id": 46,
+            "candidate_A2": 68.97576001558085,
+            "baseline_A2": 68.97576001558085,
+            "baseline_minus_candidate_A2": 0.0
+          }
+        ],
+        "max_abs_residue_difference_A2": 2.842170943040401e-14,
+        "candidate_relative_difference_recomputed": 0.001114174357408299,
+        "baseline_relative_difference": 0.0011141743574084521,
+        "lifecycle_history": {
+          "source": "host-member-connector-records",
+          "limitation": "Host-accepted lifecycle receipts from the assigned member connector. Not an independent provider audit, a full tool transcript, or proof of scientific correctness. Raw reply text is private; its SHA256 is recorded when available.",
+          "attempts": [
+            {
+              "executionId": "c37504e7-0d78-4e60-a242-8d4cbb7a5992",
+              "ownerNodeId": "node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0",
+              "agentId": "member_node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0",
+              "platform": "sciencepal",
+              "status": "COLLECTED",
+              "createdAt": "2026-10-30T21:07:28.431Z",
+              "updatedAt": "2026-10-30T21:10:11.132Z",
+              "threadId": "d612c756-d8ef-4d51-890d-64182f4d049f",
+              "runId": "c05ee743-b5c5-429f-98b4-b0b82dca9973",
+              "artifact": {
+                "id": "9b24e7e0-a661-42ae-a98d-562d87057b54",
+                "filename": "sasa.json",
+                "sha256": "23e795856bb3e14d27ef50273df8e232982f94eafb39c0bb50a1820d67700e31",
+                "size": 11777
+              },
+              "continuations": [
+                {
+                  "threadId": "d612c756-d8ef-4d51-890d-64182f4d049f",
+                  "previousRunId": "1e6cfda9-1190-444a-8dba-d491dc2335f5",
+                  "runId": "c05ee743-b5c5-429f-98b4-b0b82dca9973",
+                  "source": "member-reply",
+                  "at": "2026-10-30T21:08:50.744Z",
+                  "replySha256": "d436e768d4f1168dfc6109153fd03052b6762749e5331f304061a5e59f8e33e2"
+                }
+              ]
+            },
+            {
+              "executionId": "ccca028b-b02d-4393-b4b8-e3c7b7c54b3b",
+              "ownerNodeId": "node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0",
+              "agentId": "member_node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0",
+              "platform": "sciencepal",
+              "status": "COLLECTED",
+              "createdAt": "2026-10-30T21:12:59.799Z",
+              "updatedAt": "2026-10-30T21:16:53.842Z",
+              "threadId": "8e03cde7-13f9-42c4-9fc0-d6b4108a9993",
+              "runId": "6750578b-85a3-447a-9e9e-60d9a8ee4aa5",
+              "artifact": {
+                "id": "2c3d8204-9ad6-435e-94fe-5e77f1d3ce3d",
+                "filename": "sasa.json",
+                "sha256": "fe7b50ba01dab36a0a1573ca0c41fec744b9d917cd9d656a6c002b3fa77a4e62",
+                "size": 12647
+              },
+              "continuations": []
+            },
+            {
+              "executionId": "3deb50b2-e540-4a32-9acf-f88d7afdc71f",
+              "ownerNodeId": "node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0",
+              "agentId": "member_node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0",
+              "platform": "sciencepal",
+              "status": "COLLECTED",
+              "createdAt": "2026-10-30T21:19:47.964Z",
+              "updatedAt": "2026-10-30T21:23:34.420Z",
+              "threadId": "f7c9b1c2-7922-418e-8c71-d27f5cf2aa86",
+              "runId": "29a8dc5c-421b-4398-9cbd-ab72d855404a",
+              "artifact": {
+                "id": "a6c80bf9-a1d0-4bc1-bccd-b8f9b7d2050c",
+                "filename": "sasa.json",
+                "sha256": "57217210b2e6be2bd915f65315792c3466c7ac5a22b5f149be98d16330252ede",
+                "size": 10179
+              },
+              "continuations": []
+            }
+          ]
+        },
+        "current_artifact_matches_latest_host_receipt": true,
+        "producer_execution": {
+          "tool": "Bio.PDB.SASA.ShrakeRupley",
+          "probe_radius_A": 1.4,
+          "n_points_1000_executed": true,
+          "n_points_5000_executed": true,
+          "captured_output": {
+            "atom_count": 327,
+            "residue_count": 46,
+            "total_1000_A2": 2967.616530309648,
+            "total_5000_A2": 2970.9266606126434
+          }
+        },
+        "producer_reported_versions": {
+          "python": "3.12.3",
+          "biopython": "1.84",
+          "numpy": "1.26.4"
+        },
+        "reviewerAgentId": "member_node-4050b257-1656-4536-aaff-faff95fd7973",
+        "assigneeAgentId": "member_node-b1f2ca63-2ea6-4706-b0f2-d41caeb84ba0",
+        "limitations": [
+          "Independent NumPy execution is observed in this review; producer Bio.PDB execution is reported in sasa.json, not directly observed by reviewer.",
+          "Host-accepted connector records are lifecycle evidence, not provider transcripts or proof of scientific execution.",
+          "No upstream dependencies in this task. Producer context receipts are not compared with this review context.",
+          "Single fixed structure computational geometry; sampling agreement is not experimental validation or structural variability uncertainty.",
+          "No added independent-baseline numerical tolerance."
+        ]
+      }
+    }
+  }
+}

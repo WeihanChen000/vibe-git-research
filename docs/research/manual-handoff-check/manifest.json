@@ -1,0 +1,145 @@
+{
+  "scope": "Single-person handoff verification usability exercise; previously recorded real artifacts, no new model execution or measured human results",
+  "codeBaseline": "ca1b2b5227e660559fb9e29c4d69a259252efb54",
+  "cases": [
+    {
+      "case": "01",
+      "stage": "released",
+      "observedAt": "2026-10-30T21:38:33.343Z",
+      "replayUrl": "https://weihanchen000.github.io/vibe-git-research/replay/?case=isolated&step=released&object=task&id=sasa",
+      "artifactFiles": [
+        {
+          "filename": "source-1CRN.pdb",
+          "artifactId": "0dfcb602-bcb5-4dde-ac82-4efa826c78d3",
+          "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+          "bytes": 49491
+        },
+        {
+          "filename": "sasa.json",
+          "artifactId": "a6c80bf9-a1d0-4bc1-bccd-b8f9b7d2050c",
+          "sha256": "57217210b2e6be2bd915f65315792c3466c7ac5a22b5f149be98d16330252ede",
+          "bytes": 10179
+        },
+        {
+          "filename": "review-result.json",
+          "artifactId": "c7925abe-7a14-48bb-9762-b2d908131b7e",
+          "sha256": "c2153ad17cbdd6ceeb0b2b8fc1793f1dcb8707dd25d694edaf877a7b39efc820",
+          "bytes": 75993
+        }
+      ]
+    },
+    {
+      "case": "02",
+      "stage": "chronology-rejected",
+      "observedAt": "2026-10-30T21:26:48.287Z",
+      "replayUrl": "https://weihanchen000.github.io/vibe-git-research/replay/?case=isolated&step=chronology-rejected&object=task&id=sasa",
+      "artifactFiles": [
+        {
+          "filename": "source-1CRN.pdb",
+          "artifactId": "0dfcb602-bcb5-4dde-ac82-4efa826c78d3",
+          "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+          "bytes": 49491
+        },
+        {
+          "filename": "sasa.json",
+          "artifactId": "a6c80bf9-a1d0-4bc1-bccd-b8f9b7d2050c",
+          "sha256": "57217210b2e6be2bd915f65315792c3466c7ac5a22b5f149be98d16330252ede",
+          "bytes": 10179
+        },
+        {
+          "filename": "review-result.json",
+          "artifactId": "d7fab458-4032-4902-a3aa-34ebe4293fed",
+          "sha256": "7edbbc0fe3aa637ff6916c43eba1ee997ea9d408cf5e641d8ce5fd705eee896e",
+          "bytes": 53603
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "AFTER-CHECK.md",
+      "bytes": 2632,
+      "sha256": "7e8b9e60152a15abbb31bb986ab68bafcc25c987aebd0749f7b37a290d51fe2d"
+    },
+    {
+      "path": "case-01/numeric-checks.json",
+      "bytes": 616,
+      "sha256": "8f2ce75e82b427df0cc1e666215de8c3375ab34a0e8a4cb7f61981d35af10549"
+    },
+    {
+      "path": "case-01/protocol.md",
+      "bytes": 12847,
+      "sha256": "56d40638566e176dd0e15de182c1d3348dd3fa4e090c2f7af6efa96e8754f584"
+    },
+    {
+      "path": "case-01/review-result.json",
+      "bytes": 75993,
+      "sha256": "c2153ad17cbdd6ceeb0b2b8fc1793f1dcb8707dd25d694edaf877a7b39efc820"
+    },
+    {
+      "path": "case-01/REVIEW.md",
+      "bytes": 11493,
+      "sha256": "6baa26bc2b6da2297cd710feae611e070cf80c4a5c8e6711f318ec585a47719c"
+    },
+    {
+      "path": "case-01/sasa.json",
+      "bytes": 10179,
+      "sha256": "57217210b2e6be2bd915f65315792c3466c7ac5a22b5f149be98d16330252ede"
+    },
+    {
+      "path": "case-01/source-1CRN.pdb",
+      "bytes": 49491,
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811"
+    },
+    {
+      "path": "case-01/STATUS.md",
+      "bytes": 1340,
+      "sha256": "daf28ac02e383bf6ee10c9003343ee82bc269baf324b5f72605bac7ad51ff4b6"
+    },
+    {
+      "path": "case-02/numeric-checks.json",
+      "bytes": 616,
+      "sha256": "8f2ce75e82b427df0cc1e666215de8c3375ab34a0e8a4cb7f61981d35af10549"
+    },
+    {
+      "path": "case-02/protocol.md",
+      "bytes": 12847,
+      "sha256": "56d40638566e176dd0e15de182c1d3348dd3fa4e090c2f7af6efa96e8754f584"
+    },
+    {
+      "path": "case-02/review-result.json",
+      "bytes": 53603,
+      "sha256": "7edbbc0fe3aa637ff6916c43eba1ee997ea9d408cf5e641d8ce5fd705eee896e"
+    },
+    {
+      "path": "case-02/REVIEW.md",
+      "bytes": 11744,
+      "sha256": "6c0f0db4d514e41218888b16d18b5a9356919be98440e78cf7665683b737abf0"
+    },
+    {
+      "path": "case-02/sasa.json",
+      "bytes": 10179,
+      "sha256": "57217210b2e6be2bd915f65315792c3466c7ac5a22b5f149be98d16330252ede"
+    },
+    {
+      "path": "case-02/source-1CRN.pdb",
+      "bytes": 49491,
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811"
+    },
+    {
+      "path": "case-02/STATUS.md",
+      "bytes": 1349,
+      "sha256": "32fda3a5c0433fd8c0178350b6074045c6d567445af1fc0f5891b0dea6ab551c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5241,
+      "sha256": "7b068219faea57c86cab0145821dc23b7b15cec1642c4c76cf8c204d15e2828b"
+    },
+    {
+      "path": "RECORD.md",
+      "bytes": 2520,
+      "sha256": "08d1271bcc0d056cb50d8717a818736dd8c9620170964132552687b80d00500b"
+    }
+  ]
+}

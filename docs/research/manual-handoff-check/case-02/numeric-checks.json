@@ -1,0 +1,19 @@
+{
+  "status": "PASSED",
+  "engineVersion": "numeric-v1",
+  "rulesSha256": "7dc750f163354f395a3507751a73d83852bbf6dd420075ccc732f4d023181b71",
+  "artifactSha256": "57217210b2e6be2bd915f65315792c3466c7ac5a22b5f149be98d16330252ede",
+  "sourceSha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+  "checks": [
+    {
+      "id": "residue-sum",
+      "passed": true,
+      "detail": "总量 2970.9266606126434；逐项求和 2970.926660612643；容差 0.001"
+    },
+    {
+      "id": "residue-count",
+      "passed": true,
+      "detail": "实际 46；独立参考 46"
+    }
+  ]
+}
