@@ -8,7 +8,7 @@
   "video_fps": 24,
   "video_audio": true,
   "full_decode_passed": true,
-  "form_summary_characters": 727,
+  "form_summary_characters": 718,
   "team_identity": "left blank by user",
   "technical_baseline": "c7610cf",
   "files": {
@@ -58,5 +58,26 @@
     "chapter_seek_seconds": 132.571717,
     "browser_media_error": null,
     "source_zip_status": 200
+  },
+  "submission_freeze": {
+    "id": "hackathon-20261031-ca1b2b5",
+    "code_commit": "ca1b2b5227e660559fb9e29c4d69a259252efb54",
+    "code_snapshot": "https://github.com/WeihanChen000/vibe-git-research/tree/ca1b2b5227e660559fb9e29c4d69a259252efb54",
+    "scope": "Codex + SciencePAL verifiable research handoff; no new platform or feature expansion before submission",
+    "asset_scope": "Unchanged judge-v3 video and five-page PDF illustrate earlier cases; newest single-machine acceptance is a separate 13-stage replay",
+    "single_machine_acceptance": {
+      "artifacts": 23,
+      "input_receipts": 29,
+      "checks": 17,
+      "stages": 13,
+      "scope": "one operator, one computer, three project identities, one SciencePAL account; operator-assisted chronology supplementation"
+    },
+    "efficiency_study": "not performed; no human time or percentage improvement claimed",
+    "formal_submission": "not submitted; identity and final declarations pending user completion",
+    "acceptance_manifest": {
+      "path": "vibe-git/apps/web/public/research-replay/isolated/manifest.json",
+      "bytes": 7282,
+      "sha256": "d8ae4438d7b87dfb48ed409af52a631f7622fe401fee84b974e769471c6470a9"
+    }
   }
 }

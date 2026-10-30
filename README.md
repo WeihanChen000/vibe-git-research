@@ -1,8 +1,10 @@
-# Vibe-Git Research · 多人、多 Agent 科研协作
+# Vibe-Git Research · 可核查的科研交接
 
-**每个人使用自己的 Agent，在同一份研究协议下完成执行、文件交接、独立评审和返工。**
+**让 Codex 与 SciencePAL 在同一份研究协议下合作，把经过复核的成果、版本和批准依据一起交给下一步。**
 
-在队友原 [Vibe-Git](https://github.com/TFboy1/vibe-git) 上扩展，沿用人员拓扑、项目甘特、成员提案和队长发布逻辑。当前主路径为 **Codex × SciencePAL**，并已整合队友的六种本地 Agent 适配接口；各平台真实运行验证范围见下方说明。这是通用科研协作原型，**1CRN 与 Iris 只是可选的验证案例**，不是平台限定的研究课题。
+面向已经同时使用 Codex 和 SciencePAL、需要交换计算结果并复核的研究者。一个人管理多个 Agent 也可以使用；多人各用自己的 Agent 是保留的协作能力。平台负责让版本、检查和批准依据随文件交接，减少依赖人记住检查步骤；是否值得配置、是否节省真人操作时间仍待测量。
+
+在队友原 [Vibe-Git](https://github.com/TFboy1/vibe-git) 上扩展，沿用人员拓扑、项目甘特、成员提案和队长发布逻辑。当前只以 **Codex × SciencePAL** 为已实跑主路径。**1CRN 与 Iris 是验证案例**，用户可定义研究问题；当前文件与检查类型限制见下方，不宣称覆盖任意科研流程。
 
 [本次多 Agent 整合与防漂移说明](docs/research/MULTI-AGENT-INTEGRATION.md) · [完整展示与讲解](docs/research/SHOWCASE.md) · [原版能力对照](docs/research/COMPARISON.md) · [队友三步接入](vibe-git/SCIENCEPAL-QUICKSTART.md) · [架构与扩展](docs/research/ARCHITECTURE.md) · [验证与边界](docs/research/VALIDATION.md) · [全部材料导航](docs/research/INDEX.md)
 
@@ -12,11 +14,14 @@
 
 下载后可双击 [`docs/research/index.html`](docs/research/index.html) 查看无需安装的图文展示；GitHub 上请直接阅读上方展示页。
 
-## 本轮新增
+## 提交版本已收敛
 
-[评委与首次接入体验复查](docs/research/JUDGE-ONBOARDING-REVIEW.md)：视频明确原版增量与 SciencePAL 分工；新身份经上传、发布、退回、返工、数值检查及交接完成 2/2。快速说明保留在原弹层。
+功能基线固定为 [`ca1b2b5`](https://github.com/WeihanChen000/vibe-git-research/tree/ca1b2b5227e660559fb9e29c4d69a259252efb54)。提交前只修阻塞问题、同步材料，不新增平台、学科案例或重做界面。
 
-[可执行科学检查与测试](docs/research/SCIENTIFIC-GATES.md)：已配置检查失败时，Agent 批准不能放行；1CRN 模板附独立参考。队长双击 `vibe-git/open-captain.cmd`，成员双击 `vibe-git/open-research.cmd`。
+- [直接打开原拓扑回放](https://weihanchen000.github.io/vibe-git-research/replay/?case=isolated&step=members)：单机三个成员身份，13 个实际阶段，无需安装或账号。
+- [本轮真实验收与修复](docs/research/ISOLATED-ACCEPTANCE-20261031.md)：17 项运行检查通过，保留三次退回、补证复审和最终交接；中途需操作者核对原线程，非全自动成功。
+- 已冻结输入、参数与验收；数值检查按事先约定的规则执行；获批文件携带绑定到其字节的批准依据。已有参考的质量、容差和科学解释仍由研究者负责。
+- [一键验收说明](vibe-git/SCIENCEPAL-ISOLATED-ACCEPTANCE.md)：默认不调用模型，分别运行模拟检查与真实记录离线核验。真实重跑需现有账号和工具环境。
 
 ## 黑客松提交材料
 
@@ -24,20 +29,12 @@
 
 材料不等于已经提交。队伍身份、最终声明和问卷回执仍需队长完成；SciencePAL 展示链接的访问状态见提交包。
 
-## 本次新增
-
-- 原算力网选择七种平台；本地待办可以启动已安装的 Agent，也可复制任务包说明。
-- 原协议抽屉直接固定方法、参数、源数据哈希和范围，失败成果阻止评审与交接。
-- 原 v20/v21 的 12 项旧测试失败已修复；保留提案版本、模块证据和成员权限门禁。
-- 真实联调修复了 Codex App Server 启动兼容和本地失败恢复；评审代码与简短证据分开交付。
-- 获批交接自动携带原始批准记录，并绑定成果哈希，避免下游收到文件却不知道是否获准使用。
-
 ## 先看，还是直接使用？
 
 | 目的 | 入口 | 是否调用真实模型 |
 |---|---|---|
 | 发给队友快速了解 | 本 README 与完整展示 | 否 |
-| 自己点击真实案例全过程 | `vibe-git/open-replay.cmd` | 否，使用已保存原始证据 |
+| 自己点击真实案例全过程 | [公网原拓扑回放](https://weihanchen000.github.io/vibe-git-research/replay/?case=isolated&step=members)，或 `vibe-git/open-replay.cmd` | 否，使用已保存原始证据 |
 | 体验加入、提案、返工与交接 | 构建后 `npm run research:simulate-ui` | 否，明确标记合成演练 |
 | 开始自己的研究项目 | 队长 `vibe-git/open-captain.cmd`；成员 `vibe-git/open-research.cmd` | 是，执行时使用各自账号额度 |
 
@@ -50,7 +47,7 @@ npm run build
 npm run research:replay
 ```
 
-终端输出本机链接，保持终端开启。首次安装需要网络；构建后的回放不需要 API Key。回放可选 1CRN 七阶段或 Iris 九阶段，能展开原始文件、评审和交接证据。Windows 也可双击 `open-replay.cmd` 自动准备。
+终端输出本机链接，保持终端开启。首次安装需要网络；构建后的回放不需要 API Key。回放可选单机三成员十三阶段、1CRN 七阶段或 Iris 九阶段，能展开原始文件、评审和交接证据。Windows 也可双击 `open-replay.cmd` 自动准备。
 
 ## 实际使用的主路径
 
@@ -78,7 +75,7 @@ npm run research:replay
 
 ## 当前验证状态
 
-- 正式回归与真实整合记录见 [最新验证记录](docs/research/INTEGRATED-LIVE-20261031.md)，旧测试已恢复通过。
+- 最新单机验收、219 项科研专项及 Host/CLI 回归范围见 [当前验证记录](docs/research/ISOLATED-ACCEPTANCE-20261031.md)；[早期真实整合记录](docs/research/INTEGRATED-LIVE-20261031.md) 单独保留，不混用文件数与测试数。
 - 原有真实案例：1CRN 七阶段、Iris 九阶段，共 **38 个原始附件**；新增单机三成员案例另列于下方，均保留字节数和 SHA256。
 - 真实跨平台：一个 SciencePAL 账号 + 本地 Codex 已验证；真实两位用户各自账号联调仍待完成。
 - 受控测试：1CRN 首版单位错误与参数确认、Iris 首次数值错误是明示设计；不冒充自然发生的错误。Iris 第二次缺代码为真实产物问题。
