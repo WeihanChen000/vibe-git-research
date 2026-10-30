@@ -44,5 +44,18 @@
   "player_url": "https://weihanchen000.github.io/vibe-git-research/submission/watch.html",
   "video_audio_mean_db": -24.9,
   "video_audio_peak_db": -4.5,
-  "video_update": "Scientific results and numeric-v1 controlled rejection evidence added; no new remote run"
+  "video_update": "Scientific results and numeric-v1 controlled rejection evidence added; no new remote run",
+  "public_player_verification": {
+    "content_commit": "253593731286dd7a863bb919d80573adde7f0731",
+    "url": "https://weihanchen000.github.io/vibe-git-research/submission/watch.html?v=numeric-v1",
+    "anonymous_page_status": 200,
+    "video_range_status": 206,
+    "video_content_type": "video/mp4",
+    "video_bytes": 8884378,
+    "browser_duration_seconds": 278.604333,
+    "playback_advanced_to_seconds": 2.168455,
+    "muted": false,
+    "chapter_seek_seconds": 235.5,
+    "browser_media_error": null
+  }
 }
