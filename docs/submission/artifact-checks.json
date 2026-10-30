@@ -52,5 +52,17 @@
       1080
     ],
     "duration_seconds": 264.604333
+  },
+  "public_player_verification": {
+    "page_http_status": 200,
+    "video_range_http_status": 206,
+    "video_content_type": "video/mp4",
+    "pages_build_status": "built",
+    "browser_playback_time_seconds": 10.110218,
+    "browser_playing": true,
+    "browser_muted": false,
+    "chapter_requested_seconds": 203.333,
+    "chapter_actual_seconds": 203.462025,
+    "seekable_end_seconds": 264.604333
   }
 }
