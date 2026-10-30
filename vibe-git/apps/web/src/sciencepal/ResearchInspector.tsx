@@ -1,3 +1,4 @@
+import {ScientificChecks,ScientificResult} from "./ScientificChecks";
 import {reviewsForAttempt} from "./research-model";
 import {ResearchConstraints} from "./ResearchConstraints";
 import {ResultContract} from "./ResultContract";
@@ -66,7 +67,7 @@ export function ResearchInspector({state,p,target,open,close,archived,stale,busy
       {task&&<>
         <div className="rt-detail-status"><span className={`rt-pill tone-${taskDisplay(p,task).tone}`}>{taskDisplay(p,task).label}</span><small>{task.attempt?`第 ${task.attempt} 次执行`:"尚未开始"}</small></div>
         <p className="rt-people-line">{memberForAgent(p,task.assigneeAgentId)?.label} 执行 <ArrowRight size={12}/> {memberForAgent(p,task.reviewerAgentId)?.label} 评审</p>
-        {target.type==="review"&&<TaskReview task={task} p={p}/>}<ScientificEvidence key={`${p.id}:${p.revision}:${task.key}:${task.artifactId}`} p={p} task={task} {...(state.replay?{replay:state.replay}:{})}/>
+        <ScientificResult report={p.runs.find(r=>r.id===task.executionId)?.scientificValidation}/>{target.type==="review"&&<TaskReview task={task} p={p}/>}<ScientificEvidence key={`${p.id}:${p.revision}:${task.key}:${task.artifactId}`} p={p} task={task} {...(state.replay?{replay:state.replay}:{})}/>
         <ResultContract schema={task.resultSchema} validation={p.runs.find(r=>r.id===task.executionId)?.resultValidation}/><section className="rt-detail-section"><h3>研究目标</h3><p>{task.goal}</p><details><summary>范围与验收标准</summary><p>{task.boundary}</p><ul>{task.acceptance.map(c=><li key={c}>{c}</li>)}</ul></details></section>
         <section className="rt-detail-section"><h3><FileJson size={15}/> 本轮成果</h3>{task.artifactId?<><a className="rt-download" href={artifactUrl(p,task.artifactId,state.replay)}><FileDown size={15}/>{task.outputFilename}</a>{task.status!=="APPROVED"&&<p className="rt-note">可查看成果；尚未通过评审，不代表已向下游放行。</p>}</>:<p className="rt-note">{p.runs.find(r=>r.id===task.executionId)?.output?"本轮原文件已保留在下方执行记录；未通过约束，不交给下游。":"尚未生成本轮成果文件。"}</p>}</section>
         {target.type!=="review"&&<TaskReview task={task} p={p}/>}
@@ -83,7 +84,7 @@ export function ResearchInspector({state,p,target,open,close,archived,stale,busy
         <button className="rt-detail-link" onClick={()=>open({type:"review",id:handoff.from.key})}>查看上游评审 <ArrowRight size={14}/></button>
       </>}
       {target.type==="protocol"&&<>
-<ResearchConstraints p={p} state={state} send={send} disabled={stale||busy||archived}/>
+<ScientificChecks p={p} state={state} send={send} disabled={stale||busy||archived}/><ResearchConstraints p={p} state={state} send={send} disabled={stale||busy||archived}/>
         <div className="rt-review-verdict neutral">研究协议 R{p.revision} · {archived?"已归档":"当前快照"}</div><Markdown>{p.requirementMarkdown||p.alignment?.alignmentMarkdown||"提案已保存，等待对齐。"}</Markdown>
         {p.source&&<section className="rt-detail-section"><h3>研究数据</h3><p>{p.source.attribution}</p><p>{p.source.artifact.size} 字节 · 已冻结，后续任务复用原始文件</p><small className="research-source-digest">SHA256：{p.source.artifact.sha256}</small><a className="rt-download" href={artifactUrl(p,p.source.artifact.id,state.replay)}>{p.source.artifact.filename}</a></section>}
         {!!p.alignment?.issues.length&&<section className="rt-detail-section"><h3>待裁决分歧</h3>{p.alignment.issues.map(i=><details key={i.id}><summary>{i.title} · {i.selectedOptionId?"已裁决":"待选择"}</summary>{i.options.map(o=><p key={o.id}><b>{o.label}</b>（{o.id}）<br/>{o.impact}</p>)}</details>)}</section>}

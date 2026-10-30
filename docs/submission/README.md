@@ -14,7 +14,7 @@
 |---|---|---|
 | 名称、简介、科研问题、使用场景 | [可复制填表文本](FORM-COPY.md) | 已准备 |
 | 可访问、可演示的 SciencePAL 项目 / Agent / 工作流链接 | [SciencePAL 展示与复现](SCIENCEPAL-DEMO.md) | 原生公开只读回放已验证；重新执行需本人账号，详见该页边界 |
-| 3–5 分钟演示视频 | [直接播放新版故事演示](https://weihanchen000.github.io/vibe-git-research/submission/watch.html)、[逐段讲稿](DEMO-SCRIPT.md) | 约 4 分 25 秒；英文配音、中文字幕、界面操作演练与真实证据分别标注；不是连续实时录屏 |
+| 3–5 分钟演示视频 | [直接播放新版故事演示](https://weihanchen000.github.io/vibe-git-research/submission/watch.html)、[逐段讲稿](DEMO-SCRIPT.md) | 约 4 分 39 秒；英文配音、中文字幕、界面操作演练与真实证据分别标注；不是连续实时录屏 |
 | 不超过 5 页的说明或幻灯片 | [5 页匿名技术说明](project-brief.pdf) | 含方案、创新、验证、局限与计划 |
 | 原创性与资源说明 | [声明草稿](ORIGINALITY-RESOURCES.md) | 技术资源已整理，实名分工和最终确认待本人填写 |
 | 推荐：代码、实验报告、配置与复现 | [仓库首页](../../README.md)、[真实联调证据](../research/INTEGRATED-LIVE-20261031.md) | 已公开，12 个原始附件与核验命令 |
@@ -34,3 +34,5 @@
 ## 证据边界
 
 223 项工程测试是已完成整合轮的唯一项计数，非本材料制作新增测试。一个 SciencePAL 账号与本机 Codex、两种工作流身份已真实闭环；两位真人各用账号、其他五平台实跑、效率提升百分比尚未验证。第一次退回为预设探索到收敛的检查点；第二次退回为真实发现的批准凭证交接缺口。SciencePAL 执行的是实质科研计算与评审，不是只写介绍；不宣称算法独占或科学准确率优于其他平台。
+
+新增：[逐残基科学结果与边界](CRN-RESULTS.md) · [可执行检查、受控反例与接入优化](../research/SCIENTIFIC-GATES.md)。视频约 4 分 39 秒，仍满足 3–5 分钟要求。

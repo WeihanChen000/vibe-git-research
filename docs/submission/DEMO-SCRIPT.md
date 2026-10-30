@@ -182,31 +182,31 @@ Click the connection to see what was produced, who approved it, and whether the 
 
 性质：实际界面操作演练 · 获批后放行下游
 
-## 03:35 成员 B 继续分析，队长检查最终结论
+## 03:35 研究结果：哪些残基有较大的绝对暴露面积？
 
-Member B can now analyze the approved result. The captain reviews the final interpretation before closing the study.
+The study now answers the original question. In this fixed structure, tyrosine twenty nine, leucine eighteen, and proline thirty six have the largest absolute exposed areas.
 
-成员 B 现在可以继续分析获批结果，队长再检查最终解释。
+回到研究问题：在这个固定结构中，TYR 29、LEU 18、PRO 36 的绝对暴露面积最大。
 
-The team can see the complete chain, including the rejected attempt and the revision, in the original topology.
+These are geometric measurements, not claims about biological function. The complete residue results and independent reference are linked below.
 
-整个团队能在原拓扑看到完整过程，包括被退回的尝试和返工版本。
+这是几何测量，不是生物功能判断。逐残基结果与独立参考都可以核查。
 
-性质：实际界面操作演练 · 一位队长、两位成员
+性质：已有真实 SciencePAL 结果 · 固定结构的几何描述
 
-## 03:49 各用自己的 Agent，协作有共同依据
+## 03:55 检查失败，评审写“通过”也不能交接
 
-The contribution is a shared workflow around people's agents: alignment before work, review before release, and evidence attached to every handoff.
+The host now executes frozen numerical checks. A failed check blocks handoff, even if an agent review says approved. The original topology shows exactly what failed.
 
-我们的提升是把成员的 Agent 组织起来：先对齐、再执行；先评审、再交接；依据随文件一起走。
+Host 执行冻结的数值检查。检查失败时，Agent 写“通过”也不能交接；原拓扑指出具体原因。
 
-Science Pal supplies the research execution environment. Vibe Git keeps that research connected to the rest of the team.
+The saved real result passes. Three controlled errors fail, including changed residue areas with an unchanged total. This verifies the configured checks, not every possible scientific error.
 
-SciencePAL 提供科研执行环境；Vibe-Git 让这项研究接上整个团队的工作。
+保存的真实结果通过；三类受控错误被拒绝，包括总量不变但残基面积被改动。检查有明确覆盖范围。
 
-性质：情境示意 · 一位队长、两位成员
+性质：新增门禁 · 受控错误演练 / 本次未调用远端 Agent
 
-## 04:06 真实证据可以打开，范围也说清楚
+## 04:20 真实证据可以打开，范围也说清楚
 
 The three person workflow you saw is a rehearsal. The published scientific evidence comes from one Science Pal account working with local Codex.
 

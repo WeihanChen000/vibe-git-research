@@ -13,5 +13,5 @@ function npm(args){
 try{prepareResearch(root,{runNpm:npm,rebuild:process.argv.includes('--rebuild')});}catch(e){console.error(e.message);process.exit(1);}
 if(process.argv.includes('--prepare')){console.log('准备完成。open-research.cmd 进入本人工作区；open-replay.cmd 查看只读演示。');process.exit(0);}
 console.log('正在打开本人科研工作区。请保持此终端运行；Ctrl+C 关闭本机入口。');
-const run=spawnSync(process.execPath,['--use-env-proxy','apps/host/dist/sciencepal/local-panel-main.js',...(captain?['--captain']:[]),...(process.argv.includes('--no-open')?[]:['--open'])],{stdio:'inherit',windowsHide:true});
+const run=spawnSync(process.execPath,['--use-env-proxy',...(captain&&process.argv.includes('--room')?['scripts/research-captain.mjs']:['apps/host/dist/sciencepal/local-panel-main.js']),...(captain?['--captain']:[]),...(process.argv.includes('--no-open')?['--no-open']:['--open'])],{stdio:'inherit',windowsHide:true});
 if(run.error)console.error(run.error.message);process.exit(run.error||run.signal?1:run.status??1);

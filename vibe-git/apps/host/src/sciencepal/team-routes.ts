@@ -57,7 +57,7 @@ export async function registerSciencePALTeamRoutes(app: FastifyInstance, service
       repo.setMeta(`sciencepal_binding_${node.id}`, JSON.stringify(value));
       return { ...value, nodeId: node.id, verification: "member-connector" };
     });
-    api.post<{ Body: { title: string; coordinatorNodeId: string; documentIds: string[]; source?: SPCreateProject["source"]; resultSchemas?: SPCreateProject["resultSchemas"] } }>("/projects", async r => {
+    api.post<{ Body: { title: string; coordinatorNodeId: string; documentIds: string[]; scientificChecks?: SPCreateProject["scientificChecks"]; source?: SPCreateProject["source"]; resultSchemas?: SPCreateProject["resultSchemas"] } }>("/projects", async r => {
       const node = auth(r); captain(node);
       const data = r.body;
       if (!Array.isArray(data?.documentIds) || data.documentIds.length < 2 || data.documentIds.length > 4) throw badRequest("选择 2–4 位成员的当前提案");
@@ -76,7 +76,7 @@ export async function registerSciencePALTeamRoutes(app: FastifyInstance, service
       if (new Set(members.map(m => m.nodeId)).size !== members.length) throw badRequest("必须选择不同成员");
       const coordinator = members.find(m => m.nodeId === data.coordinatorNodeId);
       if (!coordinator) throw badRequest("对齐负责人必须参与项目");
-      return pipeline.create({ title: data.title, coordinatorId: coordinator.agent.id, proposals, ...(data.source ? { source: data.source } : {}), ...(data.resultSchemas ? { resultSchemas: data.resultSchemas } : {}) }, { captainNodeId: node.id, members });
+      return pipeline.create({ title: data.title, coordinatorId: coordinator.agent.id, proposals, ...(data.scientificChecks ? {scientificChecks:data.scientificChecks} : {}), ...(data.source ? { source: data.source } : {}), ...(data.resultSchemas ? { resultSchemas: data.resultSchemas } : {}) }, { captainNodeId: node.id, members });
     });
     api.get<{ Params: { id: string } }>("/projects/:id", async r => access(auth(r), pipeline.get(r.params.id)));
     api.get<{ Params: { id: string } }>("/projects/:id/next", async r => {

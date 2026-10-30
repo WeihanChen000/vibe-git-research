@@ -12,3 +12,5 @@ export * from "./sciencepal-presence.js";
 export * from "./sciencepal-crn-case.js";
 
 export * from "./sciencepal-platform.js";
+
+export * from "./sciencepal-crn-checks.js";

@@ -29,7 +29,18 @@ export interface SPResultSchema {
 }
 export type SPResultSchemas = Record<string, SPResultSchema>;
 export interface SPResultValidation { status: "PASSED" | "FAILED"; contractSha256: string; issues: { path: string; message: string }[] }
+/** Host-executed, bounded numeric checks; never execute Agent-supplied code. */
+export type SPScientificRule =
+ | {id:string;kind:"sum";totalPath:string;rowsPath:string;valueField:string;absoluteTolerance:number}
+ | {id:string;kind:"reference";path:string;expected:number;absoluteTolerance:number;relativeTolerance:number;provenance:string}
+ | {id:string;kind:"reference-table";rowsPath:string;keyField:string;valueField:string;expected:{key:number|string;value:number}[];absoluteTolerance:number;relativeTolerance:number;provenance:string};
+export interface SPScientificChecks {version:1;sourceSha256?:string;tasks:Record<string,SPScientificRule[]>}
+export interface SPScientificValidation {
+ status:"PASSED"|"FAILED";engineVersion:"numeric-v1";rulesSha256:string;artifactSha256:string;sourceSha256:string|null;
+ checks:{id:string;passed:boolean;detail:string}[];
+}
 export interface SPTaskDraft {
+  scientificChecks?: SPScientificRule[];
   resultSchema?: SPResultSchema;
   key: string; title: string; goal: string; boundary: string; acceptance: string[];
   dependencies: string[]; assigneeAgentId: string; reviewerAgentId: string; outputFilename: string;
@@ -57,6 +68,7 @@ export interface SPRun {
   ownerNodeId?: string;
   provenance?: "member-connector";
   resultValidation?: SPResultValidation;
+  scientificValidation?: SPScientificValidation;
   id: string; kind: "ALIGN" | "TASK" | "REVIEW" | "CHANGE_REVIEW";
   revision: number; taskKey: string | null; agent: SPAgentBinding;
   status: SciencePALTaskStatus | "COLLECTED" | "INVALID";
@@ -81,6 +93,7 @@ export interface SPChange {
 export interface SPProject {
   team?: SPTeam;
   resultContracts?: SciencePALArtifact;
+  scientificChecks?: SciencePALArtifact;
   source?: SPSourceFile;
   id: string; roomId: string; title: string; revision: number; phase: SPPhase; paused: boolean;
   agents: SPAgentBinding[]; coordinatorId: string; proposals: SPProposal[];
@@ -91,6 +104,7 @@ export interface SPProject {
   events: { at: string; message: string }[];
 }
 export interface SPCreateProject {
+  scientificChecks?: SPScientificChecks;
   resultSchemas?: SPResultSchemas;
   title: string; coordinatorId: string; proposals: { agentId: string; content: string }[];
   source?: SPSourceInput;
@@ -106,6 +120,7 @@ export interface SPProjectEvidence {
   team?: SPTeam;
   provenance?: "member-connector";
   resultContracts?: SciencePALArtifact;
+  scientificChecks?: SciencePALArtifact;
   source?: SPSourceFile;
   projectId: string; title: string; revision: number; archived: boolean; generatedAt: string;
   requirement: string; allApproved: boolean;

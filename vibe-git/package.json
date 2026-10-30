@@ -39,7 +39,7 @@
     "sciencepal:member": "node --use-env-proxy apps/host/dist/sciencepal/member-main.js",
     "sciencepal:call": "node --use-env-proxy apps/host/dist/sciencepal/bridge-main.js",
     "sciencepal:simulate": "node apps/host/scripts/simulate-research-collaboration.mjs",
-    "test:sciencepal": "npm run build -w @vibe-git/protocol && npm run build -w @vibe-git/relay && vitest run apps/host/test/sciencepal.test.ts apps/host/test/sciencepal-pipeline.test.ts apps/host/test/sciencepal-team.test.ts apps/host/test/sciencepal-bridge.test.ts apps/web/src/sciencepal/research-model.test.ts apps/web/src/sciencepal/research-replay.test.ts apps/host/test/research-constraints.test.ts apps/relay/test/agent-adapters.test.ts apps/relay/test/codex-executor.test.ts",
+    "test:sciencepal": "npm run build -w @vibe-git/protocol && npm run build -w @vibe-git/relay && vitest run apps/host/test/sciencepal.test.ts apps/host/test/sciencepal-pipeline.test.ts apps/host/test/scientific-checks.test.ts apps/host/test/sciencepal-team.test.ts apps/host/test/sciencepal-bridge.test.ts apps/web/src/sciencepal/research-model.test.ts apps/web/src/sciencepal/research-replay.test.ts apps/host/test/research-constraints.test.ts apps/relay/test/agent-adapters.test.ts apps/relay/test/codex-executor.test.ts",
     "predev": "npm run build -w @vibe-git/protocol && npm run build -w @vibe-git/relay",
     "dev": "concurrently -k -n host,web -c cyan,magenta \"npm run dev -w @vibe-git/host\" \"npm run dev -w @vibe-git/web\"",
     "dev:relay": "npm run dev -w @vibe-git/relay",

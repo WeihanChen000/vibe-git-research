@@ -1,6 +1,6 @@
 {
   "pdf_pages": 5,
-  "video_seconds": 264.6,
+  "video_seconds": 278.583333,
   "video_dimensions": [
     1920,
     1080
@@ -8,7 +8,7 @@
   "video_fps": 24,
   "video_audio": true,
   "full_decode_passed": true,
-  "form_summary_characters": 654,
+  "form_summary_characters": 727,
   "team_identity": "left blank by user",
   "technical_baseline": "c7610cf",
   "files": {
@@ -17,8 +17,8 @@
       "sha256": "1db6a53bc2ce425da54d0bb0914b58fe70e7fd675fcb96c9c0875f94260df2c8"
     },
     "vibe-git-research-demo.mp4": {
-      "bytes": 8430767,
-      "sha256": "d0d4f8afe21c1545ff4b54c161c2108d6a3e5cc5a7cf9182421e48a4f45d92ed"
+      "bytes": 8884378,
+      "sha256": "2acc4aeca707defcdbf55db850a9abfdfd9386ac79fe01b5390d7bdc4049dbdb"
     }
   },
   "sciencepal_public_share": "https://sciencepal.ai/share/3b6302a7-f055-460e-9e3d-588287a7b3ca",
@@ -44,25 +44,5 @@
   "player_url": "https://weihanchen000.github.io/vibe-git-research/submission/watch.html",
   "video_audio_mean_db": -24.9,
   "video_audio_peak_db": -4.5,
-  "local_browser_playback": {
-    "playing": true,
-    "muted": false,
-    "dimensions": [
-      1920,
-      1080
-    ],
-    "duration_seconds": 264.604333
-  },
-  "public_player_verification": {
-    "page_http_status": 200,
-    "video_range_http_status": 206,
-    "video_content_type": "video/mp4",
-    "pages_build_status": "built",
-    "browser_playback_time_seconds": 10.110218,
-    "browser_playing": true,
-    "browser_muted": false,
-    "chapter_requested_seconds": 203.333,
-    "chapter_actual_seconds": 203.462025,
-    "seekable_end_seconds": 264.604333
-  }
+  "video_update": "Scientific results and numeric-v1 controlled rejection evidence added; no new remote run"
 }

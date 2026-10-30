@@ -12,6 +12,10 @@
 
 下载后可双击 [`docs/research/index.html`](docs/research/index.html) 查看无需安装的图文展示；GitHub 上请直接阅读上方展示页。
 
+## 本轮新增
+
+[可执行科学检查与测试](docs/research/SCIENTIFIC-GATES.md)：已配置检查失败时，Agent 批准不能放行；1CRN 模板附独立参考。队长双击 `vibe-git/open-captain.cmd`，成员双击 `vibe-git/open-research.cmd`。
+
 ## 黑客松提交材料
 
 [提交包与缺项清单](docs/submission/README.md) · [5 页技术说明](docs/submission/project-brief.pdf) · [▶ 直接播放故事演示（英文配音）](https://weihanchen000.github.io/vibe-git-research/submission/watch.html) · [原创性与资源说明](docs/submission/ORIGINALITY-RESOURCES.md)

@@ -3,7 +3,7 @@ import type { SPProject } from "@vibe-git/protocol";
 import type { TeamState } from "./research-model";
 import { Markdown } from "../Markdown";
 export type SendResearchCommand = (operation:string,body:Record<string,unknown>,snapshot:string)=>Promise<void>;
-export const commandNames:Record<string,string>={"set-constraints":"保存科研约束",align:"启动协议对齐",publish:"发布研究任务",rework:"安排返工",decide:"确认裁决",retry:"重试失败任务",pause:"暂停派发",resume:"恢复派发",change:"提出研究变更","apply-change":"应用研究变更","dismiss-change":"关闭变更"};
+export const commandNames:Record<string,string>={"set-scientific-checks":"冻结科学检查","set-constraints":"保存科研约束",align:"启动协议对齐",publish:"发布研究任务",rework:"安排返工",decide:"确认裁决",retry:"重试失败任务",pause:"暂停派发",resume:"恢复派发",change:"提出研究变更","apply-change":"应用研究变更","dismiss-change":"关闭变更"};
 export function ResearchCommand({p,state,operation,body={},busy,disabled,send}:{p:SPProject;state:TeamState;operation:string;body?:Record<string,unknown>;busy:boolean;disabled:boolean;send:SendResearchCommand}){
  const [expanded,setExpanded]=useState(false),[snapshot,setSnapshot]=useState(""),[error,setError]=useState("");
  const [note,setNote]=useState(""),[option,setOption]=useState("");const immediate=useRef(false);

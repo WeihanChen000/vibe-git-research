@@ -149,31 +149,31 @@ Now the handoff includes the approved file, its fingerprint, and the original re
 Click the connection to see what was produced, who approved it, and whether the downstream member received it.
 
 31
-00:03:35,367 --> 00:03:42,822
-成员 B 现在可以继续分析获批结果，队长再检查最终解释。
-Member B can now analyze the approved result. The captain reviews the final interpretation before closing the study.
+00:03:35,367 --> 00:03:46,385
+回到研究问题：在这个固定结构中，TYR 29、LEU 18、PRO 36 的绝对暴露面积最大。
+The study now answers the original question. In this fixed structure, tyrosine twenty nine, leucine eighteen, and proline thirty six have the largest absolute exposed areas.
 
 32
-00:03:42,822 --> 00:03:49,300
-整个团队能在原拓扑看到完整过程，包括被退回的尝试和返工版本。
-The team can see the complete chain, including the rejected attempt and the revision, in the original topology.
+00:03:46,385 --> 00:03:55,300
+这是几何测量，不是生物功能判断。逐残基结果与独立参考都可以核查。
+These are geometric measurements, not claims about biological function. The complete residue results and independent reference are linked below.
 
 33
-00:03:49,700 --> 00:03:58,254
-我们的提升是把成员的 Agent 组织起来：先对齐、再执行；先评审、再交接；依据随文件一起走。
-The contribution is a shared workflow around people's agents: alignment before work, review before release, and evidence attached to every handoff.
+00:03:55,700 --> 00:04:06,932
+Host 执行冻结的数值检查。检查失败时，Agent 写“通过”也不能交接；原拓扑指出具体原因。
+The host now executes frozen numerical checks. A failed check blocks handoff, even if an agent review says approved. The original topology shows exactly what failed.
 
 34
-00:03:58,254 --> 00:04:05,800
-SciencePAL 提供科研执行环境；Vibe-Git 让这项研究接上整个团队的工作。
-Science Pal supplies the research execution environment. Vibe Git keeps that research connected to the rest of the team.
+00:04:06,932 --> 00:04:19,800
+保存的真实结果通过；三类受控错误被拒绝，包括总量不变但残基面积被改动。检查有明确覆盖范围。
+The saved real result passes. Three controlled errors fail, including changed residue areas with an unchanged total. This verifies the configured checks, not every possible scientific error.
 
 35
-00:04:06,200 --> 00:04:14,879
+00:04:20,200 --> 00:04:28,879
 三人流程是操作演练；公开科学证据来自一个 SciencePAL 账号与本机 Codex 的真实协作。
 The three person workflow you saw is a rehearsal. The published scientific evidence comes from one Science Pal account working with local Codex.
 
 36
-00:04:14,879 --> 00:04:24,383
+00:04:28,879 --> 00:04:38,383
 平台不限于这个蛋白。打开下方链接，可以核查真实文件和 SciencePAL 运行记录。
 This is a general research platform, not a tool limited to this protein. Open the evidence links below to inspect the real files and the Science Pal run.

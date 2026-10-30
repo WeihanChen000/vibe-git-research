@@ -198,32 +198,30 @@
   {
     "scene": 16,
     "start": 215.167,
-    "duration": 14.333,
-    "title": "成员 B 继续分析，队长检查最终结论",
-    "scope": "实际界面操作演练 · 一位队长、两位成员",
-    "screenshots": [
-      "video2-complete.png"
-    ],
+    "duration": 20.333,
+    "title": "研究结果：哪些残基有较大的绝对暴露面积？",
+    "scope": "已有真实 SciencePAL 结果 · 固定结构的几何描述",
+    "screenshots": [],
     "narration": [
-      "Member B can now analyze the approved result. The captain reviews the final interpretation before closing the study.",
-      "The team can see the complete chain, including the rejected attempt and the revision, in the original topology."
+      "The study now answers the original question. In this fixed structure, tyrosine twenty nine, leucine eighteen, and proline thirty six have the largest absolute exposed areas.",
+      "These are geometric measurements, not claims about biological function. The complete residue results and independent reference are linked below."
     ]
   },
   {
     "scene": 17,
-    "start": 229.5,
-    "duration": 16.5,
-    "title": "各用自己的 Agent，协作有共同依据",
-    "scope": "情境示意 · 一位队长、两位成员",
+    "start": 235.5,
+    "duration": 24.5,
+    "title": "检查失败，评审写“通过”也不能交接",
+    "scope": "新增门禁 · 受控错误演练 / 本次未调用远端 Agent",
     "screenshots": [],
     "narration": [
-      "The contribution is a shared workflow around people's agents: alignment before work, review before release, and evidence attached to every handoff.",
-      "Science Pal supplies the research execution environment. Vibe Git keeps that research connected to the rest of the team."
+      "The host now executes frozen numerical checks. A failed check blocks handoff, even if an agent review says approved. The original topology shows exactly what failed.",
+      "The saved real result passes. Three controlled errors fail, including changed residue areas with an unchanged total. This verifies the configured checks, not every possible scientific error."
     ]
   },
   {
     "scene": 18,
-    "start": 246.0,
+    "start": 260.0,
     "duration": 18.583,
     "title": "真实证据可以打开，范围也说清楚",
     "scope": "边界说明 · 不宣称已完成真人双账号验证",

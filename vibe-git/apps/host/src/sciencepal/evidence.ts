@@ -1,3 +1,4 @@
+import {validateScientificChecks,checkScientificResult,scientificError} from "./scientific-checks.js";
 import { isLocalResearchPlatform, researchPlatformName } from "@vibe-git/protocol";
 import type { SPProject, SPProjectEvidence, SPRun, SPTaskAttempt, SciencePALArtifact } from "@vibe-git/protocol";
 import { badRequest, invalidState, notFound } from "../domain/errors.js";
@@ -21,6 +22,7 @@ export function projectEvidence(p: SPProject, revision: number,
     files.set(id, meta); return bytes;
   };
   const contracts = p.resultContracts ? validateResultSchemas(JSON.parse(Buffer.from(verify(p.resultContracts.id, p.resultContracts.sha256, p.resultContracts.size)).toString("utf8"))) : undefined;
+  const science = p.scientificChecks ? validateScientificChecks(JSON.parse(Buffer.from(verify(p.scientificChecks.id,p.scientificChecks.sha256,p.scientificChecks.size)).toString("utf8")),p.source?.artifact.sha256) : undefined;
   for (const run of runs) {
     const transitions = run.continuations ?? [];
     for (let i = 0; i < transitions.length; i++) {
@@ -43,6 +45,7 @@ export function projectEvidence(p: SPProject, revision: number,
       const check = checkTaskResult(contracts, run.taskKey!, result, p.resultContracts!.sha256);
       if (check.status === "FAILED") throw invalidState(resultValidationError(check));
     }
+    if(science&&run.kind==="TASK"){const report=checkScientificResult(science,run.taskKey!,result,p.scientificChecks!.sha256,run.output.sha256,p.source?.artifact.sha256);if(report?.status==="FAILED")throw invalidState(scientificError(report));if(report)run.scientificValidation=report;}
     results.set(run.id, result);
   }
   if (p.source) verify(p.source.artifact.id, p.source.artifact.sha256, p.source.artifact.size);
@@ -64,7 +67,7 @@ export function projectEvidence(p: SPProject, revision: number,
       ],
     });
   }
-  return { ...(p.team ? { team: p.team, provenance: "member-connector" as const } : {}), ...(p.resultContracts ? { resultContracts: p.resultContracts } : {}), ...(p.source ? { source: p.source } : {}), projectId: p.id, title: p.title, revision, archived: revision !== p.revision, generatedAt: new Date().toISOString(),
+  return { ...(p.team ? { team: p.team, provenance: "member-connector" as const } : {}), ...(p.resultContracts ? { resultContracts: p.resultContracts } : {}), ...(p.source ? { source: p.source } : {}), ...(p.scientificChecks?{scientificChecks:p.scientificChecks}:{}), projectId: p.id, title: p.title, revision, archived: revision !== p.revision, generatedAt: new Date().toISOString(),
     requirement: stage.requirementMarkdown || stage.alignment?.alignmentMarkdown || "",
     allApproved: tasks.length > 0 && handoffs.every(h => h.checks.every(c => c.passed)) && tasks.every(t => t.task.status === "APPROVED" && t.attempts.some(a => a.execution.id === t.task.executionId && a.reviews.some(r => r.run.id === t.task.reviewId && r.result?.verdict === "approve"))),
     tasks, runs, files: [...files.values()], handoffs };

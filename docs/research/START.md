@@ -28,7 +28,7 @@ npm run research:simulate-ui
 
 ## 3. 用自己的账号研究
 
-跟随 [完整接入指南](../../vibe-git/SCIENCEPAL-TEAM-START.md)。队长先启动 Host、本人面板，跨电脑准备可信 HTTPS 地址；队友只启动本人面板并加入邀请。
+跟随 [完整接入指南](../../vibe-git/SCIENCEPAL-TEAM-START.md)。队长双击 `open-captain.cmd` 一次启动 Host 与本人面板，跨电脑另准备可信 HTTPS 地址；队友双击 `open-research.cmd`，按“邀请 → Agent → 提案”加入。已有房间用 `open-research.cmd --captain`，不会重复启动 Host。
 
 每个人在本人电脑选择自己的平台、可用专家与提案。Key 不发给队长。默认新建自己的研究；示例藏在“使用公开案例（可选）”，不会限定课题。
 
@@ -60,3 +60,7 @@ cd vibe-git-research/vibe-git
 
 
 要离线核对最新整合案例的原始文件及获批交接，在 `vibe-git` 目录运行 `npm run test:integrated-live`。只需要 Node.js，不需要 API Key，不执行产物内的 Python。它核对公开字节、评审与返工顺序、批准记录与交接绑定；不能代替远端账号的执行审计。
+
+## 数值检查如何使用
+
+1CRN 模板自动冻结独立参考和求和检查。自己的研究在发布前打开“协议 → 可执行科学检查”，选择任务、求和字段或独立参考值及容差，无需写 JSON。已配置的检查在成果提交、批准和交接时由 Host 执行；失败后原文件保留，按原待办修正重试。检查不能由 Agent 评审绕过，发布后也不能删除或放宽。没有配置检查的任务会明确显示缺少检查记录，不追认历史成果。

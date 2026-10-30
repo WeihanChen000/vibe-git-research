@@ -90,20 +90,20 @@ Now the handoff includes the approved file, its fingerprint, and the original re
 00:03:29.105 --> 00:03:34.967
 Click the connection to see what was produced, who approved it, and whether the downstream member received it.
 
-00:03:35.367 --> 00:03:42.822
-Member B can now analyze the approved result. The captain reviews the final interpretation before closing the study.
+00:03:35.367 --> 00:03:46.385
+The study now answers the original question. In this fixed structure, tyrosine twenty nine, leucine eighteen, and proline thirty six have the largest absolute exposed areas.
 
-00:03:42.822 --> 00:03:49.300
-The team can see the complete chain, including the rejected attempt and the revision, in the original topology.
+00:03:46.385 --> 00:03:55.300
+These are geometric measurements, not claims about biological function. The complete residue results and independent reference are linked below.
 
-00:03:49.700 --> 00:03:58.254
-The contribution is a shared workflow around people's agents: alignment before work, review before release, and evidence attached to every handoff.
+00:03:55.700 --> 00:04:06.932
+The host now executes frozen numerical checks. A failed check blocks handoff, even if an agent review says approved. The original topology shows exactly what failed.
 
-00:03:58.254 --> 00:04:05.800
-Science Pal supplies the research execution environment. Vibe Git keeps that research connected to the rest of the team.
+00:04:06.932 --> 00:04:19.800
+The saved real result passes. Three controlled errors fail, including changed residue areas with an unchanged total. This verifies the configured checks, not every possible scientific error.
 
-00:04:06.200 --> 00:04:14.879
+00:04:20.200 --> 00:04:28.879
 The three person workflow you saw is a rehearsal. The published scientific evidence comes from one Science Pal account working with local Codex.
 
-00:04:14.879 --> 00:04:24.383
+00:04:28.879 --> 00:04:38.383
 This is a general research platform, not a tool limited to this protein. Open the evidence links below to inspect the real files and the Science Pal run.

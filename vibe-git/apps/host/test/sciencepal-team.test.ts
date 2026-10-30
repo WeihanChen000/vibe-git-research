@@ -761,6 +761,7 @@ describe('shared research executor and constraints permissions',()=>{
   expect((await s.raw(s.captain.nodeToken,'/api/sciencepal-team/binding',{agent:{id:'codex-local',name:'bad',platform:'gemini'}},'PUT')).statusCode).toBe(400);
   await s.command('align');await s.until('READY');
   await expect(s.command('set-constraints',{constraints:[{taskKey:'data',field:'seed',kind:'number',value:42}]},s.b)).rejects.toThrow('403');
+  await expect(s.command('set-scientific-checks',{checks:{version:1,tasks:{data:[{id:'sum',kind:'sum',totalPath:'total',rowsPath:'rows',valueField:'value',absoluteTolerance:0}]}}},s.b)).rejects.toThrow('403');
   const frozen=await s.command('set-constraints',{constraints:[{taskKey:'data',field:'seed',kind:'number',value:42}]});expect(frozen.resultContracts).toBeDefined();
  });
 });

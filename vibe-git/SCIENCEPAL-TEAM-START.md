@@ -2,6 +2,19 @@
 
 先看原拓扑里的真实案例回放，熟悉“现在轮到谁 → 任务 / 评审 / 文件交接 → 记录”。回放只读，不消耗模型额度；它使用一位用户的 SciencePAL 账号与 Codex，不能替代下面的真实双账号验收。
 
+## 最短接入路径
+
+| 角色 | 打开什么 | 接下来做什么 |
+|---|---|---|
+| 队长，新建本机房间 | 双击 `open-captain.cmd` | 一次启动 Host 和本人入口，绑定 Agent、保存提案，再邀请队友 |
+| 队长，房间已经运行 | `open-research.cmd --captain` | 只开本人入口，复用原房间 |
+| 队友 | 双击 `open-research.cmd` | 粘贴邀请 → 绑定自己的 Agent → 保存提案 |
+| 评委，只看演示 | [在线播放](https://weihanchen000.github.io/vibe-git-research/submission/watch.html) | 无需安装；要点原拓扑则用 `open-replay.cmd` |
+
+首次启动自动准备依赖和构建，仍需 Node.js 24+。队长入口只监听本机，不自动配置公网；跨电脑仍按下方步骤准备 HTTPS 邀请。遇到端口占用不会停止已有服务，也不会另建身份覆盖原记录。
+
+算力网内显示“加入房间 / Agent 绑定 / 提案保存”三步进度，首次绑定后自动进入提案。完成后按原拓扑的“现在轮到谁”操作。一个 SciencePAL 成员与一个 Codex 成员即可合作，不要求人人都有两个平台账号。
+
 ## 第一次来，先选自己的事情
 
 - **只看演示**：双击 `open-replay.cmd`。不需要邀请和 Key；演示入口默认展示 1CRN 的工具参数与独立复核，可切换 Iris 查看两次退回；实际建项默认是自己的研究，示例均为可选。
@@ -19,8 +32,8 @@
 ## 队长先做：准备房间与邀请
 
 1. 将同版本 `vibe-git-sciencepal-team-kit.zip` 和 `.sha256` 私下发给队友。双方解压到本机普通目录，安装 Node.js 24+。不要发自己的个人配置目录、API Key 或浏览器登录链接。
-2. 在解压后的 `vibe-git` 目录执行 `npm ci`、`npm run build`，然后 `npm run sciencepal`。保持 Host 终端开启。
-3. 另开终端执行 `node scripts/open-research.mjs --captain`，打开本人本机入口。
+2. 双击 `open-captain.cmd`，自动准备依赖、启动房间和本人入口，保持一个终端开启。
+3. 如果房间已经由 `npm run sciencepal` 启动，使用 `open-research.cmd --captain` 只打开本人入口，不再重复开房间。
 4. 跨电脑需要可访问的 HTTPS 房间地址。如果已有可信 HTTPS 入口，复用它；否则在队长终端依次运行：
 
 ```powershell

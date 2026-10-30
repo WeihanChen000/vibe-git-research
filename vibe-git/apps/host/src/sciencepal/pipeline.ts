@@ -1,3 +1,4 @@
+import {validateScientificChecks,checkScientificResult,scientificError} from "./scientific-checks.js";
 import {constrainResearch} from "./research-constraints.js";
 import { isLocalResearchPlatform, researchPlatformName } from "@vibe-git/protocol";
 import { createHash, randomUUID } from "node:crypto";
@@ -80,6 +81,7 @@ export class SciencePALPipeline {
     }
     if (source) p.source = { artifact: this.storeFile(p, source.filename, source.bytes), sourceUrl: source.sourceUrl, attribution: source.attribution };
     if (resultSchemas) p.resultContracts = this.storeFile(p, "result-contracts.json", Buffer.from(JSON.stringify(resultSchemas, null, 2)));
+    if (input.scientificChecks) {const checks=validateScientificChecks(input.scientificChecks,p.source?.artifact.sha256);p.scientificChecks=this.storeFile(p,"scientific-checks.json",Buffer.from(JSON.stringify(checks)));}
     this.save(p, "提案已冻结：可启动自动对齐"); return p;
   }
   private storeFile(p: SPProject, filename: string, bytes: Uint8Array): SciencePALArtifact {
@@ -131,7 +133,7 @@ export class SciencePALPipeline {
   private queue(p: SPProject, kind: SPRun["kind"], agentId: string, context: unknown, files: string[] = [], taskKey: string | null = null): SPRun {
     if (p.runs.length + p.runs.reduce((n, r) => n + (r.continuations?.length ?? 0), 0) >= p.maxRuns) throw invalidState("本项目达到 32 次运行上限；请结束当前实验并检查任务设计");
     const resultSchemas = this.contracts(p);
-    const contextFile = this.storeFile(p, "context.json", Buffer.from(JSON.stringify({ ...object(context), ...(resultSchemas ? { resultSchemas } : {}), ...(p.source ? { source: { filename: p.source.artifact.filename, sourceUrl: p.source.sourceUrl, attribution: p.source.attribution } } : {}) }, null, 2)));
+    const contextFile = this.storeFile(p, "context.json", Buffer.from(JSON.stringify({ ...object(context), ...(resultSchemas ? { resultSchemas } : {}), ...(p.scientificChecks ? {scientificChecks:this.scienceRules(p)} : {}), ...(p.source ? { source: { filename: p.source.artifact.filename, sourceUrl: p.source.sourceUrl, attribution: p.source.attribution } } : {}) }, null, 2)));
     const metas = [contextFile, ...(p.source ? [this.file(p.id, p.source.artifact.id)] : []), ...files.map(id => this.file(p.id, id))];
     if (new Set(metas.map(m => m.filename)).size !== metas.length) throw badRequest("附件文件名冲突");
     if (metas.reduce((sum, m) => sum + m.size, 0) > MAX_ARTIFACT_BYTES) throw badRequest("本次交接附件合计超过 5 MiB");
@@ -152,12 +154,28 @@ export class SciencePALPipeline {
     if (file.sha256 !== p.resultContracts.sha256 || file.size !== p.resultContracts.size) throw invalidState("成果格式与冻结清单不符");
     return validateResultSchemas(JSON.parse(Buffer.from(file.bytes).toString("utf8")));
   }
+  private scienceRules(p:SPProject) {
+    if(!p.scientificChecks)return undefined;const f=this.file(p.id,p.scientificChecks.id);
+    if(f.sha256!==p.scientificChecks.sha256||f.size!==p.scientificChecks.size)throw invalidState("科学检查规则与冻结记录不符");
+    if(p.source){const source=this.file(p.id,p.source.artifact.id);if(source.sha256!==p.source.artifact.sha256||source.size!==p.source.artifact.size)throw invalidState("科学检查源文件与冻结记录不符");}
+    return validateScientificChecks(JSON.parse(Buffer.from(f.bytes).toString("utf8")),p.source?.artifact.sha256);
+  }
+  private verifyScience(p:SPProject,t:SPTask,result?:unknown,run?:SPRun) {
+    const rules=this.scienceRules(p);if(!rules?.tasks[t.key])return undefined;
+    const r=run??p.runs.find(r=>r.id===t.executionId);
+    if(!r?.output||r.kind!=="TASK"||r.taskKey!==t.key||r.revision!==p.revision||!isLatestSPRun(p.runs,r)||(!run&&r.output.id!==t.artifactId))throw invalidState("科学检查缺少当前执行成果");
+    const f=this.file(p.id,r.output.id);if(f.sha256!==r.output.sha256||f.size!==r.output.size)throw invalidState("科学检查成果绑定不符");
+    const value=result??envelope(JSON.parse(Buffer.from(f.bytes).toString("utf8")),r);
+    const check=checkScientificResult(rules,t.key,value,p.scientificChecks!.sha256,f.sha256,p.source?.artifact.sha256)!;
+    r.scientificValidation=check;if(check.status!=="PASSED")throw badRequest(scientificError(check));return check;
+  }
   private alignment(p: SPProject) {
     const run = this.queue(p, "ALIGN", p.coordinatorId, { revision: p.revision, agents: p.agents, proposals: p.proposals,
       publishedRequirement: p.requirementMarkdown, decisions: p.alignment?.issues.filter(i => i.selectedOptionId) ?? [], approvedChanges: p.changes.filter(c => c.status === "APPLIED") });
     p.alignmentRunId = run.id; p.phase = "ALIGNING"; p.error = null; this.save(p, "自动对齐已启动；发布前仍需检查对齐稿");
   }
   private approvalProof(p: SPProject, t: SPTask) {
+    const scientificValidation=this.verifyScience(p,t);
     const r = p.runs.find(r => r.id === t.reviewId);
     if (t.status !== "APPROVED" || !t.artifactId || !r?.output || r.kind !== "REVIEW" || r.taskKey !== t.key || r.revision !== p.revision || r.status !== "COLLECTED" || !isLatestSPRun(p.runs, r) || r.agent.id !== t.reviewerAgentId || r.agent.id === t.assigneeAgentId) throw invalidState("上游缺少当前独立评审的批准依据");
     const artifact = this.file(p.id, t.artifactId), reviewed = r.inputs.find(i => i.artifactId === artifact.id);
@@ -172,7 +190,7 @@ export class SciencePALPipeline {
     // Embed exact original text in the frozen context: independently hashable, no
     // extra attachment slot per dependency, and subject to the existing size cap.
     return { verdict: result.verdict, reviewerAgentId: r.agent.id, reviewRunId: r.id,
-      reviewedArtifact: meta(artifact), reviewArtifact: meta(reviewFile), reviewFileUtf8 };
+      reviewedArtifact: meta(artifact), reviewArtifact: meta(reviewFile), reviewFileUtf8, ...(scientificValidation?{scientificValidation}:{}) };
   }
   private context(p: SPProject, t: SPTask) {
     return { revision: p.revision, requirement: p.requirementMarkdown, task: t, feedback: t.feedback,
@@ -219,6 +237,14 @@ export class SciencePALPipeline {
           if (p.alignment!.issues.every(i => i.selectedOptionId)) this.alignment(p);
           break;
         }
+        case "set-scientific-checks": {
+          if(p.phase!=="READY"||p.revision!==1||!p.alignment||p.tasks.length)throw invalidState("科学检查仅可在首次发布前添加");
+          const added=validateScientificChecks(data.checks,p.source?.artifact.sha256),old=this.scienceRules(p);
+          for(const key of Object.keys(added.tasks))if(!p.alignment.tasks.some(t=>t.key===key))throw badRequest("检查任务不在对齐协议中");
+          const tasks={...old?.tasks};for(const [key,rules] of Object.entries(added.tasks))tasks[key]=[...(tasks[key]??[]),...rules];
+          const merged=validateScientificChecks({version:1,...(p.source?{sourceSha256:p.source.artifact.sha256}:{}),tasks},p.source?.artifact.sha256);
+          p.scientificChecks=this.storeFile(p,"scientific-checks.json",Buffer.from(JSON.stringify(merged)));p.alignment.tasks=p.alignment.tasks.map(t=>({...t,...(merged.tasks[t.key]?{scientificChecks:merged.tasks[t.key]}:{})}));this.save(p,"已冻结可执行科学检查；Agent 批准不能绕过");break;
+        }
         case "set-constraints": {
           if(p.phase!=="READY"||p.revision!==1||!p.alignment||p.tasks.length||p.runs.some(r=>r.kind==="TASK"))throw invalidState("科研约束只能在首次发布前收紧；发布后不可覆盖");
           const schemas=constrainResearch(p,this.contracts(p),data.constraints);
@@ -229,6 +255,7 @@ export class SciencePALPipeline {
         case "publish": {
           if (p.phase !== "READY" || !p.alignment || p.alignment.runId !== data.alignmentRunId || p.alignment.revision !== p.revision) throw invalidState("对齐稿已过期或尚不可发布");
           this.contracts(p); // Verify immutable contracts again before publication.
+          const checks=this.scienceRules(p);if(checks&&Object.keys(checks.tasks).some(key=>!p.alignment!.tasks.some(t=>t.key===key)))throw badRequest("对齐稿遗漏了配置科学检查的任务");
           p.requirementMarkdown = p.alignment.alignmentMarkdown;
           p.tasks = p.alignment.tasks.map(t => ({ ...t, status: "WAITING", attempt: 0, executionId: null, reviewId: null, artifactId: null, feedback: "", review: null }));
           p.phase = "EXECUTING"; p.error = null; this.save(p, "对齐稿已确认发布：自动执行、文件交接和独立评审开始"); break;
@@ -271,7 +298,7 @@ export class SciencePALPipeline {
           if (p.runs.length >= p.maxRuns) throw invalidState("已达到项目运行上限");
           const retry: SPRun = { ...r, id: randomUUID(), status: "READY", output: null, threadId: null, runId: null, sandboxId: null, projectId: null,
             error: null, remoteStatus: null, createdAt: now(), updatedAt: now(), prompt: `${r.prompt}\nPrevious attempt failed validation: ${r.error ?? "unknown"}. Fix the protocol violation; read the original attachments again.${r.kind === "REVIEW" ? reviewOutputGuidance(p.tasks.find(t => t.key === r.taskKey)!.outputFilename) : ""}` };
-          delete retry.resultValidation;
+          delete retry.resultValidation; delete retry.scientificValidation;
           delete retry.claimId;
           delete retry.localExecution;
           delete retry.continuations;
@@ -335,7 +362,7 @@ export class SciencePALPipeline {
   }
   private advance(p: SPProject) {
     if (!["EXECUTING", "REVIEWING"].includes(p.phase)) return;
-    if (p.tasks.length && p.tasks.every(t => t.status === "APPROVED")) { p.phase = "COMPLETED"; this.save(p, "全部任务通过独立 Agent 评审，协作阶段完成"); return; }
+    if (p.tasks.length && p.tasks.every(t => t.status === "APPROVED")) { p.tasks.forEach(t=>this.approvalProof(p,t)); p.phase = "COMPLETED"; this.save(p, "全部任务通过独立 Agent 评审，协作阶段完成"); return; }
     if (p.tasks.some(t => t.status === "CHANGES_REQUESTED")) { p.phase = "CHANGES_REQUESTED"; this.save(p, "评审要求修改：下游仍被阻止，等待确认返工"); return; }
     for (const t of p.tasks) {
       if (t.status === "REVIEWING" && !t.reviewId) this.review(p, t);
@@ -543,7 +570,7 @@ export class SciencePALPipeline {
       if (r.revision !== p.revision) throw revisionConflict("迟到结果属于旧需求版本");
       if (r.kind === "ALIGN") {
         if (p.alignmentRunId !== r.id) throw revisionConflict("对齐结果已被后续运行替代");
-        p.alignment = alignmentResult(result, p, r, this.contracts(p)); p.phase = p.alignment.issues.length ? "NEEDS_DECISION" : "READY";
+        p.alignment = alignmentResult(result, p, r, this.contracts(p)); const rules=this.scienceRules(p); if(rules)p.alignment.tasks=p.alignment.tasks.map(t=>({...t,...(rules.tasks[t.key]?{scientificChecks:rules.tasks[t.key]}:{})})); p.phase = p.alignment.issues.length ? "NEEDS_DECISION" : "READY";
       } else if (r.kind === "TASK") {
         if (!task || task.executionId !== r.id) throw revisionConflict("执行结果已过期");
         const contracts = this.contracts(p);
@@ -551,10 +578,12 @@ export class SciencePALPipeline {
           r.resultValidation = checkTaskResult(contracts, task.key, result, p.resultContracts!.sha256);
           if (r.resultValidation.status === "FAILED") throw badRequest(resultValidationError(r.resultValidation));
         }
+        this.verifyScience(p,task,result,r);
         task.artifactId = r.output!.id; task.status = "REVIEWING";
       } else if (r.kind === "REVIEW") {
         if (!task || task.reviewId !== r.id) throw revisionConflict("评审结果已过期");
         task.review = reviewResult(result, task.acceptance, task.outputFilename);
+        if(task.review.verdict==="approve")this.verifyScience(p,task);
         task.status = task.review.verdict === "approve" ? "APPROVED" : "CHANGES_REQUESTED";
       } else {
         const change = p.changes.find(c => c.runId === r.id);

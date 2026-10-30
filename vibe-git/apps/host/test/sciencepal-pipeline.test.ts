@@ -585,3 +585,46 @@ describe("downstream approval proof",()=>{
   expect(after.phase).toBe("BLOCKED");expect(after.runs).toHaveLength(count);
  });
 });
+
+
+describe("Host executable scientific gates",()=>{
+ const scientificChecks={version:1 as const,tasks:{data:[{id:"sum",kind:"sum" as const,totalPath:"total",rowsPath:"rows",valueField:"value",absoluteTolerance:0.001}]}};
+ it("rejects wrong numbers before review despite an always-approving reviewer, then repairs without deleting evidence",async()=>{
+  const s=await setup({...input,scientificChecks});s.remote.transform=(kind,result)=>kind==="TASK"?{total:99,rows:[{value:1},{value:2}]}:result;
+  await publish(s);const blocked=await until(s.pipeline,s.id,p=>p.phase==="BLOCKED");const failed=blocked.runs.find(r=>r.kind==="TASK")!;
+  expect(failed.scientificValidation?.status).toBe("FAILED");expect(s.remote.calls.map(c=>c.kind)).toEqual(["ALIGN","TASK"]);
+  expect(blocked.tasks[1]!.status).toBe("WAITING");expect(failed.output).not.toBeNull();
+  s.remote.transform=(kind,result)=>kind==="TASK"?{total:3,rows:[{value:1},{value:2}]}:result;
+  await s.command("retry",{runId:failed.id});const done=await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");
+  expect(done.runs.find(r=>r.id===failed.id)?.scientificValidation?.status).toBe("FAILED");
+  const task=done.tasks[0]!,report=done.runs.find(r=>r.id===task.executionId)!.scientificValidation!;
+  expect(report.status).toBe("PASSED");expect(report.artifactSha256).toBe(s.pipeline.file(s.id,task.artifactId!).sha256);
+  const downstream=s.remote.calls.find(c=>c.kind==="TASK"&&c.context.task.key==="analysis")!;
+  expect(downstream.context.upstream[0].approval.scientificValidation.status).toBe("PASSED");
+  expect(s.pipeline.evidence(s.id).allApproved).toBe(true);
+ });
+ it("rechecks exact candidate at approval, refusing a forged passing report",async()=>{
+  const s=await setup({...input,scientificChecks});s.remote.transform=(kind,result)=>kind==="TASK"?{total:3,rows:[{value:1},{value:2}]}:result;await publish(s);
+  const reviewing=await until(s.pipeline,s.id,p=>p.runs.some(r=>r.kind==="REVIEW"&&r.status==="RUNNING"));
+  const task=reviewing.tasks[0]!,r=reviewing.runs.find(r=>r.id===task.executionId)!;
+  const f=s.pipeline.file(s.id,r.output!.id),raw=JSON.parse(Buffer.from(f.bytes).toString());raw.result.total=99;
+  const bytes=Buffer.from(JSON.stringify(raw)),meta={...r.output!,sha256:hash(bytes),size:bytes.length};r.output=meta;
+  s.db.prepare("UPDATE sciencepal_pipeline_files SET metadata=?,bytes=? WHERE id=?").run(JSON.stringify(meta),bytes,meta.id);
+  s.db.prepare("UPDATE sciencepal_projects SET data=? WHERE id=?").run(JSON.stringify(reviewing),s.id);
+  const blocked=await until(s.pipeline,s.id,p=>p.phase==="BLOCKED");expect(blocked.error).toContain("科学计算检查");
+  expect(blocked.tasks[0]!.status).not.toBe("APPROVED");expect(s.remote.calls.some(c=>c.kind==="TASK"&&c.context.task.key==="analysis")).toBe(false);
+ });
+ it("checks again at downstream release instead of trusting approved state or cached report",async()=>{
+  const s=await setup({...input,scientificChecks});s.remote.transform=(kind,result)=>kind==="TASK"?{total:3,rows:[{value:1},{value:2}]}:result;await publish(s);
+  const reviewing=await until(s.pipeline,s.id,p=>p.runs.some(r=>r.kind==="REVIEW"&&r.status==="RUNNING"));
+  const t=reviewing.tasks[0]!,r=reviewing.runs.find(r=>r.id===t.executionId)!;const raw=JSON.parse(Buffer.from(s.pipeline.file(s.id,r.output!.id).bytes).toString());raw.result.total=99;
+  const bytes=Buffer.from(JSON.stringify(raw));r.output={...r.output!,sha256:hash(bytes),size:bytes.length};t.status="APPROVED";reviewing.runs.find(r=>r.id===t.reviewId)!.status="COLLECTED";
+  s.db.prepare("UPDATE sciencepal_pipeline_files SET metadata=?,bytes=? WHERE id=?").run(JSON.stringify(r.output),bytes,r.output.id);
+  s.db.prepare("UPDATE sciencepal_projects SET data=? WHERE id=?").run(JSON.stringify(reviewing),s.id);
+  const blocked=await until(s.pipeline,s.id,p=>p.phase==="BLOCKED");expect(blocked.error).toContain("科学计算检查");expect(blocked.tasks[1]!.executionId).toBeNull();
+ });
+ it("freezes rules against post-publication changes and rejects missing checked task",async()=>{
+  const s=await setup({...input,scientificChecks});await publish(s);await expect(s.command("set-scientific-checks",{checks:scientificChecks})).rejects.toThrow("首次发布");
+  const missing=await setup({...input,scientificChecks:{version:1,tasks:{missing:scientificChecks.tasks.data}}});await missing.command("align");const ready=await until(missing.pipeline,missing.id,p=>p.phase==="READY");await expect(missing.command("publish",{alignmentRunId:ready.alignment!.runId})).rejects.toThrow("遗漏");
+ });
+});

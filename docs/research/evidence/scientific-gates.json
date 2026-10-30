@@ -1,0 +1,399 @@
+{
+  "scope": "Post-hoc execution of numeric-v1 on saved real SciencePAL output; mutations are synthetic, not new remote runs. Reference binding and checks are also enforced in the live pipeline. Approval-bypass integration tests are separate.",
+  "sourceSha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+  "originalArtifactSha256": "bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2",
+  "rulesHash": "64d0ea8145daf8aba06c31a6e74d5b63d444a8de34c40faddb2cdb50d2c10340",
+  "checks": {
+    "version": 1,
+    "sourceSha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+    "tasks": {
+      "sasa": [
+        {
+          "id": "atom-count",
+          "kind": "reference",
+          "path": "atom_count",
+          "expected": 327,
+          "absoluteTolerance": 0,
+          "relativeTolerance": 0,
+          "provenance": "Independent NumPy 5000-point Shrake-Rupley, phase 0.618; fixtures/expert-case/reference.py; reference SHA256 f27da6a0b71277c80eb5aea5d20738839c479e3acc0b0a98a42c973b162e03c1. Numerical agreement only, not biological validity."
+        },
+        {
+          "id": "residue-count",
+          "kind": "reference",
+          "path": "residue_count",
+          "expected": 46,
+          "absoluteTolerance": 0,
+          "relativeTolerance": 0,
+          "provenance": "Independent NumPy 5000-point Shrake-Rupley, phase 0.618; fixtures/expert-case/reference.py; reference SHA256 f27da6a0b71277c80eb5aea5d20738839c479e3acc0b0a98a42c973b162e03c1. Numerical agreement only, not biological validity."
+        },
+        {
+          "id": "independent-total",
+          "kind": "reference",
+          "path": "total_A2",
+          "expected": 2973.1627706139175,
+          "absoluteTolerance": 0,
+          "relativeTolerance": 0.03,
+          "provenance": "Independent NumPy 5000-point Shrake-Rupley, phase 0.618; fixtures/expert-case/reference.py; reference SHA256 f27da6a0b71277c80eb5aea5d20738839c479e3acc0b0a98a42c973b162e03c1. Numerical agreement only, not biological validity."
+        },
+        {
+          "id": "sum-residues",
+          "kind": "sum",
+          "totalPath": "total_A2",
+          "rowsPath": "residues",
+          "valueField": "area_A2",
+          "absoluteTolerance": 0.001
+        },
+        {
+          "id": "independent-residues",
+          "kind": "reference-table",
+          "rowsPath": "residues",
+          "keyField": "residue_number",
+          "valueField": "area_A2",
+          "expected": [
+            {
+              "key": 1,
+              "value": 72.02161200473395
+            },
+            {
+              "key": 2,
+              "value": 25.117324553921232
+            },
+            {
+              "key": 3,
+              "value": 0
+            },
+            {
+              "key": 4,
+              "value": 0
+            },
+            {
+              "key": 5,
+              "value": 56.093635463431724
+            },
+            {
+              "key": 6,
+              "value": 45.70177475292249
+            },
+            {
+              "key": 7,
+              "value": 122.49724212928197
+            },
+            {
+              "key": 8,
+              "value": 99.33636425524935
+            },
+            {
+              "key": 9,
+              "value": 6.555812717658107
+            },
+            {
+              "key": 10,
+              "value": 53.64314694938783
+            },
+            {
+              "key": 11,
+              "value": 62.87050220125737
+            },
+            {
+              "key": 12,
+              "value": 78.22888361570479
+            },
+            {
+              "key": 13,
+              "value": 7.922041097221851
+            },
+            {
+              "key": 14,
+              "value": 84.8425235036738
+            },
+            {
+              "key": 15,
+              "value": 93.4084405497616
+            },
+            {
+              "key": 16,
+              "value": 20.64086340129066
+            },
+            {
+              "key": 17,
+              "value": 91.52047707113749
+            },
+            {
+              "key": 18,
+              "value": 141.15892905084416
+            },
+            {
+              "key": 19,
+              "value": 110.49351618219082
+            },
+            {
+              "key": 20,
+              "value": 51.54521952399074
+            },
+            {
+              "key": 21,
+              "value": 35.876256741225674
+            },
+            {
+              "key": 22,
+              "value": 79.55854687270968
+            },
+            {
+              "key": 23,
+              "value": 67.43404604029874
+            },
+            {
+              "key": 24,
+              "value": 62.16545039563919
+            },
+            {
+              "key": 25,
+              "value": 99.05332359609753
+            },
+            {
+              "key": 26,
+              "value": 0
+            },
+            {
+              "key": 27,
+              "value": 12.454055409736974
+            },
+            {
+              "key": 28,
+              "value": 118.29363634109285
+            },
+            {
+              "key": 29,
+              "value": 167.30134146462407
+            },
+            {
+              "key": 30,
+              "value": 27.10517283468324
+            },
+            {
+              "key": 31,
+              "value": 34.04459839410366
+            },
+            {
+              "key": 32,
+              "value": 6.434558802290506
+            },
+            {
+              "key": 33,
+              "value": 49.85798923894108
+            },
+            {
+              "key": 34,
+              "value": 82.40049969687573
+            },
+            {
+              "key": 35,
+              "value": 36.61665774738205
+            },
+            {
+              "key": 36,
+              "value": 140.92267223550738
+            },
+            {
+              "key": 37,
+              "value": 38.39780908640343
+            },
+            {
+              "key": 38,
+              "value": 84.78915638962133
+            },
+            {
+              "key": 39,
+              "value": 119.47825050598965
+            },
+            {
+              "key": 40,
+              "value": 48.728180032222475
+            },
+            {
+              "key": 41,
+              "value": 53.218088458047475
+            },
+            {
+              "key": 42,
+              "value": 76.40164762572937
+            },
+            {
+              "key": 43,
+              "value": 105.86397577530212
+            },
+            {
+              "key": 44,
+              "value": 61.39814680061677
+            },
+            {
+              "key": 45,
+              "value": 73.01769818917916
+            },
+            {
+              "key": 46,
+              "value": 68.75270291593738
+            }
+          ],
+          "absoluteTolerance": 3,
+          "relativeTolerance": 0.05,
+          "provenance": "Independent NumPy 5000-point Shrake-Rupley, phase 0.618; fixtures/expert-case/reference.py; reference SHA256 f27da6a0b71277c80eb5aea5d20738839c479e3acc0b0a98a42c973b162e03c1. Numerical agreement only, not biological validity."
+        }
+      ]
+    }
+  },
+  "rows": [
+    {
+      "id": "real-original",
+      "syntheticPerturbation": false,
+      "report": {
+        "status": "PASSED",
+        "engineVersion": "numeric-v1",
+        "rulesSha256": "64d0ea8145daf8aba06c31a6e74d5b63d444a8de34c40faddb2cdb50d2c10340",
+        "artifactSha256": "bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2",
+        "sourceSha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+        "checks": [
+          {
+            "id": "atom-count",
+            "passed": true,
+            "detail": "实际 327；独立参考 327"
+          },
+          {
+            "id": "residue-count",
+            "passed": true,
+            "detail": "实际 46；独立参考 46"
+          },
+          {
+            "id": "independent-total",
+            "passed": true,
+            "detail": "实际 2967.616530309648；独立参考 2973.1627706139175"
+          },
+          {
+            "id": "sum-residues",
+            "passed": true,
+            "detail": "总量 2967.616530309648；逐项求和 2967.616530309649；容差 0.001"
+          },
+          {
+            "id": "independent-residues",
+            "passed": true,
+            "detail": "46 行逐项匹配独立参考（按键匹配，非数组顺序）"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sum-mismatch",
+      "syntheticPerturbation": true,
+      "report": {
+        "status": "FAILED",
+        "engineVersion": "numeric-v1",
+        "rulesSha256": "64d0ea8145daf8aba06c31a6e74d5b63d444a8de34c40faddb2cdb50d2c10340",
+        "artifactSha256": "ae20497f3cf265a7b75995e0acd812ebed810ed7cbdc4a25f49751ac21dc88f5",
+        "sourceSha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+        "checks": [
+          {
+            "id": "atom-count",
+            "passed": true,
+            "detail": "实际 327；独立参考 327"
+          },
+          {
+            "id": "residue-count",
+            "passed": true,
+            "detail": "实际 46；独立参考 46"
+          },
+          {
+            "id": "independent-total",
+            "passed": true,
+            "detail": "实际 2997.616530309648；独立参考 2973.1627706139175"
+          },
+          {
+            "id": "sum-residues",
+            "passed": false,
+            "detail": "实际 2997.616530309648，参考 2967.616530309649，差异 29.99999999999909 超过容差 0.001"
+          },
+          {
+            "id": "independent-residues",
+            "passed": true,
+            "detail": "46 行逐项匹配独立参考（按键匹配，非数组顺序）"
+          }
+        ]
+      }
+    },
+    {
+      "id": "all-values-plus-20-percent",
+      "syntheticPerturbation": true,
+      "report": {
+        "status": "FAILED",
+        "engineVersion": "numeric-v1",
+        "rulesSha256": "64d0ea8145daf8aba06c31a6e74d5b63d444a8de34c40faddb2cdb50d2c10340",
+        "artifactSha256": "9619a4318bc1e321e70900b03e1420c3a3036c5b4aed0976372c654dbd764ea0",
+        "sourceSha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+        "checks": [
+          {
+            "id": "atom-count",
+            "passed": true,
+            "detail": "实际 327；独立参考 327"
+          },
+          {
+            "id": "residue-count",
+            "passed": true,
+            "detail": "实际 46；独立参考 46"
+          },
+          {
+            "id": "independent-total",
+            "passed": false,
+            "detail": "实际 3561.1398363715775，参考 2973.1627706139175，差异 587.9770657576601 超过容差 89.19488311841752"
+          },
+          {
+            "id": "sum-residues",
+            "passed": true,
+            "detail": "总量 3561.1398363715775；逐项求和 3561.139836371578；容差 0.001"
+          },
+          {
+            "id": "independent-residues",
+            "passed": false,
+            "detail": "行 1：实际 86.08293763197402，参考 72.02161200473395，差异 14.061325627240066 超过容差 3.6010806002366977"
+          }
+        ]
+      }
+    },
+    {
+      "id": "same-total-redistributed",
+      "syntheticPerturbation": true,
+      "report": {
+        "status": "FAILED",
+        "engineVersion": "numeric-v1",
+        "rulesSha256": "64d0ea8145daf8aba06c31a6e74d5b63d444a8de34c40faddb2cdb50d2c10340",
+        "artifactSha256": "5de4f43c4f02ae97844ef79fcb15a0b1835410cc43f63fb78391e879b6ffa636",
+        "sourceSha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+        "checks": [
+          {
+            "id": "atom-count",
+            "passed": true,
+            "detail": "实际 327；独立参考 327"
+          },
+          {
+            "id": "residue-count",
+            "passed": true,
+            "detail": "实际 46；独立参考 46"
+          },
+          {
+            "id": "independent-total",
+            "passed": true,
+            "detail": "实际 2967.616530309648；独立参考 2973.1627706139175"
+          },
+          {
+            "id": "sum-residues",
+            "passed": true,
+            "detail": "总量 2967.616530309648；逐项求和 2967.616530309649；容差 0.001"
+          },
+          {
+            "id": "independent-residues",
+            "passed": false,
+            "detail": "行 1：实际 91.73578135997835，参考 72.02161200473395，差异 19.714169355244394 超过容差 3.6010806002366977"
+          }
+        ]
+      }
+    }
+  ]
+}
