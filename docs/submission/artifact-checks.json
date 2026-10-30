@@ -44,5 +44,19 @@
   "player_url": "https://weihanchen000.github.io/vibe-git-research/submission/watch.html",
   "video_audio_mean_db": -24.8,
   "video_audio_peak_db": -4.5,
-  "video_update": "judge-v3: clarify original-project increment and SciencePAL/Codex/platform responsibilities; previous real evidence unchanged"
+  "video_update": "judge-v3: clarify original-project increment and SciencePAL/Codex/platform responsibilities; previous real evidence unchanged",
+  "public_player_verification": {
+    "content_commit": "ca4e2e65cde4483e20e4634dfdb53573c41b7559",
+    "url": "https://weihanchen000.github.io/vibe-git-research/submission/watch.html?v=judge-v3",
+    "anonymous_page_status": 200,
+    "video_range_status": 206,
+    "video_content_type": "video/mp4",
+    "video_bytes": 9494117,
+    "browser_duration_seconds": 289.437667,
+    "playback_advanced_to_seconds": 4.120758,
+    "muted": false,
+    "chapter_seek_seconds": 132.571717,
+    "browser_media_error": null,
+    "source_zip_status": 200
+  }
 }

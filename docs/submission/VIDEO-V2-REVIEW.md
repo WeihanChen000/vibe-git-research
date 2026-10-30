@@ -35,3 +35,5 @@ GitHub Pages 已部署。匿名页面返回 200；视频返回 video/mp4，Range
 ## 评委可理解性复查：judge-v3
 
 本版约 4:49（289.42 秒），第 5 场说明原版保留项和科研扩展增量，第 10 场明确 SciencePAL 执行、Codex 独立复核、Vibe-Git 协议和交接的职责。SciencePAL 画面标明为另行公开的独立核查回放，不冒充原计算的连续录屏。当前公网验证见 artifact-checks.json；详细体验发现见 [本轮审阅](../research/JUDGE-ONBOARDING-REVIEW.md)。
+
+judge-v3 公网验证已完成：页面 200、MP4 范围请求 206（9,494,117 字节）；浏览器总时长 289.438 秒，未静音播放推进至 4.121 秒；点击 SciencePAL 章节跳到 132.572 秒，无媒体错误。源码 ZIP 链接 200。
