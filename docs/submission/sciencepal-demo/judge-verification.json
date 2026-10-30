@@ -1,0 +1,357 @@
+{
+  "title": "Vibe-Git Research 公开评委复核演示 — 独立核查结果",
+  "generated_utc": "2026-10-30T18:04:31.808076+00:00",
+  "nature": {
+    "public_demonstration_independent_check": true,
+    "uses_only_attached_public_files_and_local_python": true,
+    "is_realtime_replay_of_original_runs": false,
+    "is_empirical_proof_of_two_real_accounts": false,
+    "sasa_geometry_sampling_recomputed": false,
+    "claims_sciencepal_exclusive_algorithm_or_better_accuracy": false,
+    "replaces_full_vibe_git_collaboration_platform": false,
+    "note": "本次为公开演示的独立核查:重新解析 PDB、重算求和/收敛比值、重验哈希回执链;按演示要求未重跑昂贵的 SASA 几何采样。文件内部的 member_node 代理 ID 差异属文件内声明,本演示不将其证实为两个真实独立账号。"
+  },
+  "files": [
+    {
+      "filename": "source-1CRN.pdb",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size_bytes": 49491
+    },
+    {
+      "filename": "sasa.json",
+      "sha256": "bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2",
+      "size_bytes": 50482
+    },
+    {
+      "filename": "approved-review.json",
+      "sha256": "2e7a10ea2fa5ffda0d911bd8ea4d971c2b55d11920179657e219b720daabdc61",
+      "size_bytes": 91906
+    },
+    {
+      "filename": "synthesis.json",
+      "sha256": "c4bc82aae31595aa4d4b9edecfc09babdd09765dffd548422342b23816e91d3c",
+      "size_bytes": 51946
+    }
+  ],
+  "checks": {
+    "1_file_sha256_and_bytes": {
+      "passed": true,
+      "description": "逐一计算 4 份附件的实际 SHA256 与字节数(原始字节)",
+      "files": [
+        {
+          "filename": "source-1CRN.pdb",
+          "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+          "size_bytes": 49491
+        },
+        {
+          "filename": "sasa.json",
+          "sha256": "bd14bb4e34f7922bfeed76163e5ba9b184a956ab0a4c453f1716a84a766b5cd2",
+          "size_bytes": 50482
+        },
+        {
+          "filename": "approved-review.json",
+          "sha256": "2e7a10ea2fa5ffda0d911bd8ea4d971c2b55d11920179657e219b720daabdc61",
+          "size_bytes": 91906
+        },
+        {
+          "filename": "synthesis.json",
+          "sha256": "c4bc82aae31595aa4d4b9edecfc09babdd09765dffd548422342b23816e91d3c",
+          "size_bytes": 51946
+        }
+      ]
+    },
+    "2_pdb_independent_parse": {
+      "passed": true,
+      "description": "独立固定列解析 source-1CRN.pdb:chain A、ATOM、非 H/D、altLoc 空或 A",
+      "observed": {
+        "model_records": 0,
+        "atom_records_total_in_file": 327,
+        "hetatm_records_in_file": 0,
+        "selected_atom_count": 327,
+        "residue_count": 46,
+        "element_counts": {
+          "C": 202,
+          "N": 55,
+          "O": 64,
+          "S": 6
+        },
+        "altloc_values_observed": [
+          " "
+        ],
+        "hydrogen_or_deuterium_atoms": 0,
+        "nonfinite_coordinates": 0
+      },
+      "assertions": {
+        "atom_count_is_327": true,
+        "residue_count_is_46": true,
+        "element_counts_match_C202_N55_O64_S6": true,
+        "no_hydrogens_selected": true,
+        "no_hetatm_records_in_file": true,
+        "no_model_records_single_implicit_model": true,
+        "only_blank_altloc_observed": true,
+        "all_coordinates_finite": true
+      }
+    },
+    "3_sasa_sums_convergence_method_probe": {
+      "passed": true,
+      "description": "核对 sasa.json 求和/收敛/方法/探针/半径/版本(纯数值复核,未重跑 SASA 几何)",
+      "method": "Shrake-Rupley",
+      "probe_radius_A": 1.4,
+      "n_points_primary": 1000,
+      "n_points_comparison": 5000,
+      "radii_A": {
+        "C": 1.7,
+        "N": 1.55,
+        "O": 1.52,
+        "S": 1.8
+      },
+      "units": "coordinates Angstrom; areas square Angstrom (A2)",
+      "n1000": {
+        "row_count": 46,
+        "independent_sum_A2": 2967.616530309648,
+        "independent_fsum_A2": 2967.616530309648,
+        "reported_total_A2": 2967.616530309648,
+        "residual_vs_total_A2": 0.0
+      },
+      "n5000": {
+        "row_count": 46,
+        "independent_sum_A2": 2970.9266606126434,
+        "independent_fsum_A2": 2970.9266606126434,
+        "reported_total_A2": 2970.9266606126434,
+        "residual_vs_total_A2": 0.0
+      },
+      "convergence": {
+        "abs_difference_A2": 3.310130302995276,
+        "independent_ratio": 0.001114174357408299,
+        "reported_ratio": 0.001114174357408299,
+        "threshold": 0.02,
+        "within_threshold": true,
+        "max_abs_per_residue_A2": 1.183134600420658,
+        "max_residue": {
+          "resName": "PRO",
+          "resSeq": 19
+        }
+      },
+      "source_binding": {
+        "sasa_source_sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+        "matches_actual_pdb_sha256": true,
+        "sasa_input_receipt_pdb_matches": true
+      },
+      "selection_claim_matches_independent_parse": true,
+      "assertions": {
+        "method_is_shrake_rupley": true,
+        "probe_radius_is_1_4_A": true,
+        "primary_n_points_is_1000": true,
+        "comparison_n_points_is_5000": true,
+        "n1000_sum_equals_reported_total": true,
+        "n5000_sum_equals_reported_total": true,
+        "ratio_recomputes_to_reported_value": true,
+        "ratio_within_0_02": true,
+        "per_residue_absdiff_fields_consistent": true,
+        "residue_key_sets_match_pdb_and_across_runs": true,
+        "all_areas_finite_nonnegative": true,
+        "primary_table_matches_n1000_run": true,
+        "source_sha256_binds_actual_pdb": true,
+        "envelope_receipt_binds_actual_pdb": true
+      }
+    },
+    "4_review_envelope_and_approval_linkage": {
+      "passed": true,
+      "description": "核对 approved-review.json 原始 envelope 对 sasa.json 的输入回执、approve 裁决,以及 synthesis.json 的获批文件引用链",
+      "review": {
+        "revision": 1,
+        "verdict": "approve",
+        "requiredChanges_empty": true,
+        "check_count": 7,
+        "all_checks_passed_true": true,
+        "all_checks_have_evidence": true,
+        "reproduction_present": true,
+        "input_receipt_sasa_json_matches_actual_bytes": true,
+        "input_receipt_source_pdb_matches_actual_bytes": true,
+        "reviewed_sha256_in_reproduction_matches_actual_sasa": true
+      },
+      "synthesis_linkage": {
+        "upstream_sha256_matches_actual_sasa": true,
+        "approval_gate_verdict_approve": true,
+        "approval_gate_reviewedArtifact_matches_actual_sasa": true,
+        "approval_gate_reviewArtifact_matches_actual_approved_review": true,
+        "approval_gate_utf8_recomputed_sha256_consistent": true,
+        "synthesis_envelope_input_receipt_sasa_matches_actual": true,
+        "synthesis_status": "completed_pending_independent_Biology_review"
+      },
+      "assertions": {
+        "verdict_is_approve": true,
+        "all_seven_review_checks_passed": true,
+        "sasa_receipt_binds_exact_approved_bytes": true,
+        "synthesis_cites_same_approved_sasa": true,
+        "synthesis_cites_this_approved_review_file": true
+      }
+    },
+    "5_synthesis_conclusions": {
+      "passed": true,
+      "description": "依据 sasa.json 实际数表核对 synthesis.json 综合结论(前五残基/零面积/边界声明)",
+      "computed_top5_by_area": [
+        {
+          "resName": "TYR",
+          "resSeq": 29,
+          "area_A2": 167.3789558934318,
+          "area_A2_n5000": 166.7188718397474
+        },
+        {
+          "resName": "LEU",
+          "resSeq": 18,
+          "area_A2": 141.67386046552653,
+          "area_A2_n5000": 141.04633638075882
+        },
+        {
+          "resName": "PRO",
+          "resSeq": 36,
+          "area_A2": 140.63873081890995,
+          "area_A2_n5000": 140.96508800889686
+        },
+        {
+          "resName": "ILE",
+          "resSeq": 7,
+          "area_A2": 122.07980614702888,
+          "area_A2_n5000": 121.85424607768644
+        },
+        {
+          "resName": "THR",
+          "resSeq": 28,
+          "area_A2": 118.66302128671819,
+          "area_A2_n5000": 118.18376705484704
+        }
+      ],
+      "synthesis_top5": [
+        {
+          "resName": "TYR",
+          "resSeq": 29,
+          "area_A2": 167.3789558934318,
+          "area_A2_n5000": 166.7188718397474
+        },
+        {
+          "resName": "LEU",
+          "resSeq": 18,
+          "area_A2": 141.67386046552653,
+          "area_A2_n5000": 141.04633638075882
+        },
+        {
+          "resName": "PRO",
+          "resSeq": 36,
+          "area_A2": 140.63873081890995,
+          "area_A2_n5000": 140.96508800889686
+        },
+        {
+          "resName": "ILE",
+          "resSeq": 7,
+          "area_A2": 122.07980614702888,
+          "area_A2_n5000": 121.85424607768644
+        },
+        {
+          "resName": "THR",
+          "resSeq": 28,
+          "area_A2": 118.66302128671819,
+          "area_A2_n5000": 118.18376705484704
+        }
+      ],
+      "computed_zero_area_residues_both_resolutions": [
+        {
+          "resName": "CYS",
+          "resSeq": 3
+        },
+        {
+          "resName": "CYS",
+          "resSeq": 4
+        },
+        {
+          "resName": "CYS",
+          "resSeq": 26
+        }
+      ],
+      "synthesis_zero_area_list": [
+        {
+          "resName": "CYS",
+          "resSeq": 3
+        },
+        {
+          "resName": "CYS",
+          "resSeq": 4
+        },
+        {
+          "resName": "CYS",
+          "resSeq": 26
+        }
+      ],
+      "assertions": {
+        "top5_ranking_order_matches_data": true,
+        "top5_values_match_data_exactly": true,
+        "zero_area_set_complete_and_matches": true,
+        "summary_names_all_top5": true,
+        "zero_area_explained_as_sampling_not_proof": true,
+        "ranking_basis_forbids_functional_inference": true,
+        "max_per_residue_change_matches_data": true,
+        "no_functional_or_clinical_claim_in_summary": true
+      }
+    }
+  },
+  "overall": {
+    "all_five_checks_passed": true,
+    "summary_counts": {
+      "atom_count": 327,
+      "residue_count": 46,
+      "total_A2_n1000": 2967.616530309648,
+      "total_A2_n5000": 2970.9266606126434,
+      "convergence_ratio": 0.001114174357408299,
+      "threshold": 0.02
+    }
+  },
+  "tool_versions": {
+    "judge_runtime": {
+      "python": "3.12.3",
+      "implementation": "CPython",
+      "numpy": "1.26.4",
+      "biopython": "1.84",
+      "biopython_available_but_not_used_for_sasa_recompute": true,
+      "hashlib": "stdlib"
+    },
+    "upstream_author_reported_in_sasa_json": {
+      "python": "3.12.3",
+      "biopython": "1.84",
+      "numpy": "1.26.4",
+      "method": "Bio.PDB.SASA.ShrakeRupley",
+      "probe_radius_A": 1.4,
+      "n_points_primary": 1000,
+      "n_points_comparison": 5000,
+      "radii_A": {
+        "C": 1.7,
+        "N": 1.55,
+        "O": 1.52,
+        "S": 1.8
+      }
+    },
+    "reviewer_reported_in_approved_review": {
+      "python": "3.12.10",
+      "numpy": "2.5.3",
+      "jsonschema": "4.26.0",
+      "biopython_available": false
+    },
+    "synthesis_reported": {
+      "python": "3.12.10",
+      "implementation": "CPython",
+      "python_full": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+      "jsonschema": "4.26.0",
+      "calculation_libraries": "Python standard library: pathlib, collections, hashlib, json, math, platform, sys, importlib.metadata"
+    }
+  },
+  "limitations": [
+    "本报告是公开演示的独立核查,不是原始运行(sasa 计算、审评、综合)的实时重播;原始执行只通过附件内的嵌入源码、版本与回执链被审计。",
+    "按演示要求未重跑 SASA 几何采样(Shrake-Rupley),只独立重算了选择过滤、逐残基求和、fsum、收敛比值与差值字段的一致性;面积数值本身的正确性依赖上游执行与已获批准的独立基线证据。",
+    "附件未包含 context.json、previous-sasa.json(100 点 pilot)、previous-synthesis.json,故各 envelope 中指向这些文件的嵌套回执无法在本演示中重新哈希验证;pilot 保留历史依赖文件内声明与上游审评记录。",
+    "reviewer 与 assignee 的 member_node ID 差异、reviewRunId 与 artifact UUID 均为文件内声明;本演示不将其证实为两个真实真人账号的实证,也不验证平台主机侧记录。",
+    "synthesis.json 自身状态为 completed_pending_independent_Biology_review,即综合结论尚待其声明的独立 Biology 复审;本演示不是该复审的替代。",
+    "结论边界与上游一致:面积是几何溶剂可及性度量(固定半径 C1.70/N1.55/O1.52/S1.80 A、1.4 A 探针、单一冷冻构象),不支持任何功能、活性、临床或普适性推断;1000/5000 收敛只约束总量比较,不给出逐残基误差界或解析精确值。",
+    "本演示不声称 SciencePAL 或任何平台独占算法、更准确或不可替代;不替代完整 Vibe-Git 协作平台。"
+  ],
+  "code": "#!/usr/bin/env python3\n\"\"\"Vibe-Git Research 公开评委复核演示 — 独立核查脚本(judge runtime 实际执行)。\n\n本脚本对 4 份公开附件(source-1CRN.pdb / sasa.json / approved-review.json /\nsynthesis.json)做独立核查:\n  1) 逐一 SHA256 与字节数;\n  2) 独立固定列解析 PDB:chain A、非氢 ATOM、altLoc 空或 'A',统计原子/残基/元素;\n  3) 核对 sasa.json 的 1000/5000 点逐残基面积求和、收敛比值、方法与 1.4 A 探针\n     (纯数值复核,不重跑 SASA 几何采样);\n  4) 核对 approved-review.json 原始 envelope 对 sasa.json 的输入回执与 approve 裁决,\n     并确认 synthesis.json 引用的正是这份获批文件(哈希链);\n  5) 依据实际数表核对综合结论的前五个残基与零采样面积解释,确认无功能/临床推断。\n\n边界声明:这是公开演示的独立核查,不是原始运行的实时重播,不是两个真人账号实证,\n不声称 SciencePAL 独占算法或更准确,不替代完整 Vibe-Git 协作平台。\n\"\"\"\nimport hashlib\nimport importlib.metadata\nimport json\nimport math\nimport platform\nimport sys\nfrom collections import Counter, OrderedDict\nfrom datetime import datetime, timezone\n\nFILES = [\"source-1CRN.pdb\", \"sasa.json\", \"approved-review.json\", \"synthesis.json\"]\nTOL = 1e-9  # 数值比较容差(浮点)\n\n\ndef sha256_size(path):\n    with open(path, \"rb\") as f:\n        raw = f.read()\n    return hashlib.sha256(raw).hexdigest(), len(raw)\n\n\ndef load(path):\n    with open(path, \"r\", encoding=\"utf-8\") as f:\n        return json.load(f)\n\n\n# ---------- 检查 1:逐一 SHA256 与字节数 ----------\nhashes = OrderedDict((f, sha256_size(f)) for f in FILES)\ncheck1 = {\n    \"description\": \"逐一计算 4 份附件的实际 SHA256 与字节数(原始字节)\",\n    \"files\": [\n        {\"filename\": f, \"sha256\": h, \"size_bytes\": s} for f, (h, s) in hashes.items()\n    ],\n}\ncheck1[\"passed\"] = all(len(h) == 64 and s > 0 for h, s in hashes.values())\n\n# ---------- 检查 2:独立解析 PDB ----------\natoms = []\nres_seen = OrderedDict()\naltlocs = Counter()\nelem = Counter()\nmodel_records = hetatm_records = atom_records_total = 0\nnonfinite_coords = 0\nwith open(\"source-1CRN.pdb\", \"r\", encoding=\"utf-8\") as f:\n    for line in f:\n        rec = line[:6].strip()\n        if rec == \"MODEL\":\n            model_records += 1\n        if rec == \"HETATM\":\n            hetatm_records += 1\n        if rec != \"ATOM\":\n            continue\n        atom_records_total += 1\n        if line[21] != \"A\":\n            continue\n        alt = line[16]\n        if alt not in (\" \", \"A\"):\n            continue\n        el = line[76:78].strip() or line[12:14].strip()[0]\n        if el in (\"H\", \"D\"):\n            continue\n        altlocs[alt] += 1\n        elem[el] += 1\n        try:\n            xyz = (float(line[30:38]), float(line[38:46]), float(line[46:54]))\n        except ValueError:\n            xyz = (float(\"nan\"),) * 3\n        if not all(math.isfinite(v) for v in xyz):\n            nonfinite_coords += 1\n        key = (line[21], int(line[22:26]), line[26].strip())\n        res_seen.setdefault(key, line[17:20].strip())\n        atoms.append({\n            \"chain\": line[21], \"resSeq\": int(line[22:26]), \"icode\": line[26].strip(),\n            \"resName\": line[17:20].strip(), \"name\": line[12:16].strip(),\n            \"altLoc\": alt, \"element\": el, \"xyz\": xyz,\n        })\n\nsel = {\n    \"model_records\": model_records,\n    \"atom_records_total_in_file\": atom_records_total,\n    \"hetatm_records_in_file\": hetatm_records,\n    \"selected_atom_count\": len(atoms),\n    \"residue_count\": len(res_seen),\n    \"element_counts\": dict(sorted(elem.items())),\n    \"altloc_values_observed\": sorted(altlocs.keys()),\n    \"hydrogen_or_deuterium_atoms\": elem.get(\"H\", 0) + elem.get(\"D\", 0),\n    \"nonfinite_coordinates\": nonfinite_coords,\n}\nexpected_sel = {\n    \"selected_atom_count\": 327, \"residue_count\": 46,\n    \"element_counts\": {\"C\": 202, \"N\": 55, \"O\": 64, \"S\": 6},\n}\ncheck2 = {\n    \"description\": \"独立固定列解析 source-1CRN.pdb:chain A、ATOM、非 H/D、altLoc 空或 A\",\n    \"observed\": sel,\n    \"expected_for_frozen_selection\": expected_sel,\n    \"assertions\": {\n        \"atom_count_is_327\": sel[\"selected_atom_count\"] == 327,\n        \"residue_count_is_46\": sel[\"residue_count\"] == 46,\n        \"element_counts_match_C202_N55_O64_S6\": sel[\"element_counts\"] == expected_sel[\"element_counts\"],\n        \"no_hydrogens_selected\": sel[\"hydrogen_or_deuterium_atoms\"] == 0,\n        \"no_hetatm_records_in_file\": hetatm_records == 0,\n        \"no_model_records_single_implicit_model\": model_records == 0,\n        \"only_blank_altloc_observed\": sel[\"altloc_values_observed\"] == [\" \"],\n        \"all_coordinates_finite\": nonfinite_coords == 0,\n    },\n}\ncheck2[\"passed\"] = all(check2[\"assertions\"].values())\n\n# ---------- 检查 3:sasa.json 数值核对(不重跑几何) ----------\nsasa = load(\"sasa.json\")\nsr = sasa[\"result\"]\nres1000 = sr[\"runs\"][\"n1000\"][\"residues\"]\nres5000 = sr[\"runs\"][\"n5000\"][\"residues\"]\nby1000 = {(r[\"residue_number\"], r[\"insertion_code\"]): r for r in res1000}\nby5000 = {(r[\"residue_number\"], r[\"insertion_code\"]): r for r in res5000}\nsum1000, fsum1000 = sum(r[\"area_A2\"] for r in res1000), math.fsum(r[\"area_A2\"] for r in res1000)\nsum5000, fsum5000 = sum(r[\"area_A2\"] for r in res5000), math.fsum(r[\"area_A2\"] for r in res5000)\ntot1000, tot5000 = sr[\"total_A2\"], sr[\"runs\"][\"n5000\"][\"total_A2\"]\nratio = abs(tot1000 - tot5000) / tot5000\n# 逐残基 diff 字段一致性 + 两套分辨率键集合一致\nper_res_absdiff_ok = all(\n    abs(r[\"abs_diff_A2\"] - abs(r[\"area_A2\"] - r[\"area_A2_n5000\"])) <= 1e-9\n    for r in sr[\"residues\"]\n)\nkeys_match = set(by1000) == set(by5000) == set((k[1], k[2]) for k in res_seen)\nareas_finite_ok = all(\n    math.isfinite(r[\"area_A2\"]) and r[\"area_A2\"] >= 0\n    for r in res1000 + res5000\n)\n# 主表(result.residues)与 runs.n1000 完全一致\nprimary_matches_run = len(sr[\"residues\"]) == len(res1000) and all(\n    abs(a[\"area_A2\"] - b[\"area_A2\"]) <= TOL\n    and a[\"residue_number\"] == b[\"residue_number\"]\n    and a[\"residue_name\"] == b[\"residue_name\"]\n    for a, b in zip(sr[\"residues\"], res1000)\n)\n# 最大逐残基差\nmaxd = max(sr[\"residues\"], key=lambda r: r[\"abs_diff_A2\"])\ncv = sr[\"convergence\"]\ncheck3 = {\n    \"description\": \"核对 sasa.json 求和/收敛/方法/探针/半径/版本(纯数值复核,未重跑 SASA 几何)\",\n    \"method\": sr[\"method\"],\n    \"probe_radius_A\": sr[\"probe_radius_A\"],\n    \"n_points_primary\": sr[\"n_points\"],\n    \"n_points_comparison\": sr[\"runs\"][\"n5000\"][\"n_points\"],\n    \"radii_A\": sr[\"radii_A\"],\n    \"units\": sr[\"units\"],\n    \"n1000\": {\n        \"row_count\": len(res1000),\n        \"independent_sum_A2\": sum1000,\n        \"independent_fsum_A2\": fsum1000,\n        \"reported_total_A2\": tot1000,\n        \"residual_vs_total_A2\": sum1000 - tot1000,\n    },\n    \"n5000\": {\n        \"row_count\": len(res5000),\n        \"independent_sum_A2\": sum5000,\n        \"independent_fsum_A2\": fsum5000,\n        \"reported_total_A2\": tot5000,\n        \"residual_vs_total_A2\": sum5000 - tot5000,\n    },\n    \"convergence\": {\n        \"abs_difference_A2\": abs(tot1000 - tot5000),\n        \"independent_ratio\": ratio,\n        \"reported_ratio\": cv[\"ratio\"],\n        \"threshold\": cv[\"threshold\"],\n        \"within_threshold\": ratio <= cv[\"threshold\"],\n        \"max_abs_per_residue_A2\": maxd[\"abs_diff_A2\"],\n        \"max_residue\": {\"resName\": maxd[\"residue_name\"], \"resSeq\": maxd[\"residue_number\"]},\n    },\n    \"source_binding\": {\n        \"sasa_source_sha256\": sr[\"source_sha256\"],\n        \"matches_actual_pdb_sha256\": sr[\"source_sha256\"] == hashes[\"source-1CRN.pdb\"][0],\n        \"sasa_input_receipt_pdb_matches\": any(\n            r[\"filename\"] == \"source-1CRN.pdb\"\n            and r[\"sha256\"] == hashes[\"source-1CRN.pdb\"][0]\n            and r[\"size\"] == hashes[\"source-1CRN.pdb\"][1]\n            for r in sasa[\"inputReceipts\"]\n        ),\n    },\n    \"selection_claim_matches_independent_parse\": (\n        sr[\"selection\"][\"atom_count\"] == sel[\"selected_atom_count\"]\n        and sr[\"selection\"][\"residue_count\"] == sel[\"residue_count\"]\n        and sr[\"selection\"][\"element_counts\"] == sel[\"element_counts\"]\n    ),\n    \"assertions\": {\n        \"method_is_shrake_rupley\": sr[\"method\"] == \"Shrake-Rupley\",\n        \"probe_radius_is_1_4_A\": sr[\"probe_radius_A\"] == 1.4,\n        \"primary_n_points_is_1000\": sr[\"n_points\"] == 1000,\n        \"comparison_n_points_is_5000\": sr[\"runs\"][\"n5000\"][\"n_points\"] == 5000,\n        \"n1000_sum_equals_reported_total\": abs(sum1000 - tot1000) <= TOL,\n        \"n5000_sum_equals_reported_total\": abs(sum5000 - tot5000) <= TOL,\n        \"ratio_recomputes_to_reported_value\": abs(ratio - cv[\"ratio\"]) <= 1e-12,\n        \"ratio_within_0_02\": ratio <= 0.02,\n        \"per_residue_absdiff_fields_consistent\": per_res_absdiff_ok,\n        \"residue_key_sets_match_pdb_and_across_runs\": keys_match,\n        \"all_areas_finite_nonnegative\": areas_finite_ok,\n        \"primary_table_matches_n1000_run\": primary_matches_run,\n        \"source_sha256_binds_actual_pdb\": sr[\"source_sha256\"] == hashes[\"source-1CRN.pdb\"][0],\n        \"envelope_receipt_binds_actual_pdb\": any(\n            r[\"filename\"] == \"source-1CRN.pdb\"\n            and r[\"sha256\"] == hashes[\"source-1CRN.pdb\"][0]\n            and r[\"size\"] == hashes[\"source-1CRN.pdb\"][1]\n            for r in sasa[\"inputReceipts\"]\n        ),\n    },\n}\ncheck3[\"passed\"] = all(check3[\"assertions\"].values())\n\n# ---------- 检查 4:approved-review.json 回执与裁决 + synthesis 引用链 ----------\nreview = load(\"approved-review.json\")\nverdict = review[\"result\"][\"verdict\"]\nchecks = review[\"result\"][\"checks\"]\nsasa_receipt_ok = any(\n    r[\"filename\"] == \"sasa.json\"\n    and r[\"sha256\"] == hashes[\"sasa.json\"][0]\n    and r[\"size\"] == hashes[\"sasa.json\"][1]\n    for r in review[\"inputReceipts\"]\n)\npdb_receipt_ok = any(\n    r[\"filename\"] == \"source-1CRN.pdb\"\n    and r[\"sha256\"] == hashes[\"source-1CRN.pdb\"][0]\n    and r[\"size\"] == hashes[\"source-1CRN.pdb\"][1]\n    for r in review[\"inputReceipts\"]\n)\n\nsyn = load(\"synthesis.json\")\nsyr = syn[\"result\"]\ngate = syr[\"approval_gate\"]\nreview_sha_now = hashes[\"approved-review.json\"][0]\nsyn_sasa_receipt_ok = any(\n    r[\"filename\"] == \"sasa.json\"\n    and r[\"sha256\"] == hashes[\"sasa.json\"][0]\n    and r[\"size\"] == hashes[\"sasa.json\"][1]\n    for r in syn[\"inputReceipts\"]\n)\ncheck4 = {\n    \"description\": \"核对 approved-review.json 原始 envelope 对 sasa.json 的输入回执、approve 裁决,以及 synthesis.json 的获批文件引用链\",\n    \"review\": {\n        \"revision\": review[\"revision\"],\n        \"verdict\": verdict,\n        \"requiredChanges_empty\": review[\"result\"][\"requiredChanges\"] == [],\n        \"check_count\": len(checks),\n        \"all_checks_passed_true\": all(c.get(\"passed\") is True for c in checks),\n        \"all_checks_have_evidence\": all(isinstance(c.get(\"evidence\"), str) and c[\"evidence\"] for c in checks),\n        \"reproduction_present\": all(k in review[\"result\"][\"reproduction\"] for k in (\"code\", \"toolVersions\", \"results\")),\n        \"input_receipt_sasa_json_matches_actual_bytes\": sasa_receipt_ok,\n        \"input_receipt_source_pdb_matches_actual_bytes\": pdb_receipt_ok,\n        \"reviewed_sha256_in_reproduction_matches_actual_sasa\": (\n            review[\"result\"][\"reproduction\"][\"results\"][\"reviewed_sha256\"] == hashes[\"sasa.json\"][0]\n        ),\n    },\n    \"synthesis_linkage\": {\n        \"upstream_sha256_matches_actual_sasa\": syr[\"upstream_sha256\"] == hashes[\"sasa.json\"][0],\n        \"approval_gate_verdict_approve\": gate[\"verdict\"] == \"approve\",\n        \"approval_gate_reviewedArtifact_matches_actual_sasa\": (\n            gate[\"reviewedArtifact\"][\"sha256\"] == hashes[\"sasa.json\"][0]\n            and gate[\"reviewedArtifact\"][\"size\"] == hashes[\"sasa.json\"][1]\n        ),\n        \"approval_gate_reviewArtifact_matches_actual_approved_review\": (\n            gate[\"reviewArtifact\"][\"sha256\"] == review_sha_now\n            and gate[\"reviewArtifact\"][\"size\"] == hashes[\"approved-review.json\"][1]\n        ),\n        \"approval_gate_utf8_recomputed_sha256_consistent\": (\n            gate.get(\"review_utf8_sha256_recomputed\") == review_sha_now\n        ),\n        \"synthesis_envelope_input_receipt_sasa_matches_actual\": syn_sasa_receipt_ok,\n        \"synthesis_status\": syr[\"status\"],\n    },\n}\ncheck4[\"assertions\"] = {\n    \"verdict_is_approve\": verdict == \"approve\",\n    \"all_seven_review_checks_passed\": all(c.get(\"passed\") is True for c in checks) and len(checks) == 7,\n    \"sasa_receipt_binds_exact_approved_bytes\": sasa_receipt_ok,\n    \"synthesis_cites_same_approved_sasa\": (\n        syr[\"upstream_sha256\"] == hashes[\"sasa.json\"][0]\n        and gate[\"reviewedArtifact\"][\"sha256\"] == hashes[\"sasa.json\"][0]\n        and syn_sasa_receipt_ok\n    ),\n    \"synthesis_cites_this_approved_review_file\": gate[\"reviewArtifact\"][\"sha256\"] == review_sha_now,\n}\ncheck4[\"passed\"] = all(check4[\"assertions\"].values())\n\n# ---------- 检查 5:综合结论的前五残基与零面积解释 ----------\nranked = sorted(res1000, key=lambda r: r[\"area_A2\"], reverse=True)\ntop5_actual = [\n    {\"resName\": r[\"residue_name\"], \"resSeq\": r[\"residue_number\"], \"area_A2\": r[\"area_A2\"],\n     \"area_A2_n5000\": by5000[(r[\"residue_number\"], r[\"insertion_code\"])][\"area_A2\"]}\n    for r in ranked[:5]\n]\nzero_actual = sorted(\n    [(r[\"residue_number\"], r[\"residue_name\"]) for r in res1000\n     if r[\"area_A2\"] == 0.0 and by5000[(r[\"residue_number\"], r[\"insertion_code\"])][\"area_A2\"] == 0.0]\n)\nri = syr[\"residue_interpretation\"]\nsyn_top5 = [(x[\"residue_name\"], x[\"residue_number\"]) for x in ri[\"top_five\"]]\nact_top5 = [(x[\"resName\"], x[\"resSeq\"]) for x in top5_actual]\nsyn_zero = sorted((x[\"residue_name\"], x[\"residue_number\"]) for x in ri[\"zero_sampled_area_both_resolutions\"])\nact_zero = sorted((n, m) for m, n in zero_actual)\nsummary = syr[\"summary\"]\ntop5_values_ok = all(\n    abs(a[\"area_A2\"] - b[\"area_A2\"]) <= TOL\n    and abs(a[\"area_A2_n5000\"] - b[\"area_A2_n5000\"]) <= TOL\n    for a, b in zip(ri[\"top_five\"], top5_actual)\n)\nsummary_mentions_top5 = all(f\"{n} A{q}\" in summary for n, q in act_top5)\nboundary_ok = (\n    \"no exposed samples were detected\" in summary\n    and \"not proof of exact zero area\" in summary\n    and \"supports no activity, clinical efficacy\" in summary\n    and \"not a biological functional experiment\" in summary\n)\nranking_basis_ok = \"no normalization or functional inference\" in ri[\"ranking_basis\"]\nmaxdiff_ok = (\n    abs(cv[\"max_abs_per_residue_difference_A2\"] - maxd[\"abs_diff_A2\"]) <= 1e-9\n    and cv[\"max_abs_per_residue_difference_residue\"][\"residue_name\"] == maxd[\"residue_name\"]\n    and cv[\"max_abs_per_residue_difference_residue\"][\"residue_number\"] == maxd[\"residue_number\"]\n)\ncheck5 = {\n    \"description\": \"依据 sasa.json 实际数表核对 synthesis.json 综合结论(前五残基/零面积/边界声明)\",\n    \"computed_top5_by_area\": top5_actual,\n    \"synthesis_top5\": [{\"resName\": x[\"residue_name\"], \"resSeq\": x[\"residue_number\"],\n                        \"area_A2\": x[\"area_A2\"], \"area_A2_n5000\": x[\"area_A2_n5000\"]}\n                       for x in ri[\"top_five\"]],\n    \"computed_zero_area_residues_both_resolutions\": [{\"resName\": n, \"resSeq\": q} for q, n in zero_actual],\n    \"synthesis_zero_area_list\": [{\"resName\": x[\"residue_name\"], \"resSeq\": x[\"residue_number\"]}\n                                 for x in ri[\"zero_sampled_area_both_resolutions\"]],\n    \"assertions\": {\n        \"top5_ranking_order_matches_data\": syn_top5 == act_top5,\n        \"top5_values_match_data_exactly\": top5_values_ok,\n        \"zero_area_set_complete_and_matches\": syn_zero == act_zero and len(act_zero) == 3,\n        \"summary_names_all_top5\": summary_mentions_top5,\n        \"zero_area_explained_as_sampling_not_proof\": boundary_ok,\n        \"ranking_basis_forbids_functional_inference\": ranking_basis_ok,\n        \"max_per_residue_change_matches_data\": maxdiff_ok,\n        \"no_functional_or_clinical_claim_in_summary\": boundary_ok,\n    },\n}\ncheck5[\"passed\"] = all(check5[\"assertions\"].values())\n\n# ---------- 汇总 ----------\nall_passed = all(c[\"passed\"] for c in (check1, check2, check3, check4, check5))\n\ndef ver(pkg):\n    try:\n        return importlib.metadata.version(pkg)\n    except Exception:\n        return None\n\ndoc = {\n    \"title\": \"Vibe-Git Research 公开评委复核演示 — 独立核查结果\",\n    \"generated_utc\": datetime.now(timezone.utc).isoformat(),\n    \"nature\": {\n        \"public_demonstration_independent_check\": True,\n        \"uses_only_attached_public_files_and_local_python\": True,\n        \"is_realtime_replay_of_original_runs\": False,\n        \"is_empirical_proof_of_two_real_accounts\": False,\n        \"sasa_geometry_sampling_recomputed\": False,\n        \"claims_sciencepal_exclusive_algorithm_or_better_accuracy\": False,\n        \"replaces_full_vibe_git_collaboration_platform\": False,\n        \"note\": (\n            \"本次为公开演示的独立核查:重新解析 PDB、重算求和/收敛比值、重验哈希回执链;按演示要求未重跑昂贵的 SASA 几何采样。\"\n            \"文件内部的 member_node 代理 ID 差异属文件内声明,本演示不将其证实为两个真实独立账号。\"\n        ),\n    },\n    \"files\": check1[\"files\"],\n    \"checks\": {\n        \"1_file_sha256_and_bytes\": {\"passed\": check1[\"passed\"], \"description\": check1[\"description\"],\n                                    \"files\": check1[\"files\"]},\n        \"2_pdb_independent_parse\": {\"passed\": check2[\"passed\"], \"description\": check2[\"description\"],\n                                    \"observed\": check2[\"observed\"], \"assertions\": check2[\"assertions\"]},\n        \"3_sasa_sums_convergence_method_probe\": {\"passed\": check3[\"passed\"], \"description\": check3[\"description\"],\n                                                 \"method\": check3[\"method\"], \"probe_radius_A\": check3[\"probe_radius_A\"],\n                                                 \"n_points_primary\": check3[\"n_points_primary\"],\n                                                 \"n_points_comparison\": check3[\"n_points_comparison\"],\n                                                 \"radii_A\": check3[\"radii_A\"], \"units\": check3[\"units\"],\n                                                 \"n1000\": check3[\"n1000\"], \"n5000\": check3[\"n5000\"],\n                                                 \"convergence\": check3[\"convergence\"],\n                                                 \"source_binding\": check3[\"source_binding\"],\n                                                 \"selection_claim_matches_independent_parse\": check3[\"selection_claim_matches_independent_parse\"],\n                                                 \"assertions\": check3[\"assertions\"]},\n        \"4_review_envelope_and_approval_linkage\": {\"passed\": check4[\"passed\"], \"description\": check4[\"description\"],\n                                                   \"review\": check4[\"review\"],\n                                                   \"synthesis_linkage\": check4[\"synthesis_linkage\"],\n                                                   \"assertions\": check4[\"assertions\"]},\n        \"5_synthesis_conclusions\": {\"passed\": check5[\"passed\"], \"description\": check5[\"description\"],\n                                    \"computed_top5_by_area\": check5[\"computed_top5_by_area\"],\n                                    \"synthesis_top5\": check5[\"synthesis_top5\"],\n                                    \"computed_zero_area_residues_both_resolutions\": check5[\"computed_zero_area_residues_both_resolutions\"],\n                                    \"synthesis_zero_area_list\": check5[\"synthesis_zero_area_list\"],\n                                    \"assertions\": check5[\"assertions\"]},\n    },\n    \"overall\": {\n        \"all_five_checks_passed\": all_passed,\n        \"summary_counts\": {\n            \"atom_count\": sel[\"selected_atom_count\"], \"residue_count\": sel[\"residue_count\"],\n            \"total_A2_n1000\": tot1000, \"total_A2_n5000\": tot5000,\n            \"convergence_ratio\": ratio, \"threshold\": cv[\"threshold\"],\n        },\n    },\n    \"tool_versions\": {\n        \"judge_runtime\": {\n            \"python\": platform.python_version(),\n            \"implementation\": platform.python_implementation(),\n            \"numpy\": ver(\"numpy\"),\n            \"biopython\": ver(\"biopython\"),\n            \"biopython_available_but_not_used_for_sasa_recompute\": True,\n            \"hashlib\": \"stdlib\",\n        },\n        \"upstream_author_reported_in_sasa_json\": sr[\"tool_versions\"],\n        \"reviewer_reported_in_approved_review\": review[\"result\"][\"reproduction\"][\"toolVersions\"],\n        \"synthesis_reported\": syr[\"tool_versions\"],\n    },\n    \"limitations\": [\n        \"本报告是公开演示的独立核查,不是原始运行(sasa 计算、审评、综合)的实时重播;原始执行只通过附件内的嵌入源码、版本与回执链被审计。\",\n        \"按演示要求未重跑 SASA 几何采样(Shrake-Rupley),只独立重算了选择过滤、逐残基求和、fsum、收敛比值与差值字段的一致性;面积数值本身的正确性依赖上游执行与已获批准的独立基线证据。\",\n        \"附件未包含 context.json、previous-sasa.json(100 点 pilot)、previous-synthesis.json,故各 envelope 中指向这些文件的嵌套回执无法在本演示中重新哈希验证;pilot 保留历史依赖文件内声明与上游审评记录。\",\n        \"reviewer 与 assignee 的 member_node ID 差异、reviewRunId 与 artifact UUID 均为文件内声明;本演示不将其证实为两个真实真人账号的实证,也不验证平台主机侧记录。\",\n        \"synthesis.json 自身状态为 completed_pending_independent_Biology_review,即综合结论尚待其声明的独立 Biology 复审;本演示不是该复审的替代。\",\n        \"结论边界与上游一致:面积是几何溶剂可及性度量(固定半径 C1.70/N1.55/O1.52/S1.80 A、1.4 A 探针、单一冷冻构象),不支持任何功能、活性、临床或普适性推断;1000/5000 收敛只约束总量比较,不给出逐残基误差界或解析精确值。\",\n        \"本演示不声称 SciencePAL 或任何平台独占算法、更准确或不可替代;不替代完整 Vibe-Git 协作平台。\",\n    ],\n}\n\nwith open(__file__, \"r\", encoding=\"utf-8\") as f:\n    doc[\"code\"] = f.read()\ndoc[\"code_sha256\"] = hashlib.sha256(doc[\"code\"].encode(\"utf-8\")).hexdigest()\n\nwith open(\"judge-verification.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump(doc, f, indent=2, ensure_ascii=False)\n\nprint(\"WROTE judge-verification.json\")\nfor name, c in doc[\"checks\"].items():\n    print(f\"  [{ 'PASS' if c['passed'] else 'FAIL' }] {name}\")\nprint(\"all_five_checks_passed:\", all_passed)\nprint(\"atom/residue:\", sel[\"selected_atom_count\"], \"/\", sel[\"residue_count\"], \"elements:\", sel[\"element_counts\"])\nprint(\"totals A2: n1000 =\", tot1000, \" n5000 =\", tot5000, \" ratio =\", ratio, \"(<= 0.02:\", ratio <= 0.02, \")\")\nsys.exit(0 if all_passed else 1)\n",
+  "code_sha256": "9a04eb19ddc6fcd6a297b915911d94309c95e87a30aa1c0634b27576a55cbe09"
+}

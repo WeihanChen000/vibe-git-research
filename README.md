@@ -12,6 +12,12 @@
 
 下载后可双击 [`docs/research/index.html`](docs/research/index.html) 查看无需安装的图文展示；GitHub 上请直接阅读上方展示页。
 
+## 黑客松提交材料
+
+[提交包与缺项清单](docs/submission/README.md) · [5 页技术说明](docs/submission/project-brief.pdf) · [4 分钟字幕演示](docs/submission/vibe-git-research-demo.mp4) · [原创性与资源说明](docs/submission/ORIGINALITY-RESOURCES.md)
+
+材料不等于已经提交。队伍身份、最终声明和问卷回执仍需队长完成；SciencePAL 展示链接的访问状态见提交包。
+
 ## 本次新增
 
 - 原算力网选择七种平台；本地待办可以启动已安装的 Agent，也可复制任务包说明。

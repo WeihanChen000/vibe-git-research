@@ -1,0 +1,39 @@
+{
+  "pdf_pages": 5,
+  "video_seconds": 240,
+  "video_dimensions": [
+    1920,
+    1080
+  ],
+  "video_fps": 24,
+  "video_audio": false,
+  "full_decode_passed": true,
+  "form_summary_characters": 654,
+  "team_identity": "left blank by user",
+  "technical_baseline": "c7610cf",
+  "files": {
+    "project-brief.pdf": {
+      "bytes": 245219,
+      "sha256": "1db6a53bc2ce425da54d0bb0914b58fe70e7fd675fcb96c9c0875f94260df2c8"
+    },
+    "vibe-git-research-demo.mp4": {
+      "bytes": 1992154,
+      "sha256": "f7723e9f68933b59fb84912703a51995fdc2e284421cd99ecc805bc629fa33e3"
+    }
+  },
+  "sciencepal_public_share": "https://sciencepal.ai/share/3b6302a7-f055-460e-9e3d-588287a7b3ca",
+  "share_mode": "read-only native playback; rerun requires account",
+  "anonymous_http_status": 200,
+  "anonymous_full_client_check": false,
+  "browser_final_playback_step": "107/107",
+  "sciencepal_actual_status": "completed",
+  "sciencepal_output_sha256": "1f41a94bd5954881e5a6ffff633c7a5d447c1a1e6d410c6b92b96828e15dba8b",
+  "isolated_local_verifier_checks": {
+    "passed": 5,
+    "total": 5
+  },
+  "offline_original_bundle": {
+    "files": 12,
+    "verifiedPublicInputReceipts": 20
+  }
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "scene": 1,
+    "start": 0,
+    "end": 20,
+    "title": "科研协作，需要共同的验收依据",
+    "caption": "每个人使用自己的 Agent。数据、方法和版本随文件一起交接，研究结果必须经过独立评审。",
+    "source": "integrated-live-completed.png"
+  },
+  {
+    "scene": 2,
+    "start": 20,
+    "end": 40,
+    "title": "原版已经擅长组织多人协作",
+    "caption": "保留人员拓扑、成员提案、队长对齐与发布。新增科研协议、异构执行端、评审和证据交接。",
+    "source": "original-topology-demo.png"
+  },
+  {
+    "scene": 3,
+    "start": 40,
+    "end": 60,
+    "title": "加入、绑定 Agent，沿用原待办入口",
+    "caption": "SciencePAL 官方 Biology 与本机 Codex 分别承担任务和评审。此次实证只有一个 SciencePAL 账号、两种工作流身份。",
+    "source": "integrated-live-completed.png"
+  },
+  {
+    "scene": 4,
+    "start": 60,
+    "end": 80,
+    "title": "先固定研究口径，再开始执行",
+    "caption": "1CRN chain A：327 个重原子、46 个残基；探针半径 1.4 埃。源文件哈希和方法不因返工悄悄改变。",
+    "source": "authored commentary from verified evidence"
+  },
+  {
+    "scene": 5,
+    "start": 80,
+    "end": 100,
+    "title": "SciencePAL 实际承担科研计算",
+    "caption": "真实调用 Python 3.12.3、Biopython 1.84 的 ShrakeRupley。交付逐残基面积、完整执行代码、参数和工具版本。",
+    "source": "integrated-live-completed.png"
+  },
+  {
+    "scene": 6,
+    "start": 100,
+    "end": 120,
+    "title": "第一次退回：探索结果需要细化",
+    "caption": "100 点探索结果 2975.651128 平方埃。Codex 独立复算后退回，因为最终验收要求 1000/5000 点比较。这不是自发犯错。",
+    "source": "integrated-live-rework.png"
+  },
+  {
+    "scene": 7,
+    "start": 120,
+    "end": 140,
+    "title": "返工后，用独立实现检查数值",
+    "caption": "1000 点：2967.616530；5000 点：2970.926661 平方埃。Codex 的独立 NumPy 球面采样与结果在浮点舍入尺度上一致。",
+    "source": "authored commentary from verified evidence"
+  },
+  {
+    "scene": 8,
+    "start": 140,
+    "end": 160,
+    "title": "第二次退回：文件到了，批准依据没到",
+    "caption": "Codex 如实返回 blocked；SciencePAL 退回未完成的综合分析。修复后，任务包自动携带原始批准记录及文件哈希，不增加用户步骤。",
+    "source": "authored commentary from verified evidence"
+  },
+  {
+    "scene": 9,
+    "start": 160,
+    "end": 180,
+    "title": "交接的是获批的那一份文件",
+    "caption": "下游实际核对上游结果和批准凭证，再完成计数、求和与残基解释。点击原拓扑交接边，就能看到文件与独立评审关系。",
+    "source": "handoff-screen.png"
+  },
+  {
+    "scene": 10,
+    "start": 180,
+    "end": 200,
+    "title": "再评审通过，项目完成",
+    "caption": "两个任务各两轮执行，最终全部获批。保留失败和返工版本。最新案例没有新触发等待输入；接续证据来自历史回放与专项测试。",
+    "source": "integrated-live-completed.png"
+  },
+  {
+    "scene": 11,
+    "start": 200,
+    "end": 220,
+    "title": "提升的是协作能力，不是夸大模型能力",
+    "caption": "已验证 Codex × SciencePAL。另五种平台仅整合接口。真人双账号、人工耗时优势和科学准确率领先尚未证明。",
+    "source": "authored commentary from verified evidence"
+  },
+  {
+    "scene": 12,
+    "start": 220,
+    "end": 240,
+    "title": "评委可以沿着证据继续检查",
+    "caption": "仓库内运行 npm run test:integrated-live，可离线检查原始文件与回执；回放无需模型账号。SciencePAL 展示入口见提交包。",
+    "source": "authored commentary from verified evidence"
+  }
+]

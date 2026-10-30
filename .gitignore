@@ -17,3 +17,6 @@ test-results/
 *.key
 *.log
 *.tsbuildinfo
+
+# Locally rendered submission previews and isolated verification outputs
+/output/
