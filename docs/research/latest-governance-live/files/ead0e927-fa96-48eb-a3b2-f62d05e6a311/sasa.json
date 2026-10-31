@@ -1,0 +1,212 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "f66b8625d675c98dc0c0d55a77871a42abdb72b604402fd3f0783de6b9211db0",
+      "size": 31615
+    },
+    {
+      "filename": "source-1CRN.pdb",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    }
+  ],
+  "result": {
+    "method": "Shrake-Rupley",
+    "probe_radius_A": 1.4,
+    "n_points": 1000,
+    "atom_count": 327,
+    "residue_count": 46,
+    "source_sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+    "total_A2": 2967.6165,
+    "residues": [
+      {
+        "residue_id": 1,
+        "area_A2": 71.7358
+      },
+      {
+        "residue_id": 2,
+        "area_A2": 24.9577
+      },
+      {
+        "residue_id": 3,
+        "area_A2": 0.0
+      },
+      {
+        "residue_id": 4,
+        "area_A2": 0.0
+      },
+      {
+        "residue_id": 5,
+        "area_A2": 56.1899
+      },
+      {
+        "residue_id": 6,
+        "area_A2": 44.8579
+      },
+      {
+        "residue_id": 7,
+        "area_A2": 122.0798
+      },
+      {
+        "residue_id": 8,
+        "area_A2": 99.2443
+      },
+      {
+        "residue_id": 9,
+        "area_A2": 6.2797
+      },
+      {
+        "residue_id": 10,
+        "area_A2": 53.3406
+      },
+      {
+        "residue_id": 11,
+        "area_A2": 62.3137
+      },
+      {
+        "residue_id": 12,
+        "area_A2": 78.0202
+      },
+      {
+        "residue_id": 13,
+        "area_A2": 7.8496
+      },
+      {
+        "residue_id": 14,
+        "area_A2": 85.4515
+      },
+      {
+        "residue_id": 15,
+        "area_A2": 93.999
+      },
+      {
+        "residue_id": 16,
+        "area_A2": 20.6479
+      },
+      {
+        "residue_id": 17,
+        "area_A2": 91.4625
+      },
+      {
+        "residue_id": 18,
+        "area_A2": 141.6739
+      },
+      {
+        "residue_id": 19,
+        "area_A2": 111.7733
+      },
+      {
+        "residue_id": 20,
+        "area_A2": 51.019
+      },
+      {
+        "residue_id": 21,
+        "area_A2": 35.5236
+      },
+      {
+        "residue_id": 22,
+        "area_A2": 79.4619
+      },
+      {
+        "residue_id": 23,
+        "area_A2": 67.8527
+      },
+      {
+        "residue_id": 24,
+        "area_A2": 62.1982
+      },
+      {
+        "residue_id": 25,
+        "area_A2": 99.3996
+      },
+      {
+        "residue_id": 26,
+        "area_A2": 0.0
+      },
+      {
+        "residue_id": 27,
+        "area_A2": 12.1272
+      },
+      {
+        "residue_id": 28,
+        "area_A2": 118.663
+      },
+      {
+        "residue_id": 29,
+        "area_A2": 167.379
+      },
+      {
+        "residue_id": 30,
+        "area_A2": 27.4164
+      },
+      {
+        "residue_id": 31,
+        "area_A2": 34.398
+      },
+      {
+        "residue_id": 32,
+        "area_A2": 6.3488
+      },
+      {
+        "residue_id": 33,
+        "area_A2": 49.4719
+      },
+      {
+        "residue_id": 34,
+        "area_A2": 81.9387
+      },
+      {
+        "residue_id": 35,
+        "area_A2": 35.2165
+      },
+      {
+        "residue_id": 36,
+        "area_A2": 140.6387
+      },
+      {
+        "residue_id": 37,
+        "area_A2": 37.9399
+      },
+      {
+        "residue_id": 38,
+        "area_A2": 84.4759
+      },
+      {
+        "residue_id": 39,
+        "area_A2": 118.4864
+      },
+      {
+        "residue_id": 40,
+        "area_A2": 48.5838
+      },
+      {
+        "residue_id": 41,
+        "area_A2": 52.9059
+      },
+      {
+        "residue_id": 42,
+        "area_A2": 76.2626
+      },
+      {
+        "residue_id": 43,
+        "area_A2": 105.554
+      },
+      {
+        "residue_id": 44,
+        "area_A2": 60.8757
+      },
+      {
+        "residue_id": 45,
+        "area_A2": 72.4162
+      },
+      {
+        "residue_id": 46,
+        "area_A2": 69.1859
+      }
+    ],
+    "interpretation": "Solvent-accessible surface area (SASA) of the single frozen 1CRN structure (chain A, 46 residues, 327 heavy atoms) computed with the Shrake-Rupley geometric method using n_points=1000, probe_radius=1.4 Angstrom, and element radii C=1.70, N=1.55, O=1.52, S=1.80 Angstrom. This is a reproducibility exercise for one fixed structure, not a biological discovery. Values are in square Angstrom (A^2).",
+    "limitations": "SASA is a geometric measure dependent on the chosen probe radius, point density (n_points), and element radii. Results apply only to this fixed structure and this geometric method; no biological function ranking or causal claims are made. The Shrake-Rupley method approximates the surface by sampling a finite number of points per atom, so results are approximate and may differ slightly from other SASA implementations."
+  }
+}

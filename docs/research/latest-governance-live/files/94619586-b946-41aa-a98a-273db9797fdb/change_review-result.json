@@ -1,0 +1,48 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "17f1e787956f7f959ec3068f7c94b493f2d8f6f7431cb79ea9a9f44c55aaf713",
+      "size": 94481
+    },
+    {
+      "filename": "report.json",
+      "sha256": "714f3c13913f83ea213c00d81c0f5ab1e3f8f04ba02d26e4464c6dbb17b44ee8",
+      "size": 20817
+    },
+    {
+      "filename": "sasa.json",
+      "sha256": "53f7fae95f77631efd829df07a38dab4ef1be0a76918eb1a074b058cb20a48ac",
+      "size": 4697
+    },
+    {
+      "filename": "source-1CRN.pdb",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    }
+  ],
+  "result": {
+    "verdict": "accept",
+    "rationale": "Accept the additive report-presentation change. The published English report obligations do not prohibit parallel Chinese fields, and the immutable report Draft-07 schema permits additional properties. A local compatibility probe confirmed this without modifying either schema. All 13 active source requirements remain covered; no replacement, removal or invented requirement ID is needed. The task snapshot records both tasks as APPROVED, with 18/18 sasa and 14/14 report criterion entries marked passed; these are historical review records, not new scientific execution. The affected execution set and its downstream dependency closure are exactly [report]. Its unchanged prerequisite sasa is reused, not invalidated by a change to its consumer.\n\nActual local checks (CPython 3.12.10, jsonschema 4.26.0, existing installations only): all four original attachments were read and hashed; source-1CRN.pdb is 49491 bytes with SHA-256 42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811; fixed-column selection yields 327 heavy ATOM records and 46 residues. sasa.json is 4697 bytes with SHA-256 53f7fae95f77631efd829df07a38dab4ef1be0a76918eb1a074b058cb20a48ac, matching the report upstream_sha256. Both artifacts retain total_A2=2967.6165 and the same source hash; report units are square Angstrom (A^2), matching upstream interpretation. Residue IDs are 1 through 46, their decimal sum is 2967.6168 A^2, and the absolute difference is 0.0003 A^2, within the original 0.001 A^2 rule. The report reproduction rows match upstream exactly; its embedded verification-code SHA matches its recorded value. Both existing results pass their unchanged schemas. These checks establish byte, arithmetic and schema consistency, not a fresh SASA baseline or proof of producer execution.\n\nEvidence boundary: this CHANGE_REVIEW context contains task review summaries/checks and report-carried verification evidence, but no context.upstream approval transport or original reviewFileUtf8 bytes. Therefore this run cannot independently rehash the original review envelope or re-establish its full approval binding. The existing approved task status and prior evidence support this bounded change-impact decision; full approval transport remains required for the later report run. The historical baseline 2973.1627706139175 A^2 and reported 0.18654446600554456 percent difference are prior evidence only, not recomputed here. No embedded producer/report code was executed. No nested context receipt was compared against the present context. The previously accepted controlled recovery is preserved rather than reopened. The compatibility probe is only schema testing, not synthetic scientific data. No source data, observations, other artifacts, task definitions or project status were changed. Captain approval of this proposal and revised alignment remains mandatory before application.",
+    "affectedTaskKeys": [
+      "report"
+    ],
+    "requirementMarkdown": "# Proposed report-only addendum (pending captain approval)\n\nThis is the complete proposed delta to the published R1 requirement, not a replacement protocol. The Host must retain the original requirement text, every active governance source-line requirement, all existing task acceptance criteria, immutable resultSchemas and scientificChecks verbatim, and append this addendum with the actual change request. No original requirement is replaced or removed; requirementEdits is empty. Existing authoritative governance decisions remain binding.\n\nOnly task report gains these presentation requirements:\n- Add summary_zh to the report.json result as a concise Chinese answer to the existing research question, at most 150 Chinese characters. Its meaning, numerical result and units must agree with the retained English summary and approved SASA result.\n- Add limitations_zh to the report.json result as an array of exactly two concise Chinese limitation strings. Together they must preserve the single-fixed-structure and specified-geometric-method boundaries and the prohibition on biological function ranking or causal claims. They summarize limitations without replacing or weakening any existing English limitation.\n- Retain all original English fields, summary, limitations, source_sha256, upstream_sha256, total_A2, units, reproduction and verification code. Preserve the approved numerical observations, source identity and units exactly. Deliver actual checksum/sum execution evidence and tool versions for the report run, distinguishing these from transported upstream evidence. Do not claim a fresh SASA calculation.\n- The independent report review must check both new fields for Chinese-language meaning, the summary length, exactly two limitation items, and consistency with the unchanged English content and scientific boundaries, in addition to every original published criterion. These are formal report presentation additions, not a new scientific study or a relaxation of acceptance.\n\nRetain exactly the task keys sasa and report and the HARD dependency sasa -> report. Task report remains assigned to member_node-296025d7-21fa-4277-a8b5-bfbbd130f2e7 and independently reviewed by member_node-7abd3fab-34a2-4ef4-a06b-2afa68c3c463. Only report execution and its independent review are repeated after the captain approves this change and the revised alignment; do not add a coordination task.\n\nTask sasa is unaffected. Preserve its exact title, goal, boundary, acceptance, requirementIds, assigneeAgentId, reviewerAgentId, dependencies, result schema and scientific checks from the supplied snapshot, identified by fingerprint 6b35f9e0d7f6baa93851850692d137eaa7b93352a4abb9da5fd9e1b541d34d67. Reuse the already approved sasa.json bytes (SHA-256 53f7fae95f77631efd829df07a38dab4ef1be0a76918eb1a074b058cb20a48ac) and their bound approval, including the accepted original-run controlled-recovery evidence. Do not repeat upstream execution, upstream review or the first-submission omission exercise.\n\nAll unchanged obligations remain in force, including the frozen source bytes, chain A ATOM heavy-atom/altloc selection, exclusions, Shrake-Rupley method with 1000 points, 1.4-Angstrom probe and original element radii, Angstrom and square-Angstrom units, counts, original independent-baseline/2-percent criterion and numeric checks, reproducible code and evidence obligations, no network refetch or installation, resource limits, privacy and relative-path rules, original source-line coverage and conclusion boundaries. Both immutable task result schemas and all scientific checks remain unchanged. The report schema already permits the additive fields; enforce their new presentation requirements through report acceptance rather than schema modification.\n\nDuring report re-execution, obtain the original Host-bound upstream approval transport, verify the actual sasa.json checksum, hash reviewFileUtf8 UTF-8 bytes against reviewArtifact, parse the original review envelope and confirm its approve verdict and receipt for the upstream bytes, as already required. Then execute report checksum/sum verification and deliver its complete source and evidence. Reuse upstream approval without substituting a review summary for this transport. Nested producer/reviewer context receipts describe their own runs and must not be compared to the new report context. Missing evidence must be reported, not fabricated or recovered by rerunning SASA.\n\nThis addendum is a change-review recommendation only. The captain must explicitly approve the change and revised alignment before publication or application; this review neither publishes a protocol nor changes project/task status.\n",
+    "taskImpacts": [
+      {
+        "key": "sasa",
+        "affected": false,
+        "rationale": "Upstream sasa computation, artifact and accepted review are unchanged. Preserve every task-definition field, source requirement binding, immutable schema and scientific check exactly. Reuse its approved bytes and bound approval, without another execution or review.",
+        "fingerprint": "6b35f9e0d7f6baa93851850692d137eaa7b93352a4abb9da5fd9e1b541d34d67"
+      },
+      {
+        "key": "report",
+        "affected": true,
+        "rationale": "Only report gains summary_zh and limitations_zh; retain all original fields, verification, source/hash/total/units and scientific boundaries. Re-execute report and its independent review after captain approval. No downstream task exists in the supplied snapshot.",
+        "fingerprint": "9153bcf01eddc4dee1692ba76a1fa5045cdae4461835b4a528030d899c223220"
+      }
+    ],
+    "requirementEdits": []
+  }
+}

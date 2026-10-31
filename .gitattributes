@@ -14,3 +14,6 @@ docs/research/manual-handoff-check/** -text -whitespace
 
 # Frozen simulated workflow evidence is verified by byte hash on every platform.
 docs/research/evidence/workflow-experiments/** -text -whitespace
+
+# Latest real workflow: preserve original artifacts and audit-record bytes.
+docs/research/latest-governance-live/** -text -whitespace

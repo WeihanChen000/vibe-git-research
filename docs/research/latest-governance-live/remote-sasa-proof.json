@@ -1,0 +1,14 @@
+{
+  "observedAt": "2026-10-31T08:17:26.526Z",
+  "source": "SciencePAL authenticated read-only thread-runs and run-status APIs",
+  "threadId": "19c49ca0-36fb-42ce-86d7-209baca731db",
+  "runs": [
+    {
+      "id": "93daae81-8e30-4e5f-ae54-a17a8bdd5a6d",
+      "threadId": "19c49ca0-36fb-42ce-86d7-209baca731db",
+      "agentId": "10000000-0000-0000-0000-000000000002",
+      "startedAt": "2026-10-31T07:29:03.399021+00:00",
+      "status": "completed"
+    }
+  ]
+}

@@ -68,8 +68,11 @@ export function alignmentResult(value: unknown, p: SPProject, run: SPRun, result
 export function reviewResult(value: unknown, acceptance: string[], filename: string, governed = false): SPReviewResult {
   const data = object(value);
   if (data.verdict !== "approve" && data.verdict !== "request_changes") throw badRequest("无效的评审裁决");
+  // Only a generated UI label may vary. IDs, source text, numbers and decisions stay exact.
+  const labelKey = (text: string) => text.replace(/^(\[REQ:r-[a-f0-9]{16}\] 核对原提案要求):/, "$1：");
+  const criterionFor = (text: string) => governed ? acceptance.find(expected => labelKey(expected) === labelKey(text)) ?? text : text;
   const checks = list(data.checks, "验收检查", governed ? 72 : 8).map((v, index) => {
-    const c = object(v), criterion = string(c.criterion, "验收项", 2000), evidence = string(c.evidence, "评审证据", 3000);
+    const c = object(v), criterion = criterionFor(string(c.criterion, "验收项", 2000)), evidence = string(c.evidence, "评审证据", 3000);
     if (typeof c.passed !== "boolean") throw badRequest(`评审 checks[${index}].passed 必须为布尔值`);
     if (!evidence.includes(filename)) throw badRequest(`评审 checks[${index}].evidence 缺少成果文件名 ${filename}；每项证据须明确引用该文件，仅在 criterion 或 summary 中引用不算`);
     return { criterion, passed: c.passed, evidence };
@@ -80,7 +83,7 @@ export function reviewResult(value: unknown, acceptance: string[], filename: str
   if (data.verdict === "request_changes" && !requiredChanges.length) throw badRequest("退回评审必须给出修改要求");
   if(governed&&data.verdict==="request_changes"&&!checks.some(c=>!c.passed))throw badRequest("原验收项全部通过，评审不得新增要求并退回；请另行提出研究变更");
   if(governed&&data.verdict==="request_changes") {
-    const refs=list(data.requiredChangeCriteria,"修改要求对应的失败验收项",10);
+    const refs=list(data.requiredChangeCriteria,"修改要求对应的失败验收项",10).map(c=>criterionFor(string(c,"失败验收项",2000)));
     if(refs.length!==requiredChanges.length||refs.some(c=>!checks.some(check=>check.criterion===c&&!check.passed)))throw badRequest("每项返工要求必须绑定一个未通过的原验收项，新增研究要求须走变更流程");
   }
   return { verdict: data.verdict, summary: string(data.summary, "评审摘要", 4000), checks, requiredChanges };

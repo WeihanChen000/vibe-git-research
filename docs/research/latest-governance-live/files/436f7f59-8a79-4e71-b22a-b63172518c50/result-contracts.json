@@ -1,0 +1,34 @@
+{
+  "sasa": {
+    "type": "object",
+    "properties": {
+      "method": {
+        "type": "string",
+        "const": "Shrake-Rupley"
+      },
+      "probe_radius_A": {
+        "type": "number",
+        "const": 1.4
+      },
+      "n_points": {
+        "type": "number",
+        "const": 1000
+      },
+      "source_sha256": {
+        "type": "string",
+        "const": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811"
+      }
+    },
+    "required": [
+      "method",
+      "probe_radius_A",
+      "n_points",
+      "source_sha256"
+    ]
+  },
+  "report": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  }
+}

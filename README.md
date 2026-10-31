@@ -18,7 +18,7 @@
 
 历史提交基线为 [`ca1b2b5`](https://github.com/WeihanChen000/vibe-git-research/tree/ca1b2b5227e660559fb9e29c4d69a259252efb54)。后续按原功能保留要求补兼容与防偏移缺口，不新增平台、学科案例或重做界面。
 
-最新代码补齐[科研防偏移与反例验证](docs/research/RESEARCH-ANTI-DRIFT-20261031.md)：原文遗漏不能发布、返工须对应原验收、变更按影响复用有效成果。该新增治理层本轮通过受控模拟验证，下列真实回放仍展示其原始历史版本。
+最新代码补齐[科研防偏移与反例验证](docs/research/RESEARCH-ANTI-DRIFT-20261031.md)：原文遗漏不能发布、返工须对应原验收、变更按影响复用有效成果。该新增治理层已通过受控模拟及下方最新真实两轮闭环；既有回放仍展示其原始历史版本。
 
 - [直接打开原拓扑回放](https://weihanchen000.github.io/vibe-git-research/replay/?case=isolated&step=members)：单机三个成员身份，13 个实际阶段，无需安装或账号。
 - [本轮真实验收与修复](docs/research/ISOLATED-ACCEPTANCE-20261031.md)：17 项运行检查通过，保留三次退回、补证复审和最终交接；中途需操作者核对原线程，非全自动成功。
@@ -27,7 +27,7 @@
 
 最新补充：[两套新实验的完整流程与使用者验收](docs/research/WORKFLOW-EXPERIMENTS-20261031.md)。传感器标定、反应动力学均完成界面建项、偏移阻断、返工、交接与报告变更；包含实际本地计算、模拟 Agent、可自行操作的演练入口。
 
-最新真实联调进展：[治理新版界面实跑与修复中间记录](docs/research/LATEST-GOVERNANCE-LIVE-20261031.md)。本轮真实计算发现参数配置矛盾，已暂停并修复数值框误滚动、确认状态失效及确认信息不足；完整新版闭环尚未完成，不能与历史成功记录合并宣称通过。
+最新真实闭环：[补证与报告成果复用实跑](docs/research/LATEST-GOVERNANCE-LIVE-20261031.md)。R1、R2 均完成：补证只重做独立评审；只改报告沿用原 SASA 文件、执行与批准。31 份原始附件、34 条输入回执离线核验通过，保留原失败与人工介入；一个操作者、一个 SciencePAL 账号。运行 `npm run test:latest-live` 可复核，不调用模型。
 
 ## 黑客松提交材料
 

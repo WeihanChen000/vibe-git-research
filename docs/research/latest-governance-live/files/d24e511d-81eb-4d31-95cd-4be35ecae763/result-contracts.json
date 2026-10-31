@@ -1,0 +1,29 @@
+{
+  "sasa": {
+    "type": "object",
+    "properties": {
+      "method": {
+        "type": "string",
+        "const": "Shrake-Rupley"
+      },
+      "probe_radius_A": {
+        "type": "number",
+        "const": 1.4
+      },
+      "n_points": {
+        "type": "number",
+        "const": 1000
+      }
+    },
+    "required": [
+      "method",
+      "probe_radius_A",
+      "n_points"
+    ]
+  },
+  "report": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  }
+}

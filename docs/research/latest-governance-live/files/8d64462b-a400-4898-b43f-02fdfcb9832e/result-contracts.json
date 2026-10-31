@@ -1,0 +1,19 @@
+{
+  "sasa": {
+    "type": "object",
+    "properties": {
+      "method": {
+        "type": "string",
+        "const": "Shrake-Rupley"
+      }
+    },
+    "required": [
+      "method"
+    ]
+  },
+  "report": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  }
+}

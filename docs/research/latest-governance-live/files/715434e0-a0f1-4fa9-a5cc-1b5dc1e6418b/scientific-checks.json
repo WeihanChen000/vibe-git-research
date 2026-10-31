@@ -1,0 +1,1 @@
+{"version":1,"sourceSha256":"42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811","tasks":{"sasa":[{"id":"check-e2be8b60-7c20-4623-8780-8510a8afba5f","kind":"sum","absoluteTolerance":0.001,"totalPath":"total_A2","rowsPath":"residues","valueField":"area_A2"}]}}

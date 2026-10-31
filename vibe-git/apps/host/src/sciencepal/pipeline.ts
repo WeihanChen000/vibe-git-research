@@ -296,7 +296,7 @@ export class SciencePALPipeline {
         case "supplement-review": {
           const t = p.tasks.find(t => t.key === data.taskKey);
           if (!t || t.status !== "CHANGES_REQUESTED" || !t.artifactId || !t.reviewId || data.reviewId !== t.reviewId) throw invalidState("仅可对当前退回成果补充证据复审，请核对原评审");
-          const note = string(data.note, "补充证据与来源", 4000);
+          const note = string(data.note, "补充证据与来源", 16000);
           const execution = p.runs.find(r => r.id === t.executionId);
           if (!execution || execution.status !== "COLLECTED" || execution.output?.id !== t.artifactId || execution.resultValidation?.status === "FAILED" || execution.scientificValidation?.status === "FAILED") throw invalidState("原成果未通过文件或科学检查，必须修复成果后返工");
           const reviews = p.runs.filter(r => r.kind === "REVIEW" && r.revision === p.revision && r.taskKey === t.key && r.inputs.some(f => f.artifactId === t.artifactId));

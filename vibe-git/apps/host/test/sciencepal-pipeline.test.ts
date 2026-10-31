@@ -856,3 +856,25 @@ it("keeps optional reviewer suggestions out of a governed repair instruction",as
  const repaired=s.remote.calls.find(c=>c.kind==="TASK"&&c.context.feedback)!;
  expect(repaired.context.feedback).not.toContain("unrelated cohort");expect(repaired.context.feedback).toContain("Repair only failed frozen criteria");
 });
+
+// Real SciencePAL review preserved all requirement bodies but retyped a generated label colon.
+describe('Generated requirement label compatibility',()=>{
+ const original='[REQ:r-0123456789abcdef] 核对原提案要求：Use probe: 1.4; keep source.';
+ const ascii=original.replace('要求：','要求:');
+ const payload=(criterion:string)=>({verdict:'approve',summary:'Checked original output.',checks:[{criterion,passed:true,evidence:'data.json preserves the frozen probe and source.'}],requiredChanges:[]});
+ it('accepts only the generated header colon variant and preserves raw evidence',()=>{
+  const raw=payload(ascii);expect(reviewResult(raw,[original],'data.json',true).checks[0]!.criterion).toBe(original);
+  expect(raw.checks[0]!.criterion).toBe(ascii);
+  expect(()=>reviewResult(raw,[original],'data.json',false)).toThrow();
+ });
+ it('still rejects edited bodies, changed IDs and duplicate coverage',()=>{
+  for(const text of [ascii.replace('1.4','1.5'),ascii.replace('probe:','probe：'),ascii.replace('0123456789abcdef','1123456789abcdef')])expect(()=>reviewResult(payload(text),[original],'data.json',true)).toThrow();
+  const duplicate=payload(ascii);duplicate.checks.push({...duplicate.checks[0]!,criterion:original});
+  expect(()=>reviewResult(duplicate,[original],'data.json',true)).toThrow();
+ });
+ it('keeps rejection reasons bound to the original failed requirement',()=>{
+  const raw={...payload(ascii),verdict:'request_changes',checks:[{criterion:ascii,passed:false,evidence:'data.json lacks the original source proof.'}],requiredChanges:['Supply original source proof.'],requiredChangeCriteria:[ascii]};
+  expect(reviewResult(raw,[original],'data.json',true).verdict).toBe('request_changes');
+  expect(()=>reviewResult({...raw,requiredChangeCriteria:[ascii.replace('1.4','1.5')]},[original],'data.json',true)).toThrow();
+ });
+});

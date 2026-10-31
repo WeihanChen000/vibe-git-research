@@ -135,10 +135,11 @@ describe("SciencePAL original member identity and distributed handoff", () => {
     const s=await setup();s.remoteB.rejectOnce=true;await s.publish();const rejected=await s.until('CHANGES_REQUESTED');
     const task=rejected.tasks[0]!, old={artifactId:task.artifactId,executionId:task.executionId,attempt:task.attempt,acceptance:task.acceptance,reviewId:task.reviewId};
     const path=`/api/sciencepal-team/projects/${rejected.id}/commands/supplement-review`;
-    const body={revision:rejected.revision,taskKey:'data',reviewId:old.reviewId,note:'Observed original tool record; source and timestamps supplied for independent assessment.'};
+    const body={revision:rejected.revision,taskKey:'data',reviewId:old.reviewId,note:'Observed original tool record; source and timestamps supplied for independent assessment.\n'+ '# original tool output\n'.repeat(250)};
     expect((await s.raw(s.member.nodeToken,path,body)).statusCode).toBe(403);
     expect((await s.raw(s.captain.nodeToken,path,{...body,reviewId:'stale'})).statusCode).toBe(409);
     expect((await s.raw(s.captain.nodeToken,path,{...body,note:''})).statusCode).toBe(400);
+    expect((await s.raw(s.captain.nodeToken,path,{...body,note:'x'.repeat(16001)})).statusCode).toBe(400);
     const p=await s.command('supplement-review',body), revised=p.tasks[0]!;
     expect(revised).toMatchObject({artifactId:old.artifactId,executionId:old.executionId,attempt:old.attempt,acceptance:old.acceptance,status:'REVIEWING'});
     expect(p.runs.find(r=>r.id===old.reviewId)!.output).not.toBeNull();expect(p.runs.filter(r=>r.kind==='TASK'&&r.taskKey==='data')).toHaveLength(1);

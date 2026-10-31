@@ -1,0 +1,102 @@
+{
+  "revision": 1,
+  "inputReceipts": [
+    {
+      "filename": "context.json",
+      "sha256": "da714cb4470a49a43f56ae795806f1fcd9bdc8de6731f1bc31b5ccb0bfed4ac2",
+      "size": 248574
+    },
+    {
+      "filename": "source-1CRN.pdb",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491
+    },
+    {
+      "filename": "sasa.json",
+      "sha256": "53f7fae95f77631efd829df07a38dab4ef1be0a76918eb1a074b058cb20a48ac",
+      "size": 4697
+    },
+    {
+      "filename": "report.json",
+      "sha256": "714f3c13913f83ea213c00d81c0f5ab1e3f8f04ba02d26e4464c6dbb17b44ee8",
+      "size": 20817
+    }
+  ],
+  "result": {
+    "verdict": "approve",
+    "summary": "The report.json artifact for the report task is approved. Independent verification confirmed: (1) report.total_A2=2967.6165 matches the approved sasa.json total exactly; (2) report.source_sha256=42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811 matches the frozen source-1CRN.pdb bytes; (3) report.upstream_sha256=53f7fae95f77631efd829df07a38dab4ef1be0a76918eb1a074b058cb20a48ac matches the actual sasa.json bytes; (4) the 46 residue areas sum to 2967.6168 A^2, differing from the total by 0.0003 A^2 within the frozen 0.001 tolerance; (5) the approval binding is verified (reviewFileUtf8 hash matches reviewArtifact sha256, approve verdict, receipt for sasa.json matches); (6) the independent baseline comparison shows 0.1865% relative difference, within 2%; (7) the reproduction code executes successfully and produces the claimed evidence; (8) the report answers the research question in plain English with appropriate limitations and no biological function ranking or causal claims. All published acceptance criteria pass.",
+    "checks": [
+      {
+        "criterion": "Consume only the approved sasa.json and its approval evidence. Hash the actual upstream file bytes for upstream_sha256; verify the Host-bound reviewedArtifact and hash UTF-8 reviewFileUtf8 against reviewArtifact, parse the original review envelope, confirm its approve verdict and receipt for that actual upstream file. Do not compare nested producer/reviewer context receipts to this run context or execute embedded code merely to establish provenance.",
+        "passed": true,
+        "evidence": "report.json result.upstream_sha256=53f7fae95f77631efd829df07a38dab4ef1be0a76918eb1a074b058cb20a48ac matches the actual sasa.json bytes (sha256 verified). The approval binding is verified: reviewFileUtf8 UTF-8 hash 712b396e1810298ef549061f34513254d964cf2a59e971b24a6eee19c836b87b matches reviewArtifact.sha256 and size 194653; approval.verdict=approve; reviewedArtifact.filename=sasa.json sha256=53f7fae9... matches actual sasa.json; original review envelope parsed with result.verdict=approve and its inputReceipts contains sasa.json sha256=53f7fae9... size=4697. The report reproduction code (report.json result.reproduction.code) executes successfully and confirms these bindings. The report correctly does not compare nested producer/reviewer context receipts to this run context."
+      },
+      {
+        "criterion": "Deliver report.json with summary, total_A2, source_sha256, upstream_sha256, units, limitations, and complete actual executed checksum/sum verification code in reproduction; show verification evidence and package/tool versions actually used without claiming unobserved execution.",
+        "passed": true,
+        "evidence": "report.json result contains all required fields: summary, total_A2=2967.6165, source_sha256=42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811, upstream_sha256=53f7fae95f77631efd829df07a38dab4ef1be0a76918eb1a074b058cb20a48ac, units=\"square Angstrom (A^2)\", limitations (5 items). result.reproduction contains code (7675 chars, code_sha256=4eeead997e599232706332c5c5509b5641872da06a8996057ad6d2b96a556acb verified), tool_versions (Python 3.12.10, jsonschema 4.26.0), execution_evidence, residues (46 matching sasa.json), run_instructions, data_classification. The reproduction code was executed in this review and produces the claimed verification evidence (approval_binding_verified=true, source_receipts_verified=true, sum_check_passed=true)."
+      },
+      {
+        "criterion": "Check the approved upstream residue sum against its total; report total_A2 and units identically to approved sasa.json, preserve source_sha256 for traceability, and verify upstream_sha256 against the approved file bytes.",
+        "passed": true,
+        "evidence": "report.json result.total_A2=2967.6165 matches approved sasa.json result.total_A2=2967.6165 exactly. The 46 residue areas in sasa.json sum to 2967.6168 A^2 (decimal), differing from the total by 0.0003 A^2, within the frozen 0.001 tolerance (check-e2be8b60-7c20-4623-8780-8510a8afba5f). report.json result.units=\"square Angstrom (A^2)\" matches sasa.json interpretation. report.json result.source_sha256=42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811 matches the frozen source-1CRN.pdb bytes. report.json result.upstream_sha256=53f7fae95f77631efd829df07a38dab4ef1be0a76918eb1a074b058cb20a48ac matches the actual sasa.json bytes. The reproduction code (report.json result.reproduction.code) executes and confirms the sum check and hashes."
+      },
+      {
+        "criterion": "Answer the research question in plain English and explicitly limit interpretation to this one fixed structure and Shrake-Rupley geometric method; include limitations, with no biological function ranking, causal claims or claim of a new biological discovery.",
+        "passed": true,
+        "evidence": "report.json result.summary states in plain English: \"The solvent-accessible surface area of the single frozen 1CRN structure is 2967.6165 square Angstrom (A^2)... This is a reproducibility result for one fixed structure and method, not a new biological discovery.\" The limitations (5 items) explicitly limit interpretation to this fixed structure and Shrake-Rupley geometric method, state no biological function ranking or causal claims are made, and note the result is approximate. No biological function ranking, causal claims, or claim of a new biological discovery are present in report.json."
+      },
+      {
+        "criterion": "SciencePAL independently reviews all published criteria; any additional request is optional or a formal research change. Keep public artifacts free of account tokens, personal paths and contacts, use paths relative to inputs, and write the required JSON envelope without manipulating project status or other members.",
+        "passed": true,
+        "evidence": "report.json result contains no account tokens, personal paths, or contacts. Paths are relative to inputs (e.g., inputs/source-1CRN.pdb in reproduction code). The report envelope has revision=1 and inputReceipts with the three actual attachments. The report does not manipulate project status or other members. The report.json result.requirementIds matches context.task.requirementIds exactly (9 ids). The report.json result.assigneeAgentId=member_node-296025d7-21fa-4277-a8b5-bfbbd130f2e7 and reviewerAgentId=member_node-7abd3fab-34a2-4ef4-a06b-2afa68c3c463 match context.task bindings."
+      },
+      {
+        "criterion": "[REQ:r-3acb2e3abef9b518] 核对原提案要求:Keep all public artifacts free of account tokens, personal paths and contacts. Use paths relative to inputs. Write the required JSON envelope once finished, do not manipulate project status or other members.",
+        "passed": true,
+        "evidence": "report.json result contains no account tokens, personal paths, or contacts. Paths are relative to inputs (e.g., inputs/source-1CRN.pdb in reproduction code). The report envelope has revision=1 and inputReceipts with the three actual attachments. The report does not manipulate project status or other members."
+      },
+      {
+        "criterion": "[REQ:r-48f3af49ea288b8d] 核对原提案要求:Use only the uploaded source-1CRN.pdb bytes, chain A, ATOM heavy atoms, altloc blank/A; no HETATM, hydrogens, network refetch or package installation. Units are Angstrom and square Angstrom.",
+        "passed": true,
+        "evidence": "report.json result.summary references chain A, 327 ATOM heavy atoms and 46 residues with altloc blank/A. Independent verification of source-1CRN.pdb confirmed 327 heavy ATOM atoms and 46 residues in chain A with altloc blank/A. report.json result.units=\"square Angstrom (A^2)\". No network refetch or package installation was performed in this review."
+      },
+      {
+        "criterion": "[REQ:r-723560fdcc43d105] 核对原提案要求:# SciencePAL member proposal",
+        "passed": true,
+        "evidence": "report.json result.requirementIds includes r-723560fdcc43d105, referencing the SciencePAL member proposal. The report task is assigned to member_node-296025d7-21fa-4277-a8b5-bfbbd130f2e7 (captain) and reviewed by member_node-7abd3fab-34a2-4ef4-a06b-2afa68c3c463 (SciencePAL member), matching the workflow binding."
+      },
+      {
+        "criterion": "[REQ:r-8db8f6993fa1b265] 核对原提案要求:Task report reads only approved sasa.json plus its approval evidence. Deliver report.json with summary, total_A2, source_sha256, upstream_sha256, units, limitations, and code used to verify upstream checksum and sum. Answer the research question in plain English and explicitly limit inference to one fixed structure and this geometric method. No biological function ranking or causal claims.",
+        "passed": true,
+        "evidence": "report.json result contains summary, total_A2=2967.6165, source_sha256=42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811, upstream_sha256=53f7fae95f77631efd829df07a38dab4ef1be0a76918eb1a074b058cb20a48ac, units, limitations. result.reproduction.code contains checksum/sum verification code that executes successfully. The summary answers the research question in plain English and limits inference to one fixed structure and Shrake-Rupley method. No biological function ranking or causal claims."
+      },
+      {
+        "criterion": "[REQ:r-96a81a01ac1aec45] 核对原提案要求:I coordinate and perform independent sasa review, then author report.",
+        "passed": true,
+        "evidence": "report.json result.assigneeAgentId=member_node-296025d7-21fa-4277-a8b5-bfbbd130f2e7 (captain) authored the report. The upstream sasa approval (context.json upstream[0].approval) shows verdict=approve by reviewerAgentId=member_node-296025d7-21fa-4277-a8b5-bfbbd130f2e7, confirming the captain performed the independent sasa review before authoring the report."
+      },
+      {
+        "criterion": "[REQ:r-9d1ba6b7a7491f82] 核对原提案要求:Exactly two tasks in order: sasa assigned to the SciencePAL member and reviewed by the captain Codex; report assigned to the captain Codex and reviewed by the SciencePAL member. Task report depends on sasa. Do not add coordination as a third task.",
+        "passed": true,
+        "evidence": "context.json task.key=report, dependencies=[\"sasa\"], assigneeAgentId=member_node-296025d7-21fa-4277-a8b5-bfbbd130f2e7, reviewerAgentId=member_node-7abd3fab-34a2-4ef4-a06b-2afa68c3c463. report.json result.assigneeAgentId and reviewerAgentId match these bindings. The report task depends on sasa (context.json task.dependencies=[\"sasa\"]). No coordination third task is present."
+      },
+      {
+        "criterion": "[REQ:r-9f533410264620ba] 核对原提案要求:I execute sasa with the frozen input and parameters in the captain proposal, preserve tool execution evidence, and independently review report. Keep the two task keys sasa and report stable across report-only changes.",
+        "passed": true,
+        "evidence": "report.json result.requirementIds includes r-9f533410264620ba. The report task key is \"report\" and the upstream task key is \"sasa\" (context.json task.key=report, dependencies=[\"sasa\"]). The report.json result.review_status=\"Report authored; independent SciencePAL member review is still required before downstream handoff.\" confirms the SciencePAL member (reviewerAgentId=member_node-7abd3fab-34a2-4ef4-a06b-2afa68c3c463) independently reviews the report."
+      },
+      {
+        "criterion": "[REQ:r-e945b6f4f24259c5] 核对原提案要求:Task report acceptance: correct approved upstream hash, identical total/units, traceable source, plain-English answer and limitations. Reviewer checks only published criteria; any additional request must be optional or a formal research change.",
+        "passed": true,
+        "evidence": "report.json result.upstream_sha256=53f7fae95f77631efd829df07a38dab4ef1be0a76918eb1a074b058cb20a48ac matches the approved sasa.json bytes. report.json result.total_A2=2967.6165 and units=\"square Angstrom (A^2)\" are identical to the approved sasa.json. report.json result.source_sha256=42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811 is traceable to the frozen source. The summary answers the research question in plain English with limitations. This review checks only the published criteria."
+      },
+      {
+        "criterion": "[REQ:r-ef0421fa24cbf7e0] 核对原提案要求:Research question: What is the solvent-accessible surface area (SASA) of the single frozen 1CRN structure under the specified method? This is a reproducibility exercise, not a new biological discovery.",
+        "passed": true,
+        "evidence": "report.json result.summary answers the research question: \"The solvent-accessible surface area of the single frozen 1CRN structure is 2967.6165 square Angstrom (A^2)...\" and states \"This is a reproducibility result for one fixed structure and method, not a new biological discovery.\" The limitations explicitly limit interpretation to this fixed structure and Shrake-Rupley geometric method."
+      }
+    ],
+    "requiredChanges": []
+  }
+}

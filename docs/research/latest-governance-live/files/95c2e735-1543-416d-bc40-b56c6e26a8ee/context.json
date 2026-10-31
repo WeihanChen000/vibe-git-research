@@ -1,0 +1,312 @@
+{
+  "revision": 1,
+  "requirement": "## 原始提案 member_node-296025d7-21fa-4277-a8b5-bfbbd130f2e7\n# Captain proposal\nResearch question: What is the solvent-accessible surface area (SASA) of the single frozen 1CRN structure under the specified method? This is a reproducibility exercise, not a new biological discovery.\nUse only the uploaded source-1CRN.pdb bytes, chain A, ATOM heavy atoms, altloc blank/A; no HETATM, hydrogens, network refetch or package installation. Units are Angstrom and square Angstrom.\nExactly two tasks in order: sasa assigned to the SciencePAL member and reviewed by the captain Codex; report assigned to the captain Codex and reviewed by the SciencePAL member. Task report depends on sasa. Do not add coordination as a third task.\nTask sasa must actually execute Bio.PDB.SASA.ShrakeRupley with n_points=1000, probe_radius_A=1.4, radii C=1.70,N=1.55,O=1.52,S=1.80. Deliver sasa.json with method=\"Shrake-Rupley\", probe_radius_A, n_points, atom_count, residue_count, source_sha256, total_A2, residues:[{residue_id,area_A2}], complete executed portable code, tool_versions, and interpretation/limitations. Expect 327 heavy atoms and 46 residues. Preserve computed values, do not copy reference numbers.\nTask sasa acceptance: frozen source/counts/method/parameters match; numerical total and per-residue values with units; executed reproducible source code and actual package version evidence. Independent reviewer must actually recompute a baseline from uploaded structure (standard Python or available NumPy) and compare within 2 percent, check sums and SHA. Full code/tables go in reproduction, short review evidence fields only.\nControlled recovery check, not a scientific criterion: On FIRST sasa submission only, deliberately OMIT tool_versions from the artifact. Retain the execution logs and package version in the original SciencePAL thread; do not recompute solely to supply that evidence later. Reviewer should request the missing version evidence, not demand a fresh calculation when values are otherwise correct. Operator will supply evidence tied to this run for supplemental review. Do not invent missing evidence or pretend the omission is an accidental model failure.\nTask report reads only approved sasa.json plus its approval evidence. Deliver report.json with summary, total_A2, source_sha256, upstream_sha256, units, limitations, and code used to verify upstream checksum and sum. Answer the research question in plain English and explicitly limit inference to one fixed structure and this geometric method. No biological function ranking or causal claims.\nTask report acceptance: correct approved upstream hash, identical total/units, traceable source, plain-English answer and limitations. Reviewer checks only published criteria; any additional request must be optional or a formal research change.\nKeep all public artifacts free of account tokens, personal paths and contacts. Use paths relative to inputs. Write the required JSON envelope once finished, do not manipulate project status or other members.\n\nI coordinate and perform independent sasa review, then author report.\n\n\n## 原始提案 member_node-7abd3fab-34a2-4ef4-a06b-2afa68c3c463\n# SciencePAL member proposal\nI execute sasa with the frozen input and parameters in the captain proposal, preserve tool execution evidence, and independently review report. Keep the two task keys sasa and report stable across report-only changes.\n\n\n## 对齐说明\n# Frozen alignment draft for captain inspection and publication\n\nResearch question: What is the solvent-accessible surface area (SASA) of the single frozen 1CRN structure under the specified method? This is a reproducibility exercise, not a new biological discovery.\n\nExactly two tasks, in order: sasa -> report. This dependency is HARD and transports the approved sasa.json file and its approval evidence. Coordination is part of the captain role, not a third task. The draft does not publish the research protocol or change project status.\n\nWorkflow bindings: sasa assigneeAgentId=member_node-7abd3fab-34a2-4ef4-a06b-2afa68c3c463, reviewerAgentId=member_node-296025d7-21fa-4277-a8b5-bfbbd130f2e7; report assigneeAgentId=member_node-296025d7-21fa-4277-a8b5-bfbbd130f2e7, reviewerAgentId=member_node-7abd3fab-34a2-4ef4-a06b-2afa68c3c463. These are member-scoped IDs, never runtimeAgentId.\n\nFrozen source: inputs/source-1CRN.pdb, 49491 original bytes, SHA-256 42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811. Attribution: RCSB PDB 1CRN public coordinates; public structure retained unchanged for reproducibility. The source URL is provenance only, not authorization to refetch. All original attachment bytes were read locally; a standard-Python selection check found 327 heavy atoms and 46 residues. This input inspection is not SASA execution, an independent SASA baseline, or scientific approval.\n\nMethods and resource limits: chain A, ATOM heavy atoms, altloc blank/A; no HETATM or hydrogens. Coordinates/probe/radii are in Angstrom and areas in square Angstrom. Execute Bio.PDB.SASA.ShrakeRupley, n_points=1000, probe_radius_A=1.4, radii C=1.70,N=1.55,O=1.52,S=1.80. No network refetch or package installation. Report unavailable tools or evidence instead of guessing. The captain independently recomputes the baseline using standard Python or available NumPy and checks agreement within 2 percent, SHA and sums; full code/tables belong in reproduction, short review evidence fields only. Numerical observations must remain unchanged, even if they fail acceptance.\n\nRequired outputs are specified in each task goal. Preserve the exact field names method, probe_radius_A, n_points, atom_count, residue_count, source_sha256, total_A2, residues:[{residue_id,area_A2}], tool_versions for sasa.json, with complete executed portable code, interpretation and limitations; preserve summary, total_A2, source_sha256, upstream_sha256, units, limitations for report.json, with actually executed upstream checksum and sum verification code. Full code/tables are delivered inline in reproduction rather than as inaccessible paths. This context supplies no resultSchemas or scientificChecks map; this alignment does not invent or weaken one. Any operator-supplied immutable schemas and checks remain binding.\n\nThe first-submission omission of tool_versions is an explicitly planned controlled recovery check, not a scientific result or incompatible proposal. It is a temporary, scoped omission; final approval still requires actual version evidence. Retain original SciencePAL execution logs and versions, use operator-supplied run-bound supplemental evidence, and do not require fresh calculation solely to recover it. Do not repeat the first-submission omission on rework. Distinguish lifecycle receipts, reported tool logs, and independent numerical recomputation; connector records alone do not prove scientific execution. No prior executionHistory, previous tasks, decisions or approved changes are supplied in this context.\n\nReport consumes only approved sasa.json plus approval evidence. Verify the actual upstream byte hash, reviewFileUtf8 UTF-8 hash against reviewArtifact, approve verdict, reviewedArtifact binding and original review receipt for that upstream file. Nested inputReceipts belong to their producer runs, not the current context. Do not execute embedded code solely for provenance. Required scientific review remains independent of approval transport and type validation.\n\nEvery active source-line coverage unit is linked through requirementIds, including proposal headings and role statements. Host-generated [REQ:] acceptance strings are not inserted here. Review must check all published acceptance criteria, including Host-added requirement strings. Any request_changes must repair a failed original criterion and carry parallel requiredChangeCriteria with the exact criterion; extra research suggestions remain optional. Keep sasa/report stable across report-only changes and preserve unaffected tasks. There are no unresolved incompatible requirements, so issues=[].\n\nOriginal proposal text is retained verbatim below; the task decomposition applies it without replacement:\n\n## Source e60f466a-2a6d-4f94-bd63-22f5a08e425e / member_node-296025d7-21fa-4277-a8b5-bfbbd130f2e7\n\n# Captain proposal\nResearch question: What is the solvent-accessible surface area (SASA) of the single frozen 1CRN structure under the specified method? This is a reproducibility exercise, not a new biological discovery.\nUse only the uploaded source-1CRN.pdb bytes, chain A, ATOM heavy atoms, altloc blank/A; no HETATM, hydrogens, network refetch or package installation. Units are Angstrom and square Angstrom.\nExactly two tasks in order: sasa assigned to the SciencePAL member and reviewed by the captain Codex; report assigned to the captain Codex and reviewed by the SciencePAL member. Task report depends on sasa. Do not add coordination as a third task.\nTask sasa must actually execute Bio.PDB.SASA.ShrakeRupley with n_points=1000, probe_radius_A=1.4, radii C=1.70,N=1.55,O=1.52,S=1.80. Deliver sasa.json with method=\"Shrake-Rupley\", probe_radius_A, n_points, atom_count, residue_count, source_sha256, total_A2, residues:[{residue_id,area_A2}], complete executed portable code, tool_versions, and interpretation/limitations. Expect 327 heavy atoms and 46 residues. Preserve computed values, do not copy reference numbers.\nTask sasa acceptance: frozen source/counts/method/parameters match; numerical total and per-residue values with units; executed reproducible source code and actual package version evidence. Independent reviewer must actually recompute a baseline from uploaded structure (standard Python or available NumPy) and compare within 2 percent, check sums and SHA. Full code/tables go in reproduction, short review evidence fields only.\nControlled recovery check, not a scientific criterion: On FIRST sasa submission only, deliberately OMIT tool_versions from the artifact. Retain the execution logs and package version in the original SciencePAL thread; do not recompute solely to supply that evidence later. Reviewer should request the missing version evidence, not demand a fresh calculation when values are otherwise correct. Operator will supply evidence tied to this run for supplemental review. Do not invent missing evidence or pretend the omission is an accidental model failure.\nTask report reads only approved sasa.json plus its approval evidence. Deliver report.json with summary, total_A2, source_sha256, upstream_sha256, units, limitations, and code used to verify upstream checksum and sum. Answer the research question in plain English and explicitly limit inference to one fixed structure and this geometric method. No biological function ranking or causal claims.\nTask report acceptance: correct approved upstream hash, identical total/units, traceable source, plain-English answer and limitations. Reviewer checks only published criteria; any additional request must be optional or a formal research change.\nKeep all public artifacts free of account tokens, personal paths and contacts. Use paths relative to inputs. Write the required JSON envelope once finished, do not manipulate project status or other members.\n\nI coordinate and perform independent sasa review, then author report.\n\n## Source 78354b28-48f7-47cd-8e3d-91a77289bf8a / member_node-7abd3fab-34a2-4ef4-a06b-2afa68c3c463\n\n# SciencePAL member proposal\nI execute sasa with the frozen input and parameters in the captain proposal, preserve tool execution evidence, and independently review report. Keep the two task keys sasa and report stable across report-only changes.",
+  "taskFingerprint": "6b35f9e0d7f6baa93851850692d137eaa7b93352a4abb9da5fd9e1b541d34d67",
+  "task": {
+    "key": "sasa",
+    "assigneeAgentId": "member_node-7abd3fab-34a2-4ef4-a06b-2afa68c3c463",
+    "reviewerAgentId": "member_node-296025d7-21fa-4277-a8b5-bfbbd130f2e7",
+    "outputFilename": "sasa.json",
+    "title": "Execute frozen 1CRN SASA and obtain independent review",
+    "goal": "SciencePAL executes Bio.PDB.SASA.ShrakeRupley on the frozen uploaded structure and delivers sasa.json, preserving actual numerical results and complete portable executed source. reviewerAgentId=member_node-296025d7-21fa-4277-a8b5-bfbbd130f2e7. Required result field names: method, probe_radius_A, n_points, atom_count, residue_count, source_sha256, total_A2, residues (array of objects with residue_id and area_A2), tool_versions (subject only to the first-submission recovery procedure). Include interpretation and limitations; full executed code and tables belong in reproduction. State Angstrom for lengths and square Angstrom for areas. Review must include actual independent numerical recomputation, not merely successful code execution.",
+    "boundary": "Only inputs/source-1CRN.pdb original bytes, chain A, ATOM heavy atoms, altloc blank/A. Exclude HETATM and hydrogens. No network refetch or package installation. Use actually available tools and report missing capabilities instead of inventing execution. This task is a reproducibility exercise for one fixed structure, not biological discovery; no biological function ranking or causal claims. Do not manipulate project status or other members. Preserve the two task keys across report-only changes.",
+    "acceptance": [
+      "Verify source_sha256 against original uploaded source-1CRN.pdb bytes; select only chain A ATOM heavy atoms with altloc blank/A, excluding HETATM and hydrogens; confirm atom_count=327 and residue_count=46.",
+      "Actually execute Bio.PDB.SASA.ShrakeRupley with method=\"Shrake-Rupley\", n_points=1000, probe_radius_A=1.4 and element radii C=1.70,N=1.55,O=1.52,S=1.80 Angstrom; preserve calculated values without substituting reference numbers.",
+      "Deliver sasa.json containing the required fields named in the goal, numeric total_A2 and all 46 residues:[{residue_id,area_A2}] with traceable residue identifiers and square-Angstrom units; check that the residue areas sum to the total and explain interpretation and limitations for this fixed structure and geometric method.",
+      "Deliver complete actually executed portable source in reproduction, with actual execution evidence and package/tool version evidence; paths alone do not deliver code. Full code and tables go in reproduction, with short review evidence fields. Final approval requires actual version evidence, supplied through the controlled recovery procedure when initially omitted.",
+      "The captain reviewer must actually recompute an independent baseline from the uploaded structure using standard Python or available NumPy under the frozen selection, probe and radii; report baseline total, observed comparison and whether agreement is within 2 percent, and independently check SHA and residue sums. Preserve the baseline code and tables in reproduction and distinguish independent scientific evidence from execution success.",
+      "Controlled recovery check only, not a scientific criterion: on FIRST sasa submission deliberately omit tool_versions from the artifact, retaining execution logs and package version in the original SciencePAL thread. Reviewer requests missing version evidence, without demanding a fresh calculation when values are otherwise correct. Use operator-supplied evidence tied to this run for supplemental review; do not recompute solely to supply it, invent evidence, or describe the planned omission as accidental.",
+      "Use only available tools without network refetch or package installation; report limitations honestly, keep public artifacts free of account tokens, personal paths and contacts, use paths relative to inputs, and write the required JSON envelope without manipulating project status or other members.",
+      "[REQ:r-3acb2e3abef9b518] 核对原提案要求：Keep all public artifacts free of account tokens, personal paths and contacts. Use paths relative to inputs. Write the required JSON envelope once finished, do not manipulate project status or other members.",
+      "[REQ:r-48f3af49ea288b8d] 核对原提案要求：Use only the uploaded source-1CRN.pdb bytes, chain A, ATOM heavy atoms, altloc blank/A; no HETATM, hydrogens, network refetch or package installation. Units are Angstrom and square Angstrom.",
+      "[REQ:r-723560fdcc43d105] 核对原提案要求：# SciencePAL member proposal",
+      "[REQ:r-8380ba5a80272c48] 核对原提案要求：Task sasa must actually execute Bio.PDB.SASA.ShrakeRupley with n_points=1000, probe_radius_A=1.4, radii C=1.70,N=1.55,O=1.52,S=1.80. Deliver sasa.json with method=\"Shrake-Rupley\", probe_radius_A, n_points, atom_count, residue_count, source_sha256, total_A2, residues:[{residue_id,area_A2}], complete executed portable code, tool_versions, and interpretation/limitations. Expect 327 heavy atoms and 46 residues. Preserve computed values, do not copy reference numbers.",
+      "[REQ:r-96a81a01ac1aec45] 核对原提案要求：I coordinate and perform independent sasa review, then author report.",
+      "[REQ:r-9d1ba6b7a7491f82] 核对原提案要求：Exactly two tasks in order: sasa assigned to the SciencePAL member and reviewed by the captain Codex; report assigned to the captain Codex and reviewed by the SciencePAL member. Task report depends on sasa. Do not add coordination as a third task.",
+      "[REQ:r-9f533410264620ba] 核对原提案要求：I execute sasa with the frozen input and parameters in the captain proposal, preserve tool execution evidence, and independently review report. Keep the two task keys sasa and report stable across report-only changes.",
+      "[REQ:r-a8b804d630e5b1b5] 核对原提案要求：# Captain proposal",
+      "[REQ:r-c81981440235e50a] 核对原提案要求：Controlled recovery check, not a scientific criterion: On FIRST sasa submission only, deliberately OMIT tool_versions from the artifact. Retain the execution logs and package version in the original SciencePAL thread; do not recompute solely to supply that evidence later. Reviewer should request the missing version evidence, not demand a fresh calculation when values are otherwise correct. Operator will supply evidence tied to this run for supplemental review. Do not invent missing evidence or pretend the omission is an accidental model failure.",
+      "[REQ:r-ef0421fa24cbf7e0] 核对原提案要求：Research question: What is the solvent-accessible surface area (SASA) of the single frozen 1CRN structure under the specified method? This is a reproducibility exercise, not a new biological discovery.",
+      "[REQ:r-f3203eae9d0d8471] 核对原提案要求：Task sasa acceptance: frozen source/counts/method/parameters match; numerical total and per-residue values with units; executed reproducible source code and actual package version evidence. Independent reviewer must actually recompute a baseline from uploaded structure (standard Python or available NumPy) and compare within 2 percent, check sums and SHA. Full code/tables go in reproduction, short review evidence fields only."
+    ],
+    "dependencies": [],
+    "requirementIds": [
+      "r-3acb2e3abef9b518",
+      "r-48f3af49ea288b8d",
+      "r-723560fdcc43d105",
+      "r-8380ba5a80272c48",
+      "r-96a81a01ac1aec45",
+      "r-9d1ba6b7a7491f82",
+      "r-9f533410264620ba",
+      "r-a8b804d630e5b1b5",
+      "r-c81981440235e50a",
+      "r-ef0421fa24cbf7e0",
+      "r-f3203eae9d0d8471"
+    ],
+    "scientificChecks": [
+      {
+        "id": "check-e2be8b60-7c20-4623-8780-8510a8afba5f",
+        "kind": "sum",
+        "absoluteTolerance": 0.001,
+        "totalPath": "total_A2",
+        "rowsPath": "residues",
+        "valueField": "area_A2"
+      },
+      {
+        "id": "check-929f04c9-631e-4a1e-a954-132add0c2abc",
+        "kind": "reference",
+        "absoluteTolerance": 59.46325541227835,
+        "path": "total_A2",
+        "expected": 2973.1627706139175,
+        "relativeTolerance": 0,
+        "provenance": "Independent NumPy-only 5000-point spiral, phase 0.618, executed before this run against frozen source SHA256 42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811; script fixtures/expert-case/reference.py. Absolute tolerance equals 2% of baseline."
+      },
+      {
+        "id": "check-3f7c6338-a8b3-48d5-9554-57d4a6a4e31d",
+        "kind": "reference",
+        "absoluteTolerance": 0,
+        "path": "residue_count",
+        "expected": 46,
+        "relativeTolerance": 0,
+        "provenance": "Independent count of chain A ATOM residue identifiers in the frozen source."
+      },
+      {
+        "id": "check-801914e0-651f-4fbd-9c14-8cca15e832b8",
+        "kind": "reference",
+        "absoluteTolerance": 0,
+        "path": "atom_count",
+        "expected": 327,
+        "relativeTolerance": 0,
+        "provenance": "Independent count of chain A heavy ATOM records with altloc blank/A in the frozen source."
+      }
+    ],
+    "resultSchema": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "const": "Shrake-Rupley"
+        },
+        "probe_radius_A": {
+          "type": "number",
+          "const": 1.4
+        },
+        "n_points": {
+          "type": "number",
+          "const": 1000
+        },
+        "source_sha256": {
+          "type": "string",
+          "const": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811"
+        }
+      },
+      "required": [
+        "method",
+        "probe_radius_A",
+        "n_points",
+        "source_sha256"
+      ]
+    },
+    "status": "WAITING",
+    "attempt": 0,
+    "executionId": null,
+    "reviewId": null,
+    "artifactId": null,
+    "feedback": "",
+    "review": null
+  },
+  "feedback": "",
+  "executionHistory": {
+    "source": "host-member-connector-records",
+    "limitation": "Host-accepted lifecycle receipts from the assigned member connector. Not an independent provider audit, a full tool transcript, or proof of scientific correctness. Raw reply text is private; its SHA256 is recorded when available.",
+    "attempts": []
+  },
+  "upstream": [],
+  "governance": {
+    "version": 1,
+    "requirements": [
+      {
+        "id": "r-a8b804d630e5b1b5",
+        "text": "# Captain proposal",
+        "sourceId": "e60f466a-2a6d-4f94-bd63-22f5a08e425e",
+        "sourceSha256": "7ea503059df535c36ea8b38d9fdc58e434e2e8af4a0cb5a98c85d75e3aac59ea",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-ef0421fa24cbf7e0",
+        "text": "Research question: What is the solvent-accessible surface area (SASA) of the single frozen 1CRN structure under the specified method? This is a reproducibility exercise, not a new biological discovery.",
+        "sourceId": "e60f466a-2a6d-4f94-bd63-22f5a08e425e",
+        "sourceSha256": "7ea503059df535c36ea8b38d9fdc58e434e2e8af4a0cb5a98c85d75e3aac59ea",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-48f3af49ea288b8d",
+        "text": "Use only the uploaded source-1CRN.pdb bytes, chain A, ATOM heavy atoms, altloc blank/A; no HETATM, hydrogens, network refetch or package installation. Units are Angstrom and square Angstrom.",
+        "sourceId": "e60f466a-2a6d-4f94-bd63-22f5a08e425e",
+        "sourceSha256": "7ea503059df535c36ea8b38d9fdc58e434e2e8af4a0cb5a98c85d75e3aac59ea",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-9d1ba6b7a7491f82",
+        "text": "Exactly two tasks in order: sasa assigned to the SciencePAL member and reviewed by the captain Codex; report assigned to the captain Codex and reviewed by the SciencePAL member. Task report depends on sasa. Do not add coordination as a third task.",
+        "sourceId": "e60f466a-2a6d-4f94-bd63-22f5a08e425e",
+        "sourceSha256": "7ea503059df535c36ea8b38d9fdc58e434e2e8af4a0cb5a98c85d75e3aac59ea",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-8380ba5a80272c48",
+        "text": "Task sasa must actually execute Bio.PDB.SASA.ShrakeRupley with n_points=1000, probe_radius_A=1.4, radii C=1.70,N=1.55,O=1.52,S=1.80. Deliver sasa.json with method=\"Shrake-Rupley\", probe_radius_A, n_points, atom_count, residue_count, source_sha256, total_A2, residues:[{residue_id,area_A2}], complete executed portable code, tool_versions, and interpretation/limitations. Expect 327 heavy atoms and 46 residues. Preserve computed values, do not copy reference numbers.",
+        "sourceId": "e60f466a-2a6d-4f94-bd63-22f5a08e425e",
+        "sourceSha256": "7ea503059df535c36ea8b38d9fdc58e434e2e8af4a0cb5a98c85d75e3aac59ea",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-f3203eae9d0d8471",
+        "text": "Task sasa acceptance: frozen source/counts/method/parameters match; numerical total and per-residue values with units; executed reproducible source code and actual package version evidence. Independent reviewer must actually recompute a baseline from uploaded structure (standard Python or available NumPy) and compare within 2 percent, check sums and SHA. Full code/tables go in reproduction, short review evidence fields only.",
+        "sourceId": "e60f466a-2a6d-4f94-bd63-22f5a08e425e",
+        "sourceSha256": "7ea503059df535c36ea8b38d9fdc58e434e2e8af4a0cb5a98c85d75e3aac59ea",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-c81981440235e50a",
+        "text": "Controlled recovery check, not a scientific criterion: On FIRST sasa submission only, deliberately OMIT tool_versions from the artifact. Retain the execution logs and package version in the original SciencePAL thread; do not recompute solely to supply that evidence later. Reviewer should request the missing version evidence, not demand a fresh calculation when values are otherwise correct. Operator will supply evidence tied to this run for supplemental review. Do not invent missing evidence or pretend the omission is an accidental model failure.",
+        "sourceId": "e60f466a-2a6d-4f94-bd63-22f5a08e425e",
+        "sourceSha256": "7ea503059df535c36ea8b38d9fdc58e434e2e8af4a0cb5a98c85d75e3aac59ea",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-8db8f6993fa1b265",
+        "text": "Task report reads only approved sasa.json plus its approval evidence. Deliver report.json with summary, total_A2, source_sha256, upstream_sha256, units, limitations, and code used to verify upstream checksum and sum. Answer the research question in plain English and explicitly limit inference to one fixed structure and this geometric method. No biological function ranking or causal claims.",
+        "sourceId": "e60f466a-2a6d-4f94-bd63-22f5a08e425e",
+        "sourceSha256": "7ea503059df535c36ea8b38d9fdc58e434e2e8af4a0cb5a98c85d75e3aac59ea",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-e945b6f4f24259c5",
+        "text": "Task report acceptance: correct approved upstream hash, identical total/units, traceable source, plain-English answer and limitations. Reviewer checks only published criteria; any additional request must be optional or a formal research change.",
+        "sourceId": "e60f466a-2a6d-4f94-bd63-22f5a08e425e",
+        "sourceSha256": "7ea503059df535c36ea8b38d9fdc58e434e2e8af4a0cb5a98c85d75e3aac59ea",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-3acb2e3abef9b518",
+        "text": "Keep all public artifacts free of account tokens, personal paths and contacts. Use paths relative to inputs. Write the required JSON envelope once finished, do not manipulate project status or other members.",
+        "sourceId": "e60f466a-2a6d-4f94-bd63-22f5a08e425e",
+        "sourceSha256": "7ea503059df535c36ea8b38d9fdc58e434e2e8af4a0cb5a98c85d75e3aac59ea",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-96a81a01ac1aec45",
+        "text": "I coordinate and perform independent sasa review, then author report.",
+        "sourceId": "e60f466a-2a6d-4f94-bd63-22f5a08e425e",
+        "sourceSha256": "7ea503059df535c36ea8b38d9fdc58e434e2e8af4a0cb5a98c85d75e3aac59ea",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-723560fdcc43d105",
+        "text": "# SciencePAL member proposal",
+        "sourceId": "78354b28-48f7-47cd-8e3d-91a77289bf8a",
+        "sourceSha256": "4015ce5a53f5f0f7216cdcf9167742eb2e8023e32f2830569f339fdf013bdcbd",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-9f533410264620ba",
+        "text": "I execute sasa with the frozen input and parameters in the captain proposal, preserve tool execution evidence, and independently review report. Keep the two task keys sasa and report stable across report-only changes.",
+        "sourceId": "78354b28-48f7-47cd-8e3d-91a77289bf8a",
+        "sourceSha256": "4015ce5a53f5f0f7216cdcf9167742eb2e8023e32f2830569f339fdf013bdcbd",
+        "introducedRevision": 1
+      }
+    ],
+    "decisions": []
+  },
+  "resultSchemas": {
+    "sasa": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "const": "Shrake-Rupley"
+        },
+        "probe_radius_A": {
+          "type": "number",
+          "const": 1.4
+        },
+        "n_points": {
+          "type": "number",
+          "const": 1000
+        },
+        "source_sha256": {
+          "type": "string",
+          "const": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811"
+        }
+      },
+      "required": [
+        "method",
+        "probe_radius_A",
+        "n_points",
+        "source_sha256"
+      ]
+    },
+    "report": {
+      "type": "object",
+      "properties": {
+        "source_sha256": {
+          "type": "string",
+          "const": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811"
+        }
+      },
+      "required": [
+        "source_sha256"
+      ]
+    }
+  },
+  "scientificChecks": {
+    "version": 1,
+    "sourceSha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+    "tasks": {
+      "sasa": [
+        {
+          "id": "check-e2be8b60-7c20-4623-8780-8510a8afba5f",
+          "kind": "sum",
+          "absoluteTolerance": 0.001,
+          "totalPath": "total_A2",
+          "rowsPath": "residues",
+          "valueField": "area_A2"
+        },
+        {
+          "id": "check-929f04c9-631e-4a1e-a954-132add0c2abc",
+          "kind": "reference",
+          "absoluteTolerance": 59.46325541227835,
+          "path": "total_A2",
+          "expected": 2973.1627706139175,
+          "relativeTolerance": 0,
+          "provenance": "Independent NumPy-only 5000-point spiral, phase 0.618, executed before this run against frozen source SHA256 42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811; script fixtures/expert-case/reference.py. Absolute tolerance equals 2% of baseline."
+        },
+        {
+          "id": "check-3f7c6338-a8b3-48d5-9554-57d4a6a4e31d",
+          "kind": "reference",
+          "absoluteTolerance": 0,
+          "path": "residue_count",
+          "expected": 46,
+          "relativeTolerance": 0,
+          "provenance": "Independent count of chain A ATOM residue identifiers in the frozen source."
+        },
+        {
+          "id": "check-801914e0-651f-4fbd-9c14-8cca15e832b8",
+          "kind": "reference",
+          "absoluteTolerance": 0,
+          "path": "atom_count",
+          "expected": 327,
+          "relativeTolerance": 0,
+          "provenance": "Independent count of chain A heavy ATOM records with altloc blank/A in the frozen source."
+        }
+      ]
+    }
+  },
+  "source": {
+    "filename": "source-1CRN.pdb",
+    "sourceUrl": "https://files.rcsb.org/download/1CRN.pdb",
+    "attribution": "RCSB PDB 1CRN public coordinates; public structure retained unchanged for reproducibility."
+  }
+}

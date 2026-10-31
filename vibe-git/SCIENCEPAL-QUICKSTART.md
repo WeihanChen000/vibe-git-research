@@ -44,3 +44,5 @@
 ## 暂时找不到队友
 
 可以先做[单机多成员验收](https://github.com/WeihanChen000/vibe-git-research/blob/codex/research-team-share/vibe-git/SCIENCEPAL-ISOLATED-ACCEPTANCE.md)：[已有记录可以直接回放](https://weihanchen000.github.io/vibe-git-research/replay/?case=isolated&step=members)；`npm run research:acceptance -- --live` 使用现有 Codex 和一个 SciencePAL 账号，验证真实返工、等待输入与连接器恢复。不会把它标成真人跨账号验证。
+
+补证时请写明原任务/线程、证据来源和适用范围；可在现有文本框粘贴完整原代码与日志（最多 16000 字符）。原成果不被改写，复审仍可能退回。工具版本没有记录时如实说明，不用其他环境的版本补填。
