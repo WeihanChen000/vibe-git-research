@@ -1,0 +1,202 @@
+{
+  "revision": 1,
+  "requirement": "## 原始提案 member_node-7211065a-ed41-4184-bfcb-be619cdab4a8\n复核拟合结果，并由获批 fit.json 换算电压 5.25 mV 对应的位移。\n报告该模拟实验的适用范围和局限，不将标定误差解释为真实设备精度。\n\n## 原始提案 member_node-0091235b-d1cc-4cb9-a2df-a4d2d18beda5\n使用全部六个标定点，以带截距最小二乘拟合电压对位移，不得强制过原点。\n报告斜率 slope、截距 intercept、测量单位 unit 和六个点的残差；方法字段 method 为 ols-with-intercept。\n\n## 对齐说明\n# 模拟实验 · 传感器线性标定\n按原文分工，固定方法、单位和结果字段。所有数据为模拟。",
+  "taskFingerprint": "5f250b43157ae722476d287a9aabb9e02ba11ffc81d1a5703ede50f7605ed9ed",
+  "task": {
+    "key": "fit",
+    "assigneeAgentId": "member_node-0091235b-d1cc-4cb9-a2df-a4d2d18beda5",
+    "reviewerAgentId": "member_node-7211065a-ed41-4184-bfcb-be619cdab4a8",
+    "outputFilename": "fit.json",
+    "title": "计算参数并报告单位",
+    "goal": "按冻结方法拟合六个输入点",
+    "boundary": "不得删除数据点或改变方法",
+    "acceptance": [
+      "数值由六个输入点计算，保留残差",
+      "必须报告约定单位",
+      "[REQ:r-f6a9777da61b8e24] 核对原提案要求：报告斜率 slope、截距 intercept、测量单位 unit 和六个点的残差；方法字段 method 为 ols-with-intercept。",
+      "[REQ:r-fa3bb304ba857945] 核对原提案要求：使用全部六个标定点，以带截距最小二乘拟合电压对位移，不得强制过原点。"
+    ],
+    "dependencies": [],
+    "requirementIds": [
+      "r-f6a9777da61b8e24",
+      "r-fa3bb304ba857945"
+    ],
+    "resultSchema": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "const": "ols-with-intercept"
+        }
+      },
+      "required": [
+        "method"
+      ]
+    },
+    "scientificChecks": [
+      {
+        "id": "check-d22a26e1-a77d-43e3-9b8e-8da47a130524",
+        "kind": "reference",
+        "absoluteTolerance": 1e-8,
+        "path": "slope",
+        "expected": 2.0371428571428574,
+        "relativeTolerance": 0,
+        "provenance": "独立原始求和公式 (nΣxy−ΣxΣy)/(nΣx²−(Σx)²)，不是复制待验结果"
+      }
+    ],
+    "status": "WAITING",
+    "attempt": 2,
+    "executionId": "acdee495-3613-429f-b6d1-97153bce4e92",
+    "reviewId": "7840b2b5-4783-4a44-a130-3407ad13d905",
+    "artifactId": "ecc0dca5-8ed5-4a5b-92dd-2565c9f7e74f",
+    "feedback": "Repair only failed frozen criteria. Optional suggestions and captain notes cannot expand the protocol; new research requires a separate change.\n必须报告约定单位: fit.json: independent value check=true; unit=missing\n[REQ:r-f6a9777da61b8e24] 核对原提案要求：报告斜率 slope、截距 intercept、测量单位 unit 和六个点的残差；方法字段 method 为 ols-with-intercept。: fit.json: independent value check=true; unit=missing\n在 fit.json 补上单位 mV/mm，保留既定方法。",
+    "review": {
+      "verdict": "request_changes",
+      "summary": "原数值可复核，但产物遗漏了原协议要求的单位",
+      "checks": [
+        {
+          "criterion": "数值由六个输入点计算，保留残差",
+          "passed": true,
+          "evidence": "fit.json: independent value check=true; unit=missing"
+        },
+        {
+          "criterion": "必须报告约定单位",
+          "passed": false,
+          "evidence": "fit.json: independent value check=true; unit=missing"
+        },
+        {
+          "criterion": "[REQ:r-f6a9777da61b8e24] 核对原提案要求：报告斜率 slope、截距 intercept、测量单位 unit 和六个点的残差；方法字段 method 为 ols-with-intercept。",
+          "passed": false,
+          "evidence": "fit.json: independent value check=true; unit=missing"
+        },
+        {
+          "criterion": "[REQ:r-fa3bb304ba857945] 核对原提案要求：使用全部六个标定点，以带截距最小二乘拟合电压对位移，不得强制过原点。",
+          "passed": true,
+          "evidence": "fit.json: independent value check=true; unit=missing"
+        }
+      ],
+      "requiredChanges": [
+        "在 fit.json 补上单位 mV/mm，保留既定方法。"
+      ]
+    }
+  },
+  "feedback": "Repair only failed frozen criteria. Optional suggestions and captain notes cannot expand the protocol; new research requires a separate change.\n必须报告约定单位: fit.json: independent value check=true; unit=missing\n[REQ:r-f6a9777da61b8e24] 核对原提案要求：报告斜率 slope、截距 intercept、测量单位 unit 和六个点的残差；方法字段 method 为 ols-with-intercept。: fit.json: independent value check=true; unit=missing\n在 fit.json 补上单位 mV/mm，保留既定方法。",
+  "executionHistory": {
+    "source": "host-member-connector-records",
+    "limitation": "Host-accepted lifecycle receipts from the assigned member connector. Not an independent provider audit, a full tool transcript, or proof of scientific correctness. Raw reply text is private; its SHA256 is recorded when available.",
+    "attempts": [
+      {
+        "executionId": "c3e29657-785f-4673-bb0d-08087fdf64a4",
+        "ownerNodeId": "node-0091235b-d1cc-4cb9-a2df-a4d2d18beda5",
+        "agentId": "member_node-0091235b-d1cc-4cb9-a2df-a4d2d18beda5",
+        "platform": "sciencepal",
+        "status": "INVALID",
+        "createdAt": "2026-10-31T01:19:50.780Z",
+        "updatedAt": "2026-10-31T01:19:59.245Z",
+        "threadId": "simulated-science-0",
+        "runId": "simulated-science-0",
+        "artifact": {
+          "id": "d53ac7bc-68c8-437a-92de-ff076be7cf23",
+          "filename": "fit.json",
+          "sha256": "8bdf4e435afbaddcfcd11e98349620dfeb11d50bbf99143d8561130c3c9ac210",
+          "size": 632
+        },
+        "continuations": []
+      },
+      {
+        "executionId": "acdee495-3613-429f-b6d1-97153bce4e92",
+        "ownerNodeId": "node-0091235b-d1cc-4cb9-a2df-a4d2d18beda5",
+        "agentId": "member_node-0091235b-d1cc-4cb9-a2df-a4d2d18beda5",
+        "platform": "sciencepal",
+        "status": "COLLECTED",
+        "createdAt": "2026-10-31T01:20:15.134Z",
+        "updatedAt": "2026-10-31T01:20:15.502Z",
+        "threadId": "simulated-science-1",
+        "runId": "simulated-science-1",
+        "artifact": {
+          "id": "ecc0dca5-8ed5-4a5b-92dd-2565c9f7e74f",
+          "filename": "fit.json",
+          "sha256": "aafa4b5e2c151be01d954b4812a5e09e425be86dae202cd8faa02890eadb618e",
+          "size": 663
+        },
+        "continuations": []
+      }
+    ]
+  },
+  "upstream": [],
+  "governance": {
+    "version": 1,
+    "requirements": [
+      {
+        "id": "r-6f99d657a3259570",
+        "text": "复核拟合结果，并由获批 fit.json 换算电压 5.25 mV 对应的位移。",
+        "sourceId": "24ea5c3b-6920-4133-b17b-b03c84bdedd7",
+        "sourceSha256": "ff10a64910c8f00fcfdfc8bb311c3fb91bcf6dd5a010973e63d169bfdba97871",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-881b32aad5445b2b",
+        "text": "报告该模拟实验的适用范围和局限，不将标定误差解释为真实设备精度。",
+        "sourceId": "24ea5c3b-6920-4133-b17b-b03c84bdedd7",
+        "sourceSha256": "ff10a64910c8f00fcfdfc8bb311c3fb91bcf6dd5a010973e63d169bfdba97871",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-fa3bb304ba857945",
+        "text": "使用全部六个标定点，以带截距最小二乘拟合电压对位移，不得强制过原点。",
+        "sourceId": "98fba805-5fe8-470f-a7f8-57186df63dbf",
+        "sourceSha256": "022c2eb911be997f6ebf496e66c5c0e74856f7dda820f58a680ce25e34074327",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-f6a9777da61b8e24",
+        "text": "报告斜率 slope、截距 intercept、测量单位 unit 和六个点的残差；方法字段 method 为 ols-with-intercept。",
+        "sourceId": "98fba805-5fe8-470f-a7f8-57186df63dbf",
+        "sourceSha256": "022c2eb911be997f6ebf496e66c5c0e74856f7dda820f58a680ce25e34074327",
+        "introducedRevision": 1
+      }
+    ],
+    "decisions": []
+  },
+  "resultSchemas": {
+    "fit": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "const": "ols-with-intercept"
+        }
+      },
+      "required": [
+        "method"
+      ]
+    },
+    "report": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  "scientificChecks": {
+    "version": 1,
+    "sourceSha256": "c342eeb13d36c9e33885567ad96ee50b2117d9515c6d4318da7e6f436015e33b",
+    "tasks": {
+      "fit": [
+        {
+          "id": "check-d22a26e1-a77d-43e3-9b8e-8da47a130524",
+          "kind": "reference",
+          "absoluteTolerance": 1e-8,
+          "path": "slope",
+          "expected": 2.0371428571428574,
+          "relativeTolerance": 0,
+          "provenance": "独立原始求和公式 (nΣxy−ΣxΣy)/(nΣx²−(Σx)²)，不是复制待验结果"
+        }
+      ]
+    }
+  },
+  "source": {
+    "filename": "source-calibration.csv",
+    "sourceUrl": "https://github.com/WeihanChen000/vibe-git-research",
+    "attribution": "自建教学模拟数据；可随开源项目使用。"
+  }
+}

@@ -11,3 +11,6 @@ docs/replay/sciencepal-examples/** -text -whitespace
 
 # Usability worksheet reuses original byte-addressed research inputs.
 docs/research/manual-handoff-check/** -text -whitespace
+
+# Frozen simulated workflow evidence is verified by byte hash on every platform.
+docs/research/evidence/workflow-experiments/** -text -whitespace

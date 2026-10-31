@@ -1,0 +1,1076 @@
+{
+  "scope": "Generated data; actual local calculations and browser actions; deterministic Agent doubles, no real provider or cross-computer runs.",
+  "cases": [
+    {
+      "id": "calibration",
+      "title": "模拟实验 · 传感器线性标定",
+      "actions": [
+        {
+          "actor": "scientist",
+          "fill": "邀请链接"
+        },
+        {
+          "actor": "scientist",
+          "click": "加入房间"
+        },
+        {
+          "actor": "scientist",
+          "fill": "SciencePAL API Key"
+        },
+        {
+          "actor": "scientist",
+          "click": "验证账号并读取 Agent"
+        },
+        {
+          "actor": "scientist",
+          "click": "接入算力网"
+        },
+        {
+          "actor": "scientist",
+          "fill": "我的研究提案"
+        },
+        {
+          "actor": "scientist",
+          "click": "保存我的提案"
+        },
+        {
+          "actor": "captain",
+          "click": "接入算力网"
+        },
+        {
+          "actor": "captain",
+          "fill": "我的研究提案"
+        },
+        {
+          "actor": "captain",
+          "click": "保存我的提案"
+        },
+        {
+          "actor": "captain",
+          "click": "选择成员并建立研究"
+        },
+        {
+          "actor": "captain",
+          "fill": "科研项目名称"
+        },
+        {
+          "actor": "captain",
+          "fill": "科研来源网址"
+        },
+        {
+          "actor": "captain",
+          "fill": "科研来源署名"
+        },
+        {
+          "actor": "captain",
+          "click": "冻结提案并建立项目"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "启动协议对齐"
+        },
+        {
+          "actor": "captain",
+          "click": "确认启动协议对齐"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "准备本人任务包"
+        },
+        {
+          "actor": "captain",
+          "click": "检查并交回成果"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "重试失败任务"
+        },
+        {
+          "actor": "captain",
+          "click": "确认重试失败任务"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "准备本人任务包"
+        },
+        {
+          "actor": "captain",
+          "click": "检查并交回成果"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "协议"
+        },
+        {
+          "actor": "captain",
+          "fill": "约束字段"
+        },
+        {
+          "actor": "captain",
+          "fill": "约束值"
+        },
+        {
+          "actor": "captain",
+          "click": "冻结这条约束"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "协议"
+        },
+        {
+          "actor": "captain",
+          "fill": "科学检查数值字段"
+        },
+        {
+          "actor": "captain",
+          "fill": "独立参考数值"
+        },
+        {
+          "actor": "captain",
+          "fill": "科学检查容差"
+        },
+        {
+          "actor": "captain",
+          "fill": "参考来源与依据"
+        },
+        {
+          "actor": "captain",
+          "click": "冻结数值检查"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "协议"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "发布研究任务"
+        },
+        {
+          "actor": "captain",
+          "click": "确认发布研究任务"
+        },
+        {
+          "actor": "scientist",
+          "click": "启动本人连接器"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "重试失败任务"
+        },
+        {
+          "actor": "captain",
+          "click": "确认重试失败任务"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "准备本人任务包"
+        },
+        {
+          "actor": "captain",
+          "click": "检查并交回成果"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "重试失败任务"
+        },
+        {
+          "actor": "captain",
+          "click": "确认重试失败任务"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "准备本人任务包"
+        },
+        {
+          "actor": "captain",
+          "click": "检查并交回成果"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "安排返工"
+        },
+        {
+          "actor": "captain",
+          "click": "确认安排返工"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "准备本人任务包"
+        },
+        {
+          "actor": "captain",
+          "click": "检查并交回成果"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "准备本人任务包"
+        },
+        {
+          "actor": "captain",
+          "click": "检查并交回成果"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "提出研究变更"
+        },
+        {
+          "actor": "captain",
+          "fill": "研究变更说明"
+        },
+        {
+          "actor": "captain",
+          "click": "确认提出研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "准备本人任务包"
+        },
+        {
+          "actor": "captain",
+          "click": "检查并交回成果"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "应用研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "确认应用研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "准备本人任务包"
+        },
+        {
+          "actor": "captain",
+          "click": "检查并交回成果"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "发布研究任务"
+        },
+        {
+          "actor": "captain",
+          "click": "确认发布研究任务"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "准备本人任务包"
+        },
+        {
+          "actor": "captain",
+          "click": "检查并交回成果"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "UI creates governed project with uploaded bytes",
+          "passed": true
+        },
+        {
+          "name": "Omitted original requirement blocks publication",
+          "passed": true
+        },
+        {
+          "name": "Failure explains the omitted original requirement",
+          "passed": true
+        },
+        {
+          "name": "Method change blocked before reviewer",
+          "passed": true
+        },
+        {
+          "name": "Reviewer cannot add an unrelated experiment",
+          "passed": true
+        },
+        {
+          "name": "Review failure explicitly preserves the calculation",
+          "passed": true
+        },
+        {
+          "name": "Review retry does not recompute author result",
+          "passed": true
+        },
+        {
+          "name": "Real missing unit triggers legitimate rework",
+          "passed": true
+        },
+        {
+          "name": "Repair completes independent review and handoff",
+          "passed": true
+        },
+        {
+          "name": "Approved fitting output reused after report-only change",
+          "passed": true
+        },
+        {
+          "name": "Both revisions retain verifiable handoff",
+          "passed": true
+        },
+        {
+          "name": "No browser runtime errors",
+          "passed": true
+        }
+      ],
+      "screenshots": [
+        "01-omission.png",
+        "02-frozen-protocol.png",
+        "03-execution-block.png",
+        "05-review-scope.png",
+        "06-rework.png",
+        "07-completed.png",
+        "08-change-impact.png",
+        "09-final.png"
+      ],
+      "pageErrors": [],
+      "omissionExplainsOriginalText": true,
+      "firstResult": {
+        "synthetic": true,
+        "value": 2.4999999999999996,
+        "unit": "mm",
+        "upstreamSha256": "05b124d5d0e8934a5c9e139eb13a095b3ef3330261219b6ff4ea9c8003a8bd6e",
+        "limitations": "模拟数据，仅验证计算与协作流程，不证明真实设备精度或反应机理。",
+        "method": "approved-parameter-transform"
+      },
+      "trace": [
+        {
+          "kind": "ALIGN",
+          "event": "omitted-requirement",
+          "revision": 1,
+          "task": null
+        },
+        {
+          "kind": "ALIGN",
+          "event": "ALIGN",
+          "revision": 1,
+          "task": null
+        },
+        {
+          "kind": "TASK",
+          "event": "method-drift",
+          "revision": 1,
+          "task": "fit"
+        },
+        {
+          "kind": "TASK",
+          "event": "missing-unit",
+          "revision": 1,
+          "task": "fit"
+        },
+        {
+          "kind": "REVIEW",
+          "event": "reviewer-added-scope",
+          "revision": 1,
+          "task": "fit"
+        },
+        {
+          "kind": "REVIEW",
+          "event": "REVIEW",
+          "revision": 1,
+          "task": "fit"
+        },
+        {
+          "kind": "TASK",
+          "event": "TASK",
+          "revision": 1,
+          "task": "fit"
+        },
+        {
+          "kind": "REVIEW",
+          "event": "REVIEW",
+          "revision": 1,
+          "task": "fit"
+        },
+        {
+          "kind": "TASK",
+          "event": "TASK",
+          "revision": 1,
+          "task": "report"
+        },
+        {
+          "kind": "REVIEW",
+          "event": "REVIEW",
+          "revision": 1,
+          "task": "report"
+        },
+        {
+          "kind": "CHANGE_REVIEW",
+          "event": "CHANGE_REVIEW",
+          "revision": 1,
+          "task": null
+        },
+        {
+          "kind": "ALIGN",
+          "event": "ALIGN",
+          "revision": 2,
+          "task": null
+        },
+        {
+          "kind": "TASK",
+          "event": "TASK",
+          "revision": 2,
+          "task": "report"
+        },
+        {
+          "kind": "REVIEW",
+          "event": "REVIEW",
+          "revision": 2,
+          "task": "report"
+        }
+      ],
+      "finalRevision": 2
+    },
+    {
+      "id": "kinetics",
+      "title": "模拟实验 · 一级反应动力学",
+      "actions": [
+        {
+          "actor": "scientist",
+          "fill": "邀请链接"
+        },
+        {
+          "actor": "scientist",
+          "click": "加入房间"
+        },
+        {
+          "actor": "scientist",
+          "fill": "SciencePAL API Key"
+        },
+        {
+          "actor": "scientist",
+          "click": "验证账号并读取 Agent"
+        },
+        {
+          "actor": "scientist",
+          "click": "接入算力网"
+        },
+        {
+          "actor": "scientist",
+          "fill": "我的研究提案"
+        },
+        {
+          "actor": "scientist",
+          "click": "保存我的提案"
+        },
+        {
+          "actor": "captain",
+          "click": "接入算力网"
+        },
+        {
+          "actor": "captain",
+          "fill": "我的研究提案"
+        },
+        {
+          "actor": "captain",
+          "click": "保存我的提案"
+        },
+        {
+          "actor": "captain",
+          "click": "选择成员并建立研究"
+        },
+        {
+          "actor": "captain",
+          "fill": "科研项目名称"
+        },
+        {
+          "actor": "captain",
+          "fill": "科研来源网址"
+        },
+        {
+          "actor": "captain",
+          "fill": "科研来源署名"
+        },
+        {
+          "actor": "captain",
+          "click": "冻结提案并建立项目"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "启动协议对齐"
+        },
+        {
+          "actor": "captain",
+          "click": "确认启动协议对齐"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "准备本人任务包"
+        },
+        {
+          "actor": "captain",
+          "click": "检查并交回成果"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "重试失败任务"
+        },
+        {
+          "actor": "captain",
+          "click": "确认重试失败任务"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "准备本人任务包"
+        },
+        {
+          "actor": "captain",
+          "click": "检查并交回成果"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "协议"
+        },
+        {
+          "actor": "captain",
+          "fill": "约束字段"
+        },
+        {
+          "actor": "captain",
+          "fill": "约束值"
+        },
+        {
+          "actor": "captain",
+          "click": "冻结这条约束"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "协议"
+        },
+        {
+          "actor": "captain",
+          "fill": "科学检查数值字段"
+        },
+        {
+          "actor": "captain",
+          "fill": "独立参考数值"
+        },
+        {
+          "actor": "captain",
+          "fill": "科学检查容差"
+        },
+        {
+          "actor": "captain",
+          "fill": "参考来源与依据"
+        },
+        {
+          "actor": "captain",
+          "click": "冻结数值检查"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "协议"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "发布研究任务"
+        },
+        {
+          "actor": "captain",
+          "click": "确认发布研究任务"
+        },
+        {
+          "actor": "scientist",
+          "click": "启动本人连接器"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "重试失败任务"
+        },
+        {
+          "actor": "captain",
+          "click": "确认重试失败任务"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "准备本人任务包"
+        },
+        {
+          "actor": "captain",
+          "click": "检查并交回成果"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "重试失败任务"
+        },
+        {
+          "actor": "captain",
+          "click": "确认重试失败任务"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "准备本人任务包"
+        },
+        {
+          "actor": "captain",
+          "click": "检查并交回成果"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "安排返工"
+        },
+        {
+          "actor": "captain",
+          "click": "确认安排返工"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "准备本人任务包"
+        },
+        {
+          "actor": "captain",
+          "click": "检查并交回成果"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "准备本人任务包"
+        },
+        {
+          "actor": "captain",
+          "click": "检查并交回成果"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "提出研究变更"
+        },
+        {
+          "actor": "captain",
+          "fill": "研究变更说明"
+        },
+        {
+          "actor": "captain",
+          "click": "确认提出研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "准备本人任务包"
+        },
+        {
+          "actor": "captain",
+          "click": "检查并交回成果"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "应用研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "确认应用研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "准备本人任务包"
+        },
+        {
+          "actor": "captain",
+          "click": "检查并交回成果"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "发布研究任务"
+        },
+        {
+          "actor": "captain",
+          "click": "确认发布研究任务"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        },
+        {
+          "actor": "captain",
+          "click": "准备本人任务包"
+        },
+        {
+          "actor": "captain",
+          "click": "检查并交回成果"
+        },
+        {
+          "actor": "captain",
+          "click": "我的研究变更"
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "UI creates governed project with uploaded bytes",
+          "passed": true
+        },
+        {
+          "name": "Omitted original requirement blocks publication",
+          "passed": true
+        },
+        {
+          "name": "Failure explains the omitted original requirement",
+          "passed": true
+        },
+        {
+          "name": "Plausible method label cannot hide wrong numeric result",
+          "passed": true
+        },
+        {
+          "name": "Reviewer cannot add an unrelated experiment",
+          "passed": true
+        },
+        {
+          "name": "Review failure explicitly preserves the calculation",
+          "passed": true
+        },
+        {
+          "name": "Review retry does not recompute author result",
+          "passed": true
+        },
+        {
+          "name": "Real missing unit triggers legitimate rework",
+          "passed": true
+        },
+        {
+          "name": "Repair completes independent review and handoff",
+          "passed": true
+        },
+        {
+          "name": "Approved fitting output reused after report-only change",
+          "passed": true
+        },
+        {
+          "name": "Both revisions retain verifiable handoff",
+          "passed": true
+        },
+        {
+          "name": "No browser runtime errors",
+          "passed": true
+        }
+      ],
+      "screenshots": [
+        "01-omission.png",
+        "02-frozen-protocol.png",
+        "03-execution-block.png",
+        "05-review-scope.png",
+        "06-rework.png",
+        "07-completed.png",
+        "08-change-impact.png",
+        "09-final.png"
+      ],
+      "pageErrors": [],
+      "omissionExplainsOriginalText": true,
+      "firstResult": {
+        "synthetic": true,
+        "value": 6.931471805599421,
+        "unit": "min",
+        "upstreamSha256": "f13bd36c62f28b074228f12a29539bfcb4ddf1740a26176eb5cf55fb78437f5b",
+        "limitations": "模拟数据，仅验证计算与协作流程，不证明真实设备精度或反应机理。",
+        "method": "approved-parameter-transform"
+      },
+      "trace": [
+        {
+          "kind": "ALIGN",
+          "event": "omitted-requirement",
+          "revision": 1,
+          "task": null
+        },
+        {
+          "kind": "ALIGN",
+          "event": "ALIGN",
+          "revision": 1,
+          "task": null
+        },
+        {
+          "kind": "TASK",
+          "event": "wrong-number",
+          "revision": 1,
+          "task": "fit"
+        },
+        {
+          "kind": "TASK",
+          "event": "missing-unit",
+          "revision": 1,
+          "task": "fit"
+        },
+        {
+          "kind": "REVIEW",
+          "event": "reviewer-added-scope",
+          "revision": 1,
+          "task": "fit"
+        },
+        {
+          "kind": "REVIEW",
+          "event": "REVIEW",
+          "revision": 1,
+          "task": "fit"
+        },
+        {
+          "kind": "TASK",
+          "event": "TASK",
+          "revision": 1,
+          "task": "fit"
+        },
+        {
+          "kind": "REVIEW",
+          "event": "REVIEW",
+          "revision": 1,
+          "task": "fit"
+        },
+        {
+          "kind": "TASK",
+          "event": "TASK",
+          "revision": 1,
+          "task": "report"
+        },
+        {
+          "kind": "REVIEW",
+          "event": "REVIEW",
+          "revision": 1,
+          "task": "report"
+        },
+        {
+          "kind": "CHANGE_REVIEW",
+          "event": "CHANGE_REVIEW",
+          "revision": 1,
+          "task": null
+        },
+        {
+          "kind": "ALIGN",
+          "event": "ALIGN",
+          "revision": 2,
+          "task": null
+        },
+        {
+          "kind": "TASK",
+          "event": "TASK",
+          "revision": 2,
+          "task": "report"
+        },
+        {
+          "kind": "REVIEW",
+          "event": "REVIEW",
+          "revision": 2,
+          "task": "report"
+        }
+      ],
+      "finalRevision": 2
+    }
+  ],
+  "egoLite": {
+    "status": "completed",
+    "case": "calibration",
+    "revisions": [
+      1,
+      2
+    ],
+    "scope": "Visible ego lite actions with deterministic Agent doubles; no real provider calls or unassisted human study.",
+    "allApproved": true,
+    "fitReused": true,
+    "evidenceDirectory": "ego-calibration",
+    "limitations": [
+      "Original session expired; restarted isolated simulation in the existing local-page task space.",
+      "Automatic scrolling failed in nested long forms; used DOM scrollIntoView then normal visible fill/click.",
+      "Screenshot API timed out; final result captured as evidence JSON, not an ego screenshot."
+    ]
+  }
+}

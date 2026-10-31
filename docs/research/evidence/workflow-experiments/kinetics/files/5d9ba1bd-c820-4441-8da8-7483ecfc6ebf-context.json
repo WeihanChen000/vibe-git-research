@@ -1,0 +1,79 @@
+{
+  "revision": 1,
+  "agents": [
+    {
+      "id": "member_node-3c7307de-1b50-43eb-8be3-932014cf27aa",
+      "name": "队长 · Codex（模拟） · Codex 本地",
+      "platform": "codex",
+      "runtimeAgentId": "codex-local"
+    },
+    {
+      "id": "member_node-3f186c09-7415-4053-bbeb-039ebf11761c",
+      "name": "Member-761C · SIMULATED expert",
+      "runtimeAgentId": "simulated-research-expert"
+    }
+  ],
+  "proposals": [
+    {
+      "id": "51d9dbf0-0544-45ef-b953-02eca96285a9",
+      "agentId": "member_node-3c7307de-1b50-43eb-8be3-932014cf27aa",
+      "content": "独立复核速率常数，从获批 fit.json 计算半衰期 value，单位为 min。\n说明这些是无噪声模拟数据，不能据此宣称已经验证真实反应机理。",
+      "sha256": "0deb78ff77ed230b996bff1e84ce879952f7acdc4518ba709068b8a3e2c73f31",
+      "ownerNodeId": "node-3c7307de-1b50-43eb-8be3-932014cf27aa",
+      "documentId": "DOC-acbdbc0d-285c-4f02-89da-8908b590b62b",
+      "documentRevision": 1
+    },
+    {
+      "id": "d81c8da8-9f1a-48bc-84ae-18948607d036",
+      "agentId": "member_node-3f186c09-7415-4053-bbeb-039ebf11761c",
+      "content": "使用全部六个时间点，对浓度取自然对数，再按时间做带截距最小二乘拟合；不得改为常用对数。\n报告速率常数 rate、截距 intercept、单位 unit 和六点的残差；方法字段 method 为 natural-log-ols。",
+      "sha256": "09fc333d0f8e3d7e981f36e901f445fd871934c197f06b205bd1f64b27391f8b",
+      "ownerNodeId": "node-3f186c09-7415-4053-bbeb-039ebf11761c",
+      "documentId": "DOC-f8b2045a-7837-44b4-9b3b-7d14ee6e6607",
+      "documentRevision": 1
+    }
+  ],
+  "publishedRequirement": "",
+  "previousTasks": [],
+  "decisions": [],
+  "approvedChanges": [],
+  "governance": {
+    "version": 1,
+    "requirements": [
+      {
+        "id": "r-a05de3afd173b1fc",
+        "text": "独立复核速率常数，从获批 fit.json 计算半衰期 value，单位为 min。",
+        "sourceId": "51d9dbf0-0544-45ef-b953-02eca96285a9",
+        "sourceSha256": "0deb78ff77ed230b996bff1e84ce879952f7acdc4518ba709068b8a3e2c73f31",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-76f14de01f6bf2ab",
+        "text": "说明这些是无噪声模拟数据，不能据此宣称已经验证真实反应机理。",
+        "sourceId": "51d9dbf0-0544-45ef-b953-02eca96285a9",
+        "sourceSha256": "0deb78ff77ed230b996bff1e84ce879952f7acdc4518ba709068b8a3e2c73f31",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-c89b4a53d9696e31",
+        "text": "使用全部六个时间点，对浓度取自然对数，再按时间做带截距最小二乘拟合；不得改为常用对数。",
+        "sourceId": "d81c8da8-9f1a-48bc-84ae-18948607d036",
+        "sourceSha256": "09fc333d0f8e3d7e981f36e901f445fd871934c197f06b205bd1f64b27391f8b",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-b5f8b5c101af3b3f",
+        "text": "报告速率常数 rate、截距 intercept、单位 unit 和六点的残差；方法字段 method 为 natural-log-ols。",
+        "sourceId": "d81c8da8-9f1a-48bc-84ae-18948607d036",
+        "sourceSha256": "09fc333d0f8e3d7e981f36e901f445fd871934c197f06b205bd1f64b27391f8b",
+        "introducedRevision": 1
+      }
+    ],
+    "decisions": []
+  },
+  "source": {
+    "filename": "source-kinetics.csv",
+    "sourceUrl": "https://github.com/WeihanChen000/vibe-git-research",
+    "attribution": "本项目自行生成的教学模拟数据；可随开源项目使用，不代表真实测量。"
+  }
+}

@@ -1,0 +1,1 @@
+{"version":1,"sourceSha256":"c342eeb13d36c9e33885567ad96ee50b2117d9515c6d4318da7e6f436015e33b","tasks":{"fit":[{"id":"check-0afffe44-87d0-4d44-9814-558d32d3e3a2","kind":"reference","absoluteTolerance":1e-8,"path":"slope","expected":2.0371428571428574,"relativeTolerance":0,"provenance":"独立原始求和公式 (nΣxy−ΣxΣy)/(nΣx²−(Σx)²)，不是复制待验结果"}]}}

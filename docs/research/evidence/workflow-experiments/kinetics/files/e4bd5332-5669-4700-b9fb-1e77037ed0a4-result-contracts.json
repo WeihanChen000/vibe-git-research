@@ -1,0 +1,19 @@
+{
+  "fit": {
+    "type": "object",
+    "properties": {
+      "method": {
+        "type": "string",
+        "const": "natural-log-ols"
+      }
+    },
+    "required": [
+      "method"
+    ]
+  },
+  "report": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  }
+}

@@ -8,6 +8,7 @@ export function ResearchCommand({p,state,operation,body={},busy,disabled,send}:{
  const [expanded,setExpanded]=useState(false),[snapshot,setSnapshot]=useState(""),[error,setError]=useState("");
  const [note,setNote]=useState(""),[option,setOption]=useState("");const immediate=useRef(false);
  const task=p.tasks.find(t=>t.key===body.taskKey),issue=p.alignment?.issues.find(i=>i.id===body.issueId),change=p.changes.find(c=>c.id===body.changeId);
+ const retryRun=p.runs.find(r=>r.id===body.runId),retryTask=p.tasks.find(t=>t.key===retryRun?.taskKey);
  const name=commandNames[operation],stale=expanded&&snapshot!==state.commandSnapshots?.[p.id];
  if(!name||!state.browserCommands||!state.csrfToken)return null;
  const begin=()=>{setSnapshot(state.commandSnapshots?.[p.id]??"");setExpanded(true);setError("");setOption("");setNote(operation==="rework"?task?.review?.requiredChanges.join("\n")??"":"");};
@@ -26,7 +27,7 @@ export function ResearchCommand({p,state,operation,body={},busy,disabled,send}:{
   {operation==="dismiss-change"&&<p>{change?.result?.rationale} 关闭后恢复变更前的研究阶段。</p>}
   {operation==="pause"&&<p>暂停新任务派发；已经启动的 Agent 运行仍会完成并被回收。</p>}
   {operation==="resume"&&<p>按当前协议恢复任务派发，继续核对已有运行。</p>}
-  {operation==="retry"&&<p>仅重试已确定失败的任务；保留原记录，未知启动不能通过此操作重发。</p>}
+  {operation==="retry"&&<><p>{retryRun?.kind==="REVIEW"?"只重新提交本次评审，保留原计算成果，不要求执行成员重新计算。新增研究要求应另走变更流程。":retryRun?.kind==="ALIGN"?"请核对下方遗漏项或格式错误；重试会把失败原因交给对齐 Agent，并继续使用原冻结提案。":"按原方法重新执行并重新检查，原失败文件保留。"}</p>{retryRun?.error&&<p className="rt-stale">{retryRun.error}</p>}{retryRun?.kind==="TASK"&&retryTask&&<p>本任务已执行 {retryTask.attempt} / 3 次；重试将使用下一次执行机会。请先核对方法和修复要求。</p>}<small>只允许重试已确定失败的运行；未知启动需先核对原记录。</small></>}
   {stale&&<p className="rt-stale" role="alert">项目已有更新，请取消后检查最新状态，再重新打开确认。</p>}
   {error&&<p className="rt-stale" role="alert">{error}</p>}
   <div className="rt-confirm-buttons"><button disabled={busy} onClick={()=>setExpanded(false)}>取消</button><button className="rt-primary" onClick={()=>void submit()} disabled={disabled||busy||stale||!snapshot||(operation==="decide"&&!option)||(["change","supplement-review"].includes(operation)&&!note.trim())}>{busy?"提交中…":`确认${name}`}</button></div>

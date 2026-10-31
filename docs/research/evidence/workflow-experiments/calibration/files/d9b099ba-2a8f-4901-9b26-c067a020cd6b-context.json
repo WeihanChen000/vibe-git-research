@@ -1,0 +1,79 @@
+{
+  "revision": 1,
+  "agents": [
+    {
+      "id": "member_node-ee85fc96-bf78-4fcf-94e8-51b9c856dac6",
+      "name": "队长 · Codex（模拟） · Codex 本地",
+      "platform": "codex",
+      "runtimeAgentId": "codex-local"
+    },
+    {
+      "id": "member_node-95bfcee5-bd25-4bf3-b73f-87cf6624733f",
+      "name": "Member-733F · SIMULATED expert",
+      "runtimeAgentId": "simulated-research-expert"
+    }
+  ],
+  "proposals": [
+    {
+      "id": "502ec172-fcf0-4aa8-a92b-eeeb11e72880",
+      "agentId": "member_node-ee85fc96-bf78-4fcf-94e8-51b9c856dac6",
+      "content": "复核拟合结果，并由获批 fit.json 换算电压 5.25 mV 对应的位移。\n报告该模拟实验的适用范围和局限，不将标定误差解释为真实设备精度。",
+      "sha256": "ff10a64910c8f00fcfdfc8bb311c3fb91bcf6dd5a010973e63d169bfdba97871",
+      "ownerNodeId": "node-ee85fc96-bf78-4fcf-94e8-51b9c856dac6",
+      "documentId": "DOC-16d5b910-1fe2-4c9f-8b5b-952d61404dff",
+      "documentRevision": 1
+    },
+    {
+      "id": "a1e72e54-63f5-4da5-92c6-fcfc5472dcc4",
+      "agentId": "member_node-95bfcee5-bd25-4bf3-b73f-87cf6624733f",
+      "content": "使用全部六个标定点，以带截距最小二乘拟合电压对位移，不得强制过原点。\n报告斜率 slope、截距 intercept、测量单位 unit 和六个点的残差；方法字段 method 为 ols-with-intercept。",
+      "sha256": "022c2eb911be997f6ebf496e66c5c0e74856f7dda820f58a680ce25e34074327",
+      "ownerNodeId": "node-95bfcee5-bd25-4bf3-b73f-87cf6624733f",
+      "documentId": "DOC-306c6a6f-b356-43cb-a1f4-bb101e5adfb6",
+      "documentRevision": 1
+    }
+  ],
+  "publishedRequirement": "",
+  "previousTasks": [],
+  "decisions": [],
+  "approvedChanges": [],
+  "governance": {
+    "version": 1,
+    "requirements": [
+      {
+        "id": "r-23bc706ebd9ef4f0",
+        "text": "复核拟合结果，并由获批 fit.json 换算电压 5.25 mV 对应的位移。",
+        "sourceId": "502ec172-fcf0-4aa8-a92b-eeeb11e72880",
+        "sourceSha256": "ff10a64910c8f00fcfdfc8bb311c3fb91bcf6dd5a010973e63d169bfdba97871",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-6d4c6b02e81ab4a7",
+        "text": "报告该模拟实验的适用范围和局限，不将标定误差解释为真实设备精度。",
+        "sourceId": "502ec172-fcf0-4aa8-a92b-eeeb11e72880",
+        "sourceSha256": "ff10a64910c8f00fcfdfc8bb311c3fb91bcf6dd5a010973e63d169bfdba97871",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-bcad2d2a0936b748",
+        "text": "使用全部六个标定点，以带截距最小二乘拟合电压对位移，不得强制过原点。",
+        "sourceId": "a1e72e54-63f5-4da5-92c6-fcfc5472dcc4",
+        "sourceSha256": "022c2eb911be997f6ebf496e66c5c0e74856f7dda820f58a680ce25e34074327",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-6a0b04b13abbd0dc",
+        "text": "报告斜率 slope、截距 intercept、测量单位 unit 和六个点的残差；方法字段 method 为 ols-with-intercept。",
+        "sourceId": "a1e72e54-63f5-4da5-92c6-fcfc5472dcc4",
+        "sourceSha256": "022c2eb911be997f6ebf496e66c5c0e74856f7dda820f58a680ce25e34074327",
+        "introducedRevision": 1
+      }
+    ],
+    "decisions": []
+  },
+  "source": {
+    "filename": "source-calibration.csv",
+    "sourceUrl": "https://github.com/WeihanChen000/vibe-git-research",
+    "attribution": "本项目自行生成的教学模拟数据；可随开源项目使用，不代表真实测量。"
+  }
+}

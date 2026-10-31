@@ -720,7 +720,7 @@ describe("Research anti-drift governance v1",()=>{
     const s=await governedSetup();let omit=true;
     s.remote.transform=(kind,result)=>{result=s.base(kind,result);if(kind==="ALIGN"&&omit)result.tasks[0].requirementIds.pop();return result;};
     await s.command("align");const blocked=await until(s.pipeline,s.id,p=>p.phase==="BLOCKED");
-    expect(blocked.error).toContain("遗漏冻结需求");expect(s.remote.calls.map(c=>c.kind)).toEqual(["ALIGN"]);
+    expect(blocked.error).toContain("遗漏冻结需求");expect(blocked.error).toContain("Report residue count.");expect(s.remote.calls.map(c=>c.kind)).toEqual(["ALIGN"]);
     omit=false;await s.command("retry",{runId:blocked.alignmentRunId});const ready=await until(s.pipeline,s.id,p=>p.phase==="READY");
     const mapped=ready.alignment!.tasks.flatMap(t=>t.requirementIds!);
     expect(new Set(mapped)).toEqual(new Set(ready.governance!.requirements.map(r=>r.id)));

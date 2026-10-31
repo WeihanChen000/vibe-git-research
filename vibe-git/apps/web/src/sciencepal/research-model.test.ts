@@ -1,3 +1,4 @@
+import {projectNextActions} from '@vibe-git/protocol';
 import { describe,it,expect } from 'vitest';
 import type { SPProject,SPTask,SPRun } from '@vibe-git/protocol';
 import { reviewsForAttempt,taskDisplay,connectionSummary,researchHandoffs,stageProject,actionTarget,taskActionText } from './research-model.js';
@@ -43,4 +44,13 @@ it('keeps origin handoff receipts visible only for explicitly approved carried t
  expect(researchHandoffs(p)[0]).toMatchObject({state:'delivered',label:'文件已交接 · 沿用 R1'});
  consumer.status='WAITING';expect(researchHandoffs(p)[0]!.state).toBe('released');
  consumer.status='APPROVED';p.runs[0]!.inputs=[];expect(researchHandoffs(p)[0]!.state).toBe('released');
+});
+
+it('takes a failed review to its actual task and explains that retry preserves the calculation',()=>{
+ const p=project();p.phase='BLOCKED';p.team={captainNodeId:'captain',members:[{nodeId:'captain',label:'Captain',agent:{id:'a',name:'A'},documentId:'d',documentRevision:1}]};
+ p.runs=[run({id:'bad-review',kind:'REVIEW',status:'INVALID',error:'原验收全部通过，不应追加实验'})];
+ const action=projectNextActions(p,'captain').actions.find(a=>a.operation==='retry')!;
+ expect(actionTarget(p,action)).toEqual({type:'task',id:'analysis'});
+ expect(action.detail).toContain('不重新执行科研计算');
+ expect(action.ownerNodeId).toBe('captain');expect(action.body?.runId).toBe('bad-review');
 });

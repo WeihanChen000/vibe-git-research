@@ -2,6 +2,7 @@
 
 | 先看什么 | 文件 |
 |---|---|
+| 两套新实验、使用者流程、问题修复与填写清单 | [WORKFLOW-EXPERIMENTS-20261031](WORKFLOW-EXPERIMENTS-20261031.md) |
 | 作品定位与当前状态 | [首页](../../README.md) |
 | 完整展示、原版/新版截图、讲解顺序 | [SHOWCASE](SHOWCASE.md) |
 | 科研防偏移、原文覆盖、增量变更与反例验证 | [RESEARCH-ANTI-DRIFT-20261031](RESEARCH-ANTI-DRIFT-20261031.md) |

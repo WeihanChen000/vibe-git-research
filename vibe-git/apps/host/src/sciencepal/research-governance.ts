@@ -44,7 +44,7 @@ export function bindRequirements(p:SPProject,tasks:SPTaskDraft[], rawTasks:Recor
     refs.forEach(id=>used.add(id));
   }
   const missing=requirements.filter(r=>!used.has(r.id));
-  if(missing.length)throw badRequest(`对齐遗漏冻结需求：${missing.map(r=>r.id).join(", ")}；不能发布`);
+  if(missing.length)throw badRequest(`对齐遗漏冻结需求（${missing.length} 条）：${missing.slice(0,4).map(r=>`“${r.text.slice(0,220)}${r.text.length>220?"…":""}” [${r.id}]`).join("；")}。不能发布。请让对齐 Agent 补齐这些原要求与任务的关联，再由队长重试对齐；完整原文见“协议 → 原提案与任务对齐”。`);
 }
 export function assertUnaffectedAlignment(p:SPProject,tasks:SPTaskDraft[]) {
   if(!p.governance)return;

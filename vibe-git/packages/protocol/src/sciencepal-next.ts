@@ -12,7 +12,7 @@ export function projectNextActions(p: SPProject, viewerId: string) {
   const actions: SPNextAction[] = [], captain = p.team?.captainNodeId ?? null;
   const add = (ownerNodeId: string | null, action: Omit<SPNextAction, "ownerNodeId" | "ownerLabel" | "isMine">) => actions.push({ ...action, ownerNodeId,
     ownerLabel: p.team?.members.find(m => m.nodeId === ownerNodeId)?.label ?? (ownerNodeId === captain ? "队长" : "Host"), isMine: ownerNodeId === viewerId });
-  const control = (operation: string, title: string, detail: string, body: Record<string, unknown> = {}) => add(captain, { kind: "decision", operation, body: { revision: p.revision, ...body }, title, detail });
+  const control = (operation: string, title: string, detail: string, body: Record<string, unknown> = {}) => add(captain, { kind: "decision", operation, ...(typeof body.runId === "string" ? {runId:body.runId} : {}), body: { revision: p.revision, ...body }, title, detail });
   if (p.paused) control("resume", "等待队长恢复项目", "项目已暂停；已有远端任务可能仍在运行。恢复后继续核对原任务。");
   else if (p.phase === "COMPLETED") add(viewerId, { kind: "completed", title: "本轮科研协作已完成", detail: "导出本轮证据并核对科学结论；新研究问题请提出变更。", operation: "evidence" });
   else if (p.phase === "DRAFT") control("align", "等待队长启动对齐", "提案已冻结，尚未派发对齐任务。");
@@ -32,10 +32,10 @@ export function projectNextActions(p: SPProject, viewerId: string) {
   } else {
     for (const run of p.runs.filter(r => r.revision === p.revision && isLatestSPRun(p.runs, r))) {
       const platform = run.agent.platform ?? "sciencepal", local = isLocalResearchPlatform(platform), owner = run.ownerNodeId ?? null;
-      const label = `${({ ALIGN: "对齐", TASK: "执行", REVIEW: "评审", CHANGE_REVIEW: "变更评审" })[run.kind]}${run.taskKey ? ` · ${run.taskKey}` : ""}`;
+      const label = `${({ ALIGN: "对齐", TASK: "执行", REVIEW: "评审", CHANGE_REVIEW: "变更评审" })[run.kind]}${run.taskKey ? ` · ${p.tasks.find(t=>t.key===run.taskKey)?.title??run.taskKey}` : ""}`;
       const base = { runId: run.id, ...(run.taskKey ? { taskKey: run.taskKey } : {}), platform };
       if (run.status === "UNKNOWN") add(owner, { ...base, kind: "recover", title: `等待本人核对未知运行：${label}`, detail: "保留原日志，核对原任务；禁止重新提交或换 ID 绕过。", operation: "recover" });
-      else if (["FAILED", "INVALID"].includes(run.status)) control("retry", `等待队长处理失败：${label}`, run.error || "查明原因后只重试已确定失败的任务。", { runId: run.id });
+      else if (["FAILED", "INVALID"].includes(run.status)) control("retry", `等待队长处理失败：${label}`, `${run.error || "查明原因后只重试已确定失败的任务。"} ${run.kind==="REVIEW"?"此次仅重试评审，保留原成果，不重新执行科研计算。":run.kind==="ALIGN"?"仅重新对齐冻结提案，不会启动科研计算。":"重试仍按原协议执行，失败记录保留。"}`, { runId: run.id });
       else if (p.phase !== "BLOCKED" && run.status === "READY") add(owner, { ...base, kind: "execute", title: `等待${local ? ` ${researchPlatformName(platform)} 领取` : " SciencePAL 连接器领取"}：${label}`, detail: local ? "领取任务包，读取冻结输入，在本人工作目录完成任务。" : "保持本人连接器运行；它会领取并启动。", operation: local ? "take" : "work" });
       else if (run.status === "NEEDS_INPUT") add(owner, { ...base, kind: "input", title: `等待本人回答：${label}`, detail: local ? "核对任务问题后继续处理原任务包。" : `在 SciencePAL 原线程 ${run.threadId ?? "（等待回执）"} 回复；或停止 work 后用 reply，再恢复 work。`, operation: local ? "submit" : "reply" });
       else if (["STARTING", "RUNNING", "COMPLETED"].includes(run.status)) add(owner, { ...base, kind: "running", title: `${local ? `等待 ${researchPlatformName(platform)} 交回成果` : "SciencePAL 正在处理"}：${label}`, detail: local ? "按原任务说明完成成果并交回；仍须经过对应的校验、独立评审或队长确认。" : "等待原运行与成果校验，不重复启动。在成员详情查看本项目连接器心跳。", operation: local ? "submit" : "work" });
