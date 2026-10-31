@@ -6,6 +6,20 @@
 
 在队友原 [Vibe-Git](https://github.com/TFboy1/vibe-git) 上扩展，沿用人员拓扑、项目甘特、成员提案和队长发布逻辑。当前只以 **Codex × SciencePAL** 为已实跑主路径。**1CRN 与 Iris 是验证案例**，用户可定义研究问题；当前文件与检查类型限制见下方，不宣称覆盖任意科研流程。
 
+## 三分钟看懂这次增加了什么
+
+科研成员各自在 Agent 中计算时，难点是：数据和方法有没有被改、文件是否已批准、只缺记录要不要重算。原项目已有多人协作与防偏移；我们把这套约束延伸到跨平台科研文件的交接。
+
+| 要核查的价值 | 最新真实案例中发生了什么 |
+|---|---|
+| SciencePAL 实际做科研 | Biology 环境执行 1CRN SASA 计算，交付 2967.6165 Å²；Codex 独立复核，与预先基准相差约 0.187% |
+| 缺证据不必重跑原计算 | 首次缺版本和代码被退回；补齐原运行证据后复审获批，原计算仍只有一次 |
+| 只改报告不重复上游工作 | 正式增加中文摘要及限制说明，只重做报告和评审；原计算文件及批准 ID 保持不变 |
+
+先看[真实两轮记录与原始文件](docs/research/LATEST-GOVERNANCE-LIVE-20261031.md)，再看[基础流程视频](https://weihanchen000.github.io/vibe-git-research/submission/watch.html)或[原拓扑历史回放](https://weihanchen000.github.io/vibe-git-research/replay/?case=isolated&step=members)。视频和回放是各自标注的历史轮次，不是最新一轮的连续录像。
+
+这些证据支持“可核查的交接与成果复用”，不代表新生物学发现、算法独占或已证明节省真人时间。新用户从[三步接入与第一轮操作](vibe-git/SCIENCEPAL-QUICKSTART.md)开始。
+
 [本次多 Agent 整合与防漂移说明](docs/research/MULTI-AGENT-INTEGRATION.md) · [完整展示与讲解](docs/research/SHOWCASE.md) · [原版能力对照](docs/research/COMPARISON.md) · [队友三步接入](vibe-git/SCIENCEPAL-QUICKSTART.md) · [架构与扩展](docs/research/ARCHITECTURE.md) · [验证与边界](docs/research/VALIDATION.md) · [全部材料导航](docs/research/INDEX.md)
 
 ![当前科研版：原拓扑中的工具、参数、结果与独立复核](docs/research/images/research-evidence-current.png)
@@ -13,21 +27,6 @@
 *实际构建界面的只读历史回放。单个真实 SciencePAL 账号与 Codex，两种工作流身份；不代表两位真实用户已经联调。*
 
 下载后可双击 [`docs/research/index.html`](docs/research/index.html) 查看无需安装的图文展示；GitHub 上请直接阅读上方展示页。
-
-## 提交基线与后续修复
-
-历史提交基线为 [`ca1b2b5`](https://github.com/WeihanChen000/vibe-git-research/tree/ca1b2b5227e660559fb9e29c4d69a259252efb54)。后续按原功能保留要求补兼容与防偏移缺口，不新增平台、学科案例或重做界面。
-
-最新代码补齐[科研防偏移与反例验证](docs/research/RESEARCH-ANTI-DRIFT-20261031.md)：原文遗漏不能发布、返工须对应原验收、变更按影响复用有效成果。该新增治理层已通过受控模拟及下方最新真实两轮闭环；既有回放仍展示其原始历史版本。
-
-- [直接打开原拓扑回放](https://weihanchen000.github.io/vibe-git-research/replay/?case=isolated&step=members)：单机三个成员身份，13 个实际阶段，无需安装或账号。
-- [本轮真实验收与修复](docs/research/ISOLATED-ACCEPTANCE-20261031.md)：17 项运行检查通过，保留三次退回、补证复审和最终交接；中途需操作者核对原线程，非全自动成功。
-- 已冻结输入、参数与验收；数值检查按事先约定的规则执行；获批文件携带绑定到其字节的批准依据。已有参考的质量、容差和科学解释仍由研究者负责。
-- [一键验收说明](vibe-git/SCIENCEPAL-ISOLATED-ACCEPTANCE.md)：默认不调用模型，分别运行模拟检查与真实记录离线核验。真实重跑需现有账号和工具环境。
-
-最新补充：[两套新实验的完整流程与使用者验收](docs/research/WORKFLOW-EXPERIMENTS-20261031.md)。传感器标定、反应动力学均完成界面建项、偏移阻断、返工、交接与报告变更；包含实际本地计算、模拟 Agent、可自行操作的演练入口。
-
-最新真实闭环：[补证与报告成果复用实跑](docs/research/LATEST-GOVERNANCE-LIVE-20261031.md)。R1、R2 均完成：补证只重做独立评审；只改报告沿用原 SASA 文件、执行与批准。31 份原始附件、34 条输入回执离线核验通过，保留原失败与人工介入；一个操作者、一个 SciencePAL 账号。运行 `npm run test:latest-live` 可复核，不调用模型。
 
 ## 黑客松提交材料
 
@@ -81,11 +80,29 @@ npm run research:replay
 
 ## 当前验证状态
 
-- 最新单机验收、219 项科研专项及 Host/CLI 回归范围见 [当前验证记录](docs/research/ISOLATED-ACCEPTANCE-20261031.md)；[早期真实整合记录](docs/research/INTEGRATED-LIVE-20261031.md) 单独保留，不混用文件数与测试数。
+- 最新真实两轮闭环及 31 份附件、34 条回执见 [最新验证记录](docs/research/LATEST-GOVERNANCE-LIVE-20261031.md)；219 项科研专项属于历史单机基线，[早期真实整合记录](docs/research/INTEGRATED-LIVE-20261031.md) 单独保留，不混用文件数与测试数。
 - 原有真实案例：1CRN 七阶段、Iris 九阶段，共 **38 个原始附件**；新增单机三成员案例另列于下方，均保留字节数和 SHA256。
 - 真实跨平台：一个 SciencePAL 账号 + 本地 Codex 已验证；真实两位用户各自账号联调仍待完成。
 - 受控测试：1CRN 首版单位错误与参数确认、Iris 首次数值错误是明示设计；不冒充自然发生的错误。Iris 第二次缺代码为真实产物问题。
 - 当前 Codex 可从本人任务入口启动已登录的本地执行器，使用冻结任务包交回；不会接管任意已有会话。其他平台接口已接入，除 Codex / SciencePAL 外真实模型仍待验证。
+
+<details>
+<summary>查看历史基线、其他案例与原始验证记录</summary>
+
+### 历史基线与其他验证
+
+历史提交基线为 [`ca1b2b5`](https://github.com/WeihanChen000/vibe-git-research/tree/ca1b2b5227e660559fb9e29c4d69a259252efb54)。后续按原功能保留要求补兼容与防偏移缺口，不新增平台、学科案例或重做界面。
+
+最新代码补齐[科研防偏移与反例验证](docs/research/RESEARCH-ANTI-DRIFT-20261031.md)：原文遗漏不能发布、返工须对应原验收、变更按影响复用有效成果。该新增治理层已通过受控模拟及最新真实两轮闭环；既有回放仍展示其原始历史版本。
+
+- [直接打开原拓扑回放](https://weihanchen000.github.io/vibe-git-research/replay/?case=isolated&step=members)：单机三个成员身份，13 个实际阶段，无需安装或账号。
+- [历史单机验收与修复](docs/research/ISOLATED-ACCEPTANCE-20261031.md)：17 项运行检查通过，保留三次退回、补证复审和最终交接；中途需操作者核对原线程，非全自动成功。
+- 已冻结输入、参数与验收；数值检查按事先约定的规则执行；获批文件携带绑定到其字节的批准依据。已有参考的质量、容差和科学解释仍由研究者负责。
+- [一键验收说明](vibe-git/SCIENCEPAL-ISOLATED-ACCEPTANCE.md)：默认不调用模型，分别运行模拟检查与真实记录离线核验。真实重跑需现有账号和工具环境。
+
+最新补充：[两套新实验的完整流程与使用者验收](docs/research/WORKFLOW-EXPERIMENTS-20261031.md)。传感器标定、反应动力学均完成界面建项、偏移阻断、返工、交接与报告变更；包含实际本地计算、模拟 Agent、可自行操作的演练入口。
+
+</details>
 
 ## 来源与团队使用
 
@@ -99,10 +116,12 @@ npm run research:replay
 
 - [单机多成员验收与一键命令](vibe-git/SCIENCEPAL-ISOLATED-ACCEPTANCE.md)：默认离线；`--live` 才使用现有账号。
 - [直接打开原拓扑只读回放](https://weihanchen000.github.io/vibe-git-research/replay/?case=isolated&step=members)：不需要安装或登录。
-- [本轮真实验收结果与修复](docs/research/ISOLATED-ACCEPTANCE-20261031.md)。
+- [历史单机验收结果与修复](docs/research/ISOLATED-ACCEPTANCE-20261031.md)。
 
 范围为一个操作者、同一台电脑、独立项目成员身份和工作目录；不宣称真人跨电脑或 SciencePAL 跨账号隔离已验证。
 
 单人使用负担核查：[两条路径的操作步骤与空白记录表](docs/research/manual-handoff-check/README.md)。复用同一成果与检查表，不新增模型调用；尚无真人测量结果。
 
 误操作检查：[坏邀请、错误成果、断线回执、权限与恢复验收](docs/research/HUMAN-ERRORS-20261031.md)。
+
+本轮[评委与首次使用者审阅及修改](docs/research/JUDGE-USER-REVIEW-20261031.md)：突出最新证据、简化确认区阅读、补齐第一轮操作；科研专项 279 项和兼容专项 37 项通过。未将代码检查当作真人使用测试。
