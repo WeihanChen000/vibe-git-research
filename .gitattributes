@@ -17,3 +17,6 @@ docs/research/evidence/workflow-experiments/** -text -whitespace
 
 # Latest real workflow: preserve original artifacts and audit-record bytes.
 docs/research/latest-governance-live/** -text -whitespace
+
+# Operation-film evidence retains original byte-addressed files and PDB columns.
+docs/submission/operations-demo/evidence/** -text -whitespace

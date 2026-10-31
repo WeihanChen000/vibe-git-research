@@ -1,0 +1,38 @@
+{
+  "scope": "Offline consistency checks of deterministic simulated UI run, not fresh SciencePAL or Codex model execution. Historical source evidence is separate.",
+  "passed": 16,
+  "checks": [
+    "21 published artifact byte hashes match original receipts",
+    "Every run covers every frozen input with exact byte receipts",
+    "R2 completed through real Host state transitions",
+    "All 10 simulated jobs collected, no failed jobs hidden in completed take",
+    "Exactly one calculation, two reports and four reviews",
+    "Supplement adds a review, never a second producer job",
+    "Recorded rejection followed by independent simulated approval",
+    "Both reviews bind the exact same original result artifact",
+    "Numerical gate bound to actual calculation artifact",
+    "First report was dispatched only after supplementary approval",
+    "R1 and R2 retain result, execution and approving review identity",
+    "R2 explicitly records reuse from R1",
+    "Change affects report only",
+    "Reused task matches change-review fingerprint",
+    "Both report inputs carry the same result plus verified approving review bytes",
+    "R2 report changed while upstream identity remained fixed"
+  ],
+  "artifacts": 21,
+  "inputReceipts": 30,
+  "jobs": 10,
+  "counts": {
+    "align": 2,
+    "compute": 1,
+    "review": 4,
+    "report": 2
+  },
+  "sameUpstream": {
+    "artifactId": "35293a3c-3ace-46cd-8ce7-8d5d9d393f5a",
+    "executionId": "8143521e-a436-4a2d-b647-009711484774",
+    "reviewId": "6c9a6897-81c2-469d-ba61-4ab067cec3c7"
+  },
+  "resultSha256": "8cb89646d86457ab54a78dfdc01a28cdabe5b52275d34b036c7d26d07df5843c",
+  "historicalRealEvidence": "../../research/latest-governance-live/manifest.json"
+}

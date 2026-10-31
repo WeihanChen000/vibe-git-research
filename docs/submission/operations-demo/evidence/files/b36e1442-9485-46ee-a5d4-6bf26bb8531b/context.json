@@ -1,0 +1,326 @@
+{
+  "revision": 2,
+  "agents": [
+    {
+      "id": "member_node-cb4d7be5-9f7d-45da-85b7-63e3ebf60f8e",
+      "name": "队长 · Codex（模拟） · Codex 本地",
+      "platform": "codex",
+      "runtimeAgentId": "codex-local"
+    },
+    {
+      "id": "member_node-5796e69a-d23f-4093-9bc7-733a4a958e5b",
+      "name": "Member-8E5B · SIMULATED expert",
+      "runtimeAgentId": "simulated-research-expert"
+    }
+  ],
+  "proposals": [
+    {
+      "id": "4130527e-52da-43ac-a1f1-ad291acf2667",
+      "agentId": "member_node-cb4d7be5-9f7d-45da-85b7-63e3ebf60f8e",
+      "content": "独立复核输入、方法、参考值与执行证据；获批前不能交接报告。\n使用获批成果撰写报告，说明固定结构几何计算的局限，不作生物功能推断。",
+      "sha256": "5ff06fd0b19889147487711de9428aecac77d18fc529cb902f6fdb8b89cfdfd3",
+      "ownerNodeId": "node-cb4d7be5-9f7d-45da-85b7-63e3ebf60f8e",
+      "documentId": "DOC-5674c1a4-84ad-432b-8c18-e24dfb5ab6a9",
+      "documentRevision": 1
+    },
+    {
+      "id": "30ca11df-137f-4b30-aba4-6352877076f1",
+      "agentId": "member_node-5796e69a-d23f-4093-9bc7-733a4a958e5b",
+      "content": "计算冻结的 1CRN A 链重原子溶剂可及表面积，使用 Shrake-Rupley、1000 点、1.4 埃探针。\n交付总面积、逐残基面积、原代码及工具版本和执行日志。演示输出由模拟执行器提供，不是新的科研计算。",
+      "sha256": "8d81c0234c531d23571aacd17510f8fc414bae153053bfa9ecb8eff52d5858cd",
+      "ownerNodeId": "node-5796e69a-d23f-4093-9bc7-733a4a958e5b",
+      "documentId": "DOC-6470e7d3-04d4-4c17-9399-d6a05e603f52",
+      "documentRevision": 1
+    }
+  ],
+  "publishedRequirement": "## 原始提案 member_node-cb4d7be5-9f7d-45da-85b7-63e3ebf60f8e\n独立复核输入、方法、参考值与执行证据；获批前不能交接报告。\n使用获批成果撰写报告，说明固定结构几何计算的局限，不作生物功能推断。\n\n## 原始提案 member_node-5796e69a-d23f-4093-9bc7-733a4a958e5b\n计算冻结的 1CRN A 链重原子溶剂可及表面积，使用 Shrake-Rupley、1000 点、1.4 埃探针。\n交付总面积、逐残基面积、原代码及工具版本和执行日志。演示输出由模拟执行器提供，不是新的科研计算。\n\n## 对齐说明\n# 1CRN 科研交接操作演示\n本段使用确定性模拟执行器；不调用真实模型。固定 1CRN 输入、Shrake-Rupley、1000 点、1.4 埃探针。SciencePAL 计算，Codex 复核与报告，报告由另一成员评审。\n\n## 已批准变更 R2\n仅补充报告的中文摘要和局限说明：明确固定结构的几何表面积不能推断生物功能。原 1CRN 输入、Shrake-Rupley 方法、1000 点、1.4 埃探针、数值检查与上游验收全部不变。沿用已批准的 sasa.json，只更新并重新评审报告。\n\n原有要求全部保留。",
+  "previousTasks": [
+    {
+      "key": "sasa",
+      "assigneeAgentId": "member_node-5796e69a-d23f-4093-9bc7-733a4a958e5b",
+      "reviewerAgentId": "member_node-cb4d7be5-9f7d-45da-85b7-63e3ebf60f8e",
+      "outputFilename": "sasa.json",
+      "title": "计算表面积并交付原始证据",
+      "goal": "交付冻结方法下的 SASA 及复核材料",
+      "boundary": "仅计算固定结构几何量，不推断功能",
+      "acceptance": [
+        "输入、方法与数值符合固定协议",
+        "交付原代码、工具版本与执行日志",
+        "[REQ:r-30f7389ada8825d1] 核对原提案要求：计算冻结的 1CRN A 链重原子溶剂可及表面积，使用 Shrake-Rupley、1000 点、1.4 埃探针。",
+        "[REQ:r-bd9b0c8662d33c89] 核对原提案要求：交付总面积、逐残基面积、原代码及工具版本和执行日志。演示输出由模拟执行器提供，不是新的科研计算。"
+      ],
+      "dependencies": [],
+      "requirementIds": [
+        "r-30f7389ada8825d1",
+        "r-bd9b0c8662d33c89"
+      ],
+      "resultSchema": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "type": "string",
+            "const": "Shrake-Rupley"
+          }
+        },
+        "required": [
+          "method"
+        ]
+      },
+      "scientificChecks": [
+        {
+          "id": "check-09d9efd7-aedc-40d8-8e7c-c161b8d1edcf",
+          "kind": "reference",
+          "absoluteTolerance": 59.46325541227835,
+          "path": "total_A2",
+          "expected": 2973.1627706139175,
+          "relativeTolerance": 0,
+          "provenance": "已公开 1CRN 独立 NumPy 5000 点复核；本模拟复用历史参考，绝对容差为参考值的 2%。"
+        }
+      ],
+      "status": "APPROVED",
+      "attempt": 1,
+      "executionId": "8143521e-a436-4a2d-b647-009711484774",
+      "reviewId": "6c9a6897-81c2-469d-ba61-4ab067cec3c7",
+      "artifactId": "35293a3c-3ace-46cd-8ce7-8d5d9d393f5a",
+      "feedback": "Captain-supplied supplemental evidence (a claim to evaluate, not an override):\n【模拟操作材料】以下为已公开历史 1CRN 案例的原代码和日志，用于演示补证入口；不是本轮重新调用 SciencePAL 的记录。原模拟数值文件不变。\nCaptain-supplied supplemental evidence (a claim to evaluate, not an override):\nOriginal-run supplemental evidence, not replacement computation or an approval override.\nProject 85455c15-1857-4c5f-a876-85ca8b6cf7fa R1, task sasa, execution dba0cc88-c7a5-4e00-b797-5c5b6eca7c16. SciencePAL thread 19c49ca0-36fb-42ce-86d7-209baca731db, run 93daae81-8e30-4e5f-ae54-a17a8bdd5a6d.\nOriginal artifact SHA256 53f7fae95f77631efd829df07a38dab4ef1be0a76918eb1a074b058cb20a48ac is unchanged. Keep original calculations, values, rows and acceptance. The frozen controlled recovery clause permits operator-supplied original-run evidence for supplemental review. This is that evidence, not a revised sasa.json.\nI opened the original SciencePAL tool cards and read the actual commands/stdout. Attribution: operator-observed platform display, not signed provider telemetry. Original thread: https://sciencepal.ai/projects/f6328a20-2cc7-4564-aa81-f1cc85f00d87/thread/19c49ca0-36fb-42ce-86d7-209baca731db\nVersions actually captured: Biopython 1.84. Interpreter command python3; exact Python patch/dependency versions were not logged, so I do not invent them or substitute reviewer environment versions. Assess against the original criteria; extra version requirements must not silently enlarge scope.\nThe original run_sasa.py was downloaded without modification from the SAME sandbox after completion: 4065 bytes, SHA256 cb9f13f43624bb851b6f24e6e3600f00c73e84a24c068430afc906bf04c050e1. The script below is its full original UTF-8 source; no scientific computation was rerun to recover it.\n\nOriginal version tool card, 2026-10-31 15:30:24 Asia/Shanghai:\ncd /workspace && python3 -c \"import Bio; print('Biopython', Bio.__version__); from Bio.PDB.SASA import ShrakeRupley; print('ShrakeRupley available')\"\nBiopython 1.84\nShrakeRupley available\n\nOriginal computation tool card:\nBiology Agent的计算机\n执行命令\n命令执行成功\n命令\n$\ncd /workspace && python run_sasa.py\n命令输出\n成功\n终端输出\n›source_sha256: 42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811\n›source size bytes: 49491\n›atom_count: 327\n›residue_count: 46\n›residue_ids: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46]\n›total_A2: 2967.616530309649\n›sum of residue areas: 2967.6168000000002\n› \n›Wrote sasa.json\n›inputReceipts:\n›  context.json f66b8625d675c98dc0c0d55a77871a42abdb72b604402fd3f0783de6b9211db0 31615\n›  source-1CRN.pdb 42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811 49491\n› \n命令\n2026/10/31 15:30:46\n执行命令\n实时\n步骤 11 共 18\n跳转到最新\n\nreproduction (full original source):\n```python\n#!/usr/bin/env python3\n\"\"\"\nExecute Bio.PDB.SASA.ShrakeRupley on the frozen 1CRN structure.\nSelection: chain A, ATOM heavy atoms, altloc blank/A. Exclude HETATM and hydrogens.\nParameters: n_points=1000, probe_radius=1.4, radii C=1.70,N=1.55,O=1.52,S=1.80.\n\"\"\"\nimport hashlib\nimport json\nfrom Bio.PDB import PDBParser\nfrom Bio.PDB.SASA import ShrakeRupley\n\nSOURCE = \"source-1CRN.pdb\"\n\n# --- Verify source SHA256 ---\nwith open(SOURCE, \"rb\") as f:\n    raw = f.read()\nsource_sha256 = hashlib.sha256(raw).hexdigest()\nprint(\"source_sha256:\", source_sha256)\nprint(\"source size bytes:\", len(raw))\n\n# --- Parse structure ---\nparser = PDBParser(QUIET=True)\nstructure = parser.get_structure(\"1CRN\", SOURCE)\n\n# Select chain A\nmodel = structure[0]\nchain = model[\"A\"]\n\n# --- Count atoms/residues under frozen selection ---\n# ATOM heavy atoms, chain A, altloc blank/A, exclude HETATM and hydrogens\natom_count = 0\nresidue_ids = []\nfor residue in chain:\n    if residue.id[0] != \" \":  # exclude hetero residues (HETATM)\n        continue\n    res_atoms = []\n    for atom in residue:\n        # altloc blank/A\n        altloc = atom.get_altloc()\n        if altloc not in (\" \", \"A\"):\n            continue\n        # exclude hydrogens\n        element = atom.element.strip().upper()\n        if element in (\"H\", \"D\"):\n            continue\n        res_atoms.append(atom)\n    if res_atoms:\n        residue_ids.append(residue.id[1])\n        atom_count += len(res_atoms)\n\nprint(\"atom_count:\", atom_count)\nprint(\"residue_count:\", len(residue_ids))\nprint(\"residue_ids:\", residue_ids)\n\n# --- Run ShrakeRupley ---\nsr = ShrakeRupley(probe_radius=1.4, n_points=1000)\n# Element radii: C=1.70, N=1.55, O=1.52, S=1.80\nsr.radii_dict = {\"C\": 1.70, \"N\": 1.55, \"O\": 1.52, \"S\": 1.80}\nsr.compute(chain, level=\"R\")\n\n# --- Collect per-residue areas ---\nresidues_out = []\ntotal = 0.0\nfor residue in chain:\n    if residue.id[0] != \" \":\n        continue\n    area = residue.sasa\n    residues_out.append({\"residue_id\": residue.id[1], \"area_A2\": round(area, 4)})\n    total += area\n\nprint(\"total_A2:\", total)\nprint(\"sum of residue areas:\", sum(r[\"area_A2\"] for r in residues_out))\n\n# --- Write sasa.json envelope ---\nresult = {\n    \"method\": \"Shrake-Rupley\",\n    \"probe_radius_A\": 1.4,\n    \"n_points\": 1000,\n    \"atom_count\": atom_count,\n    \"residue_count\": len(residue_ids),\n    \"source_sha256\": source_sha256,\n    \"total_A2\": round(total, 4),\n    \"residues\": residues_out,\n    \"interpretation\": (\n        \"Solvent-accessible surface area (SASA) of the single frozen 1CRN structure \"\n        \"(chain A, 46 residues, 327 heavy atoms) computed with the Shrake-Rupley \"\n        \"geometric method using n_points=1000, probe_radius=1.4 Angstrom, and element \"\n        \"radii C=1.70, N=1.55, O=1.52, S=1.80 Angstrom. This is a reproducibility \"\n        \"exercise for one fixed structure, not a biological discovery. Values are in \"\n        \"square Angstrom (A^2).\"\n    ),\n    \"limitations\": (\n        \"SASA is a geometric measure dependent on the chosen probe radius, point \"\n        \"density (n_points), and element radii. Results apply only to this fixed \"\n        \"structure and this geometric method; no biological function ranking or \"\n        \"causal claims are made. The Shrake-Rupley method approximates the surface \"\n        \"by sampling a finite number of points per atom, so results are approximate \"\n        \"and may differ slightly from other SASA implementations.\"\n    ),\n}\n\nenvelope = {\n    \"revision\": 1,\n    \"inputReceipts\": [\n        {\n            \"filename\": \"context.json\",\n            \"sha256\": hashlib.sha256(open(\"context.json\", \"rb\").read()).hexdigest(),\n            \"size\": len(open(\"context.json\", \"rb\").read()),\n        },\n        {\n            \"filename\": \"source-1CRN.pdb\",\n            \"sha256\": source_sha256,\n            \"size\": len(raw),\n        },\n    ],\n    \"result\": result,\n}\n\nwith open(\"sasa.json\", \"w\") as f:\n    json.dump(envelope, f, indent=2)\n\nprint(\"\\nWrote sasa.json\")\nprint(\"inputReceipts:\")\nfor r in envelope[\"inputReceipts\"]:\n    print(\" \", r[\"filename\"], r[\"sha256\"], r[\"size\"])\n\n```\nKeep all frozen acceptance criteria, original artifact bytes and numeric checks. Independently review this evidence; reject if it does not resolve the original review.\nKeep all frozen acceptance criteria, original artifact bytes and numeric checks. Independently review this evidence; reject if it does not resolve the original review.",
+      "review": {
+        "verdict": "approve",
+        "summary": "模拟独立评审通过，允许交接。",
+        "checks": [
+          {
+            "criterion": "输入、方法与数值符合固定协议",
+            "passed": true,
+            "evidence": "sasa.json: 模拟评审：补证内容可供本演示复核；原数值文件保持不变。"
+          },
+          {
+            "criterion": "交付原代码、工具版本与执行日志",
+            "passed": true,
+            "evidence": "sasa.json: 模拟评审：补证内容可供本演示复核；原数值文件保持不变。"
+          },
+          {
+            "criterion": "[REQ:r-30f7389ada8825d1] 核对原提案要求：计算冻结的 1CRN A 链重原子溶剂可及表面积，使用 Shrake-Rupley、1000 点、1.4 埃探针。",
+            "passed": true,
+            "evidence": "sasa.json: 模拟评审：补证内容可供本演示复核；原数值文件保持不变。"
+          },
+          {
+            "criterion": "[REQ:r-bd9b0c8662d33c89] 核对原提案要求：交付总面积、逐残基面积、原代码及工具版本和执行日志。演示输出由模拟执行器提供，不是新的科研计算。",
+            "passed": true,
+            "evidence": "sasa.json: 模拟评审：补证内容可供本演示复核；原数值文件保持不变。"
+          }
+        ],
+        "requiredChanges": []
+      }
+    },
+    {
+      "key": "report",
+      "assigneeAgentId": "member_node-cb4d7be5-9f7d-45da-85b7-63e3ebf60f8e",
+      "reviewerAgentId": "member_node-5796e69a-d23f-4093-9bc7-733a4a958e5b",
+      "outputFilename": "report.json",
+      "title": "用获批结果撰写研究报告",
+      "goal": "核对批准依据后报告结果与局限",
+      "boundary": "只消费获批成果及绑定评审",
+      "acceptance": [
+        "引用获批结果及批准依据",
+        "说明几何结论的适用限制",
+        "[REQ:r-74ec1735afbb1e56] 核对原提案要求：使用获批成果撰写报告，说明固定结构几何计算的局限，不作生物功能推断。",
+        "[REQ:r-8520b60065b023cf] 核对原提案要求：独立复核输入、方法、参考值与执行证据；获批前不能交接报告。"
+      ],
+      "dependencies": [
+        "sasa"
+      ],
+      "requirementIds": [
+        "r-74ec1735afbb1e56",
+        "r-8520b60065b023cf"
+      ],
+      "resultSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "status": "APPROVED",
+      "attempt": 1,
+      "executionId": "9870c77f-8be3-44cc-8d6d-f44b54b1f66e",
+      "reviewId": "dd3a60fd-c131-4a11-9885-85c45273f710",
+      "artifactId": "71338729-b08a-4944-80d8-90e8460af4c1",
+      "feedback": "",
+      "review": {
+        "verdict": "approve",
+        "summary": "模拟独立评审通过，允许交接。",
+        "checks": [
+          {
+            "criterion": "引用获批结果及批准依据",
+            "passed": true,
+            "evidence": "report.json: 模拟评审：按本演示固定验收逐项核对。"
+          },
+          {
+            "criterion": "说明几何结论的适用限制",
+            "passed": true,
+            "evidence": "report.json: 模拟评审：按本演示固定验收逐项核对。"
+          },
+          {
+            "criterion": "[REQ:r-74ec1735afbb1e56] 核对原提案要求：使用获批成果撰写报告，说明固定结构几何计算的局限，不作生物功能推断。",
+            "passed": true,
+            "evidence": "report.json: 模拟评审：按本演示固定验收逐项核对。"
+          },
+          {
+            "criterion": "[REQ:r-8520b60065b023cf] 核对原提案要求：独立复核输入、方法、参考值与执行证据；获批前不能交接报告。",
+            "passed": true,
+            "evidence": "report.json: 模拟评审：按本演示固定验收逐项核对。"
+          }
+        ],
+        "requiredChanges": []
+      }
+    }
+  ],
+  "lastAppliedChange": {
+    "snapshotSha256": "6b2194d14c15f6930799232c600a6c69c2019b42d1acaabe15a9f0f4b26ba68f",
+    "requestedByNodeId": "node-cb4d7be5-9f7d-45da-85b7-63e3ebf60f8e",
+    "id": "892cd3af-42b4-41b6-a85f-e746bcf42e01",
+    "request": "仅补充报告的中文摘要和局限说明：明确固定结构的几何表面积不能推断生物功能。原 1CRN 输入、Shrake-Rupley 方法、1000 点、1.4 埃探针、数值检查与上游验收全部不变。沿用已批准的 sasa.json，只更新并重新评审报告。",
+    "baseRevision": 1,
+    "runId": "e39dfa3e-cb32-473b-b533-9ccd62eca05c",
+    "previousPhase": "COMPLETED",
+    "status": "APPLIED",
+    "result": {
+      "verdict": "accept",
+      "rationale": "只增加报告中文摘要和限制，不改变上游输入、方法、数值或验收。",
+      "affectedTaskKeys": [
+        "report"
+      ],
+      "requirementMarkdown": "## 原始提案 member_node-cb4d7be5-9f7d-45da-85b7-63e3ebf60f8e\n独立复核输入、方法、参考值与执行证据；获批前不能交接报告。\n使用获批成果撰写报告，说明固定结构几何计算的局限，不作生物功能推断。\n\n## 原始提案 member_node-5796e69a-d23f-4093-9bc7-733a4a958e5b\n计算冻结的 1CRN A 链重原子溶剂可及表面积，使用 Shrake-Rupley、1000 点、1.4 埃探针。\n交付总面积、逐残基面积、原代码及工具版本和执行日志。演示输出由模拟执行器提供，不是新的科研计算。\n\n## 对齐说明\n# 1CRN 科研交接操作演示\n本段使用确定性模拟执行器；不调用真实模型。固定 1CRN 输入、Shrake-Rupley、1000 点、1.4 埃探针。SciencePAL 计算，Codex 复核与报告，报告由另一成员评审。",
+      "taskImpacts": [
+        {
+          "key": "sasa",
+          "affected": false,
+          "rationale": "原成果及批准继续有效",
+          "fingerprint": "263c7d43ffabec25596feab411dd51c5cf9a8532d9baa343c176ac4dfae318db"
+        },
+        {
+          "key": "report",
+          "affected": true,
+          "rationale": "补充报告说明",
+          "fingerprint": "20c0e8661a2e4f64cc4e03d6758e59fca41d49dbc70d7ae2a5aa56644d7e8f14"
+        }
+      ],
+      "requirementEdits": []
+    }
+  },
+  "decisions": [],
+  "approvedChanges": [
+    {
+      "snapshotSha256": "6b2194d14c15f6930799232c600a6c69c2019b42d1acaabe15a9f0f4b26ba68f",
+      "requestedByNodeId": "node-cb4d7be5-9f7d-45da-85b7-63e3ebf60f8e",
+      "id": "892cd3af-42b4-41b6-a85f-e746bcf42e01",
+      "request": "仅补充报告的中文摘要和局限说明：明确固定结构的几何表面积不能推断生物功能。原 1CRN 输入、Shrake-Rupley 方法、1000 点、1.4 埃探针、数值检查与上游验收全部不变。沿用已批准的 sasa.json，只更新并重新评审报告。",
+      "baseRevision": 1,
+      "runId": "e39dfa3e-cb32-473b-b533-9ccd62eca05c",
+      "previousPhase": "COMPLETED",
+      "status": "APPLIED",
+      "result": {
+        "verdict": "accept",
+        "rationale": "只增加报告中文摘要和限制，不改变上游输入、方法、数值或验收。",
+        "affectedTaskKeys": [
+          "report"
+        ],
+        "requirementMarkdown": "## 原始提案 member_node-cb4d7be5-9f7d-45da-85b7-63e3ebf60f8e\n独立复核输入、方法、参考值与执行证据；获批前不能交接报告。\n使用获批成果撰写报告，说明固定结构几何计算的局限，不作生物功能推断。\n\n## 原始提案 member_node-5796e69a-d23f-4093-9bc7-733a4a958e5b\n计算冻结的 1CRN A 链重原子溶剂可及表面积，使用 Shrake-Rupley、1000 点、1.4 埃探针。\n交付总面积、逐残基面积、原代码及工具版本和执行日志。演示输出由模拟执行器提供，不是新的科研计算。\n\n## 对齐说明\n# 1CRN 科研交接操作演示\n本段使用确定性模拟执行器；不调用真实模型。固定 1CRN 输入、Shrake-Rupley、1000 点、1.4 埃探针。SciencePAL 计算，Codex 复核与报告，报告由另一成员评审。",
+        "taskImpacts": [
+          {
+            "key": "sasa",
+            "affected": false,
+            "rationale": "原成果及批准继续有效",
+            "fingerprint": "263c7d43ffabec25596feab411dd51c5cf9a8532d9baa343c176ac4dfae318db"
+          },
+          {
+            "key": "report",
+            "affected": true,
+            "rationale": "补充报告说明",
+            "fingerprint": "20c0e8661a2e4f64cc4e03d6758e59fca41d49dbc70d7ae2a5aa56644d7e8f14"
+          }
+        ],
+        "requirementEdits": []
+      }
+    }
+  ],
+  "governance": {
+    "version": 1,
+    "requirements": [
+      {
+        "id": "r-8520b60065b023cf",
+        "text": "独立复核输入、方法、参考值与执行证据；获批前不能交接报告。",
+        "sourceId": "4130527e-52da-43ac-a1f1-ad291acf2667",
+        "sourceSha256": "5ff06fd0b19889147487711de9428aecac77d18fc529cb902f6fdb8b89cfdfd3",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-74ec1735afbb1e56",
+        "text": "使用获批成果撰写报告，说明固定结构几何计算的局限，不作生物功能推断。",
+        "sourceId": "4130527e-52da-43ac-a1f1-ad291acf2667",
+        "sourceSha256": "5ff06fd0b19889147487711de9428aecac77d18fc529cb902f6fdb8b89cfdfd3",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-30f7389ada8825d1",
+        "text": "计算冻结的 1CRN A 链重原子溶剂可及表面积，使用 Shrake-Rupley、1000 点、1.4 埃探针。",
+        "sourceId": "30ca11df-137f-4b30-aba4-6352877076f1",
+        "sourceSha256": "8d81c0234c531d23571aacd17510f8fc414bae153053bfa9ecb8eff52d5858cd",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-bd9b0c8662d33c89",
+        "text": "交付总面积、逐残基面积、原代码及工具版本和执行日志。演示输出由模拟执行器提供，不是新的科研计算。",
+        "sourceId": "30ca11df-137f-4b30-aba4-6352877076f1",
+        "sourceSha256": "8d81c0234c531d23571aacd17510f8fc414bae153053bfa9ecb8eff52d5858cd",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-e1973059704af597",
+        "text": "仅补充报告的中文摘要和局限说明：明确固定结构的几何表面积不能推断生物功能。原 1CRN 输入、Shrake-Rupley 方法、1000 点、1.4 埃探针、数值检查与上游验收全部不变。沿用已批准的 sasa.json，只更新并重新评审报告。",
+        "sourceId": "892cd3af-42b4-41b6-a85f-e746bcf42e01",
+        "sourceSha256": "50873a61deec76bfe262b8674bde1562b0c0bf527fbea2f40517a64dccceb2a9",
+        "introducedRevision": 2
+      }
+    ],
+    "decisions": []
+  },
+  "resultSchemas": {
+    "sasa": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "const": "Shrake-Rupley"
+        }
+      },
+      "required": [
+        "method"
+      ]
+    },
+    "report": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  "scientificChecks": {
+    "version": 1,
+    "sourceSha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+    "tasks": {
+      "sasa": [
+        {
+          "id": "check-09d9efd7-aedc-40d8-8e7c-c161b8d1edcf",
+          "kind": "reference",
+          "absoluteTolerance": 59.46325541227835,
+          "path": "total_A2",
+          "expected": 2973.1627706139175,
+          "relativeTolerance": 0,
+          "provenance": "已公开 1CRN 独立 NumPy 5000 点复核；本模拟复用历史参考，绝对容差为参考值的 2%。"
+        }
+      ]
+    }
+  },
+  "source": {
+    "filename": "source-1crn.pdb",
+    "sourceUrl": "https://www.rcsb.org/structure/1CRN",
+    "attribution": "RCSB PDB 1CRN 公开结构；操作演示使用模拟执行器，不是本次真实模型计算。"
+  }
+}

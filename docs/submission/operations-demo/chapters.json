@@ -1,0 +1,538 @@
+[
+  {
+    "title": "两位参与者，一位队长",
+    "duration": 14,
+    "clips": [
+      {
+        "name": "30-task-overview",
+        "crop": [
+          25,
+          380,
+          1510,
+          920
+        ]
+      },
+      {
+        "name": "31-member-topology",
+        "crop": [
+          25,
+          370,
+          1510,
+          1035
+        ]
+      }
+    ],
+    "en": "A teammate calculates protein surface area in SciencePAL. The captain uses Codex to review it and write a report. But which file is approved, and what happens when evidence is missing?",
+    "zh": [
+      "成员用 SciencePAL 计算；队长用 Codex 复核并写报告。",
+      "哪份文件获批？缺少执行证据时，下游还能不能用？"
+    ],
+    "scope": "操作演示 · 模拟执行器",
+    "actualDuration": 14.0,
+    "start": 0
+  },
+  {
+    "title": "从成员提案开始",
+    "duration": 12,
+    "clips": [
+      {
+        "name": "01-proposal",
+        "crop": [
+          520,
+          205,
+          1395,
+          875
+        ]
+      }
+    ],
+    "en": "Let us follow this case from the beginning. These are actual workbench actions with simulated agents. Each member saves a proposal, including the method and required evidence.",
+    "zh": [
+      "下面从头操作；界面是真实产品，Agent 使用模拟执行器。",
+      "每位成员先保存方法、参数和交付要求。"
+    ],
+    "scope": "操作演示 · 模拟执行器",
+    "actualDuration": 12.166666666666666,
+    "start": 14.0
+  },
+  {
+    "title": "上传输入，冻结提案",
+    "duration": 20,
+    "clips": [
+      {
+        "name": "02-open-create",
+        "crop": [
+          510,
+          90,
+          1400,
+          1020
+        ]
+      },
+      {
+        "name": "03-upload",
+        "crop": [
+          515,
+          180,
+          1405,
+          1000
+        ]
+      },
+      {
+        "name": "04-create",
+        "crop": [
+          510,
+          470,
+          1400,
+          1020
+        ]
+      }
+    ],
+    "en": "The captain creates the project, selects both members, and uploads the public one C R N structure. We enter its source and attribution, then freeze the proposals and input together. Later tasks receive this same file, rather than a renamed copy from a chat.",
+    "zh": [
+      "队长选定成员，上传公开 1CRN 结构，填写来源。",
+      "点击“冻结提案并建立项目”：后续任务使用同一份输入。"
+    ],
+    "scope": "操作演示 · 模拟执行器",
+    "actualDuration": 20.0,
+    "start": 26.167
+  },
+  {
+    "title": "对齐任务与原始要求",
+    "duration": 18,
+    "clips": [
+      {
+        "name": "05-start-alignment",
+        "crop": [
+          35,
+          440,
+          1510,
+          1040
+        ]
+      },
+      {
+        "name": "06-align-result",
+        "crop": [
+          35,
+          470,
+          1510,
+          1040
+        ]
+      }
+    ],
+    "en": "Next, start protocol alignment and return the local task packet. The host checks the structured response. The resulting plan separates calculation from reporting, assigns a different reviewer, and ties each task back to the original proposals.",
+    "zh": [
+      "启动对齐，交回任务包；系统检查任务是否覆盖原提案。",
+      "计算与报告分开，执行者和评审者分别指定。"
+    ],
+    "scope": "操作演示 · 模拟执行器",
+    "actualDuration": 18.0,
+    "start": 46.167
+  },
+  {
+    "title": "固定方法，减少交接偏移",
+    "duration": 12,
+    "clips": [
+      {
+        "name": "07-review-protocol",
+        "crop": [
+          35,
+          20,
+          1500,
+          650
+        ]
+      },
+      {
+        "name": "08-freeze-method",
+        "crop": [
+          35,
+          190,
+          1500,
+          850
+        ]
+      }
+    ],
+    "en": "Inspect the protocol: all four proposal lines are covered. Freeze Shrake Rupley as the required method. This checks the declared method; independent review must still examine its actual execution.",
+    "zh": [
+      "发布前核对原文覆盖，并冻结 Shrake-Rupley 方法。",
+      "字段规则防止约定被悄悄改掉；不等于证明方法真正执行。"
+    ],
+    "scope": "操作演示 · 模拟执行器",
+    "actualDuration": 13.458333333333334,
+    "start": 64.167
+  },
+  {
+    "title": "冻结参考与容差",
+    "duration": 12,
+    "clips": [
+      {
+        "name": "09-freeze-reference",
+        "crop": [
+          35,
+          45,
+          1490,
+          735
+        ]
+      }
+    ],
+    "en": "We also configure a numerical reference and a two percent tolerance. These are researcher supplied rules. Passing them does not establish every scientific claim, and a reviewer cannot override a failed check.",
+    "zh": [
+      "参考值与 2% 容差由研究者预先配置。",
+      "数值检查失败时，文字批准不能放行；检查只覆盖所配置的规则。"
+    ],
+    "scope": "操作演示 · 模拟执行器",
+    "actualDuration": 13.916666666666666,
+    "start": 77.625
+  },
+  {
+    "title": "队长确认发布",
+    "duration": 10,
+    "clips": [
+      {
+        "name": "10-publish",
+        "crop": [
+          35,
+          130,
+          1490,
+          805
+        ]
+      }
+    ],
+    "en": "The captain publishes the tasks. Calculation runs first. The report waits for independent approval; producing a file alone cannot release the next task.",
+    "zh": [
+      "队长确认发布：先计算，报告等待上游批准。",
+      "交出文件不等于获得交接资格。"
+    ],
+    "scope": "操作演示 · 模拟执行器",
+    "actualDuration": 11.458333333333334,
+    "start": 91.542
+  },
+  {
+    "title": "成员领取 SciencePAL 任务",
+    "duration": 12,
+    "clips": [
+      {
+        "name": "11-start-sciencepal",
+        "crop": [
+          35,
+          470,
+          1490,
+          1040
+        ]
+      }
+    ],
+    "en": "On the member side, start the connector and claim the assigned SciencePAL task. In this demonstration, a deterministic simulator supplies the result. No real account quota is consumed.",
+    "zh": [
+      "成员启动自己的连接器，领取 SciencePAL 任务。",
+      "本段使用模拟输出，不调用真实模型、不消耗账号额度。"
+    ],
+    "scope": "操作演示 · 模拟执行器",
+    "actualDuration": 13.0,
+    "start": 103.0
+  },
+  {
+    "title": "SciencePAL 实际承担什么",
+    "duration": 20,
+    "clips": [
+      {
+        "name": "26-sciencepal-history",
+        "crop": [
+          1055,
+          80,
+          1895,
+          750
+        ]
+      },
+      {
+        "name": "27b-real-checks-hold",
+        "crop": [
+          1055,
+          260,
+          1895,
+          850
+        ]
+      }
+    ],
+    "en": "Here is a separate, earlier public SciencePAL verification. We open the recorded protein structure skill, then its successful command output. SciencePAL actually ran checks and delivered source files. This historical thread shows real research tooling; it is not the simulated execution we just clicked.",
+    "zh": [
+      "切到另一批次的历史公开复核：查看科研 Skill 与命令输出。",
+      "SciencePAL 实际执行核查、交付代码；这不是刚才模拟操作的实时输出。"
+    ],
+    "scope": "历史真实记录 · 公开独立复核",
+    "actualDuration": 20.0,
+    "start": 116.0
+  },
+  {
+    "title": "退回：数值可用，执行证据不足",
+    "duration": 18,
+    "clips": [
+      {
+        "name": "12-review-return",
+        "crop": [
+          35,
+          500,
+          1490,
+          1040
+        ]
+      }
+    ],
+    "en": "Back in the workbench, Codex returns the review. The result passes the configured numerical rule, but the original code and version log are missing. The review requests changes. Notice that the report still waits. An incomplete handoff has been stopped.",
+    "zh": [
+      "回到模拟操作：评审指出缺少原代码和版本日志。",
+      "结果暂不交接，报告仍等待上游；这次退回不是数值检查失败。"
+    ],
+    "scope": "操作演示 · 模拟执行器",
+    "actualDuration": 18.0,
+    "start": 136.0
+  },
+  {
+    "title": "只缺记录：选择补证复审",
+    "duration": 17,
+    "clips": [
+      {
+        "name": "13-supplement-open",
+        "crop": [
+          65,
+          325,
+          1485,
+          960
+        ]
+      },
+      {
+        "name": "14-submit-supplement",
+        "crop": [
+          65,
+          495,
+          1485,
+          960
+        ]
+      }
+    ],
+    "en": "Because the result itself is unchanged, choose supplementary review instead of recomputing. The confirmation explains the effect: keep the original file and add one independent review. Paste the original source and execution record, identify their origin, and confirm.",
+    "zh": [
+      "选择“补充证据复审”：保留原成果，只新增一次独立评审。",
+      "粘贴原代码和日志并说明来源；结果或方法有错时仍应返工。"
+    ],
+    "scope": "操作演示 · 模拟执行器",
+    "actualDuration": 17.541666666666668,
+    "start": 154.0
+  },
+  {
+    "title": "复审通过后才放行",
+    "duration": 12,
+    "clips": [
+      {
+        "name": "15-supplement-approved",
+        "crop": [
+          35,
+          485,
+          1490,
+          1030
+        ]
+      }
+    ],
+    "en": "The reviewer receives the unchanged result plus the supplementary evidence. We return that new review through the normal checks. Only after approval does the report task become available.",
+    "zh": [
+      "原成果与补充证据一起交给独立评审者。",
+      "复审通过后，报告任务才开始；并未重新执行上游计算。"
+    ],
+    "scope": "操作演示 · 模拟执行器",
+    "actualDuration": 12.333333333333334,
+    "start": 171.542
+  },
+  {
+    "title": "报告消费获批成果",
+    "duration": 17,
+    "clips": [
+      {
+        "name": "16-first-report",
+        "crop": [
+          35,
+          330,
+          1490,
+          1030
+        ]
+      },
+      {
+        "name": "17b-approved-result",
+        "crop": [
+          35,
+          20,
+          1480,
+          550
+        ]
+      }
+    ],
+    "en": "Codex writes the report and another member reviews it. The saved surface area is about two thousand nine hundred sixty seven square angstroms. This simulated handoff reuses historical values for a fixed structure, not a biological discovery.",
+    "zh": [
+      "报告也由另一成员评审；然后打开获批计算结果。",
+      "模拟沿用历史数值 2967.6165 Å²：固定结构的几何量，不推断功能。"
+    ],
+    "scope": "操作演示 · 模拟执行器",
+    "actualDuration": 17.0,
+    "start": 183.875
+  },
+  {
+    "title": "核对文件交给了谁",
+    "duration": 12,
+    "clips": [
+      {
+        "name": "18-handoff",
+        "crop": [
+          35,
+          35,
+          1490,
+          700
+        ]
+      }
+    ],
+    "en": "Open the handoff. It connects the producer, approval, and receiving task, matching the frozen file to the actual downstream input. We no longer have to guess which copy was used.",
+    "zh": [
+      "打开文件交接：上游生成、独立批准、下游收到对应文件。",
+      "按冻结文件身份匹配实际输入，避免靠文件名猜版本。"
+    ],
+    "scope": "操作演示 · 模拟执行器",
+    "actualDuration": 12.75,
+    "start": 200.875
+  },
+  {
+    "title": "需求变化：只改报告",
+    "duration": 16,
+    "clips": [
+      {
+        "name": "19-report-change",
+        "crop": [
+          35,
+          335,
+          1490,
+          1035
+        ]
+      }
+    ],
+    "en": "Now the captain asks for a Chinese summary and clearer limitations. The request explicitly leaves the structure, method, parameters, numerical checks, and upstream acceptance unchanged. Submit this as a research change, rather than silently editing the old agreement.",
+    "zh": [
+      "队长只增加中文摘要和局限说明，明确上游输入与方法不变。",
+      "通过研究变更提出要求，不直接改写原协议。"
+    ],
+    "scope": "操作演示 · 模拟执行器",
+    "actualDuration": 17.833333333333332,
+    "start": 213.625
+  },
+  {
+    "title": "审查影响范围，再确认",
+    "duration": 14,
+    "clips": [
+      {
+        "name": "20-change-review",
+        "crop": [
+          35,
+          330,
+          1490,
+          1035
+        ]
+      },
+      {
+        "name": "21-apply-change",
+        "crop": [
+          35,
+          280,
+          1490,
+          1005
+        ]
+      }
+    ],
+    "en": "The change review marks only the report as affected. The captain confirms. Task fingerprints and the original requirements are checked before unaffected work can be reused.",
+    "zh": [
+      "变更评审确定影响报告，再由队长确认生成 R2。",
+      "系统核对任务指纹，保留原始要求；不是听到“复用”就直接放行。"
+    ],
+    "scope": "操作演示 · 模拟执行器",
+    "actualDuration": 14.0,
+    "start": 231.458
+  },
+  {
+    "title": "R2 对齐并重新发布",
+    "duration": 15,
+    "clips": [
+      {
+        "name": "22-realign-r2",
+        "crop": [
+          35,
+          320,
+          1490,
+          1035
+        ]
+      },
+      {
+        "name": "23-republish-r2",
+        "crop": [
+          35,
+          320,
+          1490,
+          1035
+        ]
+      }
+    ],
+    "en": "Return the revised alignment and publish R two. The calculation is already approved when this round begins. The system schedules only the report execution and its review, rather than asking SciencePAL to calculate the same structure again.",
+    "zh": [
+      "完成 R2 对齐并发布，上游计算已保持批准状态。",
+      "重新执行报告及其评审，不再计算相同结构。"
+    ],
+    "scope": "操作演示 · 模拟执行器",
+    "actualDuration": 15.625,
+    "start": 245.458
+  },
+  {
+    "title": "直接看复用结果",
+    "duration": 20,
+    "clips": [
+      {
+        "name": "24-second-report",
+        "crop": [
+          35,
+          300,
+          1490,
+          1035
+        ]
+      },
+      {
+        "name": "25-reuse-proof",
+        "crop": [
+          35,
+          100,
+          1490,
+          750
+        ]
+      }
+    ],
+    "en": "The second report is reviewed and the delivery panel says: reuse the approved R one result. We checked that the calculation file, execution, and approving review are identical across revisions. This demonstration recorded one calculation, two calculation reviews, and two report executions. Reuse avoids that upstream rerun, not all review cost.",
+    "zh": [
+      "R2 交付明确显示“沿用 R1 获批成果”。",
+      "已核对文件、计算作业与批准评审一致；1 次计算、2 次上游评审、2 次报告执行。"
+    ],
+    "scope": "操作演示 · 模拟执行器",
+    "actualDuration": 23.458333333333332,
+    "start": 261.083
+  },
+  {
+    "title": "交付清楚，边界也清楚",
+    "duration": 10,
+    "clips": [
+      {
+        "name": "29-final-delivery",
+        "crop": [
+          35,
+          100,
+          1490,
+          770
+        ]
+      }
+    ],
+    "en": "This is a traceable handoff with a clear recovery action, not a guarantee of scientific correctness or lower cost. Recording, evidence, and simulator are linked below.",
+    "zh": [
+      "成果、批准依据和恢复动作放在一起，交接更容易核对。",
+      "不宣称保证科学正确或总体省钱；播放页提供历史证据与复现方法。"
+    ],
+    "scope": "操作演示 · 模拟执行器",
+    "actualDuration": 11.458333333333334,
+    "start": 284.542
+  }
+]

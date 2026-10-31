@@ -21,8 +21,10 @@ const a=request(captain.nodeToken),leaderProfile=join(root,'leader');
 const options={allowLocalExecution:false,remote:()=>new ResearchRemote('directory'),worker:env=>{const child=new EventEmitter();child.stopped=false;child.kill=()=>{child.stopped=true;child.emit('exit',0);return true;};child.ready=(async()=>{const c=JSON.parse(await readFile(env.VIBE_GIT_MEMBER_FILE));child.req=request(c.nodeToken);child.env=env;child.connector=new SciencePALMemberConnector(new ResearchRemote('simulated-science',sim.calculate),child.req,{phase:'IDLE',projectId:env.VIBE_GIT_PROJECT_ID},async()=>{});})();workers.push(child);return child;}};
 const leader=await buildResearchPanel({...options,profileDir:leaderProfile,captainFile:join(root,'captain.json'),hostUrl:host});await leader.listen();
 const member=await buildResearchPanel({...options,profileDir:join(root,'member')});await member.listen();
-let busy=false;const timer=setInterval(async()=>{if(busy)return;busy=true;try{
+let busy=false,lastState='';const timer=setInterval(async()=>{if(busy)return;busy=true;try{
  await pipeline.tick();
+ const state=JSON.stringify({scope:'Deterministic simulation only; no provider calls',counts:sim.counts,trace:sim.trace,projects:pipeline.list()},null,2);
+ if(state!==lastState){await writeFile(join(out,'verification-state.json'),state);lastState=state;}
  for(const w of workers){await w.ready;if(!w.stopped){await w.req('/api/sciencepal-team/heartbeat',{channel:'connector',instanceId:w.env.VIBE_GIT_CONNECTOR_INSTANCE,projectId:w.env.VIBE_GIT_PROJECT_ID,status:'working'});await w.connector.step();}}
  for(const p of pipeline.list())for(const r of p.runs.filter(r=>r.ownerNodeId===captain.nodeId&&r.revision===p.revision&&['STARTING','RUNNING'].includes(r.status))){
   const info=await managedCodexTask('inspect',a,{host,nodeId:captain.nodeId,projectId:p.id,runId:r.id,profileDir:leaderProfile});
@@ -36,7 +38,7 @@ await saveEntryTickets();
 const entryTimer=setInterval(()=>void saveEntryTickets().catch(e=>console.error('Local entry refresh:',e.message)),30000);
 await writeFile(join(out,'captain-proposal.md'),study.captain+'\n');
 await writeFile(join(out,'scientist-proposal.md'),study.scientist+'\n');
-await writeFile(join(out,'START-HERE.md'),"# 1CRN filming draft - SIMULATION ONLY\n\nOpen the private captain/member URLs in session.json. Join with the local invitation; use only SIMULATED-ONLY as the mock key. Save the two proposals. Create a project through the captain UI and upload 1crn.pdb, attributing RCSB PDB.\n\nThis draft was only filmed through agent selection and proposal entry. Alignment, supplementary review and revision reuse still require validation. Simulated results copy an explicitly marked historical result; they are NOT a fresh SciencePAL calculation.\n\nFor Codex actions prepare the task packet, wait for the mock output, then check and submit. Do not start a real model. For SciencePAL start the local mock connector. Keep all output/session files private.\n");
+await writeFile(join(out,'START-HERE.md'),"# 1CRN filming draft - SIMULATION ONLY\n\nOpen the private captain/member URLs in session.json. Join with the local invitation; use only SIMULATED-ONLY as the mock key. Save the two proposals. Create a project through the captain UI and upload 1crn.pdb, attributing RCSB PDB.\n\nThe full UI path was verified on 2026-11-01: create, align, publish, reject, supplementary review, report, report-only revision and retained upstream approval. See docs/submission/operations-demo/evidence/verification.json. Simulated results copy an explicitly marked historical result; they are NOT a fresh SciencePAL calculation.\n\nFor Codex actions prepare the task packet, wait for the mock output, then check and submit. Do not start a real model. For SciencePAL start the local mock connector. Keep all output/session files private.\n");
 console.log('Human walkthrough: '+join(out,'START-HERE.md'));
 
 console.log('SIMULATION ONLY. SciencePAL key: SIMULATED-ONLY. Local outputs appear after preparing a task; click check/submit, not launch a real model.');console.log('Private session saved; no real model calls.');

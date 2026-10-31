@@ -1,0 +1,73 @@
+{
+  "version": "operations-20261101-v1",
+  "scope": "Recorded product UI with deterministic simulated agents; separately labelled historical public SciencePAL verification",
+  "durationSeconds": 296.02,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "fps": 24,
+  "audio": "AAC stereo, English synthetic narration",
+  "meanAudioDb": -25.0,
+  "peakAudioDb": -5.2,
+  "chineseSubtitles": "burned in, 38 cues; SRT and VTT provided",
+  "fullDecode": true,
+  "representativeEncodedFrames": [
+    6,
+    24,
+    47,
+    90,
+    137,
+    159,
+    179,
+    200,
+    225,
+    250,
+    276,
+    291
+  ],
+  "browserPlaybackVerified": true,
+  "publicPlaybackVerified": false,
+  "fixtureTestsPassed": 6,
+  "simulatedEvidenceChecksPassed": 16,
+  "files": {
+    "vibe-git-operations.mp4": {
+      "bytes": 13659065,
+      "sha256": "c328f3f1730f72a4fe56df128f1678e5053067b0f278027d2684936d000136d6"
+    },
+    "poster.jpg": {
+      "bytes": 214241,
+      "sha256": "44ccbdec2e9b0beb42474fd7cf2689ca0179bcb7bf5cad39c978dc0d41d507ba"
+    },
+    "zh-CN.srt": {
+      "bytes": 4184,
+      "sha256": "2328e44d64de9fce174e42f0fdf02a911f6aedf20b96fa4374ef27e88196cce5"
+    },
+    "zh-CN.vtt": {
+      "bytes": 4051,
+      "sha256": "3e91b0efb455f109fa81955cb25fba749ec5c48d29a7a174f15bc11614d286a0"
+    },
+    "en.srt": {
+      "bytes": 4949,
+      "sha256": "edc604bcef18a9af1c9febc2bd278dc7da033100d8ae062875ad498762265dbf"
+    },
+    "chapters.json": {
+      "bytes": 16421,
+      "sha256": "58b53fbd03d0b607dd86b888e4b52ee2102bb7ebf22206943d89d1e9510e31a6"
+    }
+  },
+  "browserPlaybackObservation": {
+    "browser": "ego lite",
+    "duration": 296.021,
+    "currentTimeAfterPlay": 1.045873,
+    "paused": false,
+    "muted": false,
+    "volume": 1,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "mediaError": null
+  },
+  "fullscreenObservation": "Entered fullscreen; Ego screenshot was blocked by native minimized-window state. Encoded full-resolution frames inspected separately."
+}

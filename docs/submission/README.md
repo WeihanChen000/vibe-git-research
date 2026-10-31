@@ -1,5 +1,7 @@
 # AI4Science Hackathon 最终提交包
 
+> 2026-11-01：已补交 [完整界面操作视频](https://weihanchen000.github.io/vibe-git-research/submission/operations-demo/watch.html)（4:56，英文配音、中文字幕）。工作台为实际操作、模拟 Agent；历史真实 SciencePAL 片段另标注。新版视频来源与核验见仓库 `tools/submission/operations-video/README.md`；下方旧视频版本和提交状态按历史材料保留。未替用户提交问卷。
+
 > **CityuAI4S 整合审核：**新工作台已获用户同意，流程修复已回归检查；[审核记录](../research/CITYUAI4S-INTEGRATION-20261031.md)。现有视频尚未更新为该界面；新增文件清单为 sciencepal-handoff/artifact-checks.json。
 
 > **交接状态：现有视频待重剪，尚未获使用者认可。** 技术播放检查通过不代表讲解效果合格。后续修改和正式提交交给队友，完整源码、配音与未完成录像材料见 [队友接手页](../../TEAM-HANDOFF.md)。

@@ -1,0 +1,131 @@
+{
+  "scope": "Deterministic simulation; actual unmodified Host state and file receipts; no provider calls. Independent reviews are simulated, not scientific validation.",
+  "artifacts": {
+    "31e0e10f-e68d-48f7-82a7-71e3f6201b43": {
+      "filename": "context.json",
+      "sha256": "f0a08903aebe1f6dcb01202f7af43962f17e17eab824ca7e4264bb1d72dbbfea",
+      "size": 3565,
+      "path": "files/31e0e10f-e68d-48f7-82a7-71e3f6201b43/context.json"
+    },
+    "77dd354d-635f-49cb-bdb4-5f8ccb350b93": {
+      "filename": "source-1crn.pdb",
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size": 49491,
+      "path": "files/77dd354d-635f-49cb-bdb4-5f8ccb350b93/source-1crn.pdb"
+    },
+    "cbaf8ca3-2a4d-4012-9204-335de64aa833": {
+      "filename": "align-result.json",
+      "sha256": "968b559e40c191cc74b799f22ed430b56ad5e2a1b116f912c2e58d46fcfa54ba",
+      "size": 1397,
+      "path": "files/cbaf8ca3-2a4d-4012-9204-335de64aa833/align-result.json"
+    },
+    "9177edab-5f29-4c06-9ad1-81e01b77583e": {
+      "filename": "context.json",
+      "sha256": "7b173fabd5c811dee8dedac66d22a19294465dd7f606a024f422feba8a6fb617",
+      "size": 5863,
+      "path": "files/9177edab-5f29-4c06-9ad1-81e01b77583e/context.json"
+    },
+    "35293a3c-3ace-46cd-8ce7-8d5d9d393f5a": {
+      "filename": "sasa.json",
+      "sha256": "8cb89646d86457ab54a78dfdc01a28cdabe5b52275d34b036c7d26d07df5843c",
+      "size": 3118,
+      "path": "files/35293a3c-3ace-46cd-8ce7-8d5d9d393f5a/sasa.json"
+    },
+    "b7fb847f-d742-4fb6-84d9-ab539b741905": {
+      "filename": "context.json",
+      "sha256": "9a255bdf796ffe68c58bfcac47f6b4d11817f535a0fff0f02ca313adee073a4f",
+      "size": 6665,
+      "path": "files/b7fb847f-d742-4fb6-84d9-ab539b741905/context.json"
+    },
+    "c7020fc2-290b-47ea-beda-70491438c079": {
+      "filename": "review-result.json",
+      "sha256": "64a6885a0eb75f3a59deb186f590c105718502f330b235ee00d52c63a1263fa7",
+      "size": 1891,
+      "path": "files/c7020fc2-290b-47ea-beda-70491438c079/review-result.json"
+    },
+    "ee80f514-ef33-406b-8b9d-cabeef471079": {
+      "filename": "context.json",
+      "sha256": "4edb8f15f285c6d9be06c06ec54ae537bc1324c2c7f73d4c4d32840cb204b1b7",
+      "size": 23749,
+      "path": "files/ee80f514-ef33-406b-8b9d-cabeef471079/context.json"
+    },
+    "153c06ff-c00f-4690-bd80-9fe30e29c595": {
+      "filename": "review-result.json",
+      "sha256": "808faab0ef60e9d01459be213515cf60b4d03d48720a972a5e409a0e0b006e5d",
+      "size": 1514,
+      "path": "files/153c06ff-c00f-4690-bd80-9fe30e29c595/review-result.json"
+    },
+    "860b2e92-ed4f-4b8e-b40d-af2f9340e9ec": {
+      "filename": "context.json",
+      "sha256": "0ce69ab69a9434b923b2801f2fa65d93f55634d5b377ec0ab325d6391c3c9e29",
+      "size": 8782,
+      "path": "files/860b2e92-ed4f-4b8e-b40d-af2f9340e9ec/context.json"
+    },
+    "71338729-b08a-4944-80d8-90e8460af4c1": {
+      "filename": "report.json",
+      "sha256": "1efc14105bb5929692a34d431118cd07a5fbb3b8fb3a7dfa8ce3259dfe46002a",
+      "size": 691,
+      "path": "files/71338729-b08a-4944-80d8-90e8460af4c1/report.json"
+    },
+    "cf558f5d-2c72-442f-8c0a-88daab68d1fa": {
+      "filename": "context.json",
+      "sha256": "d6a48f05a06382aecb5fcba408670bb989db6e9c09a61075c64b766848aa5f13",
+      "size": 9671,
+      "path": "files/cf558f5d-2c72-442f-8c0a-88daab68d1fa/context.json"
+    },
+    "cb9531e8-dc8c-413e-81a2-bb2ac1576e7b": {
+      "filename": "review-result.json",
+      "sha256": "f04745023c4e7c49b3d06e3d1ec16f053ee25e2f5742f2d1d6173adf4c831c70",
+      "size": 1442,
+      "path": "files/cb9531e8-dc8c-413e-81a2-bb2ac1576e7b/review-result.json"
+    },
+    "b52915c3-2881-46b1-b48f-47229567d104": {
+      "filename": "context.json",
+      "sha256": "e798e08915b331b8a75facc0cb6568db40b8f1652c4ea9de4502f9c9222982af",
+      "size": 19175,
+      "path": "files/b52915c3-2881-46b1-b48f-47229567d104/context.json"
+    },
+    "ba4151c5-9a12-4818-991b-7b994f41a3d8": {
+      "filename": "change_review-result.json",
+      "sha256": "3909ebc29353e77f14e91d236df278c753cc40f2a879ed65a9bac50d85568285",
+      "size": 1004,
+      "path": "files/ba4151c5-9a12-4818-991b-7b994f41a3d8/change_review-result.json"
+    },
+    "b36e1442-9485-46ee-a5d4-6bf26bb8531b": {
+      "filename": "context.json",
+      "sha256": "8492acace67f929c865efb3d0c80099841d9b4013a66f15b6ab4fa1e582fbe48",
+      "size": 24516,
+      "path": "files/b36e1442-9485-46ee-a5d4-6bf26bb8531b/context.json"
+    },
+    "fe2d2842-c3fb-4176-a2b4-6465da03b049": {
+      "filename": "align-result.json",
+      "sha256": "8d5abe1e879a4502218e0c3fb223ebd255a34956ab380518fa3135682ffb080f",
+      "size": 11033,
+      "path": "files/fe2d2842-c3fb-4176-a2b4-6465da03b049/align-result.json"
+    },
+    "723ae465-4981-4780-bae4-aed555174370": {
+      "filename": "context.json",
+      "sha256": "70d9eef5e24e301cbbcdc37e91a3b97eea2a4020ebde3b8c5e65a224103113e0",
+      "size": 10254,
+      "path": "files/723ae465-4981-4780-bae4-aed555174370/context.json"
+    },
+    "b2c91852-32f7-4516-9153-c0e1639352d7": {
+      "filename": "report.json",
+      "sha256": "3261d55d68f636083103b51fc9692ed4f775f27cd44a32d8369c1e01bacdc705",
+      "size": 747,
+      "path": "files/b2c91852-32f7-4516-9153-c0e1639352d7/report.json"
+    },
+    "49329bc7-5f46-4aa5-a2fd-724674f10211": {
+      "filename": "context.json",
+      "sha256": "7011f341dccfad385ffdd7421afaeec4861459c859f8c52d25c703db475bf8e9",
+      "size": 11143,
+      "path": "files/49329bc7-5f46-4aa5-a2fd-724674f10211/context.json"
+    },
+    "d5923bbd-1ad4-4222-9431-3b3cce5ea5be": {
+      "filename": "review-result.json",
+      "sha256": "50c3a2b06d724202a346e0a284a33f1a6aa4c2796fe8666c90217e34d340afba",
+      "size": 1889,
+      "path": "files/d5923bbd-1ad4-4222-9431-3b3cce5ea5be/review-result.json"
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "revision": 1,
+  "agents": [
+    {
+      "id": "member_node-cb4d7be5-9f7d-45da-85b7-63e3ebf60f8e",
+      "name": "队长 · Codex（模拟） · Codex 本地",
+      "platform": "codex",
+      "runtimeAgentId": "codex-local"
+    },
+    {
+      "id": "member_node-5796e69a-d23f-4093-9bc7-733a4a958e5b",
+      "name": "Member-8E5B · SIMULATED expert",
+      "runtimeAgentId": "simulated-research-expert"
+    }
+  ],
+  "proposals": [
+    {
+      "id": "4130527e-52da-43ac-a1f1-ad291acf2667",
+      "agentId": "member_node-cb4d7be5-9f7d-45da-85b7-63e3ebf60f8e",
+      "content": "独立复核输入、方法、参考值与执行证据；获批前不能交接报告。\n使用获批成果撰写报告，说明固定结构几何计算的局限，不作生物功能推断。",
+      "sha256": "5ff06fd0b19889147487711de9428aecac77d18fc529cb902f6fdb8b89cfdfd3",
+      "ownerNodeId": "node-cb4d7be5-9f7d-45da-85b7-63e3ebf60f8e",
+      "documentId": "DOC-5674c1a4-84ad-432b-8c18-e24dfb5ab6a9",
+      "documentRevision": 1
+    },
+    {
+      "id": "30ca11df-137f-4b30-aba4-6352877076f1",
+      "agentId": "member_node-5796e69a-d23f-4093-9bc7-733a4a958e5b",
+      "content": "计算冻结的 1CRN A 链重原子溶剂可及表面积，使用 Shrake-Rupley、1000 点、1.4 埃探针。\n交付总面积、逐残基面积、原代码及工具版本和执行日志。演示输出由模拟执行器提供，不是新的科研计算。",
+      "sha256": "8d81c0234c531d23571aacd17510f8fc414bae153053bfa9ecb8eff52d5858cd",
+      "ownerNodeId": "node-5796e69a-d23f-4093-9bc7-733a4a958e5b",
+      "documentId": "DOC-6470e7d3-04d4-4c17-9399-d6a05e603f52",
+      "documentRevision": 1
+    }
+  ],
+  "publishedRequirement": "",
+  "previousTasks": [],
+  "decisions": [],
+  "approvedChanges": [],
+  "governance": {
+    "version": 1,
+    "requirements": [
+      {
+        "id": "r-8520b60065b023cf",
+        "text": "独立复核输入、方法、参考值与执行证据；获批前不能交接报告。",
+        "sourceId": "4130527e-52da-43ac-a1f1-ad291acf2667",
+        "sourceSha256": "5ff06fd0b19889147487711de9428aecac77d18fc529cb902f6fdb8b89cfdfd3",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-74ec1735afbb1e56",
+        "text": "使用获批成果撰写报告，说明固定结构几何计算的局限，不作生物功能推断。",
+        "sourceId": "4130527e-52da-43ac-a1f1-ad291acf2667",
+        "sourceSha256": "5ff06fd0b19889147487711de9428aecac77d18fc529cb902f6fdb8b89cfdfd3",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-30f7389ada8825d1",
+        "text": "计算冻结的 1CRN A 链重原子溶剂可及表面积，使用 Shrake-Rupley、1000 点、1.4 埃探针。",
+        "sourceId": "30ca11df-137f-4b30-aba4-6352877076f1",
+        "sourceSha256": "8d81c0234c531d23571aacd17510f8fc414bae153053bfa9ecb8eff52d5858cd",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-bd9b0c8662d33c89",
+        "text": "交付总面积、逐残基面积、原代码及工具版本和执行日志。演示输出由模拟执行器提供，不是新的科研计算。",
+        "sourceId": "30ca11df-137f-4b30-aba4-6352877076f1",
+        "sourceSha256": "8d81c0234c531d23571aacd17510f8fc414bae153053bfa9ecb8eff52d5858cd",
+        "introducedRevision": 1
+      }
+    ],
+    "decisions": []
+  },
+  "source": {
+    "filename": "source-1crn.pdb",
+    "sourceUrl": "https://www.rcsb.org/structure/1CRN",
+    "attribution": "RCSB PDB 1CRN 公开结构；操作演示使用模拟执行器，不是本次真实模型计算。"
+  }
+}

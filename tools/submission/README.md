@@ -1,5 +1,7 @@
 # 可编辑制作源：交给接手队友
 
+> 2026-11-01：已补交 [完整界面操作视频](https://weihanchen000.github.io/vibe-git-research/submission/operations-demo/watch.html)（4:56，英文配音、中文字幕）。工作台为实际操作、模拟 Agent；历史真实 SciencePAL 片段另标注。新版视频来源与核验见仓库 `tools/submission/operations-video/README.md`；下方旧视频版本和提交状态按历史材料保留。未替用户提交问卷。
+
 本目录补齐此前只保存在本机的有用材料。**它不是新版本成片，也不表示现有视频已获用户认可。** 当前视频被指出操作画面太小，需要接手人重剪。
 
 ## 文件

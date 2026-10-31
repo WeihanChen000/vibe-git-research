@@ -1,25 +1,39 @@
-# 未完成的 1CRN 操作视频草稿
+# 1CRN 操作录像模拟器
 
-**不是成片，不是完整验收结果。** 上次录制因窗口最小化及用户停止电脑控制中断。只确认拍到：
-1. SciencePAL 模拟 Agent 选择。
-2. 成员提案输入（保存前）。
+2026-11-01 已通过实际工作台完成建项、对齐、发布、退回、补证复审、报告、报告变更与 R2 复用。没有调用真实模型。成片与可复核记录见 [操作演示](../../../docs/submission/operations-demo/README.md)。
 
-图片见 `../assets/01-agent-select.png` 和 `02-proposal-before.png`。邀请链接、模拟会话令牌、临时端口、浏览器自动化脚本和本机运行目录没有上传，队友须新建自己的模拟现场。
+本轮修复模拟器两处问题：默认 SciencePAL Agent 的 `platform` 可省略；模拟评审需要逐项引用成果文件名，并将每项修改要求绑定到失败的原验收项。修复通过同一套未改动的 Host 检查，未放宽产品门禁。
 
-## 已准备的隔离模拟器
+## 自己复现
 
-`server.mjs` 复用冻结版 Host、原 UI、连接器和状态机，使用临时数据库；`fixture.mjs` 提供确定性 Agent 输出。上游数值复制自已有公开 1CRN 文件并带 synthetic 标记，**不进行新的 SciencePAL 科学计算**。
+在仓库 `vibe-git` 下完成 `npm ci`、`npm run build`，然后：
 
-在仓库 `vibe-git` 目录完成 npm ci / npm run build 后：
 ```powershell
-node ../tools/submission/operations-draft/server.mjs
+node ../tools/submission/operations-draft/server.mjs 1crn
 ```
-本机 `output/video-operations-v2/session/START-HERE.md` 与 session.json 会生成队长/成员入口和邀请，只给本机演示使用。模拟 Key 只能用 `SIMULATED-ONLY`，不要输入真实密钥。关闭终端结束模拟。
 
-计划路径（尚未完整走通）：绑定 Agent → 保存提案 → 上传 1CRN → 对齐发布 → 上游交回 → 缺代码日志退回 → 补证复审 → 报告交接 → 仅改报告 → 沿用上游获批成果。两个脚本仅检查语法，fixture 另做了导入和输入文件读取检查；服务器及后续流程未在此次交接重跑；若模拟器在后续步骤失败，不应修改产品门禁来配合演示。
+打开本机 `output/video-operations-v2/session/START-HERE.md`，从私有 session.json 获取队长和成员入口；在两个浏览器标签中操作。该目录含本机邀请和会话凭据，禁止上传。模拟 Key 仅用 `SIMULATED-ONLY`。
 
-已完整验证的通用模拟优先用 `npm run research:experiment -- calibration` 或 `-- kinetics`。真实补证与复用证据在 `docs/research/latest-governance-live/`；这份草稿没有新增真实证据。
+1. 队长绑定 Codex；成员用邀请加入，绑定模拟 SciencePAL。分别保存生成的两份提案。
+2. 队长建项，上传生成的 `1crn.pdb`，填写 RCSB 来源。两人均须选中。
+3. 启动对齐。Codex 每次选择“准备本人任务包”，等待模拟结果后“检查并交回成果”；不要启动真实模型。
+4. 发布前可冻结 `method = Shrake-Rupley`，参考 `total_A2 = 2973.1627706139175`，绝对容差 `59.46325541227835`（参考值的 2%），说明来源。
+5. 发布后，成员启动本人连接器。计算完成后队长交回模拟评审，会因缺原代码和日志退回。
+6. 选择“补充证据复审”，注明模拟范围，粘贴已公开历史案例的原代码与执行记录。再次准备并交回评审；随后准备并交回报告。成员连接器会评审报告。
+7. 提出“只补报告中文摘要与局限；上游输入、方法、参数、数值规则与验收不变”。完成变更评审，确认、重新对齐、发布，执行 R2 报告。
+8. 检查“沿用 R1 获批成果”。`verification-state.json` 包含完整本机状态及模拟调用计数；不要直接公开未经检查的会话目录。按 Ctrl+C 停止这个模拟器。
 
-## 不要照旧版小图排版
+本次完整录制为 10 项模拟作业：2 次对齐、1 次计算、2 次计算评审、2 次报告执行、2 次报告评审、1 次变更评审。模拟审查是确定性测试替身，不会判断任意用户材料的科学真实性；不可把模拟通过当成真实 Agent 能力证明。
 
-先短暂显示全界面定位，再放大实际按钮与状态；说明“谁操作、点哪里、结果是什么”。动作截图只能说明所拍动作；不能给未录制步骤配上“实操已完成”的旁白。字幕、焦点框是视频注释，不要修改原 UI 的颜色、布局或按钮来方便拍摄。
+## 检查
+
+从仓库根目录执行：
+
+```powershell
+node --test tools/submission/operations-draft/fixture.test.mjs
+python tools/submission/operations-video/verify.py
+```
+
+前者对模拟器使用实际 Host 评审契约做 6 项回归测试；后者对公开的已录制模拟证据做 16 项离线核验。它们不重新调用 SciencePAL。历史真实案例保持原样，见 `docs/research/latest-governance-live/`。
+
+`capture.mjs` 通过已授权的 ego 页面 CDP screencast 捕获实际浏览器帧。它不更改页面 DOM、协议、权限或产品状态。截图按原始帧保存在制作源包中，剪辑只放大、停留、调节时间并添加来源角标和字幕。

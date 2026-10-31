@@ -1,0 +1,75 @@
+1
+00:00:00,000 --> 00:00:14,000
+A teammate calculates protein surface area in SciencePAL. The captain uses Codex to review it and write a report. But which file is approved, and what happens when evidence is missing?
+
+2
+00:00:14,000 --> 00:00:26,167
+Let us follow this case from the beginning. These are actual workbench actions with simulated agents. Each member saves a proposal, including the method and required evidence.
+
+3
+00:00:26,167 --> 00:00:46,167
+The captain creates the project, selects both members, and uploads the public one C R N structure. We enter its source and attribution, then freeze the proposals and input together. Later tasks receive this same file, rather than a renamed copy from a chat.
+
+4
+00:00:46,167 --> 00:01:04,167
+Next, start protocol alignment and return the local task packet. The host checks the structured response. The resulting plan separates calculation from reporting, assigns a different reviewer, and ties each task back to the original proposals.
+
+5
+00:01:04,167 --> 00:01:17,625
+Inspect the protocol: all four proposal lines are covered. Freeze Shrake Rupley as the required method. This checks the declared method; independent review must still examine its actual execution.
+
+6
+00:01:17,625 --> 00:01:31,542
+We also configure a numerical reference and a two percent tolerance. These are researcher supplied rules. Passing them does not establish every scientific claim, and a reviewer cannot override a failed check.
+
+7
+00:01:31,542 --> 00:01:43,000
+The captain publishes the tasks. Calculation runs first. The report waits for independent approval; producing a file alone cannot release the next task.
+
+8
+00:01:43,000 --> 00:01:56,000
+On the member side, start the connector and claim the assigned SciencePAL task. In this demonstration, a deterministic simulator supplies the result. No real account quota is consumed.
+
+9
+00:01:56,000 --> 00:02:16,000
+Here is a separate, earlier public SciencePAL verification. We open the recorded protein structure skill, then its successful command output. SciencePAL actually ran checks and delivered source files. This historical thread shows real research tooling; it is not the simulated execution we just clicked.
+
+10
+00:02:16,000 --> 00:02:34,000
+Back in the workbench, Codex returns the review. The result passes the configured numerical rule, but the original code and version log are missing. The review requests changes. Notice that the report still waits. An incomplete handoff has been stopped.
+
+11
+00:02:34,000 --> 00:02:51,542
+Because the result itself is unchanged, choose supplementary review instead of recomputing. The confirmation explains the effect: keep the original file and add one independent review. Paste the original source and execution record, identify their origin, and confirm.
+
+12
+00:02:51,542 --> 00:03:03,875
+The reviewer receives the unchanged result plus the supplementary evidence. We return that new review through the normal checks. Only after approval does the report task become available.
+
+13
+00:03:03,875 --> 00:03:20,875
+Codex writes the report and another member reviews it. The saved surface area is about two thousand nine hundred sixty seven square angstroms. This simulated handoff reuses historical values for a fixed structure, not a biological discovery.
+
+14
+00:03:20,875 --> 00:03:33,625
+Open the handoff. It connects the producer, approval, and receiving task, matching the frozen file to the actual downstream input. We no longer have to guess which copy was used.
+
+15
+00:03:33,625 --> 00:03:51,458
+Now the captain asks for a Chinese summary and clearer limitations. The request explicitly leaves the structure, method, parameters, numerical checks, and upstream acceptance unchanged. Submit this as a research change, rather than silently editing the old agreement.
+
+16
+00:03:51,458 --> 00:04:05,458
+The change review marks only the report as affected. The captain confirms. Task fingerprints and the original requirements are checked before unaffected work can be reused.
+
+17
+00:04:05,458 --> 00:04:21,083
+Return the revised alignment and publish R two. The calculation is already approved when this round begins. The system schedules only the report execution and its review, rather than asking SciencePAL to calculate the same structure again.
+
+18
+00:04:21,083 --> 00:04:44,541
+The second report is reviewed and the delivery panel says: reuse the approved R one result. We checked that the calculation file, execution, and approving review are identical across revisions. This demonstration recorded one calculation, two calculation reviews, and two report executions. Reuse avoids that upstream rerun, not all review cost.
+
+19
+00:04:44,542 --> 00:04:56,000
+This is a traceable handoff with a clear recovery action, not a guarantee of scientific correctness or lower cost. Recording, evidence, and simulator are linked below.

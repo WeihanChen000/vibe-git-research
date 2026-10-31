@@ -1,0 +1,3029 @@
+{
+  "scope": "Actual UI frames with editorial crops and retiming; simulated agents except separately labelled public historical SciencePAL verification. No fabricated product state.",
+  "fps": 24,
+  "duration": 296.0,
+  "chapters": [
+    {
+      "title": "两位参与者，一位队长",
+      "duration": 14,
+      "clips": [
+        {
+          "name": "30-task-overview",
+          "crop": [
+            25,
+            380,
+            1510,
+            920
+          ]
+        },
+        {
+          "name": "31-member-topology",
+          "crop": [
+            25,
+            370,
+            1510,
+            1035
+          ]
+        }
+      ],
+      "en": "A teammate calculates protein surface area in SciencePAL. The captain uses Codex to review it and write a report. But which file is approved, and what happens when evidence is missing?",
+      "zh": [
+        "成员用 SciencePAL 计算；队长用 Codex 复核并写报告。",
+        "哪份文件获批？缺少执行证据时，下游还能不能用？"
+      ],
+      "scope": "操作演示 · 模拟执行器",
+      "actualDuration": 14.0,
+      "start": 0,
+      "frames": [
+        {
+          "start": 0.0,
+          "duration": 1.0,
+          "capture": "30-task-overview",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": true,
+          "sourceSha256": "d0c63548ccca2de3d287b44aacee2a8391f812264e3da49c331ecb02a596a36f"
+        },
+        {
+          "start": 1.0,
+          "duration": 1.031,
+          "capture": "30-task-overview",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "d0c63548ccca2de3d287b44aacee2a8391f812264e3da49c331ecb02a596a36f"
+        },
+        {
+          "start": 2.031,
+          "duration": 0.013,
+          "capture": "30-task-overview",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "e607ede720d4d6bc90c5449c737a62ef9c540ea981cfa4a4fb3da4b20c5dd75d"
+        },
+        {
+          "start": 2.045,
+          "duration": 0.799,
+          "capture": "30-task-overview",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "3aff90cc719a4a2c482aedf3b7de120679948e8362e0c0e018786da259dde789"
+        },
+        {
+          "start": 2.844,
+          "duration": 0.013,
+          "capture": "30-task-overview",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "75a6b9fa22a6d8e05d050bcd136799eddab2c6e220274c1cab1e22780c645067"
+        },
+        {
+          "start": 2.857,
+          "duration": 0.013,
+          "capture": "30-task-overview",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "75a6b9fa22a6d8e05d050bcd136799eddab2c6e220274c1cab1e22780c645067"
+        },
+        {
+          "start": 2.871,
+          "duration": 0.088,
+          "capture": "30-task-overview",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "d8f9c1ec6e907b95504159ef43ff462c674490a281ca5f42f420ce136a634eef"
+        },
+        {
+          "start": 2.958,
+          "duration": 0.015,
+          "capture": "30-task-overview",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": false,
+          "sourceSha256": "99ffc017e48216c19489b12399add75bce8e677adb95ae5a518c2bd69d673103"
+        },
+        {
+          "start": 2.974,
+          "duration": 0.013,
+          "capture": "30-task-overview",
+          "sourceFrame": "frame-00007.jpg",
+          "wide": false,
+          "sourceSha256": "7a73b6b3b5f12f6c61b5f1b56d566b7dd0b53c0bf3a8e1d7de29142c1c7b744f"
+        },
+        {
+          "start": 2.987,
+          "duration": 0.09,
+          "capture": "30-task-overview",
+          "sourceFrame": "frame-00008.jpg",
+          "wide": false,
+          "sourceSha256": "5fa1a2d7b59cc7d66fd4e4ada3ece5930f8a1fbb37e9df425c04a312b0d9fb9f"
+        },
+        {
+          "start": 3.077,
+          "duration": 2.026,
+          "capture": "30-task-overview",
+          "sourceFrame": "frame-00009.jpg",
+          "wide": false,
+          "sourceSha256": "8506499377cce61adc0ad7b1c8e818d7b33ed45fc33fe919f0af40add45cb65a"
+        },
+        {
+          "start": 5.102,
+          "duration": 0.011,
+          "capture": "30-task-overview",
+          "sourceFrame": "frame-00010.jpg",
+          "wide": false,
+          "sourceSha256": "7d86efd23c834be2a314520e67adc3abbf336a1a02f09fc3c23ef9f2c9d17278"
+        },
+        {
+          "start": 5.114,
+          "duration": 0.013,
+          "capture": "30-task-overview",
+          "sourceFrame": "frame-00011.jpg",
+          "wide": false,
+          "sourceSha256": "0a851a85cf03d67f90bdcdaaeb6a2a2991b741f95cc62d364ca46a9eb28087dc"
+        },
+        {
+          "start": 5.127,
+          "duration": 1.873,
+          "capture": "30-task-overview",
+          "sourceFrame": "frame-00012.jpg",
+          "wide": false,
+          "sourceSha256": "d3d60570dd448312856569664d72bc5e3dba20ffd8cffc12f1c51f3b7d90885b"
+        },
+        {
+          "start": 7.0,
+          "duration": 2.897,
+          "capture": "31-member-topology",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "d3d60570dd448312856569664d72bc5e3dba20ffd8cffc12f1c51f3b7d90885b"
+        },
+        {
+          "start": 9.897,
+          "duration": 0.015,
+          "capture": "31-member-topology",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "d3d60570dd448312856569664d72bc5e3dba20ffd8cffc12f1c51f3b7d90885b"
+        },
+        {
+          "start": 9.912,
+          "duration": 0.013,
+          "capture": "31-member-topology",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "d3d60570dd448312856569664d72bc5e3dba20ffd8cffc12f1c51f3b7d90885b"
+        },
+        {
+          "start": 9.925,
+          "duration": 0.087,
+          "capture": "31-member-topology",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "bdfc8f73daf542f9388a0e1d332c074d2661db4bbb683967eeb6a89f9e547b4b"
+        },
+        {
+          "start": 10.012,
+          "duration": 0.015,
+          "capture": "31-member-topology",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "81c410b366629d8e9a9df117630b80710c169dcd3763f6578db30ef7f183a501"
+        },
+        {
+          "start": 10.027,
+          "duration": 0.015,
+          "capture": "31-member-topology",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "e95d63e9a5fd1712f2793c57b1a7e730756283ffc1546e9ff2428ae58e2c7715"
+        },
+        {
+          "start": 10.042,
+          "duration": 0.085,
+          "capture": "31-member-topology",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": false,
+          "sourceSha256": "73cb8a91f4235e7624600d0c919efaa31144e04cddec6c0673cf2b71ab3f88a2"
+        },
+        {
+          "start": 10.127,
+          "duration": 2.801,
+          "capture": "31-member-topology",
+          "sourceFrame": "frame-00007.jpg",
+          "wide": false,
+          "sourceSha256": "2a123a784581a4ca2211e54755cce34aa0b83ad552707ef05f3bcdaec2cbce31"
+        },
+        {
+          "start": 12.928,
+          "duration": 0.605,
+          "capture": "31-member-topology",
+          "sourceFrame": "frame-00008.jpg",
+          "wide": false,
+          "sourceSha256": "920fc7709a98ffbb1e9114a17408b9957b1bb5f32472473074eb295597886084"
+        },
+        {
+          "start": 13.533,
+          "duration": 0.467,
+          "capture": "31-member-topology",
+          "sourceFrame": "frame-00009.jpg",
+          "wide": false,
+          "sourceSha256": "77f6181f0346fbf3f4555ae10b65950fa09490f29a53797c5aa7e7d6ab10b69c"
+        }
+      ]
+    },
+    {
+      "title": "从成员提案开始",
+      "duration": 12,
+      "clips": [
+        {
+          "name": "01-proposal",
+          "crop": [
+            520,
+            205,
+            1395,
+            875
+          ]
+        }
+      ],
+      "en": "Let us follow this case from the beginning. These are actual workbench actions with simulated agents. Each member saves a proposal, including the method and required evidence.",
+      "zh": [
+        "下面从头操作；界面是真实产品，Agent 使用模拟执行器。",
+        "每位成员先保存方法、参数和交付要求。"
+      ],
+      "scope": "操作演示 · 模拟执行器",
+      "actualDuration": 12.166666666666666,
+      "start": 14.0,
+      "frames": [
+        {
+          "start": 0.0,
+          "duration": 0.283,
+          "capture": "01-proposal",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": true,
+          "sourceSha256": "91692547e27f693b9e403253a28d980eb633c521f12b048aa9a936669ce6ec88"
+        },
+        {
+          "start": 0.283,
+          "duration": 0.717,
+          "capture": "01-proposal",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": true,
+          "sourceSha256": "37f9ed5fe5c0966e78bd8b9c278b7e0f3637cab9cf389632fc81c36b56c167fb"
+        },
+        {
+          "start": 1.0,
+          "duration": 3.744,
+          "capture": "01-proposal",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "37f9ed5fe5c0966e78bd8b9c278b7e0f3637cab9cf389632fc81c36b56c167fb"
+        },
+        {
+          "start": 4.744,
+          "duration": 1.339,
+          "capture": "01-proposal",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "da99631f7b3575a3c6df478ab8514e1eacf7a802ecc8c65cf8e1bf069a9ca65e"
+        },
+        {
+          "start": 6.083,
+          "duration": 2.552,
+          "capture": "01-proposal",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "da99631f7b3575a3c6df478ab8514e1eacf7a802ecc8c65cf8e1bf069a9ca65e"
+        },
+        {
+          "start": 8.635,
+          "duration": 0.016,
+          "capture": "01-proposal",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "e8bc91c5e5bac9468fba3c2bb4cd70c7d44533158c10101954565ac81c1258c7"
+        },
+        {
+          "start": 8.651,
+          "duration": 1.041,
+          "capture": "01-proposal",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "c6ce93e9e81c9aff5063b4993d53b79b6e8f0fd8bb5e45d6c7a908bdac73ced7"
+        },
+        {
+          "start": 9.692,
+          "duration": 2.474,
+          "capture": "01-proposal",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "0699ee47f426083f5cf4d599c8e62e6356d7c7f199594692449bbdb1eaafe1f2"
+        }
+      ]
+    },
+    {
+      "title": "上传输入，冻结提案",
+      "duration": 20,
+      "clips": [
+        {
+          "name": "02-open-create",
+          "crop": [
+            510,
+            90,
+            1400,
+            1020
+          ]
+        },
+        {
+          "name": "03-upload",
+          "crop": [
+            515,
+            180,
+            1405,
+            1000
+          ]
+        },
+        {
+          "name": "04-create",
+          "crop": [
+            510,
+            470,
+            1400,
+            1020
+          ]
+        }
+      ],
+      "en": "The captain creates the project, selects both members, and uploads the public one C R N structure. We enter its source and attribution, then freeze the proposals and input together. Later tasks receive this same file, rather than a renamed copy from a chat.",
+      "zh": [
+        "队长选定成员，上传公开 1CRN 结构，填写来源。",
+        "点击“冻结提案并建立项目”：后续任务使用同一份输入。"
+      ],
+      "scope": "操作演示 · 模拟执行器",
+      "actualDuration": 20.0,
+      "start": 26.167,
+      "frames": [
+        {
+          "start": 0.0,
+          "duration": 1.0,
+          "capture": "02-open-create",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": true,
+          "sourceSha256": "813deade1bd9cd5bb43ba8704953c700213224826994192f858d47950f4f1368"
+        },
+        {
+          "start": 1.0,
+          "duration": 1.672,
+          "capture": "02-open-create",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "813deade1bd9cd5bb43ba8704953c700213224826994192f858d47950f4f1368"
+        },
+        {
+          "start": 2.672,
+          "duration": 1.768,
+          "capture": "02-open-create",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "fc154fa3a2294f1fb6cb0a20bdcf31f48e6e806e424e1f6f2b255a1e1fb4f9cc"
+        },
+        {
+          "start": 4.44,
+          "duration": 0.009,
+          "capture": "02-open-create",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "cabfe25de335a53d811cd7856fbf7d2f276e59c3a13a23b2b7ed13de4ef88acf"
+        },
+        {
+          "start": 4.449,
+          "duration": 1.1,
+          "capture": "02-open-create",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "fc154fa3a2294f1fb6cb0a20bdcf31f48e6e806e424e1f6f2b255a1e1fb4f9cc"
+        },
+        {
+          "start": 5.549,
+          "duration": 1.118,
+          "capture": "02-open-create",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "12d1d9ff20c0593161ac6a315a39fa932f3ebb2d8520a3d88f6852333f684a7c"
+        },
+        {
+          "start": 6.667,
+          "duration": 2.725,
+          "capture": "03-upload",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "12d1d9ff20c0593161ac6a315a39fa932f3ebb2d8520a3d88f6852333f684a7c"
+        },
+        {
+          "start": 9.392,
+          "duration": 0.011,
+          "capture": "03-upload",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "104b14fcee78f6741ad3390fbba6b0d3cd6a515fbb714e7feec3b6795f225beb"
+        },
+        {
+          "start": 9.403,
+          "duration": 0.009,
+          "capture": "03-upload",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "d882d67648aaf2546296229fd038ccaadf2117a0eb5af143346628f23953220d"
+        },
+        {
+          "start": 9.412,
+          "duration": 0.588,
+          "capture": "03-upload",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "2f56bceada59acd993809bfd53ce5dcd6897dc250b59c4a6e61b6a42cf1758c1"
+        },
+        {
+          "start": 10.0,
+          "duration": 0.355,
+          "capture": "03-upload",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "2f56bceada59acd993809bfd53ce5dcd6897dc250b59c4a6e61b6a42cf1758c1"
+        },
+        {
+          "start": 10.355,
+          "duration": 0.931,
+          "capture": "03-upload",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "236f7d68d4406b12f808924be6e0ed1cca45fb76def9ceb5d3a27a843ba7f1cc"
+        },
+        {
+          "start": 11.286,
+          "duration": 0.94,
+          "capture": "03-upload",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "630c69b28c76a02535e68063759683b9f81abb968d0957d6f32a227aa1853473"
+        },
+        {
+          "start": 12.226,
+          "duration": 0.76,
+          "capture": "03-upload",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": false,
+          "sourceSha256": "236f7d68d4406b12f808924be6e0ed1cca45fb76def9ceb5d3a27a843ba7f1cc"
+        },
+        {
+          "start": 12.986,
+          "duration": 0.347,
+          "capture": "03-upload",
+          "sourceFrame": "frame-00007.jpg",
+          "wide": false,
+          "sourceSha256": "630c69b28c76a02535e68063759683b9f81abb968d0957d6f32a227aa1853473"
+        },
+        {
+          "start": 13.333,
+          "duration": 1.044,
+          "capture": "04-create",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "236f7d68d4406b12f808924be6e0ed1cca45fb76def9ceb5d3a27a843ba7f1cc"
+        },
+        {
+          "start": 14.377,
+          "duration": 0.85,
+          "capture": "04-create",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "630c69b28c76a02535e68063759683b9f81abb968d0957d6f32a227aa1853473"
+        },
+        {
+          "start": 15.227,
+          "duration": 0.006,
+          "capture": "04-create",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "236f7d68d4406b12f808924be6e0ed1cca45fb76def9ceb5d3a27a843ba7f1cc"
+        },
+        {
+          "start": 15.233,
+          "duration": 0.006,
+          "capture": "04-create",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "14b748438f85c70458782d2f9700f8e1bf3a2edada1f3ce53743653cca7244df"
+        },
+        {
+          "start": 15.239,
+          "duration": 0.634,
+          "capture": "04-create",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "c1815e281ea66846a988f550a434d12be3e6736a50a03d4507bd5894b1f3581a"
+        },
+        {
+          "start": 15.873,
+          "duration": 0.684,
+          "capture": "04-create",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "c6948d7629f21d9b020aa552c17e6bd6137b219d8486b24b9bcf721a99672d95"
+        },
+        {
+          "start": 16.557,
+          "duration": 0.286,
+          "capture": "04-create",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": false,
+          "sourceSha256": "2dc311871659f4843536e99cf5b9292ba62f2e5897c1fdf4d0413333b4ed5d38"
+        },
+        {
+          "start": 16.843,
+          "duration": 1.59,
+          "capture": "04-create",
+          "sourceFrame": "frame-00007.jpg",
+          "wide": false,
+          "sourceSha256": "c6948d7629f21d9b020aa552c17e6bd6137b219d8486b24b9bcf721a99672d95"
+        },
+        {
+          "start": 18.433,
+          "duration": 0.011,
+          "capture": "04-create",
+          "sourceFrame": "frame-00008.jpg",
+          "wide": false,
+          "sourceSha256": "cee88d9a0957f6e030da348293e2765a4f18ca80a19047c14dfd26b341fced3e"
+        },
+        {
+          "start": 18.444,
+          "duration": 0.006,
+          "capture": "04-create",
+          "sourceFrame": "frame-00009.jpg",
+          "wide": false,
+          "sourceSha256": "d680bbf035cacc77319423aebbe2f46c68194b7b2385bc760fe150725dc794e0"
+        },
+        {
+          "start": 18.45,
+          "duration": 1.55,
+          "capture": "04-create",
+          "sourceFrame": "frame-00010.jpg",
+          "wide": false,
+          "sourceSha256": "b5226be7d25d172660182f541157c25a2c75c0153eae3b0d9958345eb511135b"
+        }
+      ]
+    },
+    {
+      "title": "对齐任务与原始要求",
+      "duration": 18,
+      "clips": [
+        {
+          "name": "05-start-alignment",
+          "crop": [
+            35,
+            440,
+            1510,
+            1040
+          ]
+        },
+        {
+          "name": "06-align-result",
+          "crop": [
+            35,
+            470,
+            1510,
+            1040
+          ]
+        }
+      ],
+      "en": "Next, start protocol alignment and return the local task packet. The host checks the structured response. The resulting plan separates calculation from reporting, assigns a different reviewer, and ties each task back to the original proposals.",
+      "zh": [
+        "启动对齐，交回任务包；系统检查任务是否覆盖原提案。",
+        "计算与报告分开，执行者和评审者分别指定。"
+      ],
+      "scope": "操作演示 · 模拟执行器",
+      "actualDuration": 18.0,
+      "start": 46.167,
+      "frames": [
+        {
+          "start": 0.0,
+          "duration": 1.0,
+          "capture": "05-start-alignment",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": true,
+          "sourceSha256": "b5226be7d25d172660182f541157c25a2c75c0153eae3b0d9958345eb511135b"
+        },
+        {
+          "start": 1.0,
+          "duration": 3.455,
+          "capture": "05-start-alignment",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "b5226be7d25d172660182f541157c25a2c75c0153eae3b0d9958345eb511135b"
+        },
+        {
+          "start": 4.455,
+          "duration": 0.223,
+          "capture": "05-start-alignment",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "b5226be7d25d172660182f541157c25a2c75c0153eae3b0d9958345eb511135b"
+        },
+        {
+          "start": 4.677,
+          "duration": 0.745,
+          "capture": "05-start-alignment",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "383027c13ab6aacadfc4da80c2a7ee8f5152e8f0994e55989b9a7e4688ee5e87"
+        },
+        {
+          "start": 5.422,
+          "duration": 0.008,
+          "capture": "05-start-alignment",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "383027c13ab6aacadfc4da80c2a7ee8f5152e8f0994e55989b9a7e4688ee5e87"
+        },
+        {
+          "start": 5.43,
+          "duration": 1.778,
+          "capture": "05-start-alignment",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "f30e262d5c5bc6159dfe09bfbd615fe7552534c72dfe94b1243072e9743d87e3"
+        },
+        {
+          "start": 7.208,
+          "duration": 0.665,
+          "capture": "05-start-alignment",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "ed977fa2396655ca55bed900e6200eb667cfe3201cccc92294e6d696842cd089"
+        },
+        {
+          "start": 7.873,
+          "duration": 1.127,
+          "capture": "05-start-alignment",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": false,
+          "sourceSha256": "2da2d0f90e1fc7ec456b6a328b267f7f6d6add30ed5c9187fb93521baf1d8ec4"
+        },
+        {
+          "start": 9.0,
+          "duration": 4.779,
+          "capture": "06-align-result",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "2da2d0f90e1fc7ec456b6a328b267f7f6d6add30ed5c9187fb93521baf1d8ec4"
+        },
+        {
+          "start": 13.779,
+          "duration": 0.007,
+          "capture": "06-align-result",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "2da2d0f90e1fc7ec456b6a328b267f7f6d6add30ed5c9187fb93521baf1d8ec4"
+        },
+        {
+          "start": 13.786,
+          "duration": 0.005,
+          "capture": "06-align-result",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "c59bcf16edb735f65d2d33460a349863d21922e4da150329b41462a8f7751525"
+        },
+        {
+          "start": 13.791,
+          "duration": 0.748,
+          "capture": "06-align-result",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "8103b7f6cebbb4a318a644bca23b5f8a1643ee1cad2e5a3f53261fff79182304"
+        },
+        {
+          "start": 14.539,
+          "duration": 0.965,
+          "capture": "06-align-result",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "c11725fa6e68b8c773cbe966068eca7768470ac45f99f1b9df51348a2c517599"
+        },
+        {
+          "start": 15.504,
+          "duration": 0.138,
+          "capture": "06-align-result",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "23b48f1f3ab93e713dd51ae310defb325a06ccff40c642a5c3876fde3da2e6c2"
+        },
+        {
+          "start": 15.642,
+          "duration": 0.006,
+          "capture": "06-align-result",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": false,
+          "sourceSha256": "bd184aecb5616a3caade503f7ad94aeca620dff8dcd8fed54324f787a206ea2a"
+        },
+        {
+          "start": 15.648,
+          "duration": 1.049,
+          "capture": "06-align-result",
+          "sourceFrame": "frame-00007.jpg",
+          "wide": false,
+          "sourceSha256": "51da0d944baad5cd5ec33500b6bbadc0da4ff87dc230f779089c67c2669eab64"
+        },
+        {
+          "start": 16.697,
+          "duration": 1.303,
+          "capture": "06-align-result",
+          "sourceFrame": "frame-00008.jpg",
+          "wide": false,
+          "sourceSha256": "9f7cf16ee07fc0ba560ce931ab26b55d35543303034bb82eb3931aa6e2fd52f5"
+        }
+      ]
+    },
+    {
+      "title": "固定方法，减少交接偏移",
+      "duration": 12,
+      "clips": [
+        {
+          "name": "07-review-protocol",
+          "crop": [
+            35,
+            20,
+            1500,
+            650
+          ]
+        },
+        {
+          "name": "08-freeze-method",
+          "crop": [
+            35,
+            190,
+            1500,
+            850
+          ]
+        }
+      ],
+      "en": "Inspect the protocol: all four proposal lines are covered. Freeze Shrake Rupley as the required method. This checks the declared method; independent review must still examine its actual execution.",
+      "zh": [
+        "发布前核对原文覆盖，并冻结 Shrake-Rupley 方法。",
+        "字段规则防止约定被悄悄改掉；不等于证明方法真正执行。"
+      ],
+      "scope": "操作演示 · 模拟执行器",
+      "actualDuration": 13.458333333333334,
+      "start": 64.167,
+      "frames": [
+        {
+          "start": 0.0,
+          "duration": 1.0,
+          "capture": "07-review-protocol",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": true,
+          "sourceSha256": "9f7cf16ee07fc0ba560ce931ab26b55d35543303034bb82eb3931aa6e2fd52f5"
+        },
+        {
+          "start": 1.0,
+          "duration": 1.696,
+          "capture": "07-review-protocol",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "9f7cf16ee07fc0ba560ce931ab26b55d35543303034bb82eb3931aa6e2fd52f5"
+        },
+        {
+          "start": 2.696,
+          "duration": 0.007,
+          "capture": "07-review-protocol",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "9f7cf16ee07fc0ba560ce931ab26b55d35543303034bb82eb3931aa6e2fd52f5"
+        },
+        {
+          "start": 2.704,
+          "duration": 0.078,
+          "capture": "07-review-protocol",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "e6950ad50ae566524b04185ca2fcf8c3d8753871e212288ed0a5724d8a2021db"
+        },
+        {
+          "start": 2.782,
+          "duration": 0.011,
+          "capture": "07-review-protocol",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "2e6edbc89c6b66732592eca868f1db3f4583e122960afa9c4c570c83201612ef"
+        },
+        {
+          "start": 2.793,
+          "duration": 0.011,
+          "capture": "07-review-protocol",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "47652d57872a58276c70aa3ef328ee437d642edd1e667fa523fee27eb11f3bea"
+        },
+        {
+          "start": 2.804,
+          "duration": 0.089,
+          "capture": "07-review-protocol",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "826e631c5e81ef92f8618c58e56fae774fdc61656f7cade36182d81033322dad"
+        },
+        {
+          "start": 2.892,
+          "duration": 0.007,
+          "capture": "07-review-protocol",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": false,
+          "sourceSha256": "411e773eed530d8cc9da1bd76db246cfa38e902226352226fa50ef6c94a21b76"
+        },
+        {
+          "start": 2.9,
+          "duration": 0.007,
+          "capture": "07-review-protocol",
+          "sourceFrame": "frame-00007.jpg",
+          "wide": false,
+          "sourceSha256": "76ddbdefa71fb6e8042429660faee6136947ed0c60559579dd86dc445ac7dd7c"
+        },
+        {
+          "start": 2.907,
+          "duration": 0.269,
+          "capture": "07-review-protocol",
+          "sourceFrame": "frame-00008.jpg",
+          "wide": false,
+          "sourceSha256": "0afe9deb9494ee6721b91bd7261b1a0901c79f9cdd4b9f8c79d3236a5be56cc2"
+        },
+        {
+          "start": 3.176,
+          "duration": 0.007,
+          "capture": "07-review-protocol",
+          "sourceFrame": "frame-00009.jpg",
+          "wide": false,
+          "sourceSha256": "48bad0c5d7d71a6a9f9d8094e9c9bf32d7cada1c5786b2182f64afae03147371"
+        },
+        {
+          "start": 3.183,
+          "duration": 0.007,
+          "capture": "07-review-protocol",
+          "sourceFrame": "frame-00010.jpg",
+          "wide": false,
+          "sourceSha256": "e316eddcbaa4d984a41fb3136b73ab5c536f6d57fa3e5d72cc5d05cc554aa860"
+        },
+        {
+          "start": 3.19,
+          "duration": 3.539,
+          "capture": "07-review-protocol",
+          "sourceFrame": "frame-00011.jpg",
+          "wide": false,
+          "sourceSha256": "864a113a8c547d91a001b64d385d5031be96049f0dc02aef6e3ac72ddfcf33f2"
+        },
+        {
+          "start": 6.729,
+          "duration": 0.104,
+          "capture": "08-freeze-method",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "f305ebf9e90b2f67db36f18642278443fac74d3adeb3da5299f5a86ee15c962d"
+        },
+        {
+          "start": 6.833,
+          "duration": 0.011,
+          "capture": "08-freeze-method",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "df8ad5c5bd70cf61490fcc31c87a93fd1c5dfbcc9e44b1c4a2b3b710b5edc4f2"
+        },
+        {
+          "start": 6.844,
+          "duration": 0.088,
+          "capture": "08-freeze-method",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "765c1f3b30bf88a14ed9e4e7a4b4e09092b2db30b2ebf6bdc02ffcbe3faa55ce"
+        },
+        {
+          "start": 6.932,
+          "duration": 0.011,
+          "capture": "08-freeze-method",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "d795776bd6e48d5fa3ec3cd729312493d3f85c11e3f7e9901121d167fd15133a"
+        },
+        {
+          "start": 6.942,
+          "duration": 0.011,
+          "capture": "08-freeze-method",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "3a308db611479e5dbc76998e12e42404f721dbf110af742bca665ce5ad604e67"
+        },
+        {
+          "start": 6.953,
+          "duration": 1.974,
+          "capture": "08-freeze-method",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "85f808756f97e0cc4afbb12eae6d8eff417fb0d6be99550d6931e35e759ff07b"
+        },
+        {
+          "start": 8.927,
+          "duration": 0.011,
+          "capture": "08-freeze-method",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": false,
+          "sourceSha256": "2ab5cb976c89c56d5f64aeed0699730013bcaf404a268e483ae8ca4d40a5d288"
+        },
+        {
+          "start": 8.938,
+          "duration": 0.009,
+          "capture": "08-freeze-method",
+          "sourceFrame": "frame-00007.jpg",
+          "wide": false,
+          "sourceSha256": "604aeefbb639e5f1956a5bee990563b4a8db029a908214a453c1153cf5420d41"
+        },
+        {
+          "start": 8.946,
+          "duration": 0.533,
+          "capture": "08-freeze-method",
+          "sourceFrame": "frame-00008.jpg",
+          "wide": false,
+          "sourceSha256": "8cb93d5569340510cd8099500fdeb738d352692905155bc9254f200a28f3b8f5"
+        },
+        {
+          "start": 9.48,
+          "duration": 0.009,
+          "capture": "08-freeze-method",
+          "sourceFrame": "frame-00009.jpg",
+          "wide": false,
+          "sourceSha256": "04507dc05bfbb3e4429ce17425feca7d0d97f6f15628d7011c23456cfffc31dd"
+        },
+        {
+          "start": 9.488,
+          "duration": 0.009,
+          "capture": "08-freeze-method",
+          "sourceFrame": "frame-00010.jpg",
+          "wide": false,
+          "sourceSha256": "20c8bf87a038659566567a876252f5f7316359a7408ae671bc24f4d80aee11f1"
+        },
+        {
+          "start": 9.497,
+          "duration": 2.545,
+          "capture": "08-freeze-method",
+          "sourceFrame": "frame-00011.jpg",
+          "wide": false,
+          "sourceSha256": "434257038520f905508b0c3d0543b458343c8af579c4ecdc9791e017469b2343"
+        },
+        {
+          "start": 12.042,
+          "duration": 0.083,
+          "capture": "08-freeze-method",
+          "sourceFrame": "frame-00012.jpg",
+          "wide": false,
+          "sourceSha256": "d26acba28aacd0097962b7c2d52fd6f03faaf6e4385118b1067666975852633c"
+        },
+        {
+          "start": 12.124,
+          "duration": 1.334,
+          "capture": "08-freeze-method",
+          "sourceFrame": "frame-00013.jpg",
+          "wide": false,
+          "sourceSha256": "8bf79b00cc5eb4c37c6b409718d20be37a9ec73efa3c1fda4d3c2aabecd10ebd"
+        }
+      ]
+    },
+    {
+      "title": "冻结参考与容差",
+      "duration": 12,
+      "clips": [
+        {
+          "name": "09-freeze-reference",
+          "crop": [
+            35,
+            45,
+            1490,
+            735
+          ]
+        }
+      ],
+      "en": "We also configure a numerical reference and a two percent tolerance. These are researcher supplied rules. Passing them does not establish every scientific claim, and a reviewer cannot override a failed check.",
+      "zh": [
+        "参考值与 2% 容差由研究者预先配置。",
+        "数值检查失败时，文字批准不能放行；检查只覆盖所配置的规则。"
+      ],
+      "scope": "操作演示 · 模拟执行器",
+      "actualDuration": 13.916666666666666,
+      "start": 77.625,
+      "frames": [
+        {
+          "start": 0.0,
+          "duration": 1.0,
+          "capture": "09-freeze-reference",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": true,
+          "sourceSha256": "1bd3fea93b2951be2dce69979e031184ef6698c74a2315bf48dd7f25e7cb0a96"
+        },
+        {
+          "start": 1.0,
+          "duration": 2.845,
+          "capture": "09-freeze-reference",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "1bd3fea93b2951be2dce69979e031184ef6698c74a2315bf48dd7f25e7cb0a96"
+        },
+        {
+          "start": 3.845,
+          "duration": 0.018,
+          "capture": "09-freeze-reference",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "b7d409c77091e7f2d5442588799e90e352b99ab31d43a9cce55953346fce5e26"
+        },
+        {
+          "start": 3.863,
+          "duration": 0.01,
+          "capture": "09-freeze-reference",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "126d1d0e0494faf5aeb9eb4f0f7ca38d6fe96fdc796a85dc9ebe02a540f3de5e"
+        },
+        {
+          "start": 3.873,
+          "duration": 1.33,
+          "capture": "09-freeze-reference",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "97d0afcde1bec57cb16a50918bf7569658765edae119212ab1a6fa913ee0c987"
+        },
+        {
+          "start": 5.203,
+          "duration": 1.3,
+          "capture": "09-freeze-reference",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "a1b9ade608575fd732d1e5524758002a18fe0a3c141093686cacb39fb779bca4"
+        },
+        {
+          "start": 6.503,
+          "duration": 0.456,
+          "capture": "09-freeze-reference",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "3b8d5f723916042aa608cf02e61773d59612e2a269b58a0e9395e73d0e6db1fa"
+        },
+        {
+          "start": 6.958,
+          "duration": 0.935,
+          "capture": "09-freeze-reference",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "3b8d5f723916042aa608cf02e61773d59612e2a269b58a0e9395e73d0e6db1fa"
+        },
+        {
+          "start": 7.894,
+          "duration": 0.388,
+          "capture": "09-freeze-reference",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": false,
+          "sourceSha256": "a1b9ade608575fd732d1e5524758002a18fe0a3c141093686cacb39fb779bca4"
+        },
+        {
+          "start": 8.282,
+          "duration": 0.015,
+          "capture": "09-freeze-reference",
+          "sourceFrame": "frame-00007.jpg",
+          "wide": false,
+          "sourceSha256": "78a925aff30e1ff82e984824a0dc7801685c1ed6dedcb618f39f0b57b21545a1"
+        },
+        {
+          "start": 8.297,
+          "duration": 3.693,
+          "capture": "09-freeze-reference",
+          "sourceFrame": "frame-00008.jpg",
+          "wide": false,
+          "sourceSha256": "3b8d5f723916042aa608cf02e61773d59612e2a269b58a0e9395e73d0e6db1fa"
+        },
+        {
+          "start": 11.99,
+          "duration": 1.926,
+          "capture": "09-freeze-reference",
+          "sourceFrame": "frame-00009.jpg",
+          "wide": false,
+          "sourceSha256": "aaf0dcb0de32d628c8730904e95c6c76ed04e32304a239a68161c6d76827606c"
+        }
+      ]
+    },
+    {
+      "title": "队长确认发布",
+      "duration": 10,
+      "clips": [
+        {
+          "name": "10-publish",
+          "crop": [
+            35,
+            130,
+            1490,
+            805
+          ]
+        }
+      ],
+      "en": "The captain publishes the tasks. Calculation runs first. The report waits for independent approval; producing a file alone cannot release the next task.",
+      "zh": [
+        "队长确认发布：先计算，报告等待上游批准。",
+        "交出文件不等于获得交接资格。"
+      ],
+      "scope": "操作演示 · 模拟执行器",
+      "actualDuration": 11.458333333333334,
+      "start": 91.542,
+      "frames": [
+        {
+          "start": 0.0,
+          "duration": 0.108,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": true,
+          "sourceSha256": "a545efd446f25d02069f0064d69da915f4d6b92fe12ae6d41442a124c5cbc5f2"
+        },
+        {
+          "start": 0.108,
+          "duration": 0.086,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": true,
+          "sourceSha256": "646a269b20e422fcaca61bf524dc167f9840a2c820d51afc9adab1dc7cc199f2"
+        },
+        {
+          "start": 0.194,
+          "duration": 0.01,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": true,
+          "sourceSha256": "b2314e136a660c0392e23eda176b438862b84291b96203fe7984fe0bc89a57c3"
+        },
+        {
+          "start": 0.204,
+          "duration": 0.012,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": true,
+          "sourceSha256": "d08d5411c09e3b0277acdfbeb68dae8bb4a416fbdc40a9fbd7b2a1491b230fdf"
+        },
+        {
+          "start": 0.216,
+          "duration": 0.102,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": true,
+          "sourceSha256": "a720eabcd48d5cb80dfa4204d6f5211a7d43ac67f7b4710ee3ee9b610dc66bac"
+        },
+        {
+          "start": 0.318,
+          "duration": 0.012,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": true,
+          "sourceSha256": "6e10503f407ffc0fc621cef144101328847bc4ef4d542128680add6771646a30"
+        },
+        {
+          "start": 0.33,
+          "duration": 0.01,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": true,
+          "sourceSha256": "b9ff871f68fbdc1150f91255ece9b7d956f81b893cd5905ab0cd6c9877515833"
+        },
+        {
+          "start": 0.34,
+          "duration": 0.66,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00007.jpg",
+          "wide": true,
+          "sourceSha256": "993c1e9baba37570f3ad05bde042c1f370b4a77da77d25bf6e056c41848ea838"
+        },
+        {
+          "start": 1.0,
+          "duration": 1.875,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00007.jpg",
+          "wide": false,
+          "sourceSha256": "993c1e9baba37570f3ad05bde042c1f370b4a77da77d25bf6e056c41848ea838"
+        },
+        {
+          "start": 2.875,
+          "duration": 0.032,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00008.jpg",
+          "wide": false,
+          "sourceSha256": "406a5f6f8cb2598cc78ec1bfc6ab2b3ef8d9b3d57238ed489d3d8ab41c17a3d8"
+        },
+        {
+          "start": 2.907,
+          "duration": 0.084,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00009.jpg",
+          "wide": false,
+          "sourceSha256": "406a5f6f8cb2598cc78ec1bfc6ab2b3ef8d9b3d57238ed489d3d8ab41c17a3d8"
+        },
+        {
+          "start": 2.991,
+          "duration": 0.01,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00010.jpg",
+          "wide": false,
+          "sourceSha256": "406a5f6f8cb2598cc78ec1bfc6ab2b3ef8d9b3d57238ed489d3d8ab41c17a3d8"
+        },
+        {
+          "start": 3.001,
+          "duration": 0.01,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00011.jpg",
+          "wide": false,
+          "sourceSha256": "95b9efb4348b82dcb510b924cc3f92686a18f5d22aaa2d59c5e509068850b957"
+        },
+        {
+          "start": 3.011,
+          "duration": 0.108,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00012.jpg",
+          "wide": false,
+          "sourceSha256": "3ead9fe98b23ebfdf4745044843aaacbd7e174a198844c3afc686c30187395a9"
+        },
+        {
+          "start": 3.119,
+          "duration": 0.01,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00013.jpg",
+          "wide": false,
+          "sourceSha256": "0090efa970840581f645518fd8e3ae4c3c10c5a1f339365c6021f47ba032c44c"
+        },
+        {
+          "start": 3.129,
+          "duration": 0.01,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00014.jpg",
+          "wide": false,
+          "sourceSha256": "7f3471fd2fa340f8697a336338ce67675a3593df1757fd9fdb391f823080d3fa"
+        },
+        {
+          "start": 3.139,
+          "duration": 2.166,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00015.jpg",
+          "wide": false,
+          "sourceSha256": "e374712793995b4807a8574ec8879acb6d2e9aed2f4931180d58d6e0c3e5e155"
+        },
+        {
+          "start": 5.305,
+          "duration": 0.01,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00016.jpg",
+          "wide": false,
+          "sourceSha256": "7521148448b22addeb24bceaa073aece6b0da66e07bb5e5bc073f69adfadef58"
+        },
+        {
+          "start": 5.315,
+          "duration": 0.01,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00017.jpg",
+          "wide": false,
+          "sourceSha256": "5fbccd0156b3f076315ecc83cda0aece69e82932b0c96e5fc1062fb90b8962eb"
+        },
+        {
+          "start": 5.325,
+          "duration": 0.404,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00018.jpg",
+          "wide": false,
+          "sourceSha256": "d9a399e57f31b3684572740d6dc4035902969fa225c8aa28797f78dcaff0f857"
+        },
+        {
+          "start": 5.729,
+          "duration": 1.336,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00018.jpg",
+          "wide": false,
+          "sourceSha256": "d9a399e57f31b3684572740d6dc4035902969fa225c8aa28797f78dcaff0f857"
+        },
+        {
+          "start": 7.065,
+          "duration": 2.613,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00019.jpg",
+          "wide": false,
+          "sourceSha256": "d9a399e57f31b3684572740d6dc4035902969fa225c8aa28797f78dcaff0f857"
+        },
+        {
+          "start": 9.678,
+          "duration": 1.78,
+          "capture": "10-publish",
+          "sourceFrame": "frame-00020.jpg",
+          "wide": false,
+          "sourceSha256": "9f7cf16ee07fc0ba560ce931ab26b55d35543303034bb82eb3931aa6e2fd52f5"
+        }
+      ]
+    },
+    {
+      "title": "成员领取 SciencePAL 任务",
+      "duration": 12,
+      "clips": [
+        {
+          "name": "11-start-sciencepal",
+          "crop": [
+            35,
+            470,
+            1490,
+            1040
+          ]
+        }
+      ],
+      "en": "On the member side, start the connector and claim the assigned SciencePAL task. In this demonstration, a deterministic simulator supplies the result. No real account quota is consumed.",
+      "zh": [
+        "成员启动自己的连接器，领取 SciencePAL 任务。",
+        "本段使用模拟输出，不调用真实模型、不消耗账号额度。"
+      ],
+      "scope": "操作演示 · 模拟执行器",
+      "actualDuration": 13.0,
+      "start": 103.0,
+      "frames": [
+        {
+          "start": 0.0,
+          "duration": 1.0,
+          "capture": "11-start-sciencepal",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": true,
+          "sourceSha256": "1655c600a79c4c06a846008781135934690ba646f57bc33a30a6c87829b75ae6"
+        },
+        {
+          "start": 1.0,
+          "duration": 2.131,
+          "capture": "11-start-sciencepal",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "1655c600a79c4c06a846008781135934690ba646f57bc33a30a6c87829b75ae6"
+        },
+        {
+          "start": 3.131,
+          "duration": 0.013,
+          "capture": "11-start-sciencepal",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "1655c600a79c4c06a846008781135934690ba646f57bc33a30a6c87829b75ae6"
+        },
+        {
+          "start": 3.144,
+          "duration": 0.013,
+          "capture": "11-start-sciencepal",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "1655c600a79c4c06a846008781135934690ba646f57bc33a30a6c87829b75ae6"
+        },
+        {
+          "start": 3.156,
+          "duration": 0.105,
+          "capture": "11-start-sciencepal",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "4bcab5e9f986d6ab7c6cf12263328d913e44c96f5e24933641be62776a6a9141"
+        },
+        {
+          "start": 3.262,
+          "duration": 0.013,
+          "capture": "11-start-sciencepal",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "d42ed08021254578d74ec9da773a7b028dd44f8509edf7b85b9daf733b4feef8"
+        },
+        {
+          "start": 3.274,
+          "duration": 0.013,
+          "capture": "11-start-sciencepal",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "db8a8bca43fb4db1f6a5656ad317cd2bcf80e8f30c1f7a286e9b9b6bc955b6cf"
+        },
+        {
+          "start": 3.287,
+          "duration": 0.105,
+          "capture": "11-start-sciencepal",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": false,
+          "sourceSha256": "c5e504eeaedad583d5660e5864196b1a6a6ebbab076c44024541a959f9296e9c"
+        },
+        {
+          "start": 3.392,
+          "duration": 0.011,
+          "capture": "11-start-sciencepal",
+          "sourceFrame": "frame-00007.jpg",
+          "wide": false,
+          "sourceSha256": "13a1a6d2c3ae26e2f8cec0c254942010849f75bba8dd548c67a9fed8b192c208"
+        },
+        {
+          "start": 3.403,
+          "duration": 0.013,
+          "capture": "11-start-sciencepal",
+          "sourceFrame": "frame-00008.jpg",
+          "wide": false,
+          "sourceSha256": "6cc022cf1e736f88c03cebb779991fbae11477e38e3dd93fb6e29df5161f2447"
+        },
+        {
+          "start": 3.415,
+          "duration": 2.276,
+          "capture": "11-start-sciencepal",
+          "sourceFrame": "frame-00009.jpg",
+          "wide": false,
+          "sourceSha256": "186a12afe86b4d523b25ae9c7e84aa3a2a43b454a9072e2167534daa406f5b97"
+        },
+        {
+          "start": 5.691,
+          "duration": 0.105,
+          "capture": "11-start-sciencepal",
+          "sourceFrame": "frame-00010.jpg",
+          "wide": false,
+          "sourceSha256": "e6947a69fb374254683c7bcd4c809d64be2fdbb57fd6476892d7d9db33c3270b"
+        },
+        {
+          "start": 5.796,
+          "duration": 0.017,
+          "capture": "11-start-sciencepal",
+          "sourceFrame": "frame-00011.jpg",
+          "wide": false,
+          "sourceSha256": "d9456e3f8303e3a394d7c7743ff399b599400476baca9728d0ead2cb74d598e1"
+        },
+        {
+          "start": 5.813,
+          "duration": 0.687,
+          "capture": "11-start-sciencepal",
+          "sourceFrame": "frame-00012.jpg",
+          "wide": false,
+          "sourceSha256": "97e50c304c940e619ca6ad9e527c2889c70eede6450237522b0331d22cfa8a02"
+        },
+        {
+          "start": 6.5,
+          "duration": 0.801,
+          "capture": "11-start-sciencepal",
+          "sourceFrame": "frame-00012.jpg",
+          "wide": false,
+          "sourceSha256": "97e50c304c940e619ca6ad9e527c2889c70eede6450237522b0331d22cfa8a02"
+        },
+        {
+          "start": 7.301,
+          "duration": 5.699,
+          "capture": "11-start-sciencepal",
+          "sourceFrame": "frame-00013.jpg",
+          "wide": false,
+          "sourceSha256": "b0bb14ae0c6b0cb1c699335b0831547279c79ee94f97b0fbbe05e12d8acfff91"
+        }
+      ]
+    },
+    {
+      "title": "SciencePAL 实际承担什么",
+      "duration": 20,
+      "clips": [
+        {
+          "name": "26-sciencepal-history",
+          "crop": [
+            1055,
+            80,
+            1895,
+            750
+          ]
+        },
+        {
+          "name": "27b-real-checks-hold",
+          "crop": [
+            1055,
+            260,
+            1895,
+            850
+          ]
+        }
+      ],
+      "en": "Here is a separate, earlier public SciencePAL verification. We open the recorded protein structure skill, then its successful command output. SciencePAL actually ran checks and delivered source files. This historical thread shows real research tooling; it is not the simulated execution we just clicked.",
+      "zh": [
+        "切到另一批次的历史公开复核：查看科研 Skill 与命令输出。",
+        "SciencePAL 实际执行核查、交付代码；这不是刚才模拟操作的实时输出。"
+      ],
+      "scope": "历史真实记录 · 公开独立复核",
+      "actualDuration": 20.0,
+      "start": 116.0,
+      "frames": [
+        {
+          "start": 0.0,
+          "duration": 1.0,
+          "capture": "26-sciencepal-history",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": true,
+          "sourceSha256": "15cd3f96c1f91140414e6bd8de2b8990258ed07f0bca63d5edb1236b2e837539"
+        },
+        {
+          "start": 1.0,
+          "duration": 1.446,
+          "capture": "26-sciencepal-history",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "15cd3f96c1f91140414e6bd8de2b8990258ed07f0bca63d5edb1236b2e837539"
+        },
+        {
+          "start": 2.446,
+          "duration": 0.014,
+          "capture": "26-sciencepal-history",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "4fc2c8901d264c991a9b3c0ec29f8557c903525fd8daceef9382cbef8cff64e9"
+        },
+        {
+          "start": 2.46,
+          "duration": 0.081,
+          "capture": "26-sciencepal-history",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "8b216dfba6f3a19f955907ac995f43e912a150d3822e31428eea4a26ed9fcf7c"
+        },
+        {
+          "start": 2.541,
+          "duration": 0.013,
+          "capture": "26-sciencepal-history",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "0394df2bbe96c2f188c6d7bc97d8a8b9eda9591a6cd1b26c487780f645bfc204"
+        },
+        {
+          "start": 2.554,
+          "duration": 0.091,
+          "capture": "26-sciencepal-history",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "eb0a9063486779a99fd38d7a28bd4338662237eeb92b8d285e540d7cfbc39d84"
+        },
+        {
+          "start": 2.644,
+          "duration": 0.013,
+          "capture": "26-sciencepal-history",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "c4a0bec77abb4ae92c1f4800f62a1bb1269176224efbacca7c987ff102472838"
+        },
+        {
+          "start": 2.657,
+          "duration": 0.013,
+          "capture": "26-sciencepal-history",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": false,
+          "sourceSha256": "9f2a4910f8a8e5f19fb991d1ffde3d0662c35accaa82a5895820f251032d806a"
+        },
+        {
+          "start": 2.67,
+          "duration": 0.072,
+          "capture": "26-sciencepal-history",
+          "sourceFrame": "frame-00007.jpg",
+          "wide": false,
+          "sourceSha256": "9849fec67c990333e4cf2c9ab44eab8718c00a76a83f0857d6bad38dbea20996"
+        },
+        {
+          "start": 2.741,
+          "duration": 0.01,
+          "capture": "26-sciencepal-history",
+          "sourceFrame": "frame-00008.jpg",
+          "wide": false,
+          "sourceSha256": "26a2524e58c464471a54dbecac937d42bc9fa9a62082340fbaea9a78d9d8a37f"
+        },
+        {
+          "start": 2.751,
+          "duration": 2.239,
+          "capture": "26-sciencepal-history",
+          "sourceFrame": "frame-00009.jpg",
+          "wide": false,
+          "sourceSha256": "e9799b092f970c332eab25805f2ec20f0b43c7aa8fb484533573f9f7879fd4fc"
+        },
+        {
+          "start": 4.99,
+          "duration": 0.017,
+          "capture": "26-sciencepal-history",
+          "sourceFrame": "frame-00010.jpg",
+          "wide": false,
+          "sourceSha256": "5f1ff73fccd5f2f870f3bf47a3d3202c0d51a3b0881b8b7b6b8ca3f4633d4e4b"
+        },
+        {
+          "start": 5.007,
+          "duration": 4.993,
+          "capture": "26-sciencepal-history",
+          "sourceFrame": "frame-00011.jpg",
+          "wide": false,
+          "sourceSha256": "e9799b092f970c332eab25805f2ec20f0b43c7aa8fb484533573f9f7879fd4fc"
+        },
+        {
+          "start": 10.0,
+          "duration": 10.0,
+          "capture": "27b-real-checks-hold",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "b9e70735edd3ddb2a9ff6849f0a4ccc563cb39188a67c83db38c32fce808bd21"
+        }
+      ]
+    },
+    {
+      "title": "退回：数值可用，执行证据不足",
+      "duration": 18,
+      "clips": [
+        {
+          "name": "12-review-return",
+          "crop": [
+            35,
+            500,
+            1490,
+            1040
+          ]
+        }
+      ],
+      "en": "Back in the workbench, Codex returns the review. The result passes the configured numerical rule, but the original code and version log are missing. The review requests changes. Notice that the report still waits. An incomplete handoff has been stopped.",
+      "zh": [
+        "回到模拟操作：评审指出缺少原代码和版本日志。",
+        "结果暂不交接，报告仍等待上游；这次退回不是数值检查失败。"
+      ],
+      "scope": "操作演示 · 模拟执行器",
+      "actualDuration": 18.0,
+      "start": 136.0,
+      "frames": [
+        {
+          "start": 0.0,
+          "duration": 1.0,
+          "capture": "12-review-return",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": true,
+          "sourceSha256": "7421e5110c44afb74d9149c6a503d753ce1527b1d7ce4527f80b860ec1138e18"
+        },
+        {
+          "start": 1.0,
+          "duration": 0.893,
+          "capture": "12-review-return",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "7421e5110c44afb74d9149c6a503d753ce1527b1d7ce4527f80b860ec1138e18"
+        },
+        {
+          "start": 1.893,
+          "duration": 1.142,
+          "capture": "12-review-return",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "2caa73b9aeb9b555a8e8c69dca9bbe6c961fe785ab5da59149683904e2f57aa4"
+        },
+        {
+          "start": 3.035,
+          "duration": 5.965,
+          "capture": "12-review-return",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "16befe4f50c008a2b8f1130f883829ca2d50efd6701dd072d75d8eecfe2157ac"
+        },
+        {
+          "start": 9.0,
+          "duration": 0.746,
+          "capture": "12-review-return",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "16befe4f50c008a2b8f1130f883829ca2d50efd6701dd072d75d8eecfe2157ac"
+        },
+        {
+          "start": 9.746,
+          "duration": 0.017,
+          "capture": "12-review-return",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "01345e3574bee1d4af35fb8df878e1727172eb68018fed73782020dba0216ff5"
+        },
+        {
+          "start": 9.763,
+          "duration": 0.986,
+          "capture": "12-review-return",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "01345e3574bee1d4af35fb8df878e1727172eb68018fed73782020dba0216ff5"
+        },
+        {
+          "start": 10.749,
+          "duration": 2.312,
+          "capture": "12-review-return",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "77f060d9a266a6fe03e6811f2c797d3b3038acf206f926b7d1643b12331e3af3"
+        },
+        {
+          "start": 13.062,
+          "duration": 0.278,
+          "capture": "12-review-return",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": false,
+          "sourceSha256": "2fe3bc2ca1809849fbb2dc35ee1d77b8a4a6939030caeb22362f078e3e8a512e"
+        },
+        {
+          "start": 13.34,
+          "duration": 0.013,
+          "capture": "12-review-return",
+          "sourceFrame": "frame-00007.jpg",
+          "wide": false,
+          "sourceSha256": "cc88e010d8456696237a4b7893b36bb867beea92b894f36f066935de7a07c8ed"
+        },
+        {
+          "start": 13.352,
+          "duration": 0.091,
+          "capture": "12-review-return",
+          "sourceFrame": "frame-00008.jpg",
+          "wide": false,
+          "sourceSha256": "9115b6e8b61d779def68c265733af80691e2873a0abfb0e610a21a750d69e513"
+        },
+        {
+          "start": 13.443,
+          "duration": 1.467,
+          "capture": "12-review-return",
+          "sourceFrame": "frame-00009.jpg",
+          "wide": false,
+          "sourceSha256": "1632c8f3ec68af57b313f205fbee308a555400ae81ab105f881d1e9c4457d34f"
+        },
+        {
+          "start": 14.91,
+          "duration": 0.011,
+          "capture": "12-review-return",
+          "sourceFrame": "frame-00010.jpg",
+          "wide": false,
+          "sourceSha256": "720f5b8773728d7af1f253937eda78d01ca4327eda23a891f93dde17ede8d9ee"
+        },
+        {
+          "start": 14.921,
+          "duration": 0.011,
+          "capture": "12-review-return",
+          "sourceFrame": "frame-00011.jpg",
+          "wide": false,
+          "sourceSha256": "da446c9b3914d35f8d0295924d9068573532029ed076c2353e434ca0e96d4660"
+        },
+        {
+          "start": 14.931,
+          "duration": 1.003,
+          "capture": "12-review-return",
+          "sourceFrame": "frame-00012.jpg",
+          "wide": false,
+          "sourceSha256": "da446c9b3914d35f8d0295924d9068573532029ed076c2353e434ca0e96d4660"
+        },
+        {
+          "start": 15.934,
+          "duration": 2.066,
+          "capture": "12-review-return",
+          "sourceFrame": "frame-00013.jpg",
+          "wide": false,
+          "sourceSha256": "da446c9b3914d35f8d0295924d9068573532029ed076c2353e434ca0e96d4660"
+        }
+      ]
+    },
+    {
+      "title": "只缺记录：选择补证复审",
+      "duration": 17,
+      "clips": [
+        {
+          "name": "13-supplement-open",
+          "crop": [
+            65,
+            325,
+            1485,
+            960
+          ]
+        },
+        {
+          "name": "14-submit-supplement",
+          "crop": [
+            65,
+            495,
+            1485,
+            960
+          ]
+        }
+      ],
+      "en": "Because the result itself is unchanged, choose supplementary review instead of recomputing. The confirmation explains the effect: keep the original file and add one independent review. Paste the original source and execution record, identify their origin, and confirm.",
+      "zh": [
+        "选择“补充证据复审”：保留原成果，只新增一次独立评审。",
+        "粘贴原代码和日志并说明来源；结果或方法有错时仍应返工。"
+      ],
+      "scope": "操作演示 · 模拟执行器",
+      "actualDuration": 17.541666666666668,
+      "start": 154.0,
+      "frames": [
+        {
+          "start": 0.0,
+          "duration": 1.0,
+          "capture": "13-supplement-open",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": true,
+          "sourceSha256": "da446c9b3914d35f8d0295924d9068573532029ed076c2353e434ca0e96d4660"
+        },
+        {
+          "start": 1.0,
+          "duration": 5.958,
+          "capture": "13-supplement-open",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "da446c9b3914d35f8d0295924d9068573532029ed076c2353e434ca0e96d4660"
+        },
+        {
+          "start": 6.958,
+          "duration": 1.813,
+          "capture": "13-supplement-open",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "28550cc07da8932f77c669304755badd7a98e9c496ad93e1943d4c846eb6cb89"
+        },
+        {
+          "start": 8.771,
+          "duration": 2.375,
+          "capture": "14-submit-supplement",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "28550cc07da8932f77c669304755badd7a98e9c496ad93e1943d4c846eb6cb89"
+        },
+        {
+          "start": 11.146,
+          "duration": 0.768,
+          "capture": "14-submit-supplement",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "5ee171840d61391861e4ea6fa40bd5223fa6847de49c84b5fdb2eaf323b5dc15"
+        },
+        {
+          "start": 11.914,
+          "duration": 0.85,
+          "capture": "14-submit-supplement",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "04aa0598224c8dd514ca81b924292bace75b7c2ca4f8013d6ce3810fced149a2"
+        },
+        {
+          "start": 12.764,
+          "duration": 0.78,
+          "capture": "14-submit-supplement",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "90fcc383c2ce735adb268d96e7578651bd04fffe883be886497aca2557106431"
+        },
+        {
+          "start": 13.544,
+          "duration": 0.563,
+          "capture": "14-submit-supplement",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "04aa0598224c8dd514ca81b924292bace75b7c2ca4f8013d6ce3810fced149a2"
+        },
+        {
+          "start": 14.107,
+          "duration": 0.009,
+          "capture": "14-submit-supplement",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "90fcc383c2ce735adb268d96e7578651bd04fffe883be886497aca2557106431"
+        },
+        {
+          "start": 14.116,
+          "duration": 0.009,
+          "capture": "14-submit-supplement",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": false,
+          "sourceSha256": "90fcc383c2ce735adb268d96e7578651bd04fffe883be886497aca2557106431"
+        },
+        {
+          "start": 14.125,
+          "duration": 0.089,
+          "capture": "14-submit-supplement",
+          "sourceFrame": "frame-00007.jpg",
+          "wide": false,
+          "sourceSha256": "1299a9bb229b7206c2ac9ef01d28b171dd7caa01500a2ebff6c4ad855df61a51"
+        },
+        {
+          "start": 14.214,
+          "duration": 0.012,
+          "capture": "14-submit-supplement",
+          "sourceFrame": "frame-00008.jpg",
+          "wide": false,
+          "sourceSha256": "d43a0a339daee9ea66e55c47e68aaeb64625ba1f893e205bf3dc23654e3a5a37"
+        },
+        {
+          "start": 14.226,
+          "duration": 1.58,
+          "capture": "14-submit-supplement",
+          "sourceFrame": "frame-00009.jpg",
+          "wide": false,
+          "sourceSha256": "3c8b210de1d5c020f6e5bc667edf910f364fb699806387196b443d2b9ad7189f"
+        },
+        {
+          "start": 15.806,
+          "duration": 0.009,
+          "capture": "14-submit-supplement",
+          "sourceFrame": "frame-00010.jpg",
+          "wide": false,
+          "sourceSha256": "562d00f983dba47e1dc311f803ea649ae5ba00f85e24505ccfd2e86945425085"
+        },
+        {
+          "start": 15.815,
+          "duration": 0.009,
+          "capture": "14-submit-supplement",
+          "sourceFrame": "frame-00011.jpg",
+          "wide": false,
+          "sourceSha256": "4b54eb3376a4f7920367e7caffb04bd346048053f15b623f4a022bb864570f10"
+        },
+        {
+          "start": 15.824,
+          "duration": 1.36,
+          "capture": "14-submit-supplement",
+          "sourceFrame": "frame-00012.jpg",
+          "wide": false,
+          "sourceSha256": "b786eb4453b5a974e91aeefaa11bdbcba8c2faa624a81c6f8c985639f7865a8a"
+        },
+        {
+          "start": 17.184,
+          "duration": 0.358,
+          "capture": "14-submit-supplement",
+          "sourceFrame": "frame-00013.jpg",
+          "wide": false,
+          "sourceSha256": "2489603a28468677f598ee335bbd0dc466ad483166355941fce27b76f7609b66"
+        }
+      ]
+    },
+    {
+      "title": "复审通过后才放行",
+      "duration": 12,
+      "clips": [
+        {
+          "name": "15-supplement-approved",
+          "crop": [
+            35,
+            485,
+            1490,
+            1030
+          ]
+        }
+      ],
+      "en": "The reviewer receives the unchanged result plus the supplementary evidence. We return that new review through the normal checks. Only after approval does the report task become available.",
+      "zh": [
+        "原成果与补充证据一起交给独立评审者。",
+        "复审通过后，报告任务才开始；并未重新执行上游计算。"
+      ],
+      "scope": "操作演示 · 模拟执行器",
+      "actualDuration": 12.333333333333334,
+      "start": 171.542,
+      "frames": [
+        {
+          "start": 0.0,
+          "duration": 1.0,
+          "capture": "15-supplement-approved",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": true,
+          "sourceSha256": "2489603a28468677f598ee335bbd0dc466ad483166355941fce27b76f7609b66"
+        },
+        {
+          "start": 1.0,
+          "duration": 5.167,
+          "capture": "15-supplement-approved",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "2489603a28468677f598ee335bbd0dc466ad483166355941fce27b76f7609b66"
+        },
+        {
+          "start": 6.167,
+          "duration": 0.734,
+          "capture": "15-supplement-approved",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "2489603a28468677f598ee335bbd0dc466ad483166355941fce27b76f7609b66"
+        },
+        {
+          "start": 6.901,
+          "duration": 0.009,
+          "capture": "15-supplement-approved",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "d639855ce256a03761fbcbf04444bfd87cb5485dbf02707f7a39a2ab9c9fc1ae"
+        },
+        {
+          "start": 6.91,
+          "duration": 2.033,
+          "capture": "15-supplement-approved",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "a19938e6d429a3c20112940833c4e8fea173071a235ab63796c7f32193b5cbee"
+        },
+        {
+          "start": 8.942,
+          "duration": 0.009,
+          "capture": "15-supplement-approved",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "07484c452fac807a30bed5cc8d8f28dc8abd9e4b2f774af8ca7a44b68bf6ee71"
+        },
+        {
+          "start": 8.951,
+          "duration": 0.011,
+          "capture": "15-supplement-approved",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "fb316ef623402f85bfc6cc87a452f1ea15dc9c210768bbc05d6b6944a2e01f4f"
+        },
+        {
+          "start": 8.962,
+          "duration": 2.162,
+          "capture": "15-supplement-approved",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "8fe668506f6983a8fecc48e84a9fe945d9a063ed4df3631bb64dff0dcdfa085e"
+        },
+        {
+          "start": 11.124,
+          "duration": 1.209,
+          "capture": "15-supplement-approved",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": false,
+          "sourceSha256": "5bed39ce8df35099a5a85072d143b679926ae97bfd45b9008e9db57e4fb9e0c3"
+        }
+      ]
+    },
+    {
+      "title": "报告消费获批成果",
+      "duration": 17,
+      "clips": [
+        {
+          "name": "16-first-report",
+          "crop": [
+            35,
+            330,
+            1490,
+            1030
+          ]
+        },
+        {
+          "name": "17b-approved-result",
+          "crop": [
+            35,
+            20,
+            1480,
+            550
+          ]
+        }
+      ],
+      "en": "Codex writes the report and another member reviews it. The saved surface area is about two thousand nine hundred sixty seven square angstroms. This simulated handoff reuses historical values for a fixed structure, not a biological discovery.",
+      "zh": [
+        "报告也由另一成员评审；然后打开获批计算结果。",
+        "模拟沿用历史数值 2967.6165 Å²：固定结构的几何量，不推断功能。"
+      ],
+      "scope": "操作演示 · 模拟执行器",
+      "actualDuration": 17.0,
+      "start": 183.875,
+      "frames": [
+        {
+          "start": 0.0,
+          "duration": 1.0,
+          "capture": "16-first-report",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": true,
+          "sourceSha256": "5bed39ce8df35099a5a85072d143b679926ae97bfd45b9008e9db57e4fb9e0c3"
+        },
+        {
+          "start": 1.0,
+          "duration": 1.963,
+          "capture": "16-first-report",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "5bed39ce8df35099a5a85072d143b679926ae97bfd45b9008e9db57e4fb9e0c3"
+        },
+        {
+          "start": 2.967,
+          "duration": 4.095,
+          "capture": "16-first-report",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "571c95a567a13e58682d70119dc6cba539c0c0283f227011f19ce5976363f4b3"
+        },
+        {
+          "start": 7.07,
+          "duration": 0.73,
+          "capture": "16-first-report",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "ce0516faf4ee335205beee9a6eb4427a1ecf9f9eb8b89da0187fe0ced2409d67"
+        },
+        {
+          "start": 7.8,
+          "duration": 0.7,
+          "capture": "16-first-report",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": false,
+          "sourceSha256": "71bdd7ee7c04c3372675cd3e15e5768831712763f2bd0f595d48ae090d4b8a61"
+        },
+        {
+          "start": 8.5,
+          "duration": 3.468,
+          "capture": "17b-approved-result",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "71bdd7ee7c04c3372675cd3e15e5768831712763f2bd0f595d48ae090d4b8a61"
+        },
+        {
+          "start": 11.968,
+          "duration": 0.014,
+          "capture": "17b-approved-result",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "9883cfae4c6dc4781cdda2c55741542808b7f1e694faaa766f4987317eba9fdb"
+        },
+        {
+          "start": 11.981,
+          "duration": 0.13,
+          "capture": "17b-approved-result",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "49f50136e9f62028c9d4cb3177099b615f558b6ec0f47c2766ca58c9cdabd067"
+        },
+        {
+          "start": 12.111,
+          "duration": 0.014,
+          "capture": "17b-approved-result",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "5f48bc15dadd682e70e42c4eb697c2f9f5e19f1283fcbf44b2d0293b6ee190c8"
+        },
+        {
+          "start": 12.125,
+          "duration": 0.016,
+          "capture": "17b-approved-result",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "47a050d7d12c8a66f362096a819f484b6310817d1b9bd59780f7d77f9770d78b"
+        },
+        {
+          "start": 12.141,
+          "duration": 0.113,
+          "capture": "17b-approved-result",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "cd5326fb5630ac5a71073f28fb95daa4d9d88548a2b640af6b1f1e48fefbaba1"
+        },
+        {
+          "start": 12.255,
+          "duration": 0.016,
+          "capture": "17b-approved-result",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": false,
+          "sourceSha256": "b2af37286ebd1e37f8b847545dceac7e38738449b811285fca87694b6aea5540"
+        },
+        {
+          "start": 12.271,
+          "duration": 0.012,
+          "capture": "17b-approved-result",
+          "sourceFrame": "frame-00007.jpg",
+          "wide": false,
+          "sourceSha256": "1f69a45c796a97e973ec84daf8bbada58fc6aa8accfe85279953555db57e91f6"
+        },
+        {
+          "start": 12.282,
+          "duration": 3.03,
+          "capture": "17b-approved-result",
+          "sourceFrame": "frame-00008.jpg",
+          "wide": false,
+          "sourceSha256": "a49e2ae8373663a58c36925a6581839a5f7fe02ac965c28860a11f2f478e42ca"
+        },
+        {
+          "start": 15.312,
+          "duration": 0.014,
+          "capture": "17b-approved-result",
+          "sourceFrame": "frame-00009.jpg",
+          "wide": false,
+          "sourceSha256": "1cfe37ec005581a6d08f7e987106e625c384f4737bc84d8a121b5fb3337e92ed"
+        },
+        {
+          "start": 15.326,
+          "duration": 0.014,
+          "capture": "17b-approved-result",
+          "sourceFrame": "frame-00010.jpg",
+          "wide": false,
+          "sourceSha256": "27b4c91128aab6e66c04a6e0b6749d3e4f9b5f10c5208fd0e340bd3367f18ab5"
+        },
+        {
+          "start": 15.34,
+          "duration": 1.66,
+          "capture": "17b-approved-result",
+          "sourceFrame": "frame-00011.jpg",
+          "wide": false,
+          "sourceSha256": "27b4c91128aab6e66c04a6e0b6749d3e4f9b5f10c5208fd0e340bd3367f18ab5"
+        }
+      ]
+    },
+    {
+      "title": "核对文件交给了谁",
+      "duration": 12,
+      "clips": [
+        {
+          "name": "18-handoff",
+          "crop": [
+            35,
+            35,
+            1490,
+            700
+          ]
+        }
+      ],
+      "en": "Open the handoff. It connects the producer, approval, and receiving task, matching the frozen file to the actual downstream input. We no longer have to guess which copy was used.",
+      "zh": [
+        "打开文件交接：上游生成、独立批准、下游收到对应文件。",
+        "按冻结文件身份匹配实际输入，避免靠文件名猜版本。"
+      ],
+      "scope": "操作演示 · 模拟执行器",
+      "actualDuration": 12.75,
+      "start": 200.875,
+      "frames": [
+        {
+          "start": 0.0,
+          "duration": 1.0,
+          "capture": "18-handoff",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": true,
+          "sourceSha256": "27b4c91128aab6e66c04a6e0b6749d3e4f9b5f10c5208fd0e340bd3367f18ab5"
+        },
+        {
+          "start": 1.0,
+          "duration": 4.366,
+          "capture": "18-handoff",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "27b4c91128aab6e66c04a6e0b6749d3e4f9b5f10c5208fd0e340bd3367f18ab5"
+        },
+        {
+          "start": 5.366,
+          "duration": 0.027,
+          "capture": "18-handoff",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "6fc5e7971c1dcba9260649a4518f1dd87d20a07c02f82ac6f2ec60d385dbbf31"
+        },
+        {
+          "start": 5.393,
+          "duration": 0.982,
+          "capture": "18-handoff",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "93a7772a22eab5e320136807d324ec63c808d3a0bdb347e85c6528a263ad739e"
+        },
+        {
+          "start": 6.375,
+          "duration": 1.962,
+          "capture": "18-handoff",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "93a7772a22eab5e320136807d324ec63c808d3a0bdb347e85c6528a263ad739e"
+        },
+        {
+          "start": 8.337,
+          "duration": 0.023,
+          "capture": "18-handoff",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "f32fab1f89c97c9ee8fd4c7a8bf2fb2580c5698dd9490c469195e72172c1c04f"
+        },
+        {
+          "start": 8.36,
+          "duration": 0.02,
+          "capture": "18-handoff",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "2ec43821940e287a38c570dfe5e9e8500ec5bf01ddd73700287f31ea4286dd82"
+        },
+        {
+          "start": 8.38,
+          "duration": 4.37,
+          "capture": "18-handoff",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "77ebcf0204bda7b77cc2c4f3f0885550eca098b01e9685eece570a976a2b5043"
+        }
+      ]
+    },
+    {
+      "title": "需求变化：只改报告",
+      "duration": 16,
+      "clips": [
+        {
+          "name": "19-report-change",
+          "crop": [
+            35,
+            335,
+            1490,
+            1035
+          ]
+        }
+      ],
+      "en": "Now the captain asks for a Chinese summary and clearer limitations. The request explicitly leaves the structure, method, parameters, numerical checks, and upstream acceptance unchanged. Submit this as a research change, rather than silently editing the old agreement.",
+      "zh": [
+        "队长只增加中文摘要和局限说明，明确上游输入与方法不变。",
+        "通过研究变更提出要求，不直接改写原协议。"
+      ],
+      "scope": "操作演示 · 模拟执行器",
+      "actualDuration": 17.833333333333332,
+      "start": 213.625,
+      "frames": [
+        {
+          "start": 0.0,
+          "duration": 0.162,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": true,
+          "sourceSha256": "05e967638806c55484b021e2c2d784d81458772264b17d9ac895f17886567bb8"
+        },
+        {
+          "start": 0.162,
+          "duration": 0.162,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": true,
+          "sourceSha256": "3da73a297048026cf8845540f1505efb3bbdf3e1f1d083cf97e2b107102488fc"
+        },
+        {
+          "start": 0.325,
+          "duration": 0.021,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": true,
+          "sourceSha256": "14d3a8058f6fefffa05295f2a0d8d145d3b7d8dd00213952e6390041f2bef180"
+        },
+        {
+          "start": 0.346,
+          "duration": 0.025,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": true,
+          "sourceSha256": "5826683b1724d2d834e4dc38293d11706cec2a918e989b047d608b3a3c8a6f0d"
+        },
+        {
+          "start": 0.371,
+          "duration": 0.147,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": true,
+          "sourceSha256": "c29bed1009851148a271b52e77e6c7c5ddc9f01905af067b036eeaa624c496d6"
+        },
+        {
+          "start": 0.518,
+          "duration": 0.021,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": true,
+          "sourceSha256": "90bed25ad99dd7ab50a735420192cfa9a9c1d66fa28aa5eb0e69cafc6da01315"
+        },
+        {
+          "start": 0.539,
+          "duration": 0.461,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": true,
+          "sourceSha256": "802e80fdb9bfe5eb5fe0bcae1e9839436108d69591d7b26d29af17c6c5344f0d"
+        },
+        {
+          "start": 1.0,
+          "duration": 3.146,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": false,
+          "sourceSha256": "802e80fdb9bfe5eb5fe0bcae1e9839436108d69591d7b26d29af17c6c5344f0d"
+        },
+        {
+          "start": 4.146,
+          "duration": 0.015,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00007.jpg",
+          "wide": false,
+          "sourceSha256": "802e80fdb9bfe5eb5fe0bcae1e9839436108d69591d7b26d29af17c6c5344f0d"
+        },
+        {
+          "start": 4.161,
+          "duration": 0.775,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00008.jpg",
+          "wide": false,
+          "sourceSha256": "802e80fdb9bfe5eb5fe0bcae1e9839436108d69591d7b26d29af17c6c5344f0d"
+        },
+        {
+          "start": 4.936,
+          "duration": 0.021,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00009.jpg",
+          "wide": false,
+          "sourceSha256": "802e80fdb9bfe5eb5fe0bcae1e9839436108d69591d7b26d29af17c6c5344f0d"
+        },
+        {
+          "start": 4.958,
+          "duration": 0.018,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00010.jpg",
+          "wide": false,
+          "sourceSha256": "802e80fdb9bfe5eb5fe0bcae1e9839436108d69591d7b26d29af17c6c5344f0d"
+        },
+        {
+          "start": 4.976,
+          "duration": 0.159,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00011.jpg",
+          "wide": false,
+          "sourceSha256": "47c7d07e8d89eec83b3ff953d97a0ca688865f466fd53b8ad88252ed0c1ad4ef"
+        },
+        {
+          "start": 5.136,
+          "duration": 0.018,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00012.jpg",
+          "wide": false,
+          "sourceSha256": "0a2114677b8055d2836490edd072ac9754252725850a021c90e9e0ee09ca90de"
+        },
+        {
+          "start": 5.154,
+          "duration": 0.018,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00013.jpg",
+          "wide": false,
+          "sourceSha256": "0a2114677b8055d2836490edd072ac9754252725850a021c90e9e0ee09ca90de"
+        },
+        {
+          "start": 5.172,
+          "duration": 0.135,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00014.jpg",
+          "wide": false,
+          "sourceSha256": "82500e3175c98eca01bd0390911ed31b9ed426e2ae183a174213aa6aa9cc7c40"
+        },
+        {
+          "start": 5.307,
+          "duration": 0.162,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00015.jpg",
+          "wide": false,
+          "sourceSha256": "53a4a643542b8b99dc7a3dbcc8b38cc6895c22aac7063f9e819a56dff49c6dfe"
+        },
+        {
+          "start": 5.47,
+          "duration": 0.018,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00016.jpg",
+          "wide": false,
+          "sourceSha256": "dfcfe547a0736053289225daa021f55bd73ee3d5f77251462debc2d598748579"
+        },
+        {
+          "start": 5.488,
+          "duration": 0.015,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00017.jpg",
+          "wide": false,
+          "sourceSha256": "9a720d354ab007d5ff0d4e9d3d24718fd13ed06fc4dd5ad35b2f96d79f115052"
+        },
+        {
+          "start": 5.503,
+          "duration": 2.88,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00018.jpg",
+          "wide": false,
+          "sourceSha256": "0833bc05a8b87e219d9c9f77bed119e14a7e31d25a6e25ec541563db8e609428"
+        },
+        {
+          "start": 8.384,
+          "duration": 0.018,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00019.jpg",
+          "wide": false,
+          "sourceSha256": "f4b890dc0a030d24d0240459be6798466ece8a2a3e2124b4c901dc1eda0ff703"
+        },
+        {
+          "start": 8.402,
+          "duration": 0.018,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00020.jpg",
+          "wide": false,
+          "sourceSha256": "f4b890dc0a030d24d0240459be6798466ece8a2a3e2124b4c901dc1eda0ff703"
+        },
+        {
+          "start": 8.42,
+          "duration": 0.496,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00021.jpg",
+          "wide": false,
+          "sourceSha256": "5858061e5161e6f1e30d4ecdcea97002c3b126a35ee891c7f4161537d411b989"
+        },
+        {
+          "start": 8.917,
+          "duration": 0.521,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00021.jpg",
+          "wide": false,
+          "sourceSha256": "5858061e5161e6f1e30d4ecdcea97002c3b126a35ee891c7f4161537d411b989"
+        },
+        {
+          "start": 9.438,
+          "duration": 1.544,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00022.jpg",
+          "wide": false,
+          "sourceSha256": "1b5df19083f1671b211baeacd30e36ba22cb6ddcf71a12cfb55d1a88a14adbd0"
+        },
+        {
+          "start": 10.982,
+          "duration": 0.021,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00023.jpg",
+          "wide": false,
+          "sourceSha256": "5858061e5161e6f1e30d4ecdcea97002c3b126a35ee891c7f4161537d411b989"
+        },
+        {
+          "start": 11.003,
+          "duration": 0.021,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00024.jpg",
+          "wide": false,
+          "sourceSha256": "5858061e5161e6f1e30d4ecdcea97002c3b126a35ee891c7f4161537d411b989"
+        },
+        {
+          "start": 11.025,
+          "duration": 0.172,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00025.jpg",
+          "wide": false,
+          "sourceSha256": "6c484b78307ae761550d6576b6d04a54c465a42649ce492fc6af564255d1d6a1"
+        },
+        {
+          "start": 11.196,
+          "duration": 3.855,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00026.jpg",
+          "wide": false,
+          "sourceSha256": "ca7b49e640286407e997d142d306f57f12b0aa925a8b90857b445d9d44aaf794"
+        },
+        {
+          "start": 15.051,
+          "duration": 0.018,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00027.jpg",
+          "wide": false,
+          "sourceSha256": "60beafebdb650a2bb40e5a890cef34c3728d197283715d751af8d7ea5d94cdc3"
+        },
+        {
+          "start": 15.069,
+          "duration": 0.018,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00028.jpg",
+          "wide": false,
+          "sourceSha256": "f31fd3e4e7d329501f223bce16173cc16e503813622e132e456ffd296fc22776"
+        },
+        {
+          "start": 15.088,
+          "duration": 2.745,
+          "capture": "19-report-change",
+          "sourceFrame": "frame-00029.jpg",
+          "wide": false,
+          "sourceSha256": "fc53fa62e3b24555dba05fa96560193984ff6db1f984d1d9a41ca3b6d4e73534"
+        }
+      ]
+    },
+    {
+      "title": "审查影响范围，再确认",
+      "duration": 14,
+      "clips": [
+        {
+          "name": "20-change-review",
+          "crop": [
+            35,
+            330,
+            1490,
+            1035
+          ]
+        },
+        {
+          "name": "21-apply-change",
+          "crop": [
+            35,
+            280,
+            1490,
+            1005
+          ]
+        }
+      ],
+      "en": "The change review marks only the report as affected. The captain confirms. Task fingerprints and the original requirements are checked before unaffected work can be reused.",
+      "zh": [
+        "变更评审确定影响报告，再由队长确认生成 R2。",
+        "系统核对任务指纹，保留原始要求；不是听到“复用”就直接放行。"
+      ],
+      "scope": "操作演示 · 模拟执行器",
+      "actualDuration": 14.0,
+      "start": 231.458,
+      "frames": [
+        {
+          "start": 0.0,
+          "duration": 1.0,
+          "capture": "20-change-review",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": true,
+          "sourceSha256": "fc53fa62e3b24555dba05fa96560193984ff6db1f984d1d9a41ca3b6d4e73534"
+        },
+        {
+          "start": 1.0,
+          "duration": 3.617,
+          "capture": "20-change-review",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "fc53fa62e3b24555dba05fa96560193984ff6db1f984d1d9a41ca3b6d4e73534"
+        },
+        {
+          "start": 4.617,
+          "duration": 0.132,
+          "capture": "20-change-review",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "fc53fa62e3b24555dba05fa96560193984ff6db1f984d1d9a41ca3b6d4e73534"
+        },
+        {
+          "start": 4.749,
+          "duration": 0.047,
+          "capture": "20-change-review",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "655c8f6c44035680d2c51b5fdda270759881cdcafe61e5dcbe40d46d2c41edb4"
+        },
+        {
+          "start": 4.796,
+          "duration": 0.882,
+          "capture": "20-change-review",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "f651aba8b2774a8bd746a8a44434ddec863d0845b028fdcbba65fb13ae33a770"
+        },
+        {
+          "start": 5.678,
+          "duration": 0.797,
+          "capture": "20-change-review",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "d43fe689f3e0b044a004064516d289978ec0a50770162cc85295ca0e16a0a8e1"
+        },
+        {
+          "start": 6.475,
+          "duration": 0.525,
+          "capture": "20-change-review",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "dc7e2c8e32c51e7d953a6c9ba17292dd1fac644df7b3f2bee3caf2020f25ef18"
+        },
+        {
+          "start": 7.0,
+          "duration": 2.858,
+          "capture": "21-apply-change",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "dc7e2c8e32c51e7d953a6c9ba17292dd1fac644df7b3f2bee3caf2020f25ef18"
+        },
+        {
+          "start": 9.858,
+          "duration": 0.006,
+          "capture": "21-apply-change",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "dc7e2c8e32c51e7d953a6c9ba17292dd1fac644df7b3f2bee3caf2020f25ef18"
+        },
+        {
+          "start": 9.864,
+          "duration": 1.704,
+          "capture": "21-apply-change",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "57e64d08fabba6a8b0a16a631cf2aea11c8b9042be57c24895d030684101a366"
+        },
+        {
+          "start": 11.568,
+          "duration": 0.006,
+          "capture": "21-apply-change",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "57e64d08fabba6a8b0a16a631cf2aea11c8b9042be57c24895d030684101a366"
+        },
+        {
+          "start": 11.574,
+          "duration": 1.566,
+          "capture": "21-apply-change",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "dc7e2c8e32c51e7d953a6c9ba17292dd1fac644df7b3f2bee3caf2020f25ef18"
+        },
+        {
+          "start": 13.14,
+          "duration": 0.86,
+          "capture": "21-apply-change",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "119b94440a5fd16622f31bbd193c0ff5d53f8f8e79a421f6451b62aeeffd5d43"
+        }
+      ]
+    },
+    {
+      "title": "R2 对齐并重新发布",
+      "duration": 15,
+      "clips": [
+        {
+          "name": "22-realign-r2",
+          "crop": [
+            35,
+            320,
+            1490,
+            1035
+          ]
+        },
+        {
+          "name": "23-republish-r2",
+          "crop": [
+            35,
+            320,
+            1490,
+            1035
+          ]
+        }
+      ],
+      "en": "Return the revised alignment and publish R two. The calculation is already approved when this round begins. The system schedules only the report execution and its review, rather than asking SciencePAL to calculate the same structure again.",
+      "zh": [
+        "完成 R2 对齐并发布，上游计算已保持批准状态。",
+        "重新执行报告及其评审，不再计算相同结构。"
+      ],
+      "scope": "操作演示 · 模拟执行器",
+      "actualDuration": 15.625,
+      "start": 245.458,
+      "frames": [
+        {
+          "start": 0.0,
+          "duration": 1.0,
+          "capture": "22-realign-r2",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": true,
+          "sourceSha256": "119b94440a5fd16622f31bbd193c0ff5d53f8f8e79a421f6451b62aeeffd5d43"
+        },
+        {
+          "start": 1.0,
+          "duration": 3.245,
+          "capture": "22-realign-r2",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "119b94440a5fd16622f31bbd193c0ff5d53f8f8e79a421f6451b62aeeffd5d43"
+        },
+        {
+          "start": 4.245,
+          "duration": 0.006,
+          "capture": "22-realign-r2",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "119b94440a5fd16622f31bbd193c0ff5d53f8f8e79a421f6451b62aeeffd5d43"
+        },
+        {
+          "start": 4.251,
+          "duration": 1.466,
+          "capture": "22-realign-r2",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "9833a790ed1f97d81b129c42284b043f4cc082f86cffdded47cde8c160fe383d"
+        },
+        {
+          "start": 5.717,
+          "duration": 0.006,
+          "capture": "22-realign-r2",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "5173f8df0cd344e7ace1b432fd2564410cb76a55524f3eedf76845edafd271c9"
+        },
+        {
+          "start": 5.723,
+          "duration": 0.007,
+          "capture": "22-realign-r2",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "f761972324b8c609fceece77ee88d3a7482592dbb50cea00f74266009d4cdc5a"
+        },
+        {
+          "start": 5.729,
+          "duration": 0.757,
+          "capture": "22-realign-r2",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "bb453a6ee88b2219b17123632c3be6b253834409fbb2c2060d9eb620c8b9a184"
+        },
+        {
+          "start": 6.486,
+          "duration": 1.326,
+          "capture": "22-realign-r2",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": false,
+          "sourceSha256": "76926bc983eca32c902a2f6a0ad7cd3e263a5a7575bafe78527ce7a1bd78961a"
+        },
+        {
+          "start": 7.812,
+          "duration": 3.626,
+          "capture": "23-republish-r2",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "76926bc983eca32c902a2f6a0ad7cd3e263a5a7575bafe78527ce7a1bd78961a"
+        },
+        {
+          "start": 11.439,
+          "duration": 0.01,
+          "capture": "23-republish-r2",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "76926bc983eca32c902a2f6a0ad7cd3e263a5a7575bafe78527ce7a1bd78961a"
+        },
+        {
+          "start": 11.448,
+          "duration": 1.175,
+          "capture": "23-republish-r2",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "36af6ddb411a44c65620ea6a2917bb0074d38010524cc8150f92139456397f4d"
+        },
+        {
+          "start": 12.623,
+          "duration": 0.059,
+          "capture": "23-republish-r2",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "36af6ddb411a44c65620ea6a2917bb0074d38010524cc8150f92139456397f4d"
+        },
+        {
+          "start": 12.682,
+          "duration": 0.071,
+          "capture": "23-republish-r2",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "76926bc983eca32c902a2f6a0ad7cd3e263a5a7575bafe78527ce7a1bd78961a"
+        },
+        {
+          "start": 12.752,
+          "duration": 2.873,
+          "capture": "23-republish-r2",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "b619f9121efcb7975324352647338a440339146e478310c8724ef99b1b22c152"
+        }
+      ]
+    },
+    {
+      "title": "直接看复用结果",
+      "duration": 20,
+      "clips": [
+        {
+          "name": "24-second-report",
+          "crop": [
+            35,
+            300,
+            1490,
+            1035
+          ]
+        },
+        {
+          "name": "25-reuse-proof",
+          "crop": [
+            35,
+            100,
+            1490,
+            750
+          ]
+        }
+      ],
+      "en": "The second report is reviewed and the delivery panel says: reuse the approved R one result. We checked that the calculation file, execution, and approving review are identical across revisions. This demonstration recorded one calculation, two calculation reviews, and two report executions. Reuse avoids that upstream rerun, not all review cost.",
+      "zh": [
+        "R2 交付明确显示“沿用 R1 获批成果”。",
+        "已核对文件、计算作业与批准评审一致；1 次计算、2 次上游评审、2 次报告执行。"
+      ],
+      "scope": "操作演示 · 模拟执行器",
+      "actualDuration": 23.458333333333332,
+      "start": 261.083,
+      "frames": [
+        {
+          "start": 0.0,
+          "duration": 1.0,
+          "capture": "24-second-report",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": true,
+          "sourceSha256": "9ef749962c960e4f59bfe209b7b4300c10fff4e08177ee057aadd7b3583f2077"
+        },
+        {
+          "start": 1.0,
+          "duration": 3.077,
+          "capture": "24-second-report",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "9ef749962c960e4f59bfe209b7b4300c10fff4e08177ee057aadd7b3583f2077"
+        },
+        {
+          "start": 4.082,
+          "duration": 5.632,
+          "capture": "24-second-report",
+          "sourceFrame": "frame-00002.jpg",
+          "wide": false,
+          "sourceSha256": "9ef749962c960e4f59bfe209b7b4300c10fff4e08177ee057aadd7b3583f2077"
+        },
+        {
+          "start": 9.714,
+          "duration": 0.007,
+          "capture": "24-second-report",
+          "sourceFrame": "frame-00003.jpg",
+          "wide": false,
+          "sourceSha256": "0d0c3f30e56fdd1ccc7bb41ac56d810a0aabd18577d5563866fceae232c00e5c"
+        },
+        {
+          "start": 9.721,
+          "duration": 0.006,
+          "capture": "24-second-report",
+          "sourceFrame": "frame-00004.jpg",
+          "wide": false,
+          "sourceSha256": "58731a99865056347e302b9d88120c93250ee8359064ce25131cb6b104f1687f"
+        },
+        {
+          "start": 9.727,
+          "duration": 1.235,
+          "capture": "24-second-report",
+          "sourceFrame": "frame-00005.jpg",
+          "wide": false,
+          "sourceSha256": "8a4cf1e4de693b0d0e7748b837e517f3c0e5ef8dc2b4a51d7eaa67590425eb4c"
+        },
+        {
+          "start": 10.962,
+          "duration": 0.767,
+          "capture": "24-second-report",
+          "sourceFrame": "frame-00006.jpg",
+          "wide": false,
+          "sourceSha256": "aec3e4575ce703a1f33131261e6feaa91f1f8df95c347b9ac6d7dad1dd7c592a"
+        },
+        {
+          "start": 11.729,
+          "duration": 9.333,
+          "capture": "25-reuse-proof",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "aec3e4575ce703a1f33131261e6feaa91f1f8df95c347b9ac6d7dad1dd7c592a"
+        },
+        {
+          "start": 21.062,
+          "duration": 2.396,
+          "capture": "25-reuse-proof",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "6b9d3315c72369ae4c210cf6c7f212ec5116cbf76f508a4451ae4aa3d89a613a"
+        }
+      ]
+    },
+    {
+      "title": "交付清楚，边界也清楚",
+      "duration": 10,
+      "clips": [
+        {
+          "name": "29-final-delivery",
+          "crop": [
+            35,
+            100,
+            1490,
+            770
+          ]
+        }
+      ],
+      "en": "This is a traceable handoff with a clear recovery action, not a guarantee of scientific correctness or lower cost. Recording, evidence, and simulator are linked below.",
+      "zh": [
+        "成果、批准依据和恢复动作放在一起，交接更容易核对。",
+        "不宣称保证科学正确或总体省钱；播放页提供历史证据与复现方法。"
+      ],
+      "scope": "操作演示 · 模拟执行器",
+      "actualDuration": 11.458333333333334,
+      "start": 284.542,
+      "frames": [
+        {
+          "start": 0.0,
+          "duration": 1.0,
+          "capture": "29-final-delivery",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": true,
+          "sourceSha256": "aec3e4575ce703a1f33131261e6feaa91f1f8df95c347b9ac6d7dad1dd7c592a"
+        },
+        {
+          "start": 1.0,
+          "duration": 4.729,
+          "capture": "29-final-delivery",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "aec3e4575ce703a1f33131261e6feaa91f1f8df95c347b9ac6d7dad1dd7c592a"
+        },
+        {
+          "start": 5.729,
+          "duration": 3.4,
+          "capture": "29-final-delivery",
+          "sourceFrame": "frame-00000.jpg",
+          "wide": false,
+          "sourceSha256": "aec3e4575ce703a1f33131261e6feaa91f1f8df95c347b9ac6d7dad1dd7c592a"
+        },
+        {
+          "start": 9.129,
+          "duration": 2.33,
+          "capture": "29-final-delivery",
+          "sourceFrame": "frame-00001.jpg",
+          "wide": false,
+          "sourceSha256": "6b9d3315c72369ae4c210cf6c7f212ec5116cbf76f508a4451ae4aa3d89a613a"
+        }
+      ]
+    }
+  ]
+}

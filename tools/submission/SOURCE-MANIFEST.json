@@ -1,8 +1,8 @@
 {
-  "scope": "Editable production sources and explicitly unfinished mock filming assets. No private runtime sessions.",
+  "scope": "Editable production sources, completed UI filming assets and separately labelled historical evidence. No private runtime sessions.",
   "functional_baseline": "dda48233f57ee20e9c8be2d6b21c782b46ece7ba",
-  "video_status": "USER_REQUESTED_REEDIT_NOT_ACCEPTED",
-  "operations_draft_status": "REHEARSED_THROUGH_CREATE_BLOCKED_AT_ALIGN_UNDEFINED_ID",
+  "video_status": "OPERATIONS_VIDEO_PRODUCED_MEDIA_VERIFIED_PENDING_USER_REVIEW",
+  "operations_draft_status": "COMPLETED_THROUGH_R2_REUSE_WITH_SIMULATED_AGENTS",
   "checks": {
     "python_syntax": true,
     "node_syntax": true,
@@ -12,7 +12,11 @@
     "video_rebuild_seconds": 278.39,
     "video_rebuild_full_decode": true,
     "new_source_sensitive_pattern_scan": true,
-    "fresh_machine_install_tested": false
+    "fresh_machine_install_tested": false,
+    "operations_video_seconds": 296.02,
+    "operations_video_full_decode": true,
+    "operations_fixture_tests": 6,
+    "operations_evidence_checks": 16
   },
   "files": {
     "tools/submission/assets/01-agent-select.png": {
@@ -123,17 +127,133 @@
       "bytes": 90432,
       "sha256": "17b91b42f341aa23c3875df5cb85c6da5059018e564a3ae2265918e65c0ce245"
     },
+    "tools/submission/build_roughcut_evidence.py": {
+      "bytes": 11648,
+      "sha256": "39ae947f1c7d86d2c164b67ed3cd7e06b6cf5dd2e35ce4561b8e603bcccfa43d"
+    },
+    "tools/submission/operations-draft/capture.mjs": {
+      "bytes": 1817,
+      "sha256": "070c5eee2aa38037a215a9ce885a9032257e29abc5cac42449806785ddd84438"
+    },
     "tools/submission/operations-draft/fixture.mjs": {
-      "bytes": 5066,
-      "sha256": "e54098191a5a50ad65ef0f8fd4c35e0fdb837b643f97553029ffc5698626b340"
+      "bytes": 5382,
+      "sha256": "e0b2d45ea83ebe08f78ba3d0ed5afa5911b4c1f94b2730e351c37aa658d3795e"
+    },
+    "tools/submission/operations-draft/fixture.test.mjs": {
+      "bytes": 2468,
+      "sha256": "d673c7506891edc6b516f50805ddb01654aed1679aeea378388d295c8f540adb"
     },
     "tools/submission/operations-draft/README.md": {
-      "bytes": 2152,
-      "sha256": "d96cf9782fb68d45837c3d775330596fac1ec8e8a8946d4a9ecf4c7020d110c9"
+      "bytes": 3179,
+      "sha256": "c5d8f9d01c8b571ae30a8482ee6556a194240a3a278aebd21a71597f9a4d2409"
     },
     "tools/submission/operations-draft/server.mjs": {
-      "bytes": 6228,
-      "sha256": "8644fbe1844c0e1fa4e9999e0eb5a1a63c83c278234937a9d0bcb09c139c52a1"
+      "bytes": 6572,
+      "sha256": "615d56c11db7530bae300744acf74bb0d5e668f33960420944ac0ea817becd21"
+    },
+    "tools/submission/operations-video/audio/00.mp3": {
+      "bytes": 70992,
+      "sha256": "14d6fb1509c21623978c282ef44bb20d1ed66dc17f7889204e1ce6e2ec669009"
+    },
+    "tools/submission/operations-video/audio/01.mp3": {
+      "bytes": 68112,
+      "sha256": "57567cd8d2c634b294e455270a967493480f8ead3c89481f0de88f964badded3"
+    },
+    "tools/submission/operations-video/audio/02.mp3": {
+      "bytes": 98784,
+      "sha256": "e12e2ece731b1dabee0467e0de62c122a25890c51626dac8cd58b30f7ac0f3a4"
+    },
+    "tools/submission/operations-video/audio/03.mp3": {
+      "bytes": 91872,
+      "sha256": "03947899b77552e1487cf7256d40bdd8c64577f44a76562214f08fa6804d5f21"
+    },
+    "tools/submission/operations-video/audio/04.mp3": {
+      "bytes": 75744,
+      "sha256": "8d8810ca8d90fcf567cc81e8f7e7cefe09731fc5163d1bcdd5924836459c6123"
+    },
+    "tools/submission/operations-video/audio/05.mp3": {
+      "bytes": 78480,
+      "sha256": "c139eb7290db8c5a96f3811a0618c8050535c4d2f99c1f1ccf1145ea84319c7e"
+    },
+    "tools/submission/operations-video/audio/06.mp3": {
+      "bytes": 63792,
+      "sha256": "f3539efe4da44fa6226ae25c2df99b1e6a8aed0ad006a75240e70fb01c0f496e"
+    },
+    "tools/submission/operations-video/audio/07.mp3": {
+      "bytes": 73152,
+      "sha256": "462fa8619eae93dce949e1fd46ad3d83d126b3e717ddf3fba4df3783caf87e81"
+    },
+    "tools/submission/operations-video/audio/08.mp3": {
+      "bytes": 114768,
+      "sha256": "6422dbe4eeae608a255a1b50a54bce2251db1294f98fa0ed8727295d43e6d090"
+    },
+    "tools/submission/operations-video/audio/09.mp3": {
+      "bytes": 102240,
+      "sha256": "9c9d138d59e0726cd603fe0cfebe3409beff92a549b2461483a9cc73bfd893a4"
+    },
+    "tools/submission/operations-video/audio/10.mp3": {
+      "bytes": 100368,
+      "sha256": "fb56189c5bc4015ee71919a659a5355b6d6015cd4a8c2942403887bd3ff015a5"
+    },
+    "tools/submission/operations-video/audio/11.mp3": {
+      "bytes": 68976,
+      "sha256": "2b99ada54ed683b96a063e002d031006fde4aa503d065235942057b9479b7d2e"
+    },
+    "tools/submission/operations-video/audio/12.mp3": {
+      "bytes": 91728,
+      "sha256": "0fef1931036fa65cad9ad7707f76de9bde6c8ff71bdb2e9e79382a40d2594527"
+    },
+    "tools/submission/operations-video/audio/13.mp3": {
+      "bytes": 71568,
+      "sha256": "9470bbf60613b098305bc84c2ece5db13037d664a48e55b89a484bcd0ef96336"
+    },
+    "tools/submission/operations-video/audio/14.mp3": {
+      "bytes": 102096,
+      "sha256": "55049b2518d3731f01eb8c75ea2368072944473dcffc7dc6e4ff2e429ecb3f28"
+    },
+    "tools/submission/operations-video/audio/15.mp3": {
+      "bytes": 67824,
+      "sha256": "290d1883937a1d411dd5bc1cca8d4df8fc16daec888b0486b2dbbdeea7147e2b"
+    },
+    "tools/submission/operations-video/audio/16.mp3": {
+      "bytes": 88848,
+      "sha256": "16c4b021a45d1223bb854521804c043134cabd3f8f8517e9d8d0904444cb63f9"
+    },
+    "tools/submission/operations-video/audio/17.mp3": {
+      "bytes": 135792,
+      "sha256": "257f2065d50eb3bc87a750f7c8204db1e96d909c3692cf2c66b0a608c1ed5c82"
+    },
+    "tools/submission/operations-video/audio/18.mp3": {
+      "bytes": 63792,
+      "sha256": "eaea41a0b1dd544f0d4da220e82465a3d90e742a83ad22b5289e9958d62a8a45"
+    },
+    "tools/submission/operations-video/captures.zip": {
+      "bytes": 41190910,
+      "sha256": "b46055ea3db22c2058999b7b35e5fa8b187a9cc9bea28ee2bb7bc4e30b05e84a"
+    },
+    "tools/submission/operations-video/edit-map.json": {
+      "bytes": 102860,
+      "sha256": "bd27621125bb9b95109b0078dcdc0bbab36d8687d2d52920c4083c920fb2c689"
+    },
+    "tools/submission/operations-video/README.md": {
+      "bytes": 2863,
+      "sha256": "e2b30fb4e51068316c01abed58ded0ed275590426d962fe8d1b96ac24a7dffd3"
+    },
+    "tools/submission/operations-video/render.py": {
+      "bytes": 8386,
+      "sha256": "856955fcbe9f54f495655f880e54bf0ae9a129df1a2026abc8b3d31db63dac86"
+    },
+    "tools/submission/operations-video/scenes.json": {
+      "bytes": 14826,
+      "sha256": "4fe59ad8c9b02c5ce4f28ee51c04e86304bf4cd11b3c3ec5e84eb38d8fab4075"
+    },
+    "tools/submission/operations-video/verify.py": {
+      "bytes": 4539,
+      "sha256": "aafd2141de1282d37419c405ba768efecd1cde6bafbd74acfae819496555a82a"
+    },
+    "tools/submission/operations-video/voices.py": {
+      "bytes": 652,
+      "sha256": "9d116f8359e491fa95f478bd1a7ce1503c817796bb7e67c2301ee2c4f54b9fb7"
     },
     "tools/submission/pdf-pages.json": {
       "bytes": 7293,
@@ -144,12 +264,16 @@
       "sha256": "08a64fe14427a1f1bf7ec12b40b10ef8ef1e10e63283b2dcd7b292d1f8c32778"
     },
     "tools/submission/README.md": {
-      "bytes": 3419,
-      "sha256": "383a6bef438272de06d1d1b8fa82b3a62aa10e59e0563c2bd45931305b3e3e73"
+      "bytes": 3860,
+      "sha256": "af6e540d5a7a68be33bffb1a0f74083862f9e01f70c8e1a135512229bcb76860"
     },
     "tools/submission/render.py": {
       "bytes": 5859,
       "sha256": "21162a7df9afd492a919b16f6474237b66259c7bb3c10423be15c3ec4918de19"
+    },
+    "tools/submission/render_roughcut.py": {
+      "bytes": 6667,
+      "sha256": "57826761186048966d7fae2113ddf697c9f9941c6dedf347373f87e7e9f68cb0"
     },
     "tools/submission/scenes.json": {
       "bytes": 12564,
@@ -158,14 +282,6 @@
     "tools/submission/voices.py": {
       "bytes": 497,
       "sha256": "336400774ce72e1fceb1767e9daf0371d34aec41090968ed1d919e4395d3c364"
-    },
-    "tools/submission/build_roughcut_evidence.py": {
-      "bytes": 11648,
-      "sha256": "39ae947f1c7d86d2c164b67ed3cd7e06b6cf5dd2e35ce4561b8e603bcccfa43d"
-    },
-    "tools/submission/render_roughcut.py": {
-      "bytes": 6667,
-      "sha256": "57826761186048966d7fae2113ddf697c9f9941c6dedf347373f87e7e9f68cb0"
     }
   },
   "rough_cut": {
@@ -174,5 +290,6 @@
     "seconds": 270,
     "product_baseline": "46e120b6977bb8a1fd51c8be55ca238e332c2010",
     "continuous_later_operations_filmed": false
-  }
+  },
+  "hash_convention": "Text files normalized to LF; binary files exact bytes; manifest excludes itself."
 }

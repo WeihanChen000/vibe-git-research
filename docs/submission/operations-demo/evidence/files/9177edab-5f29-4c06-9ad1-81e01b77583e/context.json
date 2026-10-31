@@ -1,0 +1,137 @@
+{
+  "revision": 1,
+  "requirement": "## 原始提案 member_node-cb4d7be5-9f7d-45da-85b7-63e3ebf60f8e\n独立复核输入、方法、参考值与执行证据；获批前不能交接报告。\n使用获批成果撰写报告，说明固定结构几何计算的局限，不作生物功能推断。\n\n## 原始提案 member_node-5796e69a-d23f-4093-9bc7-733a4a958e5b\n计算冻结的 1CRN A 链重原子溶剂可及表面积，使用 Shrake-Rupley、1000 点、1.4 埃探针。\n交付总面积、逐残基面积、原代码及工具版本和执行日志。演示输出由模拟执行器提供，不是新的科研计算。\n\n## 对齐说明\n# 1CRN 科研交接操作演示\n本段使用确定性模拟执行器；不调用真实模型。固定 1CRN 输入、Shrake-Rupley、1000 点、1.4 埃探针。SciencePAL 计算，Codex 复核与报告，报告由另一成员评审。",
+  "taskFingerprint": "263c7d43ffabec25596feab411dd51c5cf9a8532d9baa343c176ac4dfae318db",
+  "task": {
+    "key": "sasa",
+    "assigneeAgentId": "member_node-5796e69a-d23f-4093-9bc7-733a4a958e5b",
+    "reviewerAgentId": "member_node-cb4d7be5-9f7d-45da-85b7-63e3ebf60f8e",
+    "outputFilename": "sasa.json",
+    "title": "计算表面积并交付原始证据",
+    "goal": "交付冻结方法下的 SASA 及复核材料",
+    "boundary": "仅计算固定结构几何量，不推断功能",
+    "acceptance": [
+      "输入、方法与数值符合固定协议",
+      "交付原代码、工具版本与执行日志",
+      "[REQ:r-30f7389ada8825d1] 核对原提案要求：计算冻结的 1CRN A 链重原子溶剂可及表面积，使用 Shrake-Rupley、1000 点、1.4 埃探针。",
+      "[REQ:r-bd9b0c8662d33c89] 核对原提案要求：交付总面积、逐残基面积、原代码及工具版本和执行日志。演示输出由模拟执行器提供，不是新的科研计算。"
+    ],
+    "dependencies": [],
+    "requirementIds": [
+      "r-30f7389ada8825d1",
+      "r-bd9b0c8662d33c89"
+    ],
+    "resultSchema": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "const": "Shrake-Rupley"
+        }
+      },
+      "required": [
+        "method"
+      ]
+    },
+    "scientificChecks": [
+      {
+        "id": "check-09d9efd7-aedc-40d8-8e7c-c161b8d1edcf",
+        "kind": "reference",
+        "absoluteTolerance": 59.46325541227835,
+        "path": "total_A2",
+        "expected": 2973.1627706139175,
+        "relativeTolerance": 0,
+        "provenance": "已公开 1CRN 独立 NumPy 5000 点复核；本模拟复用历史参考，绝对容差为参考值的 2%。"
+      }
+    ],
+    "status": "WAITING",
+    "attempt": 0,
+    "executionId": null,
+    "reviewId": null,
+    "artifactId": null,
+    "feedback": "",
+    "review": null
+  },
+  "feedback": "",
+  "executionHistory": {
+    "source": "host-member-connector-records",
+    "limitation": "Host-accepted lifecycle receipts from the assigned member connector. Not an independent provider audit, a full tool transcript, or proof of scientific correctness. Raw reply text is private; its SHA256 is recorded when available.",
+    "attempts": []
+  },
+  "upstream": [],
+  "governance": {
+    "version": 1,
+    "requirements": [
+      {
+        "id": "r-8520b60065b023cf",
+        "text": "独立复核输入、方法、参考值与执行证据；获批前不能交接报告。",
+        "sourceId": "4130527e-52da-43ac-a1f1-ad291acf2667",
+        "sourceSha256": "5ff06fd0b19889147487711de9428aecac77d18fc529cb902f6fdb8b89cfdfd3",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-74ec1735afbb1e56",
+        "text": "使用获批成果撰写报告，说明固定结构几何计算的局限，不作生物功能推断。",
+        "sourceId": "4130527e-52da-43ac-a1f1-ad291acf2667",
+        "sourceSha256": "5ff06fd0b19889147487711de9428aecac77d18fc529cb902f6fdb8b89cfdfd3",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-30f7389ada8825d1",
+        "text": "计算冻结的 1CRN A 链重原子溶剂可及表面积，使用 Shrake-Rupley、1000 点、1.4 埃探针。",
+        "sourceId": "30ca11df-137f-4b30-aba4-6352877076f1",
+        "sourceSha256": "8d81c0234c531d23571aacd17510f8fc414bae153053bfa9ecb8eff52d5858cd",
+        "introducedRevision": 1
+      },
+      {
+        "id": "r-bd9b0c8662d33c89",
+        "text": "交付总面积、逐残基面积、原代码及工具版本和执行日志。演示输出由模拟执行器提供，不是新的科研计算。",
+        "sourceId": "30ca11df-137f-4b30-aba4-6352877076f1",
+        "sourceSha256": "8d81c0234c531d23571aacd17510f8fc414bae153053bfa9ecb8eff52d5858cd",
+        "introducedRevision": 1
+      }
+    ],
+    "decisions": []
+  },
+  "resultSchemas": {
+    "sasa": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "const": "Shrake-Rupley"
+        }
+      },
+      "required": [
+        "method"
+      ]
+    },
+    "report": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  "scientificChecks": {
+    "version": 1,
+    "sourceSha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+    "tasks": {
+      "sasa": [
+        {
+          "id": "check-09d9efd7-aedc-40d8-8e7c-c161b8d1edcf",
+          "kind": "reference",
+          "absoluteTolerance": 59.46325541227835,
+          "path": "total_A2",
+          "expected": 2973.1627706139175,
+          "relativeTolerance": 0,
+          "provenance": "已公开 1CRN 独立 NumPy 5000 点复核；本模拟复用历史参考，绝对容差为参考值的 2%。"
+        }
+      ]
+    }
+  },
+  "source": {
+    "filename": "source-1crn.pdb",
+    "sourceUrl": "https://www.rcsb.org/structure/1CRN",
+    "attribution": "RCSB PDB 1CRN 公开结构；操作演示使用模拟执行器，不是本次真实模型计算。"
+  }
+}

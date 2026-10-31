@@ -13,7 +13,11 @@ export function scenario(study){const counts={align:0,compute:0,review:0,report:
 function calculate(kind,files){const c=JSON.parse(files.find(f=>f.filename==='context.json').bytes);let result;
 if(kind==='ALIGN'){
  counts.align++;
- const scientist=c.agents.find(a=>a.platform==='sciencepal'),captain=c.agents.find(a=>a.platform==='codex'),owner=c.proposals.find(p=>p.agentId===scientist.id).id,requirements=c.governance.requirements.filter(r=>!r.retiredBy),prior=c.previousTasks?.find(t=>t.key==='sasa');
+ const scientist=c.agents.find(a=>(a.platform??'sciencepal')==='sciencepal'),captain=c.agents.find(a=>a.platform==='codex');
+ if(!scientist||!captain)throw Error('1CRN 模拟需要一位 Codex 成员和一位 SciencePAL 成员，请先完成接入。');
+ const proposal=c.proposals.find(p=>p.agentId===scientist.id);
+ if(!proposal)throw Error('SciencePAL 成员尚未提交研究提案，请保存提案后重新建项。');
+ const owner=proposal.id,requirements=c.governance.requirements.filter(r=>!r.retiredBy),prior=c.previousTasks?.find(t=>t.key==='sasa');
  result={alignmentMarkdown:'# 1CRN 科研交接操作演示\n本段使用确定性模拟执行器；不调用真实模型。固定 1CRN 输入、Shrake-Rupley、1000 点、1.4 埃探针。SciencePAL 计算，Codex 复核与报告，报告由另一成员评审。',issues:[],tasks:[
  prior?{...prior,acceptance:prior.acceptance.filter(v=>!v.startsWith('[REQ:'))}:{key:'sasa',title:'计算表面积并交付原始证据',goal:'交付冻结方法下的 SASA 及复核材料',boundary:'仅计算固定结构几何量，不推断功能',acceptance:['输入、方法与数值符合固定协议','交付原代码、工具版本与执行日志'],dependencies:[],assigneeAgentId:scientist.id,requirementIds:requirements.filter(r=>r.sourceId===owner).map(r=>r.id)},
  {key:'report',title:'用获批结果撰写研究报告',goal:'核对批准依据后报告结果与局限',boundary:'只消费获批成果及绑定评审',acceptance:['引用获批结果及批准依据','说明几何结论的适用限制'],dependencies:['sasa'],assigneeAgentId:captain.id,requirementIds:requirements.filter(r=>r.sourceId!==owner).map(r=>r.id)}]};
@@ -23,9 +27,9 @@ if(kind==='TASK'&&c.task.key==='report'){counts.report++;result={synthetic:true,
 if(kind==='REVIEW'){
  const supplemental=String(c.feedback??'').includes('Captain-supplied supplemental evidence');
  const reject=c.task.key==='sasa'&&!supplemental;
- const checks=c.task.acceptance.map(criterion=>({criterion,passed:!(reject&&criterion.includes('代码')),evidence:reject&&criterion.includes('代码')?'演示预设：结果文件可用，但缺原代码和版本日志。':supplemental?'模拟评审：补证内容可供本演示复核；原数值文件保持不变。':'模拟评审：按本演示固定验收逐项核对。'}));
+ const checks=c.task.acceptance.map(criterion=>({criterion,passed:!(reject&&criterion.includes('代码')),evidence:`${c.task.outputFilename}: `+(reject&&criterion.includes('代码')?'演示预设：结果文件可用，但缺原代码和版本日志。':supplemental?'模拟评审：补证内容可供本演示复核；原数值文件保持不变。':'模拟评审：按本演示固定验收逐项核对。')}));
  const failed=checks.filter(x=>!x.passed);
- result={verdict:failed.length?'request_changes':'approve',summary:failed.length?'数值可核查，但缺原代码和版本日志；补齐原执行证据后复审。':'模拟独立评审通过，允许交接。',checks,requiredChanges:failed.length?['补充原计算代码、工具版本与执行日志；保留原数值文件。']:[],requiredChangeCriteria:failed.map(x=>x.criterion)};
+ result={verdict:failed.length?'request_changes':'approve',summary:failed.length?'数值可核查，但缺原代码和版本日志；补齐原执行证据后复审。':'模拟独立评审通过，允许交接。',checks,requiredChanges:failed.map(()=> '补充原计算代码、工具版本与执行日志；保留原数值文件。'),requiredChangeCriteria:failed.map(x=>x.criterion)};
  counts.review++;
 }
 if(kind==='CHANGE_REVIEW')result={verdict:'accept',rationale:'只增加报告中文摘要和限制，不改变上游输入、方法、数值或验收。',affectedTaskKeys:['report'],requirementEdits:[],taskImpacts:c.taskFingerprints.map(t=>({...t,affected:t.key==='report',rationale:t.key==='report'?'补充报告说明':'原成果及批准继续有效'}))};
