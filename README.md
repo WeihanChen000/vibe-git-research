@@ -16,7 +16,7 @@
 | 缺证据不必重跑原计算 | 首次缺版本和代码被退回；补齐原运行证据后复审获批，原计算仍只有一次 |
 | 只改报告不重复上游工作 | 正式增加中文摘要及限制说明，只重做报告和评审；原计算文件及批准 ID 保持不变 |
 
-先看[真实两轮记录与原始文件](docs/research/LATEST-GOVERNANCE-LIVE-20261031.md)，再看[基础流程视频](https://weihanchen000.github.io/vibe-git-research/submission/watch.html)或[原拓扑历史回放](https://weihanchen000.github.io/vibe-git-research/replay/?case=isolated&step=members)。视频和回放是各自标注的历史轮次，不是最新一轮的连续录像。
+先看[真实两轮记录与原始文件](docs/research/LATEST-GOVERNANCE-LIVE-20261031.md)，再看[最终案例视频](https://weihanchen000.github.io/vibe-git-research/submission/watch.html)或[原拓扑历史回放](https://weihanchen000.github.io/vibe-git-research/replay/?case=isolated&step=members)。新版视频统一讲解此真实主案例，并区分模拟界面与历史证据；不是连续现场录像。拓扑回放仍保留各自历史轮次。
 
 这些证据支持“可核查的交接与成果复用”，不代表新生物学发现、算法独占或已证明节省真人时间。新用户从[三步接入与第一轮操作](vibe-git/SCIENCEPAL-QUICKSTART.md)开始。
 
@@ -91,7 +91,7 @@ npm run research:replay
 
 ### 历史基线与其他验证
 
-历史提交基线为 [`ca1b2b5`](https://github.com/WeihanChen000/vibe-git-research/tree/ca1b2b5227e660559fb9e29c4d69a259252efb54)。后续按原功能保留要求补兼容与防偏移缺口，不新增平台、学科案例或重做界面。
+最终功能基线 [`dda48233f57ee20e9c8be2d6b21c782b46ece7ba`](https://github.com/WeihanChen000/vibe-git-research/tree/dda48233f57ee20e9c8be2d6b21c782b46ece7ba)，材料 final-20261031-v1。功能已冻结；参赛前只修启动、演示或提交阻塞。不新增平台、学科案例或重做界面。
 
 最新代码补齐[科研防偏移与反例验证](docs/research/RESEARCH-ANTI-DRIFT-20261031.md)：原文遗漏不能发布、返工须对应原验收、变更按影响复用有效成果。该新增治理层已通过受控模拟及最新真实两轮闭环；既有回放仍展示其原始历史版本。
 

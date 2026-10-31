@@ -1,109 +1,73 @@
 WEBVTT
 
-00:00:00.200 --> 00:00:05.816
-A research team wants to answer a simple question: which parts of this protein are exposed to water?
+00:00:00.000 --> 00:00:11.542
+A captain and two researchers want to study the exposed surface of a protein. One member calculates in Science Pal, another works in Codex. Each has a useful agent, but their conversations are separate.
 
-00:00:05.816 --> 00:00:10.133
-They use the public one C R N structure as their starting point.
+00:00:11.542 --> 00:00:21.333
+A file arrives in the group chat. Which input and method produced it? Is it the approved version? Before writing the report, someone must ask all over again.
 
-00:00:10.533 --> 00:00:17.390
-There is one captain and two team members. Member A uses Science Pal to calculate the surface area.
+00:00:21.333 --> 00:00:31.167
+Vibe Git Research keeps a shared research protocol around those separate agents. Members propose their work, the team aligns the requirements, and the captain publishes the agreed tasks.
 
-00:00:17.390 --> 00:00:24.467
-Member B uses Codex to interpret the results. The captain coordinates the study and reviews their work.
+00:00:31.167 --> 00:00:40.083
+The next task receives an approved artifact together with its version and review evidence. A completed agent response alone is not enough to release a file downstream.
 
-00:00:24.867 --> 00:00:31.831
-Everyone makes progress in their own agent conversation. But their work is scattered across different platforms.
+00:00:40.083 --> 00:00:52.708
+The original project supplies the topology, captain permissions, proposals and change governance. Our teammate supplies the common agent interface, registry and execution adapters. We preserve those contributions.
 
-00:00:31.831 --> 00:00:41.467
-A calculation finishes. A file is revised. A new requirement appears. Who knows which version everyone else is using?
+00:00:52.708 --> 00:01:04.083
+Our extension connects Science Pal and adds research input checks, independent review, evidence recovery and approved result reuse. The product remains a general workflow, not a dedicated protein calculator.
 
-00:00:41.867 --> 00:00:47.885
-Member B receives a result, but cannot tell whether it is the latest version or whether it has passed review.
+00:01:04.083 --> 00:01:14.458
+In the existing project controls, members bind their agents and save proposals. The captain uploads the input, checks its source, and confirms the method and acceptance rules before publishing.
 
-00:00:47.885 --> 00:00:55.717
-The captain has to chase messages and reconnect the evidence. A finished agent task is not yet a finished team workflow.
+00:01:14.458 --> 00:01:24.542
+The screen shown here is a labeled interface example. The next sections use exported records from a completed real run, rather than pretending that these pictures are one continuous live recording.
 
-00:00:56.117 --> 00:01:07.215
-Vibe Git Research keeps the original team topology and proposal workflow. We add cross-platform research tasks, frozen inputs, numerical checks, and reviewed file handoffs.
+00:01:24.542 --> 00:01:36.458
+For the real case, we use the public one C R N structure. The question is its solvent accessible surface area under a fixed geometric protocol: chain A, three hundred twenty seven heavy atoms, and forty six residues.
 
-00:01:07.215 --> 00:01:17.217
-Science Pal executes the research task. Codex checks and analyzes the results. Everyone shares one protocol and can see who acts next.
+00:01:36.458 --> 00:01:48.417
+Science Pal's Biology environment executes the calculation with Biopython, one thousand sampling points and a one point four angstrom probe. This is actual tool execution, not just writing a scientific explanation.
 
-00:01:17.617 --> 00:01:25.027
-Here is the actual interface, in a clearly labeled three member rehearsal. Each member submits their research plan.
+00:01:48.417 --> 00:02:00.625
+The reported total is two thousand nine hundred sixty seven point six two square angstroms. It differs from the independent five thousand point NumPy reference by about zero point one nine percent, within the agreed two percent tolerance.
 
-00:01:25.027 --> 00:01:31.467
-The plan describes the question, the method, their responsibility, and what would count as an acceptable result.
+00:02:00.625 --> 00:02:12.625
+Codex checks the input, method, reference and sum. This is a geometric reproduction for one structure. It is not a new biological discovery, and these checks do not guarantee every scientific conclusion.
 
-00:01:31.867 --> 00:01:39.170
-The captain selects the participants and uploads the protein structure. Everyone will work from the same frozen input.
+00:02:12.625 --> 00:02:24.208
+The first calculation passes its numerical checks, but its delivery lacks version evidence and the original code. Codex rejects the handoff. Missing version evidence was planned; the missing code was not.
 
-00:01:39.170 --> 00:01:44.883
-This removes the first source of confusion: different people silently using different files.
+00:02:24.208 --> 00:02:35.000
+The operator retrieves the original script and tool log from the Science Pal conversation. This human intervention is part of the evidence record. We do not describe the workflow as fully unattended.
 
-00:01:45.283 --> 00:01:52.123
-The proposals become a shared protocol: who calculates, who analyzes, and what must be checked before handoff.
+00:02:35.000 --> 00:02:48.500
+The captain submits supplementary evidence using the existing review action. Codex reviews again and approves. The calculation artifact, its identifier and its hash remain unchanged. Science Pal does not rerun that upstream task.
 
-00:01:52.123 --> 00:01:58.800
-The captain checks the plan and publishes it. The agents do not silently change the team's agreement.
+00:02:48.500 --> 00:02:58.875
+There are still two upstream reviews, and review itself can include independent calculations. We claim avoided upstream reruns, not zero review cost or proven overall savings.
 
-00:01:59.200 --> 00:02:04.575
-The topology now shows the captain and both members, with their tasks and dependencies.
+00:02:58.875 --> 00:03:11.708
+Next, the captain requests a Chinese summary and two limitations in the report. Change review identifies only the report as affected. After alignment and publication, the approved surface calculation is carried into revision two.
 
-00:02:04.575 --> 00:02:12.050
-Member A calculates first. Member B waits for an approved result, instead of guessing when it is safe to continue.
+00:03:11.708 --> 00:03:23.500
+Codex updates the report, and Science Pal reviews it. The upstream result and its approval are reused. A separate malformed review was retried without rerunning the report, and that failure remains in the record.
 
-00:02:12.450 --> 00:02:22.825
-Our real run used Science Pal’s official Biology Agent and cloud research workspace to execute Python and Biopython, returning code, parameters, and residue measurements.
+00:03:23.500 --> 00:03:36.167
+The same controls explain what is preserved and what action comes next. A method mismatch blocks release. Supplementary review preserves the result when eligible. A failed file read can be retried without starting a model.
 
-00:02:22.825 --> 00:02:34.383
-Codex checked the measurements independently. Our platform adds the shared protocol and verified handoff. The value is a connected research workflow, not an exclusive algorithm.
+00:03:36.167 --> 00:03:48.208
+These interface checks use a deterministic simulator. They support recovery behavior, not scientific results. The original dark topology, navigation, permissions and order of operations stay in place.
 
-00:02:34.783 --> 00:02:42.757
-Submitting a result triggers an independent review. In this example, the first calculation is only an exploratory pass.
+00:03:48.208 --> 00:04:01.958
+The successful project contains eleven agent jobs, thirty one original attachments and thirty four input receipts. The offline verifier checks file bytes and workflow identities. It does not independently repeat remote scientific computation.
 
-00:02:42.757 --> 00:02:48.883
-The agreed final check needs a higher resolution comparison, so the result is returned for revision.
+00:04:01.958 --> 00:04:13.333
+An earlier misconfigured attempt remains separate. One operator used one computer and one Science Pal account. Cross computer collaboration and human time savings have not been established by this case.
 
-00:02:49.283 --> 00:02:56.185
-The captain opens the review feedback and assigns the revision. Member A sees exactly what needs to change.
+00:04:13.333 --> 00:04:25.417
+The video page links to the five page brief, the evidence package and a public Science Pal verification replay. That replay is historical and read only; rerunning the full workflow requires your own accounts and local connectors.
 
-00:02:56.185 --> 00:03:02.883
-The earlier result stays in the history. Member B remains blocked until the revised result is approved.
-
-00:03:03.283 --> 00:03:09.623
-In the real run, Science Pal repeated the calculation at one thousand and five thousand sampling points.
-
-00:03:09.623 --> 00:03:18.800
-The totals differed by about zero point one one percent, below the agreed two percent limit. Codex also checked them using a separate implementation.
-
-00:03:19.200 --> 00:03:27.325
-We also found a real handoff bug. Codex received the result, but not the approval evidence needed to trust that exact file.
-
-00:03:27.325 --> 00:03:33.967
-It reported the blocker instead of pretending the analysis was complete. We fixed the handoff packet.
-
-00:03:34.367 --> 00:03:39.938
-Now the handoff includes the approved file, its fingerprint, and the original review record.
-
-00:03:39.938 --> 00:03:45.800
-Click the connection to see what was produced, who approved it, and whether the downstream member received it.
-
-00:03:46.200 --> 00:03:57.218
-The study now answers the original question. In this fixed structure, tyrosine twenty nine, leucine eighteen, and proline thirty six have the largest absolute exposed areas.
-
-00:03:57.218 --> 00:04:06.133
-These are geometric measurements, not claims about biological function. The complete residue results and independent reference are linked below.
-
-00:04:06.533 --> 00:04:17.765
-The host now executes frozen numerical checks. A failed check blocks handoff, even if an agent review says approved. The original topology shows exactly what failed.
-
-00:04:17.765 --> 00:04:30.633
-The saved real result passes. Three controlled errors fail, including changed residue areas with an unchanged total. This verifies the configured checks, not every possible scientific error.
-
-00:04:31.033 --> 00:04:39.712
-The three person workflow you saw is a rehearsal. The published scientific evidence comes from one Science Pal account working with local Codex.
-
-00:04:39.712 --> 00:04:49.217
-This is a general research platform, not a tool limited to this protein. Open the evidence links below to inspect the real files and the Science Pal run.
+00:04:25.417 --> 00:04:38.167
+Our contribution is a reliable handoff contract across agents: agree on the method, check the result, preserve the approval, and recover without unnecessary upstream reruns. Configuration effort and real user benefits still need measurement.

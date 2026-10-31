@@ -1,4 +1,6 @@
-# 表单可复制内容（行政信息暂不填）
+# 表单可复制内容 · final-20261031-v1
+
+功能基线：dda48233f57ee20e9c8be2d6b21c782b46ece7ba。行政信息与最终声明由队长本人填写。
 
 ## 作品名称
 
@@ -6,36 +8,40 @@ Vibe-Git Research：跨 Agent 的科研协议、评审与证据交接
 
 ## 方向
 
-主要方向：AI Agent。验证场景：AI + Biology。是否同时勾选 Biology 由队长按作品定位决定。
+建议 AI Agent；真实验证场景 AI + Biology。最终勾选由队长决定。
 
-## 项目简介 / 科研问题 / 使用场景
+## 简介（667 字符，含换行）
 
-研究者同时使用 Codex 与 SciencePAL 时，计算结果、方法参数和批准依据分散在不同对话。拿到文件后，还要人工确认它是不是最新版本、是否经过复核、能否交给下一步。
+研究者同时使用 Codex 与 SciencePAL 时，输入、方法参数、成果版本和批准依据分散在不同对话，交接后仍要反复确认文件能否用于下一步。Vibe-Git Research 面向已有这两个平台的研究者：沿用原 Vibe-Git 的成员提案、队长权限、对齐、变更治理和拓扑界面，以及队友的通用 Agent 执行层，加入科研输入与方法冻结、成果检查、独立评审、补证恢复和批准依据随文件交接。
 
-Vibe-Git Research 面向已经使用这两个平台、需要交换计算结果并复核的研究者。一个人管理多个 Agent 即可使用，也保留多人协作能力。项目沿用队友原 Vibe-Git 的成员提案、队长发布和拓扑界面，增加冻结科研协议、输入字节与成果格式检查、独立评审、返工版本及获批文件交接。目标是让约定的检查稳定执行、批准依据随成果一起交接，而非依赖人记忆；是否节省真人操作时间仍待验证。
+真实 1CRN 两轮案例中，SciencePAL 官方 Biology 环境实际运行 Biopython 的 Shrake-Rupley，Codex 独立复核。固定 A 链 327 个重原子、46 个残基，1000 点、1.4 Å 探针，总面积 2967.6165 Å²；相对独立 NumPy 5000 点参考差异约 0.1865%，低于预设 2%。首次缺代码与版本证据被退回，取回原执行记录补证后获批，上游不重跑。第二轮仅改报告，继续使用原成果和绑定批准。成功项目有 11 次 Agent 作业、31 份原始附件、34 条输入回执；包括失败评审重试，保留人工介入。此前误配置尝试单独保存，不计入“上游仅一次”。
 
-公开 1CRN 案例中，SciencePAL 官方 Biology Agent 在科研环境中实际运行 Python/Biopython 计算溶剂可及表面积，Codex 用独立 NumPy 实现复核。1000/5000 点相对差为 0.1114%，低于预设 2%。最新单机验收使用一个队长、两个成员身份，经历三次真实评审退回、原线程等待输入与接续、连接器进程恢复和最终文件交接；17 项运行检查通过。中途操作者查看原线程补证，复审保留原成果与标准，不是全程无人介入。23 个原始附件、29 条输入回执与13阶段回放公开可核验。
+项目的增量是跨 Agent 可核查交接和按影响恢复，不宣称 SciencePAL 算法独占或整体节时省钱。当前验证为单操作者、单机、一个 SciencePAL 账号。检查依赖预先配置的规则、参考和容差，不保证所有科学结论正确；真人跨账号跨电脑及配置成本尚待验证。公开链接提供只读历史核查，完整重跑需本人账号和本地连接器。
 
-已配置数值规则的任务即使得到文字批准，检查失败也不能交接。参考值、容差及科学解释仍由研究者负责。平台允许自定义问题与协议；当前上传为单份256 KiB以内文本，数值规则主要为求和、参考值比较，并非任意科研流程。SciencePAL 提供实际科研专家与工具环境，不宣称算法不可替代、效率百分比或科学准确率领先。真人跨账号、跨电脑尚未验证。
+## 材料链接
 
-## 作品材料
+- 视频：https://weihanchen000.github.io/vibe-git-research/submission/watch.html
+- PDF：https://weihanchen000.github.io/vibe-git-research/submission/project-brief.pdf
+- 固定代码：https://github.com/WeihanChen000/vibe-git-research/tree/dda48233f57ee20e9c8be2d6b21c782b46ece7ba
+- 主案例证据：https://github.com/WeihanChen000/vibe-git-research/blob/codex/research-team-share/docs/research/LATEST-GOVERNANCE-LIVE-20261031.md
+- SciencePAL 公开核查： https://sciencepal.ai/share/3b6302a7-f055-460e-9e3d-588287a7b3ca
+- 运行条件：https://github.com/WeihanChen000/vibe-git-research/blob/codex/research-team-share/docs/submission/RUN-AND-RECOVER.md
 
-直接播放演示（英文配音 / 中文字幕）：https://weihanchen000.github.io/vibe-git-research/submission/watch.html
+SciencePAL 链接为早期材料的独立核查记录，可只读演示；不代表最新两轮流程的在线运行，不支持免账号完整重跑。实际重新执行需要本人账号与本地连接器。若表单要求直接运行，应由队长确认评委权限安排。
 
-固定代码版本：https://github.com/WeihanChen000/vibe-git-research/tree/ca1b2b5227e660559fb9e29c4d69a259252efb54
+## 原创性与贡献
 
-最新原拓扑回放：https://weihanchen000.github.io/vibe-git-research/replay/?case=isolated&step=members
+直接使用 [贡献说明简版](CONTRIBUTION-STATEMENT.md) 并按实际分工补齐；[资源声明](ORIGINALITY-RESOURCES.md) 尚待本人确认。不得将继承代码、公共算法或 AI 辅助实现写成个人全部手工原创。
 
-SciencePAL 公开真实核查回放：https://sciencepal.ai/share/3b6302a7-f055-460e-9e3d-588287a7b3ca
-
-该链接为只读记录，可播放工具步骤与结果；再次执行需本人 SciencePAL 账号，步骤见 SCIENCEPAL-DEMO.md。PDF / 视频 / 声明：本目录对应文件。
-
-## 行政信息
+## 留空给本人
 
 队伍名称：
 队长姓名：
 队长邮箱：
-其他队员信息：
-实际逐人分工：
+其他队员姓名 / 学校机构 / 邮箱：
+逐人实际分工：
+赛前已有 / 赛事期间新增工作确认：
+资源使用依据确认：
+最终声明与提交：
 
-按用户要求留空；不用于绕过问卷必填校验。
+没有填写问卷、勾选最终声明或提交。只有看到成功页/回执后才能标记已提交。

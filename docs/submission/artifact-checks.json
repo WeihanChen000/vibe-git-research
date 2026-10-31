@@ -1,83 +1,143 @@
 {
+  "material_version": "final-20261031-v1",
+  "functional_baseline": "dda48233f57ee20e9c8be2d6b21c782b46ece7ba",
+  "submission_status": "NOT_SUBMITTED",
+  "team_identity": "left blank for captain",
   "pdf_pages": 5,
-  "video_seconds": 289.416667,
+  "pdf_links": [
+    "https://weihanchen000.github.io/vibe-git-research/submission/watch.html",
+    "https://sciencepal.ai/share/3b6302a7-f055-460e-9e3d-588287a7b3ca",
+    "https://github.com/WeihanChen000/vibe-git-research/blob/codex/research-team-share/docs/research/LATEST-GOVERNANCE-LIVE-20261031.md"
+  ],
+  "pdf_all_pages_visually_checked": true,
+  "video_seconds": 278.39,
   "video_dimensions": [
     1920,
     1080
   ],
-  "video_fps": 24,
-  "video_audio": true,
+  "video_fps": 12,
+  "video_audio": "AAC English synthetic Aria",
+  "video_subtitles": "burned zh-CN; optional en WebVTT",
+  "video_audio_mean_db": -24.7,
+  "video_audio_peak_db": -5.0,
   "full_decode_passed": true,
-  "form_summary_characters": 718,
-  "team_identity": "left blank by user",
-  "technical_baseline": "c7610cf",
+  "scene_count": 12,
+  "chapter_targets_match": true,
   "files": {
     "project-brief.pdf": {
-      "bytes": 245219,
-      "sha256": "1db6a53bc2ce425da54d0bb0914b58fe70e7fd675fcb96c9c0875f94260df2c8"
+      "bytes": 281168,
+      "sha256": "c5d35a36b31cac8560f600ce7a8b12732eb1e7f5edf82fcd3c695a9f3aa241c8"
     },
     "vibe-git-research-demo.mp4": {
-      "bytes": 9494117,
-      "sha256": "0b2fd10b6cf5b9147bd9cf23748b06996635e8d20649493bf9bb4b3c08f26561"
-    }
-  },
-  "sciencepal_public_share": "https://sciencepal.ai/share/3b6302a7-f055-460e-9e3d-588287a7b3ca",
-  "share_mode": "read-only native playback; rerun requires account",
-  "anonymous_http_status": 200,
-  "anonymous_full_client_check": false,
-  "browser_final_playback_step": "107/107",
-  "sciencepal_actual_status": "completed",
-  "sciencepal_output_sha256": "1f41a94bd5954881e5a6ffff633c7a5d447c1a1e6d410c6b92b96828e15dba8b",
-  "isolated_local_verifier_checks": {
-    "passed": 5,
-    "total": 5
-  },
-  "offline_original_bundle": {
-    "files": 12,
-    "verifiedPublicInputReceipts": 20
-  },
-  "video_narration": "English synthetic voice en-US-AriaNeural via edge-tts 7.3.1",
-  "video_burned_subtitles": "zh-CN",
-  "video_optional_subtitles": "en WebVTT",
-  "video_scene_count": 18,
-  "video_scope": "edited story, synthetic three-member real-UI rehearsal, separately labeled prior real science evidence",
-  "player_url": "https://weihanchen000.github.io/vibe-git-research/submission/watch.html",
-  "video_audio_mean_db": -24.8,
-  "video_audio_peak_db": -4.5,
-  "video_update": "judge-v3: clarify original-project increment and SciencePAL/Codex/platform responsibilities; previous real evidence unchanged",
-  "public_player_verification": {
-    "content_commit": "ca4e2e65cde4483e20e4634dfdb53573c41b7559",
-    "url": "https://weihanchen000.github.io/vibe-git-research/submission/watch.html?v=judge-v3",
-    "anonymous_page_status": 200,
-    "video_range_status": 206,
-    "video_content_type": "video/mp4",
-    "video_bytes": 9494117,
-    "browser_duration_seconds": 289.437667,
-    "playback_advanced_to_seconds": 4.120758,
-    "muted": false,
-    "chapter_seek_seconds": 132.571717,
-    "browser_media_error": null,
-    "source_zip_status": 200
-  },
-  "submission_freeze": {
-    "id": "hackathon-20261031-ca1b2b5",
-    "code_commit": "ca1b2b5227e660559fb9e29c4d69a259252efb54",
-    "code_snapshot": "https://github.com/WeihanChen000/vibe-git-research/tree/ca1b2b5227e660559fb9e29c4d69a259252efb54",
-    "scope": "Codex + SciencePAL verifiable research handoff; no new platform or feature expansion before submission",
-    "asset_scope": "Unchanged judge-v3 video and five-page PDF illustrate earlier cases; newest single-machine acceptance is a separate 13-stage replay",
-    "single_machine_acceptance": {
-      "artifacts": 23,
-      "input_receipts": 29,
-      "checks": 17,
-      "stages": 13,
-      "scope": "one operator, one computer, three project identities, one SciencePAL account; operator-assisted chronology supplementation"
+      "bytes": 7279876,
+      "sha256": "d6826f4291c92ab534fb9d28fc7b292d7f21771896d70b871d7880e3d5767562"
     },
-    "efficiency_study": "not performed; no human time or percentage improvement claimed",
-    "formal_submission": "not submitted; identity and final declarations pending user completion",
-    "acceptance_manifest": {
-      "path": "vibe-git/apps/web/public/research-replay/isolated/manifest.json",
-      "bytes": 7282,
-      "sha256": "d8ae4438d7b87dfb48ed409af52a631f7622fe401fee84b974e769471c6470a9"
+    "watch.html": {
+      "bytes": 8805,
+      "sha256": "290ebd7845a51e9fd36f8a625e3cf4d42cc055d13326fd4e2d70638b19309d7f"
+    },
+    "DEMO-SCRIPT.md": {
+      "bytes": 9361,
+      "sha256": "df8bd12cd025c86561d608203ced07693898cd4373f0250d0ef127ac49fb9d54"
+    },
+    "demo-scenes.json": {
+      "bytes": 7871,
+      "sha256": "875bc26cf68b1a1839a0abd5220a80fa51736da57b4796f6211a225afc73e2c1"
+    },
+    "demo.en.vtt": {
+      "bytes": 5825,
+      "sha256": "ed24d381de9f7db2698b4da106eb64a43eaaa9cff0f99a5853a2b7d86894bf20"
+    },
+    "demo.zh-CN.vtt": {
+      "bytes": 3413,
+      "sha256": "a8760448e895183775b679462bb23654ed0488190e93e34e79d50bdeb3b5b5f1"
+    },
+    "demo.zh-CN.srt": {
+      "bytes": 3490,
+      "sha256": "4780d5a58d0c5f52707b1b804f2b27d0049d389b2784a8d3ad188704af9f142d"
+    },
+    "video-poster.jpg": {
+      "bytes": 148717,
+      "sha256": "58d65fc5c9c2ecf37da9eb7ff0556d9c9b65a5dc674203dc25f893375911f6ce"
+    },
+    "README.md": {
+      "bytes": 4441,
+      "sha256": "0799844e8eb17007e66f6cc25837cb65233e8ac37fb7a5f84838f3836af12ba8"
+    },
+    "FORM-COPY.md": {
+      "bytes": 3560,
+      "sha256": "552e1ad0be14e077397717e6712505ca55bc9ebec442d8ebbcb09b40731a6e2f"
+    },
+    "ORIGINALITY-RESOURCES.md": {
+      "bytes": 6318,
+      "sha256": "60c56818e1349d498b21e6c8aec88af372381a4aa505ae6652bfaf7a04b3ef3b"
+    },
+    "SCIENCEPAL-DEMO.md": {
+      "bytes": 3635,
+      "sha256": "582a1a26c5e9bc875d6b766066a9ada8079f327603a020584d157030156ac6d7"
+    },
+    "RUN-AND-RECOVER.md": {
+      "bytes": 3810,
+      "sha256": "7d28426263ed0f47d5a38d69a5289567de669cf471fc83651f2ca736ddcd15a7"
+    },
+    "CONTRIBUTION-STATEMENT.md": {
+      "bytes": 6305,
+      "sha256": "fd25cd7796f320f42121595415a1ff348f74829b74b9fa18bd0dc32dfd559e29"
+    },
+    "AUDIT.md": {
+      "bytes": 5450,
+      "sha256": "fbad1c1b621c604f548272c1a053041221384ed325dc96ea6eca0b433516a7ca"
     }
-  }
+  },
+  "latest_live": {
+    "projectId": "85455c15-1857-4c5f-a876-85ca8b6cf7fa",
+    "artifacts": 31,
+    "inputReceipts": 34,
+    "runs": 11,
+    "upstreamCalculations": 1,
+    "upstreamReviews": 2,
+    "reportExecutions": 2,
+    "reportReviews": 3,
+    "alignmentRuns": 2,
+    "changeReviews": 1,
+    "offline_verified": true,
+    "remote_rerun_at_freeze": false
+  },
+  "freeze_checks": {
+    "frontend_tests": 59,
+    "web_typecheck_build": true,
+    "public_replay_build": true
+  },
+  "sciencepal": {
+    "url": "https://sciencepal.ai/share/3b6302a7-f055-460e-9e3d-588287a7b3ca",
+    "mode": "historical read-only verification; not latest two-round case",
+    "browser_jump_to_end": "107/107",
+    "fresh_anonymous_browser_test": false,
+    "anonymous_rerun": false
+  },
+  "form": {
+    "first_page_readonly_checked": true,
+    "later_upload_constraints_verified": false,
+    "identity_entered": false,
+    "final_declaration_checked": false,
+    "submitted": false
+  },
+  "limits": [
+    "No real model rerun for material production",
+    "No human cross-computer or multi-account validation",
+    "No measured human time or total cost savings",
+    "Final UI walkthrough was stopped before completion",
+    "Public SciencePAL read-only link does not itself satisfy direct rerun access"
+  ],
+  "contribution_publication_authorized": true,
+  "form_summary_characters": 667,
+  "browser_local_playback": {
+    "started": true,
+    "time_advanced": true,
+    "video_width": 1920,
+    "muted": false,
+    "error": null,
+    "chapter_check": "deferred to production: temporary Python server exposed seekable [0,0]"
+  },
+  "public_access_recheck": "pending deployment"
 }

@@ -1,5 +1,8 @@
 # SciencePAL 展示入口与运行边界
 
+> 材料 final-20261031-v1；功能基线 dda48233f57ee20e9c8be2d6b21c782b46ece7ba。本页是早期材料的独立核查，不是最新两轮主案例。见 [主案例证据](../research/LATEST-GOVERNANCE-LIVE-20261031.md) 和 [重跑条件](RUN-AND-RECOVER.md)。原始会话与附件不改写。
+
+
 正式作品要求包含 SciencePAL 项目 / Agent / 工作流入口；GitHub 和本地回放不能替代此项。
 
 为避免公开完整私有运行上下文，本次单独创建仅含公开 1CRN 源文件、最终结果、批准记录和综合分析的 Biology 复核演示。它是新的一次公开材料核验，不冒充原闭环重跑，也不代表两个真人账号。

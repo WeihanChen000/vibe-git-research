@@ -2,233 +2,133 @@
   {
     "scene": 1,
     "start": 0,
-    "duration": 10.333,
-    "title": "先从一个研究任务开始",
-    "scope": "情境示意 · 一位队长、两位成员",
-    "screenshots": [],
+    "duration": 21.333,
+    "title": "一个团队，三个独立对话",
+    "scope": "情境示意 · 不是多人真实联调",
     "narration": [
-      "A research team wants to answer a simple question: which parts of this protein are exposed to water?",
-      "They use the public one C R N structure as their starting point."
+      "A captain and two researchers want to study the exposed surface of a protein. One member calculates in Science Pal, another works in Codex. Each has a useful agent, but their conversations are separate.",
+      "A file arrives in the group chat. Which input and method produced it? Is it the approved version? Before writing the report, someone must ask all over again."
     ]
   },
   {
     "scene": 2,
-    "start": 10.333,
-    "duration": 14.333,
-    "title": "一位队长，多位成员，各用自己的 Agent",
-    "scope": "情境示意 · 一位队长、两位成员",
-    "screenshots": [],
+    "start": 21.333,
+    "duration": 18.75,
+    "title": "我们管理的是交接依据",
+    "scope": "产品机制 · 沿用原 Vibe-Git 操作顺序",
     "narration": [
-      "There is one captain and two team members. Member A uses Science Pal to calculate the surface area.",
-      "Member B uses Codex to interpret the results. The captain coordinates the study and reviews their work."
+      "Vibe Git Research keeps a shared research protocol around those separate agents. Members propose their work, the team aligns the requirements, and the captain publishes the agreed tasks.",
+      "The next task receives an approved artifact together with its version and review evidence. A completed agent response alone is not enough to release a file downstream."
     ]
   },
   {
     "scene": 3,
-    "start": 24.667,
-    "duration": 17.0,
-    "title": "各自都在推进，团队却没有共同状态",
-    "scope": "情境示意 · 一位队长、两位成员",
-    "screenshots": [],
+    "start": 40.083,
+    "duration": 24.0,
+    "title": "沿用原界面，保留原贡献",
+    "scope": "历史界面素材 · 展示操作位置，不冒充本轮实跑",
     "narration": [
-      "Everyone makes progress in their own agent conversation. But their work is scattered across different platforms.",
-      "A calculation finishes. A file is revised. A new requirement appears. Who knows which version everyone else is using?"
+      "The original project supplies the topology, captain permissions, proposals and change governance. Our teammate supplies the common agent interface, registry and execution adapters. We preserve those contributions.",
+      "Our extension connects Science Pal and adds research input checks, independent review, evidence recovery and approved result reuse. The product remains a general workflow, not a dedicated protein calculator."
     ]
   },
   {
     "scene": 4,
-    "start": 41.667,
-    "duration": 14.25,
-    "title": "“这份文件，我现在能用吗？”",
-    "scope": "情境示意 · 一位队长、两位成员",
-    "screenshots": [],
+    "start": 64.083,
+    "duration": 20.458,
+    "title": "从界面进入：建项与发布",
+    "scope": "确定性模拟界面 · 不调用真实模型",
     "narration": [
-      "Member B receives a result, but cannot tell whether it is the latest version or whether it has passed review.",
-      "The captain has to chase messages and reconnect the evidence. A finished agent task is not yet a finished team workflow."
+      "In the existing project controls, members bind their agents and save proposals. The captain uploads the input, checks its source, and confirms the method and acceptance rules before publishing.",
+      "The screen shown here is a labeled interface example. The next sections use exported records from a completed real run, rather than pretending that these pictures are one continuous live recording."
     ]
   },
   {
     "scene": 5,
-    "start": 55.917,
-    "duration": 21.5,
-    "title": "我们补上的是团队协作这一层",
-    "scope": "情境示意 · 一位队长、两位成员",
-    "screenshots": [],
+    "start": 84.542,
+    "duration": 23.875,
+    "title": "真实问题：固定结构的表面积",
+    "scope": "已完成的真实 1CRN 案例 · 单操作者、单机",
     "narration": [
-      "Vibe Git Research keeps the original team topology and proposal workflow. We add cross-platform research tasks, frozen inputs, numerical checks, and reviewed file handoffs.",
-      "Science Pal executes the research task. Codex checks and analyzes the results. Everyone shares one protocol and can see who acts next."
+      "For the real case, we use the public one C R N structure. The question is its solvent accessible surface area under a fixed geometric protocol: chain A, three hundred twenty seven heavy atoms, and forty six residues.",
+      "Science Pal's Biology environment executes the calculation with Biopython, one thousand sampling points and a one point four angstrom probe. This is actual tool execution, not just writing a scientific explanation."
     ]
   },
   {
     "scene": 6,
-    "start": 77.417,
-    "duration": 14.25,
-    "title": "第一步：每位成员先提交自己的提案",
-    "scope": "实际界面操作演练 · Agent 输出为合成结果",
-    "screenshots": [
-      "video2-proposal.png"
-    ],
+    "start": 108.417,
+    "duration": 24.208,
+    "title": "结果可比较，结论有边界",
+    "scope": "真实成果 + 预先独立 NumPy 参考",
     "narration": [
-      "Here is the actual interface, in a clearly labeled three member rehearsal. Each member submits their research plan.",
-      "The plan describes the question, the method, their responsibility, and what would count as an acceptable result."
+      "The reported total is two thousand nine hundred sixty seven point six two square angstroms. It differs from the independent five thousand point NumPy reference by about zero point one nine percent, within the agreed two percent tolerance.",
+      "Codex checks the input, method, reference and sum. This is a geometric reproduction for one structure. It is not a new biological discovery, and these checks do not guarantee every scientific conclusion."
     ]
   },
   {
     "scene": 7,
-    "start": 91.667,
-    "duration": 13.417,
-    "title": "第二步：队长建项，上传共同材料",
-    "scope": "实际界面操作演练 · 公开 1CRN 输入",
-    "screenshots": [
-      "video2-create.png"
-    ],
+    "start": 132.625,
+    "duration": 22.375,
+    "title": "数值通过，仍可能缺证据",
+    "scope": "真实 R1 · 首次评审退回",
     "narration": [
-      "The captain selects the participants and uploads the protein structure. Everyone will work from the same frozen input.",
-      "This removes the first source of confusion: different people silently using different files."
+      "The first calculation passes its numerical checks, but its delivery lacks version evidence and the original code. Codex rejects the handoff. Missing version evidence was planned; the missing code was not.",
+      "The operator retrieves the original script and tool log from the Science Pal conversation. This human intervention is part of the evidence record. We do not describe the workflow as fully unattended."
     ]
   },
   {
     "scene": 8,
-    "start": 105.083,
-    "duration": 13.917,
-    "title": "第三步：先对齐，再由队长发布",
-    "scope": "实际界面操作演练 · 队长确认与发布",
-    "screenshots": [
-      "video2-aligned.png"
-    ],
+    "start": 155.0,
+    "duration": 23.875,
+    "title": "补证复审，不重新执行上游",
+    "scope": "真实 R1 · 相同执行 ID、成果 ID 与哈希",
     "narration": [
-      "The proposals become a shared protocol: who calculates, who analyzes, and what must be checked before handoff.",
-      "The captain checks the plan and publishes it. The agents do not silently change the team's agreement."
+      "The captain submits supplementary evidence using the existing review action. Codex reviews again and approves. The calculation artifact, its identifier and its hash remain unchanged. Science Pal does not rerun that upstream task.",
+      "There are still two upstream reviews, and review itself can include independent calculations. We claim avoided upstream reruns, not zero review cost or proven overall savings."
     ]
   },
   {
     "scene": 9,
-    "start": 119.0,
-    "duration": 13.25,
-    "title": "现在轮到谁，一眼可见",
-    "scope": "实际界面操作演练 · 不代表三个真实账号联调",
-    "screenshots": [
-      "video2-published.png"
-    ],
+    "start": 178.875,
+    "duration": 24.625,
+    "title": "只改报告，保留获批计算",
+    "scope": "真实 R2 · 变更评审后复用",
     "narration": [
-      "The topology now shows the captain and both members, with their tasks and dependencies.",
-      "Member A calculates first. Member B waits for an approved result, instead of guessing when it is safe to continue."
+      "Next, the captain requests a Chinese summary and two limitations in the report. Change review identifies only the report as affected. After alignment and publication, the approved surface calculation is carried into revision two.",
+      "Codex updates the report, and Science Pal reviews it. The upstream result and its approval are reused. A separate malformed review was retried without rerunning the report, and that failure remains in the record."
     ]
   },
   {
     "scene": 10,
-    "start": 132.25,
-    "duration": 22.333,
-    "title": "SciencePAL 执行科研，Codex 独立复核",
-    "scope": "真实记录 · 画面为另外公开的独立核查回放",
-    "screenshots": [
-      "integrated-live-completed.png"
-    ],
+    "start": 203.5,
+    "duration": 24.708,
+    "title": "错误后的下一步，要看得懂",
+    "scope": "当前界面走查 · 模拟执行器，非真实 1CRN 截图",
     "narration": [
-      "Our real run used Science Pal’s official Biology Agent and cloud research workspace to execute Python and Biopython, returning code, parameters, and residue measurements.",
-      "Codex checked the measurements independently. Our platform adds the shared protocol and verified handoff. The value is a connected research workflow, not an exclusive algorithm."
+      "The same controls explain what is preserved and what action comes next. A method mismatch blocks release. Supplementary review preserves the result when eligible. A failed file read can be retried without starting a model.",
+      "These interface checks use a deterministic simulator. They support recovery behavior, not scientific results. The original dark topology, navigation, permissions and order of operations stay in place."
     ]
   },
   {
     "scene": 11,
-    "start": 154.583,
-    "duration": 14.5,
-    "title": "结果提交了，但还不能直接给下游",
-    "scope": "操作演练；真实案例也有预先约定的探索阶段退回",
-    "screenshots": [
-      "video2-rejected.png"
-    ],
+    "start": 228.208,
+    "duration": 25.125,
+    "title": "证据完整，也公开失败和范围",
+    "scope": "修复后的成功项目 · 11 次 Agent 作业",
     "narration": [
-      "Submitting a result triggers an independent review. In this example, the first calculation is only an exploratory pass.",
-      "The agreed final check needs a higher resolution comparison, so the result is returned for revision."
+      "The successful project contains eleven agent jobs, thirty one original attachments and thirty four input receipts. The offline verifier checks file bytes and workflow identities. It does not independently repeat remote scientific computation.",
+      "An earlier misconfigured attempt remains separate. One operator used one computer and one Science Pal account. Cross computer collaboration and human time savings have not been established by this case."
     ]
   },
   {
     "scene": 12,
-    "start": 169.083,
-    "duration": 14.0,
-    "title": "队长安排返工，原结果保留",
-    "scope": "实际界面操作演练 · 原有返工确认流程",
-    "screenshots": [
-      "video2-rework.png"
-    ],
+    "start": 253.333,
+    "duration": 24.833,
+    "title": "先看证据，再决定是否复用",
+    "scope": "功能冻结 dda4823 · 材料版本 final-20261031-v1",
     "narration": [
-      "The captain opens the review feedback and assigns the revision. Member A sees exactly what needs to change.",
-      "The earlier result stays in the history. Member B remains blocked until the revised result is approved."
-    ]
-  },
-  {
-    "scene": 13,
-    "start": 183.083,
-    "duration": 15.917,
-    "title": "独立复算，让“通过”有依据",
-    "scope": "真实数值 · 固定构象的几何验证，不推断生物功能",
-    "screenshots": [],
-    "narration": [
-      "In the real run, Science Pal repeated the calculation at one thousand and five thousand sampling points.",
-      "The totals differed by about zero point one one percent, below the agreed two percent limit. Codex also checked them using a separate implementation."
-    ]
-  },
-  {
-    "scene": 14,
-    "start": 199.0,
-    "duration": 15.167,
-    "title": "真正发生过的问题：批准依据没交过来",
-    "scope": "真实联调发现 · 不是虚构的成员犯错",
-    "screenshots": [],
-    "narration": [
-      "We also found a real handoff bug. Codex received the result, but not the approval evidence needed to trust that exact file.",
-      "It reported the blocker instead of pretending the analysis was complete. We fixed the handoff packet."
-    ]
-  },
-  {
-    "scene": 15,
-    "start": 214.167,
-    "duration": 11.833,
-    "title": "交接文件，也交接这份文件的批准依据",
-    "scope": "实际界面操作演练 · 获批后放行下游",
-    "screenshots": [
-      "video2-handoff.png"
-    ],
-    "narration": [
-      "Now the handoff includes the approved file, its fingerprint, and the original review record.",
-      "Click the connection to see what was produced, who approved it, and whether the downstream member received it."
-    ]
-  },
-  {
-    "scene": 16,
-    "start": 226.0,
-    "duration": 20.333,
-    "title": "研究结果：哪些残基有较大的绝对暴露面积？",
-    "scope": "已有真实 SciencePAL 结果 · 固定结构的几何描述",
-    "screenshots": [],
-    "narration": [
-      "The study now answers the original question. In this fixed structure, tyrosine twenty nine, leucine eighteen, and proline thirty six have the largest absolute exposed areas.",
-      "These are geometric measurements, not claims about biological function. The complete residue results and independent reference are linked below."
-    ]
-  },
-  {
-    "scene": 17,
-    "start": 246.333,
-    "duration": 24.5,
-    "title": "检查失败，评审写“通过”也不能交接",
-    "scope": "新增门禁 · 受控错误演练 / 本次未调用远端 Agent",
-    "screenshots": [],
-    "narration": [
-      "The host now executes frozen numerical checks. A failed check blocks handoff, even if an agent review says approved. The original topology shows exactly what failed.",
-      "The saved real result passes. Three controlled errors fail, including changed residue areas with an unchanged total. This verifies the configured checks, not every possible scientific error."
-    ]
-  },
-  {
-    "scene": 18,
-    "start": 270.833,
-    "duration": 18.583,
-    "title": "真实证据可以打开，范围也说清楚",
-    "scope": "边界说明 · 不宣称已完成真人双账号验证",
-    "screenshots": [],
-    "narration": [
-      "The three person workflow you saw is a rehearsal. The published scientific evidence comes from one Science Pal account working with local Codex.",
-      "This is a general research platform, not a tool limited to this protein. Open the evidence links below to inspect the real files and the Science Pal run."
+      "The video page links to the five page brief, the evidence package and a public Science Pal verification replay. That replay is historical and read only; rerunning the full workflow requires your own accounts and local connectors.",
+      "Our contribution is a reliable handoff contract across agents: agree on the method, check the result, preserve the approval, and recover without unnecessary upstream reruns. Configuration effort and real user benefits still need measurement."
     ]
   }
 ]
