@@ -20,3 +20,6 @@ docs/research/latest-governance-live/** -text -whitespace
 
 # Operation-film evidence retains original byte-addressed files and PDB columns.
 docs/submission/operations-demo/evidence/** -text -whitespace
+
+# Narrative-film media and generated manifests retain their verified bytes.
+docs/submission/narrative-demo/** -text whitespace=cr-at-eol

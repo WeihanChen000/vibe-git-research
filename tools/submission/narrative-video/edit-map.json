@@ -1,0 +1,2604 @@
+{
+  "fps": 24,
+  "seconds": 282.91666666666663,
+  "scope": "Source frames use recorded capture timestamps. Smooth camera and process diagrams are explanatory animation. No fabricated UI or cursor.",
+  "chapters": [
+    {
+      "id": "question",
+      "title": "一份计算，怎样可靠地交接？",
+      "start": 0,
+      "duration": 12.708333333333334,
+      "subtitleTime": 7.24775,
+      "scope": "illustration",
+      "en": "We want the solvent accessible surface area of one C R N, and a report we can trace back to that calculation. Two people use different agents. How do they keep the handoff aligned?",
+      "zh": [
+        "计算 1CRN 的溶剂可及表面积，并生成可追溯的报告。",
+        "两个人使用不同 Agent，怎样对齐同一份成果？"
+      ]
+    },
+    {
+      "id": "proposal",
+      "title": "先约定：做什么、交什么",
+      "start": 12.708,
+      "duration": 15.25,
+      "subtitleTime": 10.939333,
+      "scope": "real recorded UI with simulated agents",
+      "en": "The captain uses Codex. A teammate uses SciencePAL. They begin with a shared proposal: the structure, method, output, and evidence required. These are recorded workbench actions with simulated agents.",
+      "zh": [
+        "队长使用 Codex，成员使用 SciencePAL，共同约定方法与交付。",
+        "下面展示真实界面操作；Agent 使用模拟执行器。"
+      ]
+    },
+    {
+      "id": "upload",
+      "title": "上传结构，建立项目",
+      "start": 27.958,
+      "duration": 12.5,
+      "subtitleTime": 6.161290999999999,
+      "scope": "real recorded UI with simulated agents",
+      "en": "The captain selects the participants, uploads the public structure file, and records its source. Creating the project freezes that input with the proposals, so everyone starts from the same version.",
+      "zh": [
+        "队长选择成员，上传公开结构文件并填写来源。",
+        "输入与提案一起冻结，后续各方使用同一版本。"
+      ]
+    },
+    {
+      "id": "align",
+      "title": "对齐之后，任务有了分工",
+      "start": 40.458,
+      "duration": 14.416666666666666,
+      "subtitleTime": 8.182333,
+      "scope": "real recorded UI with simulated agents",
+      "en": "Alignment turns the proposal into calculation and report tasks. Each task points back to an original requirement. The captain can inspect who executes it, who reviews it, and what the next task must wait for.",
+      "zh": [
+        "对齐将提案拆为计算与报告，并关联原始要求。",
+        "队长核对执行者、评审者，以及下游等待的条件。"
+      ]
+    },
+    {
+      "id": "rules",
+      "title": "发布之前，固定方法和检查",
+      "start": 54.875,
+      "duration": 12.75,
+      "subtitleTime": 5.530457999999999,
+      "scope": "real recorded UI with simulated agents",
+      "en": "Here we require Shrake Rupley, a numerical reference, and a two percent tolerance. These checks enforce the declared rules. They do not guarantee that every scientific claim is correct.",
+      "zh": [
+        "冻结 Shrake-Rupley 方法、参考值及 2% 容差。",
+        "规则只检查约定范围，不能保证所有科学结论正确。"
+      ]
+    },
+    {
+      "id": "publish",
+      "title": "队长确认，再开始执行",
+      "start": 67.625,
+      "duration": 10.166666666666666,
+      "subtitleTime": 2.843541,
+      "scope": "real recorded UI with simulated agents",
+      "en": "Publish after checking the assignment. Calculation goes first. Writing the report remains blocked until the result has independent approval.",
+      "zh": [
+        "队长核对分工后发布任务。",
+        "先计算；独立评审通过之前，报告保持等待。"
+      ]
+    },
+    {
+      "id": "claim",
+      "title": "成员领取 SciencePAL 任务",
+      "start": 77.792,
+      "duration": 12.791666666666666,
+      "subtitleTime": 6.8155,
+      "scope": "real recorded UI with simulated agents",
+      "en": "The member starts their connector and receives the frozen task. SciencePAL owns the calculation. Codex receives its output for review, rather than a file copied manually from a chat.",
+      "zh": [
+        "成员启动连接器，领取冻结的科研任务。",
+        "SciencePAL 负责计算，输出交给 Codex 复核。"
+      ]
+    },
+    {
+      "id": "history",
+      "title": "SciencePAL：历史真实工具记录",
+      "start": 90.583,
+      "duration": 15.458333333333334,
+      "subtitleTime": 8.0655,
+      "scope": "historical independent SciencePAL verification",
+      "en": "This separate historical SciencePAL thread shows a research skill and successful tool checks. It demonstrates real research tooling, but it is not a live calculation caused by the simulated clicks we just saw. Now back to our task.",
+      "zh": [
+        "这一段是另一批次的 SciencePAL 历史真实工具核查。",
+        "它不是刚才模拟点击产生的实时计算；下面回到工作台。"
+      ]
+    },
+    {
+      "id": "rejected",
+      "title": "结果已到，为什么报告还不能开始？",
+      "start": 106.042,
+      "duration": 12.125,
+      "subtitleTime": 7.224374999999999,
+      "scope": "real recorded UI with simulated agents",
+      "en": "The review comes back with a problem: the result meets the numerical rule, but original code and version records are missing. The file exists. The report still cannot use it.",
+      "zh": [
+        "评审指出：数值符合规则，但缺少原代码和版本记录。",
+        "文件已经产生，报告仍不能使用它。"
+      ]
+    },
+    {
+      "id": "blocked",
+      "title": "被拦住的是交接，不是已有计算",
+      "start": 118.167,
+      "duration": 7.25,
+      "subtitleTime": 3.625,
+      "scope": "illustration",
+      "en": "The missing piece is evidence. Repeating the calculation would not repair this handoff by itself.",
+      "zh": [
+        "缺的是执行证据；仅重复计算，不能补齐交接依据。"
+      ]
+    },
+    {
+      "id": "supplement",
+      "title": "补交记录，不重新计算",
+      "start": 125.417,
+      "duration": 13.958333333333334,
+      "subtitleTime": 7.574875,
+      "scope": "real recorded UI with simulated agents",
+      "en": "Choose supplementary review. The confirmation keeps the original result and requests another independent review. Supply the original code and execution record, explain their source, and send them back for checking.",
+      "zh": [
+        "选择补证复审，保留原结果；仍需另一次独立评审。",
+        "提交原代码、执行记录和来源，再交回核查。"
+      ]
+    },
+    {
+      "id": "approved",
+      "title": "复审通过，报告获得输入",
+      "start": 139.375,
+      "duration": 13.375,
+      "subtitleTime": 7.364583,
+      "scope": "real recorded UI with simulated agents",
+      "en": "Once the new review is approved, the report task becomes available. Notice what changed: the approval. What did not change is the calculation file. The producer did not run again.",
+      "zh": [
+        "复审批准后，报告任务才能继续。",
+        "改变的是批准状态；原计算文件保留，计算未重跑。"
+      ]
+    },
+    {
+      "id": "handoff",
+      "title": "报告收到哪份成果，可以查清",
+      "start": 152.75,
+      "duration": 11.25,
+      "subtitleTime": 4.3155,
+      "scope": "real recorded UI with simulated agents",
+      "en": "Codex prepares the report, and the other member reviews it. Open the handoff to see the producing task, the approving review, and the exact input received downstream.",
+      "zh": [
+        "Codex 生成报告，再由另一成员评审。",
+        "交接记录将生成任务、批准评审和下游输入连在一起。"
+      ]
+    },
+    {
+      "id": "new-request",
+      "title": "现在，只给报告加中文摘要",
+      "start": 164.0,
+      "duration": 15.125,
+      "subtitleTime": 8.684666,
+      "scope": "real recorded UI with simulated agents",
+      "en": "Now the captain adds a Chinese summary and clearer limitations. The structure, method, and upstream acceptance stay the same. Submit a research change so this new request is visible, instead of silently changing the agreement.",
+      "zh": [
+        "队长新增中文摘要与局限说明；结构、方法和上游验收不变。",
+        "通过研究变更提出要求，不悄悄改写原协议。"
+      ]
+    },
+    {
+      "id": "impact",
+      "title": "先看影响，再确认 R2",
+      "start": 179.125,
+      "duration": 13.541666666666666,
+      "subtitleTime": 6.500083,
+      "scope": "real recorded UI with simulated agents",
+      "en": "The change review identifies the report as affected. The captain confirms that scope. Reuse depends on matching the frozen requirements and task fingerprint, not just an agent saying it is safe.",
+      "zh": [
+        "变更评审确定只影响报告，再由队长确认。",
+        "复用仍须匹配冻结要求与任务指纹。"
+      ]
+    },
+    {
+      "id": "republish",
+      "title": "发布 R2，上游已经获批",
+      "start": 192.667,
+      "duration": 13.5,
+      "subtitleTime": 8.953375,
+      "scope": "real recorded UI with simulated agents",
+      "en": "The revised alignment preserves the approved calculation. When R two is published, only the changed report and its review need new work. SciencePAL is not asked to calculate the same structure again.",
+      "zh": [
+        "R2 对齐后保留获批计算，只重新安排报告与评审。",
+        "SciencePAL 无需再次计算相同结构。"
+      ]
+    },
+    {
+      "id": "report-r2",
+      "title": "报告更新，依然要经过评审",
+      "start": 206.167,
+      "duration": 10.833333333333334,
+      "subtitleTime": 4.303833,
+      "scope": "real recorded UI with simulated agents",
+      "en": "Return the updated report and collect its independent review. Reusing the input does not skip approval of the new report, and it does not remove all review cost.",
+      "zh": [
+        "新版报告交回后，仍需独立评审。",
+        "复用输入不等于跳过报告批准，也不等于没有评审成本。"
+      ]
+    },
+    {
+      "id": "proof",
+      "title": "沿用 R1 获批成果",
+      "start": 217.0,
+      "duration": 15.416666666666666,
+      "subtitleTime": 5.2267079999999995,
+      "scope": "real recorded UI with simulated agents",
+      "en": "The delivery panel explicitly shows the approved R one result being reused. We verified the same calculation file, execution, and approving review in both revisions. This is a retained result, not a renamed replacement.",
+      "zh": [
+        "交付面板明确标注：沿用 R1 获批成果。",
+        "已核对文件、计算作业及批准评审相同，并非替换后改名。"
+      ]
+    },
+    {
+      "id": "comparison",
+      "title": "什么没变？什么需要重新做？",
+      "start": 232.417,
+      "duration": 13.0,
+      "subtitleTime": 3.9767080000000004,
+      "scope": "illustration",
+      "en": "One calculation. Two reports. The input and approval stay anchored while the requested report changes. That is the specific rerun avoided in this recorded demonstration.",
+      "zh": [
+        "本次模拟：计算 1 次，报告执行 2 次。",
+        "报告变更，原计算与批准依据保持不变。"
+      ]
+    },
+    {
+      "id": "answer",
+      "title": "回到最初的科研问题",
+      "start": 245.417,
+      "duration": 14.958333333333334,
+      "subtitleTime": 8.217375,
+      "scope": "illustration",
+      "en": "The historical result is about two thousand nine hundred sixty eight square angstroms, within the agreed tolerance of an independent reference. It describes this fixed protein structure. It does not establish a new biological function.",
+      "zh": [
+        "历史结果为 2967.6165 Å²，与独立参考相差约 0.1865%。",
+        "这是固定蛋白结构的几何量，不是新的生物学功能发现。"
+      ]
+    },
+    {
+      "id": "delivery",
+      "title": "结果与依据，一起交付",
+      "start": 260.375,
+      "duration": 9.333333333333334,
+      "subtitleTime": 4.771125,
+      "scope": "real recorded UI with simulated agents",
+      "en": "The final delivery links the report, result, and review evidence. A later reader can check what was used and why it was allowed to proceed.",
+      "zh": [
+        "最终交付集中列出报告、成果和评审依据。",
+        "后来的人可以核查：用了什么，凭什么获准交接。"
+      ]
+    },
+    {
+      "id": "end",
+      "title": "少靠口头确认，多一条可核查的交接链",
+      "start": 269.708,
+      "duration": 13.208333333333334,
+      "subtitleTime": 4.116916,
+      "scope": "illustration",
+      "en": "Try the replay, or run the project with your own accounts. Built on the team's Vibe Git, adapters, and workbench, with research handoff and recovery added. Code and evidence are linked below.",
+      "zh": [
+        "可直接观看回放；重新运行需要自己的账号和连接器。",
+        "基于团队原版、适配器与工作台，扩展科研交接、恢复和复用。"
+      ]
+    }
+  ],
+  "frameChanges": [
+    {
+      "at": 12.708,
+      "scene": "proposal",
+      "capture": "01-proposal",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1053
+      ],
+      "sha256": "91692547e27f693b9e403253a28d980eb633c521f12b048aa9a936669ce6ec88"
+    },
+    {
+      "at": 12.75,
+      "scene": "proposal",
+      "capture": "01-proposal",
+      "frame": "frame-00001.jpg",
+      "sourceSeconds": 0.01,
+      "crop": [
+        0,
+        0,
+        1920,
+        1053
+      ],
+      "sha256": "37f9ed5fe5c0966e78bd8b9c278b7e0f3637cab9cf389632fc81c36b56c167fb"
+    },
+    {
+      "at": 18.542,
+      "scene": "proposal",
+      "capture": "01-proposal",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 1.413,
+      "crop": [
+        520,
+        180,
+        1420,
+        860
+      ],
+      "sha256": "da99631f7b3575a3c6df478ab8514e1eacf7a802ecc8c65cf8e1bf069a9ca65e"
+    },
+    {
+      "at": 18.667,
+      "scene": "proposal",
+      "capture": "01-proposal",
+      "frame": "frame-00003.jpg",
+      "sourceSeconds": 1.443,
+      "crop": [
+        520,
+        180,
+        1420,
+        860
+      ],
+      "sha256": "e8bc91c5e5bac9468fba3c2bb4cd70c7d44533158c10101954565ac81c1258c7"
+    },
+    {
+      "at": 18.708,
+      "scene": "proposal",
+      "capture": "01-proposal",
+      "frame": "frame-00004.jpg",
+      "sourceSeconds": 1.453,
+      "crop": [
+        520,
+        180,
+        1420,
+        860
+      ],
+      "sha256": "c6ce93e9e81c9aff5063b4993d53b79b6e8f0fd8bb5e45d6c7a908bdac73ced7"
+    },
+    {
+      "at": 23.375,
+      "scene": "proposal",
+      "capture": "01-proposal",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 2.583,
+      "crop": [
+        520,
+        180,
+        1420,
+        860
+      ],
+      "sha256": "0699ee47f426083f5cf4d599c8e62e6356d7c7f199594692449bbdb1eaafe1f2"
+    },
+    {
+      "at": 27.958,
+      "scene": "upload",
+      "capture": "02-open-create",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "813deade1bd9cd5bb43ba8704953c700213224826994192f858d47950f4f1368"
+    },
+    {
+      "at": 28.0,
+      "scene": "upload",
+      "capture": "02-open-create",
+      "frame": "frame-00001.jpg",
+      "sourceSeconds": 0.037,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "fc154fa3a2294f1fb6cb0a20bdcf31f48e6e806e424e1f6f2b255a1e1fb4f9cc"
+    },
+    {
+      "at": 29.583,
+      "scene": "upload",
+      "capture": "02-open-create",
+      "frame": "frame-00003.jpg",
+      "sourceSeconds": 1.44,
+      "crop": [
+        520,
+        110,
+        1410,
+        820
+      ],
+      "sha256": "fc154fa3a2294f1fb6cb0a20bdcf31f48e6e806e424e1f6f2b255a1e1fb4f9cc"
+    },
+    {
+      "at": 30.75,
+      "scene": "upload",
+      "capture": "02-open-create",
+      "frame": "frame-00004.jpg",
+      "sourceSeconds": 2.474,
+      "crop": [
+        520,
+        110,
+        1410,
+        820
+      ],
+      "sha256": "12d1d9ff20c0593161ac6a315a39fa932f3ebb2d8520a3d88f6852333f684a7c"
+    },
+    {
+      "at": 32.125,
+      "scene": "upload",
+      "capture": "03-upload",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "12d1d9ff20c0593161ac6a315a39fa932f3ebb2d8520a3d88f6852333f684a7c"
+    },
+    {
+      "at": 33.75,
+      "scene": "upload",
+      "capture": "03-upload",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 1.43,
+      "crop": [
+        520,
+        260,
+        1410,
+        1020
+      ],
+      "sha256": "d882d67648aaf2546296229fd038ccaadf2117a0eb5af143346628f23953220d"
+    },
+    {
+      "at": 33.792,
+      "scene": "upload",
+      "capture": "03-upload",
+      "frame": "frame-00004.jpg",
+      "sourceSeconds": 1.467,
+      "crop": [
+        520,
+        260,
+        1410,
+        1020
+      ],
+      "sha256": "236f7d68d4406b12f808924be6e0ed1cca45fb76def9ceb5d3a27a843ba7f1cc"
+    },
+    {
+      "at": 34.375,
+      "scene": "upload",
+      "capture": "03-upload",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 1.98,
+      "crop": [
+        520,
+        260,
+        1410,
+        1020
+      ],
+      "sha256": "630c69b28c76a02535e68063759683b9f81abb968d0957d6f32a227aa1853473"
+    },
+    {
+      "at": 35.0,
+      "scene": "upload",
+      "capture": "03-upload",
+      "frame": "frame-00006.jpg",
+      "sourceSeconds": 2.53,
+      "crop": [
+        520,
+        260,
+        1410,
+        1020
+      ],
+      "sha256": "236f7d68d4406b12f808924be6e0ed1cca45fb76def9ceb5d3a27a843ba7f1cc"
+    },
+    {
+      "at": 35.583,
+      "scene": "upload",
+      "capture": "03-upload",
+      "frame": "frame-00007.jpg",
+      "sourceSeconds": 3.044,
+      "crop": [
+        520,
+        260,
+        1410,
+        1020
+      ],
+      "sha256": "630c69b28c76a02535e68063759683b9f81abb968d0957d6f32a227aa1853473"
+    },
+    {
+      "at": 36.292,
+      "scene": "upload",
+      "capture": "04-create",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "236f7d68d4406b12f808924be6e0ed1cca45fb76def9ceb5d3a27a843ba7f1cc"
+    },
+    {
+      "at": 36.625,
+      "scene": "upload",
+      "capture": "04-create",
+      "frame": "frame-00001.jpg",
+      "sourceSeconds": 0.434,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "630c69b28c76a02535e68063759683b9f81abb968d0957d6f32a227aa1853473"
+    },
+    {
+      "at": 37.042,
+      "scene": "upload",
+      "capture": "04-create",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 0.977,
+      "crop": [
+        112,
+        97,
+        1810,
+        1055
+      ],
+      "sha256": "236f7d68d4406b12f808924be6e0ed1cca45fb76def9ceb5d3a27a843ba7f1cc"
+    },
+    {
+      "at": 37.417,
+      "scene": "upload",
+      "capture": "04-create",
+      "frame": "frame-00004.jpg",
+      "sourceSeconds": 1.466,
+      "crop": [
+        391,
+        338,
+        1537,
+        1045
+      ],
+      "sha256": "c1815e281ea66846a988f550a434d12be3e6736a50a03d4507bd5894b1f3581a"
+    },
+    {
+      "at": 37.458,
+      "scene": "upload",
+      "capture": "04-create",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 1.52,
+      "crop": [
+        418,
+        362,
+        1510,
+        1044
+      ],
+      "sha256": "c6948d7629f21d9b020aa552c17e6bd6137b219d8486b24b9bcf721a99672d95"
+    },
+    {
+      "at": 37.875,
+      "scene": "upload",
+      "capture": "04-create",
+      "frame": "frame-00006.jpg",
+      "sourceSeconds": 2.063,
+      "crop": [
+        520,
+        450,
+        1410,
+        1040
+      ],
+      "sha256": "2dc311871659f4843536e99cf5b9292ba62f2e5897c1fdf4d0413333b4ed5d38"
+    },
+    {
+      "at": 38.292,
+      "scene": "upload",
+      "capture": "04-create",
+      "frame": "frame-00007.jpg",
+      "sourceSeconds": 2.606,
+      "crop": [
+        520,
+        450,
+        1410,
+        1040
+      ],
+      "sha256": "c6948d7629f21d9b020aa552c17e6bd6137b219d8486b24b9bcf721a99672d95"
+    },
+    {
+      "at": 38.667,
+      "scene": "upload",
+      "capture": "04-create",
+      "frame": "frame-00010.jpg",
+      "sourceSeconds": 3.095,
+      "crop": [
+        520,
+        450,
+        1410,
+        1040
+      ],
+      "sha256": "b5226be7d25d172660182f541157c25a2c75c0153eae3b0d9958345eb511135b"
+    },
+    {
+      "at": 40.458,
+      "scene": "align",
+      "capture": "05-start-alignment",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "b5226be7d25d172660182f541157c25a2c75c0153eae3b0d9958345eb511135b"
+    },
+    {
+      "at": 42.333,
+      "scene": "align",
+      "capture": "05-start-alignment",
+      "frame": "frame-00001.jpg",
+      "sourceSeconds": 1.471,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "b5226be7d25d172660182f541157c25a2c75c0153eae3b0d9958345eb511135b"
+    },
+    {
+      "at": 44.0,
+      "scene": "align",
+      "capture": "05-start-alignment",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 2.778,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "383027c13ab6aacadfc4da80c2a7ee8f5152e8f0994e55989b9a7e4688ee5e87"
+    },
+    {
+      "at": 44.667,
+      "scene": "align",
+      "capture": "05-start-alignment",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 3.301,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "ed977fa2396655ca55bed900e6200eb667cfe3201cccc92294e6d696842cd089"
+    },
+    {
+      "at": 46.208,
+      "scene": "align",
+      "capture": "05-start-alignment",
+      "frame": "frame-00006.jpg",
+      "sourceSeconds": 4.511,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "2da2d0f90e1fc7ec456b6a328b267f7f6d6add30ed5c9187fb93521baf1d8ec4"
+    },
+    {
+      "at": 47.667,
+      "scene": "align",
+      "capture": "06-align-result",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "2da2d0f90e1fc7ec456b6a328b267f7f6d6add30ed5c9187fb93521baf1d8ec4"
+    },
+    {
+      "at": 48.917,
+      "scene": "align",
+      "capture": "06-align-result",
+      "frame": "frame-00003.jpg",
+      "sourceSeconds": 1.467,
+      "crop": [
+        31,
+        305,
+        1535,
+        1059
+      ],
+      "sha256": "8103b7f6cebbb4a318a644bca23b5f8a1643ee1cad2e5a3f53261fff79182304"
+    },
+    {
+      "at": 51.5,
+      "scene": "align",
+      "capture": "06-align-result",
+      "frame": "frame-00004.jpg",
+      "sourceSeconds": 4.5,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "c11725fa6e68b8c773cbe966068eca7768470ac45f99f1b9df51348a2c517599"
+    },
+    {
+      "at": 52.75,
+      "scene": "align",
+      "capture": "06-align-result",
+      "frame": "frame-00007.jpg",
+      "sourceSeconds": 5.967,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "51da0d944baad5cd5ec33500b6bbadc0da4ff87dc230f779089c67c2669eab64"
+    },
+    {
+      "at": 52.917,
+      "scene": "align",
+      "capture": "06-align-result",
+      "frame": "frame-00008.jpg",
+      "sourceSeconds": 6.163,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "9f7cf16ee07fc0ba560ce931ab26b55d35543303034bb82eb3931aa6e2fd52f5"
+    },
+    {
+      "at": 54.875,
+      "scene": "rules",
+      "capture": "08-freeze-method",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "f305ebf9e90b2f67db36f18642278443fac74d3adeb3da5299f5a86ee15c962d"
+    },
+    {
+      "at": 54.917,
+      "scene": "rules",
+      "capture": "08-freeze-method",
+      "frame": "frame-00003.jpg",
+      "sourceSeconds": 0.025,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "d795776bd6e48d5fa3ec3cd729312493d3f85c11e3f7e9901121d167fd15133a"
+    },
+    {
+      "at": 54.958,
+      "scene": "rules",
+      "capture": "08-freeze-method",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 0.05,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "85f808756f97e0cc4afbb12eae6d8eff417fb0d6be99550d6931e35e759ff07b"
+    },
+    {
+      "at": 55.083,
+      "scene": "rules",
+      "capture": "08-freeze-method",
+      "frame": "frame-00008.jpg",
+      "sourceSeconds": 0.125,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "8cb93d5569340510cd8099500fdeb738d352692905155bc9254f200a28f3b8f5"
+    },
+    {
+      "at": 57.292,
+      "scene": "rules",
+      "capture": "08-freeze-method",
+      "frame": "frame-00010.jpg",
+      "sourceSeconds": 1.45,
+      "crop": [
+        35,
+        150,
+        1490,
+        930
+      ],
+      "sha256": "20c8bf87a038659566567a876252f5f7316359a7408ae671bc24f4d80aee11f1"
+    },
+    {
+      "at": 57.333,
+      "scene": "rules",
+      "capture": "08-freeze-method",
+      "frame": "frame-00012.jpg",
+      "sourceSeconds": 1.475,
+      "crop": [
+        35,
+        150,
+        1490,
+        930
+      ],
+      "sha256": "d26acba28aacd0097962b7c2d52fd6f03faaf6e4385118b1067666975852633c"
+    },
+    {
+      "at": 57.375,
+      "scene": "rules",
+      "capture": "08-freeze-method",
+      "frame": "frame-00013.jpg",
+      "sourceSeconds": 1.5,
+      "crop": [
+        35,
+        150,
+        1490,
+        930
+      ],
+      "sha256": "8bf79b00cc5eb4c37c6b409718d20be37a9ec73efa3c1fda4d3c2aabecd10ebd"
+    },
+    {
+      "at": 61.25,
+      "scene": "rules",
+      "capture": "09-freeze-reference",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "1bd3fea93b2951be2dce69979e031184ef6698c74a2315bf48dd7f25e7cb0a96"
+    },
+    {
+      "at": 62.917,
+      "scene": "rules",
+      "capture": "09-freeze-reference",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 1.433,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "126d1d0e0494faf5aeb9eb4f0f7ca38d6fe96fdc796a85dc9ebe02a540f3de5e"
+    },
+    {
+      "at": 62.958,
+      "scene": "rules",
+      "capture": "09-freeze-reference",
+      "frame": "frame-00003.jpg",
+      "sourceSeconds": 1.469,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "97d0afcde1bec57cb16a50918bf7569658765edae119212ab1a6fa913ee0c987"
+    },
+    {
+      "at": 63.0,
+      "scene": "rules",
+      "capture": "09-freeze-reference",
+      "frame": "frame-00004.jpg",
+      "sourceSeconds": 1.505,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "a1b9ade608575fd732d1e5524758002a18fe0a3c141093686cacb39fb779bca4"
+    },
+    {
+      "at": 63.583,
+      "scene": "rules",
+      "capture": "09-freeze-reference",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 2.007,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "3b8d5f723916042aa608cf02e61773d59612e2a269b58a0e9395e73d0e6db1fa"
+    },
+    {
+      "at": 64.208,
+      "scene": "rules",
+      "capture": "09-freeze-reference",
+      "frame": "frame-00006.jpg",
+      "sourceSeconds": 2.544,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "a1b9ade608575fd732d1e5524758002a18fe0a3c141093686cacb39fb779bca4"
+    },
+    {
+      "at": 64.833,
+      "scene": "rules",
+      "capture": "09-freeze-reference",
+      "frame": "frame-00008.jpg",
+      "sourceSeconds": 3.082,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "3b8d5f723916042aa608cf02e61773d59612e2a269b58a0e9395e73d0e6db1fa"
+    },
+    {
+      "at": 64.917,
+      "scene": "rules",
+      "capture": "09-freeze-reference",
+      "frame": "frame-00009.jpg",
+      "sourceSeconds": 3.154,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "aaf0dcb0de32d628c8730904e95c6c76ed04e32304a239a68161c6d76827606c"
+    },
+    {
+      "at": 67.625,
+      "scene": "publish",
+      "capture": "10-publish",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "a545efd446f25d02069f0064d69da915f4d6b92fe12ae6d41442a124c5cbc5f2"
+    },
+    {
+      "at": 67.667,
+      "scene": "publish",
+      "capture": "10-publish",
+      "frame": "frame-00001.jpg",
+      "sourceSeconds": 0.023,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "646a269b20e422fcaca61bf524dc167f9840a2c820d51afc9adab1dc7cc199f2"
+    },
+    {
+      "at": 67.708,
+      "scene": "publish",
+      "capture": "10-publish",
+      "frame": "frame-00004.jpg",
+      "sourceSeconds": 0.047,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "a720eabcd48d5cb80dfa4204d6f5211a7d43ac67f7b4710ee3ee9b610dc66bac"
+    },
+    {
+      "at": 67.833,
+      "scene": "publish",
+      "capture": "10-publish",
+      "frame": "frame-00007.jpg",
+      "sourceSeconds": 0.117,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "993c1e9baba37570f3ad05bde042c1f370b4a77da77d25bf6e056c41848ea838"
+    },
+    {
+      "at": 67.875,
+      "scene": "publish",
+      "capture": "10-publish",
+      "frame": "frame-00009.jpg",
+      "sourceSeconds": 0.141,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "406a5f6f8cb2598cc78ec1bfc6ab2b3ef8d9b3d57238ed489d3d8ab41c17a3d8"
+    },
+    {
+      "at": 70.208,
+      "scene": "publish",
+      "capture": "10-publish",
+      "frame": "frame-00012.jpg",
+      "sourceSeconds": 1.455,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "3ead9fe98b23ebfdf4745044843aaacbd7e174a198844c3afc686c30187395a9"
+    },
+    {
+      "at": 70.292,
+      "scene": "publish",
+      "capture": "10-publish",
+      "frame": "frame-00014.jpg",
+      "sourceSeconds": 1.502,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "7f3471fd2fa340f8697a336338ce67675a3593df1757fd9fdb391f823080d3fa"
+    },
+    {
+      "at": 70.333,
+      "scene": "publish",
+      "capture": "10-publish",
+      "frame": "frame-00015.jpg",
+      "sourceSeconds": 1.526,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "e374712793995b4807a8574ec8879acb6d2e9aed2f4931180d58d6e0c3e5e155"
+    },
+    {
+      "at": 70.417,
+      "scene": "publish",
+      "capture": "10-publish",
+      "frame": "frame-00018.jpg",
+      "sourceSeconds": 1.573,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "d9a399e57f31b3684572740d6dc4035902969fa225c8aa28797f78dcaff0f857"
+    },
+    {
+      "at": 73.833,
+      "scene": "publish",
+      "capture": "10-publish",
+      "frame": "frame-00020.jpg",
+      "sourceSeconds": 3.498,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "9f7cf16ee07fc0ba560ce931ab26b55d35543303034bb82eb3931aa6e2fd52f5"
+    },
+    {
+      "at": 77.792,
+      "scene": "claim",
+      "capture": "11-start-sciencepal",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1053
+      ],
+      "sha256": "1655c600a79c4c06a846008781135934690ba646f57bc33a30a6c87829b75ae6"
+    },
+    {
+      "at": 80.75,
+      "scene": "claim",
+      "capture": "11-start-sciencepal",
+      "frame": "frame-00001.jpg",
+      "sourceSeconds": 1.427,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "1655c600a79c4c06a846008781135934690ba646f57bc33a30a6c87829b75ae6"
+    },
+    {
+      "at": 80.792,
+      "scene": "claim",
+      "capture": "11-start-sciencepal",
+      "frame": "frame-00003.jpg",
+      "sourceSeconds": 1.447,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "4bcab5e9f986d6ab7c6cf12263328d913e44c96f5e24933641be62776a6a9141"
+    },
+    {
+      "at": 80.833,
+      "scene": "claim",
+      "capture": "11-start-sciencepal",
+      "frame": "frame-00004.jpg",
+      "sourceSeconds": 1.467,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "d42ed08021254578d74ec9da773a7b028dd44f8509edf7b85b9daf733b4feef8"
+    },
+    {
+      "at": 80.875,
+      "scene": "claim",
+      "capture": "11-start-sciencepal",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 1.487,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "db8a8bca43fb4db1f6a5656ad317cd2bcf80e8f30c1f7a286e9b9b6bc955b6cf"
+    },
+    {
+      "at": 80.917,
+      "scene": "claim",
+      "capture": "11-start-sciencepal",
+      "frame": "frame-00006.jpg",
+      "sourceSeconds": 1.507,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "c5e504eeaedad583d5660e5864196b1a6a6ebbab076c44024541a959f9296e9c"
+    },
+    {
+      "at": 81.0,
+      "scene": "claim",
+      "capture": "11-start-sciencepal",
+      "frame": "frame-00008.jpg",
+      "sourceSeconds": 1.548,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "6cc022cf1e736f88c03cebb779991fbae11477e38e3dd93fb6e29df5161f2447"
+    },
+    {
+      "at": 81.042,
+      "scene": "claim",
+      "capture": "11-start-sciencepal",
+      "frame": "frame-00010.jpg",
+      "sourceSeconds": 1.568,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "e6947a69fb374254683c7bcd4c809d64be2fdbb57fd6476892d7d9db33c3270b"
+    },
+    {
+      "at": 81.083,
+      "scene": "claim",
+      "capture": "11-start-sciencepal",
+      "frame": "frame-00012.jpg",
+      "sourceSeconds": 1.588,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "97e50c304c940e619ca6ad9e527c2889c70eede6450237522b0331d22cfa8a02"
+    },
+    {
+      "at": 83.375,
+      "scene": "claim",
+      "capture": "11-start-sciencepal",
+      "frame": "frame-00013.jpg",
+      "sourceSeconds": 2.693,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "b0bb14ae0c6b0cb1c699335b0831547279c79ee94f97b0fbbe05e12d8acfff91"
+    },
+    {
+      "at": 90.583,
+      "scene": "history",
+      "capture": "26-sciencepal-history",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1053
+      ],
+      "sha256": "15cd3f96c1f91140414e6bd8de2b8990258ed07f0bca63d5edb1236b2e837539"
+    },
+    {
+      "at": 92.375,
+      "scene": "history",
+      "capture": "26-sciencepal-history",
+      "frame": "frame-00001.jpg",
+      "sourceSeconds": 1.459,
+      "crop": [
+        1000,
+        70,
+        1910,
+        820
+      ],
+      "sha256": "4fc2c8901d264c991a9b3c0ec29f8557c903525fd8daceef9382cbef8cff64e9"
+    },
+    {
+      "at": 92.417,
+      "scene": "history",
+      "capture": "26-sciencepal-history",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 1.493,
+      "crop": [
+        1000,
+        70,
+        1910,
+        820
+      ],
+      "sha256": "8b216dfba6f3a19f955907ac995f43e912a150d3822e31428eea4a26ed9fcf7c"
+    },
+    {
+      "at": 92.458,
+      "scene": "history",
+      "capture": "26-sciencepal-history",
+      "frame": "frame-00003.jpg",
+      "sourceSeconds": 1.527,
+      "crop": [
+        1000,
+        70,
+        1910,
+        820
+      ],
+      "sha256": "0394df2bbe96c2f188c6d7bc97d8a8b9eda9591a6cd1b26c487780f645bfc204"
+    },
+    {
+      "at": 92.5,
+      "scene": "history",
+      "capture": "26-sciencepal-history",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 1.561,
+      "crop": [
+        1000,
+        70,
+        1910,
+        820
+      ],
+      "sha256": "c4a0bec77abb4ae92c1f4800f62a1bb1269176224efbacca7c987ff102472838"
+    },
+    {
+      "at": 92.583,
+      "scene": "history",
+      "capture": "26-sciencepal-history",
+      "frame": "frame-00009.jpg",
+      "sourceSeconds": 1.628,
+      "crop": [
+        1000,
+        70,
+        1910,
+        820
+      ],
+      "sha256": "e9799b092f970c332eab25805f2ec20f0b43c7aa8fb484533573f9f7879fd4fc"
+    },
+    {
+      "at": 92.667,
+      "scene": "history",
+      "capture": "26-sciencepal-history",
+      "frame": "frame-00010.jpg",
+      "sourceSeconds": 1.696,
+      "crop": [
+        1000,
+        70,
+        1910,
+        820
+      ],
+      "sha256": "5f1ff73fccd5f2f870f3bf47a3d3202c0d51a3b0881b8b7b6b8ca3f4633d4e4b"
+    },
+    {
+      "at": 92.75,
+      "scene": "history",
+      "capture": "26-sciencepal-history",
+      "frame": "frame-00011.jpg",
+      "sourceSeconds": 1.764,
+      "crop": [
+        1000,
+        70,
+        1910,
+        820
+      ],
+      "sha256": "e9799b092f970c332eab25805f2ec20f0b43c7aa8fb484533573f9f7879fd4fc"
+    },
+    {
+      "at": 98.333,
+      "scene": "history",
+      "capture": "27b-real-checks-hold",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.014,
+      "crop": [
+        0,
+        0,
+        1920,
+        1053
+      ],
+      "sha256": "b9e70735edd3ddb2a9ff6849f0a4ccc563cb39188a67c83db38c32fce808bd21"
+    },
+    {
+      "at": 106.042,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "7421e5110c44afb74d9149c6a503d753ce1527b1d7ce4527f80b860ec1138e18"
+    },
+    {
+      "at": 106.083,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00001.jpg",
+      "sourceSeconds": 0.029,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "2caa73b9aeb9b555a8e8c69dca9bbe6c961fe785ab5da59149683904e2f57aa4"
+    },
+    {
+      "at": 107.25,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 0.851,
+      "crop": [
+        30,
+        290,
+        1553,
+        1059
+      ],
+      "sha256": "16befe4f50c008a2b8f1130f883829ca2d50efd6701dd072d75d8eecfe2157ac"
+    },
+    {
+      "at": 108.083,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00004.jpg",
+      "sourceSeconds": 1.438,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "01345e3574bee1d4af35fb8df878e1727172eb68018fed73782020dba0216ff5"
+    },
+    {
+      "at": 112.417,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 4.49,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "77f060d9a266a6fe03e6811f2c797d3b3038acf206f926b7d1643b12331e3af3"
+    },
+    {
+      "at": 114.583,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00006.jpg",
+      "sourceSeconds": 6.016,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "2fe3bc2ca1809849fbb2dc35ee1d77b8a4a6939030caeb22362f078e3e8a512e"
+    },
+    {
+      "at": 114.625,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00008.jpg",
+      "sourceSeconds": 6.045,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "9115b6e8b61d779def68c265733af80691e2873a0abfb0e610a21a750d69e513"
+    },
+    {
+      "at": 115.042,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00011.jpg",
+      "sourceSeconds": 6.339,
+      "crop": [
+        35,
+        0,
+        1190,
+        618
+      ],
+      "sha256": "da446c9b3914d35f8d0295924d9068573532029ed076c2353e434ca0e96d4660"
+    },
+    {
+      "at": 115.083,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00012.jpg",
+      "sourceSeconds": 6.368,
+      "crop": [
+        35,
+        0,
+        1190,
+        618
+      ],
+      "sha256": "da446c9b3914d35f8d0295924d9068573532029ed076c2353e434ca0e96d4660"
+    },
+    {
+      "at": 116.042,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00013.jpg",
+      "sourceSeconds": 7.043,
+      "crop": [
+        35,
+        0,
+        1190,
+        618
+      ],
+      "sha256": "da446c9b3914d35f8d0295924d9068573532029ed076c2353e434ca0e96d4660"
+    },
+    {
+      "at": 125.417,
+      "scene": "supplement",
+      "capture": "13-supplement-open",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "da446c9b3914d35f8d0295924d9068573532029ed076c2353e434ca0e96d4660"
+    },
+    {
+      "at": 128.167,
+      "scene": "supplement",
+      "capture": "13-supplement-open",
+      "frame": "frame-00001.jpg",
+      "sourceSeconds": 1.439,
+      "crop": [
+        60,
+        315,
+        1200,
+        930
+      ],
+      "sha256": "28550cc07da8932f77c669304755badd7a98e9c496ad93e1943d4c846eb6cb89"
+    },
+    {
+      "at": 132.417,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.017,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "28550cc07da8932f77c669304755badd7a98e9c496ad93e1943d4c846eb6cb89"
+    },
+    {
+      "at": 134.167,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00001.jpg",
+      "sourceSeconds": 1.455,
+      "crop": [
+        80,
+        510,
+        1470,
+        950
+      ],
+      "sha256": "5ee171840d61391861e4ea6fa40bd5223fa6847de49c84b5fdb2eaf323b5dc15"
+    },
+    {
+      "at": 134.25,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 1.524,
+      "crop": [
+        80,
+        510,
+        1470,
+        950
+      ],
+      "sha256": "04aa0598224c8dd514ca81b924292bace75b7c2ca4f8013d6ce3810fced149a2"
+    },
+    {
+      "at": 134.917,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00003.jpg",
+      "sourceSeconds": 2.071,
+      "crop": [
+        98,
+        512,
+        1470,
+        950
+      ],
+      "sha256": "90fcc383c2ce735adb268d96e7578651bd04fffe883be886497aca2557106431"
+    },
+    {
+      "at": 135.542,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00004.jpg",
+      "sourceSeconds": 2.585,
+      "crop": [
+        754,
+        576,
+        1470,
+        950
+      ],
+      "sha256": "04aa0598224c8dd514ca81b924292bace75b7c2ca4f8013d6ce3810fced149a2"
+    },
+    {
+      "at": 136.167,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 3.099,
+      "crop": [
+        900,
+        590,
+        1470,
+        950
+      ],
+      "sha256": "90fcc383c2ce735adb268d96e7578651bd04fffe883be886497aca2557106431"
+    },
+    {
+      "at": 136.5,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00007.jpg",
+      "sourceSeconds": 3.373,
+      "crop": [
+        35,
+        0,
+        1190,
+        618
+      ],
+      "sha256": "1299a9bb229b7206c2ac9ef01d28b171dd7caa01500a2ebff6c4ad855df61a51"
+    },
+    {
+      "at": 136.625,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00009.jpg",
+      "sourceSeconds": 3.475,
+      "crop": [
+        35,
+        0,
+        1190,
+        618
+      ],
+      "sha256": "3c8b210de1d5c020f6e5bc667edf910f364fb699806387196b443d2b9ad7189f"
+    },
+    {
+      "at": 136.667,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00012.jpg",
+      "sourceSeconds": 3.509,
+      "crop": [
+        35,
+        0,
+        1190,
+        618
+      ],
+      "sha256": "b786eb4453b5a974e91aeefaa11bdbcba8c2faa624a81c6f8c985639f7865a8a"
+    },
+    {
+      "at": 137.958,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00013.jpg",
+      "sourceSeconds": 4.571,
+      "crop": [
+        35,
+        0,
+        1190,
+        618
+      ],
+      "sha256": "2489603a28468677f598ee335bbd0dc466ad483166355941fce27b76f7609b66"
+    },
+    {
+      "at": 139.375,
+      "scene": "approved",
+      "capture": "15-supplement-approved",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "2489603a28468677f598ee335bbd0dc466ad483166355941fce27b76f7609b66"
+    },
+    {
+      "at": 141.75,
+      "scene": "approved",
+      "capture": "15-supplement-approved",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 1.454,
+      "crop": [
+        35,
+        0,
+        1190,
+        618
+      ],
+      "sha256": "a19938e6d429a3c20112940833c4e8fea173071a235ab63796c7f32193b5cbee"
+    },
+    {
+      "at": 146.708,
+      "scene": "approved",
+      "capture": "15-supplement-approved",
+      "frame": "frame-00003.jpg",
+      "sourceSeconds": 4.491,
+      "crop": [
+        35,
+        0,
+        1190,
+        618
+      ],
+      "sha256": "07484c452fac807a30bed5cc8d8f28dc8abd9e4b2f774af8ca7a44b68bf6ee71"
+    },
+    {
+      "at": 148.917,
+      "scene": "approved",
+      "capture": "15-supplement-approved",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 5.843,
+      "crop": [
+        35,
+        0,
+        1190,
+        618
+      ],
+      "sha256": "8fe668506f6983a8fecc48e84a9fe945d9a063ed4df3631bb64dff0dcdfa085e"
+    },
+    {
+      "at": 148.958,
+      "scene": "approved",
+      "capture": "15-supplement-approved",
+      "frame": "frame-00006.jpg",
+      "sourceSeconds": 5.869,
+      "crop": [
+        35,
+        0,
+        1190,
+        618
+      ],
+      "sha256": "5bed39ce8df35099a5a85072d143b679926ae97bfd45b9008e9db57e4fb9e0c3"
+    },
+    {
+      "at": 152.75,
+      "scene": "handoff",
+      "capture": "16-first-report",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "5bed39ce8df35099a5a85072d143b679926ae97bfd45b9008e9db57e4fb9e0c3"
+    },
+    {
+      "at": 153.375,
+      "scene": "handoff",
+      "capture": "16-first-report",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 1.462,
+      "crop": [
+        3,
+        0,
+        1885,
+        1036
+      ],
+      "sha256": "571c95a567a13e58682d70119dc6cba539c0c0283f227011f19ce5976363f4b3"
+    },
+    {
+      "at": 154.667,
+      "scene": "handoff",
+      "capture": "16-first-report",
+      "frame": "frame-00003.jpg",
+      "sourceSeconds": 4.483,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "313a802336e89e08c74a3ba1fbb4d81e65395114a5b90fd37b08ec4509f7cfd3"
+    },
+    {
+      "at": 155.25,
+      "scene": "handoff",
+      "capture": "16-first-report",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 5.848,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "ce0516faf4ee335205beee9a6eb4427a1ecf9f9eb8b89da0187fe0ced2409d67"
+    },
+    {
+      "at": 157.417,
+      "scene": "handoff",
+      "capture": "16-first-report",
+      "frame": "frame-00006.jpg",
+      "sourceSeconds": 10.915,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "71bdd7ee7c04c3372675cd3e15e5768831712763f2bd0f595d48ae090d4b8a61"
+    },
+    {
+      "at": 158.375,
+      "scene": "handoff",
+      "capture": "18-handoff",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "27b4c91128aab6e66c04a6e0b6749d3e4f9b5f10c5208fd0e340bd3367f18ab5"
+    },
+    {
+      "at": 160.5,
+      "scene": "handoff",
+      "capture": "18-handoff",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 1.45,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "93a7772a22eab5e320136807d324ec63c808d3a0bdb347e85c6528a263ad739e"
+    },
+    {
+      "at": 160.667,
+      "scene": "handoff",
+      "capture": "18-handoff",
+      "frame": "frame-00003.jpg",
+      "sourceSeconds": 1.563,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "f32fab1f89c97c9ee8fd4c7a8bf2fb2580c5698dd9490c469195e72172c1c04f"
+    },
+    {
+      "at": 160.708,
+      "scene": "handoff",
+      "capture": "18-handoff",
+      "frame": "frame-00004.jpg",
+      "sourceSeconds": 1.592,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "2ec43821940e287a38c570dfe5e9e8500ec5bf01ddd73700287f31ea4286dd82"
+    },
+    {
+      "at": 160.75,
+      "scene": "handoff",
+      "capture": "18-handoff",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 1.62,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "77ebcf0204bda7b77cc2c4f3f0885550eca098b01e9685eece570a976a2b5043"
+    },
+    {
+      "at": 164.0,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "05e967638806c55484b021e2c2d784d81458772264b17d9ac895f17886567bb8"
+    },
+    {
+      "at": 164.042,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 0.016,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "14d3a8058f6fefffa05295f2a0d8d145d3b7d8dd00213952e6390041f2bef180"
+    },
+    {
+      "at": 164.125,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00004.jpg",
+      "sourceSeconds": 0.048,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "c29bed1009851148a271b52e77e6c7c5ddc9f01905af067b036eeaa624c496d6"
+    },
+    {
+      "at": 164.25,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 0.096,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "90bed25ad99dd7ab50a735420192cfa9a9c1d66fa28aa5eb0e69cafc6da01315"
+    },
+    {
+      "at": 164.292,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00007.jpg",
+      "sourceSeconds": 0.112,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "802e80fdb9bfe5eb5fe0bcae1e9839436108d69591d7b26d29af17c6c5344f0d"
+    },
+    {
+      "at": 164.333,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00008.jpg",
+      "sourceSeconds": 0.128,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "802e80fdb9bfe5eb5fe0bcae1e9839436108d69591d7b26d29af17c6c5344f0d"
+    },
+    {
+      "at": 167.5,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00009.jpg",
+      "sourceSeconds": 1.347,
+      "crop": [
+        35,
+        300,
+        1490,
+        1040
+      ],
+      "sha256": "802e80fdb9bfe5eb5fe0bcae1e9839436108d69591d7b26d29af17c6c5344f0d"
+    },
+    {
+      "at": 167.75,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00010.jpg",
+      "sourceSeconds": 1.443,
+      "crop": [
+        35,
+        300,
+        1490,
+        1040
+      ],
+      "sha256": "802e80fdb9bfe5eb5fe0bcae1e9839436108d69591d7b26d29af17c6c5344f0d"
+    },
+    {
+      "at": 167.792,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00011.jpg",
+      "sourceSeconds": 1.459,
+      "crop": [
+        35,
+        300,
+        1490,
+        1040
+      ],
+      "sha256": "47c7d07e8d89eec83b3ff953d97a0ca688865f466fd53b8ad88252ed0c1ad4ef"
+    },
+    {
+      "at": 168.125,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00012.jpg",
+      "sourceSeconds": 1.587,
+      "crop": [
+        35,
+        300,
+        1490,
+        1040
+      ],
+      "sha256": "0a2114677b8055d2836490edd072ac9754252725850a021c90e9e0ee09ca90de"
+    },
+    {
+      "at": 168.167,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00013.jpg",
+      "sourceSeconds": 1.603,
+      "crop": [
+        35,
+        300,
+        1490,
+        1040
+      ],
+      "sha256": "0a2114677b8055d2836490edd072ac9754252725850a021c90e9e0ee09ca90de"
+    },
+    {
+      "at": 168.25,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00014.jpg",
+      "sourceSeconds": 1.635,
+      "crop": [
+        35,
+        300,
+        1490,
+        1040
+      ],
+      "sha256": "82500e3175c98eca01bd0390911ed31b9ed426e2ae183a174213aa6aa9cc7c40"
+    },
+    {
+      "at": 168.333,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00015.jpg",
+      "sourceSeconds": 1.667,
+      "crop": [
+        35,
+        300,
+        1490,
+        1040
+      ],
+      "sha256": "53a4a643542b8b99dc7a3dbcc8b38cc6895c22aac7063f9e819a56dff49c6dfe"
+    },
+    {
+      "at": 168.375,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00016.jpg",
+      "sourceSeconds": 1.683,
+      "crop": [
+        35,
+        300,
+        1490,
+        1040
+      ],
+      "sha256": "dfcfe547a0736053289225daa021f55bd73ee3d5f77251462debc2d598748579"
+    },
+    {
+      "at": 168.417,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00017.jpg",
+      "sourceSeconds": 1.7,
+      "crop": [
+        35,
+        300,
+        1490,
+        1040
+      ],
+      "sha256": "9a720d354ab007d5ff0d4e9d3d24718fd13ed06fc4dd5ad35b2f96d79f115052"
+    },
+    {
+      "at": 168.5,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00018.jpg",
+      "sourceSeconds": 1.732,
+      "crop": [
+        35,
+        300,
+        1490,
+        1040
+      ],
+      "sha256": "0833bc05a8b87e219d9c9f77bed119e14a7e31d25a6e25ec541563db8e609428"
+    },
+    {
+      "at": 168.583,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00019.jpg",
+      "sourceSeconds": 1.764,
+      "crop": [
+        35,
+        300,
+        1490,
+        1040
+      ],
+      "sha256": "f4b890dc0a030d24d0240459be6798466ece8a2a3e2124b4c901dc1eda0ff703"
+    },
+    {
+      "at": 168.625,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00020.jpg",
+      "sourceSeconds": 1.78,
+      "crop": [
+        35,
+        300,
+        1490,
+        1040
+      ],
+      "sha256": "f4b890dc0a030d24d0240459be6798466ece8a2a3e2124b4c901dc1eda0ff703"
+    },
+    {
+      "at": 169.583,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00021.jpg",
+      "sourceSeconds": 2.148,
+      "crop": [
+        35,
+        300,
+        1490,
+        1040
+      ],
+      "sha256": "5858061e5161e6f1e30d4ecdcea97002c3b126a35ee891c7f4161537d411b989"
+    },
+    {
+      "at": 170.958,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00022.jpg",
+      "sourceSeconds": 2.678,
+      "crop": [
+        35,
+        300,
+        1490,
+        1040
+      ],
+      "sha256": "1b5df19083f1671b211baeacd30e36ba22cb6ddcf71a12cfb55d1a88a14adbd0"
+    },
+    {
+      "at": 172.333,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00023.jpg",
+      "sourceSeconds": 3.207,
+      "crop": [
+        35,
+        300,
+        1490,
+        1040
+      ],
+      "sha256": "5858061e5161e6f1e30d4ecdcea97002c3b126a35ee891c7f4161537d411b989"
+    },
+    {
+      "at": 173.0,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00025.jpg",
+      "sourceSeconds": 3.463,
+      "crop": [
+        35,
+        300,
+        1490,
+        1040
+      ],
+      "sha256": "6c484b78307ae761550d6576b6d04a54c465a42649ce492fc6af564255d1d6a1"
+    },
+    {
+      "at": 173.292,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00027.jpg",
+      "sourceSeconds": 3.575,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "60beafebdb650a2bb40e5a890cef34c3728d197283715d751af8d7ea5d94cdc3"
+    },
+    {
+      "at": 173.333,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00028.jpg",
+      "sourceSeconds": 3.591,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "f31fd3e4e7d329501f223bce16173cc16e503813622e132e456ffd296fc22776"
+    },
+    {
+      "at": 173.375,
+      "scene": "new-request",
+      "capture": "19-report-change",
+      "frame": "frame-00029.jpg",
+      "sourceSeconds": 3.607,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "fc53fa62e3b24555dba05fa96560193984ff6db1f984d1d9a41ca3b6d4e73534"
+    },
+    {
+      "at": 179.125,
+      "scene": "impact",
+      "capture": "20-change-review",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "fc53fa62e3b24555dba05fa96560193984ff6db1f984d1d9a41ca3b6d4e73534"
+    },
+    {
+      "at": 180.542,
+      "scene": "impact",
+      "capture": "20-change-review",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 1.467,
+      "crop": [
+        35,
+        0,
+        1491,
+        781
+      ],
+      "sha256": "655c8f6c44035680d2c51b5fdda270759881cdcafe61e5dcbe40d46d2c41edb4"
+    },
+    {
+      "at": 183.458,
+      "scene": "impact",
+      "capture": "20-change-review",
+      "frame": "frame-00003.jpg",
+      "sourceSeconds": 4.486,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "f651aba8b2774a8bd746a8a44434ddec863d0845b028fdcbba65fb13ae33a770"
+    },
+    {
+      "at": 183.625,
+      "scene": "impact",
+      "capture": "20-change-review",
+      "frame": "frame-00004.jpg",
+      "sourceSeconds": 4.659,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "d43fe689f3e0b044a004064516d289978ec0a50770162cc85295ca0e16a0a8e1"
+    },
+    {
+      "at": 184.583,
+      "scene": "impact",
+      "capture": "20-change-review",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 5.651,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "dc7e2c8e32c51e7d953a6c9ba17292dd1fac644df7b3f2bee3caf2020f25ef18"
+    },
+    {
+      "at": 185.917,
+      "scene": "impact",
+      "capture": "21-apply-change",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.02,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "dc7e2c8e32c51e7d953a6c9ba17292dd1fac644df7b3f2bee3caf2020f25ef18"
+    },
+    {
+      "at": 187.417,
+      "scene": "impact",
+      "capture": "21-apply-change",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 1.455,
+      "crop": [
+        35,
+        300,
+        1490,
+        1040
+      ],
+      "sha256": "57e64d08fabba6a8b0a16a631cf2aea11c8b9042be57c24895d030684101a366"
+    },
+    {
+      "at": 190.208,
+      "scene": "impact",
+      "capture": "21-apply-change",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 4.127,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "119b94440a5fd16622f31bbd193c0ff5d53f8f8e79a421f6451b62aeeffd5d43"
+    },
+    {
+      "at": 192.667,
+      "scene": "republish",
+      "capture": "22-realign-r2",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "119b94440a5fd16622f31bbd193c0ff5d53f8f8e79a421f6451b62aeeffd5d43"
+    },
+    {
+      "at": 193.875,
+      "scene": "republish",
+      "capture": "22-realign-r2",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 1.48,
+      "crop": [
+        30,
+        0,
+        1553,
+        821
+      ],
+      "sha256": "9833a790ed1f97d81b129c42284b043f4cc082f86cffdded47cde8c160fe383d"
+    },
+    {
+      "at": 196.333,
+      "scene": "republish",
+      "capture": "22-realign-r2",
+      "frame": "frame-00003.jpg",
+      "sourceSeconds": 4.492,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "5173f8df0cd344e7ace1b432fd2564410cb76a55524f3eedf76845edafd271c9"
+    },
+    {
+      "at": 197.542,
+      "scene": "republish",
+      "capture": "22-realign-r2",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 5.973,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "bb453a6ee88b2219b17123632c3be6b253834409fbb2c2060d9eb620c8b9a184"
+    },
+    {
+      "at": 197.583,
+      "scene": "republish",
+      "capture": "22-realign-r2",
+      "frame": "frame-00006.jpg",
+      "sourceSeconds": 6.024,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "76926bc983eca32c902a2f6a0ad7cd3e263a5a7575bafe78527ce7a1bd78961a"
+    },
+    {
+      "at": 199.417,
+      "scene": "republish",
+      "capture": "23-republish-r2",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "76926bc983eca32c902a2f6a0ad7cd3e263a5a7575bafe78527ce7a1bd78961a"
+    },
+    {
+      "at": 201.125,
+      "scene": "republish",
+      "capture": "23-republish-r2",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 1.451,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "36af6ddb411a44c65620ea6a2917bb0074d38010524cc8150f92139456397f4d"
+    },
+    {
+      "at": 203.542,
+      "scene": "republish",
+      "capture": "23-republish-r2",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 3.504,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "b619f9121efcb7975324352647338a440339146e478310c8724ef99b1b22c152"
+    },
+    {
+      "at": 206.167,
+      "scene": "report-r2",
+      "capture": "24-second-report",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "9ef749962c960e4f59bfe209b7b4300c10fff4e08177ee057aadd7b3583f2077"
+    },
+    {
+      "at": 207.375,
+      "scene": "report-r2",
+      "capture": "24-second-report",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 1.453,
+      "crop": [
+        30,
+        0,
+        1553,
+        821
+      ],
+      "sha256": "9ef749962c960e4f59bfe209b7b4300c10fff4e08177ee057aadd7b3583f2077"
+    },
+    {
+      "at": 209.917,
+      "scene": "report-r2",
+      "capture": "24-second-report",
+      "frame": "frame-00003.jpg",
+      "sourceSeconds": 4.508,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "0d0c3f30e56fdd1ccc7bb41ac56d810a0aabd18577d5563866fceae232c00e5c"
+    },
+    {
+      "at": 210.958,
+      "scene": "report-r2",
+      "capture": "24-second-report",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 5.76,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "8a4cf1e4de693b0d0e7748b837e517f3c0e5ef8dc2b4a51d7eaa67590425eb4c"
+    },
+    {
+      "at": 215.167,
+      "scene": "report-r2",
+      "capture": "24-second-report",
+      "frame": "frame-00006.jpg",
+      "sourceSeconds": 10.819,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "aec3e4575ce703a1f33131261e6feaa91f1f8df95c347b9ac6d7dad1dd7c592a"
+    },
+    {
+      "at": 217.0,
+      "scene": "proof",
+      "capture": "25-reuse-proof",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "aec3e4575ce703a1f33131261e6feaa91f1f8df95c347b9ac6d7dad1dd7c592a"
+    },
+    {
+      "at": 223.083,
+      "scene": "proof",
+      "capture": "25-reuse-proof",
+      "frame": "frame-00001.jpg",
+      "sourceSeconds": 1.445,
+      "crop": [
+        45,
+        200,
+        1045,
+        735
+      ],
+      "sha256": "6b9d3315c72369ae4c210cf6c7f212ec5116cbf76f508a4451ae4aa3d89a613a"
+    },
+    {
+      "at": 260.375,
+      "scene": "delivery",
+      "capture": "29-final-delivery",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "aec3e4575ce703a1f33131261e6feaa91f1f8df95c347b9ac6d7dad1dd7c592a"
+    },
+    {
+      "at": 264.0,
+      "scene": "delivery",
+      "capture": "29-final-delivery",
+      "frame": "frame-00001.jpg",
+      "sourceSeconds": 1.431,
+      "crop": [
+        35,
+        70,
+        1490,
+        850
+      ],
+      "sha256": "6b9d3315c72369ae4c210cf6c7f212ec5116cbf76f508a4451ae4aa3d89a613a"
+    }
+  ]
+}

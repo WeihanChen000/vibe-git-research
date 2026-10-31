@@ -1,4 +1,11 @@
+# 最新叙事动画制作入口
+
+2026-11-01 新版见 [narrative-video/README.md](narrative-video/README.md)：真实操作采集、原创交接动画、英文配音与中文字幕。下方旧制作版本保留。
+
 # 可编辑制作源：交给接手队友
+
+> **2026-11-01 动态叙事版：**[观看新版视频](https://weihanchen000.github.io/vibe-git-research/submission/narrative-demo/watch.html)，约 4:43、1080p、英文配音和中文字幕。用一个 1CRN 任务解释退回、补证、报告继续和 R2 复用；实际界面采集、流程说明动画与历史 SciencePAL 分开标注。旧片与 PDF 保留原版本；未重新调用科研模型或提交问卷。
+
 
 > 2026-11-01：已补交 [完整界面操作视频](https://weihanchen000.github.io/vibe-git-research/submission/operations-demo/watch.html)（4:56，英文配音、中文字幕）。工作台为实际操作、模拟 Agent；历史真实 SciencePAL 片段另标注。新版视频来源与核验见仓库 `tools/submission/operations-video/README.md`；下方旧视频版本和提交状态按历史材料保留。未替用户提交问卷。
 

@@ -1,7 +1,7 @@
 {
   "scope": "Editable production sources, completed UI filming assets and separately labelled historical evidence. No private runtime sessions.",
   "functional_baseline": "dda48233f57ee20e9c8be2d6b21c782b46ece7ba",
-  "video_status": "OPERATIONS_VIDEO_PRODUCED_MEDIA_VERIFIED_PENDING_USER_REVIEW",
+  "video_status": "NARRATIVE_ANIMATION_PRODUCED_MEDIA_VERIFIED_PENDING_USER_REVIEW",
   "operations_draft_status": "COMPLETED_THROUGH_R2_REUSE_WITH_SIMULATED_AGENTS",
   "checks": {
     "python_syntax": true,
@@ -130,6 +130,214 @@
     "tools/submission/build_roughcut_evidence.py": {
       "bytes": 11648,
       "sha256": "39ae947f1c7d86d2c164b67ed3cd7e06b6cf5dd2e35ce4561b8e603bcccfa43d"
+    },
+    "tools/submission/narrative-video/audio/00.jsonl": {
+      "bytes": 2789,
+      "sha256": "ebe278202f98d37e2996f6e6a29707c96e7fa3f7bf2a8361b8aadea4c1d801a9"
+    },
+    "tools/submission/narrative-video/audio/00.mp3": {
+      "bytes": 72864,
+      "sha256": "72dc78b43db9649d1a72e80d4eaa89c20084c00792b9db2fa3633c3e118fd6c8"
+    },
+    "tools/submission/narrative-video/audio/01.jsonl": {
+      "bytes": 2427,
+      "sha256": "0a561b8b0956386ff10a039820ae08e5df4fa48085bae23f100c7c5ae0d83adb"
+    },
+    "tools/submission/narrative-video/audio/01.mp3": {
+      "bytes": 88128,
+      "sha256": "06a9c15b7a0f08d4f14639f8abe1df99d1ea76124516968d22435d29b089665f"
+    },
+    "tools/submission/narrative-video/audio/02.jsonl": {
+      "bytes": 2498,
+      "sha256": "0d31b895a70fba9a4264f5197855823b492710f90f1272e38446d5babda505e3"
+    },
+    "tools/submission/narrative-video/audio/02.mp3": {
+      "bytes": 71568,
+      "sha256": "42a2e7851a4f0fa4b942c1bd3e2f8e2d162c45e5b9d7a2600a5f621ef0a16096"
+    },
+    "tools/submission/narrative-video/audio/03.jsonl": {
+      "bytes": 2902,
+      "sha256": "4fa25610c3c0392ef52eeebf325fc7796807e4ef449e2ae131300bab8e3b78b1"
+    },
+    "tools/submission/narrative-video/audio/03.mp3": {
+      "bytes": 83088,
+      "sha256": "0e5f80c914019dd1beee93ad286d56ae86b26d42dd61c3a6712d8df91f529975"
+    },
+    "tools/submission/narrative-video/audio/04.jsonl": {
+      "bytes": 2409,
+      "sha256": "9d5868e3da2474cfbd28b32ff49bfac78d2847ba79c9d6efd70047660cf1d170"
+    },
+    "tools/submission/narrative-video/audio/04.mp3": {
+      "bytes": 73152,
+      "sha256": "bebdaab44b18d34d09dad7eb1e9173724040e85a963bd80432fca21a138251ef"
+    },
+    "tools/submission/narrative-video/audio/05.jsonl": {
+      "bytes": 1594,
+      "sha256": "0b2da35f83daa717db7de0746ab84a6a7b582087d3625170833c28094e6983de"
+    },
+    "tools/submission/narrative-video/audio/05.mp3": {
+      "bytes": 57456,
+      "sha256": "47adba5d0c90aea21b05c5aa85d7a8a539377dc6c98b4df81ffd0d1050bd4d03"
+    },
+    "tools/submission/narrative-video/audio/06.jsonl": {
+      "bytes": 2405,
+      "sha256": "06422a79b369cbc9056c72db39f67016b6a144f7a006053fdebf85c0b6dc7946"
+    },
+    "tools/submission/narrative-video/audio/06.mp3": {
+      "bytes": 73296,
+      "sha256": "e26ed60ff3118dafa6a80d48886a1976198bca1124134f418a6ff131442060be"
+    },
+    "tools/submission/narrative-video/audio/07.jsonl": {
+      "bytes": 3156,
+      "sha256": "8b43d52f706b8d047d734fcbeec32d93bb0cebe60664d1a54f9ffa25c95438c6"
+    },
+    "tools/submission/narrative-video/audio/07.mp3": {
+      "bytes": 89424,
+      "sha256": "080b274f3d0dbbe360274bf820a97abd2f66a08a7b693b7b40d76b9d17e2b96c"
+    },
+    "tools/submission/narrative-video/audio/08.jsonl": {
+      "bytes": 2471,
+      "sha256": "ccf08299da79f7342b331662c583e659138c81cbc38e5003e69c8a6a4024e632"
+    },
+    "tools/submission/narrative-video/audio/08.mp3": {
+      "bytes": 69264,
+      "sha256": "568f5634457215a209ed04af2618c0bf9de53a0a4d79c8cdc308b79a97541780"
+    },
+    "tools/submission/narrative-video/audio/09.jsonl": {
+      "bytes": 1245,
+      "sha256": "37423d2e8b316dc63bb629398f480290405188c2e90be7dafcc3972f63269165"
+    },
+    "tools/submission/narrative-video/audio/09.mp3": {
+      "bytes": 40032,
+      "sha256": "bb9eb80f922c1c7f80369120ab94b5886eeb6ffccef2e9d0af185a6bb7725bff"
+    },
+    "tools/submission/narrative-video/audio/10.jsonl": {
+      "bytes": 2524,
+      "sha256": "464de8117d8c3fe817e729ab2113a52f0f9c41e90cc07464b071f7ae91ff8fac"
+    },
+    "tools/submission/narrative-video/audio/10.mp3": {
+      "bytes": 80208,
+      "sha256": "3fa6e2caf7d37e69658c198e4a5de32647b02505585ea8c1ac0f3d75f0995ae3"
+    },
+    "tools/submission/narrative-video/audio/11.jsonl": {
+      "bytes": 2481,
+      "sha256": "c07ce9139aca90ca893e4b7e943cb5acf8672d87a98630a8b686a5d9810526b3"
+    },
+    "tools/submission/narrative-video/audio/11.mp3": {
+      "bytes": 76752,
+      "sha256": "1de7383df2df4f5f7980cf08f61e5fb05eb7a37acc56f2cedc54be21911325d8"
+    },
+    "tools/submission/narrative-video/audio/12.jsonl": {
+      "bytes": 2231,
+      "sha256": "06f8b9a1dc9f8be28a7e860996c1b993f5be390e2455a909cc94eaca88e1391d"
+    },
+    "tools/submission/narrative-video/audio/12.mp3": {
+      "bytes": 63936,
+      "sha256": "df94165422fadd9bf79968c0a6eeb8fd5581243222ba1cd7f01e3b4c250ce6d5"
+    },
+    "tools/submission/narrative-video/audio/13.jsonl": {
+      "bytes": 2915,
+      "sha256": "ff0d6ea7543ae6746845890b79bebfe402858b473a4af63163b6341c60fb0116"
+    },
+    "tools/submission/narrative-video/audio/13.mp3": {
+      "bytes": 87264,
+      "sha256": "172660e9400f278634819ea4dc4e653daefd5e6a4794a420a4dfd2d5da6449fa"
+    },
+    "tools/submission/narrative-video/audio/14.jsonl": {
+      "bytes": 2578,
+      "sha256": "d7532aed7d87c0cadda93b1e4eb85ce426b8a8e981db7a366182e2cb4477f8df"
+    },
+    "tools/submission/narrative-video/audio/14.mp3": {
+      "bytes": 77760,
+      "sha256": "bbb67fd8ae5c18cd74bdc4448266a51f25b54c70d25b2c748a5317aca42ac1f0"
+    },
+    "tools/submission/narrative-video/audio/15.jsonl": {
+      "bytes": 2658,
+      "sha256": "79bb00435602dd07f40785af7d789e8a6736258cd944785fe3b6230c5014e106"
+    },
+    "tools/submission/narrative-video/audio/15.mp3": {
+      "bytes": 77472,
+      "sha256": "6e21a0302bc0c364c73573a0c6999897e29f88183ed86d95e98e0bfed76ece74"
+    },
+    "tools/submission/narrative-video/audio/16.jsonl": {
+      "bytes": 2306,
+      "sha256": "364f9ba4ff9e5b8400df6b52056a61d9b476e7c7c39774320eaa9a2a93ae0743"
+    },
+    "tools/submission/narrative-video/audio/16.mp3": {
+      "bytes": 61488,
+      "sha256": "cb6f3fcf701cc69f98380e1e560d653b8ec32c53eb4b77f9ade08f9023496ab2"
+    },
+    "tools/submission/narrative-video/audio/17.jsonl": {
+      "bytes": 2833,
+      "sha256": "c9b0547093e0fdfa0bef7a19929d7c979ee3eca77b71b959359e93febc4bdae0"
+    },
+    "tools/submission/narrative-video/audio/17.mp3": {
+      "bytes": 89136,
+      "sha256": "25f79aea12e86da7ee49312157bd7d1bba93c551eac6d6bcd107a4c1de2d9454"
+    },
+    "tools/submission/narrative-video/audio/18.jsonl": {
+      "bytes": 2089,
+      "sha256": "126542e9661a71f0a0b8ee24e6c5ac0d755c40e9040de10f74474bde843aa6db"
+    },
+    "tools/submission/narrative-video/audio/18.mp3": {
+      "bytes": 74592,
+      "sha256": "3be1da704a848c28aab6a2093a5b960f46825c4b511d6d7c693d084a84d4cc24"
+    },
+    "tools/submission/narrative-video/audio/19.jsonl": {
+      "bytes": 2926,
+      "sha256": "751f44202c402356bf5b19784d80a49b71797359c803a44923fa0f9ae683a342"
+    },
+    "tools/submission/narrative-video/audio/19.mp3": {
+      "bytes": 86400,
+      "sha256": "1a87ea3436810a8260e77706e8208ca00e775d7702db16d7ed1ad78f47c7276c"
+    },
+    "tools/submission/narrative-video/audio/20.jsonl": {
+      "bytes": 2054,
+      "sha256": "91a074906eda2fc08cfb1484263785ee0057dbd9943dde36011224f6392084ed"
+    },
+    "tools/submission/narrative-video/audio/20.mp3": {
+      "bytes": 52704,
+      "sha256": "636ada77b3891e9348c338e32ebd862685975b9235c722ed5a8788a1ca109889"
+    },
+    "tools/submission/narrative-video/audio/21.jsonl": {
+      "bytes": 2647,
+      "sha256": "19030d3137454c96c95796cc3eed120a30f4cacecedf714d4129ab0ca527a49a"
+    },
+    "tools/submission/narrative-video/audio/21.mp3": {
+      "bytes": 75888,
+      "sha256": "3d5e15494399bb012b2f8b3fd77b0f3d878a459681c2758503168b53d9e4d4f6"
+    },
+    "tools/submission/narrative-video/audit.py": {
+      "bytes": 4241,
+      "sha256": "a8fdf540e9a1d18d1d6422b5cdd0c62fe71b1dc30d89ddbd26a3bf7f82b060ba"
+    },
+    "tools/submission/narrative-video/edit-map.json": {
+      "bytes": 65904,
+      "sha256": "7e32ca4aa4ab433d8ab5090620184e9bc93aed8e5ca7fc1ab43ac8ea47590cf6"
+    },
+    "tools/submission/narrative-video/README.md": {
+      "bytes": 3437,
+      "sha256": "c6cffcb7caa26db5534a13017cdabc9f4c1ac1f77cfac02f5b1eaa727fd38c93"
+    },
+    "tools/submission/narrative-video/REFERENCE-DECISIONS.md": {
+      "bytes": 1592,
+      "sha256": "380ac2e3166b2bad52521f04197a9b7fee08903fc643435c95f7e5b40a1f07c7"
+    },
+    "tools/submission/narrative-video/render.py": {
+      "bytes": 19409,
+      "sha256": "82aaf6a93a90e68edc16bbc43da11762d81ae3f4a3bb437d419a0619be32ccdd"
+    },
+    "tools/submission/narrative-video/sample-map.json": {
+      "bytes": 11634,
+      "sha256": "a5865897f9ac704362a435c773a69bf57201223051b708184e336addd4a216e0"
+    },
+    "tools/submission/narrative-video/story.json": {
+      "bytes": 16390,
+      "sha256": "024bdcc7027a631d6a4293ba9a87ce1ee730388f1bed80317136258fb7022af1"
+    },
+    "tools/submission/narrative-video/voices.py": {
+      "bytes": 593,
+      "sha256": "a352cbd313dcfc93ac8f96f20ea52684197ea2558bfce1f952b8cd2c43192026"
     },
     "tools/submission/operations-draft/capture.mjs": {
       "bytes": 1817,
@@ -264,8 +472,8 @@
       "sha256": "08a64fe14427a1f1bf7ec12b40b10ef8ef1e10e63283b2dcd7b292d1f8c32778"
     },
     "tools/submission/README.md": {
-      "bytes": 3860,
-      "sha256": "af6e540d5a7a68be33bffb1a0f74083862f9e01f70c8e1a135512229bcb76860"
+      "bytes": 4499,
+      "sha256": "43fc9e720e17aa1d26b322268729d2d8be005bfbfa7e74fa6d4daa7a63b35744"
     },
     "tools/submission/render.py": {
       "bytes": 5859,
@@ -291,5 +499,14 @@
     "product_baseline": "46e120b6977bb8a1fd51c8be55ca238e332c2010",
     "continuous_later_operations_filmed": false
   },
-  "hash_convention": "Text files normalized to LF; binary files exact bytes; manifest excludes itself."
+  "hash_convention": "Text files normalized to LF; binary files exact bytes; manifest excludes itself.",
+  "narrative_video": {
+    "scope": "Recorded UI with simulated agents, original explanatory animation, separate historical SciencePAL verification",
+    "path": "docs/submission/narrative-demo/watch.html",
+    "seconds": 282.94,
+    "product_and_capture_baseline": "ee9528c",
+    "source_frame_changes_verified": 165,
+    "new_real_provider_execution": false,
+    "pdf_rerendered": false
+  }
 }

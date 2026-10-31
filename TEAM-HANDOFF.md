@@ -1,4 +1,7 @@
 # 队友接手：先看这一页
+
+> **2026-11-01 动态叙事版：**[观看新版视频](https://weihanchen000.github.io/vibe-git-research/submission/narrative-demo/watch.html)，约 4:43、1080p、英文配音和中文字幕。用一个 1CRN 任务解释退回、补证、报告继续和 R2 复用；实际界面采集、流程说明动画与历史 SciencePAL 分开标注。旧片与 PDF 保留原版本；未重新调用科研模型或提交问卷。[可编辑剪辑与动画源](https://github.com/WeihanChen000/vibe-git-research/tree/codex/research-team-share/tools/submission/narrative-video)已提供，产品/素材基线为 `ee9528c`。
+
 > **2026-11-01 操作视频已更新：**[直接播放完整操作版](https://weihanchen000.github.io/vibe-git-research/submission/operations-demo/watch.html)。4:56、1080p、英文配音与中文字幕；实际工作台操作覆盖建项→对齐→退回→补证→报告交接→R2 复用。Agent 为模拟执行器，SciencePAL 历史公开复核单独标注。[录制源与重建方法](tools/submission/operations-video/README.md)和[16 项模拟核验](docs/submission/operations-demo/evidence/verification.json)已提供。未修改产品界面或权限；未提交问卷，最终提交仍由队友完成。下方旧视频批评和旧粗剪状态属于历史记录。
 
 

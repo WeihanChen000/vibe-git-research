@@ -1,8 +1,11 @@
 # AI4Science Hackathon 最终提交包
 
-> 2026-11-01：已补交 [完整界面操作视频](https://weihanchen000.github.io/vibe-git-research/submission/operations-demo/watch.html)（4:56，英文配音、中文字幕）。工作台为实际操作、模拟 Agent；历史真实 SciencePAL 片段另标注。新版视频来源与核验见仓库 `tools/submission/operations-video/README.md`；下方旧视频版本和提交状态按历史材料保留。未替用户提交问卷。
+> **2026-11-01 动态叙事版：**[观看新版视频](https://weihanchen000.github.io/vibe-git-research/submission/narrative-demo/watch.html)，约 4:43、1080p、英文配音和中文字幕。用一个 1CRN 任务解释退回、补证、报告继续和 R2 复用；实际界面采集、流程说明动画与历史 SciencePAL 分开标注。旧片与 PDF 保留原版本；未重新调用科研模型或提交问卷。[可编辑剪辑与动画源](https://github.com/WeihanChen000/vibe-git-research/tree/codex/research-team-share/tools/submission/narrative-video)已提供，产品/素材基线为 `ee9528c`。
 
-> **CityuAI4S 整合审核：**新工作台已获用户同意，流程修复已回归检查；[审核记录](../research/CITYUAI4S-INTEGRATION-20261031.md)。现有视频尚未更新为该界面；新增文件清单为 sciencepal-handoff/artifact-checks.json。
+
+> 2026-11-01 历史操作版：已制作 [完整界面操作视频](https://weihanchen000.github.io/vibe-git-research/submission/operations-demo/watch.html)（4:56，英文配音、中文字幕）。工作台为实际操作、模拟 Agent；历史真实 SciencePAL 片段另标注。新版视频来源与核验见仓库 `tools/submission/operations-video/README.md`；下方旧视频版本和提交状态按历史材料保留。未替用户提交问卷。
+
+> **CityuAI4S 整合审核：**新工作台已获用户同意，流程修复已回归检查；[审核记录](../research/CITYUAI4S-INTEGRATION-20261031.md)。当时视频尚未更新为该界面；上方叙事动画版已采用获准的新工作台；新增文件清单为 sciencepal-handoff/artifact-checks.json。
 
 > **交接状态：现有视频待重剪，尚未获使用者认可。** 技术播放检查通过不代表讲解效果合格。后续修改和正式提交交给队友，完整源码、配音与未完成录像材料见 [队友接手页](../../TEAM-HANDOFF.md)。
 
@@ -17,7 +20,7 @@
 | 材料 | 入口 | 范围 |
 |---|---|---|
 | 最新修复源码 | [TFboy1/vibe-git · CityuAI4S](https://github.com/TFboy1/vibe-git/tree/CityuAI4S) | 本次连接/恢复修复、GitHub 风格界面与 SciencePal 接手材料；获取命令见队友接手页 |
-| 3–5 分钟视频 | [直接播放](https://weihanchen000.github.io/vibe-git-research/submission/watch.html) / [MP4](vibe-git-research-demo.mp4) | 新版约 4:38，英文合成配音、中文字幕；历史真实证据与模拟界面分开标注 |
+| 3–5 分钟视频 | [直接播放](https://weihanchen000.github.io/vibe-git-research/submission/watch.html) / [MP4](narrative-demo/vibe-git-story.mp4) | 叙事动画版约 4:43，英文合成配音、中文字幕；历史真实证据与模拟界面分开标注 |
 | 最多五页说明 | [更新后的五页 PDF](sciencepal-handoff/project-brief-updated.pdf) / [历史 v1 PDF](project-brief.pdf) | 更新 SciencePal 入口、实跑结果、访问条件与后续计划；原 PDF 保留 |
 | 新 SciencePal 核验 | [本次实际运行回放](https://sciencepal.ai/share/026c4e92-32d3-462a-8f6d-6b54d48aeca6) / [原字节 ZIP](sciencepal-handoff/sciencepal-evidence-originals.zip) | 首轮、追问与后续交付修正；公开记录只读，运行授权另行配置 |
 | 历史 SciencePAL 演示 | [早期公开核查回放](https://sciencepal.ai/share/3b6302a7-f055-460e-9e3d-588287a7b3ca) | 早期材料独立核查、只读，保留原范围 |

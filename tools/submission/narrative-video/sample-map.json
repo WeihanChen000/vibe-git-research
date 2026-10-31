@@ -1,0 +1,462 @@
+{
+  "fps": 24,
+  "seconds": 40.0,
+  "scope": "Source frames use recorded capture timestamps. Smooth camera and process diagrams are explanatory animation. No fabricated UI or cursor.",
+  "chapters": [
+    {
+      "id": "rejected",
+      "title": "结果已到，为什么报告还不能开始？",
+      "start": 0,
+      "duration": 12.0,
+      "scope": "real recorded UI with simulated agents",
+      "en": "The review comes back with a problem: the result meets the numerical rule, but original code and version records are missing. The file exists. The report still cannot use it.",
+      "zh": [
+        "评审指出：数值符合规则，但缺少原代码和版本记录。",
+        "文件已经产生，报告仍不能使用它。"
+      ]
+    },
+    {
+      "id": "blocked",
+      "title": "被拦住的是交接，不是已有计算",
+      "start": 12.0,
+      "duration": 6.0,
+      "scope": "illustration",
+      "en": "The missing piece is evidence. Repeating the calculation would not repair this handoff by itself.",
+      "zh": [
+        "缺的是执行证据；仅重复计算，不能补齐交接依据。"
+      ]
+    },
+    {
+      "id": "supplement",
+      "title": "补交记录，不重新计算",
+      "start": 18.0,
+      "duration": 12.0,
+      "scope": "real recorded UI with simulated agents",
+      "en": "Choose supplementary review. The confirmation keeps the original result and requests another independent review. Supply the original code and execution record, explain their source, and send them back for checking.",
+      "zh": [
+        "选择补证复审，保留原结果；仍需另一次独立评审。",
+        "提交原代码、执行记录和来源，再交回核查。"
+      ]
+    },
+    {
+      "id": "approved",
+      "title": "复审通过，报告获得输入",
+      "start": 30.0,
+      "duration": 10.0,
+      "scope": "real recorded UI with simulated agents",
+      "en": "Once the new review is approved, the report task becomes available. Notice what changed: the approval. What did not change is the calculation file. The producer did not run again.",
+      "zh": [
+        "复审批准后，报告任务才能继续。",
+        "改变的是批准状态；原计算文件保留，计算未重跑。"
+      ]
+    }
+  ],
+  "frameChanges": [
+    {
+      "at": 0.0,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "7421e5110c44afb74d9149c6a503d753ce1527b1d7ce4527f80b860ec1138e18"
+    },
+    {
+      "at": 0.042,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00001.jpg",
+      "sourceSeconds": 0.03,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "2caa73b9aeb9b555a8e8c69dca9bbe6c961fe785ab5da59149683904e2f57aa4"
+    },
+    {
+      "at": 1.208,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 0.86,
+      "crop": [
+        30,
+        290,
+        1553,
+        1059
+      ],
+      "sha256": "16befe4f50c008a2b8f1130f883829ca2d50efd6701dd072d75d8eecfe2157ac"
+    },
+    {
+      "at": 2.0,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00003.jpg",
+      "sourceSeconds": 1.423,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "01345e3574bee1d4af35fb8df878e1727172eb68018fed73782020dba0216ff5"
+    },
+    {
+      "at": 2.042,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00004.jpg",
+      "sourceSeconds": 1.453,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "01345e3574bee1d4af35fb8df878e1727172eb68018fed73782020dba0216ff5"
+    },
+    {
+      "at": 6.333,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 4.507,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "77f060d9a266a6fe03e6811f2c797d3b3038acf206f926b7d1643b12331e3af3"
+    },
+    {
+      "at": 8.458,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00006.jpg",
+      "sourceSeconds": 6.02,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "2fe3bc2ca1809849fbb2dc35ee1d77b8a4a6939030caeb22362f078e3e8a512e"
+    },
+    {
+      "at": 8.5,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00008.jpg",
+      "sourceSeconds": 6.049,
+      "crop": [
+        35,
+        340,
+        1490,
+        1059
+      ],
+      "sha256": "9115b6e8b61d779def68c265733af80691e2873a0abfb0e610a21a750d69e513"
+    },
+    {
+      "at": 8.875,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00009.jpg",
+      "sourceSeconds": 6.316,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "1632c8f3ec68af57b313f205fbee308a555400ae81ab105f881d1e9c4457d34f"
+    },
+    {
+      "at": 8.917,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00012.jpg",
+      "sourceSeconds": 6.346,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "da446c9b3914d35f8d0295924d9068573532029ed076c2353e434ca0e96d4660"
+    },
+    {
+      "at": 9.917,
+      "scene": "rejected",
+      "capture": "12-review-return",
+      "frame": "frame-00013.jpg",
+      "sourceSeconds": 7.057,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "da446c9b3914d35f8d0295924d9068573532029ed076c2353e434ca0e96d4660"
+    },
+    {
+      "at": 18.0,
+      "scene": "supplement",
+      "capture": "13-supplement-open",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "da446c9b3914d35f8d0295924d9068573532029ed076c2353e434ca0e96d4660"
+    },
+    {
+      "at": 20.375,
+      "scene": "supplement",
+      "capture": "13-supplement-open",
+      "frame": "frame-00001.jpg",
+      "sourceSeconds": 1.446,
+      "crop": [
+        60,
+        300,
+        1420,
+        1030
+      ],
+      "sha256": "28550cc07da8932f77c669304755badd7a98e9c496ad93e1943d4c846eb6cb89"
+    },
+    {
+      "at": 24.0,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "28550cc07da8932f77c669304755badd7a98e9c496ad93e1943d4c846eb6cb89"
+    },
+    {
+      "at": 25.5,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00001.jpg",
+      "sourceSeconds": 1.434,
+      "crop": [
+        55,
+        480,
+        1490,
+        1048
+      ],
+      "sha256": "5ee171840d61391861e4ea6fa40bd5223fa6847de49c84b5fdb2eaf323b5dc15"
+    },
+    {
+      "at": 25.583,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 1.513,
+      "crop": [
+        55,
+        480,
+        1490,
+        1048
+      ],
+      "sha256": "04aa0598224c8dd514ca81b924292bace75b7c2ca4f8013d6ce3810fced149a2"
+    },
+    {
+      "at": 26.167,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00003.jpg",
+      "sourceSeconds": 2.071,
+      "crop": [
+        55,
+        480,
+        1490,
+        1048
+      ],
+      "sha256": "90fcc383c2ce735adb268d96e7578651bd04fffe883be886497aca2557106431"
+    },
+    {
+      "at": 26.708,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00004.jpg",
+      "sourceSeconds": 2.589,
+      "crop": [
+        55,
+        480,
+        1490,
+        1048
+      ],
+      "sha256": "04aa0598224c8dd514ca81b924292bace75b7c2ca4f8013d6ce3810fced149a2"
+    },
+    {
+      "at": 27.25,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 3.106,
+      "crop": [
+        55,
+        480,
+        1490,
+        1048
+      ],
+      "sha256": "90fcc383c2ce735adb268d96e7578651bd04fffe883be886497aca2557106431"
+    },
+    {
+      "at": 27.542,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00007.jpg",
+      "sourceSeconds": 3.385,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "1299a9bb229b7206c2ac9ef01d28b171dd7caa01500a2ebff6c4ad855df61a51"
+    },
+    {
+      "at": 27.625,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00008.jpg",
+      "sourceSeconds": 3.465,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "d43a0a339daee9ea66e55c47e68aaeb64625ba1f893e205bf3dc23654e3a5a37"
+    },
+    {
+      "at": 27.667,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00012.jpg",
+      "sourceSeconds": 3.505,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "b786eb4453b5a974e91aeefaa11bdbcba8c2faa624a81c6f8c985639f7865a8a"
+    },
+    {
+      "at": 28.792,
+      "scene": "supplement",
+      "capture": "14-submit-supplement",
+      "frame": "frame-00013.jpg",
+      "sourceSeconds": 4.58,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "2489603a28468677f598ee335bbd0dc466ad483166355941fce27b76f7609b66"
+    },
+    {
+      "at": 30.0,
+      "scene": "approved",
+      "capture": "15-supplement-approved",
+      "frame": "frame-00000.jpg",
+      "sourceSeconds": 0.0,
+      "crop": [
+        0,
+        0,
+        1920,
+        1059
+      ],
+      "sha256": "2489603a28468677f598ee335bbd0dc466ad483166355941fce27b76f7609b66"
+    },
+    {
+      "at": 31.75,
+      "scene": "approved",
+      "capture": "15-supplement-approved",
+      "frame": "frame-00001.jpg",
+      "sourceSeconds": 1.433,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "d639855ce256a03761fbcbf04444bfd87cb5485dbf02707f7a39a2ab9c9fc1ae"
+    },
+    {
+      "at": 31.792,
+      "scene": "approved",
+      "capture": "15-supplement-approved",
+      "frame": "frame-00002.jpg",
+      "sourceSeconds": 1.468,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "a19938e6d429a3c20112940833c4e8fea173071a235ab63796c7f32193b5cbee"
+    },
+    {
+      "at": 35.5,
+      "scene": "approved",
+      "capture": "15-supplement-approved",
+      "frame": "frame-00003.jpg",
+      "sourceSeconds": 4.505,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "07484c452fac807a30bed5cc8d8f28dc8abd9e4b2f774af8ca7a44b68bf6ee71"
+    },
+    {
+      "at": 37.125,
+      "scene": "approved",
+      "capture": "15-supplement-approved",
+      "frame": "frame-00005.jpg",
+      "sourceSeconds": 5.836,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "8fe668506f6983a8fecc48e84a9fe945d9a063ed4df3631bb64dff0dcdfa085e"
+    },
+    {
+      "at": 37.167,
+      "scene": "approved",
+      "capture": "15-supplement-approved",
+      "frame": "frame-00006.jpg",
+      "sourceSeconds": 5.87,
+      "crop": [
+        35,
+        0,
+        1490,
+        780
+      ],
+      "sha256": "5bed39ce8df35099a5a85072d143b679926ae97bfd45b9008e9db57e4fb9e0c3"
+    }
+  ]
+}

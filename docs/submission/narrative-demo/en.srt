@@ -1,0 +1,87 @@
+1
+00:00:00,000 --> 00:00:12,708
+We want the solvent accessible surface area of one C R N, and a report we can trace back to that calculation. Two people use different agents. How do they keep the handoff aligned?
+
+2
+00:00:12,708 --> 00:00:27,958
+The captain uses Codex. A teammate uses SciencePAL. They begin with a shared proposal: the structure, method, output, and evidence required. These are recorded workbench actions with simulated agents.
+
+3
+00:00:27,958 --> 00:00:40,458
+The captain selects the participants, uploads the public structure file, and records its source. Creating the project freezes that input with the proposals, so everyone starts from the same version.
+
+4
+00:00:40,458 --> 00:00:54,875
+Alignment turns the proposal into calculation and report tasks. Each task points back to an original requirement. The captain can inspect who executes it, who reviews it, and what the next task must wait for.
+
+5
+00:00:54,875 --> 00:01:07,625
+Here we require Shrake Rupley, a numerical reference, and a two percent tolerance. These checks enforce the declared rules. They do not guarantee that every scientific claim is correct.
+
+6
+00:01:07,625 --> 00:01:17,792
+Publish after checking the assignment. Calculation goes first. Writing the report remains blocked until the result has independent approval.
+
+7
+00:01:17,792 --> 00:01:30,584
+The member starts their connector and receives the frozen task. SciencePAL owns the calculation. Codex receives its output for review, rather than a file copied manually from a chat.
+
+8
+00:01:30,583 --> 00:01:46,041
+This separate historical SciencePAL thread shows a research skill and successful tool checks. It demonstrates real research tooling, but it is not a live calculation caused by the simulated clicks we just saw. Now back to our task.
+
+9
+00:01:46,042 --> 00:01:58,167
+The review comes back with a problem: the result meets the numerical rule, but original code and version records are missing. The file exists. The report still cannot use it.
+
+10
+00:01:58,167 --> 00:02:05,417
+The missing piece is evidence. Repeating the calculation would not repair this handoff by itself.
+
+11
+00:02:05,417 --> 00:02:19,375
+Choose supplementary review. The confirmation keeps the original result and requests another independent review. Supply the original code and execution record, explain their source, and send them back for checking.
+
+12
+00:02:19,375 --> 00:02:32,750
+Once the new review is approved, the report task becomes available. Notice what changed: the approval. What did not change is the calculation file. The producer did not run again.
+
+13
+00:02:32,750 --> 00:02:44,000
+Codex prepares the report, and the other member reviews it. Open the handoff to see the producing task, the approving review, and the exact input received downstream.
+
+14
+00:02:44,000 --> 00:02:59,125
+Now the captain adds a Chinese summary and clearer limitations. The structure, method, and upstream acceptance stay the same. Submit a research change so this new request is visible, instead of silently changing the agreement.
+
+15
+00:02:59,125 --> 00:03:12,667
+The change review identifies the report as affected. The captain confirms that scope. Reuse depends on matching the frozen requirements and task fingerprint, not just an agent saying it is safe.
+
+16
+00:03:12,667 --> 00:03:26,167
+The revised alignment preserves the approved calculation. When R two is published, only the changed report and its review need new work. SciencePAL is not asked to calculate the same structure again.
+
+17
+00:03:26,167 --> 00:03:37,000
+Return the updated report and collect its independent review. Reusing the input does not skip approval of the new report, and it does not remove all review cost.
+
+18
+00:03:37,000 --> 00:03:52,417
+The delivery panel explicitly shows the approved R one result being reused. We verified the same calculation file, execution, and approving review in both revisions. This is a retained result, not a renamed replacement.
+
+19
+00:03:52,417 --> 00:04:05,417
+One calculation. Two reports. The input and approval stay anchored while the requested report changes. That is the specific rerun avoided in this recorded demonstration.
+
+20
+00:04:05,417 --> 00:04:20,375
+The historical result is about two thousand nine hundred sixty eight square angstroms, within the agreed tolerance of an independent reference. It describes this fixed protein structure. It does not establish a new biological function.
+
+21
+00:04:20,375 --> 00:04:29,708
+The final delivery links the report, result, and review evidence. A later reader can check what was used and why it was allowed to proceed.
+
+22
+00:04:29,708 --> 00:04:42,916
+Try the replay, or run the project with your own accounts. Built on the team's Vibe Git, adapters, and workbench, with research handoff and recovery added. Code and evidence are linked below.

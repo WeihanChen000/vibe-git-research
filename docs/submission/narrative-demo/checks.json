@@ -1,0 +1,218 @@
+{
+  "version": "narrative-20261101-v1",
+  "productAndCaptureBaseline": "ee9528c",
+  "scope": "Actual previously captured product UI with simulated agents, original explanatory animation and a separately labelled historical SciencePAL verification. No new provider execution.",
+  "durationSeconds": 282.94,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "fps": 24,
+  "audio": "AAC English synthetic Aria, normalized toward -18 LUFS",
+  "meanAudioDb": -24.8,
+  "peakAudioDb": -4.6,
+  "fullDecode": true,
+  "chapters": 22,
+  "sourceFrameChangesVerified": 165,
+  "simulatedUiSeconds": 206.333,
+  "subtitleTiming": "Chinese cue boundaries follow matching English word timestamps plus 180 ms audio offset",
+  "subtitleChecks": [
+    {
+      "chapter": "question",
+      "secondChineseCue": 7.24775,
+      "lastSpokenWordEndsAt": 11.5,
+      "chapterDuration": 12.708333333333334
+    },
+    {
+      "chapter": "proposal",
+      "secondChineseCue": 10.939333,
+      "lastSpokenWordEndsAt": 14.047,
+      "chapterDuration": 15.25
+    },
+    {
+      "chapter": "upload",
+      "secondChineseCue": 6.161290999999999,
+      "lastSpokenWordEndsAt": 11.278,
+      "chapterDuration": 12.5
+    },
+    {
+      "chapter": "align",
+      "secondChineseCue": 8.182333,
+      "lastSpokenWordEndsAt": 13.194,
+      "chapterDuration": 14.416666666666666
+    },
+    {
+      "chapter": "rules",
+      "secondChineseCue": 5.530457999999999,
+      "lastSpokenWordEndsAt": 11.558,
+      "chapterDuration": 12.75
+    },
+    {
+      "chapter": "publish",
+      "secondChineseCue": 2.843541,
+      "lastSpokenWordEndsAt": 8.93,
+      "chapterDuration": 10.166666666666666
+    },
+    {
+      "chapter": "claim",
+      "secondChineseCue": 6.8155,
+      "lastSpokenWordEndsAt": 11.582,
+      "chapterDuration": 12.791666666666666
+    },
+    {
+      "chapter": "history",
+      "secondChineseCue": 8.0655,
+      "lastSpokenWordEndsAt": 14.269,
+      "chapterDuration": 15.458333333333334
+    },
+    {
+      "chapter": "rejected",
+      "secondChineseCue": 7.224374999999999,
+      "lastSpokenWordEndsAt": 10.904,
+      "chapterDuration": 12.125
+    },
+    {
+      "chapter": "blocked",
+      "secondChineseCue": 3.625,
+      "lastSpokenWordEndsAt": 6.044,
+      "chapterDuration": 7.25
+    },
+    {
+      "chapter": "supplement",
+      "secondChineseCue": 7.574875,
+      "lastSpokenWordEndsAt": 12.727,
+      "chapterDuration": 13.958333333333334
+    },
+    {
+      "chapter": "approved",
+      "secondChineseCue": 7.364583,
+      "lastSpokenWordEndsAt": 12.131,
+      "chapterDuration": 13.375
+    },
+    {
+      "chapter": "handoff",
+      "secondChineseCue": 4.3155,
+      "lastSpokenWordEndsAt": 10.016,
+      "chapterDuration": 11.25
+    },
+    {
+      "chapter": "new-request",
+      "secondChineseCue": 8.684666,
+      "lastSpokenWordEndsAt": 13.895,
+      "chapterDuration": 15.125
+    },
+    {
+      "chapter": "impact",
+      "secondChineseCue": 6.500083,
+      "lastSpokenWordEndsAt": 12.329,
+      "chapterDuration": 13.541666666666666
+    },
+    {
+      "chapter": "republish",
+      "secondChineseCue": 8.953375,
+      "lastSpokenWordEndsAt": 12.271,
+      "chapterDuration": 13.5
+    },
+    {
+      "chapter": "report-r2",
+      "secondChineseCue": 4.303833,
+      "lastSpokenWordEndsAt": 9.619,
+      "chapterDuration": 10.833333333333334
+    },
+    {
+      "chapter": "proof",
+      "secondChineseCue": 5.2267079999999995,
+      "lastSpokenWordEndsAt": 14.21,
+      "chapterDuration": 15.416666666666666
+    },
+    {
+      "chapter": "comparison",
+      "secondChineseCue": 3.9767080000000004,
+      "lastSpokenWordEndsAt": 11.792,
+      "chapterDuration": 13.0
+    },
+    {
+      "chapter": "answer",
+      "secondChineseCue": 8.217375,
+      "lastSpokenWordEndsAt": 13.755,
+      "chapterDuration": 14.958333333333334
+    },
+    {
+      "chapter": "delivery",
+      "secondChineseCue": 4.771125,
+      "lastSpokenWordEndsAt": 8.147,
+      "chapterDuration": 9.333333333333334
+    },
+    {
+      "chapter": "end",
+      "secondChineseCue": 4.116916,
+      "lastSpokenWordEndsAt": 12.002,
+      "chapterDuration": 13.208333333333334
+    }
+  ],
+  "sampleBrowserPlayback": {
+    "browser": "ego lite",
+    "duration": 40.021333,
+    "ended": true,
+    "mediaError": null
+  },
+  "publicPlaybackVerified": false,
+  "files": {
+    "chapters.json": {
+      "bytes": 12872,
+      "sha256": "fdb9d264f433ddfbe4dcce9209693e172792adeb4a9038d71acfc6be15c496a3"
+    },
+    "dynamic-sample.mp4": {
+      "bytes": 2196469,
+      "sha256": "e67e86d9eb4eb88523a077e68c5fa5e3fbc901ca7b7bd962e2cea4266e2893d1"
+    },
+    "en.srt": {
+      "bytes": 4934,
+      "sha256": "a1651e27b0fc04746de1d5e27e65fa31fa386ecb0dd2e7b012a736ae9acc8434"
+    },
+    "poster.jpg": {
+      "bytes": 269507,
+      "sha256": "8a62573a63d8c0f954682f9241287f055777ce444056549c42ad2f810fda3274"
+    },
+    "README.md": {
+      "bytes": 1818,
+      "sha256": "b253c62eb9534b196b3803aec5048c93b408c57d1496d6f9c518f3a19b4217ce"
+    },
+    "sample-poster.jpg": {
+      "bytes": 265069,
+      "sha256": "56358c21b4e5657f2916120e1be1cd7214e28dc94b0977102ff0c31d810a2a36"
+    },
+    "vibe-git-story.mp4": {
+      "bytes": 21770750,
+      "sha256": "ea000752214d46525e73566b8b47c36812f38bf2cc09edeb87713f65da02fdfc"
+    },
+    "watch.html": {
+      "bytes": 7525,
+      "sha256": "471390093373bfb7cc00219007cd797fef5628a4d3f78f0a960ebd53bb9686e7"
+    },
+    "zh-CN.srt": {
+      "bytes": 4344,
+      "sha256": "4d4de4ade0a57a7f9171426b327c78a3b088873cf411dcdf6f36eb1111c33397"
+    }
+  },
+  "limitations": [
+    "Not a human full listening review; audio checked by decoding, level and synthesis timestamps.",
+    "Encoded representative frames inspected; not every video frame.",
+    "Existing simulated evidence reused; no new real SciencePAL/Codex calls or cross-computer validation.",
+    "PDF retained as historical technical material, not re-rendered for this video."
+  ],
+  "integratedLoudnessLUFS": -20.6,
+  "loudnessRangeLU": 3.3,
+  "localBrowserPlayback": {
+    "browser": "ego lite",
+    "duration": 282.937667,
+    "timeAfterPlay": 1.058102,
+    "paused": false,
+    "muted": false,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "mediaError": null
+  }
+}

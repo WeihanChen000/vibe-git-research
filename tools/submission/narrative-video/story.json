@@ -1,0 +1,582 @@
+[
+  {
+    "id": "question",
+    "title": "一份计算，怎样可靠地交接？",
+    "duration": 12,
+    "state": "start",
+    "shots": [],
+    "en": "We want the solvent accessible surface area of one C R N, and a report we can trace back to that calculation. Two people use different agents. How do they keep the handoff aligned?",
+    "zh": [
+      "计算 1CRN 的溶剂可及表面积，并生成可追溯的报告。",
+      "两个人使用不同 Agent，怎样对齐同一份成果？"
+    ],
+    "kind": "intro",
+    "hint": "",
+    "subtitleBreak": "Two people"
+  },
+  {
+    "id": "proposal",
+    "title": "先约定：做什么、交什么",
+    "duration": 12,
+    "state": "start",
+    "shots": [
+      {
+        "capture": "01-proposal",
+        "crop": [
+          520,
+          180,
+          1420,
+          860
+        ]
+      }
+    ],
+    "en": "The captain uses Codex. A teammate uses SciencePAL. They begin with a shared proposal: the structure, method, output, and evidence required. These are recorded workbench actions with simulated agents.",
+    "zh": [
+      "队长使用 Codex，成员使用 SciencePAL，共同约定方法与交付。",
+      "下面展示真实界面操作；Agent 使用模拟执行器。"
+    ],
+    "kind": "ui",
+    "hint": "",
+    "subtitleBreak": "These are recorded"
+  },
+  {
+    "id": "upload",
+    "title": "上传结构，建立项目",
+    "duration": 12,
+    "state": "input",
+    "shots": [
+      {
+        "capture": "02-open-create",
+        "crop": [
+          520,
+          110,
+          1410,
+          820
+        ]
+      },
+      {
+        "capture": "03-upload",
+        "crop": [
+          520,
+          260,
+          1410,
+          1020
+        ]
+      },
+      {
+        "capture": "04-create",
+        "crop": [
+          520,
+          450,
+          1410,
+          1040
+        ]
+      }
+    ],
+    "en": "The captain selects the participants, uploads the public structure file, and records its source. Creating the project freezes that input with the proposals, so everyone starts from the same version.",
+    "zh": [
+      "队长选择成员，上传公开结构文件并填写来源。",
+      "输入与提案一起冻结，后续各方使用同一版本。"
+    ],
+    "kind": "ui",
+    "hint": "",
+    "subtitleBreak": "Creating the project"
+  },
+  {
+    "id": "align",
+    "title": "对齐之后，任务有了分工",
+    "duration": 12,
+    "state": "input",
+    "shots": [
+      {
+        "capture": "05-start-alignment",
+        "crop": [
+          35,
+          0,
+          1490,
+          780
+        ]
+      },
+      {
+        "capture": "06-align-result",
+        "crop": [
+          35,
+          0,
+          1490,
+          780
+        ]
+      }
+    ],
+    "en": "Alignment turns the proposal into calculation and report tasks. Each task points back to an original requirement. The captain can inspect who executes it, who reviews it, and what the next task must wait for.",
+    "zh": [
+      "对齐将提案拆为计算与报告，并关联原始要求。",
+      "队长核对执行者、评审者，以及下游等待的条件。"
+    ],
+    "kind": "ui",
+    "hint": "",
+    "subtitleBreak": "The captain can"
+  },
+  {
+    "id": "rules",
+    "title": "发布之前，固定方法和检查",
+    "duration": 10,
+    "state": "input",
+    "shots": [
+      {
+        "capture": "08-freeze-method",
+        "crop": [
+          35,
+          150,
+          1490,
+          930
+        ]
+      },
+      {
+        "capture": "09-freeze-reference",
+        "crop": [
+          35,
+          0,
+          1490,
+          780
+        ]
+      }
+    ],
+    "en": "Here we require Shrake Rupley, a numerical reference, and a two percent tolerance. These checks enforce the declared rules. They do not guarantee that every scientific claim is correct.",
+    "zh": [
+      "冻结 Shrake-Rupley 方法、参考值及 2% 容差。",
+      "规则只检查约定范围，不能保证所有科学结论正确。"
+    ],
+    "kind": "ui",
+    "hint": "",
+    "subtitleBreak": "These checks enforce"
+  },
+  {
+    "id": "publish",
+    "title": "队长确认，再开始执行",
+    "duration": 8,
+    "state": "input",
+    "shots": [
+      {
+        "capture": "10-publish",
+        "crop": [
+          35,
+          0,
+          1490,
+          780
+        ]
+      }
+    ],
+    "en": "Publish after checking the assignment. Calculation goes first. Writing the report remains blocked until the result has independent approval.",
+    "zh": [
+      "队长核对分工后发布任务。",
+      "先计算；独立评审通过之前，报告保持等待。"
+    ],
+    "kind": "ui",
+    "hint": "",
+    "subtitleBreak": "Calculation goes first"
+  },
+  {
+    "id": "claim",
+    "title": "成员领取 SciencePAL 任务",
+    "duration": 10,
+    "state": "compute",
+    "shots": [
+      {
+        "capture": "11-start-sciencepal",
+        "crop": [
+          35,
+          0,
+          1490,
+          780
+        ]
+      }
+    ],
+    "en": "The member starts their connector and receives the frozen task. SciencePAL owns the calculation. Codex receives its output for review, rather than a file copied manually from a chat.",
+    "zh": [
+      "成员启动连接器，领取冻结的科研任务。",
+      "SciencePAL 负责计算，输出交给 Codex 复核。"
+    ],
+    "kind": "ui",
+    "hint": "",
+    "subtitleBreak": "Codex receives"
+  },
+  {
+    "id": "history",
+    "title": "SciencePAL：历史真实工具记录",
+    "duration": 14,
+    "state": "compute",
+    "shots": [
+      {
+        "capture": "26-sciencepal-history",
+        "crop": [
+          1000,
+          70,
+          1910,
+          820
+        ]
+      },
+      {
+        "capture": "27b-real-checks-hold",
+        "crop": [
+          1000,
+          220,
+          1910,
+          970
+        ]
+      }
+    ],
+    "en": "This separate historical SciencePAL thread shows a research skill and successful tool checks. It demonstrates real research tooling, but it is not a live calculation caused by the simulated clicks we just saw. Now back to our task.",
+    "zh": [
+      "这一段是另一批次的 SciencePAL 历史真实工具核查。",
+      "它不是刚才模拟点击产生的实时计算；下面回到工作台。"
+    ],
+    "kind": "ui",
+    "hint": "",
+    "subtitleBreak": "but it is not"
+  },
+  {
+    "id": "rejected",
+    "title": "结果已到，为什么报告还不能开始？",
+    "duration": 12,
+    "state": "reject",
+    "shots": [
+      {
+        "capture": "12-review-return",
+        "crop": [
+          35,
+          0,
+          1490,
+          780
+        ]
+      }
+    ],
+    "en": "The review comes back with a problem: the result meets the numerical rule, but original code and version records are missing. The file exists. The report still cannot use it.",
+    "zh": [
+      "评审指出：数值符合规则，但缺少原代码和版本记录。",
+      "文件已经产生，报告仍不能使用它。"
+    ],
+    "kind": "ui",
+    "hint": "",
+    "subtitleBreak": "The file exists"
+  },
+  {
+    "id": "blocked",
+    "title": "被拦住的是交接，不是已有计算",
+    "duration": 6,
+    "state": "reject",
+    "shots": [],
+    "en": "The missing piece is evidence. Repeating the calculation would not repair this handoff by itself.",
+    "zh": [
+      "缺的是执行证据；仅重复计算，不能补齐交接依据。"
+    ],
+    "kind": "blocked",
+    "hint": "",
+    "subtitleBreak": null
+  },
+  {
+    "id": "supplement",
+    "title": "补交记录，不重新计算",
+    "duration": 12,
+    "state": "supplement",
+    "shots": [
+      {
+        "capture": "13-supplement-open",
+        "crop": [
+          60,
+          300,
+          1420,
+          1030
+        ]
+      },
+      {
+        "capture": "14-submit-supplement",
+        "crop": [
+          60,
+          280,
+          1490,
+          1040
+        ]
+      }
+    ],
+    "en": "Choose supplementary review. The confirmation keeps the original result and requests another independent review. Supply the original code and execution record, explain their source, and send them back for checking.",
+    "zh": [
+      "选择补证复审，保留原结果；仍需另一次独立评审。",
+      "提交原代码、执行记录和来源，再交回核查。"
+    ],
+    "kind": "ui",
+    "hint": "",
+    "subtitleBreak": "Supply the original"
+  },
+  {
+    "id": "approved",
+    "title": "复审通过，报告获得输入",
+    "duration": 10,
+    "state": "approve",
+    "shots": [
+      {
+        "capture": "15-supplement-approved",
+        "crop": [
+          35,
+          0,
+          1490,
+          780
+        ]
+      }
+    ],
+    "en": "Once the new review is approved, the report task becomes available. Notice what changed: the approval. What did not change is the calculation file. The producer did not run again.",
+    "zh": [
+      "复审批准后，报告任务才能继续。",
+      "改变的是批准状态；原计算文件保留，计算未重跑。"
+    ],
+    "kind": "ui",
+    "hint": "",
+    "subtitleBreak": "What did not change"
+  },
+  {
+    "id": "handoff",
+    "title": "报告收到哪份成果，可以查清",
+    "duration": 10,
+    "state": "report",
+    "shots": [
+      {
+        "capture": "16-first-report",
+        "crop": [
+          35,
+          0,
+          1490,
+          780
+        ]
+      },
+      {
+        "capture": "18-handoff",
+        "crop": [
+          35,
+          0,
+          1490,
+          780
+        ]
+      }
+    ],
+    "en": "Codex prepares the report, and the other member reviews it. Open the handoff to see the producing task, the approving review, and the exact input received downstream.",
+    "zh": [
+      "Codex 生成报告，再由另一成员评审。",
+      "交接记录将生成任务、批准评审和下游输入连在一起。"
+    ],
+    "kind": "ui",
+    "hint": "",
+    "subtitleBreak": "Open the handoff"
+  },
+  {
+    "id": "new-request",
+    "title": "现在，只给报告加中文摘要",
+    "duration": 14,
+    "state": "change",
+    "shots": [
+      {
+        "capture": "19-report-change",
+        "crop": [
+          35,
+          300,
+          1490,
+          1040
+        ]
+      }
+    ],
+    "en": "Now the captain adds a Chinese summary and clearer limitations. The structure, method, and upstream acceptance stay the same. Submit a research change so this new request is visible, instead of silently changing the agreement.",
+    "zh": [
+      "队长新增中文摘要与局限说明；结构、方法和上游验收不变。",
+      "通过研究变更提出要求，不悄悄改写原协议。"
+    ],
+    "kind": "ui",
+    "hint": "",
+    "subtitleBreak": "Submit a research"
+  },
+  {
+    "id": "impact",
+    "title": "先看影响，再确认 R2",
+    "duration": 12,
+    "state": "change",
+    "shots": [
+      {
+        "capture": "20-change-review",
+        "crop": [
+          35,
+          0,
+          1490,
+          780
+        ]
+      },
+      {
+        "capture": "21-apply-change",
+        "crop": [
+          35,
+          270,
+          1490,
+          1040
+        ]
+      }
+    ],
+    "en": "The change review identifies the report as affected. The captain confirms that scope. Reuse depends on matching the frozen requirements and task fingerprint, not just an agent saying it is safe.",
+    "zh": [
+      "变更评审确定只影响报告，再由队长确认。",
+      "复用仍须匹配冻结要求与任务指纹。"
+    ],
+    "kind": "ui",
+    "hint": "",
+    "subtitleBreak": "Reuse depends"
+  },
+  {
+    "id": "republish",
+    "title": "发布 R2，上游已经获批",
+    "duration": 10,
+    "state": "reuse",
+    "shots": [
+      {
+        "capture": "22-realign-r2",
+        "crop": [
+          35,
+          0,
+          1490,
+          780
+        ]
+      },
+      {
+        "capture": "23-republish-r2",
+        "crop": [
+          35,
+          0,
+          1490,
+          780
+        ]
+      }
+    ],
+    "en": "The revised alignment preserves the approved calculation. When R two is published, only the changed report and its review need new work. SciencePAL is not asked to calculate the same structure again.",
+    "zh": [
+      "R2 对齐后保留获批计算，只重新安排报告与评审。",
+      "SciencePAL 无需再次计算相同结构。"
+    ],
+    "kind": "ui",
+    "hint": "",
+    "subtitleBreak": "SciencePAL is not"
+  },
+  {
+    "id": "report-r2",
+    "title": "报告更新，依然要经过评审",
+    "duration": 10,
+    "state": "reuse",
+    "shots": [
+      {
+        "capture": "24-second-report",
+        "crop": [
+          35,
+          0,
+          1490,
+          780
+        ]
+      }
+    ],
+    "en": "Return the updated report and collect its independent review. Reusing the input does not skip approval of the new report, and it does not remove all review cost.",
+    "zh": [
+      "新版报告交回后，仍需独立评审。",
+      "复用输入不等于跳过报告批准，也不等于没有评审成本。"
+    ],
+    "kind": "ui",
+    "hint": "",
+    "subtitleBreak": "Reusing the input"
+  },
+  {
+    "id": "proof",
+    "title": "沿用 R1 获批成果",
+    "duration": 10,
+    "state": "done",
+    "shots": [
+      {
+        "capture": "25-reuse-proof",
+        "crop": [
+          45,
+          200,
+          1045,
+          735
+        ]
+      }
+    ],
+    "en": "The delivery panel explicitly shows the approved R one result being reused. We verified the same calculation file, execution, and approving review in both revisions. This is a retained result, not a renamed replacement.",
+    "zh": [
+      "交付面板明确标注：沿用 R1 获批成果。",
+      "已核对文件、计算作业及批准评审相同，并非替换后改名。"
+    ],
+    "kind": "ui",
+    "hint": "",
+    "subtitleBreak": "We verified"
+  },
+  {
+    "id": "comparison",
+    "title": "什么没变？什么需要重新做？",
+    "duration": 8,
+    "state": "done",
+    "shots": [],
+    "en": "One calculation. Two reports. The input and approval stay anchored while the requested report changes. That is the specific rerun avoided in this recorded demonstration.",
+    "zh": [
+      "本次模拟：计算 1 次，报告执行 2 次。",
+      "报告变更，原计算与批准依据保持不变。"
+    ],
+    "kind": "comparison",
+    "hint": "",
+    "subtitleBreak": "The input and approval"
+  },
+  {
+    "id": "answer",
+    "title": "回到最初的科研问题",
+    "duration": 12,
+    "state": "done",
+    "shots": [],
+    "en": "The historical result is about two thousand nine hundred sixty eight square angstroms, within the agreed tolerance of an independent reference. It describes this fixed protein structure. It does not establish a new biological function.",
+    "zh": [
+      "历史结果为 2967.6165 Å²，与独立参考相差约 0.1865%。",
+      "这是固定蛋白结构的几何量，不是新的生物学功能发现。"
+    ],
+    "kind": "answer",
+    "hint": "",
+    "subtitleBreak": "It describes"
+  },
+  {
+    "id": "delivery",
+    "title": "结果与依据，一起交付",
+    "duration": 8,
+    "state": "done",
+    "shots": [
+      {
+        "capture": "29-final-delivery",
+        "crop": [
+          35,
+          70,
+          1490,
+          850
+        ]
+      }
+    ],
+    "en": "The final delivery links the report, result, and review evidence. A later reader can check what was used and why it was allowed to proceed.",
+    "zh": [
+      "最终交付集中列出报告、成果和评审依据。",
+      "后来的人可以核查：用了什么，凭什么获准交接。"
+    ],
+    "kind": "ui",
+    "hint": "",
+    "subtitleBreak": "A later reader"
+  },
+  {
+    "id": "end",
+    "title": "少靠口头确认，多一条可核查的交接链",
+    "duration": 8,
+    "state": "done",
+    "shots": [],
+    "en": "Try the replay, or run the project with your own accounts. Built on the team's Vibe Git, adapters, and workbench, with research handoff and recovery added. Code and evidence are linked below.",
+    "zh": [
+      "可直接观看回放；重新运行需要自己的账号和连接器。",
+      "基于团队原版、适配器与工作台，扩展科研交接、恢复和复用。"
+    ],
+    "kind": "end",
+    "hint": "",
+    "subtitleBreak": "Built on"
+  }
+]
