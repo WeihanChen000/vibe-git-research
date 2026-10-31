@@ -1,0 +1,6 @@
+{
+  "scope": "Read-only historical replay; blocked single proof request then restored it; no new scientific run",
+  "candidateStillDisplayed": true,
+  "retryVisible": true,
+  "recovered": true
+}

@@ -43,4 +43,4 @@
 
 现有文件哈希和功能基线见 [artifact-checks.json](artifact-checks.json)。本轮不新增远端任务或重编码视频/PDF，仅同步定位与验证状态。
 
-下一步只剩行政信息、最终表单要求及声明确认、正式提交成功回执。官方“可运行作品链接”要求不能用只读回放自动替代，账号运行方法与访问边界见 [SCIENCEPAL-DEMO.md](SCIENCEPAL-DEMO.md)。
+最新操作验收见[两轮界面模拟与错误恢复](../research/USER-RECOVERY-WALKTHROUGH-20261031.md)。当前代码持续更新，视频/PDF仍为上方历史版本；统一为同一新版展示仍未完成。仍需核对行政信息、最终表单要求与声明，并保存正式提交成功回执。官方“可运行作品链接”要求不能用只读回放自动替代，账号运行方法与访问边界见 [SCIENCEPAL-DEMO.md](SCIENCEPAL-DEMO.md)。

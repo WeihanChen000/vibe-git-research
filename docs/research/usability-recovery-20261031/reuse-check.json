@@ -1,0 +1,22 @@
+{
+  "scope": "Visible UI with deterministic simulated agents; no real provider calls",
+  "phase": "COMPLETED",
+  "revision": 2,
+  "runsBefore": 10,
+  "runsAfter": 14,
+  "fitRunsBefore": 3,
+  "fitRunsAfter": 3,
+  "sameArtifact": true,
+  "sameExecution": true,
+  "sameReview": true,
+  "carriedFrom": 1,
+  "downloadMatches": true,
+  "result": {
+    "synthetic": true,
+    "value": 6.931471805599421,
+    "unit": "min",
+    "upstreamSha256": "8edcbe01a0899d1808e5137876cd2cef85ee78e442cbb223c959c87c0392ae5c",
+    "limitations": "模拟数据，仅验证计算与协作流程，不证明真实设备精度或反应机理。 尚未包含真实测量噪声。",
+    "method": "approved-parameter-transform"
+  }
+}

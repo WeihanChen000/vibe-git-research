@@ -1,9 +1,10 @@
+import {verifiedJson,loadIndependentVerification,ProofReadStatus} from './ScientificEvidence';
 import {SourceFileInput,readResearchSourceFile} from './SourceFileInput';
 import {CompletedDeliverables,SciencePALThreadEntry} from "./ResearchInspector";
 import {createElement} from "react";
 import {renderToStaticMarkup} from "react-dom/server";
-import {describe,it,expect} from "vitest";
-import {RecoveryImpact,PublishTaskChecks,PublishTaskAcceptance,ChangeImpactSummary} from "./ResearchCommand";
+import {describe,it,expect,vi} from "vitest";
+import {reworkGuidance,RecoveryImpact,PublishTaskChecks,PublishTaskAcceptance,ChangeImpactSummary} from "./ResearchCommand";
 import type {SPTaskDraft,SPProject,SPRun} from "@vibe-git/protocol";
 import {ResearchGovernanceEvidence} from "./ResearchGovernanceEvidence";
 describe("Governance evidence in the original inspector",()=>{
@@ -126,4 +127,60 @@ it('retains the failed replacement warning when reopening the project panel',()=
  const source={filename:'source-original.csv',base64:btoa('a,b'),sourceUrl:'https://example.com/data',attribution:'Original attribution'};
  const html=renderToStaticMarkup(createElement(SourceFileInput,{source,selectionError:'文件不是 UTF-8，请先转换编码。',onChange:()=>{},onExample:()=>{}}));
  expect(html).toContain('继续使用原文件');expect(html).toContain('source-original.csv');expect(html).toContain('Original attribution');expect(html).toContain('替换未成功');
+});
+
+
+it('recommends supplement review only when that action actually exists',()=>{
+ const p={phase:'CHANGES_REQUESTED',paused:false,revision:1,maxRuns:32,team:{captainNodeId:'captain',members:[]},tasks:[{key:'fit',status:'CHANGES_REQUESTED',attempt:2,artifactId:'f',reviewId:'r'}],runs:[{kind:'REVIEW',revision:1,taskKey:'fit',inputs:[{artifactId:'f'}]}]} as unknown as SPProject;
+ expect(reworkGuidance(p,'fit')).toContain('选择“补充证据复审”');
+ p.runs.push({...p.runs[0]!,status:'INVALID'});
+ expect(reworkGuidance(p,'fit')).not.toContain('选择“补充证据复审”');
+ expect(reworkGuidance(p,'fit')).toContain('含无效评审');
+ p.runs.pop();p.maxRuns=1;
+ expect(reworkGuidance(p,'fit')).toContain('剩余运行名额');
+ expect(reworkGuidance(p,'fit')).not.toContain('选择“补充证据复审”');
+});
+
+
+it('explains a failed evidence connection in Chinese without exposing raw fetch errors',async()=>{
+ const fetchMock=vi.spyOn(globalThis,'fetch').mockRejectedValue(new TypeError('Failed to fetch'));
+ try{
+  await expect(verifiedJson('/artifact','sha',1,new AbortController().signal)).rejects.toThrow('暂时无法连接成果文件');
+  const c=new AbortController();c.abort();
+  await expect(verifiedJson('/artifact','sha',1,c.signal)).rejects.toThrow('成果读取超时或已取消');
+ }finally{fetchMock.mockRestore();}
+});
+
+describe('Independent proof read recovery',()=>{
+ it('distinguishes an absent report from a failed read and offers retry only for a bound report',()=>{
+  const render=(bound:boolean,error:string)=>renderToStaticMarkup(createElement(ProofReadStatus,{bound,error,onRetry:()=>{}}));
+  expect(render(false,'')).toContain('尚未绑定');expect(render(false,'')).not.toContain('重新读取复核记录');
+  expect(render(true,'')).toContain('正在读取');expect(render(true,'')).not.toContain('尚未绑定');
+  const failed=render(true,'暂时无法连接复核记录文件');
+  expect(failed).toContain('重新读取复核记录');expect(failed).toContain('原成果保留');expect(failed).toContain('不启动 Agent');
+ });
+ it('recovers a proof request, rechecks the candidate and rejects replacement bytes even on retry',async()=>{
+  const candidate=JSON.stringify({result:{rate:0.1}}),bytes=new TextEncoder().encode(candidate);
+  const hash=async(text:string)=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text)))].map(n=>n.toString(16).padStart(2,'0')).join('');
+  const sha256=await hash(candidate),file={sha256,size:bytes.length};
+  const body=JSON.stringify({formatVersion:1,candidateSha256:sha256,reviewArtifactId:'review',method:'independent endpoint reference',passed:true,checks:[{passed:true}],metrics:[{name:'rate',observed:0.1,reference:0.1,tolerance:1e-8,comparison:'absolute',unit:'min^-1'}]});
+  const proof={url:'/proof',sha256:await hash(body),size:new TextEncoder().encode(body).length,reviewArtifactId:'review',artifactId:'fit',candidateSha256:sha256,filename:'proof.json'};
+  const signal=new AbortController().signal;
+  let failed=true,tampered=false;
+  const mock=vi.spyOn(globalThis,'fetch').mockImplementation(async url=>{
+   if(url==='/candidate')return new Response(tampered?candidate.replace('0.1','0.2'):candidate);
+   if(failed)throw new TypeError('Failed to fetch');
+   return new Response(body);
+  });
+  try{
+   await expect(loadIndependentVerification('/candidate',file,proof,signal)).rejects.toThrow('暂时无法连接复核记录文件');
+   failed=false;await expect(loadIndependentVerification('/candidate',file,proof,signal)).resolves.toMatchObject({passed:true});
+   tampered=true;await expect(loadIndependentVerification('/candidate',file,proof,signal)).rejects.toThrow('证据哈希');
+   expect(mock.mock.calls.every(([,options])=>!options?.method||options.method==='GET')).toBe(true);
+  }finally{mock.mockRestore();}
+ });
+ it('reports a missing bound file differently from a temporary connection failure',async()=>{
+  const mock=vi.spyOn(globalThis,'fetch').mockResolvedValue(new Response('',{status:404}));
+  try{await expect(verifiedJson('/proof','sha',1,new AbortController().signal,'复核记录')).rejects.toThrow('已绑定的复核记录文件不存在');}finally{mock.mockRestore();}
+ });
 });
