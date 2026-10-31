@@ -33,60 +33,60 @@
       "sha256": "d6826f4291c92ab534fb9d28fc7b292d7f21771896d70b871d7880e3d5767562"
     },
     "watch.html": {
-      "bytes": 8805,
-      "sha256": "290ebd7845a51e9fd36f8a625e3cf4d42cc055d13326fd4e2d70638b19309d7f"
+      "bytes": 8785,
+      "sha256": "341ead5fdc7c474dd0f6eb1152b018d32d92f41d81abac308aac59f5ea8e649e"
     },
     "DEMO-SCRIPT.md": {
-      "bytes": 9361,
-      "sha256": "df8bd12cd025c86561d608203ced07693898cd4373f0250d0ef127ac49fb9d54"
+      "bytes": 9215,
+      "sha256": "a64677feba4ef8d98307ed62a9308df9920793233ad84a7f6e34d188976db9d1"
     },
     "demo-scenes.json": {
-      "bytes": 7871,
-      "sha256": "875bc26cf68b1a1839a0abd5220a80fa51736da57b4796f6211a225afc73e2c1"
+      "bytes": 7737,
+      "sha256": "d79acb791971d50b5e58ea17e04b1a938779ad157555c52ec63dd15c95aff80a"
     },
     "demo.en.vtt": {
-      "bytes": 5825,
-      "sha256": "ed24d381de9f7db2698b4da106eb64a43eaaa9cff0f99a5853a2b7d86894bf20"
+      "bytes": 5752,
+      "sha256": "8c2a8a1ed0d7af50fa08eb39af85ba04490c4d0f155225e5c0bbd7dda764d9c9"
     },
     "demo.zh-CN.vtt": {
-      "bytes": 3413,
-      "sha256": "a8760448e895183775b679462bb23654ed0488190e93e34e79d50bdeb3b5b5f1"
+      "bytes": 3340,
+      "sha256": "a3eddeadda1509007014b44e315afca0737587ca43429f6a5f12f5df166fcadc"
     },
     "demo.zh-CN.srt": {
-      "bytes": 3490,
-      "sha256": "4780d5a58d0c5f52707b1b804f2b27d0049d389b2784a8d3ad188704af9f142d"
+      "bytes": 3395,
+      "sha256": "163fffccb71fbaf25502264b6b46c33fb8e456c529e761392abeba6193120820"
     },
     "video-poster.jpg": {
       "bytes": 148717,
       "sha256": "58d65fc5c9c2ecf37da9eb7ff0556d9c9b65a5dc674203dc25f893375911f6ce"
     },
     "README.md": {
-      "bytes": 4441,
-      "sha256": "0799844e8eb17007e66f6cc25837cb65233e8ac37fb7a5f84838f3836af12ba8"
+      "bytes": 4401,
+      "sha256": "fe510dac99408577c08d2b709233c38ac08c009bf39cd4dc481c39c98eb80beb"
     },
     "FORM-COPY.md": {
-      "bytes": 3560,
-      "sha256": "552e1ad0be14e077397717e6712505ca55bc9ebec442d8ebbcb09b40731a6e2f"
+      "bytes": 3513,
+      "sha256": "bdfa2d37fa4e0bbff3187eeec7b3faf68446f2e6983bd2006501b70abdfcd310"
     },
     "ORIGINALITY-RESOURCES.md": {
-      "bytes": 6318,
-      "sha256": "60c56818e1349d498b21e6c8aec88af372381a4aa505ae6652bfaf7a04b3ef3b"
+      "bytes": 6267,
+      "sha256": "7bad47024529951e1a5b5e317f68e05deb144c6c8bec076329cacf30b62ce16c"
     },
     "SCIENCEPAL-DEMO.md": {
-      "bytes": 3635,
-      "sha256": "582a1a26c5e9bc875d6b766066a9ada8079f327603a020584d157030156ac6d7"
+      "bytes": 3598,
+      "sha256": "a86d1f645477e2748de6d395aafa546ab3156167862b43f547c97fd470af4547"
     },
     "RUN-AND-RECOVER.md": {
-      "bytes": 3810,
-      "sha256": "7d28426263ed0f47d5a38d69a5289567de669cf471fc83651f2ca736ddcd15a7"
+      "bytes": 3759,
+      "sha256": "6a5d1bcc7016a9d49984178bb9e53e84edc8219b5cf07228f651aec8106fb2d9"
     },
     "CONTRIBUTION-STATEMENT.md": {
-      "bytes": 6305,
-      "sha256": "fd25cd7796f320f42121595415a1ff348f74829b74b9fa18bd0dc32dfd559e29"
+      "bytes": 6273,
+      "sha256": "a59151b191118c1042a241a4a8d8aed892333ca5e0aa12ec2b944c63632ea1b3"
     },
     "AUDIT.md": {
-      "bytes": 5450,
-      "sha256": "fbad1c1b621c604f548272c1a053041221384ed325dc96ea6eca0b433516a7ca"
+      "bytes": 6435,
+      "sha256": "70513121950f585e8d016488dc3a5e09340c8f1b3f63d17a91fb227e7899ae97"
     }
   },
   "latest_live": {
@@ -139,5 +139,24 @@
     "error": null,
     "chapter_check": "deferred to production: temporary Python server exposed seekable [0,0]"
   },
-  "public_access_recheck": "pending deployment"
+  "public_access_recheck": {
+    "material_deployment": "94c8ab2a1a5bff6cae4c7b6cf18423350c961974",
+    "pages_built": true,
+    "video_binary_identical": true,
+    "pdf_binary_identical": true,
+    "html_identical_after_line_ending_normalization": true,
+    "video_http_content_type": "video/mp4",
+    "pdf_http_content_type": "application/pdf",
+    "accept_ranges": "bytes",
+    "browser_started_at": 1.091968,
+    "browser_middle_chapter_at": 132.652685,
+    "browser_last_chapter_at": 253.36219,
+    "browser_duration": 278.392333,
+    "browser_error": null,
+    "browser_muted": false,
+    "browser_pdf_title": "Vibe-Git Research - final-20261031-v1",
+    "browser_pdf_pages": 5,
+    "sciencepal_final_step": "107/107"
+  },
+  "files_representation": "Git index canonical bytes (LF for text); binary PDF/MP4 unchanged. Windows working copies may use CRLF."
 }
