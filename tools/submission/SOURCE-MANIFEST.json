@@ -1,0 +1,163 @@
+{
+  "scope": "Editable production sources and explicitly unfinished mock filming assets. No private runtime sessions.",
+  "functional_baseline": "dda48233f57ee20e9c8be2d6b21c782b46ece7ba",
+  "video_status": "USER_REQUESTED_REEDIT_NOT_ACCEPTED",
+  "operations_draft_status": "TWO_SCREENSHOTS_ONLY_NOT_END_TO_END_VALIDATED",
+  "checks": {
+    "python_syntax": true,
+    "node_syntax": true,
+    "fixture_import_and_inputs": true,
+    "pdf_rebuild_pages": 5,
+    "pdf_rebuild_text_matches_published": true,
+    "video_rebuild_seconds": 278.39,
+    "video_rebuild_full_decode": true,
+    "new_source_sensitive_pattern_scan": true,
+    "fresh_machine_install_tested": false
+  },
+  "files": {
+    "tools/submission/assets/01-agent-select.png": {
+      "bytes": 480196,
+      "sha256": "bfa5326b5112bea8d4b3f2d93293b201a21b6eac0c836ffd0cc7e3e36629e8bc"
+    },
+    "tools/submission/assets/02-proposal-before.png": {
+      "bytes": 515745,
+      "sha256": "1e96e2fce70d84e5c9462600e2b29d7e8351234d089032be8353e73df7422dbe"
+    },
+    "tools/submission/assets/method-error.png": {
+      "bytes": 109754,
+      "sha256": "03914824b5add4071121928430018fef83554c733b0a257572ca54149dc5a384"
+    },
+    "tools/submission/audio/voice-00-0.mp3": {
+      "bytes": 81648,
+      "sha256": "d1d4337004aeebda9ebbd70118750b4fb7bc16ed568b5bfb5595224fb1801ed7"
+    },
+    "tools/submission/audio/voice-00-1.mp3": {
+      "bytes": 68688,
+      "sha256": "0d422dedabac5b2000bee0a807423eb4df00e582426aaed82053d3239a5e6854"
+    },
+    "tools/submission/audio/voice-01-0.mp3": {
+      "bytes": 68976,
+      "sha256": "35778f70cb4d79f185d362e35c0888ee073ad7d6e038cc14ea8db0e64ce30d95"
+    },
+    "tools/submission/audio/voice-01-1.mp3": {
+      "bytes": 62352,
+      "sha256": "0f658683f0f2d520fbe2e87b428eb81bcdbd56ea7aa4735038397c4eea898423"
+    },
+    "tools/submission/audio/voice-02-0.mp3": {
+      "bytes": 89712,
+      "sha256": "85c9d47bf8ffa3f22e5ff6bbf923e8e7e435db32161fd730253ddfccf629b67a"
+    },
+    "tools/submission/audio/voice-02-1.mp3": {
+      "bytes": 80352,
+      "sha256": "57ef5cd53c18a0f7c09979f3e06adaf15a86fce2786fd7e0cd50fa2fb7d3277a"
+    },
+    "tools/submission/audio/voice-03-0.mp3": {
+      "bytes": 73152,
+      "sha256": "be9c9cf9053deb89012a7dd0e1b51ecd8c64ed884f169812286e63a022919d0f"
+    },
+    "tools/submission/audio/voice-03-1.mp3": {
+      "bytes": 70848,
+      "sha256": "9ac7c863eaf8e56aa07843fa24064eeee8112bb46c3077ecd1a0b309404c4c8e"
+    },
+    "tools/submission/audio/voice-04-0.mp3": {
+      "bytes": 84384,
+      "sha256": "2fc916d4f7efc393b83e46f97c72fac9e148815b5f7a7844b262c64da3705956"
+    },
+    "tools/submission/audio/voice-04-1.mp3": {
+      "bytes": 84816,
+      "sha256": "97e1d96ff11127a93bbe872a276a5ed621d5a853d38ac3fc4de2fd5d89638000"
+    },
+    "tools/submission/audio/voice-05-0.mp3": {
+      "bytes": 86688,
+      "sha256": "c02ae6b9f97dfa5dd08646536ca340c9ad0e299ae1bd3cd544d1aafd0970a688"
+    },
+    "tools/submission/audio/voice-05-1.mp3": {
+      "bytes": 85104,
+      "sha256": "ac223023d865b1728532d3bdd28c3d5f4e02eab9a6d5620ebcfa179f78d46dfe"
+    },
+    "tools/submission/audio/voice-06-0.mp3": {
+      "bytes": 81936,
+      "sha256": "dd9523b7aea7682360898e0a02498ddb5b65573a0eb253c0eaa8dd3122f8857a"
+    },
+    "tools/submission/audio/voice-06-1.mp3": {
+      "bytes": 76176,
+      "sha256": "a833f31591de73ce346b8f9c49d590baa5196719becf9eab347d3477f15c75ad"
+    },
+    "tools/submission/audio/voice-07-0.mp3": {
+      "bytes": 96192,
+      "sha256": "f0baf89f6d6e13e24985c46f6c757551c3ba3c2303e82667cfea4300124f4cb9"
+    },
+    "tools/submission/audio/voice-07-1.mp3": {
+      "bytes": 73008,
+      "sha256": "f5466a2d7d045c3810a9f5f2bbc2af033736d5cc52d4f00aa7979aac190e724a"
+    },
+    "tools/submission/audio/voice-08-0.mp3": {
+      "bytes": 91296,
+      "sha256": "575b4b1ca81c84b366a8c17aca93056e975d2c4d1798a61e3f889d6929c3667a"
+    },
+    "tools/submission/audio/voice-08-1.mp3": {
+      "bytes": 83664,
+      "sha256": "2f125abc0f41ad1bdea2c8c883d0993858a3b47a81b198b3f3fd43e910b8feb1"
+    },
+    "tools/submission/audio/voice-09-0.mp3": {
+      "bytes": 90000,
+      "sha256": "cc5ffe0d2d1c036597decd6a3ec7293f0a01fa74cb67d7976e1706a211a470f1"
+    },
+    "tools/submission/audio/voice-09-1.mp3": {
+      "bytes": 85248,
+      "sha256": "e952a8fc269bc0032dca321f9eb3c10d273ad0b15d7891021b00217672042d0c"
+    },
+    "tools/submission/audio/voice-10-0.mp3": {
+      "bytes": 98064,
+      "sha256": "137f0b102f405eb6ac8d92424447dcea4e97899a709353f68a8079b755c2dbd1"
+    },
+    "tools/submission/audio/voice-10-1.mp3": {
+      "bytes": 80352,
+      "sha256": "32737158029571c89843f73e0d122d0ebee5e1fe24fdb2f2ab16c956151c028e"
+    },
+    "tools/submission/audio/voice-11-0.mp3": {
+      "bytes": 85680,
+      "sha256": "2f9b96a028d36c9b5e11fa384ce38ea9a5d3f6dfe8d523f6501af8cca4e1a0cf"
+    },
+    "tools/submission/audio/voice-11-1.mp3": {
+      "bytes": 90432,
+      "sha256": "17b91b42f341aa23c3875df5cb85c6da5059018e564a3ae2265918e65c0ce245"
+    },
+    "tools/submission/operations-draft/fixture.mjs": {
+      "bytes": 5066,
+      "sha256": "e54098191a5a50ad65ef0f8fd4c35e0fdb837b643f97553029ffc5698626b340"
+    },
+    "tools/submission/operations-draft/README.md": {
+      "bytes": 2152,
+      "sha256": "d96cf9782fb68d45837c3d775330596fac1ec8e8a8946d4a9ecf4c7020d110c9"
+    },
+    "tools/submission/operations-draft/server.mjs": {
+      "bytes": 5966,
+      "sha256": "d143df671170fd01626fc284560ec4190c3f97da8023d6b22dfc617e3a4f7d52"
+    },
+    "tools/submission/pdf-pages.json": {
+      "bytes": 7293,
+      "sha256": "94ff16b8f737ab711f64d754bf87ccf0be3f01bc6156eca9f3b4b118b1f19817"
+    },
+    "tools/submission/pdf.py": {
+      "bytes": 2117,
+      "sha256": "08a64fe14427a1f1bf7ec12b40b10ef8ef1e10e63283b2dcd7b292d1f8c32778"
+    },
+    "tools/submission/README.md": {
+      "bytes": 3419,
+      "sha256": "383a6bef438272de06d1d1b8fa82b3a62aa10e59e0563c2bd45931305b3e3e73"
+    },
+    "tools/submission/render.py": {
+      "bytes": 5859,
+      "sha256": "21162a7df9afd492a919b16f6474237b66259c7bb3c10423be15c3ec4918de19"
+    },
+    "tools/submission/scenes.json": {
+      "bytes": 12564,
+      "sha256": "49b48a46fec435fdd7ff8525592202ac01e13bbf83845f0942a127d41164c54a"
+    },
+    "tools/submission/voices.py": {
+      "bytes": 497,
+      "sha256": "336400774ce72e1fceb1767e9daf0371d34aec41090968ed1d919e4395d3c364"
+    }
+  }
+}

@@ -1,5 +1,7 @@
 # Vibe-Git Research · 可核查的科研交接
 
+> **队友接手入口：[资料、源码与未完成事项](TEAM-HANDOFF.md)。** 后续整合、视频重剪与正式提交由接手队友完成。现有视频操作画面不够清楚，尚未获使用者认可；新录制只有两张截图，没有完成新版成片。
+
 **让 Codex 与 SciencePAL 在同一份研究协议下合作，把经过复核的成果、版本和批准依据一起交给下一步。**
 
 面向已经同时使用 Codex 和 SciencePAL、需要交换计算结果并复核的研究者。一个人管理多个 Agent 也可以使用；多人各用自己的 Agent 是保留的协作能力。平台负责让版本、检查和批准依据随文件交接，减少依赖人记住检查步骤；是否值得配置、是否节省真人操作时间仍待测量。
@@ -16,7 +18,7 @@
 | 缺证据不必重跑原计算 | 首次缺版本和代码被退回；补齐原运行证据后复审获批，原计算仍只有一次 |
 | 只改报告不重复上游工作 | 正式增加中文摘要及限制说明，只重做报告和评审；原计算文件及批准 ID 保持不变 |
 
-先看[真实两轮记录与原始文件](docs/research/LATEST-GOVERNANCE-LIVE-20261031.md)，再看[最终案例视频](https://weihanchen000.github.io/vibe-git-research/submission/watch.html)或[原拓扑历史回放](https://weihanchen000.github.io/vibe-git-research/replay/?case=isolated&step=members)。新版视频统一讲解此真实主案例，并区分模拟界面与历史证据；不是连续现场录像。拓扑回放仍保留各自历史轮次。
+先看[真实两轮记录与原始文件](docs/research/LATEST-GOVERNANCE-LIVE-20261031.md)，再看[现有视频（待重剪）](https://weihanchen000.github.io/vibe-git-research/submission/watch.html)或[原拓扑历史回放](https://weihanchen000.github.io/vibe-git-research/replay/?case=isolated&step=members)。新版视频统一讲解此真实主案例，并区分模拟界面与历史证据；不是连续现场录像。拓扑回放仍保留各自历史轮次。
 
 这些证据支持“可核查的交接与成果复用”，不代表新生物学发现、算法独占或已证明节省真人时间。新用户从[三步接入与第一轮操作](vibe-git/SCIENCEPAL-QUICKSTART.md)开始。
 
