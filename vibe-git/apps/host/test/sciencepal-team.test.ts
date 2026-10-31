@@ -958,3 +958,52 @@ it.each([
  expect(s.pipeline.list()).toHaveLength(before);expect(s.remoteA.calls).toHaveLength(0);expect(s.remoteB.calls).toHaveLength(0);
  expect((await s.raw(s.captain.nodeToken,url,{...s.input,source})).statusCode).toBe(200);expect(s.pipeline.list()).toHaveLength(before+1);
 });
+
+describe("Waiting-input original thread location",()=>{
+ it("publishes the verified location before output and preserves it through a connector restart",async()=>{
+  const s=await setup(true);s.remoteA.askKinds.add("ALIGN");await s.command("align");await s.connectorA.step();
+  const initial=s.pipeline.get(s.project.id),r=initial.runs[0]!;
+  expect(r.status).toBe("NEEDS_INPUT");expect(r.output).toBeNull();expect(r.projectId).toBe(r.threadId);
+  const restarted=new SciencePALMemberConnector(s.remoteA,s.a,s.saved(),async()=>{});
+  vi.useFakeTimers({toFake:['Date']});
+  try {vi.setSystemTime(Date.now()+5000);await restarted.step();}finally{vi.useRealTimers();}
+  expect(s.pipeline.get(s.project.id).updatedAt).toBe(initial.updatedAt);
+  s.remoteA.webAnswer(r.threadId!);await restarted.step();await restarted.step();
+  expect(s.pipeline.get(s.project.id).phase).toBe("READY");expect(s.remoteA.calls).toHaveLength(1);
+  expect(s.remoteA.messageCalls).toHaveLength(0);expect(s.remoteA.continuationCalls).toBe(0);
+ });
+ it("rejects another member, mismatched receipts and replacement locations",async()=>{
+  const s=await setup();s.remoteA.askKinds.add("ALIGN");await s.command("align");await s.connectorA.step();
+  const r=s.pipeline.get(s.project.id).runs[0]!,path=`/api/sciencepal-team/projects/${s.project.id}/runs/${r.id}/status`;
+  const location={threadId:r.threadId,runId:r.runId,projectId:r.projectId};
+  expect((await s.raw(s.member.nodeToken,path,{status:"NEEDS_INPUT",location})).statusCode).toBe(403);
+  for(const bad of [{...location,threadId:"another-thread"},{...location,runId:"another-run"},{...location,projectId:"another-project"},{...location,projectId:"https://other.invalid"}])
+   expect((await s.raw(s.captain.nodeToken,path,{status:"NEEDS_INPUT",location:bad})).statusCode).toBeGreaterThanOrEqual(400);
+  expect(s.pipeline.get(s.project.id).runs[0]!.projectId).toBe(r.projectId);
+ });
+ it("does not replace a bound location on completion and accepts legacy completion without it",async()=>{
+  const s=await setup();s.remoteA.askKinds.add("ALIGN");await s.command("align");await s.connectorA.step();
+  const r=s.pipeline.get(s.project.id).runs[0]!;
+  const body={threadId:r.threadId!,runId:r.runId!,agentId:"a",sandboxId:r.threadId!,base64:Buffer.from(s.remoteA.calls[0]!.bytes).toString("base64")};
+  await expect(s.pipeline.memberComplete(s.project.id,s.captain.nodeId,r.id,{...body,projectId:"different-project"})).rejects.toThrow("不匹配");
+  expect(s.pipeline.get(s.project.id).runs[0]!.output).toBeNull();
+  await s.pipeline.memberComplete(s.project.id,s.captain.nodeId,r.id,body);
+  expect(s.pipeline.get(s.project.id).runs[0]!.projectId).toBe(r.projectId);
+  expect(s.pipeline.get(s.project.id).phase).toBe("READY");
+ });
+ it("recovers a failed location read without losing waiting state or launching another job",async()=>{
+  const s=await setup();s.remoteA.askKinds.add("ALIGN");const sandbox=s.remoteA.sandbox.bind(s.remoteA);let unavailable=true;
+  s.remoteA.sandbox=async id=>{if(unavailable)throw new SciencePALError("temporary read failure",false,true);return sandbox(id);};
+  await s.command("align");await expect(s.connectorA.step()).rejects.toThrow("temporary read failure");
+  const r=s.pipeline.get(s.project.id).runs[0]!;expect(r.status).toBe("NEEDS_INPUT");expect(r.projectId).toBeNull();
+  unavailable=false;const restarted=new SciencePALMemberConnector(s.remoteA,s.a,s.saved(),async()=>{});await restarted.step();
+  expect(s.pipeline.get(s.project.id).runs[0]).toMatchObject({id:r.id,threadId:r.threadId,runId:r.runId,projectId:r.threadId,status:"NEEDS_INPUT"});
+  expect(s.remoteA.calls).toHaveLength(1);expect(s.remoteA.messageCalls).toHaveLength(0);expect(s.remoteA.continuationCalls).toBe(0);
+ });
+ it("keeps waiting visible without a location when remote thread verification fails",async()=>{
+  const s=await setup();s.remoteA.askKinds.add("ALIGN");s.remoteA.sandbox=async id=>({sandboxId:id,projectId:'wrong-project',agentId:'other-agent'});
+  await s.command("align");await expect(s.connectorA.step()).rejects.toThrow("不匹配");
+  const r=s.pipeline.get(s.project.id).runs[0]!;
+  expect(r.status).toBe("NEEDS_INPUT");expect(r.projectId).toBeNull();expect(s.remoteA.calls).toHaveLength(1);
+ });
+});

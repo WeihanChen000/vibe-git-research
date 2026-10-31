@@ -506,7 +506,9 @@ export class SciencePALPipeline {
       if (!["RUNNING", "NEEDS_INPUT"].includes(r.status)) throw invalidState("运行尚未登记远端 ID");
       const task = p.tasks.find(t => t.key === r.taskKey);
       if (r.kind === "REVIEW" && p.runs.find(x => x.id === task?.executionId)?.sandboxId === sandboxId) throw badRequest("评审沙箱必须独立");
-      r.sandboxId = sandboxId; r.projectId = data.projectId ? string(data.projectId, "远端项目 ID", 120) : null;
+      const remoteProjectId = data.projectId ? string(data.projectId, "远端项目 ID", 120) : r.projectId;
+      if (r.projectId && remoteProjectId !== r.projectId) throw badRequest("成果的远端项目与原线程记录不匹配");
+      r.sandboxId = sandboxId; r.projectId = remoteProjectId;
       r.output = this.storeFile(p, r.outputFilename, bytes); r.remoteStatus = "completed"; r.status = "COMPLETED";
       this.save(p, `${nodeId} 已交回成果原始字节；开始 Host 校验`);
       this.acceptOutput(p, r);
@@ -514,12 +516,25 @@ export class SciencePALPipeline {
       return r;
     });
   }
-  async memberStatus(projectId: string, nodeId: string, runId: string, status: string) {
+  async memberStatus(projectId: string, nodeId: string, runId: string, status: string, location?: unknown) {
     return this.locked(projectId, p => {
       const r = this.memberRun(p, nodeId, runId);
       if (isLocalResearchPlatform(r.agent.platform)) throw badRequest("本地任务不接受远端运行状态");
       if (!["STARTING", "RUNNING", "NEEDS_INPUT"].includes(r.status)) throw invalidState("当前运行不接受状态更新");
-      if (status === "NEEDS_INPUT") { if (r.status !== "NEEDS_INPUT" || r.error !== "等待成员在 SciencePAL 回复") { r.status = "NEEDS_INPUT"; r.error = "等待成员在 SciencePAL 回复"; this.save(p); } }
+      let remoteProjectId = r.projectId;
+      if (location !== undefined) {
+        if (status !== "NEEDS_INPUT") throw badRequest("原线程入口仅随等待输入回执登记");
+        const data = object(location), id = string(data.projectId, "远端项目 ID", 120);
+        if (!/^[a-zA-Z0-9_-]+$/.test(id)) throw badRequest("远端项目 ID 格式无效");
+        if (data.threadId !== r.threadId || data.runId !== r.runId || !r.threadId || !r.runId) throw revisionConflict("原线程入口与当前运行回执不匹配");
+        if (r.projectId && r.projectId !== id) throw revisionConflict("不能替换已绑定的远端项目");
+        remoteProjectId = id;
+      }
+      if (status === "NEEDS_INPUT") {
+        if (r.status !== "NEEDS_INPUT" || r.error !== "等待成员在 SciencePAL 回复" || remoteProjectId !== r.projectId) {
+          r.status = "NEEDS_INPUT"; r.error = "等待成员在 SciencePAL 回复"; r.projectId = remoteProjectId; r.updatedAt = now(); this.save(p);
+        }
+      }
       else if (status === "FAILED" || status === "UNKNOWN") this.block(p, r, status === "UNKNOWN" ? "成员提交结果未知；禁止自动重新提交" : "成员连接器报告远端明确失败", status);
       else throw badRequest("无效成员状态");
       return r;

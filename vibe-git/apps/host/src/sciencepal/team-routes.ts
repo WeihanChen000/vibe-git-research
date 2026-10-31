@@ -117,6 +117,6 @@ export async function registerSciencePALTeamRoutes(app: FastifyInstance, service
     api.post<{ Params: RunParams; Body: Parameters<SciencePALPipeline["memberComplete"]>[3] }>("/projects/:id/runs/:runId/complete", { bodyLimit: 8 * 1024 * 1024 }, async r => pipeline.memberComplete(r.params.id, auth(r).id, r.params.runId, r.body));
     api.post<{ Params: RunParams; Body: { claimId: string; base64: string } }>("/projects/:id/runs/:runId/complete-local", { bodyLimit: 8 * 1024 * 1024 }, async r => pipeline.memberCompleteLocal(r.params.id, auth(r).id, r.params.runId, r.body));
     api.post<{ Params: RunParams; Body: { claimId: string } }>("/projects/:id/runs/:runId/failed-local", async r => pipeline.memberLocalFailed(r.params.id, auth(r).id, r.params.runId, r.body));
-    api.post<{ Params: RunParams; Body: { status: string } }>("/projects/:id/runs/:runId/status", async r => pipeline.memberStatus(r.params.id, auth(r).id, r.params.runId, r.body.status));
+    api.post<{ Params: RunParams; Body: { status: string; location?: unknown } }>("/projects/:id/runs/:runId/status", async r => pipeline.memberStatus(r.params.id, auth(r).id, r.params.runId, r.body.status, r.body.location));
   }, { prefix: "/api/sciencepal-team" });
 }

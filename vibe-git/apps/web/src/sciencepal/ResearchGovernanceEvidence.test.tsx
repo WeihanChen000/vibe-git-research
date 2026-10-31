@@ -1,8 +1,9 @@
+import {SciencePALThreadEntry} from "./ResearchInspector";
 import {createElement} from "react";
 import {renderToStaticMarkup} from "react-dom/server";
 import {describe,it,expect} from "vitest";
 import {PublishTaskChecks,PublishTaskAcceptance,ChangeImpactSummary} from "./ResearchCommand";
-import type {SPTaskDraft,SPProject} from "@vibe-git/protocol";
+import type {SPTaskDraft,SPProject,SPRun} from "@vibe-git/protocol";
 import {ResearchGovernanceEvidence} from "./ResearchGovernanceEvidence";
 describe("Governance evidence in the original inspector",()=>{
  it("shows uncovered original requirements without claiming they passed",()=>{
@@ -43,5 +44,23 @@ describe("Decision detail disclosure without weakening the protocol",()=>{
   expect(html).not.toContain(' open');
   for(const text of [change.request,change.result!.rationale,'Full protocol remains available','Original source rule','Approved replacement rule'])expect(html).toContain(text);
   expect(JSON.stringify({p,change})).toBe(before);
+ });
+});
+
+
+describe("Waiting-input entry in the original inspector",()=>{
+ it("links the exact original thread without displaying CLI instructions",()=>{
+  const run={agent:{platform:"sciencepal"},projectId:"project-1",threadId:"thread-1"} as SPRun;
+  const html=renderToStaticMarkup(createElement(SciencePALThreadEntry,{run}));
+  expect(html).toContain('href="https://sciencepal.ai/projects/project-1/thread/thread-1"');
+  expect(html).toContain("打开本次 SciencePAL 原线程");expect(html).not.toContain("停止 work");
+  expect(html).toContain("<details><summary>查看原线程编号");
+ });
+ it("labels the dashboard fallback honestly and never constructs an unbound or foreign URL",()=>{
+  for(const run of [undefined,{agent:{},projectId:null,threadId:"thread-1"},{agent:{},projectId:"../other",threadId:"thread-1"},{agent:{platform:"codex"},projectId:"project-1",threadId:"thread-1"}]){
+   const html=renderToStaticMarkup(createElement(SciencePALThreadEntry,{run:run as SPRun|undefined}));
+   expect(html).toContain('href="https://sciencepal.ai/dashboard"');expect(html).toContain("尚未取得原线程地址");
+   expect(html).not.toContain("打开本次 SciencePAL 原线程");
+  }
  });
 });

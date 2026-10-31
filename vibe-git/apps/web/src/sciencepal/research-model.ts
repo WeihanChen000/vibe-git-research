@@ -96,3 +96,11 @@ export function taskActionText(project: SPProject, action: ReturnType<typeof pro
 export function reviewsForAttempt(p:SPProject,execution:SPRun):SPRun[]{
  return execution.output?p.runs.filter(r=>r.kind==="REVIEW"&&r.taskKey===execution.taskKey&&r.revision===execution.revision&&r.inputs.some(i=>i.artifactId===execution.output!.id)):[];
 }
+
+
+/** Only a bound SciencePAL project/thread pair can form a direct authenticated link. */
+export function sciencePALThreadUrl(run?:SPRun):string|null {
+ if(!run||isLocalResearchPlatform(run.agent.platform))return null;
+ const valid=(id:unknown):id is string=>typeof id==="string"&&/^[a-zA-Z0-9_-]{1,120}$/.test(id);
+ return valid(run.projectId)&&valid(run.threadId)?`https://sciencepal.ai/projects/${run.projectId}/thread/${run.threadId}`:null;
+}

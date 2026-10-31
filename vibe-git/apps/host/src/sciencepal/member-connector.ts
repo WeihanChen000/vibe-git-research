@@ -90,7 +90,7 @@ export class SciencePALMemberConnector {
         await this.request(this.path("status"), { status: "NEEDS_INPUT" });
         if (this.remote.threadRuns) {
           const known = j.knownRunIds ?? [j.remote!.runId];
-          const next = await this.nextRun(j.remote!.threadId, j.remote!.runId, known);
+          const next = await this.nextRun(j.remote!.threadId, j.remote!.runId, known, true);
           if (next) {
             j.followUp = { stage: "LINK", threadId: j.remote!.threadId, previousRunId: j.remote!.runId,
               baselineRunIds: known, source: "sciencepal-web", nextRunId: next };
@@ -112,7 +112,7 @@ export class SciencePALMemberConnector {
     return "等待";
   }
   /** Only a single new run on this same, verified thread can be adopted. */
-  private async nextRun(threadId: string, previousRunId: string, known: string[]) {
+  private async nextRun(threadId: string, previousRunId: string, known: string[], publishLocation = false) {
     if (!this.remote.threadRuns) throw new Error("SciencePAL 不支持线程运行查询，不能安全续接");
     const info = await this.remote.sandbox(threadId), runs = await this.remote.threadRuns(threadId);
     const agentId = this.journal.packet!.run.agent.runtimeAgentId ?? this.journal.packet!.run.agent.id;
@@ -120,6 +120,10 @@ export class SciencePALMemberConnector {
     if (info.agentId !== agentId || !previous || new Set(runs.map(r => r.id)).size !== runs.length || runs.some(r => r.threadId !== threadId || r.agentId !== agentId || !Number.isFinite(Date.parse(r.startedAt)))) throw new Error("续接线程、Agent 或运行历史不匹配，未启动任务");
     const candidates = runs.filter(r => !known.includes(r.id));
     if (candidates.length > 1 || candidates.some(r => Date.parse(r.startedAt) < Date.parse(previous.startedAt))) throw new Error("发现多个或过早的续接运行，请核对原线程；不会猜选或重发");
+    // Reuse the existing verified read; this does not send an answer or start a run.
+    if (publishLocation && info.projectId) await this.request(this.path("status"), {
+      status: "NEEDS_INPUT", location: { threadId, runId: previousRunId, projectId: info.projectId },
+    });
     return candidates[0]?.id;
   }
   private async canReply() {
