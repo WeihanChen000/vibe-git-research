@@ -27,7 +27,7 @@
     291
   ],
   "browserPlaybackVerified": true,
-  "publicPlaybackVerified": false,
+  "publicPlaybackVerified": true,
   "fixtureTestsPassed": 6,
   "simulatedEvidenceChecksPassed": 16,
   "files": {
@@ -69,5 +69,30 @@
     ],
     "mediaError": null
   },
-  "fullscreenObservation": "Entered fullscreen; Ego screenshot was blocked by native minimized-window state. Encoded full-resolution frames inspected separately."
+  "fullscreenObservation": "Entered fullscreen; Ego screenshot was blocked by native minimized-window state. Encoded full-resolution frames inspected separately.",
+  "publicPlaybackObservation": {
+    "url": "https://weihanchen000.github.io/vibe-git-research/submission/operations-demo/watch.html",
+    "browser": "ego lite",
+    "deployedCommit": "6aff92d7c037148aee53a43f0175d8a7c441cbd1",
+    "duration": 296.021,
+    "currentTimeAfterPlay": 1.071892,
+    "paused": false,
+    "muted": false,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "mediaError": null,
+    "chapterSeekResults": [
+      {
+        "target": 154.0,
+        "observedPlayingTime": 155.090207
+      },
+      {
+        "target": 261.083,
+        "observedPlayingTime": 262.108875
+      }
+    ],
+    "screenshot": "Not captured: native window reported minimized; encoded full-resolution frames were inspected separately."
+  }
 }
