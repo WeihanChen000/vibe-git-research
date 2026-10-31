@@ -39,7 +39,7 @@
     "sciencepal:member": "node --use-env-proxy apps/host/dist/sciencepal/member-main.js",
     "sciencepal:call": "node --use-env-proxy apps/host/dist/sciencepal/bridge-main.js",
     "sciencepal:simulate": "node apps/host/scripts/simulate-research-collaboration.mjs",
-    "test:sciencepal": "npm run build -w @vibe-git/protocol && npm run build -w @vibe-git/relay && vitest run apps/host/test/sciencepal.test.ts apps/host/test/sciencepal-pipeline.test.ts apps/host/test/scientific-checks.test.ts apps/host/test/sciencepal-team.test.ts apps/host/test/sciencepal-bridge.test.ts apps/web/src/sciencepal/research-model.test.ts apps/web/src/sciencepal/research-replay.test.ts apps/host/test/research-constraints.test.ts apps/relay/test/agent-adapters.test.ts apps/relay/test/codex-executor.test.ts",
+    "test:sciencepal": "npm run build -w @vibe-git/protocol && npm run build -w @vibe-git/relay && vitest run apps/host/test/sciencepal.test.ts apps/host/test/sciencepal-pipeline.test.ts apps/host/test/scientific-checks.test.ts apps/host/test/sciencepal-team.test.ts apps/host/test/sciencepal-bridge.test.ts apps/web/src/sciencepal/research-model.test.ts apps/web/src/sciencepal/research-replay.test.ts apps/host/test/research-constraints.test.ts apps/relay/test/agent-adapters.test.ts apps/relay/test/codex-executor.test.ts apps/web/src/sciencepal/ResearchGovernanceEvidence.test.tsx",
     "predev": "npm run build -w @vibe-git/protocol && npm run build -w @vibe-git/relay",
     "dev": "concurrently -k -n host,web -c cyan,magenta \"npm run dev -w @vibe-git/host\" \"npm run dev -w @vibe-git/web\"",
     "dev:relay": "npm run dev -w @vibe-git/relay",
@@ -59,7 +59,8 @@
     "test:isolated-acceptance": "node scripts/verify-isolated-acceptance.mjs",
     "research:replay:build-public": "node scripts/build-public-replay.mjs",
     "test:compatibility": "npm run build -w @vibe-git/protocol && npm run build -w @vibe-git/relay && vitest run apps/host/test/v20.test.ts apps/host/test/v21-contract.test.ts apps/relay/test apps/cli/test apps/web/src/OriginalWorkspaceAccess.test.tsx",
-    "test:installed-package": "node scripts/verify-installed-package.mjs"
+    "test:installed-package": "node scripts/verify-installed-package.mjs",
+    "test:anti-drift": "npm run build -w @vibe-git/protocol && npm run build -w @vibe-git/relay && vitest run apps/host/test/sciencepal-pipeline.test.ts apps/host/test/sciencepal-team.test.ts apps/web/src/sciencepal/ResearchGovernanceEvidence.test.tsx apps/web/src/sciencepal/research-model.test.ts -t \"Research anti-drift|governance survives|keeps captain conflict|retains full source|rejects a forged|Governance evidence|keeps origin|keeps legacy all-pass|reuses approvals through|keeps optional reviewer\""
   },
   "dependencies": {
     "@vibe-git/protocol": "^0.1.0",

@@ -39,13 +39,17 @@ export interface SPScientificValidation {
  status:"PASSED"|"FAILED";engineVersion:"numeric-v1";rulesSha256:string;artifactSha256:string;sourceSha256:string|null;
  checks:{id:string;passed:boolean;detail:string}[];
 }
+export interface SPRequirement { id:string; text:string; sourceId:string; sourceSha256:string; introducedRevision:number; retiredBy?:string }
+export interface SPGovernance { version:1; requirements:SPRequirement[]; decisions:{runId:string;issue:AlignmentIssue}[] }
 export interface SPTaskDraft {
+  requirementIds?:string[];
   scientificChecks?: SPScientificRule[];
   resultSchema?: SPResultSchema;
   key: string; title: string; goal: string; boundary: string; acceptance: string[];
   dependencies: string[]; assigneeAgentId: string; reviewerAgentId: string; outputFilename: string;
 }
 export interface SPTask extends SPTaskDraft {
+  carriedFrom?:{revision:number;changeId:string;fingerprint:string};
   status: "WAITING" | "RUNNING" | "REVIEWING" | "APPROVED" | "CHANGES_REQUESTED" | "BLOCKED";
   attempt: number; executionId: string | null; reviewId: string | null; artifactId: string | null;
   feedback: string; review: SPReviewResult | null;
@@ -85,12 +89,16 @@ export interface SPContinuation {
 }
 export type SPPhase = "DRAFT" | "ALIGNING" | "NEEDS_DECISION" | "READY" | "EXECUTING" | "REVIEWING" | "CHANGES_REQUESTED" | "COMPLETED" | "BLOCKED" | "CHANGE_REVIEW" | "CHANGE_READY";
 export interface SPChange {
+  snapshotSha256?:string;
   requestedByNodeId?: string;
   id: string; request: string; baseRevision: number; runId: string;
   previousPhase: SPPhase; status: "REVIEWING" | "ACCEPTED" | "REJECTED" | "APPLIED" | "DISMISSED";
-  result: { verdict: "accept" | "reject"; rationale: string; affectedTaskKeys: string[]; requirementMarkdown: string } | null;
+  result: { verdict: "accept" | "reject"; rationale: string; affectedTaskKeys: string[]; requirementMarkdown: string;
+    taskImpacts?:{key:string;affected:boolean;rationale:string;fingerprint:string}[];
+    requirementEdits?:{requirementId:string;replacement:string|null;reason:string}[] } | null;
 }
 export interface SPProject {
+  governance?:SPGovernance;
   team?: SPTeam;
   resultContracts?: SciencePALArtifact;
   scientificChecks?: SciencePALArtifact;
@@ -99,11 +107,12 @@ export interface SPProject {
   agents: SPAgentBinding[]; coordinatorId: string; proposals: SPProposal[];
   requirementMarkdown: string; alignment: SPAlignment | null; alignmentRunId: string | null;
   tasks: SPTask[]; runs: SPRun[]; changes: SPChange[];
-  history: { revision: number; requirementMarkdown: string; alignment: SPAlignment | null; tasks: SPTask[] }[];
+  history: { governance?:SPGovernance; revision: number; requirementMarkdown: string; alignment: SPAlignment | null; tasks: SPTask[] }[];
   maxRuns: number; error: string | null; createdAt: string; updatedAt: string;
   events: { at: string; message: string }[];
 }
 export interface SPCreateProject {
+  governanceVersion?:1;
   scientificChecks?: SPScientificChecks;
   resultSchemas?: SPResultSchemas;
   title: string; coordinatorId: string; proposals: { agentId: string; content: string }[];

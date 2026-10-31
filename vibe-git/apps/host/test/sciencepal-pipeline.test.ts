@@ -1,3 +1,4 @@
+import {taskFingerprint} from "../src/sciencepal/research-governance.js";
 import { createHash } from "node:crypto";
 import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
@@ -691,4 +692,167 @@ describe("strong new acceptance profile through Host dispatch",()=>{
   expect(done.runs.find(r=>r.id===bad.id)!.scientificValidation?.status).toBe("FAILED");
   expect(s.pipeline.evidence(s.id).allApproved).toBe(true);
  });
+});
+
+
+// Controlled counterexamples; these do not impersonate new provider/model runs.
+const governedInput:SPCreateProject={...input,governanceVersion:1,proposals:[
+  {agentId:"a",content:"Compute SASA using Shrake-Rupley.\nReport residue count."},
+  {agentId:"b",content:"Independently review residue results and summarize limitations."}
+]};
+async function governedSetup(extra:Partial<SPCreateProject>={}) {
+  const s=await setup({...governedInput,...extra});
+  const base=(kind:string,result:any)=>{
+    const p=s.pipeline.get(s.id);
+    if(kind==="ALIGN")result.tasks=result.tasks.map((t:any)=>({...t,requirementIds:p.governance!.requirements.filter(r=>!r.retiredBy&&(t.key==="data"?r.sourceId===p.proposals[0]!.id:r.sourceId!==p.proposals[0]!.id)).map(r=>r.id)}));
+    if(kind==="CHANGE_REVIEW") {
+      result.affectedTaskKeys=["analysis"];
+      result.taskImpacts=p.tasks.map(t=>({key:t.key,affected:t.key==="analysis",rationale:t.key==="analysis"?"Only the summary changes":"Data input and method stay frozen",fingerprint:taskFingerprint(p,t)}));
+      result.requirementEdits=[];
+    }
+    if(kind==="REVIEW"&&result.verdict==="request_changes")result.requiredChangeCriteria=result.requiredChanges.map(()=>result.checks.find((c:any)=>!c.passed).criterion);
+    return result;
+  };
+  s.remote.transform=base;return {...s,base};
+}
+describe("Research anti-drift governance v1",()=>{
+  it("blocks an omitted source requirement before publication, then recovers without dropping original text",async()=>{
+    const s=await governedSetup();let omit=true;
+    s.remote.transform=(kind,result)=>{result=s.base(kind,result);if(kind==="ALIGN"&&omit)result.tasks[0].requirementIds.pop();return result;};
+    await s.command("align");const blocked=await until(s.pipeline,s.id,p=>p.phase==="BLOCKED");
+    expect(blocked.error).toContain("遗漏冻结需求");expect(s.remote.calls.map(c=>c.kind)).toEqual(["ALIGN"]);
+    omit=false;await s.command("retry",{runId:blocked.alignmentRunId});const ready=await until(s.pipeline,s.id,p=>p.phase==="READY");
+    const mapped=ready.alignment!.tasks.flatMap(t=>t.requirementIds!);
+    expect(new Set(mapped)).toEqual(new Set(ready.governance!.requirements.map(r=>r.id)));
+    expect(ready.alignment!.tasks[0]!.acceptance.join("\n")).toContain("Report residue count.");
+    await s.command("publish",{alignmentRunId:ready.alignmentRunId});
+    const done=await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");expect(done.requirementMarkdown).toContain(governedInput.proposals[0]!.content);
+  });
+  it("blocks an unauthorized method before review and handoff, then accepts an explicit repair",async()=>{
+    const schema:SPResultSchemas[string]={type:"object",properties:{method:{type:"string",const:"Shrake-Rupley"}},required:["method"]};
+    const s=await governedSetup({resultSchemas:{data:schema,analysis:schema}});let wrong=true;
+    s.remote.transform=(kind,result)=>{result=s.base(kind,result);return kind==="TASK"?{...result,method:wrong?"Lee-Richards":"Shrake-Rupley"}:result;};
+    await publish(s);const p=await until(s.pipeline,s.id,p=>p.phase==="BLOCKED");
+    expect(p.runs.find(r=>r.kind==="TASK")!.resultValidation?.status).toBe("FAILED");expect(s.remote.calls.some(c=>c.kind==="REVIEW")).toBe(false);
+    wrong=false;await s.command("retry",{runId:p.tasks[0]!.executionId});
+    await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");expect(s.pipeline.evidence(s.id).allApproved).toBe(true);
+  });
+  it.each(["all-pass-rejection","extra-criterion","unbound-rework"])("rejects reviewer scope drift (%s) without forcing the author to recompute",async mode=>{
+    const s=await governedSetup();let drift=true;
+    s.remote.transform=(kind,result)=>{result=s.base(kind,result);if(kind==="REVIEW"&&drift){result.verdict="request_changes";result.requiredChanges=["Run an unrelated extra experiment"];
+      if(mode==="extra-criterion")result.checks.push({criterion:"New unpublished requirement",passed:false,evidence:"data.json: extra request"});
+      if(mode==="unbound-rework"){result.checks[0].passed=false;result.requiredChangeCriteria=["New unpublished requirement"];}
+    }return result;};
+    await publish(s);const blocked=await until(s.pipeline,s.id,p=>p.phase==="BLOCKED");
+    expect(blocked.tasks[0]!.attempt).toBe(1);expect(blocked.runs.find(r=>r.id===blocked.tasks[0]!.reviewId)!.status).toBe("INVALID");
+    expect(s.remote.calls.filter(c=>c.kind==="TASK")).toHaveLength(1);
+    drift=false;await s.command("retry",{runId:blocked.tasks[0]!.reviewId});const done=await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");
+    expect(done.tasks[0]!.attempt).toBe(1);expect(s.pipeline.evidence(s.id).allApproved).toBe(true);
+  });
+  it("retains legitimate criterion-bound rejection and rework",async()=>{
+    const s=await governedSetup();s.remote.rejectOnce=true;await publish(s);
+    const rejected=await until(s.pipeline,s.id,p=>p.phase==="CHANGES_REQUESTED");const acceptance=[...rejected.tasks[0]!.acceptance];
+    await s.command("rework",{taskKey:"data"});const done=await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");
+    expect(done.tasks[0]!.attempt).toBe(2);expect(done.tasks[0]!.acceptance).toEqual(acceptance);
+  });
+  it("keeps untouched requirements and approvals across revisions, rerunning only the affected downstream task",async()=>{
+    const s=await governedSetup();await publish(s);const first=await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");
+    for(const request of ["Explain uncertainty in the summary.","State the limitations more explicitly."]) {
+      await s.command("change",{request});const reviewed=await until(s.pipeline,s.id,p=>p.phase==="CHANGE_READY");
+      const change=reviewed.changes.at(-1)!;expect(change.result!.taskImpacts!.map(i=>i.key)).toEqual(["data","analysis"]);
+      await s.command("apply-change",{changeId:change.id});const ready=await until(s.pipeline,s.id,p=>p.phase==="READY");
+      expect(ready.requirementMarkdown).toContain(first.requirementMarkdown);expect(ready.requirementMarkdown).toContain(request);
+      await s.command("publish",{alignmentRunId:ready.alignmentRunId});const done=await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");
+      expect(done.tasks[0]!.artifactId).toBe(first.tasks[0]!.artifactId);expect(done.tasks[0]!.carriedFrom?.revision).toBe(1);
+      expect(done.runs.filter(r=>r.kind==="TASK"&&r.taskKey==="data")).toHaveLength(1);
+      expect(s.pipeline.evidence(s.id).allApproved).toBe(true);expect(s.pipeline.evidence(s.id,1).allApproved).toBe(true);
+    }
+    const final=s.pipeline.get(s.id);expect(final.tasks[1]!.carriedFrom).toBeUndefined();
+    const handoff=s.remote.calls.filter(c=>c.kind==="TASK"&&c.context.task.key==="analysis").at(-1)!;
+    expect(handoff.context.upstream[0].approval.carriedFrom.revision).toBe(1);
+  });
+  it.each(["missing-impact","stale-fingerprint","missing-downstream"])("rejects incomplete change evidence (%s)",async mode=>{
+    const s=await governedSetup();await publish(s);await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");
+    s.remote.transform=(kind,result)=>{result=s.base(kind,result);if(kind==="CHANGE_REVIEW") {
+      if(mode==="missing-impact")result.taskImpacts.pop();
+      if(mode==="stale-fingerprint")result.taskImpacts[0].fingerprint="old";
+      if(mode==="missing-downstream"){result.taskImpacts[0].affected=true;result.taskImpacts[1].affected=false;result.affectedTaskKeys=["data"];}
+    }return result;};
+    await s.command("change",{request:"Check the change"});const p=await until(s.pipeline,s.id,p=>p.phase==="BLOCKED");
+    expect(p.revision).toBe(1);expect(p.changes[0]!.status).toBe("REVIEWING");
+  });
+  it("invalidates a no-impact conclusion if the task snapshot changes before captain approval",async()=>{
+    const s=await governedSetup();await publish(s);await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");
+    await s.command("change",{request:"Improve summary"});const p=await until(s.pipeline,s.id,p=>p.phase==="CHANGE_READY");
+    p.tasks[0]!.boundary="Tampered method boundary";s.db.prepare("UPDATE sciencepal_projects SET data=? WHERE id=?").run(JSON.stringify(p),s.id);
+    await expect(s.command("apply-change",{changeId:p.changes[0]!.id})).rejects.toThrow("旧影响证据失效");
+    expect(s.pipeline.get(s.id).revision).toBe(1);
+  });
+  it("rejects realignment that silently changes an unaffected task",async()=>{
+    const s=await governedSetup();await publish(s);await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");
+    await s.command("change",{request:"Improve summary"});const p=await until(s.pipeline,s.id,p=>p.phase==="CHANGE_READY");
+    s.remote.transform=(kind,result)=>{result=s.base(kind,result);if(kind==="ALIGN")result.tasks[0].goal="Switch the scientific method";return result;};
+    await s.command("apply-change",{changeId:p.changes[0]!.id});const blocked=await until(s.pipeline,s.id,p=>p.phase==="BLOCKED");
+    expect(blocked.error).toContain("未受影响任务");expect(s.remote.calls.filter(c=>c.kind==="TASK"&&c.context.task.key==="data")).toHaveLength(1);
+  });
+  it("invalidates old task/review proof when the frozen method or boundary drifts",async()=>{
+    const s=await governedSetup();await publish(s);await s.pipeline.tick();
+    const p=s.pipeline.get(s.id);p.tasks[0]!.boundary="Changed after dispatch";
+    s.db.prepare("UPDATE sciencepal_projects SET data=? WHERE id=?").run(JSON.stringify(p),s.id);
+    const blocked=await until(s.pipeline,s.id,p=>p.phase==="BLOCKED");expect(blocked.error).toContain("旧执行与评审证据失效");
+    expect(s.remote.calls.some(c=>c.kind==="REVIEW")).toBe(false);
+  });
+});
+
+it("keeps captain conflict decisions as authoritative source-linked criteria across realignment",async()=>{
+ const s=await governedSetup({...input,governanceVersion:1});s.remote.conflict=true;
+ await s.command("align");const p=await until(s.pipeline,s.id,p=>p.phase==="NEEDS_DECISION");
+ await s.command("decide",{alignmentRunId:p.alignmentRunId,issueId:"issue-1",optionId:"five"});
+ const ready=await until(s.pipeline,s.id,p=>p.phase==="READY");
+ expect(ready.governance!.decisions[0]!.issue.selectedOptionId).toBe("five");
+ expect(ready.alignment!.tasks.flatMap(t=>t.acceptance).filter(c=>c.startsWith("[REQ:")).every(c=>c.includes("裁决"))).toBe(true);
+ await s.command("publish",{alignmentRunId:ready.alignmentRunId});await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");
+});
+it("retains full source text when a change is applied before first publication",async()=>{
+ const s=await governedSetup();await s.command("align");await until(s.pipeline,s.id,p=>p.phase==="READY");
+ s.remote.transform=(kind,result)=>{result=s.base(kind,result);if(kind==="CHANGE_REVIEW"){
+   const p=s.pipeline.get(s.id);result.taskImpacts=p.alignment!.tasks.map(t=>({key:t.key,affected:t.key==="analysis",fingerprint:taskFingerprint(p,t),rationale:"Summary only"}));
+ }return result;};
+ await s.command("change",{request:"Clarify limitations"});const p=await until(s.pipeline,s.id,p=>p.phase==="CHANGE_READY");
+ await s.command("apply-change",{changeId:p.changes[0]!.id});const ready=await until(s.pipeline,s.id,p=>p.phase==="READY");
+ expect(ready.requirementMarkdown).toContain(governedInput.proposals[0]!.content);expect(ready.requirementMarkdown).toContain("Clarify limitations");
+ const actualContext=s.remote.calls.filter(c=>c.kind==="ALIGN").at(-1)!.context;
+ expect(actualContext.previousTasks).toEqual(p.alignment!.tasks);
+});
+it("rejects a forged carried approval instead of granting a newer task the old proof",async()=>{
+ const s=await governedSetup();await publish(s);await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");
+ await s.command("change",{request:"Improve summary"});let p=await until(s.pipeline,s.id,p=>p.phase==="CHANGE_READY");await s.command("apply-change",{changeId:p.changes[0]!.id});
+ p=await until(s.pipeline,s.id,p=>p.phase==="READY");await s.command("publish",{alignmentRunId:p.alignmentRunId});p=await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");
+ expect(s.pipeline.evidence(s.id).allApproved).toBe(true);p.tasks[0]!.carriedFrom!.fingerprint="forged";
+ s.db.prepare("UPDATE sciencepal_projects SET data=? WHERE id=?").run(JSON.stringify(p),p.id);
+ expect(()=>s.pipeline.evidence(p.id)).toThrow("复用成果");
+});
+
+it("keeps legacy all-pass rejection records readable while governance v1 rejects new ones",()=>{
+ const result={verdict:"request_changes",summary:"Historical record",checks:[{criterion:"criterion",passed:true,evidence:"data.json: original evidence"}],requiredChanges:["Historical extra request"],requiredChangeCriteria:["criterion"]};
+ expect(reviewResult(result,["criterion"],"data.json").verdict).toBe("request_changes");
+ expect(()=>reviewResult(result,["criterion"],"data.json",true)).toThrow("全部通过");
+});
+it("reuses approvals through consecutive unpublished revisions instead of recomputing unchanged data",async()=>{
+ const s=await governedSetup();await publish(s);const original=await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");
+ for(const request of ["Explain uncertainty","Clarify limitations"]) {
+   s.remote.transform=(kind,result)=>{result=s.base(kind,result);if(kind==="CHANGE_REVIEW"){
+     const p=s.pipeline.get(s.id);result.taskImpacts=(p.tasks.length?p.tasks:p.alignment!.tasks).map(t=>({key:t.key,affected:t.key==="analysis",fingerprint:taskFingerprint(p,t),rationale:"Summary only"}));
+   }return result;};
+   await s.command("change",{request});const p=await until(s.pipeline,s.id,p=>p.phase==="CHANGE_READY");await s.command("apply-change",{changeId:p.changes.at(-1)!.id});await until(s.pipeline,s.id,p=>p.phase==="READY");
+ }
+ const ready=s.pipeline.get(s.id);await s.command("publish",{alignmentRunId:ready.alignmentRunId});const done=await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");
+ expect(done.tasks[0]!.artifactId).toBe(original.tasks[0]!.artifactId);expect(done.runs.filter(r=>r.kind==="TASK"&&r.taskKey==="data")).toHaveLength(1);expect(s.pipeline.evidence(s.id).allApproved).toBe(true);
+});
+it("keeps optional reviewer suggestions out of a governed repair instruction",async()=>{
+ const s=await governedSetup();s.remote.rejectOnce=true;
+ s.remote.transform=(kind,result)=>{result=s.base(kind,result);if(kind==="REVIEW")result.summary+=" OPTIONAL: collect a new unrelated cohort";return result;};
+ await publish(s);await until(s.pipeline,s.id,p=>p.phase==="CHANGES_REQUESTED");await s.command("rework",{taskKey:"data"});await until(s.pipeline,s.id,p=>p.phase==="COMPLETED");
+ const repaired=s.remote.calls.find(c=>c.kind==="TASK"&&c.context.feedback)!;
+ expect(repaired.context.feedback).not.toContain("unrelated cohort");expect(repaired.context.feedback).toContain("Repair only failed frozen criteria");
 });

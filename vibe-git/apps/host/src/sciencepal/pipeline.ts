@@ -1,3 +1,4 @@
+import {createGovernance,taskFingerprint,changeSnapshot,assertChangeSnapshot,applyRequirementDelta,assertTaskInput,evidenceRevision,assertUnaffectedAlignment,reusableTask} from "./research-governance.js";
 import {hasRunCapacity} from "./run-budget.js";
 import {executionHistory} from './execution-history.js';
 import {validateScientificChecks,checkScientificResult,scientificError} from "./scientific-checks.js";
@@ -8,7 +9,7 @@ import { isLatestSPRun, type SPCreateProject, type SPInput, type SPProject, type
 import { badRequest, forbidden, invalidState, notFound, revisionConflict } from "../domain/errors.js";
 import type { V20Repository } from "../v20/repository.js";
 import { MAX_ARTIFACT_BYTES, SciencePALError, type SciencePALRemote } from "./client.js";
-import { alignmentResult, changeResult, envelope, jobPrompt, object, reviewResult, reviewOutputGuidance, string } from "./pipeline-contract.js";
+import { alignmentResult, changeResult, envelope, jobPrompt, object, reviewResult, reviewOutputGuidance, governancePrompt, string } from "./pipeline-contract.js";
 import { projectEvidence } from "./evidence.js";
 import { validateSource } from "./source.js";
 import { checkTaskResult, resultValidationError, validateResultSchemas } from "./result-contract.js";
@@ -81,6 +82,8 @@ export class SciencePALPipeline {
         return { ...plan, content: original, sha256: hash(original), ownerNodeId: owner.nodeId, documentId: owner.documentId, documentRevision: owner.documentRevision };
       });
     }
+    if(input.governanceVersion!==undefined&&input.governanceVersion!==1)throw badRequest("不支持的科研治理版本");
+    if(input.governanceVersion===1)p.governance=createGovernance(p);
     if (source) p.source = { artifact: this.storeFile(p, source.filename, source.bytes), sourceUrl: source.sourceUrl, attribution: source.attribution };
     if (resultSchemas) p.resultContracts = this.storeFile(p, "result-contracts.json", Buffer.from(JSON.stringify(resultSchemas, null, 2)));
     if (input.scientificChecks) {const checks=validateScientificChecks(input.scientificChecks,p.source?.artifact.sha256);p.scientificChecks=this.storeFile(p,"scientific-checks.json",Buffer.from(JSON.stringify(checks)));}
@@ -109,7 +112,8 @@ export class SciencePALPipeline {
     const stage = version === p.revision ? p : p.history.find(h => h.revision === version);
     const task = stage?.tasks.find(t => t.key === taskKey);
     if (!task) throw notFound("此需求版本的任务不存在");
-    const runs = p.runs.filter(r => r.revision === version && r.taskKey === taskKey);
+    const sourceVersion=task.carriedFrom?.revision??version;
+    const runs = p.runs.filter(r => r.revision === sourceVersion && r.taskKey === taskKey);
     const read = (id: string): unknown => {
       const file = this.file(projectId, id);
       try { return JSON.parse(Buffer.from(file.bytes).toString("utf8")); }
@@ -121,13 +125,13 @@ export class SciencePALPipeline {
       const file = this.file(projectId, input.artifactId);
       if (file.sha256 !== input.sha256 || file.size !== input.size) throw invalidState("执行上下文与冻结清单不符");
       const context = object(read(input.artifactId));
-      if (context.revision !== version || object(context.task).key !== taskKey) throw invalidState("执行上下文版本或任务不符");
+      if (context.revision !== sourceVersion || object(context.task).key !== taskKey) throw invalidState("执行上下文版本或任务不符");
       return { number: index + 1, execution, feedback: typeof context.feedback === "string" ? context.feedback : "",
         // Artifact identity, rather than adjacency or filename, ties review retries to the right attempt.
         reviews: runs.filter(r => r.kind === "REVIEW" && execution.output && r.inputs.some(i => i.artifactId === execution.output!.id)).map(run => {
           if (run.status !== "COLLECTED") return { run, result: null };
           if (!run.output) throw invalidState("已采集评审缺少冻结成果");
-          return { run, result: reviewResult(envelope(read(run.output.id), run), task.acceptance, task.outputFilename) };
+          return { run, result: reviewResult(envelope(read(run.output.id), run), task.acceptance, task.outputFilename,!!stage?.governance) };
         }),
       };
     });
@@ -135,14 +139,14 @@ export class SciencePALPipeline {
   private queue(p: SPProject, kind: SPRun["kind"], agentId: string, context: unknown, files: string[] = [], taskKey: string | null = null): SPRun {
     if (!hasRunCapacity(p)) throw invalidState(`本项目达到 ${p.maxRuns} 次运行上限（含续接）；请结束当前实验并检查任务设计`);
     const resultSchemas = this.contracts(p);
-    const contextFile = this.storeFile(p, "context.json", Buffer.from(JSON.stringify({ ...object(context), ...(resultSchemas ? { resultSchemas } : {}), ...(p.scientificChecks ? {scientificChecks:this.scienceRules(p)} : {}), ...(p.source ? { source: { filename: p.source.artifact.filename, sourceUrl: p.source.sourceUrl, attribution: p.source.attribution } } : {}) }, null, 2)));
+    const contextFile = this.storeFile(p, "context.json", Buffer.from(JSON.stringify({ ...object(context), ...(p.governance ? {governance:p.governance} : {}), ...(resultSchemas ? { resultSchemas } : {}), ...(p.scientificChecks ? {scientificChecks:this.scienceRules(p)} : {}), ...(p.source ? { source: { filename: p.source.artifact.filename, sourceUrl: p.source.sourceUrl, attribution: p.source.attribution } } : {}) }, null, 2)));
     const metas = [contextFile, ...(p.source ? [this.file(p.id, p.source.artifact.id)] : []), ...files.map(id => this.file(p.id, id))];
     if (new Set(metas.map(m => m.filename)).size !== metas.length) throw badRequest("附件文件名冲突");
     if (metas.reduce((sum, m) => sum + m.size, 0) > MAX_ARTIFACT_BYTES) throw badRequest("本次交接附件合计超过 5 MiB");
     const inputs: SPInput[] = metas.map(m => ({ artifactId: m.id, filename: m.filename, size: m.size, sha256: m.sha256 }));
     const outputFilename = kind === "TASK" ? `${taskKey}.json` : `${kind.toLowerCase()}-result.json`;
     const run: SPRun = { id: randomUUID(), kind, revision: p.revision, taskKey, agent: p.agents.find(a => a.id === agentId)!, status: "READY",
-      prompt: jobPrompt(kind, p.revision, outputFilename, inputs.map(i => i.filename), p.agents.find(a => a.id === agentId)?.platform), inputs, outputFilename, output: null,
+      prompt: jobPrompt(kind, p.revision, outputFilename, inputs.map(i => i.filename), p.agents.find(a => a.id === agentId)?.platform)+(p.governance?governancePrompt():""), inputs, outputFilename, output: null,
       threadId: null, runId: null, sandboxId: null, projectId: null, createdAt: now(), updatedAt: now(), error: null, remoteStatus: null };
     if (p.team) {
       run.ownerNodeId = p.team.members.find(m => m.agent.id === agentId)!.nodeId;
@@ -165,37 +169,43 @@ export class SciencePALPipeline {
   private verifyScience(p:SPProject,t:SPTask,result?:unknown,run?:SPRun) {
     const rules=this.scienceRules(p);if(!rules?.tasks[t.key])return undefined;
     const r=run??p.runs.find(r=>r.id===t.executionId);
-    if(!r?.output||r.kind!=="TASK"||r.taskKey!==t.key||r.revision!==p.revision||!isLatestSPRun(p.runs,r)||(!run&&r.output.id!==t.artifactId))throw invalidState("科学检查缺少当前执行成果");
+    if(!r?.output||r.kind!=="TASK"||r.taskKey!==t.key||r.revision!==evidenceRevision(p,t)||!isLatestSPRun(p.runs,r)||(!run&&r.output.id!==t.artifactId))throw invalidState("科学检查缺少当前执行成果");
     const f=this.file(p.id,r.output.id);if(f.sha256!==r.output.sha256||f.size!==r.output.size)throw invalidState("科学检查成果绑定不符");
     const value=result??envelope(JSON.parse(Buffer.from(f.bytes).toString("utf8")),r);
     const check=checkScientificResult(rules,t.key,value,p.scientificChecks!.sha256,f.sha256,p.source?.artifact.sha256)!;
     r.scientificValidation=check;if(check.status!=="PASSED")throw badRequest(scientificError(check));return check;
   }
   private alignment(p: SPProject) {
+    const previous=p.history.at(-1);
     const run = this.queue(p, "ALIGN", p.coordinatorId, { revision: p.revision, agents: p.agents, proposals: p.proposals,
-      publishedRequirement: p.requirementMarkdown, decisions: p.alignment?.issues.filter(i => i.selectedOptionId) ?? [], approvedChanges: p.changes.filter(c => c.status === "APPLIED") });
+      publishedRequirement: p.requirementMarkdown, ...(p.governance ? {previousTasks:previous?.tasks.length?previous.tasks:previous?.alignment?.tasks??[],lastAppliedChange:p.changes.filter(c=>c.status==="APPLIED").at(-1)} : {}), decisions: p.alignment?.issues.filter(i => i.selectedOptionId) ?? [], approvedChanges: p.changes.filter(c => c.status === "APPLIED") });
     p.alignmentRunId = run.id; p.phase = "ALIGNING"; p.error = null; this.save(p, "自动对齐已启动；发布前仍需检查对齐稿");
   }
   private approvalProof(p: SPProject, t: SPTask) {
     const scientificValidation=this.verifyScience(p,t);
     const r = p.runs.find(r => r.id === t.reviewId);
-    if (t.status !== "APPROVED" || !t.artifactId || !r?.output || r.kind !== "REVIEW" || r.taskKey !== t.key || r.revision !== p.revision || r.status !== "COLLECTED" || !isLatestSPRun(p.runs, r) || r.agent.id !== t.reviewerAgentId || r.agent.id === t.assigneeAgentId) throw invalidState("上游缺少当前独立评审的批准依据");
+    if (t.status !== "APPROVED" || !t.artifactId || !r?.output || r.kind !== "REVIEW" || r.taskKey !== t.key || r.revision !== evidenceRevision(p,t) || r.status !== "COLLECTED" || !isLatestSPRun(p.runs, r) || r.agent.id !== t.reviewerAgentId || r.agent.id === t.assigneeAgentId) throw invalidState("上游缺少当前独立评审的批准依据");
+    if(p.governance) {
+      const execution=p.runs.find(run=>run.id===t.executionId);
+      if(!execution?.output||execution.output.id!==t.artifactId)throw invalidState("批准未绑定当前执行成果");
+      for(const run of [execution,r])this.checkRunTask(p,t,run);
+    }
     const artifact = this.file(p.id, t.artifactId), reviewed = r.inputs.find(i => i.artifactId === artifact.id);
     if (!reviewed || reviewed.sha256 !== artifact.sha256 || reviewed.size !== artifact.size || reviewed.filename !== artifact.filename) throw invalidState("上游批准记录没有绑定当前成果字节");
     const reviewFile = this.file(p.id, r.output.id);
     if (reviewFile.sha256 !== r.output.sha256 || reviewFile.size !== r.output.size) throw invalidState("上游评审与冻结记录不匹配");
     const reviewFileUtf8 = Buffer.from(reviewFile.bytes).toString("utf8");
     if (hash(Buffer.from(reviewFileUtf8, "utf8")) !== reviewFile.sha256) throw invalidState("上游评审不是可无损交接的 UTF-8 文件");
-    const result = reviewResult(envelope(JSON.parse(reviewFileUtf8), r), t.acceptance, t.outputFilename);
+    const result = reviewResult(envelope(JSON.parse(reviewFileUtf8), r), t.acceptance, t.outputFilename,!!p.governance);
     if (result.verdict !== "approve") throw invalidState("上游原始评审没有批准当前成果");
     const meta = ({id,filename,size,sha256}: SciencePALArtifact) => ({id,filename,size,sha256});
     // Embed exact original text in the frozen context: independently hashable, no
     // extra attachment slot per dependency, and subject to the existing size cap.
-    return { verdict: result.verdict, reviewerAgentId: r.agent.id, reviewRunId: r.id,
+    return { ...(t.carriedFrom?{carriedFrom:t.carriedFrom}:{}), verdict: result.verdict, reviewerAgentId: r.agent.id, reviewRunId: r.id,
       reviewedArtifact: meta(artifact), reviewArtifact: meta(reviewFile), reviewFileUtf8, ...(scientificValidation?{scientificValidation}:{}) };
   }
   private context(p: SPProject, t: SPTask) {
-    return { revision: p.revision, requirement: p.requirementMarkdown, task: t, feedback: t.feedback, executionHistory: executionHistory(p,t),
+    return { revision: p.revision, requirement: p.requirementMarkdown, ...(p.governance?{taskFingerprint:taskFingerprint(p,t)}:{}), task: t, feedback: t.feedback, executionHistory: executionHistory(p,t),
       upstream: t.dependencies.map(key => { const upstream = p.tasks.find(t => t.key === key)!; return { key, filename: upstream.outputFilename, acceptance: upstream.acceptance, approval: this.approvalProof(p, upstream) }; }) };
   }
   private execution(p: SPProject, t: SPTask) {
@@ -235,7 +245,7 @@ export class SciencePALPipeline {
           const issue = p.alignment!.issues.find(i => i.id === data.issueId);
           if (!issue || !issue.options.some(o => o.id === data.optionId)) throw badRequest("冲突选项不存在");
           if (issue.selectedOptionId) throw revisionConflict("此冲突已完成裁决，不能覆盖已确认的选择");
-          issue.selectedOptionId = String(data.optionId); this.save(p, `人工裁决：${issue.title}`);
+          issue.selectedOptionId = String(data.optionId); if(p.governance)p.governance.decisions.push({runId:p.alignmentRunId!,issue:structuredClone(issue)}); this.save(p, `人工裁决：${issue.title}`);
           if (p.alignment!.issues.every(i => i.selectedOptionId)) this.alignment(p);
           break;
         }
@@ -258,8 +268,14 @@ export class SciencePALPipeline {
           if (p.phase !== "READY" || !p.alignment || p.alignment.runId !== data.alignmentRunId || p.alignment.revision !== p.revision) throw invalidState("对齐稿已过期或尚不可发布");
           this.contracts(p); // Verify immutable contracts again before publication.
           const checks=this.scienceRules(p);if(checks&&Object.keys(checks.tasks).some(key=>!p.alignment!.tasks.some(t=>t.key===key)))throw badRequest("对齐稿遗漏了配置科学检查的任务");
-          p.requirementMarkdown = p.alignment.alignmentMarkdown;
-          p.tasks = p.alignment.tasks.map(t => ({ ...t, status: "WAITING", attempt: 0, executionId: null, reviewId: null, artifactId: null, feedback: "", review: null }));
+          if(!p.governance)p.requirementMarkdown=p.alignment.alignmentMarkdown;
+          else if(!p.requirementMarkdown)p.requirementMarkdown=p.proposals.map(plan=>`## 原始提案 ${plan.agentId}\n${plan.content}`).join("\n\n")+"\n\n## 对齐说明\n"+p.alignment.alignmentMarkdown;
+          assertUnaffectedAlignment(p,p.alignment.tasks);
+          p.tasks=p.alignment.tasks.map(t=>{
+            const retained=reusableTask(p,t);
+            if(retained){this.approvalProof(p,retained);return retained;}
+            return {...t,status:"WAITING",attempt:0,executionId:null,reviewId:null,artifactId:null,feedback:"",review:null} as SPTask;
+          });
           p.phase = "EXECUTING"; p.error = null; this.save(p, "对齐稿已确认发布：自动执行、文件交接和独立评审开始"); break;
         }
         case "pause": p.paused = true; this.save(p, "已暂停新任务派发；已提交远端运行仍会完成并被回收"); break;
@@ -268,7 +284,7 @@ export class SciencePALPipeline {
           const t = p.tasks.find(t => t.key === data.taskKey);
           if (!t || t.status !== "CHANGES_REQUESTED" || t.attempt >= 3) throw invalidState("仅可返工被退回任务，最多三次执行");
           const changes = t.review?.requiredChanges ?? [];
-          const feedback = [t.review?.summary, ...changes].filter((v): v is string => !!v);
+          const feedback = p.governance ? ["Repair only failed frozen criteria. Optional suggestions and captain notes cannot expand the protocol; new research requires a separate change.",...(t.review?.checks.filter(c=>!c.passed).map(c=>`${c.criterion}: ${c.evidence}`)??[]),...changes] : [t.review?.summary, ...changes].filter((v): v is string => !!v);
           const note = typeof data.note === "string" ? data.note.slice(0, 4000).trim() : "";
           // The UI pre-fills requiredChanges; include that block once, while retaining new captain guidance.
           const knownLines = new Set(feedback.flatMap(v => v.split(/\r?\n/)).map(v => v.trim()));
@@ -333,16 +349,19 @@ export class SciencePALPipeline {
           const request = string(data.request, "需求变更", 8000), previousPhase = p.phase;
           const r = this.queue(p, "CHANGE_REVIEW", p.coordinatorId, { revision: p.revision, requirement: p.phase === "READY" ? p.alignment?.alignmentMarkdown : p.requirementMarkdown,
             tasks: p.tasks.length ? p.tasks : p.alignment?.tasks ?? [],
-            proposals: p.proposals, change: request }, p.tasks.filter(t => t.artifactId).map(t => t.artifactId!));
-          p.changes.push({ ...(actorNodeId ? { requestedByNodeId: actorNodeId } : {}), id: randomUUID(), request, baseRevision: p.revision, runId: r.id, previousPhase, status: "REVIEWING", result: null });
+            proposals: p.proposals, ...(p.governance?{taskFingerprints:(p.tasks.length?p.tasks:p.alignment?.tasks??[]).map(t=>({key:t.key,fingerprint:taskFingerprint(p,t)}))}:{}), change: request }, p.tasks.filter(t => t.artifactId).map(t => t.artifactId!));
+          p.changes.push({ ...(p.governance?{snapshotSha256:changeSnapshot(p)}:{}), ...(actorNodeId ? { requestedByNodeId: actorNodeId } : {}), id: randomUUID(), request, baseRevision: p.revision, runId: r.id, previousPhase, status: "REVIEWING", result: null });
           p.phase = "CHANGE_REVIEW"; p.error = null; this.save(p, "需求变更快照已冻结，等待 SciencePAL 影响评审"); break;
         }
         case "apply-change": {
           const c = p.changes.find(c => c.id === data.changeId);
           if (!c || p.phase !== "CHANGE_READY" || c.baseRevision !== p.revision || c.status !== "ACCEPTED" || c.result?.verdict !== "accept") throw invalidState("变更未获批或审核版本已过期");
-          p.history.push({ revision: p.revision, requirementMarkdown: p.requirementMarkdown, alignment: p.alignment, tasks: p.tasks });
-          c.status = "APPLIED"; p.revision++; p.requirementMarkdown = c.result.requirementMarkdown; p.tasks = []; p.alignment = null;
-          this.alignment(p); this.save(p, "变更已人工确认：旧阶段归档，新版本重新对齐；旧成果不会被当成新版本成果"); break;
+          assertChangeSnapshot(p,c);
+          const priorGovernance=p.governance?structuredClone(p.governance):undefined;
+          const requirement=p.governance?applyRequirementDelta(p,c):c.result.requirementMarkdown;
+          p.history.push({...(priorGovernance?{governance:priorGovernance}:{}), revision:p.revision,requirementMarkdown:p.requirementMarkdown,alignment:p.alignment,tasks:p.tasks});
+          c.status="APPLIED";p.revision++;p.requirementMarkdown=requirement;p.tasks=[];p.alignment=null;
+          this.alignment(p); this.save(p, p.governance?"变更已人工确认：保留原协议并追加修订；重对齐后仅受影响任务重做，未受影响成果须核验原批准后复用":"变更已人工确认：旧阶段归档，新版本重新对齐；旧成果不会被当成新版本成果"); break;
         }
         case "dismiss-change": {
           const c = p.changes.find(c => c.id === data.changeId);
@@ -407,6 +426,7 @@ export class SciencePALPipeline {
       const active = p.runs.filter(x => x.id !== r.id && ["STARTING", "RUNNING", "NEEDS_INPUT", "UNKNOWN"].includes(x.status));
       if (active.length >= 2 || active.some(x => x.agent.id === r.agent.id)) throw invalidState("等待当前运行结束");
       this.contracts(p);
+      if(r.kind==="TASK"||r.kind==="REVIEW")this.checkRunTask(p,p.tasks.find(t=>t.key===r.taskKey)!,r);
       const files = r.inputs.map(i => {
         const file = this.file(p.id, i.artifactId);
         if (file.sha256 !== i.sha256 || file.size !== i.size) throw invalidState("冻结输入不匹配");
@@ -532,6 +552,13 @@ export class SciencePALPipeline {
       return r;
     });
   }
+  private checkRunTask(p:SPProject,t:SPTask,r:SPRun) {
+    if(!p.governance)return;
+    const input=r.inputs.find(i=>i.filename==="context.json");if(!input)throw invalidState("运行缺少冻结任务快照");
+    const file=this.file(p.id,input.artifactId);
+    if(file.sha256!==input.sha256||file.size!==input.size)throw invalidState("任务快照与运行指纹不符");
+    assertTaskInput(p,t,JSON.parse(Buffer.from(file.bytes).toString("utf8")));
+  }
   private block(p: SPProject, r: SPRun, error: string, status: SPRun["status"]) {
     r.status = status; r.error = error; r.updatedAt = now(); p.phase = "BLOCKED"; p.error = error;
     const t = p.tasks.find(t => t.key === r.taskKey); if (t) t.status = "BLOCKED";
@@ -539,6 +566,7 @@ export class SciencePALPipeline {
   }
   private async dispatch(p: SPProject, r: SPRun) {
     this.contracts(p);
+    if(r.kind==="TASK"||r.kind==="REVIEW")this.checkRunTask(p,p.tasks.find(t=>t.key===r.taskKey)!,r);
     const files = r.inputs.map(i => {
       const file = this.file(p.id, i.artifactId);
       if (file.sha256 !== i.sha256 || file.size !== i.size) throw invalidState("输入附件与本次运行冻结清单不符");
@@ -585,9 +613,10 @@ export class SciencePALPipeline {
       if (r.revision !== p.revision) throw revisionConflict("迟到结果属于旧需求版本");
       if (r.kind === "ALIGN") {
         if (p.alignmentRunId !== r.id) throw revisionConflict("对齐结果已被后续运行替代");
-        p.alignment = alignmentResult(result, p, r, this.contracts(p)); const rules=this.scienceRules(p); if(rules)p.alignment.tasks=p.alignment.tasks.map(t=>({...t,...(rules.tasks[t.key]?{scientificChecks:rules.tasks[t.key]}:{})})); p.phase = p.alignment.issues.length ? "NEEDS_DECISION" : "READY";
+        p.alignment = alignmentResult(result, p, r, this.contracts(p)); const rules=this.scienceRules(p); if(rules)p.alignment.tasks=p.alignment.tasks.map(t=>({...t,...(rules.tasks[t.key]?{scientificChecks:rules.tasks[t.key]}:{})})); if(!p.alignment.issues.length)assertUnaffectedAlignment(p,p.alignment.tasks); p.phase = p.alignment.issues.length ? "NEEDS_DECISION" : "READY";
       } else if (r.kind === "TASK") {
         if (!task || task.executionId !== r.id) throw revisionConflict("执行结果已过期");
+        this.checkRunTask(p,task,r);
         const contracts = this.contracts(p);
         if (contracts) {
           r.resultValidation = checkTaskResult(contracts, task.key, result, p.resultContracts!.sha256);
@@ -597,13 +626,14 @@ export class SciencePALPipeline {
         task.artifactId = r.output!.id; task.status = "REVIEWING";
       } else if (r.kind === "REVIEW") {
         if (!task || task.reviewId !== r.id) throw revisionConflict("评审结果已过期");
-        task.review = reviewResult(result, task.acceptance, task.outputFilename);
+        this.checkRunTask(p,task,r);
+        task.review = reviewResult(result, task.acceptance, task.outputFilename,!!p.governance);
         if(task.review.verdict==="approve")this.verifyScience(p,task);
         task.status = task.review.verdict === "approve" ? "APPROVED" : "CHANGES_REQUESTED";
       } else {
         const change = p.changes.find(c => c.runId === r.id);
         if (!change || change.baseRevision !== p.revision) throw revisionConflict("需求变更审核已过期");
-        change.result = changeResult(result, p); change.status = change.result.verdict === "accept" ? "ACCEPTED" : "REJECTED"; p.phase = "CHANGE_READY";
+        assertChangeSnapshot(p,change); change.result = changeResult(result, p); change.status = change.result.verdict === "accept" ? "ACCEPTED" : "REJECTED"; p.phase = "CHANGE_READY";
       }
       r.status = "COLLECTED"; r.error = null; r.updatedAt = now(); p.error = null;
       this.save(p, `${r.kind}${r.taskKey ? ` / ${r.taskKey}` : ""} 文件证据与版本校验通过${task?.review ? `；裁决 ${task.review.verdict}` : ""}`);

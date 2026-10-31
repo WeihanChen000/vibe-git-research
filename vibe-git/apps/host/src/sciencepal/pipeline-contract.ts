@@ -1,3 +1,4 @@
+import {bindRequirements,validateGovernedChange} from "./research-governance.js";
 import { isLocalResearchPlatform, researchPlatformName } from "@vibe-git/protocol";
 import type { AlignmentIssue, SPAlignment, SPProject, SPReviewResult, SPRun, SPTaskDraft, SPChange, SPResultSchemas } from "@vibe-git/protocol";
 import { badRequest } from "../domain/errors.js";
@@ -50,7 +51,7 @@ export function alignmentResult(value: unknown, p: SPProject, run: SPRun, result
     const t = object(v), key = string(t.key, "任务键", 30), assigneeAgentId = string(t.assigneeAgentId, "任务 Agent", 120);
     if (!validTaskKey(key) || !members.has(assigneeAgentId)) throw badRequest("任务键或负责人无效");
     if (["context", "align-result", "review-result", "change_review-result"].includes(key.toLowerCase()) || key.toLowerCase().startsWith("previous-") || key.toLowerCase().startsWith("source-")) throw badRequest("任务键与系统文件名冲突");
-    const acceptance = strings(t.acceptance, "验收标准", 8), dependencies = strings(t.dependencies, "任务依赖", 6);
+    const acceptance = strings(t.acceptance, "验收标准", p.governance ? 72 : 8), dependencies = strings(t.dependencies, "任务依赖", 6);
     if (!acceptance.length || new Set(acceptance).size !== acceptance.length || new Set(dependencies).size !== dependencies.length) throw badRequest("验收标准不能为空，标准和依赖不得重复");
     const reviewerAgentId = (p.agents.find(a => a.id === p.coordinatorId && a.id !== assigneeAgentId) ?? p.agents.find(a => a.id !== assigneeAgentId))!.id;
     return { ...(resultSchemas && Object.hasOwn(resultSchemas, key) ? { resultSchema: resultSchemas[key]! } : {}), key, assigneeAgentId, reviewerAgentId, outputFilename: `${key}.json`, title: string(t.title, "任务标题", 160),
@@ -61,12 +62,13 @@ export function alignmentResult(value: unknown, p: SPProject, run: SPRun, result
   if (resultSchemas && !issues.length && (tasks.length !== Object.keys(resultSchemas).length || tasks.some(t => !Object.hasOwn(resultSchemas, t.key)))) throw badRequest("对齐任务必须完整匹配冻结成果格式的任务键；Agent 不能删除、改名或新增未约束任务");
   for (const t of tasks) if (t.dependencies.some(k => k === t.key || !tasks.some(other => other.key === k))) throw badRequest("任务依赖不存在或指向自身");
   validateDependencyGraph(new Map(tasks.map(t => [t.key, t.dependencies])));
+  bindRequirements(p,tasks,(data.tasks as unknown[]).map(object),issues.length>0);
   return { runId: run.id, revision: p.revision, alignmentMarkdown: string(data.alignmentMarkdown, "对齐需求", 20_000), tasks, issues };
 }
-export function reviewResult(value: unknown, acceptance: string[], filename: string): SPReviewResult {
+export function reviewResult(value: unknown, acceptance: string[], filename: string, governed = false): SPReviewResult {
   const data = object(value);
   if (data.verdict !== "approve" && data.verdict !== "request_changes") throw badRequest("无效的评审裁决");
-  const checks = list(data.checks, "验收检查", 8).map((v, index) => {
+  const checks = list(data.checks, "验收检查", governed ? 72 : 8).map((v, index) => {
     const c = object(v), criterion = string(c.criterion, "验收项", 2000), evidence = string(c.evidence, "评审证据", 3000);
     if (typeof c.passed !== "boolean") throw badRequest(`评审 checks[${index}].passed 必须为布尔值`);
     if (!evidence.includes(filename)) throw badRequest(`评审 checks[${index}].evidence 缺少成果文件名 ${filename}；每项证据须明确引用该文件，仅在 criterion 或 summary 中引用不算`);
@@ -76,6 +78,11 @@ export function reviewResult(value: unknown, acceptance: string[], filename: str
   const requiredChanges = strings(data.requiredChanges, "修改要求", 10);
   if (data.verdict === "approve" && (checks.some(c => !c.passed) || requiredChanges.length)) throw badRequest("未通过所有验收项时不能批准");
   if (data.verdict === "request_changes" && !requiredChanges.length) throw badRequest("退回评审必须给出修改要求");
+  if(governed&&data.verdict==="request_changes"&&!checks.some(c=>!c.passed))throw badRequest("原验收项全部通过，评审不得新增要求并退回；请另行提出研究变更");
+  if(governed&&data.verdict==="request_changes") {
+    const refs=list(data.requiredChangeCriteria,"修改要求对应的失败验收项",10);
+    if(refs.length!==requiredChanges.length||refs.some(c=>!checks.some(check=>check.criterion===c&&!check.passed)))throw badRequest("每项返工要求必须绑定一个未通过的原验收项，新增研究要求须走变更流程");
+  }
   return { verdict: data.verdict, summary: string(data.summary, "评审摘要", 4000), checks, requiredChanges };
 }
 export function changeResult(value: unknown, p: SPProject): NonNullable<SPChange["result"]> {
@@ -84,8 +91,8 @@ export function changeResult(value: unknown, p: SPProject): NonNullable<SPChange
   const affectedTaskKeys = strings(data.affectedTaskKeys, "受影响任务", 6);
   const tasks = p.tasks.length ? p.tasks : p.alignment?.tasks ?? [];
   if (new Set(affectedTaskKeys).size !== affectedTaskKeys.length || affectedTaskKeys.some(key => !tasks.some(t => t.key === key))) throw badRequest("变更引用了不存在或重复的任务");
-  const requirementMarkdown = data.verdict === "accept" ? string(data.requirementMarkdown, "修订后的完整需求", 20_000) : "";
-  return { verdict: data.verdict, rationale: string(data.rationale, "变更理由", 4000), affectedTaskKeys, requirementMarkdown };
+  const requirementMarkdown = p.governance ? (p.requirementMarkdown||p.alignment?.alignmentMarkdown||"") : data.verdict === "accept" ? string(data.requirementMarkdown, "修订后的完整需求", 20_000) : "";
+  return validateGovernedChange(p,data,{ verdict: data.verdict, rationale: string(data.rationale, "变更理由", 4000), affectedTaskKeys, requirementMarkdown });
 }
 
 const schemas = {
@@ -115,5 +122,10 @@ export function jobPrompt(kind: SPRun["kind"], revision: number, output: string,
     (kind === "REVIEW" ? reviewOutputGuidance(filenames.find(n=>n!=="context.json"&&!n.startsWith("source-"))??"the candidate filename in context.task.outputFilename")+"\n" : "") +
     (kind === "CHANGE_REVIEW" ? `Assess context.change against the published requirement and task snapshot. Identify impacted tasks and give a reasoned accept/reject decision. If accepted, return a complete revised requirement retaining all unchanged obligations. The operator must approve before any application.\n` : "") +
     `Create ${isLocalResearchPlatform(platform) ? "in your assigned local task directory: " : "/workspace/"}${output} as UTF-8 JSON with exactly this envelope: {"revision":${revision},"inputReceipts":[{"filename":"each actual attachment filename","sha256":"hashlib.sha256(actual original bytes).hexdigest()","size":actual byte count}],"result":RESULT}. Compute receipts from real file bytes, including context.json. Do not invent hashes or reconstruct input files.\n` +
-    `RESULT must follow: ${schemas[kind]}. Use Python json.dump to write valid JSON. Do not alter inputs. Stop immediately after creating the output file. If a tool/input is missing, report the limitation rather than fabricate a result.`;
+    `RESULT must follow: ${schemas[kind]}. Use Python json.dump to write valid JSON. Do not alter inputs. You may validate the completed output file locally without changing its scientific contents, then stop. Output validation is permitted and must not itself be a reason for rejection. If a tool/input is missing, report the limitation rather than fabricate a result.`;
+}
+
+/** Additive versioned rules; legacy frozen prompts and artifacts remain untouched. */
+export function governancePrompt():string {
+ return `\nGOVERNANCE v1: context.governance.requirements contains exact source-line coverage units, not a model summary. ALIGN: each task must include requirementIds, referencing all active (not retiredBy) requirement ids across tasks. Never invent ids or omit lines. The Host appends [REQ:id] acceptance strings itself. Previously selected decisions in governance.decisions are authoritative; preserve the original source while applying the selected resolution. Every task must have source requirements. Include only the ordinary task acceptance strings in your reply, not generated [REQ:] strings. Do not change tasks marked unaffected in context.previousTasks/context.lastAppliedChange. REVIEW: check every acceptance string, including [REQ:], using actual evidence. Return request_changes only for failed original criteria. Also provide requiredChangeCriteria, an array parallel to requiredChanges, each containing the EXACT failed criterion it repairs. Optional new research suggestions are not grounds for rejection; put them separately in summary as optional proposals. CHANGE_REVIEW: return taskImpacts with exactly one {key,affected:boolean,rationale,fingerprint} per context.taskFingerprints entry, including unaffected tasks. affectedTaskKeys must be the dependency closure of affected=true tasks. Return requirementEdits:[] when retaining all original requirements, otherwise [{requirementId,replacement:string|null,reason}] for explicit proposed replacements/removals. The captain must approve edits. Never rewrite the full protocol: the Host retains the original text and appends the approved delta and actual change request. Task fingerprints and source/schema/check constraints cannot be overridden by model prose.\n`;
 }

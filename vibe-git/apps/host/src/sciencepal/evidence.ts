@@ -1,3 +1,4 @@
+import {assertTaskInput,evidenceRevision} from "./research-governance.js";
 import {validateScientificChecks,checkScientificResult,scientificError} from "./scientific-checks.js";
 import { isLocalResearchPlatform, researchPlatformName } from "@vibe-git/protocol";
 import type { SPProject, SPProjectEvidence, SPRun, SPTaskAttempt, SciencePALArtifact } from "@vibe-git/protocol";
@@ -14,7 +15,9 @@ export function projectEvidence(p: SPProject, revision: number,
   if (!Number.isSafeInteger(revision) || revision < 1) throw badRequest("需求版本必须为正整数");
   const stage = p.revision === revision ? p : p.history.find(h => h.revision === revision);
   if (!stage) throw notFound("需求版本不存在");
-  const runs = p.runs.filter(r => r.revision === revision);
+  const carried=stage.tasks.filter(t=>t.carriedFrom);
+  for(const t of carried)evidenceRevision(p,t,revision);
+  const runs = p.runs.filter(r => r.revision === revision || carried.some(t=>t.key===r.taskKey&&r.revision===t.carriedFrom!.revision));
   const files = new Map<string, SciencePALArtifact>(), results = new Map<string, unknown>();
   const verify = (id: string, sha256: string, size: number) => {
     const { bytes, ...meta } = read(id);
@@ -41,6 +44,11 @@ export function projectEvidence(p: SPProject, revision: number,
     try { raw = JSON.parse(Buffer.from(read(run.output.id).bytes).toString("utf8")); }
     catch { throw invalidState("冻结成果不是有效 JSON"); }
     const result = envelope(raw, run);
+    if(p.governance&&(run.kind==="TASK"||run.kind==="REVIEW")) {
+      const task=stage.tasks.find(t=>t.key===run.taskKey),input=run.inputs.find(i=>i.filename==="context.json");
+      if(!task||!input)throw invalidState("证据缺少冻结任务");
+      assertTaskInput(p,task,JSON.parse(Buffer.from(read(input.artifactId).bytes).toString("utf8")));
+    }
     if (contracts && run.kind === "TASK") {
       const check = checkTaskResult(contracts, run.taskKey!, result, p.resultContracts!.sha256);
       if (check.status === "FAILED") throw invalidState(resultValidationError(check));

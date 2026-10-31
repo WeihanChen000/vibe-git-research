@@ -43,7 +43,8 @@ export function stageProject(project: SPProject, revision: number): SPProject {
   if (revision === project.revision) return project;
   const stage = project.history.find(h => h.revision === revision);
   if (!stage) return project;
-  return { ...project, ...stage, runs: project.runs.filter(r => r.revision === revision) };
+  const {governance:_currentGovernance,...original}=project;
+  return { ...original, ...stage, runs: project.runs.filter(r => r.revision === revision || stage.tasks.some(t=>t.carriedFrom?.revision===r.revision&&t.key===r.taskKey)) };
 }
 export const memberForAgent = (p: SPProject, id: string) => p.team?.members.find(m => m.agent.id === id);
 export function taskTone(task: SPTask): ResearchTone {
@@ -64,15 +65,15 @@ export interface ResearchHandoff {
   id: string; from: SPTask; to: SPTask; filename: string; artifactId: string | null;
   state: "blocked" | "waiting" | "released" | "delivered"; label: string; tone: ResearchTone;
 }
-/** Only a matching current-revision input receipt counts as an actual handoff. */
+/** A matching receipt must belong to this revision or an explicitly carried approved task. */
 export function researchHandoffs(p: SPProject): ResearchHandoff[] {
   return p.tasks.flatMap(to => to.dependencies.flatMap(key => {
     const from = p.tasks.find(t => t.key === key); if (!from) return [];
-    const consumer = p.runs.find(r => r.id === to.executionId && r.revision === p.revision);
+    const consumer = p.runs.find(r => r.id === to.executionId && r.revision === (to.status === "APPROVED" ? to.carriedFrom?.revision ?? p.revision : p.revision));
     const delivered = from.status === "APPROVED" && !!from.artifactId && consumer?.status === "COLLECTED" && !!consumer.inputs.some(i => i.artifactId === from.artifactId);
     const state = delivered ? "delivered" : ["CHANGES_REQUESTED","BLOCKED"].includes(from.status) ? "blocked" : from.status === "APPROVED" && from.artifactId ? "released" : "waiting";
     return [{ id:`${from.key}--${to.key}`, from, to, filename:from.outputFilename, artifactId:from.artifactId, state,
-      label:({delivered:"文件已交接",blocked:"交接已阻断",released:consumer&&consumer.status!=="READY"?"已放行 · 等待交接回执":"已放行 · 等待领取",waiting:"等待上游评审"})[state],
+      label:({delivered:to.carriedFrom ? `文件已交接 · 沿用 R${to.carriedFrom.revision}` : "文件已交接",blocked:"交接已阻断",released:consumer&&consumer.status!=="READY"?"已放行 · 等待交接回执":"已放行 · 等待领取",waiting:"等待上游评审"})[state],
       tone:({delivered:"approved",blocked:"attention",released:"active",waiting:"neutral"})[state] as ResearchTone }];
   }));
 }

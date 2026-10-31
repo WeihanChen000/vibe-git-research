@@ -39,6 +39,11 @@ class MemberRemote implements SciencePALRemote {
       result = { verdict: reject ? "request_changes" : "approve", summary: "Read input bytes", checks: context.task.acceptance.map((criterion: string) => ({ criterion, passed: !reject, evidence: `${context.task.outputFilename} values read` })), requiredChanges: reject ? ["Repair result"] : [] };
     }
     if (kind === "CHANGE_REVIEW") result = { verdict: "accept", rationale: "Recompute", affectedTaskKeys: ["analysis"], requirementMarkdown: "# R2\nRecompute" };
+    if(context.governance) {
+      if(kind==="ALIGN")for(const t of result.tasks)t.requirementIds=context.governance.requirements.filter((r:any)=>!r.retiredBy&&(t.key==="data"?r.sourceId===context.proposals[0].id:r.sourceId!==context.proposals[0].id)).map((r:any)=>r.id);
+      if(kind==="REVIEW"&&result.verdict==="request_changes")result.requiredChangeCriteria=result.requiredChanges.map(()=>result.checks[0].criterion);
+      if(kind==="CHANGE_REVIEW") {result.taskImpacts=context.taskFingerprints.map((t:any)=>({...t,affected:t.key==="analysis",rationale:"Data unchanged; summary revised"}));result.requirementEdits=[];}
+    }
     const bytes = Buffer.from(JSON.stringify({ revision: context.revision, inputReceipts: files.map(f => ({ filename: f.filename, sha256: this.wrongReceipt ? "bad" : hash(f.bytes), size: f.bytes.length })), result }));
     this.calls.push({ id, kind, files, bytes });
     this.history.push({ id, threadId: id, agentId, startedAt: new Date().toISOString() });
@@ -71,7 +76,7 @@ class MemberRemote implements SciencePALRemote {
 }
 const cleanup: (() => Promise<unknown>)[] = [];
 afterEach(async () => { for (const fn of cleanup.splice(0).reverse()) await fn(); });
-async function setup(sharedExpert = false, codex = false, platform = "codex") {
+async function setup(sharedExpert = false, codex = false, platform = "codex", governance = false) {
   const root = await mkdtemp(join(tmpdir(), "vibe-team-")); cleanup.push(() => rm(root, { recursive: true, force: true }));
   const hostRemote = new MemberRemote("HOST-MUST-NOT-RUN"); hostRemote.configured = false;
   const app = await buildApp({ dbPath: ":memory:", dataDir: root, staticDir: false, backupDatabase: false, sciencepal: { remote: hostRemote, worker: false } });
@@ -87,7 +92,7 @@ async function setup(sharedExpert = false, codex = false, platform = "codex") {
   await b("/api/sciencepal-team/binding", { agent: { id: sharedExpert ? "biology" : "b", name: "B" } }, "PUT");
   const planA = await a("/api/v1/plans", { filename: "a.md", content: "# A\nSynthetic data" });
   const planB = await b("/api/v1/plans", { filename: "b.md", content: "\n# B\r\nAnalyze data\r\n" });
-  const input = { title: "Two member test", coordinatorNodeId: captain.nodeId, documentIds: [planA.id, planB.id] };
+  const input = { ...(governance?{governanceVersion:1}:{}), title: "Two member test", coordinatorNodeId: captain.nodeId, documentIds: [planA.id, planB.id] };
   const project = await a<SPProject>("/api/sciencepal-team/projects", input);
   const remoteA = new MemberRemote(sharedExpert ? "biology" : "a", "a"), remoteB = new MemberRemote(sharedExpert ? "biology" : "b", "b");
   let savedA: ConnectorJournal = { projectId: project.id, phase: "IDLE" };
@@ -841,4 +846,19 @@ it("rejects supplemental review at a continuation-filled project budget without 
  const before=JSON.stringify(s.pipeline.get(p.id)),t=p.tasks[0]!;
  await expect(s.command("supplement-review",{taskKey:t.key,reviewId:t.reviewId,note:"Additional evidence cannot bypass the shared run budget."})).rejects.toThrow(/上限|最多/);
  expect(JSON.stringify(s.pipeline.get(p.id))).toBe(before);
+});
+
+it("governance survives member connectors, criterion-bound rework and captain-only selective change",async()=>{
+ const s=await setup(false,false,"codex",true);s.remoteB.rejectOnce=true;
+ expect(s.project.governance?.version).toBe(1);
+ await s.command("align");let p=await s.until("READY");await s.command("publish",{alignmentRunId:p.alignmentRunId});
+ p=await s.until("CHANGES_REQUESTED");
+ expect((await s.raw(s.member.nodeToken,`/api/sciencepal-team/projects/${p.id}/commands/rework`,{revision:p.revision,taskKey:"data"})).statusCode).toBe(403);
+ await s.command("rework",{taskKey:"data"});p=await s.until("COMPLETED");const original=p.tasks[0]!.artifactId;
+ await s.command("change",{request:"Improve summary limitations"});p=await s.until("CHANGE_READY");
+ const body={revision:p.revision,changeId:p.changes.at(-1)!.id};
+ expect((await s.raw(s.member.nodeToken,`/api/sciencepal-team/projects/${p.id}/commands/apply-change`,body)).statusCode).toBe(403);
+ await s.command("apply-change",body);p=await s.until("READY");await s.command("publish",{alignmentRunId:p.alignmentRunId});
+ p=await s.until("COMPLETED");expect(p.tasks[0]!.artifactId).toBe(original);expect(p.tasks[0]!.carriedFrom?.revision).toBe(1);
+ expect(s.pipeline.evidence(p.id).allApproved).toBe(true);
 });

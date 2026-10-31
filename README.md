@@ -14,9 +14,11 @@
 
 下载后可双击 [`docs/research/index.html`](docs/research/index.html) 查看无需安装的图文展示；GitHub 上请直接阅读上方展示页。
 
-## 提交版本已收敛
+## 提交基线与后续修复
 
-功能基线固定为 [`ca1b2b5`](https://github.com/WeihanChen000/vibe-git-research/tree/ca1b2b5227e660559fb9e29c4d69a259252efb54)。提交前只修阻塞问题、同步材料，不新增平台、学科案例或重做界面。
+历史提交基线为 [`ca1b2b5`](https://github.com/WeihanChen000/vibe-git-research/tree/ca1b2b5227e660559fb9e29c4d69a259252efb54)。后续按原功能保留要求补兼容与防偏移缺口，不新增平台、学科案例或重做界面。
+
+最新代码补齐[科研防偏移与反例验证](docs/research/RESEARCH-ANTI-DRIFT-20261031.md)：原文遗漏不能发布、返工须对应原验收、变更按影响复用有效成果。该新增治理层本轮通过受控模拟验证，下列真实回放仍展示其原始历史版本。
 
 - [直接打开原拓扑回放](https://weihanchen000.github.io/vibe-git-research/replay/?case=isolated&step=members)：单机三个成员身份，13 个实际阶段，无需安装或账号。
 - [本轮真实验收与修复](docs/research/ISOLATED-ACCEPTANCE-20261031.md)：17 项运行检查通过，保留三次退回、补证复审和最终交接；中途需操作者核对原线程，非全自动成功。

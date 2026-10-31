@@ -27,3 +27,20 @@ it('keeps own review retries but excludes downstream reviews that consume the sa
  p.runs=[execution,run({id:'own-invalid',kind:'REVIEW',taskKey:'data',status:'INVALID',inputs:[input]}),run({id:'own-valid',kind:'REVIEW',taskKey:'data',status:'COLLECTED',inputs:[input]}),run({id:'downstream',kind:'REVIEW',taskKey:'analysis',inputs:[input]}),run({id:'old-version',kind:'REVIEW',taskKey:'data',revision:1,inputs:[input]})];
  expect(reviewsForAttempt(p,execution).map(r=>r.id)).toEqual(['own-invalid','own-valid']);
 });
+
+it('keeps origin runs for explicitly reused archived results and does not leak current governance into old stages',()=>{
+ const p=project();p.revision=3;p.governance={version:1,requirements:[],decisions:[]};
+ const carried=task('data',{carriedFrom:{revision:1,changeId:'c',fingerprint:'f'}});
+ p.history=[{revision:1,requirementMarkdown:'legacy',alignment:null,tasks:[]},{revision:2,requirementMarkdown:'R2',alignment:null,tasks:[carried],governance:{version:1,requirements:[],decisions:[]}}];
+ p.runs.push(run({id:'origin',revision:1,taskKey:'data'}),run({id:'unrelated',revision:1,taskKey:'other'}));
+ expect(stageProject(p,2).runs.map(r=>r.id)).toEqual(['consumer','origin']);
+ expect(stageProject(p,1).governance).toBeUndefined();
+});
+
+it('keeps origin handoff receipts visible only for explicitly approved carried tasks',()=>{
+ const p=project();p.runs[0]!.revision=1;p.runs[0]!.status='COLLECTED';
+ const consumer=p.tasks[1]!;consumer.status='APPROVED';consumer.carriedFrom={revision:1,changeId:'c',fingerprint:'f'};
+ expect(researchHandoffs(p)[0]).toMatchObject({state:'delivered',label:'文件已交接 · 沿用 R1'});
+ consumer.status='WAITING';expect(researchHandoffs(p)[0]!.state).toBe('released');
+ consumer.status='APPROVED';p.runs[0]!.inputs=[];expect(researchHandoffs(p)[0]!.state).toBe('released');
+});
