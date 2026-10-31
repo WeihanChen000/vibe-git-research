@@ -34,7 +34,7 @@ export function reworkGuidance(p:SPProject,taskKey:unknown):string {
 }
 export function RecoveryImpact({p,operation,runId}:{p:SPProject;operation:string;runId?:string|undefined}) {
  const kind=p.runs.find(r=>r.id===runId)?.kind;
- const impact=operation==='supplement-review'?'新增一次独立复审，保留原计算成果，不重新计算。'
+ const impact=operation==='supplement-review'?'仅新增一次独立复审，保留原计算成果，不重新计算。'
   :operation==='rework'?'重新执行本任务；交回合格成果后还需要独立评审，通常至少需要两个运行名额。'
   :operation==='retry'?kind==='REVIEW'?'新增一次评审重试，保留原计算成果。':kind==='TASK'?'新增一次本任务执行；合格后仍需独立评审。':kind==='CHANGE_REVIEW'?'新增一次变更评审重试，尚不改变已冻结的研究协议。':'新增一次协议对齐重试，尚不启动科研计算。':null;
  if(!impact)return null;
@@ -56,7 +56,7 @@ export function ResearchCommand({p,state,operation,body={},busy,disabled,send}:{
   <RecoveryImpact p={p} operation={operation} runId={typeof body.runId==="string"?body.runId:undefined}/>
   {operation==="publish"&&<><p>请核对分工与冻结参数，并展开每项“查看全部验收标准”。确认后，连接器将开始领取任务。方法、种子和字段范围在“协议 → 科研防漂移”配置；求和与独立参考在“协议 → 可执行科学检查”配置。</p><p>{p.scientificChecks?"已冻结可执行数值规则，发布后不能删除或放宽；检查失败时，评审同意也不能交接。":"本项目尚未配置可执行数值检查。发布后不能补加本轮规则；需要数值核验时，请先取消并配置。"}</p><ul className="rt-publish-tasks">{p.alignment?.tasks.map(t=><li key={t.key}><strong>{t.title}</strong><small>{p.team?.members.find(m=>m.agent.id===t.assigneeAgentId)?.label} 执行 → {p.team?.members.find(m=>m.agent.id===t.reviewerAgentId)?.label} 评审</small><PublishTaskChecks task={t}/><PublishTaskAcceptance task={t}/></li>)}</ul></>}
   {operation==="align"&&<p>根据成员已冻结的研究提案生成协议、分工和验收标准。</p>}
-  {operation==="rework"&&<><p>这会重新执行本任务，并由另一成员重新评审；原成果与评审保留。{reworkGuidance(p,body.taskKey)}</p><label>返工说明<textarea aria-label="返工说明" maxLength={4000} value={note} onChange={e=>setNote(e.target.value)}/></label></>}
+  {operation==="rework"&&<><p>由另一成员重新评审；原成果与评审记录保留。{reworkGuidance(p,body.taskKey)}</p><label>返工说明<textarea aria-label="返工说明" maxLength={4000} value={note} onChange={e=>setNote(e.target.value)}/></label></>}
   {operation==="supplement-review"&&<><p>只适用于结果不变、补充来源或执行记录。原文件、数值检查与退回意见保留，仍由原独立评审者判断；同一成果仅一次。</p><label>补充证据与来源<textarea aria-label="补充证据与来源" maxLength={16000} value={note} onChange={e=>setNote(e.target.value)} placeholder="写明证据来源、对应原任务或线程；可粘贴原代码与日志，最多 16000 字符。不要填写密钥。"/></label><small>已填写 {note.length} / 16000 字符。没有记录的版本请如实说明，不用其他环境的版本补填。</small></>}
   {operation==="change"&&<label>新的研究目标或约束<textarea aria-label="研究变更说明" maxLength={8000} placeholder="说明要改变什么、为什么改变，以及预期影响。" value={note} onChange={e=>setNote(e.target.value)}/></label>}
   {operation==="decide"&&<label>选择处理方案<select aria-label="裁决方案" value={option} onChange={e=>setOption(e.target.value)}><option value="">请选择方案</option>{issue?.options.map(o=><option key={o.id} value={o.id}>{o.label}</option>)}</select>{issue?.options.filter(o=>o.id===option).map(o=><p key={o.id}>{o.impact}</p>)}</label>}

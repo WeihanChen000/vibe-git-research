@@ -35,7 +35,7 @@ export function SciencePALThreadEntry({run}:{run:SPRun|undefined}) {
 }
 export function CompletedDeliverables({p,open,replay}:{p:SPProject;open:(t:ResearchTarget)=>void;replay?:ReplayContext|undefined}) {
  if(p.phase!=='COMPLETED')return null;
- return <section className="rt-detail-section" aria-label="本轮交付"><h3>本轮交付 · R{p.revision}</h3><p>以下仅列当前任务绑定的获批文件。研究问题、单位与适用限制请结合成果正文及原协议核对。</p>
+ return <section className="rt-detail-section" aria-label="本轮交付"><h3>本轮交付 · R{p.revision}</h3><p>这里只列当前任务的获批文件。请结合成果正文与原协议核对研究问题、单位和适用限制。</p>
  {p.tasks.map(t=>{const execution=p.runs.find(r=>r.id===t.executionId),file=execution?.output;
   const available=t.status==='APPROVED'&&file?.id===t.artifactId;
   const review=execution?reviewsForAttempt(p,execution).find(r=>r.id===t.reviewId):undefined;
@@ -47,7 +47,7 @@ export function CompletedDeliverables({p,open,replay}:{p:SPProject;open:(t:Resea
   </div>;
  })}
  <details><summary>运行次数与费用说明</summary><p>本项目累计 {p.runs.length} 项作业、{usedRunCount(p)-p.runs.length} 次原线程续接，共占用 {usedRunCount(p)} / {p.maxRuns} 个运行名额，包含旧版、失败与已排队作业。</p><p>费用未获取；这些次数不能证明比手工交接更便宜或更快。</p></details>
- <small>此处提供逐份下载；完整输入、代码是否交付取决于原任务产物，证据清单在下方。不把缺少的文件说成已有交付包。</small></section>;
+ <small>这里只提供逐份下载，不含完整交付包。输入和代码是否齐全，请核对原任务产物及下方证据清单。</small></section>;
 }
 function ActionCard({action,p,open,stale,state,busy,send,onConnect,local}:{action:SPNextAction;p:SPProject;open:(t:ResearchTarget)=>void;stale:boolean;state:TeamState;busy:boolean;send:SendResearchCommand;onConnect:()=>void;local:LocalResearch}){
   const steps=taskActionText(p,action),run=p.runs.find(r=>r.id===action.runId);

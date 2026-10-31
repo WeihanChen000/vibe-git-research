@@ -18,7 +18,7 @@ export async function loadIndependentVerification(url:string,file:{sha256:string
  return independentEvidence(await verifiedJson(proof.url,proof.sha256,proof.size,signal,'复核记录'),file.sha256,proof.reviewArtifactId);
 }
 export function ProofReadStatus({bound,error,onRetry}:{bound:boolean;error:string;onRetry:()=>void}){
- if(!bound)return <p className="rt-note">此处尚未绑定单独的结构化复核报告。请结合下方评审及其原始文件核对复算材料；评审通过本身不等于独立复现。</p>;
+ if(!bound)return <p className="rt-note">尚未绑定单独的结构化复核报告。请从下方评审及原文件核对复算依据；评审通过不等于独立复现。</p>;
  if(!error)return <p role="status">正在读取并核验绑定的复核记录…</p>;
  return <><p role="alert" className="rt-stale">{error} 原成果保留，复核状态暂不能确认。</p><button onClick={onRetry}>重新读取复核记录</button><small>重新校验原成果及绑定记录的哈希，不启动 Agent 或重新计算。文件缺失或校验不符时，请队长核对，不能按复核通过处理。</small></>;
 }

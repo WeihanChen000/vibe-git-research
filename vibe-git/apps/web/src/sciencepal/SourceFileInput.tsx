@@ -35,7 +35,7 @@ export function SourceFileInput({source,onChange,onExample,onReadyChange,selecti
   if(sha!==(crn?CRN_CASE.sha256:'0fed2a99db77ec533a62dc66894d3ec6df3b58b6a8f3cf4a6b47e4086b7f97dc'))throw Error('示例文件与官方冻结版本不一致。');
   if(seq===sequence.current){if(crn)onCrnExample?.({filename:'source-1crn.txt',base64:encoded(bytes),sourceUrl:CRN_CASE.sourceUrl,attribution:CRN_CASE.attribution});else onExample({filename:'source-iris.csv',base64:encoded(bytes),sourceUrl:IRIS_CASE.sourceUrl,attribution:IRIS_CASE.attribution});}
  }catch(e){if(seq===sequence.current)setError(e instanceof Error?e.message:'示例加载失败');}finally{if(seq===sequence.current)setLoading(false);}}
- return <section className="sp-source-input"><h3>研究输入与来源</h3><p>可选一份公开或已获授权的数据。建项时冻结原始字节，随任务交给参与成员的 Agent。仅上传和建项不调用模型；随后启动协议对齐或执行任务会使用对应账号。</p>
+ return <section className="sp-source-input"><h3>研究输入与来源</h3><p>可选一份公开或已获授权的数据。建项时冻结原文件，随任务交给成员的 Agent。仅上传和建项不调用模型；随后启动协议对齐或执行任务会使用对应账号。</p>
 
  <p>支持单份 CSV、TSV、TXT、JSON、DATA 或 PDB；UTF-8 编码，非空，最多 256 KiB。更换成功后需重新填写来源，失败不会清除原文件。</p>
  <label>选择数据文件（UTF-8，最多 256 KiB）<input aria-label="科研源文件" type="file" disabled={disabled||loading} accept=".csv,.tsv,.txt,.json,.data,.pdb" onChange={e=>{void upload(e.target.files?.[0]);e.target.value='';}}/></label>
