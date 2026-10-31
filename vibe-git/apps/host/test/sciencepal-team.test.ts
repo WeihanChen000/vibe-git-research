@@ -863,6 +863,8 @@ it("rejects supplemental review at a continuation-filled project budget without 
  s.service.repo.db.prepare("UPDATE sciencepal_projects SET data=? WHERE id=?").run(JSON.stringify(p),p.id);
  const before=JSON.stringify(s.pipeline.get(p.id)),t=p.tasks[0]!;
  await expect(s.command("supplement-review",{taskKey:t.key,reviewId:t.reviewId,note:"Additional evidence cannot bypass the shared run budget."})).rejects.toThrow(/上限|最多/);
+ await expect(s.command("rework",{taskKey:t.key})).rejects.toThrow(/上限|最多/);
+ expect(projectNextActions(p,s.captain.nodeId).actions.some(a=>a.kind==="budget")).toBe(true);
  expect(JSON.stringify(s.pipeline.get(p.id))).toBe(before);
 });
 

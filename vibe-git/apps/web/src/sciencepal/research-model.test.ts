@@ -54,3 +54,27 @@ it('takes a failed review to its actual task and explains that retry preserves t
  expect(action.detail).toContain('不重新执行科研计算');
  expect(action.ownerNodeId).toBe('captain');expect(action.body?.runId).toBe('bad-review');
 });
+
+
+describe('Recovery actions at the shared run budget',()=>{
+ const rejected=()=>{const p=project();p.phase='CHANGES_REQUESTED';p.team={captainNodeId:'captain',members:[{nodeId:'captain',label:'Captain',agent:{id:'a',name:'A'},documentId:'d',documentRevision:1}]};p.tasks=[task('data',{status:'CHANGES_REQUESTED',attempt:1,artifactId:'artifact',reviewId:'review'})];p.runs=[run({id:'review',kind:'REVIEW',taskKey:'data',status:'COLLECTED',inputs:[{artifactId:'artifact',filename:'data.json',sha256:'sha',size:1}],continuations:[{threadId:'t',previousRunId:'old',runId:'next',source:'sciencepal-web',at:''}]})];p.maxRuns=2;return p;};
+ it('replaces impossible rework and supplement actions with one truthful budget notice',()=>{
+  const p=rejected(),before=JSON.stringify(p),actions=projectNextActions(p,'captain').actions;
+  expect(actions.some(a=>['rework','supplement-review','change'].includes(a.operation??''))).toBe(false);
+  expect(actions.filter(a=>a.kind==='budget')).toHaveLength(1);
+  expect(actions[0]).toMatchObject({ownerNodeId:'captain',isMine:true,operation:'evidence'});
+  expect(actions[0]!.detail).toContain('2 / 2');expect(actions[0]!.detail).toContain('续接');
+  expect(JSON.stringify(p)).toBe(before);
+ });
+ it('retains both recovery choices when one slot remains without granting member authority',()=>{
+  const p=rejected();p.maxRuns=3;const actions=projectNextActions(p,'member').actions;
+  expect(actions.map(a=>a.operation)).toEqual(['rework','supplement-review']);
+  expect(actions.every(a=>!a.isMine&&a.ownerNodeId==='captain')).toBe(true);
+ });
+ it('does not offer failed-review retry at the limit or hide already reserved work',()=>{
+  const p=rejected();p.phase='BLOCKED';p.runs[0]!.status='INVALID';
+  expect(projectNextActions(p,'captain').actions.map(a=>a.operation)).toEqual(['evidence']);
+  p.phase='REVIEWING';p.runs[0]!.status='RUNNING';
+  expect(projectNextActions(p,'captain').actions.some(a=>a.kind==='running')).toBe(true);
+ });
+});

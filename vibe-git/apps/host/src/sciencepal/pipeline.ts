@@ -283,6 +283,7 @@ export class SciencePALPipeline {
         case "rework": {
           const t = p.tasks.find(t => t.key === data.taskKey);
           if (!t || t.status !== "CHANGES_REQUESTED" || t.attempt >= 3) throw invalidState("仅可返工被退回任务，最多三次执行");
+          if (!hasRunCapacity(p)) throw invalidState("已达到项目运行上限（含续接），无法安排返工；原成果和评审保留");
           const changes = t.review?.requiredChanges ?? [];
           const feedback = p.governance ? ["Repair only failed frozen criteria. Optional suggestions and captain notes cannot expand the protocol; new research requires a separate change.",...(t.review?.checks.filter(c=>!c.passed).map(c=>`${c.criterion}: ${c.evidence}`)??[]),...changes] : [t.review?.summary, ...changes].filter((v): v is string => !!v);
           const note = typeof data.note === "string" ? data.note.slice(0, 4000).trim() : "";

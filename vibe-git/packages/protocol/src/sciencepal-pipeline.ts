@@ -144,3 +144,12 @@ export function isLatestSPRun(runs: SPRun[], run: SPRun): boolean {
   return index >= 0 && !runs.slice(index + 1).some(candidate =>
     candidate.revision === run.revision && candidate.kind === run.kind && candidate.taskKey === run.taskKey);
 }
+
+
+// Queued jobs reserve slots; failed jobs and same-thread continuations remain charged.
+export function usedRunCount(project: Pick<SPProject, "runs">): number {
+  return project.runs.reduce((used, run) => used + 1 + (run.continuations?.length ?? 0), 0);
+}
+export function hasRunCapacity(project: Pick<SPProject, "runs" | "maxRuns">): boolean {
+  return usedRunCount(project) < project.maxRuns;
+}

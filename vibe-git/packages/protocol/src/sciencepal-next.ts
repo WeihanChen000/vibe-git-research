@@ -1,5 +1,5 @@
 import { isLocalResearchPlatform, researchPlatformName, type SPPlatform } from "./sciencepal-platform.js";
-import { isLatestSPRun, type SPProject } from "./sciencepal-pipeline.js";
+import { hasRunCapacity, usedRunCount, isLatestSPRun, type SPProject } from "./sciencepal-pipeline.js";
 
 export interface SPNextAction {
   kind: string; title: string; detail: string;
@@ -12,7 +12,13 @@ export function projectNextActions(p: SPProject, viewerId: string) {
   const actions: SPNextAction[] = [], captain = p.team?.captainNodeId ?? null;
   const add = (ownerNodeId: string | null, action: Omit<SPNextAction, "ownerNodeId" | "ownerLabel" | "isMine">) => actions.push({ ...action, ownerNodeId,
     ownerLabel: p.team?.members.find(m => m.nodeId === ownerNodeId)?.label ?? (ownerNodeId === captain ? "队长" : "Host"), isMine: ownerNodeId === viewerId });
-  const control = (operation: string, title: string, detail: string, body: Record<string, unknown> = {}) => add(captain, { kind: "decision", operation, ...(typeof body.runId === "string" ? {runId:body.runId} : {}), body: { revision: p.revision, ...body }, title, detail });
+  const control = (operation: string, title: string, detail: string, body: Record<string, unknown> = {}) => {
+    if (!hasRunCapacity(p) && ["align", "retry", "rework", "supplement-review", "change"].includes(operation)) {
+      if (!actions.some(a => a.kind === "budget")) add(captain, { kind: "budget", title: "已达到本项目运行上限", detail: `已使用 ${usedRunCount(p)} / ${p.maxRuns} 次（含已排队、失败运行和原线程续接）。不能再启动返工、补证复审或重试；原成果和评审保留，已派发任务仍可交回。请先查看本轮证据，由队长核对未完成项；本项目不会自动增加上限。`, operation: "evidence" });
+      return;
+    }
+    add(captain, { kind: "decision", operation, ...(typeof body.runId === "string" ? {runId:body.runId} : {}), body: { revision: p.revision, ...body }, title, detail });
+  };
   if (p.paused) control("resume", "等待队长恢复项目", "项目已暂停；已有远端任务可能仍在运行。恢复后继续核对原任务。");
   else if (p.phase === "COMPLETED") add(viewerId, { kind: "completed", title: "本轮科研协作已完成", detail: "导出本轮证据并核对科学结论；新研究问题请提出变更。", operation: "evidence" });
   else if (p.phase === "DRAFT") control("align", "等待队长启动对齐", "提案已冻结，尚未派发对齐任务。");
@@ -26,7 +32,7 @@ export function projectNextActions(p: SPProject, viewerId: string) {
   } else if (p.phase === "CHANGES_REQUESTED") {
     for (const task of p.tasks.filter(t => t.status === "CHANGES_REQUESTED")) {
       if(task.attempt < 3) control("rework", `等待队长安排返工：${task.title}`, task.review?.requiredChanges.join("；") || task.feedback || "查看评审意见并给出明确修正说明。", { taskKey: task.key });
-      if(task.artifactId && task.reviewId && p.runs.length < p.maxRuns && p.runs.filter(r=>r.kind==="REVIEW"&&r.revision===p.revision&&r.taskKey===task.key&&r.inputs.some(f=>f.artifactId===task.artifactId)).length < 2) control("supplement-review", `仅缺证据时补充复审：${task.title}`, "原成果不变，由原独立评审者核查新增来源；每份成果最多一次。若数值或方法有错，应返工。", {taskKey:task.key,reviewId:task.reviewId});
+      if(task.artifactId && task.reviewId && p.runs.filter(r=>r.kind==="REVIEW"&&r.revision===p.revision&&r.taskKey===task.key&&r.inputs.some(f=>f.artifactId===task.artifactId)).length < 2) control("supplement-review", `仅缺证据时补充复审：${task.title}`, "原成果不变，由原独立评审者核查新增来源；每份成果最多一次。若数值或方法有错，应返工。", {taskKey:task.key,reviewId:task.reviewId});
       else if(task.attempt >= 3) control("change", `等待队长处理执行上限：${task.title}`, "已达三次执行上限。保留原记录，说明需要改变的研究范围并提交影响评审。");
     }
   } else {
