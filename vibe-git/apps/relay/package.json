@@ -29,5 +29,8 @@
       "types": "./dist/agent-types.d.ts",
       "import": "./dist/agent-types.js"
     }
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }

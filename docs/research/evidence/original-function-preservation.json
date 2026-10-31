@@ -1,0 +1,107 @@
+{
+  "date": "2026-10-31",
+  "timezone": "Asia/Shanghai",
+  "baseline": "f3e888f796f06cc6d219d368ac547969adfb3b47",
+  "inspectionHead": "7e1e357adf9cdd339619468cd14de694d2eb2d4c",
+  "scope": "Source retention, controlled tests and an isolated npm installation; no real Agent run or full GUI acceptance in this audit.",
+  "partnerZipReopened": false,
+  "legacyComparison": {
+    "sameCurrentDependencies": true,
+    "baselinePassed": 5,
+    "baselineFailed": 33,
+    "currentPassed": 5,
+    "currentFailed": 33,
+    "identicalOutcomes": true,
+    "newFailedTests": [],
+    "outcomes": {
+      "Host API 返回完整 bootstrap 与健康状态": "failed",
+      "Codex Connect 与真实执行命令 Connect 审核共识候选并保存结构化冲突与解决方案，但不自动解决": "failed",
+      "Codex Connect 与真实执行命令 开工只排队，Relay 领取并收到 Codex 回执后才进入运行；Codex 完成不等于验收 DONE": "failed",
+      "Vibe-Git 业务约束 拒绝过期任务版本，且相同请求 ID 幂等": "failed",
+      "Vibe-Git 业务约束 拒绝非责任人修改任务": "failed",
+      "Vibe-Git 业务约束 旧的任意需求变更入口已关闭，普通创意必须走 PM 审查治理接口": "passed",
+      "Vibe-Git 业务约束 Codex 未验证时不签发开工租约": "failed",
+      "Vibe-Git 业务约束 同一幂等键只签发一个开工租约": "failed",
+      "默认空白工作区 默认不加载任何演示业务数据或虚构成员姓名": "failed",
+      "默认空白工作区 只有队长可初始化，输入校验、幂等和禁止覆盖均生效": "failed",
+      "默认空白工作区 未创建项目不能提交提案，初始化后提案重试不会重复保存": "failed",
+      "默认空白工作区 空白项目三份真实输入与全员确认后才能产生第一版需求": "failed",
+      "默认空白工作区 真实项目重启后保留数据，不重新灌入 fixtures": "failed",
+      "Cloudflare localhost control allows the local captain to install, start once, read the real URL, and stop": "failed",
+      "Cloudflare localhost control rejects teammates and forged captain requests arriving through the public tunnel": "failed",
+      "Cloudflare localhost control does not accept arbitrary command arguments or tunnel targets": "failed",
+      "请求身份与幂等一致性 规范化嵌套对象的字段顺序，但不忽略数组顺序和内容": "passed",
+      "请求身份与幂等一致性 旧 Task 重试同稿只写一次，异稿和跨成员复用被拒绝": "failed",
+      "请求身份与幂等一致性 WorkUnit 重试同稿只写一次，异稿和跨成员复用被拒绝": "failed",
+      "请求身份与幂等一致性 同一 requestId 不能跨业务操作复用": "failed",
+      "请求身份与幂等一致性 启动租约同稿重试只签发一次，更换设备或成员不返回旧租约": "failed",
+      "WorkUnit Ready 门槛 普通状态更新不能跳过 PlanReview 直接 Ready": "failed",
+      "WorkUnit Git 隔离与证据绑定 同一 TaskPackage 下不同成员的 WorkUnit Git 记录不会互相覆盖": "failed",
+      "WorkUnit Git 隔离与证据绑定 拒绝他人单元并回滚整个心跳写入": "failed",
+      "WorkUnit Git 隔离与证据绑定 拒绝错误任务并回滚整个心跳写入": "failed",
+      "WorkUnit Git 隔离与证据绑定 拒绝不存在单元并回滚整个心跳写入": "passed",
+      "WorkUnit Git 隔离与证据绑定 拒绝空单元 ID并回滚整个心跳写入": "passed",
+      "WorkUnit Git 隔离与证据绑定 拒绝他人旧任务并回滚整个心跳写入": "failed",
+      "WorkUnit Git 隔离与证据绑定 拒绝不存在旧任务并回滚整个心跳写入": "passed",
+      "WorkUnit Git 隔离与证据绑定 旧 Task Git 不能替代 WorkUnit 证据，精确 WorkUnit SHA 才能提交": "failed",
+      "v0.10 共识与治理 未全员确认不能发布，候选修订会清空旧确认，三人确认同一摘要后只失效相关 WorkUnit": "failed",
+      "v0.10 共识与治理 拒绝 Coordinator 超出 DelegationPolicy 的需求范围或动作": "failed",
+      "v0.10 共识与治理 普通创意必须绑定同内容摘要的 PM PASS 与本人授权，Issue 可直接报告且不改变需求": "failed",
+      "v0.10 共识与治理 冻结范围内的非 L0 创意被标记 FROZEN，不会进入普通批准流": "failed",
+      "v0.10 模块、执行与证据 同一模块允许多人拥有独立 WorkUnit，重复认领不重复创建": "failed",
+      "v0.10 模块、执行与证据 PlanReview 只允许当前契约 PASS 后 Ready；DONE 不能由普通状态接口直接设置": "failed",
+      "v0.10 模块、执行与证据 队长暂停只产生 INTERRUPT_REQUESTED，成员 Relay 回执后才变为 INTERRUPTED": "failed",
+      "v0.10 模块、执行与证据 证据必须覆盖验收项、绑定真实 Git SHA；一人完成不自动完成多人模块": "failed"
+    }
+  },
+  "passedSuites": {
+    "hostOfficial": 201,
+    "cliOfficial": 5,
+    "compatibility": 37,
+    "researchAndAdapters": 229,
+    "rootHistoricalPrototype": 6,
+    "nodeRunnerScripts": 10,
+    "overlapWarning": "These suites overlap; do not sum them as unique tests."
+  },
+  "typecheck": true,
+  "build": true,
+  "package": {
+    "fileCount": 394,
+    "bundled": [
+      "@vibe-git/relay",
+      "@vibe-git/protocol"
+    ],
+    "integrity": "sha512-m5YRZmdeQ7/pCc9i3Sr72WHPZ8tN0vZK2ugVnSthtX9QtCLjY4U6H7MDZ8kHR1QlkZbLRpc2aJ76XDeVjaiilQ==",
+    "validation": {
+      "ok": true,
+      "bundledAdapters": 7,
+      "defaultAgent": "codex",
+      "cliHelp": true,
+      "remoteCalls": 0,
+      "results": [
+        {
+          "mode": "software-only",
+          "health": true,
+          "originalUI": true,
+          "originalBootstrap": true,
+          "originalProposal": true,
+          "researchRoute": false
+        },
+        {
+          "mode": "software-and-research",
+          "health": true,
+          "originalUI": true,
+          "originalBootstrap": true,
+          "originalProposal": true,
+          "researchRoute": true
+        }
+      ]
+    }
+  },
+  "remainingGaps": [
+    "Original v0.20 CLI task execution remains Codex-specific.",
+    "Research change handling does not reproduce original selective impact and incremental requirements.",
+    "Missing original ZIP prevents fresh byte-for-byte source comparison.",
+    "Not all vendors, real accounts, original GUI actions or cross-device paths were rerun."
+  ]
+}

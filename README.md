@@ -83,6 +83,8 @@ npm run research:replay
 
 ## 来源与团队使用
 
+原功能保留与同学代码覆盖范围见[核对清单](docs/research/ORIGINAL-FUNCTION-PRESERVATION.md)：原软件流程继续保留，科研扩展不替代原防偏移机制；当前主 CLI 的执行仍限于 Codex。
+
 这是公开的团队分享仓库，保留上游基线和作者归属，不改写队友原仓库。源码包包含科研 Skill：[`vibe-git/research-skill`](vibe-git/research-skill/SKILL.md)。原版文档入口为 [README-ORIGINAL.md](README-ORIGINAL.md)，早期研发报告可能描述历史阶段，请以本 README 和验证页为当前状态。
 
 仓库已由负责人授权公开，可直接分享给队友与评委。当前快照未发现统一的根级开源许可证，公开可见不等于授予任意使用许可；保留原作者及素材归属，不擅自补写 MIT。见 [来源和分享范围](docs/research/PROVENANCE.md)。API Key、邀请凭据、成员 token、私人数据库与完整运行目录均不进入分享快照。

@@ -57,11 +57,16 @@
     "research:acceptance": "node --use-env-proxy apps/host/scripts/acceptance-isolated-live.mjs",
     "research:acceptance:export": "node apps/host/scripts/export-isolated-acceptance.mjs",
     "test:isolated-acceptance": "node scripts/verify-isolated-acceptance.mjs",
-    "research:replay:build-public": "node scripts/build-public-replay.mjs"
+    "research:replay:build-public": "node scripts/build-public-replay.mjs",
+    "test:compatibility": "npm run build -w @vibe-git/protocol && npm run build -w @vibe-git/relay && vitest run apps/host/test/v20.test.ts apps/host/test/v21-contract.test.ts apps/relay/test apps/cli/test apps/web/src/OriginalWorkspaceAccess.test.tsx",
+    "test:installed-package": "node scripts/verify-installed-package.mjs"
   },
   "dependencies": {
     "@vibe-git/protocol": "^0.1.0",
-    "fastify": "^5.6.0"
+    "fastify": "^5.6.0",
+    "@vibe-git/relay": "0.1.0",
+    "ajv": "8.20.0",
+    "@fastify/cors": "^11.1.0"
   },
   "devDependencies": {
     "@types/node": "^24.5.2",
@@ -71,5 +76,9 @@
   },
   "engines": {
     "node": ">=24"
-  }
+  },
+  "bundleDependencies": [
+    "@vibe-git/protocol",
+    "@vibe-git/relay"
+  ]
 }
