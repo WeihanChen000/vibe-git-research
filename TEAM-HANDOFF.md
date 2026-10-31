@@ -30,6 +30,8 @@
 | 观看/运行/恢复 | [简明指南](docs/submission/RUN-AND-RECOVER.md) | 明确只读、模拟、真实重跑的差异 |
 | 全部研究文档 | [目录](docs/research/INDEX.md) | 历史实验、校验、对照及局限 |
 
+> 自动浏览器验收环境已补齐：[固定版本配置与启动](docs/research/BROWSER-TEST-SETUP.md)。两套完整模拟各 12 项通过；队友电脑仍需按说明安装独立测试工具。
+
 ## 获取代码，先做不花模型额度的检查
 
 ```powershell

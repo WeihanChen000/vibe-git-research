@@ -36,7 +36,7 @@ try{for(const study of cases){
  const check=(name,value)=>{assert.ok(value,name);result.checkpoints.push({name,passed:true});console.log('PASS',study.id,name);};
  const screenshot=async(name)=>{await pa.waitForTimeout(250);await pa.screenshot({path:join(dir,name+'.png'),fullPage:true,animations:'disabled'});result.screenshots.push(name+'.png');};
  const project=()=>pipeline.list()[0],delay=ms=>new Promise(r=>setTimeout(r,ms));
- const next=async()=>{await pa.reload();await click(pa,'我的研究变更');};
+ const next=async()=>{await pa.reload();await pa.getByRole('navigation',{name:'科研工作区导航'}).getByRole('button',{name:'工作台',exact:true}).click({timeout:12000});result.actions.push({actor:'captain',click:'工作台'});};
  const command=async(name,note)=>{await next();await click(pa,name);if(note)await fill(pa,name==='提出研究变更'?'研究变更说明':'返工说明',note);await click(pa,'确认'+name);await pa.getByLabel(name+'确认',{exact:true}).waitFor({state:'hidden',timeout:12000});};
  async function localStep(){await next();await click(pa,'准备本人任务包');await pa.getByRole('button',{name:'复制给 Codex 的任务说明',exact:true}).waitFor({timeout:12000});
   const p=project(),r=p.runs.find(r=>r.ownerNodeId===captain.nodeId&&r.revision===p.revision&&['STARTING','RUNNING'].includes(r.status));assert.ok(r,'Local task claimed through UI');

@@ -1,0 +1,123 @@
+{
+  "date": "2026-10-31",
+  "product_commit": "e14060cdf2950af0ffdbe9bdd5ad2aef419f3d5d",
+  "test_script_change": "Replace removed navigation button with approved workbench navigation; business assertions retained.",
+  "scope": "Generated data; actual local calculations and browser actions; deterministic Agent doubles, no real provider or cross-computer runs.",
+  "playwright": "1.60.0",
+  "chromium": "148.0.7778.96",
+  "summary_sha256": "97e3b23c77d4981fb907d6de96bee14f93c953c61bd9d768a2dc9263667f98d6",
+  "cases": [
+    {
+      "id": "calibration",
+      "finalRevision": 2,
+      "checks": [
+        {
+          "name": "UI creates governed project with uploaded bytes",
+          "passed": true
+        },
+        {
+          "name": "Omitted original requirement blocks publication",
+          "passed": true
+        },
+        {
+          "name": "Failure explains the omitted original requirement",
+          "passed": true
+        },
+        {
+          "name": "Method change blocked before reviewer",
+          "passed": true
+        },
+        {
+          "name": "Reviewer cannot add an unrelated experiment",
+          "passed": true
+        },
+        {
+          "name": "Review failure explicitly preserves the calculation",
+          "passed": true
+        },
+        {
+          "name": "Review retry does not recompute author result",
+          "passed": true
+        },
+        {
+          "name": "Real missing unit triggers legitimate rework",
+          "passed": true
+        },
+        {
+          "name": "Repair completes independent review and handoff",
+          "passed": true
+        },
+        {
+          "name": "Approved fitting output reused after report-only change",
+          "passed": true
+        },
+        {
+          "name": "Both revisions retain verifiable handoff",
+          "passed": true
+        },
+        {
+          "name": "No browser runtime errors",
+          "passed": true
+        }
+      ],
+      "recordedUiActions": 91,
+      "browserErrors": []
+    },
+    {
+      "id": "kinetics",
+      "finalRevision": 2,
+      "checks": [
+        {
+          "name": "UI creates governed project with uploaded bytes",
+          "passed": true
+        },
+        {
+          "name": "Omitted original requirement blocks publication",
+          "passed": true
+        },
+        {
+          "name": "Failure explains the omitted original requirement",
+          "passed": true
+        },
+        {
+          "name": "Plausible method label cannot hide wrong numeric result",
+          "passed": true
+        },
+        {
+          "name": "Reviewer cannot add an unrelated experiment",
+          "passed": true
+        },
+        {
+          "name": "Review failure explicitly preserves the calculation",
+          "passed": true
+        },
+        {
+          "name": "Review retry does not recompute author result",
+          "passed": true
+        },
+        {
+          "name": "Real missing unit triggers legitimate rework",
+          "passed": true
+        },
+        {
+          "name": "Repair completes independent review and handoff",
+          "passed": true
+        },
+        {
+          "name": "Approved fitting output reused after report-only change",
+          "passed": true
+        },
+        {
+          "name": "Both revisions retain verifiable handoff",
+          "passed": true
+        },
+        {
+          "name": "No browser runtime errors",
+          "passed": true
+        }
+      ],
+      "recordedUiActions": 91,
+      "browserErrors": []
+    }
+  ]
+}
