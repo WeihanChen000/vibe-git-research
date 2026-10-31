@@ -40,7 +40,7 @@ export function ResearchTopBar({state,p,view,setView,open,local,panel,setPanel,s
  useEffect(()=>{if(binding)setPlatform(binding.agent.platform??'sciencepal');},[binding?.agent.id,binding?.agent.platform]);
  useEffect(()=>{setError('');setMessage('');if(panel==='plan'&&member)setDraft(previous=>previous?.ownerId===member.id&&previous.text!==previous.saved?previous:{ownerId:member.id,text:own?.plan?.content??'',saved:own?.plan?.content??'',base:own?.plan?{id:own.plan.id,revision:own.plan.revision}:null});},[panel,member?.id]);
  useEffect(()=>{if(!dirty&&!source&&!title&&!selected.length)return;const leave=(e:BeforeUnloadEvent)=>{e.preventDefault();};window.addEventListener('beforeunload',leave);return()=>window.removeEventListener('beforeunload',leave);},[dirty,source,title,selected.length]);
- const creationIssues=projectCreationIssues(title,selected,member?.id??'',state?.members??[],sourceReady,sourceInputError(source));
+ const creationIssues=projectCreationIssues(title,selected,member?.id??'',state?.members??[],sourceReady,sourceInputError(source),{error:sourceSelectionError,hasSource:!!source});
  const names:Record<string,string>={help:'队友接入说明',join:'加入协作房间',workspace:'本地工作区',compute:'接入算力网',invite:state?.replay?'队友用自己账号接入':'邀请成员',profile:member?.label??'当前成员',plan:'我的提案',project:state?.replay?'真实案例 · 研究问题与证据':'科研项目'};
  return <><header className="command-bar research-command-bar">
   <button className="canvas-brand" onClick={()=>toggle('project')}><img src={replayResourceUrl("/vibe-git-logo.png")} alt=""/><span>vibe-git<small>研究 R{p?.revision??0} · {sync}</small></span></button>

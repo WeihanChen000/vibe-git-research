@@ -97,3 +97,14 @@ describe('Project creation readiness',()=>{
   expect(projectCreationIssues('Study',['captain','member'],'captain',members,true,'')).toEqual([]);
  });
 });
+
+it('distinguishes a pending read, a rejected first file and a failed replacement without unlocking creation',()=>{
+ const members=[{id:'a',binding:{},plan:{}},{id:'b',binding:{},plan:{}}] as any;
+ const base:[string,string[],string,any,boolean,string]=['Study',['a','b'],'a',members,false,''];
+ expect(projectCreationIssues(...base)).toEqual(['正在读取文件，请等待完成后再建项。']);
+ const first=projectCreationIssues(...base,{error:'UTF-8',hasSource:false});
+ expect(first).toHaveLength(1);expect(first[0]).toContain('文件读取失败');expect(first[0]).not.toContain('继续使用原文件');
+ const replacement=projectCreationIssues(...base,{error:'UTF-8',hasSource:true});
+ expect(replacement).toHaveLength(1);expect(replacement[0]).toContain('继续使用原文件');
+ expect(projectCreationIssues('Study',['a','b'],'a',members,true,'',{error:'',hasSource:true})).toEqual([]);
+});

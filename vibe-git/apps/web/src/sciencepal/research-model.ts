@@ -107,13 +107,13 @@ export function sciencePALThreadUrl(run?:SPRun):string|null {
 
 
 /** Explain every local blocker; this never substitutes for Host permission checks. */
-export function projectCreationIssues(title:string,selected:string[],captainId:string,members:TeamState['members'],sourceReady:boolean,sourceError:string):string[] {
+export function projectCreationIssues(title:string,selected:string[],captainId:string,members:TeamState['members'],sourceReady:boolean,sourceError:string,selection?:{error:string;hasSource:boolean}):string[] {
  const issues:string[]=[];
  if(!title.trim())issues.push('填写项目名称');
  if(selected.length<2||selected.length>4)issues.push('选择 2–4 位成员');
  if(!selected.includes(captainId))issues.push('参与成员必须包含队长本人');
  for(const id of selected){const m=members.find(v=>v.id===id);if(!m?.binding||!m.plan)issues.push(`${m?.label??'已选成员'} 尚未绑定 Agent 或保存提案，请该成员完成后再建项`);}
- if(!sourceReady)issues.push('文件仍在读取或选择失败，请先处理文件区提示');
+ if(!sourceReady)issues.push(selection?.error?(selection.hasSource?'文件替换失败：请在上方选择“继续使用原文件”、重选文件或移除。':'文件读取失败：请在上方重选文件，或移除本次选择后不带文件建项。'):'正在读取文件，请等待完成后再建项。');
  if(sourceError)issues.push(sourceError);
  return issues;
 }
