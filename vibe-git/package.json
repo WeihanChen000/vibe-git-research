@@ -63,7 +63,8 @@
     "test:anti-drift": "npm run build -w @vibe-git/protocol && npm run build -w @vibe-git/relay && vitest run apps/host/test/sciencepal-pipeline.test.ts apps/host/test/sciencepal-team.test.ts apps/web/src/sciencepal/ResearchGovernanceEvidence.test.tsx apps/web/src/sciencepal/research-model.test.ts -t \"Research anti-drift|governance survives|keeps captain conflict|retains full source|rejects a forged|Governance evidence|keeps origin|keeps legacy all-pass|reuses approvals through|keeps optional reviewer|takes a failed review\"",
     "test:workflow-experiments": "node apps/host/scripts/verify-workflow-experiments.mjs",
     "research:experiment": "node apps/host/scripts/preview-workflow-experiment.mjs",
-    "test:workflow-evidence": "node scripts/verify-workflow-evidence.mjs"
+    "test:workflow-evidence": "node scripts/verify-workflow-evidence.mjs",
+    "test:human-errors": "npm run build -w @vibe-git/protocol && npm run build -w @vibe-git/relay && vitest run apps/host/test/sciencepal-team.test.ts apps/host/test/sciencepal-pipeline.test.ts apps/host/test/scientific-checks.test.ts apps/host/test/research-constraints.test.ts -t \"Human mistakes|lost|uncertain|stale|superseded|paused|revoked|corrupt|tamper|malformed|invalid local envelope|duplicate starts|second connector|repeated old commands|denies other members|mutated input|continuation limit|budget|scientifically wrong|redistribution|non-finite|invalid tolerance|fixed parameters|narrower original bounds\""
   },
   "dependencies": {
     "@vibe-git/protocol": "^0.1.0",

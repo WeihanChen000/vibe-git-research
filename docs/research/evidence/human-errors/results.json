@@ -1,0 +1,398 @@
+{
+  "scope": "Isolated deterministic fault injection; real Host/local HTTP/connector code, no real model calls or cross-computer outage. Browser fixture seeded via APIs; listed user actions performed in ego lite.",
+  "passed": 68,
+  "failed": 0,
+  "skippedByNameFilter": 129,
+  "newRegressionTests": 17,
+  "tests": [
+    {
+      "file": "research-constraints.test.ts",
+      "name": "declarative research constraints retains narrower original bounds",
+      "status": "passed"
+    },
+    {
+      "file": "research-constraints.test.ts",
+      "name": "declarative research constraints does not replace fixed parameters or silently coerce numbers",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-pipeline.test.ts",
+      "name": "SciencePAL frozen result contracts rejects malformed results unchanged before any reviewer/downstream call: {\"simulated\":true,\"nonce\":\"ok\",\"values\":[\"1\",2,3]}",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-pipeline.test.ts",
+      "name": "SciencePAL frozen result contracts rejects malformed results unchanged before any reviewer/downstream call: {\"simulated\":true,\"values\":[1,2,3]}",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-pipeline.test.ts",
+      "name": "SciencePAL frozen result contracts rejects malformed results unchanged before any reviewer/downstream call: {\"simulated\":true,\"nonce\":\"ok\",\"values\":{\"first\":1,\"second\":2,\"third\":3}}",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-pipeline.test.ts",
+      "name": "SciencePAL frozen result contracts rejects malformed results unchanged before any reviewer/downstream call: {\"simulated\":true,\"nonce\":\"ok\",\"values\":[1,2,3],\"extra\":true}",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-pipeline.test.ts",
+      "name": "SciencePAL frozen result contracts rejects a tampered contract before dispatch",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-pipeline.test.ts",
+      "name": "SciencePAL governed collaboration never promotes unverified malformed output",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-pipeline.test.ts",
+      "name": "SciencePAL governed collaboration pauses dispatch, serializes commands and rejects stale publication",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-pipeline.test.ts",
+      "name": "SciencePAL governed collaboration rejects tampered queued input before transmitting it",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-pipeline.test.ts",
+      "name": "SciencePAL governed collaboration rejects unknown history scopes and tampered frozen evidence without mutating the project",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-pipeline.test.ts",
+      "name": "read-only project evidence rejects corrupted upstream bytes even when stored task status says approved",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-pipeline.test.ts",
+      "name": "identifies the exact malformed review check without accepting a plausible approval",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-pipeline.test.ts",
+      "name": "downstream approval proof blocks corrupt-review approval proof before a new downstream dispatch",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-pipeline.test.ts",
+      "name": "shared project run budget retry counts queued jobs and continuations together at 31 used units",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-pipeline.test.ts",
+      "name": "shared project run budget retry counts queued jobs and continuations together at 32 used units",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-pipeline.test.ts",
+      "name": "shared project run budget retry counts queued jobs and continuations together at 33 used units",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-pipeline.test.ts",
+      "name": "Research anti-drift governance v1 rejects incomplete change evidence (stale-fingerprint)",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "SciencePAL original member identity and distributed handoff deduplicates a saved answer after a lost message acknowledgement and restart",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "SciencePAL original member identity and distributed handoff recovers a lost continuation start response without a second start or answer",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "SciencePAL original member identity and distributed handoff does not repeat an uncertain start when no new run is visible",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "SciencePAL original member identity and distributed handoff rejects superseded-run output after continuation and detects corrupted history in evidence",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "SciencePAL original member identity and distributed handoff replays a continuation acknowledgement lost after Host persistence",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "SciencePAL original member identity and distributed handoff rejects ambiguous, foreign and stale remote continuation histories",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "SciencePAL original member identity and distributed handoff rejects replies while paused, running, revoked, or already answered on the web",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "SciencePAL original member identity and distributed handoff enforces owner, original thread, compare-and-swap, history immutability and continuation limit",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "SciencePAL original member identity and distributed handoff blocks corrupted receipts before review or downstream dispatch",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "SciencePAL original member identity and distributed handoff never repeats an uncertain remote submission after connector restart",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "SciencePAL original member identity and distributed handoff prevents a second connector from claiming the same run and clears claim identity on explicit retry",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "SciencePAL original member identity and distributed handoff keeps file reads scoped to the selected team project and denies revoked result uploads",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Codex and SciencePAL in the same member project checks owner, platform, claim, revoked membership and frozen binding",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Codex and SciencePAL in the same member project replays a lost local claim/submit acknowledgement without replacing bytes or execution identity",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Codex and SciencePAL in the same member project refuses mutated input bytes, another member directory, and paused submission",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Codex and SciencePAL in the same member project blocks an invalid local envelope and retries with a fresh local execution record",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Authenticated browser research controls requires a fresh snapshot and blocks repeated old commands without a new run",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Authenticated browser research controls denies other members, outsiders and a different captain",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Authenticated browser research controls revokes browser writes immediately when a member is revoked",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Research local onboarding and member presence gracefully stops and restarts the actual worker process without a stale journal lock",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Research local onboarding and member presence starts only the owned frozen project, prevents duplicate starts and stops only its child",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Research local onboarding and member presence derives offline on timeout without a fake browser heartbeat and ignores stale stop signals",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Same-project local Codex actions and shared continuation journal rejects wrong platforms, forged source origins, revoked membership and unknown run ids",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "checks the shared budget before remote reply and keeps a repeated continuation receipt idempotent",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "rejects supplemental review at a continuation-filled project budget without changing evidence",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Human mistakes and safe recovery rejects malformed invitation encoding % without locking out a correct retry",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Human mistakes and safe recovery rejects malformed invitation encoding %ZZ without locking out a correct retry",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Human mistakes and safe recovery rejects malformed invitation encoding %E0%A4%A without locking out a correct retry",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Human mistakes and safe recovery explains empty file without consuming the local claim, then accepts a corrected file",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Human mistakes and safe recovery explains unfinished JSON without consuming the local claim, then accepts a corrected file",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Human mistakes and safe recovery explains Markdown code fence without consuming the local claim, then accepts a corrected file",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Human mistakes and safe recovery blocks a mistaken old revision and allows same-task correction",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Human mistakes and safe recovery blocks a mistaken missing receipt and allows same-task correction",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Human mistakes and safe recovery blocks a mistaken wrong receipt and allows same-task correction",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Human mistakes and safe recovery blocks a mistaken missing result and allows same-task correction",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Human mistakes: preserves uncertain join after a lost acknowledgement without creating another member",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Human mistakes: rejects empty source before creating a project, then accepts repaired input",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Human mistakes: rejects oversized source before creating a project, then accepts repaired input",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Human mistakes: rejects non UTF-8 source before creating a project, then accepts repaired input",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Human mistakes: rejects missing attribution before creating a project, then accepts repaired input",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Human mistakes: rejects wrong source URL before creating a project, then accepts repaired input",
+      "status": "passed"
+    },
+    {
+      "file": "sciencepal-team.test.ts",
+      "name": "Human mistakes: rejects unsupported source file before creating a project, then accepts repaired input",
+      "status": "passed"
+    },
+    {
+      "file": "scientific-checks.test.ts",
+      "name": "bounded scientific checks on real saved SciencePAL output rejects internally consistent but scientifically wrong rescaled numbers",
+      "status": "passed"
+    },
+    {
+      "file": "scientific-checks.test.ts",
+      "name": "bounded scientific checks on real saved SciencePAL output rejects residual redistribution even if total is unchanged",
+      "status": "passed"
+    },
+    {
+      "file": "scientific-checks.test.ts",
+      "name": "bounded scientific checks on real saved SciencePAL output rejects missing/non-finite/string numbers null",
+      "status": "passed"
+    },
+    {
+      "file": "scientific-checks.test.ts",
+      "name": "bounded scientific checks on real saved SciencePAL output rejects missing/non-finite/string numbers 1",
+      "status": "passed"
+    },
+    {
+      "file": "scientific-checks.test.ts",
+      "name": "bounded scientific checks on real saved SciencePAL output rejects missing/non-finite/string numbers Infinity",
+      "status": "passed"
+    },
+    {
+      "file": "scientific-checks.test.ts",
+      "name": "bounded scientific checks on real saved SciencePAL output rejects missing/non-finite/string numbers NaN",
+      "status": "passed"
+    },
+    {
+      "file": "scientific-checks.test.ts",
+      "name": "bounded scientific checks on real saved SciencePAL output fails closed for mismatched source, unsupported engine and invalid tolerance",
+      "status": "passed"
+    },
+    {
+      "file": "scientific-checks.test.ts",
+      "name": "new acceptance profile on the latest isolated artifact blocks redistribution across residues even when the total and sum still pass",
+      "status": "passed"
+    }
+  ],
+  "browserChecks": [
+    {
+      "name": "损坏邀请编码被拒绝",
+      "passed": true,
+      "snapshot": "bad-invite.txt"
+    },
+    {
+      "name": "更换正确邀请后可加入",
+      "passed": true,
+      "snapshot": "join-recovered.txt"
+    },
+    {
+      "name": "无成果文件时提交按钮禁用",
+      "passed": true,
+      "snapshot": "missing-output.txt"
+    },
+    {
+      "name": "半写 JSON 被拒绝并给出恢复说明",
+      "passed": true,
+      "snapshot": "unfinished-output.txt"
+    },
+    {
+      "name": "修正同一文件后进入待发布",
+      "passed": true,
+      "snapshot": "corrected-output.txt"
+    },
+    {
+      "name": "空白固定数值被拒绝",
+      "passed": true,
+      "snapshot": "blank-number.txt"
+    },
+    {
+      "name": "明确输入数值零被接受",
+      "passed": true,
+      "snapshot": "zero-accepted.txt"
+    },
+    {
+      "name": "空白容差被拒绝",
+      "passed": true,
+      "snapshot": "blank-tolerance.txt"
+    }
+  ],
+  "otherChecks": {
+    "sciencepal": 271,
+    "compatibility": 37,
+    "typecheck": "passed",
+    "build": "passed"
+  },
+  "countsOverlap": true
+}

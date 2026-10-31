@@ -102,3 +102,5 @@ npm run research:replay
 范围为一个操作者、同一台电脑、独立项目成员身份和工作目录；不宣称真人跨电脑或 SciencePAL 跨账号隔离已验证。
 
 单人使用负担核查：[两条路径的操作步骤与空白记录表](docs/research/manual-handoff-check/README.md)。复用同一成果与检查表，不新增模型调用；尚无真人测量结果。
+
+误操作检查：[坏邀请、错误成果、断线回执、权限与恢复验收](docs/research/HUMAN-ERRORS-20261031.md)。

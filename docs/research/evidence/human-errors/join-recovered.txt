@@ -1,0 +1,111 @@
+[p1 "Vibe-Git · 多人科研协作" | space "Vibe-Git human error checks"(4): 1 managed, 0 untracked — p1* "Vibe-Git · 多人科研协作"]
+root
+  container
+    container
+      button [ref=1]
+        image
+        container
+          text "vibe-git"
+          container
+            text "研究 R"
+            text "0"
+            text "·"
+            text "已同步"
+      button [ref=2]
+        svg_root
+        container
+          text "本地工作区"
+          text "本人身份已连接"
+      button [ref=3]
+        svg_root
+        text "接入算力网"
+      container "画布视角"
+        button [ref=4]
+          text "人员拓扑"
+        button [ref=5]
+          text "项目甘特"
+    container
+      anchor [ref=6, loc=href:/sciencepal/team?replay=1&case=1crn&step=completed, url=<local-panel>]
+        text "回放真实科研案例 ↗"
+      text "通用科研协作 · 查看 1CRN / Iris 示例"
+    container
+      container
+        button [ref=12]
+          text "全部成员"
+          text "3"
+        button [ref=13]
+          text "我的提案"
+      container
+        text "先在算力网接入自己的 Agent"
+        button [ref=14]
+          text "接入算力网"
+      application
+        container
+          group [ref=15]
+            button [ref=16]
+              svg_root
+              container
+                text "Captain"
+                container
+                  text "队长"
+                  text "·"
+                  text "在线"
+                text "提案已提交"
+                text "Codex"
+              svg_root
+          group [ref=17]
+            button [ref=18]
+              svg_root
+              container
+                text "Member-7C71"
+                container
+                  text "成员"
+                  text "·"
+                  text "离线"
+                text "提案已提交"
+                text "SciencePAL"
+              svg_root
+          group [ref=19]
+            button [ref=20]
+              svg_root
+              container
+                text "Member-531A"
+                container
+                  text "成员"
+                  text "·"
+                  text "在线"
+                container
+                  text "提交提案 ·"
+                  text "等待本人接入算力网"
+                text "尚未绑定"
+        svg_root
+  container "接入算力网"
+    container
+      heading
+        text "接入算力网"
+      button "关闭弹层" [ref=8, loc=css:button[aria-label="关闭弹层"]]
+        text "×"
+    container
+      heading
+        text "本人接入 · 三步"
+      paragraph
+        text "① 加入房间 ✓　②"
+        text "绑定下方 Agent"
+        text "　③"
+        text "保存我的提案"
+    container
+      container [ref=21]
+        text "选择执行平台与本人 Agent"
+      container
+        container
+          text "执行平台"
+          combobox "执行平台" [ref=22, loc=css:select[aria-label="执行平台"]]
+            text "SciencePAL 科研 Agent"
+        container
+          text "本人 SciencePAL API Key"
+          textbox "SciencePAL API Key" [ref=23, loc=css:input[placeholder="仅保存到本人电脑"]]
+            text "仅保存到本人电脑"
+        button [ref=24]
+          text "验证账号并读取 Agent"
+        button [ref=25]
+          text "接入算力网"

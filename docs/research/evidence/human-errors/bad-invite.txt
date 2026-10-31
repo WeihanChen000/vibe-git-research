@@ -1,0 +1,56 @@
+[p1 "Vibe-Git · 多人科研协作" | space "Vibe-Git human error checks"(4): 1 managed, 0 untracked — p1* "Vibe-Git · 多人科研协作"]
+root
+  container
+    container
+      button [ref=1]
+        image
+        container
+          text "vibe-git"
+          container
+            text "研究 R"
+            text "0"
+            text "·"
+            text "等待加入"
+      button [ref=2]
+        svg_root
+        container
+          text "本地工作区"
+          text "等待本机接入"
+      button [ref=3]
+        svg_root
+        text "接入算力网"
+      container "画布视角"
+        button [ref=4]
+          text "人员拓扑"
+        button [ref=5]
+          text "项目甘特"
+    container
+      anchor [ref=6, loc=href:/sciencepal/team?replay=1&case=1crn&step=completed, url=<local-panel>]
+        text "回放真实科研案例 ↗"
+      text "通用科研协作 · 查看 1CRN / Iris 示例"
+    container
+      svg_root
+      heading
+        text "加入队友的科研工作区"
+      paragraph
+        text "本人入口已就绪。粘贴队长邀请后，在算力网选择自己的 Agent，再提交研究提案。"
+      button [ref=7]
+        text "填写邀请链接"
+  container "加入协作房间"
+    container
+      heading
+        text "加入协作房间"
+      button "关闭弹层" [ref=8, loc=css:button[aria-label="关闭弹层"]]
+        text "×"
+    button [ref=9]
+      text "第一次接入？查看队友步骤"
+    paragraph
+      text "与原版一样，每位队友用自己的成员身份加入房间。"
+    container
+      text "队长的邀请链接"
+      textbox "邀请链接" [ref=10, loc=css:input[placeholder="https://…/join/…"]]
+        text "<local-panel>"
+    button [ref=11]
+      text "加入房间"
+    alert
+      text "邀请链接编码不完整，请重新复制队长提供的完整链接；尚未发送加入请求，可直接重试"

@@ -51,8 +51,9 @@ export async function buildResearchPanel(options:Options){
   if(credential||options.captainFile)throw revisionConflict('已有本人身份，不会覆盖');
   let u:URL;try{u=new URL(String(r.body?.invite??'').trim());}catch{throw badRequest('邀请链接格式不正确，请粘贴队长提供的完整 https://…/join/… 链接');}const host=validHost(u.origin),m=u.pathname.match(/^\/join\/([^/]+)\/?$/);
   if(!m||u.search||u.hash||u.username||u.password)throw badRequest('请粘贴队长提供的完整加入链接');
+  let inviteToken:string;try{inviteToken=decodeURIComponent(m[1]!);}catch{throw badRequest('邀请链接编码不完整，请重新复制队长提供的完整链接；尚未发送加入请求，可直接重试');}
   const pending=join(profile,'join-pending.json');await writeFile(pending,JSON.stringify({host,at:new Date().toISOString()}),{flag:'wx',mode:0o600}).catch(()=>{throw revisionConflict('上次加入结果尚未确认，请队长核对成员身份，不能重复注册');});
-  let response:Response;try{response=await fetch(host+'/api/v1/join',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({invite:decodeURIComponent(m[1]!)}),redirect:'error',signal:AbortSignal.timeout(15000)});}catch{throw badRequest('加入结果尚未确认，请联系队长核对；未自动重试');}
+  let response:Response;try{response=await fetch(host+'/api/v1/join',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({invite:inviteToken}),redirect:'error',signal:AbortSignal.timeout(15000)});}catch{throw badRequest('加入结果尚未确认，请联系队长核对；未自动重试');}
   if(!response.ok){await unlink(pending);throw badRequest('加入失败，请核对邀请是否有效');}
   const d=await response.json() as any;const next={nodeId:d.node.id,nodeToken:d.nodeToken,roomId:d.roomId,hostUrl:host};
   await writeFile(credentialPath,JSON.stringify(next),{flag:'wx',mode:0o600});credential=next;await unlink(pending);await beat().catch(()=>undefined);return info();

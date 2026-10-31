@@ -1,0 +1,208 @@
+[p2 "Vibe-Git · 多人科研协作" | space "Vibe-Git human error checks"(4): 2 managed, 0 untracked — p1 "Vibe-Git · 多人科研协作", p2* "Vibe-Git · 多人科研协作"]
+root
+  container
+    button [ref=1]
+      image
+      container
+        text "vibe-git"
+        container
+          text "研究 R"
+          text "1"
+          text "·"
+          text "已同步"
+    button [ref=2]
+      svg_root
+      container
+        text "本地工作区"
+        text "本人身份已连接"
+    button [ref=3]
+      svg_root
+      text "本机入口在线"
+    container "画布视角"
+      button [ref=4]
+        text "人员拓扑"
+      button [ref=5]
+        text "项目甘特"
+    container
+      button [ref=6]
+        text "我的提案"
+      button [ref=7]
+        text "我的研究变更"
+    button "邀请成员" [ref=8, loc=css:button[aria-label="邀请成员"]]
+      svg_root
+      text "邀请成员"
+    button "活动通知" [ref=9, loc=css:button[aria-label="活动通知"]]
+      svg_root
+    button "当前成员" [ref=10, loc=css:button[aria-label="当前成员"]]
+      svg_root
+  container
+    anchor [ref=11, loc=href:/sciencepal/team?replay=1&case=1crn&step=completed, url=<local-panel>]
+      text "回放真实科研案例 ↗"
+    text "通用科研协作 · 查看 1CRN / Iris 示例"
+  container
+    container
+      heading
+        text "误操作检查 · 隔离模拟"
+      paragraph
+        text "等待发布"
+    container
+      container
+        text "0"
+        text "/"
+        text "0"
+        text "项通过评审"
+      combobox "研究协议版本" [ref=12, loc=css:select[aria-label="研究协议版本"]]
+        text "协议 R1 · 当前"
+      button [ref=13]
+        text "查看协议"
+        svg_root
+  status
+    text "保存科研约束操作已提交，进度以当前任务状态为准。"
+  container
+    container
+      container
+        container
+          button [ref=14]
+            text "全部关系"
+          button [ref=15]
+            text "只看文件交接"
+        button [ref=16]
+          svg_root
+          text "现在轮到谁 · 1"
+      application
+        svg_root
+        button "放大画布" [ref=19, loc=css:button[aria-label="放大画布"]]
+          svg_root
+        button "缩小画布" [ref=20, loc=css:button[aria-label="缩小画布"]]
+          svg_root
+        button "适应画布" [ref=21, loc=css:button[aria-label="适应画布"]]
+          svg_root
+        anchor "React Flow attribution" [ref=22, loc=css:a[aria-label="React Flow attribution"], url=https://reactflow.dev/?utm_source=attribution]
+          text "React Flow"
+      container
+        text "已通过 / 已交接"
+        text "执行中"
+        text "需处理 / 返工"
+        text "上次更新 09:32:53"
+    container "研究详情"
+      container
+        container
+          container
+            text "R"
+            text "1"
+            text "·"
+            text "当前研究"
+          heading
+            text "冻结研究协议"
+        button "收起详情" [ref=23, loc=css:button[aria-label="收起详情"]]
+          svg_root
+      container "详情视图"
+        button [ref=24]
+          text "待办"
+        button [ref=25]
+          text "协议"
+        button [ref=26]
+          text "记录"
+      container [ref=27]
+        paragraph
+          text "历史协议：未记录逐条原文覆盖。保留原验收与证据，不将旧记录标为已通过新版防偏移检查。"
+        container
+          heading
+            text "可执行科学检查"
+          paragraph
+            text "尚未配置数值检查。格式校验和 Agent 评审不能替代计算复核。"
+          container
+            container [ref=40]
+              text "发布前添加数值检查"
+            container
+              container
+                text "任务"
+                combobox "科学检查任务" [ref=41, loc=css:select[aria-label="科学检查任务"]]
+                  text "Generate"
+              container
+                text "检查方式"
+                combobox "科学检查方式" [ref=42, loc=css:select[aria-label="科学检查方式"]]
+                  text "总量等于逐项求和"
+              container
+                text "总量或数值字段"
+                textbox "科学检查数值字段" [ref=43, loc=css:input[placeholder="例如 total 或 statistics.mean"]]
+                  text "例如 total 或 statistics.mean"
+              container
+                text "数据表字段"
+                textbox "科学检查数据表" [ref=44, loc=css:input[placeholder="例如 residues"]]
+                  text "例如 residues"
+              container
+                text "每行数值字段"
+                textbox "科学检查每行字段" [ref=45, loc=css:input[placeholder="例如 area"]]
+                  text "例如 area"
+              container
+                text "绝对容差（与结果同单位）"
+                spinbutton "科学检查容差" [ref=46, loc=css:input[aria-label="科学检查容差"]]
+                  text "0.001"
+              paragraph
+                text "规则只能追加，发布后冻结。参考值需独立建立，不能复制待验结果作为正确答案。"
+              button [ref=47]
+                text "冻结数值检查"
+        container
+          heading
+            text "科研防漂移"
+          paragraph
+            text "把关键方法、参数、源文件哈希或合理范围写进冻结规则。不符合规则的成果将保留原文件并阻止评审、下游交接。"
+          paragraph
+            text "已配置冻结约束。发布后持续生效，研究变更也不能偷偷放宽。"
+          container
+            text "Generate"
+            unordered_list
+              list_item
+                text "seed"
+                text "："
+                text "0"
+          paragraph
+            text "数值范围需由研究者给出依据；字段符合规则不证明方法真正执行，仍需独立复核。"
+          container [ref=48]
+            text "发布前添加约束"
+          container
+            text "科研任务"
+            combobox "约束任务" [ref=49, loc=css:select[aria-label="约束任务"]]
+              text "Generate"
+          container
+            text "成果字段"
+            textbox "约束字段" [ref=50, loc=css:input[placeholder="例如 method、seed、source_sha256"]]
+              text "例如 method、seed、source_sha256"
+          container
+            text "检查方式"
+            combobox "检查方式" [ref=51, loc=css:select[aria-label="检查方式"]]
+              text "固定数值（参数、随机种子）"
+          container
+            text "必须使用的值"
+            spinbutton "约束值" [ref=52, loc=css:input[aria-label="约束值"]]
+          button [ref=53]
+            text "冻结这条约束"
+        text "研究协议 R"
+        text "1"
+        text "·"
+        text "当前快照"
+        paragraph
+          text "Synthetic UI recovery fixture."
+        container
+          heading
+            text "原始提案"
+          container [ref=54]
+            text "Captain"
+            text "· r"
+            text "1"
+          paragraph
+            text "Analyze generated data."
+          container [ref=55]
+            text "Member-7C71"
+            text "· r"
+            text "1"
+          paragraph
+            text "Generate synthetic data."
+        paragraph
+          text "发布、裁决和返工由项目队长在待办中确认。平台绑定与结果格式随项目冻结。"
+      anchor [ref=31, url=<local-panel>]
+        svg_root
+        text "打开 R"
+        text "1"
+        text "证据清单 ↗"

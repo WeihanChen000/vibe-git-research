@@ -64,7 +64,10 @@ export async function localMemberTask(command: "take" | "submit", request: Membe
       if (hash(bytes) !== f.sha256 || bytes.length !== f.size) throw new Error("本地冻结输入已变化，拒绝提交");
     }
     const bytes = await regularBytes(resolve(resultFile));
-    envelope(JSON.parse(bytes.toString("utf8").replace(/^\uFEFF/, "")), state.packet.run);
+    let parsed:unknown;
+    try { parsed=JSON.parse(bytes.toString("utf8").replace(/^\uFEFF/, "")); }
+    catch { throw new Error(`成果文件不是完整 JSON。请让本人 Agent 按 TASK.md 保存完整 JSON 对象到 ${state.packet.run.outputFilename}，不要附带 Markdown 代码框或解释文字；等待写入完成后再次检查并交回，无需重新领取。原任务与输入保留。`); }
+    envelope(parsed, state.packet.run);
     const run = await request(base + "/complete-local", { claimId: state.claimId, base64: bytes.toString("base64") });
     return { projectId: project.id, runId: state.runId, status: run.status, output: run.output, error: run.error, next: await request(`/api/sciencepal-team/projects/${project.id}/next`) };
   } finally { await lock.close(); await unlink(lockPath); }

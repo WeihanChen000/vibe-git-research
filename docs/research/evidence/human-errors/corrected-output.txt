@@ -1,0 +1,134 @@
+[p2 "Vibe-Git · 多人科研协作" | space "Vibe-Git human error checks"(4): 2 managed, 0 untracked — p1 "Vibe-Git · 多人科研协作", p2* "Vibe-Git · 多人科研协作"]
+root
+  container
+    button [ref=1]
+      image
+      container
+        text "vibe-git"
+        container
+          text "研究 R"
+          text "1"
+          text "·"
+          text "已同步"
+    button [ref=2]
+      svg_root
+      container
+        text "本地工作区"
+        text "本人身份已连接"
+    button [ref=3]
+      svg_root
+      text "本机入口在线"
+    container "画布视角"
+      button [ref=4]
+        text "人员拓扑"
+      button [ref=5]
+        text "项目甘特"
+    container
+      button [ref=6]
+        text "我的提案"
+      button [ref=7]
+        text "我的研究变更"
+    button "邀请成员" [ref=8, loc=css:button[aria-label="邀请成员"]]
+      svg_root
+      text "邀请成员"
+    button "活动通知" [ref=9, loc=css:button[aria-label="活动通知"]]
+      svg_root
+    button "当前成员" [ref=10, loc=css:button[aria-label="当前成员"]]
+      svg_root
+  container
+    anchor [ref=11, loc=href:/sciencepal/team?replay=1&case=1crn&step=completed, url=<local-panel>]
+      text "回放真实科研案例 ↗"
+    text "通用科研协作 · 查看 1CRN / Iris 示例"
+  container
+    container
+      heading
+        text "误操作检查 · 隔离模拟"
+      paragraph
+        text "等待发布"
+    container
+      container
+        text "0"
+        text "/"
+        text "0"
+        text "项通过评审"
+      combobox "研究协议版本" [ref=12, loc=css:select[aria-label="研究协议版本"]]
+        text "协议 R1 · 当前"
+      button [ref=13]
+        text "查看协议"
+        svg_root
+  container
+    container
+      container
+        container
+          button [ref=14]
+            text "全部关系"
+          button [ref=15]
+            text "只看文件交接"
+        button [ref=16]
+          svg_root
+          text "现在轮到谁 · 1"
+      application
+        svg_root
+        button "放大画布" [ref=19, loc=css:button[aria-label="放大画布"]]
+          svg_root
+        button "缩小画布" [ref=20, loc=css:button[aria-label="缩小画布"]]
+          svg_root
+        button "适应画布" [ref=21, loc=css:button[aria-label="适应画布"]]
+          svg_root
+        anchor "React Flow attribution" [ref=22, loc=css:a[aria-label="React Flow attribution"], url=https://reactflow.dev/?utm_source=attribution]
+          text "React Flow"
+      container
+        text "已通过 / 已交接"
+        text "执行中"
+        text "需处理 / 返工"
+        text "上次更新 09:32:09"
+    container "研究详情"
+      container
+        container
+          container
+            text "R"
+            text "1"
+            text "·"
+            text "当前研究"
+          heading
+            text "现在轮到谁"
+        button "收起详情" [ref=23, loc=css:button[aria-label="收起详情"]]
+          svg_root
+      container "详情视图"
+        button [ref=24]
+          text "待办"
+        button [ref=25]
+          text "协议"
+        button [ref=26]
+          text "记录"
+      container [ref=27]
+        container
+          container
+            text "轮到我"
+            text "项目决策"
+          heading
+            text "等待队长检查并发布"
+          paragraph
+            text "检查分工、依赖与验收标准后发布。"
+          button [ref=37]
+            text "查看相关任务与成员"
+            svg_root
+          button [ref=38]
+            text "发布研究任务"
+        container
+          heading
+            text "项目操作"
+          button [ref=30]
+            text "暂停派发"
+          button [ref=39]
+            text "提出研究变更"
+        container
+          heading
+            text "交接原则"
+          paragraph
+            text "成果通过已配置的数值检查和另一成员评审，带齐批准依据后才交给下游。未配置的检查不等于已核验，任务完成也不保证科学结论成立。"
+      anchor [ref=31, url=<local-panel>]
+        svg_root
+        text "打开 R"
+        text "1"
+        text "证据清单 ↗"

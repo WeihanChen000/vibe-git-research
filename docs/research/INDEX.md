@@ -24,3 +24,5 @@
 `vibe-git/SCIENCEPAL-*.md`、`HACKATHON-*.md`、`RESEARCH-FIRST-DECISION.md` 等保留开发过程、真实执行、评审与方向决策。它们有历史性，不应把早期“待实现”或曾用的默认入口当作当前功能。当前状态以首页和本次验证页为准。
 
 真实回放的文件索引、快照和产物位于 `vibe-git/apps/web/public/research-replay/{1crn,iris,isolated}`。文件指纹由 manifest 描述；仅 1CRN 接续瞬间采用真实回执重建，其余阶段标注原始快照。不要用重新生成的模拟结果覆盖真实证据。
+
+- [误操作与突发故障验收：68 项专项与 ego 实操](HUMAN-ERRORS-20261031.md)

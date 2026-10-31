@@ -5,7 +5,7 @@ import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { projectNextActions, type SPProject, type SPTeamPacket } from "@vibe-git/protocol";
 import { localMemberTask } from "../src/sciencepal/local-member.js";
 import { buildApp } from "../src/app.js";
@@ -861,4 +861,82 @@ it("governance survives member connectors, criterion-bound rework and captain-on
  await s.command("apply-change",body);p=await s.until("READY");await s.command("publish",{alignmentRunId:p.alignmentRunId});
  p=await s.until("COMPLETED");expect(p.tasks[0]!.artifactId).toBe(original);expect(p.tasks[0]!.carriedFrom?.revision).toBe(1);
  expect(s.pipeline.evidence(p.id).allApproved).toBe(true);
+});
+
+
+describe('Human mistakes and safe recovery',()=>{
+ it.each(['%','%ZZ','%E0%A4%A'])('rejects malformed invitation encoding %s without locking out a correct retry',async token=>{
+  const s=await setup(),l=await localEntry(s);
+  const bad=await l.call('/api/local/research/join',{invite:l.host+'/join/'+token});
+  expect(bad.statusCode).toBe(400);
+  expect((await l.info()).json()).toMatchObject({configured:false,joining:false});expect(bad.json().error).toContain('邀请链接');
+  expect((await l.call('/api/local/research/join',{invite:l.host+'/join/'+s.invite.inviteToken})).statusCode).toBe(200);
+ });
+ it.each([
+  {name:'empty file',text:''},
+  {name:'unfinished JSON',text:'{"revision":1,'},
+  {name:'Markdown code fence',text:'```json\n{}\n```'},
+ ])('explains $name without consuming the local claim, then accepts a corrected file',async ({text})=>{
+  const s=await setup(false,true),l=await localEntry(s,true);await s.command('align');
+  const run=s.pipeline.get(s.project.id).runs[0]!,body={projectId:s.project.id,runId:run.id};
+  const info=(await l.call('/api/local/research/codex-take',body)).json();
+  const before=structuredClone(s.pipeline.get(s.project.id).runs[0]!);
+  await writeFile(info.outputPath,text);
+  const bad=await l.call('/api/local/research/codex-submit',body);
+  expect(bad.statusCode).toBe(400);expect(bad.json().error).toContain('完整 JSON');expect(bad.json().error).toContain('无需重新领取');
+  expect(s.pipeline.get(s.project.id).runs[0]).toEqual(before);
+  const saved=JSON.parse(await readFile(join(info.directory,'task.json'),'utf8')),files=saved.packet.files.map((f:any)=>({filename:f.filename,bytes:Buffer.from(f.base64,'base64')}));
+  await s.remoteA.start('a',saved.packet.run.prompt.replace('Vibe-Git Codex','Vibe-Git SciencePAL'),files[0],files.slice(1));
+  await writeFile(info.outputPath,s.remoteA.calls.at(-1)!.bytes);
+  expect((await l.call('/api/local/research/codex-submit',body)).json().status).toBe('COLLECTED');
+  expect(s.pipeline.get(s.project.id).runs).toHaveLength(1);
+  expect(s.pipeline.get(s.project.id).runs[0]!.localExecution!.id).toBe(before.localExecution!.id);
+ });
+ it.each(['old revision','missing receipt','wrong receipt','missing result'])('blocks a mistaken %s and allows same-task correction',async mistake=>{
+  const s=await setup(false,true),l=await localEntry(s,true);await s.command('align');
+  const run=s.pipeline.get(s.project.id).runs[0]!,body={projectId:s.project.id,runId:run.id};
+  const info=(await l.call('/api/local/research/codex-take',body)).json();
+  const saved=JSON.parse(await readFile(join(info.directory,'task.json'),'utf8')),files=saved.packet.files.map((f:any)=>({filename:f.filename,bytes:Buffer.from(f.base64,'base64')}));
+  await s.remoteA.start('a',saved.packet.run.prompt.replace('Vibe-Git Codex','Vibe-Git SciencePAL'),files[0],files.slice(1));
+  const good=s.remoteA.calls.at(-1)!.bytes,bad=JSON.parse(Buffer.from(good).toString());
+  if(mistake==='old revision')bad.revision=0;
+  if(mistake==='missing receipt')bad.inputReceipts=[];
+  if(mistake==='wrong receipt')bad.inputReceipts[0].sha256='0'.repeat(64);
+  if(mistake==='missing result')delete bad.result;
+  const before=structuredClone(s.pipeline.get(s.project.id));await writeFile(info.outputPath,JSON.stringify(bad));
+  const response=await l.call('/api/local/research/codex-submit',body);expect(response.statusCode).toBe(400);expect(response.json().error).toMatch(/版本|回执|校验|结果/);
+  expect(s.pipeline.get(s.project.id)).toEqual(before);
+  await writeFile(info.outputPath,good);expect((await l.call('/api/local/research/codex-submit',body)).json().status).toBe('COLLECTED');
+ });
+});
+
+it('Human mistakes: preserves uncertain join after a lost acknowledgement without creating another member',async()=>{
+ const s=await setup(),l=await localEntry(s);const original=globalThis.fetch;let joins=0;
+ const spy=vi.spyOn(globalThis,'fetch').mockImplementation(async(input,init)=>{
+  const response=await original(input,init);
+  if(String(input)===l.host+'/api/v1/join'){joins++;throw Error('simulated lost acknowledgement after server accepted join');}
+  return response;
+ });
+ try{
+  const body={invite:l.host+'/join/'+s.invite.inviteToken};
+  const first=await l.call('/api/local/research/join',body);expect(first.statusCode).toBe(400);expect(first.json().error).toContain('尚未确认');
+  expect((await l.info()).json()).toMatchObject({configured:false,joining:true});
+  expect((await l.call('/api/local/research/join',body)).statusCode).toBe(409);expect(joins).toBe(1);
+ }finally{spy.mockRestore();}
+});
+
+it.each([
+ {name:'empty source',patch:{base64:''}},
+ {name:'oversized source',patch:{base64:Buffer.alloc(256*1024+1,65).toString('base64')}},
+ {name:'non UTF-8 source',patch:{base64:Buffer.from([0xff,0xfe,0xff]).toString('base64')}},
+ {name:'missing attribution',patch:{attribution:'  '}},
+ {name:'wrong source URL',patch:{sourceUrl:'http://example.org/data'}},
+ {name:'unsupported source file',patch:{filename:'source-data.xlsx'}},
+])('Human mistakes: rejects $name before creating a project, then accepts repaired input',async ({patch})=>{
+ const s=await setup(),before=s.pipeline.list().length;
+ const source={filename:'source-data.csv',base64:Buffer.from('x,y\n1,2\n').toString('base64'),sourceUrl:'https://example.org/data',attribution:'Generated test data'};
+ const url='/api/sciencepal-team/projects';
+ expect((await s.raw(s.captain.nodeToken,url,{...s.input,source:{...source,...patch}})).statusCode).toBe(400);
+ expect(s.pipeline.list()).toHaveLength(before);expect(s.remoteA.calls).toHaveLength(0);expect(s.remoteB.calls).toHaveLength(0);
+ expect((await s.raw(s.captain.nodeToken,url,{...s.input,source})).statusCode).toBe(200);expect(s.pipeline.list()).toHaveLength(before+1);
 });
