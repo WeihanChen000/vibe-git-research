@@ -1,0 +1,36 @@
+{
+  "source_commit": "f3088f84c844f5ef7354acbf3cd7e9d2cc32a012",
+  "scope": "Teammate supplementary evidence verification and updated PDF; no fresh SASA run. Canonical Git bytes.",
+  "pdf_pages": 5,
+  "zip_original_files_verified": 8,
+  "files": {
+    "agent-system-prompt.txt": {
+      "bytes": 3056,
+      "sha256": "6304934848e74a841e80a2e37f5245b323e173cb1d32527a602cec078230600a"
+    },
+    "followup-request.json": {
+      "bytes": 535,
+      "sha256": "f9d16a6690361eadd3f59c753116ab9af045d3cab7de2005a51585f59e90a7c1"
+    },
+    "project-brief-updated.pdf": {
+      "bytes": 280848,
+      "sha256": "3500ebabb75786b727475a8d260b09dfd0c3122f98a30c40d95dfda0d7fa73f1"
+    },
+    "README.md": {
+      "bytes": 7145,
+      "sha256": "7ec2b7f14c50cc6d141f4cff1a0510d820dcf31b9a46eae0ef45fafa8b64b379"
+    },
+    "sciencepal-evidence-originals.zip": {
+      "bytes": 394748,
+      "sha256": "24b8a44953588071b63b87e0acaf922aa50325df3360c9f29e50a22cdd3a9b91"
+    },
+    "SCIENCEPAL-TASK.txt": {
+      "bytes": 4773,
+      "sha256": "946cb9af15586b065f79687d67374683bee700a181af3dcf246bcdf80372be37"
+    },
+    "verification-receipts.json": {
+      "bytes": 6353,
+      "sha256": "9fb72fd04a773afc8b9644251da3a5100353ebf243ac391fa7689db028d1440a"
+    }
+  }
+}

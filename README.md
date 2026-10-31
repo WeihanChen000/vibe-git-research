@@ -1,5 +1,7 @@
 # Vibe-Git Research · 可核查的科研交接
 
+> **本仓库已同步审核队友 CityuAI4S 分支。** 用户明确采用其新工作台；流程修复、SciencePAL 新材料和作者历史均保留。[本轮审核、测试与边界](docs/research/CITYUAI4S-INTEGRATION-20261031.md)。源分支保留，本文下方旧功能冻结与视频版本属于历史基线。
+
 > **当前接手分支：[TFboy1/vibe-git · CityuAI4S](https://github.com/TFboy1/vibe-git/tree/CityuAI4S)。**
 
 > **队友接手入口：[SciencePal 实跑、Agent 配置与提交续办](docs/submission/sciencepal-handoff/README.md) · [原材料与视频制作源](TEAM-HANDOFF.md)。** SciencePal 新核验与原字节交付包已完成；视频保持原样，等待队友处理。正式问卷仍为草稿，尚无提交回执。

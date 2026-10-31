@@ -61,8 +61,8 @@
       "sha256": "58d65fc5c9c2ecf37da9eb7ff0556d9c9b65a5dc674203dc25f893375911f6ce"
     },
     "README.md": {
-      "bytes": 4685,
-      "sha256": "92ec185a8f2eca2188ee8aa898697207513cd5fcf1a730a831c7db638bd47ade"
+      "bytes": 6003,
+      "sha256": "2464d16c240e1df4bc469f52b27466625a7c8d3be3429a03a94a5916278896bc"
     },
     "FORM-COPY.md": {
       "bytes": 3513,
@@ -168,5 +168,13 @@
     "editable_sources": "../../tools/submission/README.md",
     "published_video_pdf_unchanged": true,
     "prior_public_access_checks_scope": "Historical checks of v1 media. New handoff notices do not imply re-filming or final submission."
+  },
+  "cityuai4s_integration": {
+    "upstream_commit": "f3088f84c844f5ef7354acbf3cd7e9d2cc32a012",
+    "approved_ui": "teammate workbench; topology and Gantt retained",
+    "review": "../research/CITYUAI4S-INTEGRATION-20261031.md",
+    "additional_material_manifest": "sciencepal-handoff/artifact-checks.json",
+    "old_media_unchanged": true,
+    "new_video_completed": false
   }
 }

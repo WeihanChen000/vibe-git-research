@@ -1,5 +1,7 @@
 # AI4Science Hackathon 最终提交包
 
+> **CityuAI4S 整合审核：**新工作台已获用户同意，流程修复已回归检查；[审核记录](../research/CITYUAI4S-INTEGRATION-20261031.md)。现有视频尚未更新为该界面；新增文件清单为 sciencepal-handoff/artifact-checks.json。
+
 > **交接状态：现有视频待重剪，尚未获使用者认可。** 技术播放检查通过不代表讲解效果合格。后续修改和正式提交交给队友，完整源码、配音与未完成录像材料见 [队友接手页](../../TEAM-HANDOFF.md)。
 
 > **最新 SciencePal 接手内容（2026-10-31）：**已创建并实际运行科研交接核验 Agent，首轮 190 项、追问 192 项通过；[原字节包、系统提示词、完整步骤及剩余事项](sciencepal-handoff/README.md)已备齐。下文 `final-20261031-v1` 是历史材料快照，不代表本次又重跑了 SASA。公开回放只读，评审 Agent 权限待账号信息；表单仍为草稿。

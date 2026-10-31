@@ -16,3 +16,7 @@ This repository extends the team's Vibe-Git; research features must not replace 
 - Keep historical real-run evidence immutable. Document simulated tests and outstanding real-platform coverage separately.
 
 See `docs/research/ORIGINAL-FUNCTION-PRESERVATION.md` for the baseline comparison, evidence and remaining gaps. Parent machine-safety instructions still apply.
+
+## Approved research UI baseline update — 2026-10-31
+
+The user explicitly approved adopting the teammate's CityuAI4S workbench in this session. For research screens, use the workbench/navigation/CSS at f3088f84c844f5ef7354acbf3cd7e9d2cc32a012 as the approved visual baseline. This is an exception to the older research-layout preservation rule above, not permission to remove software functionality, member/captain permissions, topology/Gantt, anti-drift or evidence gates. Keep the original software workspace available. Further redesign still requires approval.
