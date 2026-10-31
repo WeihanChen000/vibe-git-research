@@ -164,8 +164,8 @@
       "sha256": "39ae947f1c7d86d2c164b67ed3cd7e06b6cf5dd2e35ce4561b8e603bcccfa43d"
     },
     "tools/submission/render_roughcut.py": {
-      "bytes": 6660,
-      "sha256": "4f6bd413450e0a0e9fff7ca36c46b28c8892a798dd8c7df5595bb2510d9ac729"
+      "bytes": 6667,
+      "sha256": "57826761186048966d7fae2113ddf697c9f9941c6dedf347373f87e7e9f68cb0"
     }
   },
   "rough_cut": {

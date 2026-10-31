@@ -48,7 +48,7 @@ for i,(name,dur,caption,scope,crop) in enumerate(scenes):
  records.append(dict(start=offset,duration=dur,caption=caption,scope=scope,source='shots/'+name,sourceSha256=hashlib.sha256(dest.read_bytes()).hexdigest(),focusCrop=crop,provenance='Actual simulator UI screenshot' if i<4 else 'Read-only editorial rendering of immutable historical records; not product UI'))
  for j,seconds in enumerate([2,dur-2]):
   im=Image.new('RGB',(1920,1080),'#edf0f4');d=ImageDraw.Draw(im)
-  frame=src if j==0 else src.crop(crop)
+  frame=src.copy() if j==0 else src.crop(crop)
   frame.thumbnail((1856,858),Image.Resampling.LANCZOS)
   # thumbnail never upscales: explicit resize for readable focus shots.
   scale=min(1856/frame.width,858/frame.height)
