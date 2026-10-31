@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import type { SPProject, SPTaskDraft } from "@vibe-git/protocol";
+import { usedRunCount, type SPProject, type SPTaskDraft } from "@vibe-git/protocol";
 import type { TeamState } from "./research-model";
 import { Markdown } from "../Markdown";
 export type SendResearchCommand = (operation:string,body:Record<string,unknown>,snapshot:string)=>Promise<void>;
@@ -25,6 +25,14 @@ export function ChangeImpactSummary({p,change}:{p:SPProject;change:SPProject["ch
  <details><summary>查看完整协议与评审建议</summary><Markdown>{change?.result?.requirementMarkdown??""}</Markdown></details>
  {p.governance?<><p>批准后追加以下真实变更，原协议不被摘要覆盖：</p><Markdown>{change?.request??""}</Markdown>{change?.result?.requirementEdits?.map(e=><details key={e.requirementId}><summary>替换或撤销原要求</summary><p>原文：{p.governance!.requirements.find(r=>r.id===e.requirementId)?.text}</p><p>改为：{e.replacement??"撤销此要求"}</p><p>{e.reason}</p></details>)}<p>确认后进入 R{p.revision+1}，保留原记录；重新对齐并发布后，仅重做受影响任务，未受影响成果须核验原批准后复用。</p></>:<p>确认后进入 R{p.revision+1}，旧版本归档，新版本重新对齐。</p>}</>;
 }
+export function RecoveryImpact({p,operation,runId}:{p:SPProject;operation:string;runId?:string|undefined}) {
+ const kind=p.runs.find(r=>r.id===runId)?.kind;
+ const impact=operation==='supplement-review'?'新增一次独立复审，保留原计算成果，不重新计算。'
+  :operation==='rework'?'重新执行本任务；交回合格成果后还需要独立评审，通常至少需要两个运行名额。'
+  :operation==='retry'?kind==='REVIEW'?'新增一次评审重试，保留原计算成果。':kind==='TASK'?'新增一次本任务执行；合格后仍需独立评审。':kind==='CHANGE_REVIEW'?'新增一次变更评审重试，尚不改变已冻结的研究协议。':'新增一次协议对齐重试，尚不启动科研计算。':null;
+ if(!impact)return null;
+ return <p role="note">{impact} 本项目已占用 {usedRunCount(p)} / {p.maxRuns} 个运行名额（含排队与续接）；费用未获取，次数不等于账单。</p>;
+}
 export function ResearchCommand({p,state,operation,body={},busy,disabled,send}:{p:SPProject;state:TeamState;operation:string;body?:Record<string,unknown>;busy:boolean;disabled:boolean;send:SendResearchCommand}){
  const [expanded,setExpanded]=useState(false),[snapshot,setSnapshot]=useState(""),[error,setError]=useState("");
  const [note,setNote]=useState(""),[option,setOption]=useState("");const immediate=useRef(false);
@@ -38,6 +46,7 @@ export function ResearchCommand({p,state,operation,body={},busy,disabled,send}:{
  }catch(e){setError(e instanceof Error?e.message:"操作失败，请刷新核对状态。");}finally{immediate.current=false;}};
  return <div className="rt-command">{!expanded?<button className="rt-primary" disabled={disabled||busy} onClick={begin}>{name}</button>:<section className="rt-confirm" aria-label={name+"确认"}>
   <h3>{name} · R{p.revision}</h3><p>以 {state.viewer.label} 的成员身份提交。</p>
+  <RecoveryImpact p={p} operation={operation} runId={typeof body.runId==="string"?body.runId:undefined}/>
   {operation==="publish"&&<><p>请核对分工与冻结参数，并展开每项“查看全部验收标准”。确认后，连接器将开始领取任务。方法、种子和字段范围在“协议 → 科研防漂移”配置；求和与独立参考在“协议 → 可执行科学检查”配置。</p><p>{p.scientificChecks?"已冻结可执行数值规则，发布后不能删除或放宽；检查失败时，评审同意也不能交接。":"本项目尚未配置可执行数值检查。发布后不能补加本轮规则；需要数值核验时，请先取消并配置。"}</p><ul className="rt-publish-tasks">{p.alignment?.tasks.map(t=><li key={t.key}><strong>{t.title}</strong><small>{p.team?.members.find(m=>m.agent.id===t.assigneeAgentId)?.label} 执行 → {p.team?.members.find(m=>m.agent.id===t.reviewerAgentId)?.label} 评审</small><PublishTaskChecks task={t}/><PublishTaskAcceptance task={t}/></li>)}</ul></>}
   {operation==="align"&&<p>根据成员已冻结的研究提案生成协议、分工和验收标准。</p>}
   {operation==="rework"&&<><p>这会重新执行本任务，并由另一成员重新评审；原成果与评审保留。若数值和方法不变、仅缺代码或原执行记录，请先取消，选择“补充证据复审”，避免重复计算。</p><label>返工说明<textarea aria-label="返工说明" maxLength={4000} value={note} onChange={e=>setNote(e.target.value)}/></label></>}

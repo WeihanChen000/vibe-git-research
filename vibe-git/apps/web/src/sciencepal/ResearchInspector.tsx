@@ -10,7 +10,7 @@ import {CodexTaskControl} from "./CodexTaskControl";
 import type {LocalResearch} from "./ResearchTopBar";
 import { useState } from "react";
 import { ArrowRight, Check, Copy, FileDown, FileJson, History, ShieldCheck, X } from "lucide-react";
-import { projectNextActions, type SPNextAction, type SPProject, type SPTask, type SPRun } from "@vibe-git/protocol";
+import { usedRunCount, projectNextActions, type SPNextAction, type SPProject, type SPTask, type SPRun } from "@vibe-git/protocol";
 import { Markdown } from "../Markdown";
 import { Avatar } from "../canvas/TopologyCanvas";
 import { ResearchCommand, commandNames, type SendResearchCommand } from "./ResearchCommand";
@@ -32,6 +32,22 @@ export function SciencePALThreadEntry({run}:{run:SPRun|undefined}) {
  <p>在原对话中补充信息，保持本人连接器运行；回答后会接回原任务，不要重新领取或新建项目。</p>
  {!url&&<p className="rt-note">尚未取得原线程地址。先在 SciencePAL 按任务内容找到原对话；连接器取得已核对的地址后，这里会自动变为直达入口。</p>}
  {run?.threadId&&<details><summary>查看原线程编号</summary><code>{run.threadId}</code></details>}</>;
+}
+export function CompletedDeliverables({p,open,replay}:{p:SPProject;open:(t:ResearchTarget)=>void;replay?:ReplayContext|undefined}) {
+ if(p.phase!=='COMPLETED')return null;
+ return <section className="rt-detail-section" aria-label="本轮交付"><h3>本轮交付 · R{p.revision}</h3><p>以下仅列当前任务绑定的获批文件。研究问题、单位与适用限制请结合成果正文及原协议核对。</p>
+ {p.tasks.map(t=>{const execution=p.runs.find(r=>r.id===t.executionId),file=execution?.output;
+  const available=t.status==='APPROVED'&&file?.id===t.artifactId;
+  const review=execution?reviewsForAttempt(p,execution).find(r=>r.id===t.reviewId):undefined;
+  return <div className="rt-attempt" key={t.key}><b>{t.title}</b>
+   {available?<a href={artifactUrl(p,file!.id,replay)}>下载 {file!.filename} ↗</a>:<p className="rt-note">成果与批准记录未对应，请先核对证据清单。</p>}
+   <small>{execution?.scientificValidation?.status==='PASSED'?'已通过所配置的数值检查':execution?.scientificValidation?.status==='FAILED'?'数值检查未通过，请核对记录':'未记录可执行数值检查，不代表数值已核验'}{t.carriedFrom?` · 沿用 R${t.carriedFrom.revision} 获批成果`:''}</small>
+   {available&&review?.status==='COLLECTED'&&review.output&&<a href={artifactUrl(p,review.output.id,replay)}>查看绑定此成果的评审文件 ↗</a>}
+   <button className="rt-text-button" onClick={()=>open({type:'task',id:t.key})}>查看结果、单位与限制</button>
+  </div>;
+ })}
+ <details><summary>运行次数与费用说明</summary><p>本项目累计 {p.runs.length} 项作业、{usedRunCount(p)-p.runs.length} 次原线程续接，共占用 {usedRunCount(p)} / {p.maxRuns} 个运行名额，包含旧版、失败与已排队作业。</p><p>费用未获取；这些次数不能证明比手工交接更便宜或更快。</p></details>
+ <small>此处提供逐份下载；完整输入、代码是否交付取决于原任务产物，证据清单在下方。不把缺少的文件说成已有交付包。</small></section>;
 }
 function ActionCard({action,p,open,stale,state,busy,send,onConnect,local}:{action:SPNextAction;p:SPProject;open:(t:ResearchTarget)=>void;stale:boolean;state:TeamState;busy:boolean;send:SendResearchCommand;onConnect:()=>void;local:LocalResearch}){
   const steps=taskActionText(p,action),run=p.runs.find(r=>r.id===action.runId);
@@ -63,7 +79,7 @@ export function ResearchInspector({state,p,target,open,close,archived,stale,busy
     <nav className="inspector-tabs rt-inspector-nav" aria-label="详情视图"><button aria-pressed={target.type==="next"} onClick={()=>open({type:"next"})}>待办</button><button aria-pressed={target.type==="protocol"} onClick={()=>open({type:"protocol"})}>协议</button><button aria-pressed={target.type==="history"} onClick={()=>open({type:"history"})}>记录</button></nav>
     <div className="inspector-body rt-inspector-content">
       {stale&&<p className="rt-stale">连接未更新，以下为上次快照。刷新成功后再处理待办。</p>}
-      {target.type==="next"&&(archived?<p className="rt-note">这是归档版本。切回当前版本查看待办，不会从旧版发起操作。</p>:<>{next.actions.map((a,i)=><ActionCard key={`${p.id}:${p.revision}:${a.runId??a.operation}:${i}`} action={a} p={p} open={open} stale={stale} state={state} busy={busy} send={send} onConnect={onConnect} local={local}/>)}{state.browserCommands&&<section className="rt-detail-section"><h3>项目操作</h3>{state.viewer.id===p.team?.captainNodeId&&state.viewer.role==="captain"&&!p.paused&&p.phase!=="COMPLETED"&&<ResearchCommand p={p} state={state} operation="pause" disabled={stale} busy={busy} send={send}/>}{!p.paused&&["READY","COMPLETED","CHANGES_REQUESTED"].includes(p.phase)&&<ResearchCommand p={p} state={state} operation="change" disabled={stale} busy={busy} send={send}/>}</section>}<section className="rt-detail-section"><h3>交接原则</h3><p className="rt-note">成果通过已配置的数值检查和另一成员评审，带齐批准依据后才交给下游。未配置的检查不等于已核验，任务完成也不保证科学结论成立。</p></section></>)}
+      {target.type==="next"&&(archived?<p className="rt-note">这是归档版本。切回当前版本查看待办，不会从旧版发起操作。</p>:<><CompletedDeliverables p={p} open={open} replay={state.replay}/>{next.actions.map((a,i)=><ActionCard key={`${p.id}:${p.revision}:${a.runId??a.operation}:${i}`} action={a} p={p} open={open} stale={stale} state={state} busy={busy} send={send} onConnect={onConnect} local={local}/>)}{state.browserCommands&&<section className="rt-detail-section"><h3>项目操作</h3>{state.viewer.id===p.team?.captainNodeId&&state.viewer.role==="captain"&&!p.paused&&p.phase!=="COMPLETED"&&<ResearchCommand p={p} state={state} operation="pause" disabled={stale} busy={busy} send={send}/>}{!p.paused&&["READY","COMPLETED","CHANGES_REQUESTED"].includes(p.phase)&&<ResearchCommand p={p} state={state} operation="change" disabled={stale} busy={busy} send={send}/>}</section>}<section className="rt-detail-section"><h3>交接原则</h3><p className="rt-note">成果通过已配置的数值检查和另一成员评审，带齐批准依据后才交给下游。未配置的检查不等于已核验，任务完成也不保证科学结论成立。</p></section></>)}
       {member&&<>
         <div className="rt-profile"><Avatar id={member.nodeId} captain={member.nodeId===p.team?.captainNodeId}/><div><strong>{member.label}</strong><span>{platformName(member.agent)} · {member.nodeId===state.viewer.id?"本人":"团队成员"}</span></div></div>
         <section className="rt-detail-section"><h3>连接与阻塞</h3><p>{connectionSummary(state,p,member.nodeId).blocker}</p>{!state.replay&&(isLocalResearchPlatform(member.agent.platform)?["panel"]:["panel","connector"]).map(channel=>{const c=connectionSummary(state,p,member.nodeId).presence?.[channel as "panel"|"connector"];return <div className="research-presence-row" key={channel}><strong>{channel==="panel"?"本人本机入口":"本项目连接器"}</strong><span className={c?.state==="online"?"success":"muted"}>{c?.state==="online"?"在线":c?.state==="offline"?"已停止 / 心跳超时":"未连接"}</span><small>{c?.reason??"尚无心跳记录"}{c?.lastSeen?` · 最近 ${new Date(c.lastSeen).toLocaleTimeString()}`:""}</small></div>;})}{!state.replay&&member.nodeId===state.viewer.id&&<button onClick={onConnect}>管理本人算力网与连接器</button>}<small>{state.replay?"回放未采集实时心跳，不将历史成员标成当前在线。":"打开浏览器不计作连接器在线；Codex 入口在线也不代表模型正在执行。"}</small></section>

@@ -1,7 +1,7 @@
 import {projectNextActions} from '@vibe-git/protocol';
 import { describe,it,expect } from 'vitest';
 import type { SPProject,SPTask,SPRun } from '@vibe-git/protocol';
-import { reviewsForAttempt,taskDisplay,connectionSummary,researchHandoffs,stageProject,actionTarget,taskActionText } from './research-model.js';
+import { projectCreationIssues,reviewsForAttempt,taskDisplay,connectionSummary,researchHandoffs,stageProject,actionTarget,taskActionText } from './research-model.js';
 const task=(key:string,rest:Partial<SPTask>={}):SPTask=>({key,title:key,goal:'',boundary:'',acceptance:[],dependencies:[],assigneeAgentId:'a',reviewerAgentId:'b',outputFilename:key+'.json',status:'WAITING',attempt:0,executionId:null,reviewId:null,artifactId:null,feedback:'',review:null,...rest});
 const run=(rest:Partial<SPRun>={}):SPRun=>({id:'consumer',kind:'TASK',revision:2,taskKey:'analysis',agent:{id:'b',name:'B'},status:'RUNNING',prompt:'',inputs:[],outputFilename:'analysis.json',output:null,threadId:null,runId:null,sandboxId:null,projectId:null,createdAt:'',updatedAt:'',error:null,remoteStatus:null,...rest});
 const project=():SPProject=>({id:'p',roomId:'room',title:'test',revision:2,phase:'EXECUTING',paused:false,agents:[],coordinatorId:'a',proposals:[],requirementMarkdown:'R2',alignment:null,alignmentRunId:null,tasks:[task('data',{status:'APPROVED',artifactId:'approved'}),task('analysis',{dependencies:['data'],executionId:'consumer'})],runs:[run({inputs:[{artifactId:'approved',filename:'data.json',sha256:'sha',size:1}]})],changes:[],history:[],maxRuns:10,error:null,createdAt:'',updatedAt:'',events:[]});
@@ -76,5 +76,24 @@ describe('Recovery actions at the shared run budget',()=>{
   expect(projectNextActions(p,'captain').actions.map(a=>a.operation)).toEqual(['evidence']);
   p.phase='REVIEWING';p.runs[0]!.status='RUNNING';
   expect(projectNextActions(p,'captain').actions.some(a=>a.kind==='running')).toBe(true);
+ });
+});
+
+
+describe('Project creation readiness',()=>{
+ const members=[{id:'captain',label:'Captain',binding:{agent:{id:'a',name:'A'}},plan:{id:'p'}},{id:'member',label:'Member',binding:{agent:{id:'b',name:'B'}},plan:{id:'q'}}] as any;
+ it('explains missing name and captain selection instead of only disabling creation',()=>{
+  const issues=projectCreationIssues('', ['member'], 'captain',members,true,'');
+  expect(issues).toEqual(['填写项目名称','选择 2–4 位成员','参与成员必须包含队长本人']);
+ });
+ it('catches a selected member whose proposal disappeared and unresolved file errors',()=>{
+  const stale=[members[0],{...members[1],plan:null}];
+  const issues=projectCreationIssues('Study',['captain','member'],'captain',stale,false,'请补充来源署名与使用许可。');
+  expect(issues.some(s=>s.includes('Member'))).toBe(true);
+  expect(issues.some(s=>s.includes('文件'))).toBe(true);
+  expect(issues).toContain('请补充来源署名与使用许可。');
+ });
+ it('allows a ready two-member project without requiring an optional source file',()=>{
+  expect(projectCreationIssues('Study',['captain','member'],'captain',members,true,'')).toEqual([]);
  });
 });
