@@ -1,0 +1,31 @@
+{
+  "scope": "Silent screenshot-sequence rough cut, not continuous screen capture or final narrated submission",
+  "seconds": 270,
+  "width": 1920,
+  "height": 1080,
+  "fps": 12,
+  "audioStreams": 0,
+  "fullDecode": "passed",
+  "videoBytes": 3823606,
+  "videoSha256": "ef95f166c345d603d34a0e8eba06ab8246f8c7f78387bfbff04ee97f05d4a840",
+  "scenes": 17,
+  "framesInspectedSeparately": [
+    0,
+    75,
+    125,
+    190,
+    230,
+    260
+  ],
+  "localBrowserPlayback": {
+    "duration": 270,
+    "width": 1920,
+    "height": 1080,
+    "error": null,
+    "seekAndPlayingSeconds": [
+      116.0651,
+      201.0883
+    ],
+    "server": "Local HTTP Range support required for seeking"
+  }
+}

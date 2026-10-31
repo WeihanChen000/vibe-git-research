@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>科研任务交接 · 无配音粗剪</title>
+<style>
+body{margin:0;background:#101820;color:#edf2f7;font:17px/1.6 system-ui,"Microsoft YaHei",sans-serif}main{max-width:1400px;margin:auto;padding:20px}h1{font-size:26px;margin:0}p{color:#bbc8d5}video{display:block;width:100%;max-height:76vh;background:black}nav{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}button,a{font:inherit;color:#9ed5ff}button{padding:8px 13px;background:#1b2a3a;border:1px solid #455b71;border-radius:5px;cursor:pointer}aside{padding:12px 18px;border-left:3px solid #e5be70;background:#192633}small{color:#b7c7d6}
+</style>
+<main>
+<h1>科研任务交接 · 4:30 无配音粗剪</h1>
+<p>先检查画面是否可读、因果是否清楚。截帧剪辑，非连续录屏；尚不是最终参赛视频。</p>
+<video controls playsinline preload="metadata" poster="poster.jpg" aria-label="科研任务交接无配音粗剪"><source src="handoff-rough-cut.mp4" type="video/mp4"></video>
+<nav aria-label="视频章节">
+<button data-time="0">00:00 成员与提案</button>
+<button data-time="35">00:35 上传建项</button>
+<button data-time="75">01:15 SciencePAL 计算记录</button>
+<button data-time="115">01:55 退回与补证</button>
+<button data-time="180">03:00 获批交接</button>
+<button data-time="200">03:20 报告变更与复用</button>
+<button data-time="245">04:05 最终报告</button>
+</nav>
+<aside>0:00–0:50 为新工作台的模拟界面截帧。此后是已完成真实案例的只读记录阅览，阅览页是视频素材，不是产品界面。1CRN 录像模拟器在对齐阶段失败，因此没有把后续记录剪成一次现场执行。首次遗漏版本信息是预设恢复测试。</aside>
+<p><a href="handoff-rough-cut.mp4" download>下载 MP4</a> · <a href="evidence.html">逐项查看原始依据</a> · <a href="README.md">剪辑说明与未完成项</a> · <a href="../watch.html">旧版视频（未覆盖）</a></p>
+<small>无音轨 · 1920 × 1080 · 12 fps · 一位操作者、单机、一个 SciencePAL 账号与 Codex。补证未重跑原生产者计算；独立评审仍有调用与计算成本。</small>
+</main>
+<script>
+const video=document.querySelector('video');
+document.querySelectorAll('[data-time]').forEach(b=>b.addEventListener('click',()=>{video.currentTime=Number(b.dataset.time);video.play().catch(()=>{});}));
+</script>
+</html>

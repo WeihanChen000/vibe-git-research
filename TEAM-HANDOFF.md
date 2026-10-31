@@ -2,7 +2,9 @@
 
 > **本仓库已同步审核队友 CityuAI4S 分支。** 用户明确采用其新工作台；流程修复、SciencePAL 新材料和作者历史均保留。[本轮审核、测试与边界](docs/research/CITYUAI4S-INTEGRATION-20261031.md)。源分支保留，本文下方旧功能冻结与视频版本属于历史基线。
 
-交接日期：2026-10-31。后续内容整合、修改、视频重剪和正式参赛提交由接手队友负责。本包没有提交问卷，也没有提交成功回执。
+交接日期：2026-10-31，视频素材补充于 2026-11-01。后续内容整合、修改、视频重剪和正式参赛提交由接手队友负责。本包没有提交问卷，也没有提交成功回执。
+
+> **新增无配音粗剪（待审阅，非最终成片）：**[直接播放](https://weihanchen000.github.io/vibe-git-research/submission/rough-cut/watch.html) · [素材、来源与未完成项](docs/submission/rough-cut/README.md)。4:30；前 50 秒为新工作台模拟截帧，其后为真实记录阅览。1CRN 录像模拟器在对齐阶段失败，未拍成补证到复用的连续操作，不应将此粗剪描述为完整界面验收。旧视频保留。
 
 ## 当前版本与重要状态
 
@@ -10,7 +12,7 @@
 - 先看[最新 SciencePal 接手指南](docs/submission/sciencepal-handoff/README.md)：含实际 Agent 配置、190/192 项实跑核验、原字节交付包、连接修复与提交续办。
 - 冻结功能基线：`dda48233f57ee20e9c8be2d6b21c782b46ece7ba`。
 - 现有视频/PDF 材料提交：`94c8ab2a1a5bff6cae4c7b6cf18423350c961974`；公网核验记录：`4c5f20636a160db67b79de00851a6c7c17b935bf`。
-- **视频未获使用者认可**：现有 4:38 版本能播放，但操作页面太小、文字卡片过多，未达到讲解操作的要求。重录只采集到 Agent 选择与提案输入两张图，完整新视频尚不存在。
+- **视频未获使用者认可**：原 4:38 版本操作页面太小、文字卡片过多。11 月 1 日新增 4:30 无配音截帧粗剪，放大操作与证据；连续后半程操作镜头、英文配音和用户认可仍未完成。
 - PDF 为五页可编辑来源生成的技术说明，主案例数字已核对；请队友最终审定、补身份分工与提交。文件中的 final-20261031-v1 是制作版本名，不表示用户已认可或正式提交。
 - 先读 [AGENTS.md](AGENTS.md)：保留原版功能、界面与权限，不覆盖历史科研证据。
 
@@ -25,7 +27,7 @@
 | 最新功能代码 | [vibe-git](vibe-git) | Host 科研状态机、Relay 通用适配器、Web 原拓扑整合 |
 | 现有成品 | [播放页](https://weihanchen000.github.io/vibe-git-research/submission/watch.html)、[更新后的五页 PDF](docs/submission/sciencepal-handoff/project-brief-updated.pdf) | 视频待队友处理；PDF 已更新本次 SciencePal 核验与访问条件 |
 | 剪辑/制作源文件 | [制作工具与素材](tools/submission/README.md) | 双语场景 JSON、24 段英文音频、PDF 五页正文、生成脚本、截图 |
-| 未完成重录 | [操作视频草稿](tools/submission/operations-draft/README.md) | 只有两张新截图；模拟启动器不是已完整验收的新案例 |
+| 待审阅粗剪 | [4:30 粗剪与素材](docs/submission/rough-cut/README.md) | 新工作台模拟截帧＋真实保存记录；模拟器未完整验收；旧操作草稿保留 |
 | 填表和来源 | [提交清单](docs/submission/README.md)、[历史填表文本](docs/submission/FORM-COPY.md)、[资源声明](docs/submission/ORIGINALITY-RESOURCES.md) | 身份已填入草稿；实际分工核对、评审权限、视频与最终声明仍待完成 |
 | 观看/运行/恢复 | [简明指南](docs/submission/RUN-AND-RECOVER.md) | 明确只读、模拟、真实重跑的差异 |
 | 全部研究文档 | [目录](docs/research/INDEX.md) | 历史实验、校验、对照及局限 |

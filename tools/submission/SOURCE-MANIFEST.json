@@ -2,7 +2,7 @@
   "scope": "Editable production sources and explicitly unfinished mock filming assets. No private runtime sessions.",
   "functional_baseline": "dda48233f57ee20e9c8be2d6b21c782b46ece7ba",
   "video_status": "USER_REQUESTED_REEDIT_NOT_ACCEPTED",
-  "operations_draft_status": "TWO_SCREENSHOTS_ONLY_NOT_END_TO_END_VALIDATED",
+  "operations_draft_status": "REHEARSED_THROUGH_CREATE_BLOCKED_AT_ALIGN_UNDEFINED_ID",
   "checks": {
     "python_syntax": true,
     "node_syntax": true,
@@ -132,8 +132,8 @@
       "sha256": "d96cf9782fb68d45837c3d775330596fac1ec8e8a8946d4a9ecf4c7020d110c9"
     },
     "tools/submission/operations-draft/server.mjs": {
-      "bytes": 5966,
-      "sha256": "d143df671170fd01626fc284560ec4190c3f97da8023d6b22dfc617e3a4f7d52"
+      "bytes": 6228,
+      "sha256": "8644fbe1844c0e1fa4e9999e0eb5a1a63c83c278234937a9d0bcb09c139c52a1"
     },
     "tools/submission/pdf-pages.json": {
       "bytes": 7293,
@@ -158,6 +158,21 @@
     "tools/submission/voices.py": {
       "bytes": 497,
       "sha256": "336400774ce72e1fceb1767e9daf0371d34aec41090968ed1d919e4395d3c364"
+    },
+    "tools/submission/build_roughcut_evidence.py": {
+      "bytes": 11648,
+      "sha256": "39ae947f1c7d86d2c164b67ed3cd7e06b6cf5dd2e35ce4561b8e603bcccfa43d"
+    },
+    "tools/submission/render_roughcut.py": {
+      "bytes": 6660,
+      "sha256": "4f6bd413450e0a0e9fff7ca36c46b28c8892a798dd8c7df5595bb2510d9ac729"
     }
+  },
+  "rough_cut": {
+    "status": "SILENT_SCREEN_SEQUENCE_PENDING_USER_REVIEW",
+    "path": "docs/submission/rough-cut/watch.html",
+    "seconds": 270,
+    "product_baseline": "46e120b6977bb8a1fd51c8be55ca238e332c2010",
+    "continuous_later_operations_filmed": false
   }
 }

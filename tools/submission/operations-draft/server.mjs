@@ -31,11 +31,13 @@ let busy=false;const timer=setInterval(async()=>{if(busy)return;busy=true;try{
  await pipeline.tick();
  }catch(e){console.error('Simulation step:',e.message);}finally{busy=false;}},700);
 const info={scope:'Interactive generated-data simulation only; never use a real API key.',study,captain:leader.ticket(),member:member.ticket(),invite:host+'/join/'+invite.inviteToken,csv:join(out,study.id+'.pdb'),reference:reference(study,Buffer.from(study.csv))};
-await writeFile(join(out,'session.json'),JSON.stringify(info,null,2));
+async function saveEntryTickets(){await writeFile(join(out,'session.json'),JSON.stringify({...info,captain:leader.ticket(),member:member.ticket()},null,2));}
+await saveEntryTickets();
+const entryTimer=setInterval(()=>void saveEntryTickets().catch(e=>console.error('Local entry refresh:',e.message)),30000);
 await writeFile(join(out,'captain-proposal.md'),study.captain+'\n');
 await writeFile(join(out,'scientist-proposal.md'),study.scientist+'\n');
 await writeFile(join(out,'START-HERE.md'),"# 1CRN filming draft - SIMULATION ONLY\n\nOpen the private captain/member URLs in session.json. Join with the local invitation; use only SIMULATED-ONLY as the mock key. Save the two proposals. Create a project through the captain UI and upload 1crn.pdb, attributing RCSB PDB.\n\nThis draft was only filmed through agent selection and proposal entry. Alignment, supplementary review and revision reuse still require validation. Simulated results copy an explicitly marked historical result; they are NOT a fresh SciencePAL calculation.\n\nFor Codex actions prepare the task packet, wait for the mock output, then check and submit. Do not start a real model. For SciencePAL start the local mock connector. Keep all output/session files private.\n");
 console.log('Human walkthrough: '+join(out,'START-HERE.md'));
 
 console.log('SIMULATION ONLY. SciencePAL key: SIMULATED-ONLY. Local outputs appear after preparing a task; click check/submit, not launch a real model.');console.log('Private session saved; no real model calls.');
-async function stop(){clearInterval(timer);for(const w of workers)w.kill();await leader.app.close();await member.app.close();await app.close();process.exit(0);}process.once('SIGINT',stop);process.once('SIGTERM',stop);
+async function stop(){clearInterval(timer);clearInterval(entryTimer);for(const w of workers)w.kill();await leader.app.close();await member.app.close();await app.close();process.exit(0);}process.once('SIGINT',stop);process.once('SIGTERM',stop);

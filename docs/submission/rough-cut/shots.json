@@ -1,0 +1,257 @@
+[
+  {
+    "start": 0,
+    "duration": 10,
+    "caption": "跨 Agent 交接：方法、文件和批准，是否对应？",
+    "scope": "操作演示｜模拟执行器",
+    "source": "shots/03-members.png",
+    "sourceSha256": "90d8c1f5363c17eda88f042562d22033ce6d02fee3cdf70b41879887d6b1acf2",
+    "focusCrop": [
+      25,
+      60,
+      1000,
+      560
+    ],
+    "provenance": "Actual simulator UI screenshot"
+  },
+  {
+    "start": 10,
+    "duration": 10,
+    "caption": "队长用 Codex，成员用 SciencePAL；提案汇入同一项目",
+    "scope": "操作演示｜模拟执行器",
+    "source": "shots/03-members.png",
+    "sourceSha256": "90d8c1f5363c17eda88f042562d22033ce6d02fee3cdf70b41879887d6b1acf2",
+    "focusCrop": [
+      26,
+      315,
+      1000,
+      550
+    ],
+    "provenance": "Actual simulator UI screenshot"
+  },
+  {
+    "start": 20,
+    "duration": 15,
+    "caption": "成员先提交方法、参数和交付要求",
+    "scope": "操作演示｜模拟执行器",
+    "source": "shots/02-scientist-proposal.png",
+    "sourceSha256": "d2c1fb7a81aba6b032d131f5122674c388e1f0163d925503d4dd5a637a89661a",
+    "focusCrop": [
+      460,
+      227,
+      1220,
+      700
+    ],
+    "provenance": "Actual simulator UI screenshot"
+  },
+  {
+    "start": 35,
+    "duration": 15,
+    "caption": "队长选择输入文件，填写来源，冻结提案建项",
+    "scope": "操作演示｜模拟执行器",
+    "source": "shots/04-create.png",
+    "sourceSha256": "8d8028ddb1b4a24a60a4c166c76fdec50e01c183a8ec44ebc24aa129126ae6d6",
+    "focusCrop": [
+      143,
+      255,
+      860,
+      880
+    ],
+    "provenance": "Actual simulator UI screenshot"
+  },
+  {
+    "start": 50,
+    "duration": 15,
+    "caption": "下面查看已完成的真实案例：先冻结输入与验收要求",
+    "scope": "真实运行记录｜1CRN",
+    "source": "shots/10-protocol.png",
+    "sourceSha256": "bb383de0ae90f168c2e1a46864c104b0d9b2288c0f6d959cf555cc8c8e9fb154",
+    "focusCrop": [
+      28,
+      145,
+      1380,
+      620
+    ],
+    "provenance": "Read-only editorial rendering of immutable historical records; not product UI"
+  },
+  {
+    "start": 65,
+    "duration": 10,
+    "caption": "SciencePAL 计算 → Codex 复核 → 报告 → SciencePAL 复核",
+    "scope": "真实运行记录｜1CRN",
+    "source": "shots/10-protocol.png",
+    "sourceSha256": "bb383de0ae90f168c2e1a46864c104b0d9b2288c0f6d959cf555cc8c8e9fb154",
+    "focusCrop": [
+      30,
+      309,
+      1380,
+      540
+    ],
+    "provenance": "Read-only editorial rendering of immutable historical records; not product UI"
+  },
+  {
+    "start": 75,
+    "duration": 20,
+    "caption": "SciencePAL Biology 工具执行原计算，输出 sasa.json",
+    "scope": "真实运行记录｜1CRN",
+    "source": "shots/11-tools.png",
+    "sourceSha256": "a6b912d750aa4f1d4016c44d0e609e42a2b5c2a651ccb9e21790423ac1c0f406",
+    "focusCrop": [
+      28,
+      145,
+      1380,
+      705
+    ],
+    "provenance": "Read-only editorial rendering of immutable historical records; not product UI"
+  },
+  {
+    "start": 95,
+    "duration": 10,
+    "caption": "实际交付：2967.6165 Å²，327 个重原子，46 个残基",
+    "scope": "真实运行记录｜1CRN",
+    "source": "shots/12-result.png",
+    "sourceSha256": "b7b0146fa9f2c1b4547509f19d01b808d44804387c2e00dec152d0eb96d4e6c8",
+    "focusCrop": [
+      28,
+      145,
+      1380,
+      690
+    ],
+    "provenance": "Read-only editorial rendering of immutable historical records; not product UI"
+  },
+  {
+    "start": 105,
+    "duration": 10,
+    "caption": "独立参考相差约 0.1865%，低于事先约定的 2%",
+    "scope": "本地独立复核",
+    "source": "shots/13-reference.png",
+    "sourceSha256": "6da1b22b2ecc2e4f6d234a2a11945c31039d14a9476dc1fc88456255482464c8",
+    "focusCrop": [
+      28,
+      145,
+      1380,
+      660
+    ],
+    "provenance": "Read-only editorial rendering of immutable historical records; not product UI"
+  },
+  {
+    "start": 115,
+    "duration": 20,
+    "caption": "数值通过仍被退回：原代码、执行日志和版本证据缺失",
+    "scope": "真实运行记录｜1CRN",
+    "source": "shots/14-reject.png",
+    "sourceSha256": "9565adb4255e103154c568d52b3f30d59703cbea42ac63dcea5be9638223c2d9",
+    "focusCrop": [
+      28,
+      145,
+      1380,
+      670
+    ],
+    "provenance": "Read-only editorial rendering of immutable historical records; not product UI"
+  },
+  {
+    "start": 135,
+    "duration": 20,
+    "caption": "操作者补回原运行证据；原计算成果不变，仍需独立复审",
+    "scope": "真实运行记录｜1CRN",
+    "source": "shots/15-supplement.png",
+    "sourceSha256": "278279302a8f1942afc21c1c0af9b3344c9d29df72202ecf6f764777d2ad990c",
+    "focusCrop": [
+      28,
+      145,
+      1380,
+      700
+    ],
+    "provenance": "Read-only editorial rendering of immutable historical records; not product UI"
+  },
+  {
+    "start": 155,
+    "duration": 25,
+    "caption": "两次评审绑定同一个文件哈希；复审仍有调用成本",
+    "scope": "真实运行记录｜1CRN",
+    "source": "shots/16-approve.png",
+    "sourceSha256": "cbf5f3611231bae2e24a0a1f167f19b9122bd65fd6a989bb887687c4458f2544",
+    "focusCrop": [
+      28,
+      145,
+      1380,
+      700
+    ],
+    "provenance": "Read-only editorial rendering of immutable historical records; not product UI"
+  },
+  {
+    "start": 180,
+    "duration": 20,
+    "caption": "报告收到成果、批准依据和数值检查记录，再开始下游工作",
+    "scope": "真实运行记录｜1CRN",
+    "source": "shots/21-handoff.png",
+    "sourceSha256": "f6b4f3f2c600fcb7b5a66d9817ef4d115e45027dc0431da3ba11f7f3619f147d",
+    "focusCrop": [
+      28,
+      145,
+      1380,
+      660
+    ],
+    "provenance": "Read-only editorial rendering of immutable historical records; not product UI"
+  },
+  {
+    "start": 200,
+    "duration": 20,
+    "caption": "只增加中文摘要和两条局限；变更影响范围为 report",
+    "scope": "真实运行记录｜1CRN",
+    "source": "shots/17-change.png",
+    "sourceSha256": "30e26324cc0a9fdba9f0b6c4a69aa9d85b178a668b2076181a4d6a2a208e2305",
+    "focusCrop": [
+      28,
+      145,
+      1380,
+      700
+    ],
+    "provenance": "Read-only editorial rendering of immutable historical records; not product UI"
+  },
+  {
+    "start": 220,
+    "duration": 25,
+    "caption": "R2 的成果、计算作业、批准评审与 R1 一致",
+    "scope": "真实运行记录｜1CRN",
+    "source": "shots/18-reuse.png",
+    "sourceSha256": "dd39d45ac750d63416136693d9a90670408948572696da80ef29e63773a21d0d",
+    "focusCrop": [
+      28,
+      145,
+      1380,
+      725
+    ],
+    "provenance": "Read-only editorial rendering of immutable historical records; not product UI"
+  },
+  {
+    "start": 245,
+    "duration": 15,
+    "caption": "最终报告保留原数值，增加中文说明，并给出适用边界",
+    "scope": "真实运行记录｜1CRN",
+    "source": "shots/19-report.png",
+    "sourceSha256": "b1af870b9ad80783dee7691d554de5942a4c032bf1afdc86d651be8548d388eb",
+    "focusCrop": [
+      28,
+      145,
+      1380,
+      700
+    ],
+    "provenance": "Read-only editorial rendering of immutable historical records; not product UI"
+  },
+  {
+    "start": 260,
+    "duration": 10,
+    "caption": "已验证补证与复用；跨电脑协作、总体节时收益仍待验证",
+    "scope": "真实运行记录｜1CRN",
+    "source": "shots/20-limits.png",
+    "sourceSha256": "796a25dcae14c1d1170a4f1cc5db9defbf4078f57d2fd809c864cdf3a01f2b31",
+    "focusCrop": [
+      28,
+      145,
+      1380,
+      740
+    ],
+    "provenance": "Read-only editorial rendering of immutable historical records; not product UI"
+  }
+]
