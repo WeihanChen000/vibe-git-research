@@ -8,13 +8,15 @@ export function CodexTaskControl({p,runId,local,disabled}:{p:SPProject;runId:str
  const run=p.runs.find(r=>r.id===runId),name=researchPlatformName(run?.agent.platform);
  useEffect(()=>{const controller=new AbortController();let pending=false;const read=async()=>{if(pending)return;pending=true;try{const r=await fetch('/api/local/research/codex-task?'+new URLSearchParams({projectId:p.id,runId}),{signal:controller.signal});const d=await r.json();if(!r.ok)throw Error(d.error||'无法读取本人任务包');if(!controller.signal.aborted){setInfo(d);setReadError('');}}catch(e){if(!controller.signal.aborted)setReadError(e instanceof Error?e.message:'本机入口未连接');}finally{pending=false;}};void read();const timer=setInterval(()=>void read(),3000);return()=>{controller.abort();clearInterval(timer);};},[p.id,runId,run?.status]);
  const work=async(kind:'codex-take'|'codex-submit'|'agent-run')=>{if(lock.current)return;lock.current=true;setBusy(true);setError('');setMessage('');try{const d=await local.call(kind,{projectId:p.id,runId});if(kind==='codex-take'){setInfo(d);setMessage(`任务包已准备，请启动或交给本人 ${name} 执行。`);}else if(kind==='agent-run'){setInfo(v=>v?{...v,execution:d}:v);setMessage('已启动本人 Agent，请等待运行状态更新。');}else setMessage('成果已校验交回，等待下一步处理。');}catch(e){setError(e instanceof Error?e.message:'操作失败，请核对当前状态；不会自动重试');}finally{lock.current=false;setBusy(false);}};
+ const executionLabels:Record<string,string>={STARTING:'正在启动',RUNNING:'执行中',COMPLETED:'执行结束，待交回',FAILED:'执行失败',INTERRUPTED:'执行中断',NEEDS_INPUT:'等待本人回答'};
+ useEffect(()=>{if(info?.execution&&!['STARTING','RUNNING'].includes(info.execution.state))setMessage(previous=>previous==='已启动本人 Agent，请等待运行状态更新。'?'':previous);},[info?.execution?.state]);
  const otherEntry=!!info&&!info.exists&&run?.status!=='READY';
  const prompt=info?`请读取本人科研任务包 ${info.instructions} 和 inputs/ 中全部冻结文件，完成本次${run?.kind==='REVIEW'?'独立评审':'任务'}。将完整 JSON envelope 保存到 ${info.outputPath}。保留输入与原任务目录，不替其他成员或队长操作。完成后告诉我，我会在 Vibe-Git 的本人待办检查并交回成果。`:'';
  return <section className="rt-command rt-local-task" aria-label={name+" 本人任务包"}>
   <p>在本人 {name} 完成计算或评审后，回到这里交回。准备任务包不会自动启动模型。</p>
   {otherEntry?<p className="rt-note">任务已从其他入口领取，请继续使用原来的 TASK.md 与目录，通过原入口 submit；不会创建第二份领取。</p>:!info?.prepared?<button className="rt-primary" disabled={disabled||busy||!local.info||!info} onClick={()=>void work('codex-take')}>{busy?'正在准备…':info?.exists?'恢复下载本人任务包':'准备本人任务包'}</button>:<>
    {!info.execution&&<button className="rt-primary" disabled={disabled||busy} onClick={()=>void work('agent-run')}>启动本人 {name}</button>}
-   {info.execution&&<p role="status">{info.execution.state} · {info.execution.detail}</p>}
+   {info.execution&&<p role="status">{executionLabels[info.execution.state]??info.execution.state} · {info.execution.detail}</p>}
    <button disabled={disabled||busy} onClick={()=>void navigator.clipboard.writeText(prompt).then(()=>setMessage(`已复制给 ${name} 的任务说明。`)).catch(()=>setError('复制失败，请展开下方任务说明手动复制。'))}>复制给 {name} 的任务说明</button>
    <details><summary>本次任务文件与保存位置 · R{p.revision}</summary><small>说明文件</small><code>{info.instructions}</code><small>待交回成果</small><code>{info.outputPath}</code></details>
    <details><summary>查看给 {name} 的任务说明</summary><pre className="rt-code">{prompt}</pre></details>

@@ -27,6 +27,8 @@
 
 最新补充：[两套新实验的完整流程与使用者验收](docs/research/WORKFLOW-EXPERIMENTS-20261031.md)。传感器标定、反应动力学均完成界面建项、偏移阻断、返工、交接与报告变更；包含实际本地计算、模拟 Agent、可自行操作的演练入口。
 
+最新真实联调进展：[治理新版界面实跑与修复中间记录](docs/research/LATEST-GOVERNANCE-LIVE-20261031.md)。本轮真实计算发现参数配置矛盾，已暂停并修复数值框误滚动、确认状态失效及确认信息不足；完整新版闭环尚未完成，不能与历史成功记录合并宣称通过。
+
 ## 黑客松提交材料
 
 [提交包与缺项清单](docs/submission/README.md) · [5 页技术说明](docs/submission/project-brief.pdf) · [▶ 直接播放故事演示（英文配音）](https://weihanchen000.github.io/vibe-git-research/submission/watch.html) · [原创性与资源说明](docs/submission/ORIGINALITY-RESOURCES.md)

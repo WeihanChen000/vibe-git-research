@@ -598,6 +598,23 @@ describe('Authenticated browser research controls',()=>{
   expect((await a.post('align',{expectedState:snapshot})).statusCode).toBe(409);
   expect(s.pipeline.get(s.project.id).runs).toHaveLength(1);
  });
+ it('keeps an open browser confirmation valid across idle worker ticks but rejects real changes',async()=>{
+  const s=await setup();await s.publish();await s.pipeline.tick();const a=await browserClient(s,s.captain.nodeId),before=await a.state(),snapshot=before.commandSnapshots[s.project.id];
+  vi.useFakeTimers({toFake:['Date']});
+  try {vi.setSystemTime(Date.now()+5000);await s.pipeline.tick();} finally {vi.useRealTimers();}
+  expect((await a.state()).commandSnapshots[s.project.id]).toBe(snapshot);
+  expect((await a.post('pause',{expectedState:snapshot})).statusCode).toBe(200);
+  expect((await a.post('resume',{expectedState:snapshot})).statusCode).toBe(409);
+ });
+ it('keeps a waiting-input confirmation valid on repeated identical status reports',async()=>{
+  const s=await setup();await s.publish();s.remoteA.askKinds.add('TASK');await s.pipeline.tick();await s.connectorA.step();
+  const p=s.pipeline.get(s.project.id),run=p.runs.find(r=>r.status==='NEEDS_INPUT')!;expect(run).toBeDefined();
+  const a=await browserClient(s,s.captain.nodeId),snapshot=(await a.state()).commandSnapshots[p.id];
+  vi.useFakeTimers({toFake:['Date']});
+  try {vi.setSystemTime(Date.now()+5000);await s.pipeline.memberStatus(p.id,s.captain.nodeId,run.id,'NEEDS_INPUT');} finally {vi.useRealTimers();}
+  expect((await a.state()).commandSnapshots[p.id]).toBe(snapshot);
+  expect((await a.post('pause',{expectedState:snapshot})).statusCode).toBe(200);
+ });
  it('denies other members, outsiders and a different captain',async()=>{
   const s=await setup(),b=await browserClient(s,s.member.node.id),o=await browserClient(s,s.outsider.node.id);
   expect((await b.post('align')).statusCode).toBe(403);

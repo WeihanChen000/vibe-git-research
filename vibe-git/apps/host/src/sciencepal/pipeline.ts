@@ -396,6 +396,7 @@ export class SciencePALPipeline {
   }
   private advance(p: SPProject) {
     if (!["EXECUTING", "REVIEWING"].includes(p.phase)) return;
+    const before = JSON.stringify(p);
     if (p.tasks.length && p.tasks.every(t => t.status === "APPROVED")) { p.tasks.forEach(t=>this.approvalProof(p,t)); p.phase = "COMPLETED"; this.save(p, "全部任务通过独立 Agent 评审，协作阶段完成"); return; }
     if (p.tasks.some(t => t.status === "CHANGES_REQUESTED")) { p.phase = "CHANGES_REQUESTED"; this.save(p, "评审要求修改：下游仍被阻止，等待确认返工"); return; }
     for (const t of p.tasks) {
@@ -403,7 +404,8 @@ export class SciencePALPipeline {
       if (t.status === "WAITING" && t.dependencies.every(key => p.tasks.find(d => d.key === key)?.status === "APPROVED")) this.execution(p, t);
     }
     p.phase = p.tasks.some(t => t.status === "RUNNING" || t.status === "WAITING") ? "EXECUTING" : "REVIEWING";
-    this.save(p);
+    // An idle poll is not a new project version: keep open browser confirmations valid.
+    if (JSON.stringify(p) !== before) this.save(p);
   }
   private safe(error: unknown) {
     return error instanceof SciencePALError || (error instanceof Error && "statusCode" in error) ? error.message : "SciencePAL 处理失败；请检查运行记录并重试确定失败的步骤";
@@ -517,7 +519,7 @@ export class SciencePALPipeline {
       const r = this.memberRun(p, nodeId, runId);
       if (isLocalResearchPlatform(r.agent.platform)) throw badRequest("本地任务不接受远端运行状态");
       if (!["STARTING", "RUNNING", "NEEDS_INPUT"].includes(r.status)) throw invalidState("当前运行不接受状态更新");
-      if (status === "NEEDS_INPUT") { r.status = "NEEDS_INPUT"; r.error = "等待成员在 SciencePAL 回复"; this.save(p); }
+      if (status === "NEEDS_INPUT") { if (r.status !== "NEEDS_INPUT" || r.error !== "等待成员在 SciencePAL 回复") { r.status = "NEEDS_INPUT"; r.error = "等待成员在 SciencePAL 回复"; this.save(p); } }
       else if (status === "FAILED" || status === "UNKNOWN") this.block(p, r, status === "UNKNOWN" ? "成员提交结果未知；禁止自动重新提交" : "成员连接器报告远端明确失败", status);
       else throw badRequest("无效成员状态");
       return r;

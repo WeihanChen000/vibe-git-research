@@ -1,9 +1,14 @@
 import { useRef, useState } from "react";
-import type { SPProject } from "@vibe-git/protocol";
+import type { SPProject, SPTaskDraft } from "@vibe-git/protocol";
 import type { TeamState } from "./research-model";
 import { Markdown } from "../Markdown";
 export type SendResearchCommand = (operation:string,body:Record<string,unknown>,snapshot:string)=>Promise<void>;
 export const commandNames:Record<string,string>={"set-scientific-checks":"冻结科学检查","set-constraints":"保存科研约束",align:"启动协议对齐",publish:"发布研究任务",rework:"安排返工","supplement-review":"补充证据复审",decide:"确认裁决",retry:"重试失败任务",pause:"暂停派发",resume:"恢复派发",change:"提出研究变更","apply-change":"应用研究变更","dismiss-change":"关闭变更"};
+/** Show the actual frozen fields at the point of approval, alongside prose criteria. */
+export function PublishTaskChecks({task}:{task:SPTaskDraft}) {
+ const fields=Object.entries(task.resultSchema?.properties??{}).filter(([,rule])=>rule.const!==undefined||rule.minimum!==undefined||rule.maximum!==undefined);
+ return <>{fields.length>0&&<><p>冻结字段约束（请与方法说明核对）</p><ul>{fields.map(([name,rule])=><li key={name}><code>{name}</code>：{typeof rule.const==='string'&&/^[a-f0-9]{64}$/.test(rule.const)?'绑定上传源文件指纹':rule.const!==undefined?String(rule.const):`${rule.minimum??'不限'} ～ ${rule.maximum??'不限'}`}</li>)}</ul></>}{!!task.scientificChecks?.length&&<><p>冻结数值检查</p><ul>{task.scientificChecks.map(rule=><li key={rule.id}>{rule.kind==='sum'?`${rule.totalPath} = ${rule.rowsPath}.${rule.valueField} 的总和`:rule.kind==='reference'?`${rule.path} 的独立参考值：${rule.expected}`:`${rule.rowsPath} 按 ${rule.keyField} 核对 ${rule.expected.length} 行参考值`}；绝对容差 {rule.absoluteTolerance}{rule.kind!=='sum'&&`，相对容差 ${rule.relativeTolerance}`}</li>)}</ul></>}</>;
+}
 export function ResearchCommand({p,state,operation,body={},busy,disabled,send}:{p:SPProject;state:TeamState;operation:string;body?:Record<string,unknown>;busy:boolean;disabled:boolean;send:SendResearchCommand}){
  const [expanded,setExpanded]=useState(false),[snapshot,setSnapshot]=useState(""),[error,setError]=useState("");
  const [note,setNote]=useState(""),[option,setOption]=useState("");const immediate=useRef(false);
@@ -17,7 +22,7 @@ export function ResearchCommand({p,state,operation,body={},busy,disabled,send}:{
  }catch(e){setError(e instanceof Error?e.message:"操作失败，请刷新核对状态。");}finally{immediate.current=false;}};
  return <div className="rt-command">{!expanded?<button className="rt-primary" disabled={disabled||busy} onClick={begin}>{name}</button>:<section className="rt-confirm" aria-label={name+"确认"}>
   <h3>{name} · R{p.revision}</h3><p>以 {state.viewer.label} 的成员身份提交。</p>
-  {operation==="publish"&&<><p>确认以下分工与验收后，连接器将开始领取任务。方法、种子和字段范围在“协议 → 科研防漂移”配置；求和与独立参考在“协议 → 可执行科学检查”配置。</p><p>{p.scientificChecks?"已冻结可执行数值规则，发布后不能删除或放宽；检查失败时，评审同意也不能交接。":"本项目尚未配置可执行数值检查。发布后不能补加本轮规则；需要数值核验时，请先取消并配置。"}</p><ul className="rt-publish-tasks">{p.alignment?.tasks.map(t=><li key={t.key}><strong>{t.title}</strong><small>{p.team?.members.find(m=>m.agent.id===t.assigneeAgentId)?.label} 执行 → {p.team?.members.find(m=>m.agent.id===t.reviewerAgentId)?.label} 评审</small><ul>{t.acceptance.map(a=><li key={a}>{a}</li>)}</ul></li>)}</ul></>}
+  {operation==="publish"&&<><p>确认以下分工与验收后，连接器将开始领取任务。方法、种子和字段范围在“协议 → 科研防漂移”配置；求和与独立参考在“协议 → 可执行科学检查”配置。</p><p>{p.scientificChecks?"已冻结可执行数值规则，发布后不能删除或放宽；检查失败时，评审同意也不能交接。":"本项目尚未配置可执行数值检查。发布后不能补加本轮规则；需要数值核验时，请先取消并配置。"}</p><ul className="rt-publish-tasks">{p.alignment?.tasks.map(t=><li key={t.key}><strong>{t.title}</strong><small>{p.team?.members.find(m=>m.agent.id===t.assigneeAgentId)?.label} 执行 → {p.team?.members.find(m=>m.agent.id===t.reviewerAgentId)?.label} 评审</small><PublishTaskChecks task={t}/><ul>{t.acceptance.map(a=><li key={a}>{a}</li>)}</ul></li>)}</ul></>}
   {operation==="align"&&<p>根据成员已冻结的研究提案生成协议、分工和验收标准。</p>}
   {operation==="rework"&&<><p>原成果与评审保留。任务返工后仍须由另一成员重新评审。</p><label>返工说明<textarea aria-label="返工说明" maxLength={4000} value={note} onChange={e=>setNote(e.target.value)}/></label></>}
   {operation==="supplement-review"&&<><p>只适用于结果不变、补充来源或执行记录。原文件、数值检查与退回意见保留，仍由原独立评审者判断；同一成果仅一次。</p><label>补充证据与来源<textarea aria-label="补充证据与来源" maxLength={4000} value={note} onChange={e=>setNote(e.target.value)} placeholder="写明证据来源、对应原任务或线程，以及它能支持什么；不要填写密钥。"/></label></>}
